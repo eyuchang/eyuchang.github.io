@@ -1,0 +1,22 @@
+
+Dimi00-10081
+
+Resolving Similarities and Differences Between Large Databases:
+A New Technique
+
+Summary:
+
+This project plan to develop a new technique to provide
+maximum level of discrimination between comparable
+datasets.  It plans to use techniques developed
+for fractal-based compression as the basis for developing
+techniques for biomedical data analysis.
+
+Concern:
+
+This project and Dimi00-10076 may have some overlap...
+This project seems to provide the rank order algorithm
+for the other project.
+
+
+

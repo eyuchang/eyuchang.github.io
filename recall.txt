@@ -1,0 +1,63 @@
+we first find the number of ``golden objects'' in the database that
+satisfied the target query concept. Suppose it is $K$. We then ran an
+experiment for up to $10$ iterations of relevance feedback. To measure
+the accuracy of the query concept we learned in each iteration, we retrieve
+the top-$K$ objects that are most similar to that concept and then find out
+how many of these golden objects are retrieved. Suppose after the $i^{th}$
+iteration, the query concept we learned is $QCS_i$. If we obtain $n$ golden
+objects when we retrieve the top-$K$ objects that are most similar to $QCS_i$.
+Then the recall rate after $i$ iterations is:
+
+\[
+Recall Rate = \frac{n}{K}
+\]
+
+Since we fix the number of objects we retrieve to be $K$, the precision
+rate after $i$ iterations is also:
+
+\[
+Precision Rate = \frac{n}{K}
+\]
+
+Which is the same as Recall rate. So in the following section, we only use recall
+rate to measure performance.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

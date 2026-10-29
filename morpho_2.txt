@@ -1,0 +1,103 @@
+
+1. How to combine clustering indexing technology and interactive retrieval
+   approach? We know that interactive retrieval approach dynamically 
+   update the query's weights based on the user's feedback. If the database 
+   images are clustered to several groups, how to calculate the objects' 
+   similarity.
+
+   There are two ways to deal with weights. 
+
+   One, we can transform the centroids of the clusters to take the user's 
+   weights into consideration.
+
+   Two, we can sample a few points in each cluster to compute the
+   average "weighted distance" to determine which cluster(s) is the closest.
+
+2. How to coordinate with another student in U.S.?  Does he respond in the
+   kernel of learner? We need the detail Learner spec. of our part more detail.
+
+   Please contact Edward directly. He is working on the learner @ U.S.
+                                                               
+3. Is there any commercial product for crawlers ?
+
+   AltaVista sells their crawler. 
+
+4. What do we do if we meet a web page with "cgi" interface?
+
+   Ignore all dynamic pages is fine. All crawlers today ignore
+   these pages.
+
+5. When we implement batch-mode shadowing crawler, does it make any
+   sense if we synchronize the collection by "non-uniform policy?"
+
+   Cho and Garcia-Molina's paper show that using the uniform policy
+   can keep the pages most fresh. We should stick to the uniform
+   policy for now.
+
+6. Is there any difference between the text-base crawler and the 
+   picture-base one for "important matrics?"  
+
+   There are two differences:
+   a. Picture-based crawling takes up more Internet bandwidth.
+      This may annoy some Web sites that would like to reserve
+      bandwidth for real customers. To avoid saturating
+      a site's bandwidth, we may want to space out out the time
+      to visit the same place.
+   b. We may want to crawl images by "category," that is, each
+      instance of the crawler get images of one kind...  This
+      is just a suggestion. 
+
+7. About the evaluation of the precision, do you evaluate the  search 
+   result about comparing the precision of each method. e.g., when 
+   we get 100 images in one cluster used by CF algorithm , we can get 
+   how many images in top k images.  At the same time, we get 100 
+   images via others method. whether we get more than CF algorithm.  
+
+   This is accurate. The "recall" defined in the Clindex paper
+   is confusing.  
+
+8. Will the K-mean method be better than Clindex algorithm evaluate 
+   by the precision?
+
+   Not really... The K-mean method is good only if you know K.
+   In a high-dimensional space, it is hard to tell K.
+
+9. After clustering, there might be still a lot of items 
+   (e.g. 1,000,000 = images) for each cluster. If we fetch the 
+   whole cluster into the main = memory and perform linear 
+   search in the matching phase, it might be very
+   costly. Is there any other possible solutions ?
+
+   Yes, it will be very costly to perform linear search. We need 
+   to discuss and work out another solution to deal with this problem. 
+   One possible solution is "Hierarchical Clustering," that is to 
+   reclustering the items in the same cluster based another criteria. 
+   Another solution is to build traditional index structures (e.g., 
+   B-trees, hash tables) in a large cluster.
+
+10. The "S", "C2" and "C3" mentioned in P.2 in the paper, are data 
+    that got from real human eyes response to color from a psychological 
+    point of view.
+
+    Ignore S, C2 and C3 for now.  It can be a good experiment 
+    down the road.  For now, let us use HSV.
+
+11. About the Triangle Filter, we can try to calculate it with angles 
+    instead of area.                
+
+    Calculate angles is a better approach.
+
+
+12. Other than using color, should we use other features to characterize
+    images?
+
+    We plan to use color + texture...  The profiler group can start
+    reading a few papers in this direction.  Texture should not
+    be too difficult.  In principle, we want to divide a picture
+    into a large number of small blocks and then try to characterize
+    the texture in each block.  These blocks can be overlapping.
+    
+    Wavelets seems to be a good kernel. 2D Wold decomposition can
+    be a good one too.  We should come up with a design shortly.
+
+    

@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Only Popcorn Is Left Behind | The AGI Forum</title>
+<meta name="description" content="AI first unsettled programmers and mathematicians. Now mobile generative cinema is challenging Hollywood while digital convenience unbundles the old dinner-and-a-movie ritual. Perhaps only the popcorn is left behind."/>
+<meta name="author" content="Edward Y. Chang"/>
+<link rel="canonical" href="https://infolab.stanford.edu/~echang/AGIBlogs/Blog012-I-Stopped-Watching-Movies.html"/>
+<meta property="og:type" content="article"/>
+<meta property="og:site_name" content="The AGI Forum"/>
+<meta property="og:title" content="Only Popcorn Is Left Behind"/>
+<meta property="og:description" content="Hollywood is trying to save production, while short AI-mediated cinema and off-premises dining are changing the old dinner-and-a-movie ritual."/>
+<meta property="og:url" content="https://infolab.stanford.edu/~echang/AGIBlogs/Blog012-I-Stopped-Watching-Movies.html"/>
+<meta property="og:image" content="https://infolab.stanford.edu/~echang/AGIBlogs/Blog012-Hollywood-Then-and-Now.png"/>
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://infolab.stanford.edu/~echang/AGIBlogs/Blog012-Hollywood-Then-and-Now.png"/>
+<style>
+:root {
+  --bg:#fbf8f1;
+  --paper:#fffdf8;
+  --text:#28231f;
+  --muted:#6f665f;
+  --border:#ded5c8;
+  --gold:#c79a45;
+  --gold-soft:#ead9ad;
+  --burgundy:#2f7188;
+  --burgundy-dark:#dceff6;
+  --navy:#29465b;
+  --cream:#fff7e8;
+  --orange:#df8b55;
+  --sky:#eaf7fc;
+  --sky-deep:#b9deea;
+  --peach:#fff0e4;
+  --mint:#edf8f1;
+  --font-body:-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;
+  --font-serif:"Iowan Old Style","Palatino Linotype","Book Antiqua",Palatino,Georgia,serif;
+}
+* { box-sizing:border-box; margin:0; padding:0; }
+html { scroll-behavior:smooth; }
+body {
+  background:
+    radial-gradient(circle at 50% -80px, rgba(199,154,69,.14), transparent 330px),
+    var(--bg);
+  color:var(--text);
+  font-family:var(--font-body);
+  font-size:18px;
+  line-height:1.8;
+  -webkit-font-smoothing:antialiased;
+}
+a { color:inherit; }
+.container { max-width:900px; margin:0 auto; padding:38px 24px 80px; }
+.site-nav { display:flex; flex-wrap:wrap; gap:16px 20px; padding-bottom:14px; margin-bottom:28px; border-bottom:1px solid var(--border); font-size:14px; }
+.site-nav a { color:var(--muted); text-decoration:none; }
+.site-nav a:hover { color:var(--burgundy); text-decoration:underline; }
+.masthead { border-bottom:1px solid var(--border); padding-bottom:20px; margin-bottom:22px; }
+.forum-title { font-weight:800; font-size:22px; letter-spacing:.01em; color:#2a2520; }
+.forum-subtitle { color:var(--muted); font-size:14.5px; margin-top:5px; }
+.return-bar { display:flex; justify-content:space-between; gap:18px; font-size:13.5px; margin-bottom:30px; flex-wrap:wrap; }
+.return-bar a { color:var(--burgundy); text-decoration:none; font-weight:700; }
+
+/* Hollywood-inspired hero: light, optimistic marquee palette. */
+.hero {
+  position:relative;
+  overflow:hidden;
+  margin:0 -10px 42px;
+  padding:44px 34px 36px;
+  color:#29465b;
+  background:
+    radial-gradient(circle at 88% 12%, rgba(255,255,255,.9), transparent 28%),
+    linear-gradient(135deg, #e9f7fc 0%, #fff9e9 52%, #fff0e5 100%);
+  border:1px solid #c9e2ea;
+  border-radius:12px;
+  box-shadow:0 16px 38px rgba(47,113,136,.10);
+}
+.hero:before,
+.hero:after {
+  content:"";
+  position:absolute;
+  top:0;
+  bottom:0;
+  width:110px;
+  background:linear-gradient(90deg, rgba(185,222,234,.24), transparent);
+  pointer-events:none;
+}
+.hero:before { left:0; }
+.hero:after { right:0; transform:scaleX(-1); }
+.marquee-lights {
+  position:absolute;
+  left:20px; right:20px; top:14px;
+  height:8px;
+  background:radial-gradient(circle, #e7b85e 0 2px, transparent 3px) 0 0/22px 8px repeat-x;
+  opacity:.58;
+  animation:marqueeGlow 3.2s ease-in-out infinite;
+}
+@keyframes marqueeGlow { 0%,100%{opacity:.38} 50%{opacity:.78} }
+.hero .kicker { position:relative; z-index:1; color:#2f7188; text-transform:uppercase; font-size:12px; font-weight:800; letter-spacing:.12em; margin-bottom:12px; }
+.hero h1 { position:relative; z-index:1; font-family:var(--font-serif); font-size:45px; line-height:1.08; letter-spacing:-.02em; max-width:780px; color:#263f52; }
+.hero .subtitle { position:relative; z-index:1; margin-top:18px; max-width:760px; color:#516773; font-family:var(--font-serif); font-size:21px; line-height:1.5; }
+.hero .meta { position:relative; z-index:1; margin-top:22px; display:flex; flex-wrap:wrap; gap:8px 13px; color:#6c7b82; font-size:13px; }
+.film-rule { height:10px; margin:25px 0 0; opacity:.52; background:repeating-linear-gradient(90deg,#dfb763 0 15px,transparent 15px 25px); border-top:1px solid rgba(47,113,136,.12); border-bottom:1px solid rgba(47,113,136,.12); }
+
+.article-body p { margin:0 0 22px; }
+.lead { font-family:var(--font-serif); font-size:22px; line-height:1.72; color:#332b25; }
+.dropcap:first-letter { float:left; font-family:var(--font-serif); font-size:64px; line-height:.82; padding:9px 9px 0 0; color:var(--burgundy); }
+h2 { font-family:var(--font-serif); font-size:30px; line-height:1.2; margin:48px 0 18px; color:#2a2520; position:relative; }
+h2:after { content:""; display:block; width:64px; height:3px; margin-top:9px; background:linear-gradient(90deg,var(--burgundy),var(--gold)); border-radius:2px; }
+h3 { font-family:var(--font-serif); font-size:22px; margin:28px 0 10px; }
+figure { margin:34px 0 37px; }
+figure img { width:100%; display:block; border-radius:9px; border:1px solid #cfc5b8; box-shadow:0 10px 28px rgba(46,35,25,.11); }
+figcaption { margin-top:10px; color:var(--muted); font-size:13.5px; line-height:1.55; }
+.pull { margin:31px 0; padding:21px 24px; border-left:5px solid var(--gold); background:#fff8e7; font-family:var(--font-serif); font-size:22px; line-height:1.55; color:#3b3027; }
+.takeaway { margin:31px 0; padding:20px 23px; background:linear-gradient(135deg,#eef9fc,#fff8e9); border:1px solid #cce5ec; border-radius:8px; color:#31596a; }
+.takeaway p { margin:0; font-family:var(--font-serif); font-size:21px; line-height:1.55; }
+.note { margin:26px 0; padding:18px 20px; border:1px solid #d7ccbd; border-radius:8px; background:#fffdf8; color:#4b443e; }
+.stat-band { display:grid; grid-template-columns:repeat(3,1fr); gap:12px; margin:29px 0 34px; }
+.stat { background:linear-gradient(145deg,#eef8fb,#fff8e9); color:#304c5c; border:1px solid #d3e6eb; border-radius:9px; padding:19px 17px; text-align:center; }
+.stat strong { display:block; font-family:var(--font-serif); font-size:27px; color:#2f7188; }
+.stat span { font-size:12.5px; color:#6a7478; line-height:1.45; display:block; margin-top:5px; }
+.dual { display:grid; grid-template-columns:1fr 1fr; gap:16px; margin:26px 0 32px; }
+.card { border:1px solid var(--border); border-radius:9px; padding:20px; background:var(--paper); }
+.card .label { display:block; color:var(--burgundy); font-weight:800; font-size:12px; letter-spacing:.09em; text-transform:uppercase; margin-bottom:7px; }
+.card h3 { margin:0 0 8px; font-size:21px; }
+.card p { margin:0; font-size:15.5px; color:var(--muted); line-height:1.6; }
+.compare { width:100%; border-collapse:collapse; margin:26px 0 36px; font-size:14.5px; }
+.compare th { text-align:left; background:linear-gradient(90deg,#dff2f7,#fff2dc); color:#29465b; padding:12px 14px; font-family:var(--font-serif); font-size:17px; border-bottom:1px solid #c9e2ea; }
+.compare td { padding:12px 14px; border-bottom:1px solid var(--border); vertical-align:top; }
+.compare tr:nth-child(even) td { background:#f8f2e8; }
+.cite-ref a { color:var(--burgundy); text-decoration:none; font-weight:750; }
+.cite-ref a:hover { text-decoration:underline; }
+.closing { margin:42px 0 24px; padding:28px 28px 25px; border-radius:10px; background:linear-gradient(135deg,#eaf8fc 0%,#fff9e9 55%,#fff1e7 100%); color:#344f5d; border:1px solid #cfe5eb; border-top:5px solid #e1b65d; box-shadow:0 10px 28px rgba(47,113,136,.07); }
+.closing p { margin-bottom:15px; }
+.closing p:last-child { margin-bottom:0; }
+.closing strong { color:#2f7188; }
+.references { margin-top:48px; border-top:1px solid var(--border); padding-top:10px; }
+.references ol { padding-left:23px; }
+.references li { margin:0 0 14px; font-size:13.5px; line-height:1.55; color:#5d554e; }
+.references a { color:var(--burgundy); }
+.return-bottom { margin-top:40px; }
+.return-bottom a { color:var(--burgundy); text-decoration:none; font-weight:750; }
+footer { border-top:1px solid var(--border); margin-top:45px; padding-top:23px; color:var(--muted); font-size:13.5px; text-align:center; }
+footer a { color:var(--burgundy); }
+@media (prefers-reduced-motion:reduce) { * { animation:none !important; scroll-behavior:auto !important; } }
+@media (max-width:720px) {
+  body { font-size:17px; }
+  .container { padding:24px 17px 60px; }
+  .hero { margin-left:0; margin-right:0; padding:38px 22px 29px; }
+  .hero h1 { font-size:35px; }
+  .hero .subtitle { font-size:18px; }
+  .dual,.stat-band { grid-template-columns:1fr; }
+  h2 { font-size:27px; }
+  .compare { font-size:13px; }
+}
+@media print { .site-nav,.return-bar,.return-bottom,.marquee-lights{display:none}.container{max-width:none;padding:0}.hero{color:#000;background:#fff;border:0;box-shadow:none;padding:10px 0}.hero h1,.hero .subtitle,.hero .meta,.hero .kicker{color:#333} }
+</style>
+</head>
+<body>
+<div class="container">
+<nav class="site-nav" aria-label="AGI Forum navigation">
+  <a href="AGIForumIndex.html">&larr; The AGI Forum Index</a>
+  <a href="http://infolab.stanford.edu/~echang/">Stanford Home</a>
+  <a href="Blog003-Path-to-AGI-Trilogy.html">The Path to AGI Trilogy</a>
+  <a href="https://socrasynth.com/" rel="noopener noreferrer" target="_blank">SocraSynth / QuadriumAI</a>
+</nav>
+<div class="masthead">
+  <div class="forum-title">The AGI Forum: Theories, Practice, Safety, Risk &amp; Policy</div>
+  <div class="forum-subtitle">Dispatches on theoretical paradigms, architectural practice, culture, and the changing relationship between humans and AI.</div>
+</div>
+<div class="return-bar">
+  <a href="AGIForumIndex.html">&larr; Back to Forum Home Page</a>
+  <a href="Blog011-Alignment-Is-Not-Authorization.html">Previous Dispatch: Alignment Is Not Authorization</a>
+</div>
+
+<header class="hero">
+  <div class="marquee-lights" aria-hidden="true"></div>
+  <div class="kicker">Dispatch No. 12 &middot; AI, Hollywood &amp; the Future of Movies</div>
+  <h1>Only Popcorn Is Left Behind</h1>
+  <div class="subtitle">Digital technology has been reshaping media for decades. Over the past two years, generative AI has intensified the pressure on knowledge work—and now the pain around Hollywood is accelerating again. My own iPhone habit finally made the shift impossible for me to treat as abstract.</div>
+  <div class="meta"><span>Edward Y. Chang</span><span>&bull;</span><span>Stanford InfoLab</span><span>&bull;</span><time datetime="2026-10-21">October 21, 2026</time><span>&bull;</span><span>12 min read</span></div>
+  <div class="film-rule" aria-hidden="true"></div>
+</header>
+
+<main class="article-body" id="article">
+<p class="lead dropcap">AI displacement is not a new conversation. Long before the current generative-AI wave, digital technology had already unsettled newspapers, the press, publishing, music, and the movie industry. But over the past two years, the discussion has intensified sharply as generative AI moved into programming, mathematics, research, and other knowledge work.</p>
+
+<p>Now the pain around Hollywood is accelerating again—and being reported with new urgency. Two of my daughters live in Los Angeles, so this is not abstract to me. This week I listened to KQED's <em>Forum</em> ask, "Can California Save Hollywood?" The discussion focused on productions leaving Southern California, competing tax incentives, soundstage infrastructure, and the long-term future of the industry.<sup class="cite-ref"><a href="#ref-1">[1]</a></sup> Two days earlier, Oren Hadar made a complementary argument: Los Angeles cannot save Hollywood if young actors, musicians, writers, and other creatives can no longer afford the years of uncertainty required to become good at their craft.<sup class="cite-ref"><a href="#ref-2">[2]</a></sup></p>
+
+<p>Restaurants may seem like a different industry altogether, but for generations Hollywood and restaurants were joined by one familiar social bundle: <strong>dinner and a movie</strong>. Today both are being unbundled by digital convenience, delivery, mobile screens, and increasingly generative media.</p>
+
+<p>Those reports made the problem timely. What finally forced an acknowledgment, however, was noticing my own behavior. The disruption was no longer something I was forecasting. <strong>My own habits had already changed.</strong></p>
+
+<div class="pull"><strong>I have not gone to a movie theater in years. I do not even watch the free feature films offered on long business-class flights. I have never subscribed to Netflix. I do not pay monthly fees for short-movie apps. Yet lately I have been watching, on average, about two movies a day.</strong></div>
+
+<p>They are not conventional two-hour movies. They are short, often around thirty minutes, and I watch them on my iPhone. I have started to joke that I am becoming "addicted" to them. The number of available stories seems almost endless.</p>
+
+<p>What surprises me most is not only the quantity. It is how quickly the production quality has crossed a practical threshold. On a small screen, human faces, animals, landscapes, interiors, motion, and cinematic transitions now look convincing to me perhaps 90 percent of the time. The remaining flaws are usually not important enough to interrupt the story. Voices can be dubbed or regenerated into different languages. Characters and settings can be re-versioned across national contexts, voices, appearances, and narrative styles.</p>
+
+<div class="takeaway"><p><strong>Hollywood is asking how to bring movie production back to Los Angeles. I am beginning to wonder whether the audience is quietly changing the definition of a movie at the same time.</strong></p></div>
+
+<figure>
+  <img src="Blog012-Hollywood-Then-and-Now.png" alt="A split cinematic scene contrasting a crowded classic Hollywood movie palace with a modern Los Angeles living room where several people watch short movies on individual iPhones while sharing a bowl of popcorn."/>
+  <figcaption><strong>Figure 1. From movie as destination to movie as ambient habit.</strong> The old ritual concentrated the audience in one theater, at one time, for one fixed film. The emerging ritual can put several different movies on several iPhones in the same living room—while the viewers still share the popcorn.</figcaption>
+</figure>
+
+<h2>Hollywood's production crisis is real</h2>
+
+<p>There is no reason to minimize what is happening in Los Angeles. KQED's October 21 discussion describes productions migrating to other states and countries as rivals offer stronger incentives and production infrastructure.<sup class="cite-ref"><a href="#ref-1">[1]</a></sup> The <em>Los Angeles Times</em> reported in August that second-quarter 2026 shoot days for feature films and television were down about 20 percent and 30 percent respectively from already weak 2025 levels, and that Los Angeles had lost roughly 57,000 film and sound-recording jobs over four years.<sup class="cite-ref"><a href="#ref-3">[3]</a></sup></p>
+
+<p>Hadar's essay adds an important human layer. His argument is not simply that California needs more tax credits. It is that creative ecosystems need <em>slack</em>: the cheap apartment, the waitressing job, the odd gig, and the years in which an artist can fail repeatedly before finding a voice or a career. He recalls paying $725 a month for an East Hollywood apartment in 2002 and argues that the disappearance of such economic slack is pushing young creatives out before they have time to mature.<sup class="cite-ref"><a href="#ref-2">[2]</a></sup></p>
+
+<p>I find that argument persuasive. But it addresses mostly the <strong>supply side</strong> of Hollywood: who can afford to live in Los Angeles, where productions are filmed, and whether the local ecosystem can retain talent.</p>
+
+<p>My iPhone habit points to the <strong>demand side</strong>: what audiences are increasingly willing to call entertainment.</p>
+
+<h2>The movie itself may be changing</h2>
+
+<p>Short drama is no longer a marginal format. Sensor Tower reports that short-drama apps exceeded 850 million worldwide downloads in the first quarter of 2026, up 140 percent year over year. Global in-app purchase revenue was roughly $750 million for the quarter. Average daily time spent in short-drama apps had reached about 25 minutes by April, compared with roughly 35 minutes for conventional OTT streaming.<sup class="cite-ref"><a href="#ref-4">[4]</a></sup></p>
+
+<div class="stat-band">
+  <div class="stat"><strong>850M+</strong><span>estimated short-drama app downloads in Q1 2026</span></div>
+  <div class="stat"><strong>+140%</strong><span>year-over-year download growth</span></div>
+  <div class="stat"><strong>25 min</strong><span>average daily short-drama viewing by April 2026</span></div>
+</div>
+
+<p>Those numbers do <em>not</em> mean that all short dramas are AI-generated. They are not. It is important not to collapse two different trends into one.</p>
+
+<div class="dual">
+  <div class="card"><span class="label">Revolution 1</span><h3>The format changes</h3><p>Stories become shorter, mobile-first, serialized, highly abundant, and designed for frequent consumption rather than a two-hour appointment.</p></div>
+  <div class="card"><span class="label">Revolution 2</span><h3>The production stack changes</h3><p>Generative AI increasingly lowers the cost of creating scenes, actors, voices, localization, visual effects, and eventually entire narrative productions.</p></div>
+</div>
+
+<p>The interesting possibility is that these two revolutions are now beginning to converge.</p>
+
+<h2>A studio is becoming software</h2>
+
+<p>That second transition is no longer hypothetical. In an October 8 <em>PBS NewsHour</em> segment distributed by KQED, a writer using the EyeTell platform produced a period-drama episode in about a week without real actors, real locations, sets, or horses. The system integrates generative-video tools so that an individual creator can perform work that once required a much larger production organization.<sup class="cite-ref"><a href="#ref-5">[5]</a></sup></p>
+
+<p>KQED had already devoted a June <em>Forum</em> episode to AI's expanding use in editing, animation, visual effects, and filmmaking, and to the tension between new creative tools and an art form historically built around human storytellers and production communities.<sup class="cite-ref"><a href="#ref-6">[6]</a></sup></p>
+
+<p>This matters because the traditional movie bundled many expensive constraints together:</p>
+
+<table class="compare">
+  <thead><tr><th>Traditional movie</th><th>Emerging mobile / generative movie</th></tr></thead>
+  <tbody>
+    <tr><td>Large production organization</td><td>Potentially a small team or even one creator coordinating AI tools</td></tr>
+    <tr><td>Fixed actors and physical sets</td><td>Synthetic or hybrid actors, scenes, locations, and effects</td></tr>
+    <tr><td>Fixed language versions created later</td><td>Rapid dubbing, voice generation, and localization</td></tr>
+    <tr><td>Roughly feature-length viewing</td><td>Shorter, serialized, mobile-first consumption</td></tr>
+    <tr><td>Theater or streaming destination</td><td>Feed-like discovery on the device already in your hand</td></tr>
+    <tr><td>Subscription, ticket, or rental habit</td><td>Freemium, advertising, in-app purchase, or other low-friction models</td></tr>
+  </tbody>
+</table>
+
+<p>Sensor Tower's report itself points to increasingly diversified monetization, including advertising, rather than a single subscription model.<sup class="cite-ref"><a href="#ref-4">[4]</a></sup> That aspect resonates strongly with my own behavior. I have never been a Netflix subscriber, and I am not paying a monthly fee for the short films I watch. This is not a story about one streaming subscription replacing another. For me, the more fundamental change is that <strong>the friction to begin watching has nearly disappeared.</strong></p>
+
+<h2>Only the popcorn is left behind?</h2>
+
+<p>The traditional movie was rarely just a movie. It was an evening architecture: leave home, meet someone, eat at a restaurant, stand in line, sit in a theater, and perhaps buy popcorn. The economic value was distributed across several industries because the experience required physical movement.</p>
+
+<p>Restaurants are certainly not disappearing. The National Restaurant Association projected U.S. restaurant and foodservice sales of about $1.55 trillion in 2026 and employment of roughly 15.8 million people.<sup class="cite-ref"><a href="#ref-7">[7]</a></sup> But the way people use restaurants is changing. The Association reported in 2025 that nearly three-quarters of restaurant traffic was already off-premises—takeout, delivery, and drive-thru—making eating restaurant food at home an ordinary part of daily life.<sup class="cite-ref"><a href="#ref-8">[8]</a></sup></p>
+
+<p>This is not an argument that AI is "killing restaurants." Delivery, mobile ordering, cost, convenience, and changing lifestyles are all involved. But AI is entering this layer too. DoorDash's 2026 industry survey reported that 22 percent of consumers had used AI to choose a restaurant, while restaurants increasingly use AI for discovery, reservations, and customer service.<sup class="cite-ref"><a href="#ref-9">[9]</a></sup></p>
+
+<p>The more interesting point is that the old bundle is being <strong>unbundled</strong>. The movie comes to the phone. The restaurant meal comes to the door. Discovery becomes algorithmic. Dubbing and localization become generative. A night that once required leaving home can increasingly be reconstructed on the sofa.</p>
+
+<div class="takeaway"><p><strong>Perhaps only the popcorn is left behind: the ritual survives, while almost everything around it—the theater, the restaurant visit, the subscription, even parts of the production itself—is being recomputed.</strong></p></div>
+
+<h2>The two-hour movie was never a law of nature</h2>
+
+<p>We often treat cultural formats as if they were intrinsic to the art. They usually are not. They are compromises among technology, economics, distribution, and human habit.</p>
+
+<p>The feature film was shaped by theaters, projection, ticket economics, schedules, physical distribution, and an audience willing to devote an evening to a single work. Television inherited half-hour and hour-long blocks from broadcast schedules. Streaming removed the schedule but largely preserved the long-form unit.</p>
+
+<p>The phone removes another assumption: that a story must command a large uninterrupted block of time.</p>
+
+<div class="pull"><strong>The old movie was scarce in production and abundant in audience attention. The emerging movie may become abundant in production and scarce in attention.</strong></div>
+
+<p>If so, thirty minutes is not an inferior two-hour movie. It may be a different equilibrium.</p>
+
+<h2>Localization may become generation</h2>
+
+<p>Dubbing used to be a downstream operation. A finished film existed first; translators, voice actors, subtitlers, and distributors adapted it for another market.</p>
+
+<p>Generative systems blur that boundary. Language, voice, visual identity, background, setting, and even characters can increasingly become variables rather than fixed properties of one master copy.</p>
+
+<p>That does not mean culture becomes interchangeable. Quite the opposite. Bad localization can erase culture. Synthetic stereotypes can make it worse. Rights, consent, provenance, and compensation become more important, not less.</p>
+
+<p>But technically, the direction is striking: the same narrative structure can increasingly be re-expressed for different audiences without reproducing the entire physical production.</p>
+
+<p>When that becomes normal, a movie may no longer be a single immutable artifact. It may become a <strong>family of generated versions</strong>.</p>
+
+<h2>Does this mean Hollywood no longer matters?</h2>
+
+<p>No. That conclusion would be too easy.</p>
+
+<p>AI can make production cheaper. It cannot make every story worth watching. It can generate a convincing face without creating a memorable character. It can reproduce visual grammar without necessarily understanding why a scene matters. And if synthetic content becomes nearly infinite, abundance itself makes another resource scarce: <strong>taste</strong>.</p>
+
+<p>This is where Hadar's argument about Los Angeles may become even more important rather than obsolete. A creative city is not valuable only because it contains soundstages. It is valuable because people collide there: actors, writers, musicians, editors, designers, engineers, directors, immigrants, eccentrics, failures, and future successes. The "slack" that allows such people to experiment is precisely what a world flooded with mechanically generated content may need most.<sup class="cite-ref"><a href="#ref-2">[2]</a></sup></p>
+
+<div class="takeaway"><p><strong>If production capacity becomes abundant, human imagination, judgment, cultural authenticity, and the ability to recognize a story worth telling may become more valuable.</strong></p></div>
+
+<h2>Saving Hollywood may mean saving something different</h2>
+
+<p>KQED asks whether California can bring film and television production back.<sup class="cite-ref"><a href="#ref-1">[1]</a></sup> That remains an urgent economic question. Tens of thousands of livelihoods depend on it.</p>
+
+<p>But I would broaden the question.</p>
+
+<p>Saving Hollywood should not mean preserving every production workflow exactly as it existed in 2019. It should mean preserving and renewing the creative ecosystem that made Hollywood valuable while accepting that the medium itself may change.</p>
+
+<div class="dual">
+  <div class="card"><span class="label">Preserve</span><h3>The creative ecosystem</h3><p>Affordable paths for young creators, writers, actors, musicians, editors, designers, and craftspeople to develop judgment and voice.</p></div>
+  <div class="card"><span class="label">Reinvent</span><h3>The production model</h3><p>Shorter formats, generative production, global localization, creator-scale studios, and new economic models beyond theater tickets and monthly subscriptions.</p></div>
+</div>
+
+<p>California may succeed in restoring tax competitiveness and still miss the larger transformation if the product being brought back is optimized for an audience habit that is disappearing.</p>
+
+<p>And AI companies may make the opposite mistake: believing that because they can generate moving images, they have reproduced Hollywood. They have not. A rendering engine is not a culture.</p>
+
+<h2>The paradox on my iPhone</h2>
+
+<p>My own behavior is only one person's behavior. It proves nothing by itself.</p>
+
+<p>But I find the paradox difficult to ignore.</p>
+
+<p>I stopped going to movies. I do not watch the free movies available to me on airplanes. I never subscribed to Netflix. I do not pay a monthly short-film subscription. Yet I am consuming more narrative video than I have in years.</p>
+
+<p>The screen became smaller. The movies became shorter. The supply became nearly infinite. The production increasingly looks synthetic. And instead of making me watch less, all of that made me watch more.</p>
+
+<p>Meanwhile, the dinner that once accompanied the movie can increasingly arrive at the same sofa. The old ritual does not vanish all at once; it is disassembled into pieces and delivered separately.</p>
+
+<div class="closing">
+<p>Los Angeles is debating how to bring Hollywood home.</p>
+<p><strong>But what if "home" is no longer a studio lot, a theater, or even a streaming service?</strong></p>
+<p>What if the next movie is twenty or thirty minutes long, generated by a tiny team, re-versioned into many languages and settings, discovered algorithmically, and watched on the phone while sitting on a sofa?</p>
+<p>Then the challenge is larger than saving production.</p>
+<p><strong>We have to save the people who know what stories are worth telling, while being willing to let the movie itself become something new.</strong></p>
+<p>Maybe the theater changes. Maybe the restaurant visit changes. Maybe the actors, sets, dubbing, subscriptions, and even the runtime change.</p>
+<p><strong>At least the popcorn survives.</strong></p>
+</div>
+
+<section class="references" aria-labelledby="references-heading">
+<h2 id="references-heading">References &amp; further listening</h2>
+<ol>
+  <li id="ref-1">KQED <em>Forum</em>. "Can California Save Hollywood?" Airdate: October 21, 2026. Discussion with entertainment journalists on production migration, tax incentives, and Hollywood's long-term future. <a href="https://www.kqed.org/forum/2010101915761/can-california-save-hollywood" target="_blank" rel="noopener noreferrer">KQED</a>.</li>
+  <li id="ref-2">Oren Hadar. "We can't save Hollywood without saving the broke waitresses: How LA's housing crisis is making our filming crisis worse." <em>Future Is LA</em>, October 19, 2026. <a href="https://www.futureis.la/p/we-cant-save-hollywood-without-saving" target="_blank" rel="noopener noreferrer">Future Is LA</a>.</li>
+  <li id="ref-3">Stacy Perman. "How L.A. stopped being Hollywood's leading star." <em>Los Angeles Times</em>, August 20, 2026. <a href="https://www.latimes.com/entertainment-arts/business/story/2026-08-20/la-hollywood-production-decline-history" target="_blank" rel="noopener noreferrer">Los Angeles Times</a>.</li>
+  <li id="ref-4">Sensor Tower. "State of Short Drama Apps 2026." June 2026. <a href="https://sensortower.com/blog/state-of-short-drama-apps-2026-report" target="_blank" rel="noopener noreferrer">Sensor Tower</a>.</li>
+  <li id="ref-5">PBS NewsHour / KQED. "AI video startup touts possibilities, but concerns remain." October 8, 2026. <a href="https://video.kqed.org/video/ai-video-startup-touts-possibilities-but-concerns-remain-1791501654/" target="_blank" rel="noopener noreferrer">KQED Video</a>.</li>
+  <li id="ref-6">KQED <em>Forum</em>. "In a World Run by Algorithms, Hollywood Fights for Its Soul." Airdate: June 16, 2026. <a href="https://www.kqed.org/forum/2010101914111/in-a-world-run-by-algorithms-hollywood-fights-for-its-soul" target="_blank" rel="noopener noreferrer">KQED</a>.</li>
+  <li id="ref-7">National Restaurant Association. "2026 State of the Restaurant Industry." February 11, 2026. The Association projected $1.55 trillion in U.S. restaurant and foodservice sales and approximately 15.8 million industry jobs for 2026. <a href="https://restaurant.org/research-and-media/research/research-reports/state-of-the-industry" target="_blank" rel="noopener noreferrer">National Restaurant Association</a>.</li>
+  <li id="ref-8">National Restaurant Association. "From Trend to Transformation: Off-Premises Dining Now Essential for Restaurant Consumers, Operators." April 16, 2025. <a href="https://restaurant.org/research-and-media/media/press-releases/from-trend-to-transformation-off-premises-dining-now-essential-for-restaurant-consumers%2C-operators" target="_blank" rel="noopener noreferrer">National Restaurant Association</a>.</li>
+  <li id="ref-9">DoorDash. "2026 Restaurant Industry Trends Report: From the Doorstep to the Dining Room." May 18, 2026. Survey of more than 3,000 U.S. consumers and 500+ restaurant operators. <a href="https://about.doordash.com/en-us/news/doordash-restaurant-industry-trends-report-2026" target="_blank" rel="noopener noreferrer">DoorDash</a>.</li>
+</ol>
+</section>
+
+<div class="return-bottom"><a href="AGIForumIndex.html">&larr; Return to The AGI Forum Index</a></div>
+</main>
+<footer>
+  <div>The AGI Forum &middot; Edward Y. Chang</div>
+  <div><a href="http://infolab.stanford.edu/~echang/">Stanford InfoLab</a></div>
+</footer>
+</div>
+</body>
+</html>

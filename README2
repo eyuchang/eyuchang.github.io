@@ -1,0 +1,117 @@
+EXAMPLE:
+Three training images: man, couple, crowd which are 512X512 and 8bpp.
+One test image: lena which is also 512X512 and 8bpp.  We want to
+design a tree-structured VQ of dimension 4 made from 2X2 blocks of the
+images with average rate 5 bits per vector.  The data is stored as
+"unsigned char" data.  So check the tsvq.h file (see the first real
+line of file) and make sure that DATATYPE is defined as:
+
+#define DATATYPE	unsigned char
+
+Note: If you are using 16bpp then define data as short int, etc.
+
+Then if needed, compile the programs
+make all
+make clean
+
+Put all of the training images into one file:
+
+cp man training_data
+cat couple >> training_data
+cat crowd >> training_data
+
+Block the training data into vectors taken from 2X2 chunks of the
+image using the "block" program from the stdvq directory.  The
+training_data now has three images, so there are 3*512=1536 rows and
+512 columns:
+
+block -i training_data -r 1536 -l 512 -h 2 -w 2 -o training_data.TS
+
+The output is a file called training_data.TS where TS is for training
+set.  Now the training data are ready to use.  Use the "tsvq" program
+to make a tree-structured codebook with rate 5 bits per vector.
+Recall that the vector dimension is 4.
+
+tsvq -t training_data.TS -c codebook -d 4 -r 5.0
+tsvq -t training_data.TS -c codebook -d 4 -r 5.0 -B
+
+The first will output an unbalanced tree-structured codebook called
+"codebook" with average rate 5 bits per vector.  It will also output a
+file called "training_data.TS.stat" which contains the rate and
+distortion and other information of the training data at each node of
+the codebook.  The information is needed for pruning.  The second will
+output a balanced tree-structured codebook called "codebook" with
+fixed rate 5 bits per vector.  It will also output a file called
+"training_data.TS.stat" which contains the rate and distortion and other
+information of the training data at each node of the codebook.  The
+information is needed for pruning.
+
+To encode the test image, the test image must first be arranged into
+vectors using the "block" program.  Then the "tsvqe" program is used
+to encode the test image.  Finally, the "unblock" program from the
+stdvq directory is used to arrange the encoded/decoded vectors into a
+decoded image.  Note that the "tsvqe" program does both encoding and
+decoding on the data and does not output the indices of the compressed
+vectors.
+
+block -i lena -r 512 -l 512 -h 2 -w 2 -o lena.TS
+tsvqe -c codebook -i lena.TS -o lena.TS.encoded
+unblock -i lena.TS.encoded -r 512 -l 512 -h 2 -w 2 -o lena.final
+
+_________________________________________________________________________
+EXAMPLE:
+You could also use the "-R" option in "tsvqe" to output an image
+called rate.dat which shows the instantaneous rate used at each pixel
+so you can see where more bits are being used throughout the image.
+
+tsvqe -c codebook -i lena.TS -o lena.TS.encoded -R
+unblock -i rate.dat -r 512 -l 512 -h 2 -w 2 -o rate.date.final
+
+_________________________________________________________________________
+EXAMPLE:
+Prune a tree-structured codebook with average rate 8 bits per vector
+to yield a tree-structured codebook with average rate 5 bits per
+vector.
+
+First we create a large tree-structured codebook using "tsvq".  Note
+that it doesn't matter if the tree is balanced or not. Use the
+"-s" option to name the output statistics file.
+
+tsvq -t training_data.TS -c codebook -d 4 -r 8.0 -s stats
+tsvq -t training_data.TS -c codebook -d 4 -r 8.0 -s stats -B
+
+Use the "prune" program to produce a list of all optimal sub-trees.
+The "-E" option can be used to do entropy-constrained pruning if
+desired.
+
+prune -c codebook -s stats -o nested > list_of_subtrees
+prune -c codebook -s stats -o nested -E > list_of_subtrees
+
+The file "list_of_subtrees" is a text file which lists all of
+the subtrees by number with their rates (or entropies) and distortions.
+The file "nested" contains the nested subtree structure.
+Look through the "list_of_subtrees" file to find the subtree with
+the desired rate(entropy) - distortion.  Use the "select"
+program to choose the subtree:
+
+select -c codebook -s nested -n # -o codebook.#
+
+where # is the number of the subtree selected in the "list_of_subtrees."
+Then you are ready to encode a test image:
+
+block -i lena -r 512 -l 512 -h 2 -w 2 -o lena.TS
+tsvqe -c codebook.# -i lena.TS -o lena.TS.encoded
+unblock -i lena.TS.encoded -r 512 -l 512 -h 2 -w 2 -o lena.final
+
+______________________________________________________________________
+EXAMPLE:
+Note that another way to generate a "stats" file is to encode a
+different set of training data using "tsvqe" with the "-D"
+
+tsvqe -c codebook -i training_data2.TS -o junk -D
+rm junk
+
+This will output a file called training_set2.TS.stat for the codebook
+which can then be used in the "prune" program.
+
+prune -c codebook -s training_set2.TS.stat -o nested > list_of_subtrees

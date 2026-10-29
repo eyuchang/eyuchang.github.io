@@ -1,0 +1,152 @@
+\title{Collaborative Proposal --- ITR/IIS: Cross-modality Heterogeneous
+Web Source Integration for High Quality Internet Information Access}
+
+\section{Overview and Significance}
+\label{sec-overview}
+
+\newcommand{\jc}[1]{{\bf (** Junghoo ** }{#1}{\bf\ ** Junghoo **)~}}
+
+This project intends to enable Web-based searches to be both 
+accurate and efficient by advancing three fundamental technologies:
+{\em query formulation}, {\em cross-modality web-page characterization},
+and {\em heterogeneous source integration}.
+
+The amount of Internet information grows rapidly, not only text data,
+but also multimedia data such as images, video, and music. 
+Furthermore, a substantial amount of information is ``hidden''
+behind search forms, making it hard for traditional crawlers to
+retrieval.  These trends will make traditional search engines 
+increasingly ineffective for three reasons.
+
+\begin{enumerate}
+
+\item {\em Ineffective query articulation}. 
+ At present, Internet users convey their
+ query concepts via {\em keywords}.  However, many complex
+ query concepts cannot be articulated by merely a few words.
+
+\item {\em Inadequate cross-modality meta-data integration}.  
+ Traditional Web-based systems focus on text
+ information while ignoring multimedia contents.
+ Text-based only indexing fails to leverage
+ multimedia meta data to enrich information representation.
+ In addition, text-only information representation
+ cannot effectively support the growing need of multi-modality
+ searches.  
+
+\item {\em Growing unindexed pages}.
+A large number of Web pages are not indexed by search engines and
+the number is growing for two reasons.
+\begin{itemize}
+\item Stale indexing.  Most search engines crawl Web pages periodically 
+  (e.g., once a month).  New Web sites created between two updates
+  are not indexed, and hence search results might not be
+  up-to-date.  As the amount of information continues to
+  grow, this problem exacerbates.
+
+\item Static-page-only indexing.   Many search engines index only static 
+  pages.  However, there are a huge number of pages in the hidden Web
+  \cite{} are {\em dynamically generated} in response to queries via
+  search forms.  Statistics shows the percentage of these
+  pages is growing, and static indexing misses out a lot of
+  information.
+\end{itemize}
+\end{enumerate}
+
+Consider that CIA wants to identify all information sources 
+containing atomic bomb design in the Internet.
+(This example was provided by In-Q-Tel, a CIA branch at Palo Alto.)
+Unlike that most queries can be satisfied by just a couple of
+good results, queries of this kind demand high recall.
+To achieve high recall, a search engine
+faces three hurdles:
+comprehending the query concept completely, 
+characterizing the data at hand adequately, 
+and integrating with as much useful sources in the Internet 
+as possible.
+These three hurdles for achieving the performace goal are
+precisely caused by the the three problems enumerated above.
+This project aims to investigate novel 
+techniques in three thrusts to overcome these three hurdles.
+
+\begin{enumerate}
+\item {\em Intelligent query concept formulation through active learning}.
+ In order to make query formulation easy and complete, it is both
+ necessary (for capturing abstract and subjective concepts) and
+ desirable (for alleviating difficulties from specifying complex query
+ concepts) to build intelligent search engines that can quickly {\em
+ learn} users' query concepts through {\em active learning}.  We plan
+ to extend our active learning algorithms $\MEGA$ 
+ and $\SVMActive$ \cite{LCL01,SVM01},
+ and develop new algorithms for
+ cross-modality query-concept learning.
+
+\item {\em Cross-modality information characterization and access}.
+ We plan to investigate novel data models for multi-modality data
+ characterization and meta-data integration.  We believe that a
+ cross-modality model that leverages meta-data of different modality
+ in an integrated manner will be more effective than treating
+ multi-modality meta-data independently.
+
+\item {\em Timely heterogeneous source integration}. 
+ In this thrust, we focus on improving quality of data retrieved from
+ the Web.  In particular, we investigate how to keep Web indexes
+ up-to-date to maximize data freshness; and how to perform seemless
+ integration of static and dynamically-generated Web pages.
+\end{enumerate}
+
+We have conducted research in learning, information integration, and
+keeping Web indexes up-to-date.  The progress we made recently
+provides a good foundation for our research team to continue making
+more progress. In addition, the Internet crawler and 
+image retrieval prototype
+\cite{demo-Sigmod01,demo-ACMmm01} that we have implemented allow us
+to quickly examine new hypotheses (some are described in
+Section~\ref{sec-future-work}), and to solicit input from the research
+community and from our partners.  To evaluate how fast and how well
+our developed algorithms capture subjective query concepts, can
+leverage cross-modality meta data, and can keep information up-to-data
+and comprehensive, we have established several testbeds with
+colleagues at IBM Almaden Research Center, IBM T.J. Watson Research
+Center, and Benchthalon.  We are also participating in efforts
+\cite{Bench01} for establishing standard tests \cite{Benchathlon} for
+evaluating information access that involves multimedia data.
+
+\subsection*{\underline{Synergisms and Impact}}
+
+Our three research thrusts are both complementary and synergistic:
+Our cross-modality paradigm will enrich Web data representation.
+The active learning algorithms will enable users to articulate their 
+``information need'' more intuitively and effectively, and thereby
+make query formulation more personalized and complete.
+And a timely and comprehensive data collected from the Web 
+will enhance the query results.
+The faculty involved in this proposal will all work on more than one thrust.
+We have a record of sharing research interests, working together
+and joint publications. Our thrusts are a convenient way to
+organize our research agenda, but are certainly not meant to partition 
+the project.
+
+This project could have substantial
+impact upon image retrieval in general, and
+upon education and military intelligence in particular.
+For improving education,
+rapid proliferation of multimedia
+content in digital libraries and on the Web underscores the increasing
+importance of having effective cross-modality search tools.  
+Intelligent query-concept learners will directly or indirectly make
+traditional text-based information retrieval easier and more
+personalized.  Directly, a text collection can employ an intelligent
+learner to better capture users' query concepts.  Indirectly, for
+instance, multimedia data can be added to a text collection so that
+searches can be conducted through interfaces that contain pictures and
+graphics. As a result, even young students who have not learned 
+Boolean algebra can use images and graphics to search for stories 
+and books.  For mililary intelligence,
+the present world situation makes the gathering of intelligence
+more essential than ever.  The ability to find
+information that fit a query profile
+in a massive heterogeneous database offers a strategic
+advantage to those who can assemble such information
+quickly and accurately.  
+

@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Berlin 5-Day Itinerary Map</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.css" />
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #f5f5f5;
+        }
+        
+        .container {
+            display: flex;
+            height: 100vh;
+        }
+        
+        .sidebar {
+            width: 350px;
+            background: white;
+            padding: 20px;
+            overflow-y: auto;
+            box-shadow: 2px 0 5px rgba(0,0,0,0.1);
+        }
+        
+        .map-container {
+            flex: 1;
+            position: relative;
+        }
+        
+        #map {
+            height: 100%;
+            width: 100%;
+        }
+        
+        .day-control {
+            margin: 10px 0;
+            padding: 15px;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .day-control:hover {
+            background: #f0f0f0;
+        }
+        
+        .day-control.active {
+            border-color: #4CAF50;
+            background: #e8f5e8;
+        }
+        
+        .day-title {
+            font-weight: bold;
+            font-size: 16px;
+            margin-bottom: 5px;
+        }
+        
+        .day-desc {
+            font-size: 12px;
+            color: #666;
+        }
+        
+        .legend {
+            background: white;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        
+        .legend-item {
+            display: flex;
+            align-items: center;
+            margin: 8px 0;
+        }
+        
+        .legend-color {
+            width: 20px;
+            height: 4px;
+            margin-right: 10px;
+            border-radius: 2px;
+        }
+        
+        .transport-info {
+            background: #e3f2fd;
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 5px;
+            font-size: 12px;
+        }
+        
+        .controls {
+            margin: 20px 0;
+        }
+        
+        button {
+            background: #2196F3;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            margin: 5px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        
+        button:hover {
+            background: #1976D2;
+        }
+        
+        .popup-content {
+            font-size: 14px;
+            line-height: 1.4;
+        }
+        
+        .popup-title {
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 5px;
+        }
+        
+        .popup-transport {
+            color: #666;
+            font-style: italic;
+            font-size: 12px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="sidebar">
+            <h2>Berlin 4-Day Itinerary</h2>
+            <p><strong>Your Hotel:</strong> AMERON Berlin Villa ABION</p>
+            <p><strong>Location:</strong> Kirchstraße 13, 10557 Berlin (Tiergarten area)</p>
+            <p><strong>Transport:</strong> Bellevue S-Bahn 5min • Turmstraße U-Bahn 9min</p>
+            
+            <div class="controls">
+                <button onclick="showAllDays()">Show All Days</button>
+                <button onclick="hideAllDays()">Hide All Days</button>
+                <button onclick="fitToView()">Fit to View</button>
+            </div>
+            
+            <div class="legend">
+                <h3>Day Legend</h3>
+                <div class="legend-item">
+                    <div class="legend-color" style="background: #2196F3;"></div>
+                    <span>Day 1: Historic Center</span>
+                </div>
+                <div class="legend-item">
+                    <div class="legend-color" style="background: #f44336;"></div>
+                    <span>Day 2: Museum Island & Culture</span>
+                </div>
+                <div class="legend-item">
+                    <div class="legend-color" style="background: #4CAF50;"></div>
+                    <span>Day 3: Berlin Wall History</span>
+                </div>
+                <div class="legend-item">
+                    <div class="legend-color" style="background: #9C27B0;"></div>
+                    <span>Day 4: West Berlin + Local Culture</span>
+                </div>
+            </div>
+            
+            <div class="day-control" onclick="toggleDay(1)" id="day1-control">
+                <div class="day-title" style="color: #2196F3;">Day 1 - Wednesday</div>
+                <div class="day-desc">Historic Center & Landmarks</div>
+                <div class="transport-info">Mostly walking + U55 to Brandenburg Gate</div>
+            </div>
+            
+            <div class="day-control" onclick="toggleDay(2)" id="day2-control">
+                <div class="day-title" style="color: #f44336;">Day 2 - Thursday</div>
+                <div class="day-desc">Reichstag (9:30am) + Museum Island</div>
+                <div class="transport-info">Walking along Spree + Unter den Linden</div>
+            </div>
+            
+            <div class="day-control" onclick="toggleDay(3)" id="day3-control">
+                <div class="day-title" style="color: #4CAF50;">Day 3 - Friday</div>
+                <div class="day-desc">Berlin Wall & Cold War Sites</div>
+                <div class="transport-info">S-Bahn + U-Bahn connections</div>
+            </div>
+            
+            <div class="day-control" onclick="toggleDay(4)" id="day4-control">
+                <div class="day-title" style="color: #9C27B0;">Day 4 - Saturday</div>
+                <div class="day-desc">West Berlin + Local Culture</div>
+                <div class="transport-info">S-Bahn west + U2 to Prenzlauer Berg</div>
+            </div>
+        </div>
+        
+        <div class="map-container">
+            <div id="map"></div>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
+    <script>
+        // Initialize map centered on hotel location
+        const map = L.map('map').setView([52.5250, 13.3550], 13);
+        
+        // Add OpenStreetMap tiles
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '© OpenStreetMap contributors'
+        }).addTo(map);
+        
+        // Define colors for each day
+        const dayColors = {
+            1: '#2196F3',
+            2: '#f44336', 
+            3: '#4CAF50',
+            4: '#9C27B0'
+        };
+        
+        // Points of Interest with coordinates
+        const pois = {
+            hotel: [52.5264, 13.3490], // AMERON Berlin Villa ABION - Kirchstraße 13
+            hauptbahnhof: [52.5250, 13.3694],
+            bellevue_station: [52.5205, 13.3509], // Bellevue S-Bahn station
+            brandenburg: [52.5163, 13.3777],
+            reichstag: [52.5186, 13.3762],
+            tiergarten: [52.5144, 13.3501],
+            holocaust: [52.5139, 13.3787],
+            potsdamer: [52.5096, 13.3759],
+            museum_island: [52.5211, 13.3966],
+            berlin_cathedral: [52.5190, 13.4009],
+            neues_museum: [52.5209, 13.3986],
+            nikolaiviertel: [52.5168, 13.4077],
+            alexanderplatz: [52.5219, 13.4132],
+            hackescher: [52.5225, 13.4016],
+            east_side: [52.5058, 13.4394],
+            oberbaum: [52.5018, 13.4456],
+            checkpoint: [52.5074, 13.3905],
+            topography: [52.5066, 13.3884],
+            jewish_museum: [52.5017, 13.3956],
+            charlottenburg: [52.5208, 13.2957],
+            kaiser_wilhelm: [52.5049, 13.3350],
+            kurfurstendamm: [52.5027, 13.3283],
+            kollwitzplatz: [52.5318, 13.4125]
+        };
+        
+        // Day routes and points
+        const dayRoutes = {
+            1: {
+                points: ['hotel', 'reichstag', 'brandenburg', 'tiergarten', 'holocaust', 'potsdamer', 'hotel'],
+                pois: [
+                    {coord: 'hotel', name: 'AMERON Berlin Villa ABION', desc: 'Boutique hotel near Tiergarten', transport: 'Base location - Kirchstraße 13'},
+                    {coord: 'reichstag', name: 'Reichstag Building', desc: 'German Parliament', transport: '15min walk OR Bellevue S-Bahn + 2 stops'},
+                    {coord: 'brandenburg', name: 'Brandenburg Gate', desc: 'Iconic landmark', transport: '5min walk from Reichstag'},
+                    {coord: 'tiergarten', name: 'Tiergarten Park', desc: 'Large city park', transport: '10min walk - very close to hotel'},
+                    {coord: 'holocaust', name: 'Holocaust Memorial', desc: 'Memorial site', transport: '15min walk'},
+                    {coord: 'potsdamer', name: 'Potsdamer Platz', desc: 'Modern Berlin center', transport: '5min walk'},
+                ]
+            },
+            2: {
+                points: ['hotel', 'reichstag', 'museum_island', 'berlin_cathedral', 'neues_museum', 'nikolaiviertel', 'hotel'],
+                pois: [
+                    {coord: 'hotel', name: 'AMERON Berlin Villa ABION', desc: 'Boutique hotel', transport: 'Base location'},
+                    {coord: 'reichstag', name: 'Reichstag Building & Dome', desc: '9:30am timed entry visit', transport: '5min to Bellevue S-Bahn + S3/S5/S7 to Brandenburger Tor'},
+                    {coord: 'museum_island', name: 'Pergamon Museum', desc: 'Ancient artifacts & UNESCO site', transport: '15min walk from Reichstag via Unter den Linden'},
+                    {coord: 'berlin_cathedral', name: 'Berlin Cathedral', desc: 'Dome climb & city views', transport: '5min walk'},
+                    {coord: 'neues_museum', name: 'Neues Museum', desc: 'Egyptian collection & Nefertiti', transport: '3min walk'},
+                    {coord: 'nikolaiviertel', name: 'Nikolaiviertel Historic Quarter', desc: 'Dinner in historic cobblestone area', transport: '10min walk'},
+                ]
+            },
+            3: {
+                points: ['hotel', 'east_side', 'oberbaum', 'checkpoint', 'topography', 'jewish_museum', 'hotel'],
+                pois: [
+                    {coord: 'hotel', name: 'AMERON Berlin Villa ABION', desc: 'Boutique hotel', transport: 'Base location'},
+                    {coord: 'east_side', name: 'East Side Gallery', desc: 'Berlin Wall murals', transport: 'Turmstraße U9 + transfer to Warschauer Str'},
+                    {coord: 'oberbaum', name: 'Oberbaum Bridge', desc: 'Historic bridge', transport: '5min walk'},
+                    {coord: 'checkpoint', name: 'Checkpoint Charlie', desc: 'Cold War crossing', transport: 'S-Bahn + U2 (30min)'},
+                    {coord: 'topography', name: 'Topography of Terror', desc: 'Nazi documentation', transport: '5min walk'},
+                    {coord: 'jewish_museum', name: 'Jewish Museum', desc: 'Jewish history', transport: 'U6 (8min)'},
+                ]
+            },
+            4: {
+                points: ['hotel', 'charlottenburg', 'kaiser_wilhelm', 'kurfurstendamm', 'kollwitzplatz', 'hotel'],
+                pois: [
+                    {coord: 'hotel', name: 'AMERON Berlin Villa ABION', desc: 'Boutique hotel', transport: 'Base location'},
+                    {coord: 'charlottenburg', name: 'Charlottenburg Palace', desc: 'Baroque palace & gardens', transport: 'Bellevue S-Bahn + S3/S5/S7 to Westend'},
+                    {coord: 'kaiser_wilhelm', name: 'Kaiser Wilhelm Memorial Church', desc: 'War memorial church', transport: 'S3/S5/S7 to Zoo (10min)'},
+                    {coord: 'kurfurstendamm', name: 'Kurfürstendamm', desc: 'Quick shopping walk', transport: 'Walking from church'},
+                    {coord: 'kollwitzplatz', name: 'Kollwitzplatz & Prenzlauer Berg', desc: 'Local neighborhood & cafes', transport: 'U2 to Senefelderplatz (35min)'},
+                ]
+            }
+        };
+        
+        // Store route layers for each day
+        const dayLayers = {};
+        const dayMarkers = {};
+        
+        // Create routes for each day
+        Object.keys(dayRoutes).forEach(day => {
+            dayLayers[day] = L.layerGroup();
+            dayMarkers[day] = L.layerGroup();
+            
+            const route = dayRoutes[day];
+            const color = dayColors[day];
+            
+            // Create route polyline
+            const routeCoords = route.points.map(point => pois[point]);
+            const polyline = L.polyline(routeCoords, {
+                color: color,
+                weight: 4,
+                opacity: 0.8
+            }).addTo(dayLayers[day]);
+            
+            // Add markers for POIs
+            route.pois.forEach((poi, index) => {
+                const coord = pois[poi.coord];
+                const marker = L.circleMarker(coord, {
+                    radius: 8,
+                    fillColor: color,
+                    color: 'white',
+                    weight: 2,
+                    opacity: 1,
+                    fillOpacity: 0.8
+                }).addTo(dayMarkers[day]);
+                
+                // Add popup with information
+                const popupContent = `
+                    <div class="popup-content">
+                        <div class="popup-title">${poi.name}</div>
+                        <div>${poi.desc}</div>
+                        <div class="popup-transport">🚇 ${poi.transport}</div>
+                    </div>
+                `;
+                marker.bindPopup(popupContent);
+                
+                // Add number label
+                const numberIcon = L.divIcon({
+                    className: 'number-icon',
+                    html: `<div style="background: ${color}; color: white; border-radius: 50%; width: 20px; height: 20px; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: bold; margin-top: -10px; margin-left: -10px;">${index + 1}</div>`,
+                    iconSize: [20, 20],
+                    iconAnchor: [10, 10]
+                });
+                L.marker(coord, {icon: numberIcon}).addTo(dayMarkers[day]);
+            });
+        });
+        
+        // Toggle day visibility
+        let activeDays = new Set();
+        
+        function toggleDay(day) {
+            const control = document.getElementById(`day${day}-control`);
+            
+            if (activeDays.has(day)) {
+                // Hide day
+                map.removeLayer(dayLayers[day]);
+                map.removeLayer(dayMarkers[day]);
+                activeDays.delete(day);
+                control.classList.remove('active');
+            } else {
+                // Show day
+                map.addLayer(dayLayers[day]);
+                map.addLayer(dayMarkers[day]);
+                activeDays.add(day);
+                control.classList.add('active');
+            }
+        }
+        
+        function showAllDays() {
+            [1, 2, 3, 4].forEach(day => {
+                if (!activeDays.has(day)) {
+                    toggleDay(day);
+                }
+            });
+        }
+        
+        function hideAllDays() {
+            [...activeDays].forEach(day => {
+                toggleDay(day);
+            });
+        }
+        
+        function fitToView() {
+            const allCoords = Object.values(pois);
+            const group = new L.featureGroup(allCoords.map(coord => L.marker(coord)));
+            map.fitBounds(group.getBounds().pad(0.1));
+        }
+        
+        // Add Hotel marker (always visible)
+        const hotelMarker = L.marker(pois.hotel, {
+            icon: L.divIcon({
+                className: 'hotel-icon',
+                html: '🏨',
+                iconSize: [30, 30],
+                iconAnchor: [15, 15]
+            })
+        }).addTo(map);
+        hotelMarker.bindPopup('<strong>Your Hotel</strong><br>AMERON Berlin Villa ABION<br>Kirchstraße 13, Tiergarten<br>5min to Bellevue S-Bahn');
+        
+        // Add Bellevue S-Bahn station marker (closest transport)
+        const bellevueMarker = L.marker(pois.bellevue_station, {
+            icon: L.divIcon({
+                className: 'transport-icon',
+                html: '🚊',
+                iconSize: [25, 25],
+                iconAnchor: [12, 12]
+            })
+        }).addTo(map);
+        bellevueMarker.bindPopup('<strong>Bellevue S-Bahn</strong><br>S3/S5/S7/S9 lines<br>5min walk from hotel');
+        
+        // Add Hauptbahnhof reference marker
+        const hauptbahnhofMarker = L.marker(pois.hauptbahnhof, {
+            icon: L.divIcon({
+                className: 'train-icon',
+                html: '🚂',
+                iconSize: [25, 25],
+                iconAnchor: [12, 12]
+            })
+        }).addTo(map);
+        hauptbahnhofMarker.bindPopup('<strong>Berlin Hauptbahnhof</strong><br>Central Train Station<br>15min walk from hotel');
+        
+        // Show Day 1 by default
+        toggleDay(1);
+    </script>
+</body>
+</html>

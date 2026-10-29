@@ -1,0 +1,117 @@
+
+From echang@xanadu.ece.ucsb.edu Wed Feb  7 10:49:12 2001
+Date: Wed, 7 Feb 2001 10:30:43 -0800 (PST)
+From: Edward Chang <echang@xanadu.ece.ucsb.edu>
+To: echang@db.stanford.edu
+Subject: SVMs (fwd)
+
+
+
+---------- Forwarded message ----------
+Date: Tue, 10 Oct 2000 11:32:32 -0700
+From: Simon Tong <stong@robotics.stanford.edu>
+To: Edward Chang <echang@xanadu.ece.ucsb.edu>
+Subject: SVMs
+
+
+
+Hi Edward,
+
+> The data file is being generated now. It should be done in
+> another hour or so. I will place it on the Web and
+> notify you for download.  We will do two more things in
+> the next few days.  One, we will do sanity check on
+> the features that we generated. If you would like us
+> to scale some of the values, please let me know. Two,
+> we may add more features such as textures....
+
+Thanks. I've run a few preliminary experiments on a few of the data
+sets. Both the regular and active SVMs do very well on landscapes but
+poorly
+on all of the other topics (barely getting above 50% test set accuracy
+for
+detecting architecture pictures). I tried it on normalized and
+unnormalized verions of the data. It could well be that SVMs aren't
+suited to these particular topics however it's surprising that they
+should
+really do so badly. I wonder if you could run a sanity check on the
+feature values? I'll also check my SVM and data processing code as well.
+Do you use "edges" as a feature? It would seem that for buildings and
+man-made objects such as buldings the "edginess" or, even better, the
+"cornerness" of an image may be useful. It appears that the current
+feature set may not be enough to allow one to effectively discriminate
+between buildings, people and birds.
+
+I've attached the current SVM code although it probably will be
+changing. It currently only works with standard .dat file rather then
+our special multi-labeled dat files. Instructions for the regular SVM
+learner are on Thorsten's web page:
+http://www-ai.cs.uni-dortmund.de/SOFTWARE/SVM_LIGHT/svm_light.eng.html
+
+I've added a few more parameters, mainly for active learning.
+
+
+Here are the parameters that I use:
+
+* For passive inductive learning:
+
+svm_learn -z 0 -b 0 -t 1 -d <poly_degree>
+desired_topic.train.passive.dat desired_topic.passive.mdl
+
+desired_topic.train.passive.dat is a .dat file containing labeled
+training data. The program outputs a model file called
+desired_topic.passive.mdl. <poly_degree> is the degree of the polynomial
+kernels (a degree of 1 corresponds to learning hyperplanes).
+
+* For Simple active inductive learning:
+
+svm_learn -z 0 -b 0 -o 1 -t 1 -d <poly_degree> -k
+desired_topic.train.allLabels.dat -n <num_queries>
+desired_topic.train.active.dat desired_topic.simpleactive.mdl
+
+desired_topic.train.active.dat is a large .dat file containing all
+(unlabeled) data instances in the pool. All of the unlabeled data
+instances should be labeled with a 0. I also include one positive and
+one negative labeled instance in desired_topic.train.active.dat as well.
+
+desired_topic.train.allLabels.dat is a regular .dat file that is
+identical to desired_topic.train.active.dat except that it contains all
+of the labels of the data instances. This it the file the svm_learn
+looks at when it queries the label of a pool instance.
+
+svm_learn will perform <num_queries> queries and then output a model to
+desired_topic.simpleactive.mdl.
+
+
+* To classify unseen test data using a model file:
+
+svm_classify desired_topic.test.dat desired_topic.simpleactive.mdl
+desired_topic.simpleactive.out
+
+where desired_topic.test.dat is a fully labeled test set.
+
+* A few more notes:
+
+I've noticed that svm_light is not very numerically stable so it
+sometimes does not converge.
+
+The MaxRatio and MaxMargin methods probably are going to be far too slow
+with a large database -- probably best to stick with the Simple active
+learning method.
+
+As I mentioned before, my modification of Thorsten's code really wasn't
+written or designed for outside use so please don't distribute the code
+to other people.
+
+Thanks,
+
+Simon.
+
+--
+simon.tong@cs.stanford.edu * Computer Science Dept * Stanford University
+CD-ID: si. For my latest contact information go to:
+www.contactdetails.com
+
+  [Part 2, ""  Application/X-GZIP  46KB]
+  [Unable to print this part]
+

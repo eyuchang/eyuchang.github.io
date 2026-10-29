@@ -1,0 +1,31 @@
+Since different images may require a different large set of features
+to characterize them, using all features indiscriminantly
+for measuring image similarity can suffer from the problem of
+{\em dimensionality curse}.  This problem severely degrades
+search accuracy because the presence of some features not
+relevant to a query-image can contaminate similarity
+measurement.  In this paper, we present an online mining
+method that finds appropriate feature weightings for measuring
+image similarity.  Our mining method consists of two novel
+steps: It first quickly learns the features relevant to the query.
+It then finds ways to weight the relevant features for computing
+similarity with respect to that query.  Our empirical study shows
+that our online mining method is efficient, and it significantly
+outperforms traditional weighting methods in search accuracy.
+                                                                    
+
+Suggested Draft:
+Mining Image Features for Accurate Similarity Search
+Because the number of features required to depict an image can be very
+large, using all features simultaneously to measure image similarity can
+incur the problem known as the "dimensionality curse. " This problem
+severely degrades search accuracy because the presence of some features
+not relevant to a certain query can contaminate similarity measurement.
+In this paper, we present an online mining method that finds appropriate
+feature weightings for measuring image similarity.  Our mining method
+consists of two steps: It first quickly learns the features relevant to
+the query.  It then finds ways to weight the features for computing
+similarity with respect to that query. Our  empirical observations show
+that our online mining method efficiently and significantly outperforms
+traditional weighting methods.
+

@@ -1,0 +1,40 @@
+\title{Advancing Search Technologies for Millitary Intelligence}
+
+Being able to find information that fits a query profile 
+in a massive surveillance image collection is at 
+the heart of military intelligence. This project aims to advance 
+key technologies that can assist such searches to be
+both more accurate and efficient.
+ 
+Image retrieval has been an active research area for many years, but
+two fundamental problems remain largely unsolved: 
+1) how best to learn users' query concepts (search profiles), and 
+2) how to accurately measure perceptual similarity.
+The first problem concerns the completeness of formulating
+a search profile, e.g., how to formulate a 
+query such as ``enemy vessels'' or ``some terrorists?''
+The second problem concerns search accuracy, i.e., given a search profile 
+how to quickly find all images that match the profile.
+
+To tackle these two fundamental problems and to ensure that our developed 
+technologies are scalable, this project's specific targets are as follows:
+\begin{enumerate}
+\item To develop novel {\em active learning algorithms}
+that learn a query profile quickly despite time and sample constraints.
+(E.g., Constructing a terrorist'profile with scarce data.)
+\item To devise {\em perceptual distance functions} for improving search 
+accuracy.  
+\item To ensure the {\em scalability in feature dimension, dataset size, 
+and concept complexity} of the developed learning algorithms. 
+\item To conduct {\em validation} on developed learning algorithms with 
+experimental data provided by colleagues at various institutions (including
+NAVY if such an arrangement is feasible).
+\end{enumerate}
+
+%Since the completion of our initial prototype in May 2001, we have been 
+%invited to demonstrate our technologies at CIA, NSF sponsored workshops 
+%at INRIA and Harvard University, two premier ACM International Conferences, 
+%IBM Almaden Center, IBM T.J. Watson Center, UCLA, UC Berkeley, and Stanford
+%University. The project's impacts upon image retrieval in general
+%and military intelligence specifically are expected to be substantial.
+

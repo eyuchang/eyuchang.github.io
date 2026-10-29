@@ -1,0 +1,18 @@
+@inproceedings{chang-2026-diagnosing,
+    title = "Diagnosing and Mitigating Sycophancy and Skepticism in {LLM} Causal Judgment",
+    author = "Chang, Edward Y",
+    editor = "Liakata, Maria  and
+      Moreira, Viviane P.  and
+      Zhang, Jiajun  and
+      Jurgens, David",
+    booktitle = "Findings of the {A}ssociation for {C}omputational {L}inguistics: {ACL} 2026",
+    month = jul,
+    year = "2026",
+    address = "San Diego, California, United States",
+    publisher = "Association for Computational Linguistics",
+    url = "https://aclanthology.org/2026.findings-acl.427/",
+    doi = "10.18653/v1/2026.findings-acl.427",
+    pages = "8769--8789",
+    ISBN = "979-8-89176-395-1",
+    abstract = "Do frontier LLMs reason causally, or do they pattern-match, yielding under pressure and hedging under uncertainty? We frame causal judgment as evaluation along three axes, Utility, Safety, and Wise Refusal, across Pearl{'}s Ladder. We introduce Recursive Causal Audit (RCA), a process-integrity evaluator whose Judge has no access to gold labels: it checks whether a model{'}s answer is entailed by itsown derivation, internally consistent, and not dominated by user hints under pressure. RCA unifies persona and pressure: prompt tone is the intervention that regulates pressure-induced drift. For fine diagnostic resolution we use CAUSALT3, with explicit trap families and standardized pressure protocols. CAUSALT3 reveals a Skepticism Trap (Claude Haiku rejects 60{\%} of valid L1 links) and a Scaling Paradox (GPT-5.2 underperforms GPT-4-Turbo by 55 points on L3, driven by paralysis rather than hallucination). Under RCA, operating points shift toward the high-Utility, high-Safety quadrant without retraining, consistent with much of the observed failure arising from how answers are rendered under pressure rather than from missing causal knowledge."
+}

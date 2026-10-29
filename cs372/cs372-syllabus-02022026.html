@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<style>
+    a:link, a:visited {
+      color: gray;
+      text-decoration: underline;
+    }
+  </style>
+
+  <style>
+    .alert-blink {
+      color: blue;
+      font-weight: bold;
+      font-size: 20px;
+      animation: flash 2.8s infinite;
+      text-shadow: 0 0 10px green;
+    }
+
+    @keyframes flash {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0; }
+    }
+  </style>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CS372: AI for Reasoning, Planning, and Decision Making (Winter 2026)</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background: #8C1515;
+            color: white;
+            padding: 15px 20px;
+            text-align: center;
+        }
+        nav {
+            background: #333;
+            padding: 10px;
+            text-align: center;
+        }
+        nav a {
+            color: white;
+            text-decoration: none;
+            padding: 10px 20px;
+            display: inline-block;
+        }
+        nav a:hover {
+            background: #555;
+        }
+        .container {
+            width: 80%;
+            margin: auto;
+            overflow: hidden;
+            padding: 20px;
+        }
+        h2 {
+            color: #8C1515;
+        }
+        footer {
+            background: #222;
+            color: white;
+            text-align: center;
+            padding: 10px;
+            margin-top: 20px;
+        }
+    </style>
+
+<style>
+  /* 1. Define the background so the glow is visible */
+  body {
+    background-color: #222; /* Dark background */
+    color: #eee; /* Light text */
+    font-family: sans-serif;
+  }
+
+  /* 2. Define the .glow class */
+  .glow {
+    color: #fff; /* The text color itself (usually white) */
+    text-shadow: 
+      0 0 5px #fff,      /* Inner white glow */
+      0 0 10px #fff,     /* Middle white glow */
+      0 0 20px #00ff00,  /* Outer Green glow */
+      0 0 30px #00ff00,  /* Further Green glow */
+      0 0 40px #00ff00;  /* Furthest Green glow */
+  }
+  
+  /* Link styling for visibility on dark mode */
+  a { color: #4da6ff; }
+</style>
+
+<style>
+  body {
+    background-color: #222;
+    color: #eee;
+    font-family: sans-serif;
+    padding: 20px;
+  }
+
+  /* 1. Define the Animation Rule (The "Script" for the movement) */
+  @keyframes neon-pulse {
+    0% {
+      /* Start dim */
+      opacity: 0.5;
+      text-shadow: 0 0 5px #fff, 0 0 10px #00ff00;
+    }
+    50% {
+      /* Midpoint: Super bright */
+      opacity: 1;
+      text-shadow: 
+        0 0 5px #fff,
+        0 0 20px #fff,
+        0 0 30px #00ff00,
+        0 0 40px #00ff00;
+    }
+    100% {
+      /* End back at dim */
+      opacity: 0.5;
+      text-shadow: 0 0 5px #fff, 0 0 10px #00ff00;
+    }
+  }
+
+  /* 2. Apply the Animation to the Class */
+  .blink {
+    color: #fff;
+    
+    /* Syntax: name | duration | timing-function | iteration-count */
+    animation: neon-pulse 1.5s ease-in-out infinite;
+  }
+  
+  a { color: #4da6ff; }
+</style>
+
+
+
+
+</head>
+<body>
+
+<header>
+    <h1>CS372: Artificial General Intelligence for Reasoning, Planning, and Decision Making</h1>
+    <h3>Winter 2026, Stanford University</h3>
+    <p><strong>Instructor:</strong> Prof. <a href="http://infolab.stanford.edu/~echang/">Edward Y. Chang</a></p>
+    <p><strong>Course Assistants:</strong> Longling Gloria Geng</p>
+    <p><strong>Lectures:</strong> Mondays & Wednesdays, 4:30 PM - 5:50 PM (Starting January 5, 2026)</p>
+    <p><strong>Room: </strong><a href="https://campus-map.stanford.edu/?srch=NVIDIA+Auditorium">NVDIA Auditorium</a></p>
+</header>
+
+
+
+<nav>
+    <a href="#announcement">Announcement</a>
+    <a href="#overview">Overview</a>
+    <a href="#schedule">Schedule</a>
+    <a href="#resources">Resources</a>
+</nav>
+
+<div class="container">
+    <section id="announcement">
+        <h2>Announcement</h2>
+
+<p><span class="blink">[1.14.2026]</span> Office hours announced.
+</p>
+<p><span class="blink">[1.7.2026]</span> Assignment #1 <a href="https://drive.google.com/file/d/1IHdpMY6OavflNN3CQjJYYUa8fmrYN9Wr/view?usp=sharing">posted</a>, form your team asap, due in a week.
+
+</p>
+<p><span class="blink">[12.28.2025]</span> Please download the text book <a href="https://dl.acm.org/doi/book/10.1145/3749421">Multi-LLM Collaborative Intelligence (MACI), The Path to AGI</a> </strong> and read at least the preface and epilogue before the first lecture.
+</p>
+<br>
+
+<section id="overview">
+    <h2>Course Overview</h2>
+
+<p>Join us for an audacious aim—elevating LLMs from pattern matching to conscious reasoning, validation, and planning.</p>
+
+<p>Large Language Models (LLMs) have revolutionized AI through remarkable pattern matching capabilities. However, the path to Artificial General Intelligence (AGI) requires advancing beyond unconscious, reactive processing (automatic, stimulus-response behavior) to deliberate reasoning and validated planning. This course explores approaches to enhance LLMs with AGI-oriented capabilities through systematic reasoning, planning, and decision-making.</p>
+
+<h3>Core Questions:</h3>
+<ol>
+    <li>How can we enable LLMs to transition from pattern matching to conscious deliberation?</li>
+    <li>What frameworks support robust reasoning and verifiable decisions?</li>
+    <li>How do we implement planning and temporal awareness in LLM systems?</li>
+    <li>What role does multi-LLM agent collaboration play in advancing toward AGI capabilities?</li>
+    <li>More generally, what are the limitations of the current LLM architecture to overcome?</li>
+</ol>
+<h3>The course examines:</h3>
+<ol>
+    <li>Theoretical foundations of consciousness, reasoning, and planning in AI</li>
+    <li>Multi-LLM Agent Collaborative Intelligence (MACI) frameworks</li>
+    <li>Entropy-guided information exchange</li>
+    <li>AI ethical alignment with checks and balance </li>
+    <li>Linguistic behavior modeling</li>
+    <li>Persistent memory management for validation and long-live workflow.
+    <li>Temporal reasoning and planning system architectures</li>
+</ol>
+<p>
+Through lectures, discussions, and hands-on projects, students will explore and implement multi-agent systems that advance beyond current state-of-the-art frameworks (e.g., LangGraph) to address planning problems across various domains, including project planning, supply chain management, emergency room logistics, and natural disaster response.</p>
+
+<strong>Prerequisites:</strong> Completion of Machine Learning and Deep Learning courses, along with substantial experience with LLMs.
+
+<h3>Grading:</h3> 
+<ol>
+<li>Assignments 30% 
+<li>Dashes: 20% 
+<li>Final Presentation and Report: 40% 
+<li>Class Participation: 10% 
+</ol>
+
+
+<section id="resources">
+    <h2>Resources</h2>
+
+    <h3>Textbook</h3>
+    <p>
+        The required textbook:  
+        <strong><a href="https://dl.acm.org/doi/book/10.1145/3749421">Multi-LLM Collaborative Intelligence (MACI), The Path to AGI</a> </strong> by Edward Y. Chang, December 2025, ACM Books.
+    </p>
+
+    <h3>Reading Materials</h3>
+    <p>
+        Additional reading materials and supplementary content can be found on  
+        <a href="https://SocraSynth.com" target="_blank">SocraSynth.com</a>.
+    </p>
+
+
+    <h3>Office Hours</h3>
+<ol>
+<li> Monday 1:30PM - 3:30PM CoDA B44, Longling Geng
+<li> Wednesday 1:30PM - 3:30PM Gates 486, Edward Y. Chang
+</ol>
+
+
+</section>
+
+    <section id="schedule">
+        <h2>Schedule</h2>
+        <p>The following schedule is a sample from last year.</p>
+
+        <table border="1" cellspacing="0" cellpadding="5" width="100%">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Date</th>
+                    <th>Description</th>
+                    <th>Course Materials</th>
+                    <th>Instructor and Participants</th>
+                    <th>Deadlines</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>1</td>
+                    <td>1/5/2026</td>
+                    <td>Course Aims and Syllabus; From QA to Complex Reasoning and Planning; Can LLMs Achieve AGI?</td>
+                    <td><a href="https://drive.google.com/file/d/1tFjpDZj1UfYLOXvl7hv66vyAsHteu32v/view?usp=sharing">Slides</a> | <a href=" https://canvas-gateway.stanford.edu/goCanvas.html">Recorded </a> |<a href="https://dl.acm.org/doi/10.1145/3749421.3749422"> Preface, AGI Book Volume #1</a>, The Missing Layer of AGI: From Pattern Alchemy to Coordination Physics</td>
+                    <td>E. Chang</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>1/7</td>
+                    <td><b>Reasoning #1:</b> Pearl's Causality Hierarchy, and Assignment #1 Specification</td> 
+                    <td><a href="https://drive.google.com/file/d/1_1Y-oQK4TtF71oBdHWsysZY48oriZtYI/view?usp=sharing">Slides</a> |   <a href=" https://canvas-gateway.stanford.edu/goCanvas.html">Recorded </a>  </td>
+                    <td>E. Chang</td>
+                    <td><a href="https://drive.google.com/file/d/1IHdpMY6OavflNN3CQjJYYUa8fmrYN9Wr/view?usp=sharing">Assignment #1</a> out</td>
+                </tr>
+                <tr>
+                    <td>3</td>
+                    <td>1/12</td>
+                    <td><b>Reasoning #2:</b> PID Architecture for Sycophancy and Skepticism  </td> 
+                    <td><a href="https://drive.google.com/file/d/1GDOyPFM1dCu1-QZ7fWSG34uXkFl4CN5o/view?usp=drive_link">Slides</a> | <a href=" https://canvas-gateway.stanford.edu/goCanvas.html">Recorded </a> | AGI Book, Volume #2, Chapter 6, 7 </td>
+                    <td>E. Chang, Gloria Gang</td>
+                    <td>-</td>
+                </tr>
+                <tr>
+                    <td>4</td>
+                    <td>1/14</td>
+                    <td><b>Reasoning #3:</b> Prompting Large Language Models With the Socratic Method</td>
+                    <td><a href="https://drive.google.com/file/d/1bIGKzOTkeBFcZ4vN5btMAHO4_wboqCAz/view?usp=sharing">Slides</a> | Recorded on Canvas | AGI Book, Volume #1, <a href="https://dl.acm.org/doi/10.1145/3749421.3749429">Chapter 5</a></td>
+                    <td>E. Chang</td>
+                    <td>Assignment #1 due</td>
+                </tr>
+                <tr>
+                    <td>5</td>
+                    <td>1/19</td>
+                    <td>Martin Luther King, Jr., Day (holiday, no classes)
+			</td>
+                    <td></td>
+                    <td></td>
+                    <td>Assignment #2 out</td>
+                </tr>
+                <tr>
+                    <td>6</td>
+                    <td>1/21</td>
+                    <td><b>Reasoning #4:</b> Reasoning Recap  and Planning Intro</td> 
+                    <td><a href="https://drive.google.com/file/d/1aTgGYi3wDocyR6p6i-0aWZk9XkUoY5IO/view?usp=sharing">Slides</a> | Recorded on Canvas | AGI Book, Volume #2, Chapter 4; AGI Book, Volume #1,<a href="https://dl.acm.org/doi/pdf/10.1145/3749421.3749436"> Chapter 12</a></td>
+                    <td>E. Chang</td>
+                    <td></td>
+                </tr>
+
+                <tr>
+                    <td>7</td>
+                    <td>1/26</td>
+                    <td><b>AGI $1:</b> Multi-LLM Agent Collaborative Intelligence</td> 
+                    <td> <a href=https://drive.google.com/file/d/1aqCtN4kN-qX4xTI8WicmKg5mpxoPSeoE/view?usp=sharing">Slides </a> | Recorded on Canvas | AGI Book, Volume #1, <a href="https://dl.acm.org/doi/10.1145/3749421.3749430"> Chapters 6, and  </a> <a href="https://dl.acm.org/doi/10.1145/3749421.3749431"> Chapter 7 </a></td>
+                    <td>Class</td>
+                    <td></td>
+                    <td></td>
+                </tr>
+
+                <tr>
+                    <td>8</td>
+                    <td>1/28</td>
+                    <td><b>ASI #1:</b> Computational Consciousness, System 2 Introduction </td> 
+                    <td>Slides | <a href="https://youtu.be/MZ6nTRKDF6o">Recorded </a> | AGI Book, Volume #1, <a href="https://dl.acm.org/doi/10.1145/3749421.3749437">Chapters 13 </a> </td>
+                    <td>E. Chang</td>
+                    <td>Assignment #2 due</td>
+                </tr>
+
+                <tr>
+                    <td>9</td>
+                    <td>2/2</td>
+                    <td><b>AGI #2:</b> Behavioral Modeling and AI Ethic Alignment </td>
+                    <td>Slides | Recorded Canvas | AGI Book, Volume #2, Chapter 8  </td>
+                    <td>E. Chang </td>
+                    <td>Final Project proposal due</td>
+                </tr>
+
+                <tr>
+                    <td>10</td>
+                    <td>2/4</td>
+                    <td>Highlights of Natural Language Processing History, 70 Years in 70 Minutes </td>
+<td><a href="https://drive.google.com/file/d/1CyjM6BXVtP4cpZVvZ4ZnrxIBUqIxNGN0/view?usp=sharing">Slides</a> | <a href="https://youtu.be/-qnTP8N9E8I">Recorded Lecture</a> | Chapters 1, 2
+                    <td>Online </td>
+                    <td></td>
+                </tr>
+
+                    <td>11</td>
+                    <td>2/9</td>
+                    <td>
+<b>Planning 1:</b> <a href="http://infolab.stanford.edu/~echang/SocraSynth.html">ALAS: An Adaptive Multi-Agent System for Mitigating LLM Planning Limitations</a>
+</td>
+                    <td>Slides | Chapter 12 </td>
+                    <td>E. Chang</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>12</td>
+                    <td>2/11</td>
+                    <td>
+<b>Planning 2:</b> <a href="https://www.researchgate.net/publication/389855859_SagaLLM_Context_Management_Validation_and_Transaction_Guarantees_for_Multi-Agent_LLM_Planning">SagaLLM: Context Management, Validation, and Transaction Guarantees for Multi-Agent LLM Planning</a>.
+</td>
+                    <td>Slides | Chapter 11  </td>
+                    <td>E. Chang</td>
+                    <td></td>
+                </tr>
+
+                <tr>
+                    <td>13</td>
+		    <td>2/16</td>
+                    <td>Presidents' Day (holiday, no classes)</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+
+                <tr>
+                    <td>14</td>
+                    <td>2/18</td>
+                    <td>Midterm Project Dash, session 1 </td>
+                    <td></td>
+                    <td>All</td>
+                    <td>--</td>
+                </tr>
+
+                <tr>
+                <tr>
+                    <td>15</td>
+                    <td>2/23</td>
+                    <td>Midterm Project Dash, session 2 </td>
+                    <td></td>
+                    <td>All</td>
+                    <td>--</td>
+                </tr>
+
+                <tr>
+                    <td>16</td>
+                    <td>2/25</td>
+                    <td><b>Application #1:</b> LLMs with Healthcare (The fouth Wave of AI Failures?)</td>
+                    <td><a href="https://drive.google.com/file/d/1u1XboeOyQzlLkBq5_7xdK8xZclMCWPo0/view?usp=drive_link">Slides</a> | Chapter 9</td>
+                    <td>E. Chang</td>
+                    <td>--</td>
+                </tr>
+
+                <tr>
+                    <td>17</td>
+                    <td>3/2</td>
+                    <td><b>Application #2:</b> LLMs and Psychilogical Disorders</td>
+		    <td></td>
+                    <td>Guest Speaker</td>
+                    <td>--</td>
+                </tr>
+
+                <tr>
+                    <td>18</td>
+                    <td>3/4</td>
+                    <td><b>ASI #2:</b> Computational Consciousness: What Is Consciousness?</td>
+                    <td>Slides | Chapters 13, 16</td>
+                    <td>E. Chang</td>
+                    <td>--</td>
+                </tr>
+
+                <tr>
+                    <td>19</td>
+                    <td>3/9</td>
+                    <td><b>ASI #3: </b>Consciousness Modeling: Free Will, Sins, Chang Theorem </td>
+                    <td><a href="https://drive.google.com/file/d/1cWty78Q_W6ciEpAtAvZAvJmYqb8DnmVD/view?usp=sharing">Slides</a> | What is Life, by Erwin Shrodinger</a></td>
+                    <td>E. Chang</td>
+                    <td></td>
+
+                <tr>
+                    <td>20</td>
+                    <td>3/11</td>
+                    <td>Final Presentation</td>
+                    <td>Slides | <a href="https://SocraSynth.com">Readings</a></td>
+                    <td>Group 1</td>
+                    <td>--</td>
+                </tr>
+
+                <tr>
+                    <td>21</td>
+                    <td>3/13</td>
+                    <td>Final Presentation</td>
+                    <td>Slides | <a href="https://SocraSynth.com">Readings</a></td>
+                    <td>Group 2</td>
+                    <td>--</td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+
+
+
+</div>
+<footer>
+    <p>&copy; 2025-26 Stanford University | CS372: AI for Reasoning, Planning, and Decision Making</p>
+</footer>
+
+</body>
+</html>
+

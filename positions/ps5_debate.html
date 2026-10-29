@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Debate Is Much More Than Conversation</title>
+<style>
+ body { font-family: Georgia, 'Times New Roman', serif; max-width: 46em;
+        margin: 2.5em auto; padding: 0 1em; line-height: 1.55; color:#222; }
+ h1 { font-size:1.45em; line-height:1.25; margin-bottom:0.2em; }
+ p  { margin:0.7em 0; text-align: justify; }
+ a  { color:#8a2be2; }
+ .back { font-size:0.9em; margin-top:2em; }
+</style></head><body>
+<h1>Debate Is Much More Than Conversation</h1>
+<p><b>Edward Y. Chang, Stanford University</b> Position statement, v1.0. August 9, 2026.</p>
+<p>Multi-agent "discussion" is often implemented as polite conversation: several samples from one model, exchanged and summarized. I take the position that this is not debate, and that debate properly engineered is a different instrument: the composition of structured opposition, information-theoretic control, argument-quality scoring, causal audit, and explicit behavior control.</p>
+<p>The components. CRIT supplies the scoring: claims typed, warrants recovered, counterarguments weighed, a validation score with justifications, so that argument quality is a measured channel rather than an impression. SocraSynth supplies the structure: two agents assigned opposing stances on jointly constructed subtopics, with contentiousness as an explicit behavior-control dial; at 0.9 the agents surface the strongest polarized cases a neutral prompt never retrieves, at 0.5 they weigh, and at 0.1 they synthesize, so tone itself becomes a controlled experimental variable rather than an accident of sampling. EVINCE turns the dial into a controller: one agent exploits at low entropy, the other explores at high entropy, and the loop measures Jensen-Shannon divergence, Wasserstein distance, mutual information, and CRIT quality each round, escalating exploration under uncertainty, pruning as evidence solidifies, and halting when disagreement stops being informative, with convergence guaranteed at an exponential rate under the free-energy analysis. Causal reasoning closes the composition: audit of the winning side, because agreement is opinion geometry while warrant is a separate channel, and consensus can be confidently wrong.</p>
+<p>The evidence that composition matters: in structured medical diagnosis, every moderated pair beat both of its members, the best pair reaching 0.786 top-one accuracy against 0.734 for the strongest solo model, and the weakest pair still beating the strongest individual; inter-agent divergence fell by 96 percent while argument quality rose 16 percent; and adaptive contentiousness modulation outperformed both individual models and static multi-agent baselines, which is the direct demonstration that the behavior control, not the mere presence of two agents, carries the gain. Debate in this sense is controlled anchor exchange across independent priors with measured stopping. Conversation samples one prior politely; debate makes two priors earn a conclusion.</p>
+<p>Full development: <i>The Path to AGI</i>, Vol. 1 (Chs. 5 to 8) and Vol. 2 (Chs. 11, 12).</p>
+<p class="back"><a href="index.html">Back to position statements</a></p>
+</body></html>

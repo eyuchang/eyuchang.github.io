@@ -1,0 +1,76 @@
+
+Multimedia Computing
+Spring 2000
+
+I. Overview
+
+o Multimedia: texts, images, video and audio
+
+o Image Retrieval
+
+  Step 1: Feature selection
+
+	  Representation
+
+	  Extraction
+
+  Step 2: Indexing
+
+  Step 3: System design
+
+o Traditional methods (before 1992)
+
+  Text annotation
+
+  Drawbacks: Perception subjectivity and annotation impreciseness
+
+o Content-based
+
+  Color/texture/shapes/color layout/blob
+
+
+II. Feature Extraction
+
+o Color
+
+  - Color space
+    e.g., RGB, HSV
+
+  - Color representation
+
+  - Color sets, histograms, moments
+
+o Texture
+
+  - Visual patterns
+
+  - characterized by coarseness, contrast, directionality, linelikeness,
+    regularity and roughness.
+
+o Shape
+
+o Color layout
+
+o (Blob) segmentation
+
+
+III. Indexing
+
+
+o Dimension reduction
+
+o High dimensional indexing
+
+o Clustering 
+
+
+IV. Including Users in the Loop
+
+o Perception-based image characterization
+
+o Relevance feedback
+
+
+V. Summary
+
+o Multi-disciplinary research

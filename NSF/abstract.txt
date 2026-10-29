@@ -1,0 +1,48 @@
+
+In this study we show a data placement technique 
+that takes popularity and bitrates of videos into
+consideration to dynamically migrate data on 
+disk to minimize per-stream cost (and hence it
+maximizes throughput given a fixed budget).
+We perform our analysis and evaluation on a single
+disk and assume that a video are encoded at a
+constant bitrate. In Section~\ref{} we discuss
+that extending our technique for managing data
+migration on parallel disks and for videos
+encoded in variable bitrates can be straightfoward.
+
+There are three key challenges we address in this paper. 
+\begin{itemize}
+\item How to determine the optimal layout of the videos
+given that the bitrates and the popularity distribution of
+the videos on the disk are known.
+\item The bandwidth allocated for data migration should
+not decrease the performance of the disk.
+\item The frequent migration of the data should not
+cause disk fragmentation.
+\end{itemize}
+
+First, the data transfer rate on a modern disk
+is not constant. Since the recording density is
+unform across the disk surface, the outer
+tracks are longer than the inner ones, and the
+disk rotates at a constant speed, the outetracks enjoys 
+a higher data transfer rate than the inner ones.
+However, few studies \cite{} have proposed methods
+to take advantage of the faster transfer rates
+on the outer tracks. Instead, most studies make
+the worst-case assumption and use the inner-most
+track's data transfer rate as the disk's transfer
+rate. Some approaches use the average data transfer
+rate and hope the majority of time the transfer 
+rate can 
+
+Sigmod paper proposes 
+
+
+
+
+
+
+single disk.
+ 

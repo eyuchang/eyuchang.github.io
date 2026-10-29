@@ -1,0 +1,225 @@
+Lecture #2	Color of Light I
+
+I. Introduction
+
+Color has been there from the beginning to present
+day. However, from Aristotle to now, color has 
+been a mysterious and confusing subject. 
+
+Question 1: How many primary colors are there?
+
+Newton 7 colors: red, orange, yellow, green, blue, indigo, violet.
+Aristotle 7 cls: red, yellow, green, blue, black,
+          + white, lime white, and yellow+...
+Culture colors: black, white,
+red, yellow, green, blue, brown, purple, pink, orange, gray. 
+
+Question 2: Is color a attribute of an object?
+
+
+Today's lecture:
+
+- What is color
+- Color history
+- Discussion
+
+
+What is color?
+
+o Our eyes detect only a very narrow band of electromagnetic 
+  spectrum. (Electromagnetic spectrum is a range of energy
+  of varying wavelengths)
+  Human eyes are receptive only to narrow wavelengths range 
+  from 350 nm to 750 nm. 
+
+  red orange yellow green blue indigo violet
+
+o How do we perceive color?
+
+  5 major components in our eyes
+
+  - Light beams enter the eye via cornea, which serves as 
+    a curved exterior lens that gathers and focuses the
+    entering light. 
+  - Light passes through pupil and reaches interior lens.
+  - The iris adjusts to allow proper amount of light 
+    to reach the interior lens.
+  - The lens adjusts the amount of curvature to focus on 
+    objects at different distances...
+    (resolution...)
+
+  - The light finally reaches retina
+  - the electromagnetic light energy transduced into
+    neural electrochemical impulses.
+  - Two kinds of receptive cells
+    * 6 - 8M cones
+    * 120M rods
+  - finally ganglion cells (10 M)
+
+o Color is an entirely subjective experience
+
+  - The colors of an object decided by the light reflect from the
+    objects that we are looking at.
+  - Colors are a reaction of our nervous systems to particular
+    wavelengths of the visible spectrum.
+  - The sensation of color lies in the interaction between
+    light and the nervous system...
+
+  Discussion: Is your red my red
+
+o Relationships among colors
+
+  - Similarity: violet & green, red and green, red and violet
+  - Pure/primary
+    o Pure, a color that cannot be composed by others
+
+  - Trichromatic theory (Young-Helmholtz)
+    * additive colors: 
+    * subtractive colors: the wavelengths of light that are reflected
+      from an object
+
+    Dicsussion: How to create black?
+
+    RGB
+
+    Hue: refers to the natural of a color perceived in white light.
+    Saturation: means the percentage of pure hue present in any mixture.
+    Tone: (luminosity) concerns its relationship to a scale of
+          value from white to black.
+
+  - Opponent-color theory
+    green-red blue-yellow
+
+    yellowish blue or reddish green?
+    Why? green and red are handled by one kind of color cells
+
+    450 nm -> violet
+    step 1: the red-green pair tips forward the red
+    step 2: the blue-yellow pair tips forward the blue
+    step 3: red + blue = violet
+
+o On-going research
+
+  - Fuse two theories 
+
+
+How do we come from 7 to 3 primary colors?
+Do colors possess other meanings 
+
+Color History:
+
+o From the later stage of Aristo'telian tradition to the
+  time of Newton, it was believed that the colors were 
+  quantifiable and controllable.
+
+o There is a progressive clarification of what we may call the
+  three dimensions of color: Hue, saturation and tone...
+
+o Aristotle:
+  7 colors: black, red, yellow and green
+          + lime white, blue and kind of yellow...
+
+o Renaissance
+
+  - Cennini
+    * pick Aristotelian colors
+    * mix colors
+    * toning the colors with Cangianti/Changeant colors
+    * Cangianti: brighter colors such as while and yellow -> grace
+    * Changeant: darker colors in the shadows
+
+    ** Colors are exploit for aes'thetical expression independent
+       of natura'listic consideration
+
+  - Alberti
+    * Searching for a rational base for achieving artistic effects. 
+    * How color is made from a mixture of the quality of the object
+      rare/dense, hot/dry, cold/wet?
+    * fire -> red...  ice -> white/blue air -> blue/grey
+    * focus more on tone: black and white
+      Tone should be achieved by the subtly mingling of touches
+      of light and dark like a gentle due.
+
+  - Filarete
+    * six colors: b/w; red, yellow, blue and green (fire, air
+       grass and flowers)
+    o color harmony: look at their distribution in nature.
+      e.g., red is not good with y/b but is good with green
+
+  - Lenardo
+   * 6 colors: white (light), yellow (earth), green (water), 
+     blue (air), red (fire) and black (darkness).
+   * No facet of painting could be properly mastered without the
+     understanding of its foundation in natural law.
+   * Percussions and rebounds of light!
+     should be analyzed with mathe'matical precision
+   * Shadows: "the variety of colors in shadow
+     must be as great as that the colors of the objects
+     in that shadow. (P II).
+   * various colors best reveal their beauty at different light 
+     level...  yellow (light), blue (saturated)
+   * colors in motion
+     -- light shimmering through the moving leaves, waters flowing
+        along a spring brook
+
+PAUSE::: Image Processing!!!
+MOTIVATION: Animation, Better Vision and Image Analysis
+   
+  - Lamazzo
+   * Correlate colors to planets...
+     black (saturn), blue (jupiter), purple (mars), red (sun)
+     yellow (venus), green (mercury), white (moon)..
+   * each color has certain emotional or temperamental 
+     characteristics
+     black ('melancholy), blue (dignified), purple (triamph), red (power)
+     yellow (noble and clear), green (hope and health), white (innocence)..
+
+   *** outmoded, unscientific and astrological nonsense???
+
+  - Zarlino
+   * the music tones and semi-tones are consonant with the colors
+     (p289)
+
+  - Ruben
+   * optical mixture
+     -- Colors should not be tormented
+        No more than two pigments should be mixed.
+        Rather, colors should be applied simply, directly 
+        and separately onto the canvas (P IV)
+     -- Shadows should be kept translucent
+     -- Highlights should be opaque and pure
+
+ - Zaccolini
+   * Distance:
+     saturation, tonal contrast and variety of hue 
+     would be progressively lost over distance.
+
+o Summary
+
+ - Colors 
+   nature, materials, music, distance, emotion....
+
+ - Similarity between two colors?
+   Discussion
+
+ - Similarity between two color images?
+   Discussion
+
+
+   
+Color II: Newton and After
+
+Prism separates light into seven colors, each maintains
+a constant degree of refrangibility.
+Red, orange, yellow, green, blue, indigo and violet.
+
+Problem 1
+
+Problem 2
+
+Problem 3
+
+Problem 4
+
+
+

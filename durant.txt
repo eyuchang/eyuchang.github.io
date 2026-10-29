@@ -1,0 +1,259 @@
+
+From SDurant@mofo.com Mon Nov 19 14:22:02 2001
+Date: Mon, 19 Nov 2001 11:45:09 -0800
+From: "Durant, Stephen C." <SDurant@mofo.com>
+To: 'Edward Chang' <echang@DB.Stanford.EDU>
+Subject: Follow-Up Patent/Morpho 50995.2000100
+
+    [The following text is in the "iso-8859-1" character set]
+    [Your display is set for the "US-ASCII" character set]
+    [Some characters may be displayed incorrectly]
+
+Ed:
+
+Thanks for the further explanation of the operation of MEGA.  It is very
+helpful.  As you noted, it does not provide all of the information
+requested, but it does provide most of it.  Specifically, there were six
+parts to my request for additional information.  I have included below a
+copy of my prior email with the six-part request.  The additional document
+that you provided responds the first three requests but not the last three.
+The last three requests pertain to WHAT.
+
+It is feasible to file the patent application during the week of December 2,
+especially if we are able to meet to review the draft during 11/30-12/3. In
+order to ensure the best possible patent protection, it would be helpful to
+have your input to the last three requests listed in the copy of the email
+included below.  However, failure to include such additional information
+would not be fatal to the patent application.  Basically, its a judgment
+call, and we should discuss.
+
+Best Regards,
+
+Steve Durant
+
+BEGIN COPY OF PRIOR EMAIL
+
+Ed:
+
+Attached is a set of claims that have been amended pursuant to our
+conversation on Friday, October 12th.  Please review the claims, and let me
+know what you think.
+
+Once the claims are finalized (and if you agree that the attached claims are
+acceptable, then they will constitute the finalized claims.), they will
+serve as a template for modifications to the MEGA paper to transform it into
+a utility patent application.  As you know, that paper already has been
+filed as part of a provisional patent application.
+
+FIRST REQUEST: Also, I look forward to receiving the additional descriptive
+information that we discussed.  For instance, it would be useful to have
+examples of at least a simple k-CNF expression and a simple k-DNF expression
+and several sample images and corresponding sample expressions.  In that
+example, there should be some correlation of terms in the k-CNF expression
+to image features and of terms in the k-DNF expression to image features,
+and of terms in the sample expressions to image features.  I know that such
+an example can easily become unwieldy.  So, a simple example is acceptable.
+
+SECOND REQUEST: It would be a good idea to illustrate the identification of
+contradictions between sample expressions and the k-CNF (and the absence of
+contradictions between the sample expressions and the k-DNF?) through an
+example in which some terms of the k-CNF are contradicted by at least the
+prescribed number of sample expressions and other terms of the k-CNF are
+contradicted by fewer than the prescribed number of sample expressions.  An
+example providing an analogous example for the k-DNF also would be a good
+idea.  See claims 10-11. 
+
+THIRD REQUEST: It would be a good idea to illustrate the sample selection
+process through an example in which at least one sample expression is
+selected because it has exactly the prescribed number of terms that
+contradict the k-CNF (and that do not contradict the k-DNF????), and at
+least one sample expression is rejected because it has fewer than the
+prescribed number of terms that contradict the k-CNF (and and that do not
+contradict the  k-DNF?),  and at least one sample expression is rejected
+because it has more than the prescribed number of terms contradict the k-CNF
+(and and that do not contradict the k-DNF?).  See claims 12-15. 
+
+FOURTH REQUEST: Also, it would be helpful to have an example of the division
+of the k-CNF (and k-DNF?) into sub-group expressions without loss of
+"feature information".  See claims 6 and 7.
+
+FIFTH REQUEST: Also, it would be useful to have an example of
+multi-resolution processing.  See claims 9 and 10.
+
+SIXTH REQUEST: What are, "multiple pre-clustered sets of sample images"?
+See claim 16.
+
+Please do not hesitate to contact me if you would like to discuss any of
+these issues.  I look forward to speaking with you soon.
+
+Best Regards,
+
+Steve
+
+END COPY OF PRIOR EMAIL
+
+   
+
+-----Original Message-----
+From: Edward Chang [mailto:echang@DB.Stanford.EDU]
+Sent: November 19, 2001 12:11 AM
+To: Durant, Stephen C.
+Subject: Re: Follow-Up Patent/Morpho 50995.2000100
+
+
+
+Hi Steve,
+
+Attached is an example that I prepared.  It does not contain
+all details that you may need, but it should be an adequate
+example for explaining how MEGA works.
+
+Since our Series B will start shortly, and some VCs will
+be working on dual diligence, we hope that MEGA can be entered
+into patent-pending status soon.  I will be in the Bay
+Area from 11/30 to 12/3.  Could we schedule a meeting and 
+plan on sending out the patent application in the week
+of December 2?
+
+Thank you very much for your kind help.
+Ed
+
+P.S. I am at Harvard this week, and may not read my email
+during day time..
+
+On Tue, 30 Oct 2001, Durant, Stephen C. wrote:
+
+> Hi Ed:
+> 
+> I am just doing some planning.  Will you be able to provide the
+information
+> described below?  If so, what is your time frame? I know you are busy, and
+I
+> am not trying to be pushy, but if you will not be providing the additional
+> information, then I will proceed with what I have now.
+> 
+> Thanks,
+> 
+> Steve
+> -----Original Message-----
+> From: Durant, Stephen C. 
+> Sent: October 29, 2001 2:58 PM
+> To: 'Edward Chang'
+> Subject: Patent/Morpho 50995.2000100 
+> 
+> 
+> Ed:
+> 
+> There will be no problem getting the application into shape for filing
+> within two weeks.  However, the application will be of much greater
+quality
+> if you can provide to me as soon as possible the information requested
+below
+> so that that the support for the claim language is more clearly set forth
+in
+> terms of simplified examples.
+> 
+> Thanks
+> 
+>  -----Original Message-----
+> From: 	Durant, Stephen C.  
+> Sent:	October 24, 2001 2:48 PM
+> To:	'Edward Chang'
+> Subject:	Morpho 50995.2000100 Claims.DOC
+> 
+> Ed:
+> 
+> Attached is a set of claims that have been amended pursuant to our
+> conversation on Friday, October 12th.  Please review the claims, and let
+me
+> know what you think.
+> 
+> Once the claims are finalized (and if you agree that the attached claims
+are
+> acceptable, then they will constitute the finalized claims.), they will
+> serve as a template for modifications to the MEGA paper to transform it
+into
+> a utility patent application.  As you know, that paper already has been
+> filed as part of a provisional patent application.
+> 
+> Also, I look forward to receiving the additional descriptive information
+> that we discussed.  For instance, it would be useful to have examples of
+at
+> least a simple k-CNF expression and a simple k-DNF expression and several
+> sample images and corresponding sample expressions.  In that example,
+there
+> should be some correlation of terms in the k-CNF expression to image
+> features and of terms in the k-DNF expression to image features, and of
+> terms in the sample expressions to image features.  I know that such an
+> example can easily become unwieldy.  So, a simple example is acceptable.
+> 
+> It would be a good idea to illustrate the identification of contradictions
+> between sample expressions and the k-CNF (and the absence of
+contradictions
+> between the sample expressions and the k-DNF?) through an example in which
+> some terms of the k-CNF are contradicted by at least the prescribed number
+> of sample expressions and other terms of the k-CNF are contradicted by
+fewer
+> than the prescribed number of sample expressions.  An example providing an
+> analogous example for the k-DNF also would be a good idea.  See claims
+> 10-11. 
+> 
+> It would be a good idea to illustrate the sample selection process through
+> an example in which at least one sample expression is selected because it
+> has exactly the prescribed number of terms that contradict the k-CNF (and
+> that do not contradict the k-DNF????), and at least one sample expression
+is
+> rejected because it has fewer than the prescribed number of terms that
+> contradict the k-CNF (and and that do not contradict the  k-DNF?),  and at
+> least one sample expression is rejected because it has more than the
+> prescribed number of terms contradict the k-CNF (and and that do not
+> contradict the k-DNF?).  See claims 12-15. 
+> 
+> Also, it would be helpful to have an example of the division of the k-CNF
+> (and k-DNF?) into sub-group expressions without loss of "feature
+> information".  See claims 6 and 7.
+> 
+> Also, it would be useful to have an example of multi-resolution
+processing.
+> See claims 9 and 10.
+> 
+> What are, "multiple pre-clustered sets of sample images"?  See claim 16.
+> 
+> Please do not hesitate to contact me if you would like to discuss any of
+> these issues.  I look forward to speaking with you soon.
+> 
+> Best Regards,
+> 
+> Steve=
+> > 
+> 
+>
+============================================================================
+> 
+> This message contains information which may be confidential and
+privileged. 
+> Unless you are the addressee (or authorized to receive for the addressee),
+
+> you may not use, copy or disclose to anyone the message or any information
+
+> contained in the message.  If you have received the message in error,
+please 
+> advise the sender by reply e-mail @mofo.com, and delete the message.
+> Thank you very much.
+> 
+>
+============================================================================
+> 
+>  << File: example.pdf >> 
+
+============================================================================
+
+This message contains information which may be confidential and privileged. 
+Unless you are the addressee (or authorized to receive for the addressee), 
+you may not use, copy or disclose to anyone the message or any information 
+contained in the message.  If you have received the message in error, please 
+advise the sender by reply e-mail @mofo.com, and delete the message.
+Thank you very much.
+
+============================================================================
+

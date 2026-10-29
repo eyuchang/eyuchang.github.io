@@ -1,0 +1,266 @@
+
+From echang@xanadu.ece.ucsb.edu Mon Feb 12 09:31:05 2001
+Date: Mon, 12 Feb 2001 09:28:43 -0800 (PST)
+From: Edward Chang <echang@xanadu.ece.ucsb.edu>
+To: echang@db.stanford.edu
+Subject: Trans-KDE Manuscript #  110982.1 (fwd)
+
+
+
+---------- Forwarded message ----------
+Date: Mon, 22 Jan 2001 15:10:51 -0800
+From: TKDE@computer.org
+To: echang@ece.ucsb.edu
+Cc: tkde@computer.org
+Subject: Trans-KDE Manuscript #  110982.1
+
+Manuscript
+----------
+Number:     110982.1 [Prev #: 110982]
+ Title:     Clustering for Approximate Similarity Search in
+High-Dimensional Spaces
+----------
+
+
+Dear Prof. Chang,
+
+The review process for your above referenced submission to IEEE
+Transactions on Knowledge and Data Engineering is now complete.
+
+Associate Editor Paolo Ciaccia has recommended your paper for publication
+in the IEEE Transactions on Knowledge and Data Engineering. Please prepare
+a final manuscript by *22-Feb-2001.  Associate Editor Ciaccia hopes that
+the final version of your manuscript submitted is as free of error as
+possible, since any revision at galley proof time will be costly and may
+delay the publication of your paper.
+
+Enclosed is the author's checklist to help you in your preparation of the
+final manuscript.  Please send all the required items to me.
+
+TKDE Assistant
+IEEE Computer Society
+10662 Los Vaqueros Circle
+Los Alamitos, CA 90720
+tkde@computer.org
++714-821-8380 ext. 3118
+
+Thank you very much for submitting your work to the IEEE Transactions on
+Knowledge and Data Engineering.
+
+****************************************************************************************RE:
+
+* Title: *
+
+IMPORTANT INFORMATION FOR AUTHORS
+
+NOTICE: The paper cited above is has been accepted to appear in an upcoming
+issue of IEEE Transactions on TKDE. The elements indicated below are
+required for publication. Your paper will NOT be scheduled for publication
+until ALL these items have been received by the Computer Society. Please
+supply these materials at your earliest convenience in order to complete
+your dossier. See "Submitting Materials in Electronic Form" below for
+details on acceptable formats and submission procedures for specific items.
+Always refer to the log number (listed above) in any communication with the
+Computer Society.
+
+Thank you for your prompt attention.
+
+=========================
+******************************************************************************
+
+o  1 COMPLETE HARD COPY* OF MANUSCRIPT, INCLUDING:
+  o    Abstract
+  o    Index terms (keywords)
+  o    Author affiliation data
+  o    Main text
+  o    References (bibliography)
+  o    Figure captions and table titles
+  o    Footnotes, if any
+  o    Biography of each author**
+o    1 Complete editable electronic copy*** of the manuscript
+o    Hard copies* of all artwork (figures, tables, etc.)
+o    Electronic copies*** of all artwork (please name files Figure1,
+Figure2, Table1, etc.)
+o    Photograph of each author (hard copy or electronic)**
+o    Complete contact information for each author (mailing address
+including
+postal code, e-mail, phone, fax) with the corresponding author indicated
+o    Signed copyright transfer form (Must have ORIGINAL)
+
+*  A PostScript or PDF file is preferable to hard copies. Please consult
+the Transactions Department for details.
+
+** Required for regular papers only (not short or correspondence items).
+
+*** Content must match hard copy exactly. Please refer to our electronic
+submission guidelines.
+
+**** The author, in providing a signed copyright form, understands that all
+copyrights in and to the above work are assigned to The Institute of
+Electrical and Electronics Engineers, Inc. (the "IEEE"). All text and
+figures must be owned and created by the author, except possibly for
+material such as text passages, figures, and data that clearly identify the
+original source, with permission notices from the copyright owners where
+required. Copyright clearance must be provided for the use of commercial or
+non-public domain images. The author represents that he/she has the power
+of authority to make and execute this assignment.
+
+================================================================
+
+
+SUBMITTING MATERIALS IN ELECTRONIC FORM
+
+All papers in IEEE Computer Society Transactions are edited electronically.
+When your paper is accepted for publication, you are asked to supply an
+electronic version that exactly matches the final, accepted hard copy,
+including the abstract, index terms, footnotes, references, biographies and
+figures. This guide is designed to help you meet this requirement.
+
+Computer Platforms / Operating Systems
+
+At the most basic level, electronic files must be generated using platforms
+and operating systems that the Computer Society can access. The Society
+uses Windows-based PCs and Macintosh computers, so DOS, Windows 3.x, Win95,
+Windows NT, and MacIntosh (System 7), as well as some versions of Unix and
+other operating systems that can generate files compatible with one of
+these formats are acceptable starting points.
+
+Electronic File Formats
+
+À  Text
+Although the Transactions Department uses Microsoft Word to edit
+manuscripts, for technical reasons we prefer to receive files in the Tex or
+LaTex format. Most common word processing formats, including Microsoft Word
+(DOS, Windows, Mac), WordPerfect (DOS, Windows, Mac), RTF, and plain ASCII
+text will also be accepted. If a text formatter is used, retain codes that
+identify titles, subheads, typeface changes, symbols, and other attributes
+related to the paper's meaning. Remove codes that handle page layout (like
+margins, columns, and text size). Include all macros (\def) required to
+produce the document. Indicate at the top of the file which formatter was
+used.
+
+PostScript and PDF files as well as files created in layout programs such
+as FrameMaker, Quark Xpress, PageMaker, and Ventura are NOT acceptable
+simply because they do not provide the text of the manuscript in editable
+form.
+
+À  Graphics
+In the interest of quality and accuracy, the Computer Society prefers to
+use author-supplied electronic art for all figures and tables. Each
+individual figure or graphic must be supplied as a separate, stand-alone
+file. Figure and table files must be named with their respective numbers
+and graphic type such as Fig1.tif, Fig2a.tif, Table1.eps, etc.
+
+The preferred file formats are PS or EPS.  (Files submitted in PS or EPS
+format should be generated using only standard fonts, such as Times,
+Helvetica and Symbol). The files should be generated at a minimum of 300
+dpi.  Other acceptable formats are TIFF, GIF, BMP, JPG, PCX and WMF. All
+other formats, including figures or tables created in association with Tex
+and LaTex programs (e.g., FIG, XFIG, and EEPIC files) are unacceptable and
+should not be submitted. Graphics generated using the drawing capabilities
+of word processing software are also not considered acceptable electronic
+art submissions.
+
+When creating your figures, use font sizes and line weights that will
+reproduce clearly and accurately when sized to one column width (3.5 in. /
+8.9cm). Do not include figure captions in a graphic file. Figure captions
+should be inserted as text in their proper places in the main manuscript
+file, or included in a separate text file.
+
+All figures and complex tables that are not submitted in electronic form
+must be submitted as high quality, camera-ready hard copies.
+
+Encoding / Compression
+
+Only files processed using the following methods of encoding and/or
+compression are acceptable: uuencoding, mime encoding, and BinHex-ing; tar
+files, shar files; and those compressed with PK-Zip (WinZip, etc.),
+Stuffit, Z (Unix compress) or GZ (GnuZip). All other encoding and/or
+compression schemes are unacceptable.
+
+Transmission of Electronic Materials
+
+À  FTP
+Because it is the fastest, most reliable, and most convenient method, the
+Computer Society prefers to receive electronic files via ftp. Our anonymous
+ftp site can be found at:
+
+- "pubftp.computer.org"
+- User: "anonymous"
+- Password: Use email identity (email name) as password.
+- Change directories to Trans/Incoming/TKDE
+
+Please choose a unique, clearly identifying filename--a file called
+my-paper.tar.z is not particularly helpful. We also ask that you send an
+e-mail message to tkde@computer.org notifying us of the fact that you have
+posted a file on our ftp site and including appropriate information such as
+the title of the Transactions, the article title, the IEEECS log number
+(listed above) and the exact name and location of the file posted.
+
+À  E-mail
+Although problems related to file size and the various encoding methods
+used by different e-mail software packages make this a less reliable
+method, electronic files may also be transmitted as e-mail attachments. Use
+the address listed on our Web site under Addresses for Submitting
+Materials:
+
+http://www.computer.org/pubs/transguide/addresses.htm or the general
+address: transactions@computer.org.
+
+À  Storage Media
+Although we prefer receiving files via ftp, submissions on 3¢- or 5*-inch
+diskettes, SyQuest disks (44, 88 or 270 MB), and CD-ROM are also accepted.
+Diskettes should be formatted DOS/Windows or Macintosh compatible. Because
+we can access diskettes formatted for some, but not all, versions of Unix,
+we strongly discourage submissions on Unix diskettes. Note on the disk
+label the operating system, software, and version numbers used to create
+the disk: e.g., Win95 / WinWord 7.0. If you must submit your electronic
+materials on one of these media, we recommend using the special packaging
+materials available, and shipping them via a reputable express courier
+service.
+
+General Notes
+
+All electronically transmitted files should contain the following
+information either as a separate, ASCII text "readme" file if using ftp, or
+as part of the accompanying message if submitting by e-mail: the
+Transactions title, the article title, the IEEECS log number (listed
+above), the author's name, and the software used to generate the
+manuscript.
+======================================================================
+
+NOTICE
+
+It is essential that the electronic versions of the manuscript and artwork
+include all the same materials as the hard copies, and the content must
+match the hard copy exactly! Also, we cannot overemphasize the importance
+of the quality and accuracy of the content of the electronic materials
+submitted since the content is not recreated, but merely transformed into
+the final published version.
+
+======================
+
+MORE INFORMATION
+
+Please consult our Web site for the most up-to-date details on acceptable
+formats and submission procedures for specific items. If you have questions
+or problems, please feel free to contact the IEEE Computer Society
+Transactions Department for help.
+
+Manuscript Assistant
+Transactions on Knowledge and Data Engineering
+http://www.computer.org/pubs/pubs.htm#trans
+tkde@computer.org
+Voice: +1 714 821 8380
+Fax: +1 714 821 4010
+
+
+Sincerely,
+
+Pauline Hosillos TKDE
+, Trans-KDE
+
+
+
+
+

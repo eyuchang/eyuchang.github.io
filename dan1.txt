@@ -1,0 +1,76 @@
+
+
+---------- Forwarded message ----------
+Date: Wed, 13 Nov 2002 02:19:22 -0800
+From: danb <danb@ece.ucsb.edu>
+To: Shi Frank <fgshi@uci.edu>, Banerjee Kaustav <kaustav@ece.ucsb.edu>,
+     Hu Evelyn <hu@ece.ucsb.edu>, Chang Edward <echang@ece.ucsb.edu>,
+     Fiona Goodchild <fiona@mrl.ucsb.edu>,
+     Cheng Kwang-Ting <timcheng@ece.ucsb.edu>,
+     Coldren Larry <coldren@ece.ucsb.edu>,
+     Hespanha Joao <hespanha@ece.ucsb.edu>, Bowers John <bowers@ece.ucsb.edu>,
+     West Tom <twest@cenic.org>, Clarke David <clarke@engineering.ucsb.edu>,
+     Fainman Yeshaiahu <fainman@ece.ucsd.edu>, Teel Andy <teel@ece.ucsb.edu>,
+     Dagli Nadir <dagli@ece.ucsb.edu>,
+     Kokotovic Petar <petar@bradbury.ece.ucsb.edu>,
+     MacDonald Noel <nmacd@engineering.ucsb.edu>,
+     Liu-Yen Kramer <liu-yen@engineering.ucsb.edu>,
+     Blumenthal Daniel <danb@ece.ucsb.edu>, Jalali Bahram <jalali@ucla.edu>,
+     Ayanoglu Ender <ayanoglu@uci.edu>, Papen George <gpapen@ucsd.edu>
+Subject: Brief outline of 3 main research components
+
+Delivery of this technology on a mass scale will not be possible
+without significant advances in photonic integration akin to the
+revolution in electronic integration in the 1960s. However, the
+development of integrated photonic technologies cannot be done in a
+vacuum but must be done in concert with other circuit technologies,
+with knowledge of how this technology will interplay with the network
+architecture and it’s functions, the computing architecture and the end
+user applications. It is equally important that the impact of pervasive
+gigabit photons on the applications themselves and the way scientists,
+engineering, students and the general public will do their work and
+live their lives in the future.
+There are three main components to this project:
+1. The Photonic Integration Component of this program will investigate
+how to bring photonic circuit integration from its current infancy
+equivalent to that of electronics in the 1950s to a level needed as a
+pervasive network technology. This part of the project will have three
+sub-groups. The first subgroup will deal with functional integration
+issues and will consist of a cross-disciplinary team of researchers in
+the photonics, controls dynamics and embedded systems areas. The second
+sub-group will investigate how to integrate functions using a variety
+of available and upcoming circuit technologies and the potential for 3D
+integration. This effort will investigate the possibility of
+integrating different kinds of semiconductor materials, such as silicon
+for electronics and indium phosphide for optical and photonic devices
+as well as new nanophotonic techniques. The circuit technologies that
+will be employed are photonics, optoelectronics, micromechanical
+systems and electronics. The associated packaging issues will also fall
+under the second sub-area. This level of integration will bring
+together researchers and students in VLSI, photonics, solid state,
+materials, chemical engineering and mechanical engineering. The third
+sub-area involves the choice of platform integration, what choices of
+materials will be utilized to implement multi-circuit functions.
+Heterogeneous systems and monolithic approaches will be studied
+including InP and Si semiconductor and glass systems.
+2. The Architectural Integration Component will operate under the
+assumption that a pervasive Gigabit photonic interface technology
+exists. This research sub-area will investigate how end-to-end
+applications will take advantage of and be impacted by this new
+technology. New pervasive Gigabit applications will be identified,
+studied and the interfaces prototoyped. We will ask the question of
+what science will be liberated that is currently blocked by not having
+this type of networking infrastructure and how this infrastructure will
+impact the how to deliver education to future generations.
+3. The Dark Fiber Research Network/Laboratory is a unique facility that
+will enhance the infrastructure for research,  education and community
+outreach efforts. Four University of California campuses will be
+connected through an all-optical switch core and the network will be
+reconfigurable by researchers and students from web browsers at remote
+locations. The Dark Fiber Research Network will infuse education with
+the excitement of discovery by giving students and researchers access
+to something that does not exist for this community today. This
+infrastructure will create the necessary community to explore photonic
+information technologies and bring the  physical layer research
+directly to the researchers.
+

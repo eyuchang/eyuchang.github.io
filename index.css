@@ -1,0 +1,44 @@
+body {
+  font-family: Optima, calibri;
+  font-size: 12pt;
+  margin: 2em;
+}
+
+h1 { 
+  font-family: Optima, calibri;
+  font-weight: bold;
+  font-size: 18pt;
+}
+
+h2 { 
+  font-family: Optima, calibri;
+  font-weight: bold;
+  font-size: 15pt;
+  margin-top: 1.5em;
+  padding-top: 0.5em;
+  border-top: 2px solid;
+}
+
+h3 { 
+  font-family: Optima, sans-serif;
+  font-weight: bold;
+  font-size: 12pt;
+  padding-top: 0.25em;
+}
+
+p {
+  padding-right: 2.5em;
+}
+
+ol, ul { 
+  padding-left: 2.5em;
+}
+
+li {
+  font-family: Optima, calibri;
+  margin-top: 0.25em;
+  margin-bottom: 0.25em;
+  padding-right: 2.5em;
+}
+
+

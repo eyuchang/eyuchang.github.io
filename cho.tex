@@ -1,0 +1,396 @@
+\section{Building a quality database from the Web}
+\newenvironment{tightenumerate}{\begin{list}{\labelenumi}{\usecounter{enumi}%
+      \setlength{\topsep}{0.05in}%
+      \setlength{\itemsep}{0.02in}%
+      \setlength{\parsep}{0in}
+      }}{\end{list}}
+
+
+The rich and diverse information available on the Web lends us enormous
+opportunity to build a comprehensive and high-quality 
+database for cross-modality search. At the same time,
+the very richness and diversity
+poses many interesting challenges that need to be addressed.
+For example, given the vast size of the Web, how can we 
+``identify'' and ``extract'' relevant 
+data from the Web automatically and add them to our database? 
+Also, how can we {\em integrate} {\em heterogeneous} data on the Web
+when they are based on different ``vocabulary'' or ``schema''?
+In the following subsections,
+we will describe some of the challenges that we plan
+to address under this data-collection thrust.
+
+\subsection{Automatic data collection}\label{sec:sampling}
+While there exist an enormous amount of information available on the Web,
+the information is often {\em scattered} and {\em unorganized}
+due to the lack of a central authority. Any person can publish
+any information at a Web site that he chooses, so some information
+might be ``buried'' at a remote site that few people are aware of.
+Also, much of the information on the Web might not be very useful
+for a particular purpose. For example, if we want
+to build a database of artistic paintings,
+the pages related to music will not be very
+useful for our database. Given these facts, our data collection
+should achieve the following two goals:
+
+\begin{itemize}
+\item {\em Cover a wide range of Web:}
+  As we argued, information on the Web is quite unorganized and dispersed,
+  so we need to explore different parts of the
+  Web in order to collect most of the potentially useful data.
+  Unless we visit pages (or multimedia objects) and check their 
+  relevance, it is difficult to tell whether they are useful or not.
+\item {\em Focus on the relevant parts of the Web:}
+  Given the size and the growth rate of the Web, it is difficult 
+  to download every page (or object) on the Web. Clearly, 
+  our data collection should be focused on the part of the 
+  Web {\em relevant} to our task.
+\end{itemize}
+
+The goals stated above seemingly conflict: We want to explore
+many different parts of the Web, while focusing only on
+the relevant parts. As a potential solution
+to the conflicting goals, we plan to study a {\em sampling-based approach}.
+Under a sampling-based data collection, we download
+pages using the following algorithm.
+
+\begin{tightenumerate}
+\item Split the Web into $N$ partitions.
+\item From a partition $p_i$, sample $k$ pages.
+\item If many of the $k$ sample pages are ``relevant,''
+      download all pages in the partition.
+\item Otherwise, move to the next partition.
+\end{tightenumerate}
+
+To help our discussion, let us assume that we partition the Web
+by {\em Web sites}, and we try to build a database of artistic paintings.
+For this scenario, the above algorithm would download, say, $100$ 
+pages and/or images from a Web site and check their relevance 
+to artistic paintings. If many of them are relevant, it downloads more pages 
+from the site. Otherwise, it skips
+to the next site. By collecting data this way, it can
+potentially {\em explore} many different parts of the Web,
+while {\em focusing} only on the relevant parts. It only commits
+significant download resources to a site only when the site has
+a high chance to have many relevant pages (or images).
+
+Clearly, we need to address many open issues 
+to make the above algorithm work. For example, how
+should we partition the Web to make the algorithm most effective?
+In the above example, we partitioned the Web based on Web sites,
+but we need to carefully select the right partitioning function,
+because it will affect performance very significantly:
+If more ``related'' pages are put into the same partition, the
+algorithm can collect many relevant pages. 
+Also, how many samples should we
+download from each partition? If we sample more pages, we can
+judge the relevance of a partition with more confidence, but
+we may waste our resources sampling potentially irrelevant pages.
+
+\subsection{Automatic data extraction}
+Once we collect data from the Web, we need to {\em extract}
+relevant information from the collected data,
+so that we can load the information into our database.
+For example, if we want to build a database of artistic paintings,
+we need to extract artistic painting from downloaded pages 
+and store them in our database.
+
+However, the data on the Web are often unstructured 
+and follow different ``schemas,'' so automatic extraction
+of information is a challenging task.
+How can we tell whether a downloaded image is an artistic 
+painting or not? Also, to support cross-modality search,
+we need to associate relevant {\em keywords} to the extracted
+images. How can we automatically figure out relevant keywords?
+Note that most of the multimedia objects on the Web are embedded
+on a Web page. Therefore, we may use the ``surrounding-text''
+to each object to predict the {\em genre} of an object
+and identify associated keywords. 
+
+\begin{figure}
+  \centering
+  \subfigure{%
+    \includegraphics[width=2in]{regpage1.eps}}%
+  \qquad% 
+  \subfigure{%
+    \includegraphics[width=2in]{regpage2.eps}}%
+  \caption{Pages from the Metropolitan Museum of Art Web site}
+  \label{fig:regpage}
+\end{figure}
+
+\paragraph{Exploiting regularity}
+Pages from the same Web site often follow the same format.
+For example, Figure~\ref{fig:regpage} shows two pages from the Metropolitan
+Museum of Art Web site. Note that both of the pages have the same title,
+and the same side bars. Furthermore, 
+the images and their explanations are arranged side-by-side,
+in the same format on both pages. Therefore, if we can detect
+this regularity and identify the pattern, we may automatically
+extract images and their explanations. In general, we plan to
+explore the following algorithm for automatic data extraction.
+For concreteness, we assume that we are building an image database,
+but note that the algorithm can be applied to any multimedia objects,
+such as music and video.
+
+\begin{tightenumerate}
+\item From the Web pages that are relevant to the images that we want
+  to collect (or from the database that we have already built),
+  extract a set of relevant keywords.
+\item Identify the Web pages that contain
+  images and the relevant keywords in them.
+\item From the pages, detect how the images and the keywords are arranged.
+  \label{item:algo-pattern}
+\item If more than $k$ pages have the same arrangement of images and
+  keywords, extract images and keywords from the pages and load them
+  to the database.
+\end{tightenumerate}
+
+Depending on the value of $k$, the algorithm will extract 
+different quality of data.
+If $k$ is large, the algorithm extracts images only when a large number
+of pages have the same arrangement (i.e., when their is a high evidence), 
+so the images have a high chance to be related to the extracted keywords.
+On the contrary, if $k$ is small, the algorithm will extract more
+images, but there is a higher chance that the images are not
+actually related to the keywords.
+Also, 
+there exist a multitude of ways to represent the arrangement patterns
+in step~\ref{item:algo-pattern} of the above algorithm.
+For example, we may use a regular expression to represent the patterns
+or we may construct a parse tree of the HTML page.
+We plan to study these issues carefully to learn how we can extract
+high quality data from the Web automatically.
+
+
+\subsection{Efficient data maintenance}
+Data on the Web are constantly changing: New pages
+are constantly created, obsolete pages are continually deleted
+and existing pages are updated over time.
+For example, pages on the CNN Web site are updated
+whenever there are new developments in the world,
+and the IBM Web site is completely overhauled,
+if the company goes through a major re-organization.
+Because these changes
+are made autonomously and the Web sites do not inform our database
+of these changes, we have to periodically {\em poll} 
+and {\em download} pages and/or multimedia objects
+to check for changes and update our database.
+
+Effective refresh of a local database introduces many
+interesting challenges. For example, how often should we
+refresh a page (or a multimedia object) to maintain it up-to-date?
+How should we allocate our limited download resources to different
+objects, when the objects are of different size and popularity?
+In~\cite{cho00a}, we proposed two definitions for the ``freshness''
+of a database and we addressed some of these questions
+experimentally and theoretically. We plan to build on our previous work 
+and extend it in the following ways.
+
+\begin{itemize}
+
+\begin{figure}
+  \centering
+  \includegraphics[width=2.5in]{mod-int-all.eps}
+  \caption{Average change interval of Web pages}
+  \label{fig:change-interval}
+\end{figure}
+\item {\bf Change frequency:}
+Web pages are changing at vastly different rates:
+Pages on the CNN Web site change at least once a day on average,
+while pages on the IRS Web site may be updated only once a year.
+Figure~\ref{fig:change-interval} 
+shows an experimental results that we reported in \cite{cho00b}.
+In \cite{cho00b}, we traced the change history of 720,000 Web pages for
+4 months and estimated how often Web pages change on average. 
+The horizontal axis in the graph shows the average change interval
+of pages and the vertical axis shows the fraction of pages changed
+at the given rate. The graph clearly shows that Web pages have
+very different change frequencies.
+
+We can exploit these different change frequencies of pages to improve
+the freshness of the database. For example, assume that we 
+have guessed that the pages on the CNN Web site changes more
+often than the pages on the IRS Web site after we visit the
+sites several times. Then we may want to visit the CNN Web site
+more often than the IRS Web site. 
+
+In \cite{cho01a}, we studied how we can estimate
+the change frequencies of Web pages based on its past change history,
+and in \cite{cho01a} we studied how we should revisit pages once we
+know their change frequencies. However, in the previous studies
+we assumed that we first visit pages for a certain period of time
+to {\em estimate} page change frequencies, and after 
+this period, we use the estimate to adjust page revisit frequencies.
+That is, we assumed a {\em static} scheme where we estimate change
+frequencies only once and use the estimates for the rest.
+We plan to extend this framework into a {\em dynamic} scheme,
+where we can {\em continuously} and {\em dynamically} estimate 
+change frequencies and adjust revisit frequencies appropriately. 
+For example, the change
+frequency of a page itself may change over time, so we may need
+to re-estimate its change frequency and adjust our policy.
+Also, our initial guess for the change frequency may turn out to be wrong
+and we may want to adjust its revisit frequency.
+
+\item {\bf Correlated updates:}
+In certain cases, the changes to some pages are highly correlated,
+and we may exploit this correlation to improve the ``freshness''
+of our database.
+For example, consider the pages on the Linux Operating System.
+When a new major release of the Linux kernel is announced, 
+many of the Linux-related
+pages would change to reflect this fact. Therefore, if we notice
+some Linux pages have changed, we may wish to refresh {\em all other} 
+Linux-related pages, expecting that they may also have changed. 
+We can formalize this idea as follows:
+
+\begin{tightenumerate}
+\item Find pages related to particular topics, say the Linux Operating System.
+\item From each set of pages, sample $k$ pages.
+\item If many of the $k$ sample pages have changed from the previous download,
+      download all pages in the set.
+\item Otherwise, move to the next set of pages.
+\end{tightenumerate}
+
+Notice the similarity of the above algorithm to the one in 
+Section~\ref{sec:sampling}. In fact, we may generalize the above algorithm,
+so that it first partitions the Web in to $N$ partitions and sample
+$k$ pages from each partition to check for changes.
+We may partition the Web based the contents of a page, the link
+or even simple directory (or domain) structure of the Web.
+Clearly, we will have a similar set of issues that need to be addressed.
+For example, what will be the best partitioning method that can put
+corrrelated pages in the same partition?
+How many samples should we take from each partition? 
+Should we sample different numbers of pages depending on the size and the
+importance of a partition?
+
+Also, what will be a good statistical model to capture the correlation
+among pages? A good model will be important to compare 
+various refresh algorithms and to understand why the
+algorithms give certain results. We will explore these questions 
+experimentally using real data
+and we will rigorously study the experimental results through
+theoretical analysis.
+
+\item {\bf Pattern detection:}
+Not all changes are equal.
+For example, a page on a commercial Web site may change very
+often, but the change might be only at its advertising banners.
+In contrast, a page on the IRS Web site may change only once a year,
+but the pages may be completely updated. 
+We may improve the freshness of our database by considering
+different patterns of changes and adjusting refresh policies properly.
+For example, we may want to wait for a while for the pages
+that change often yet slightly, in order to collect a set of changes 
+in a batch.
+Roughly, we may categorize change patterns into four classes:
+1) changes occur only at a particular part of a page and the 
+changes are ``important'' to the users 2) changes occur only at one part,
+but the changes are not important 3) changes occur only at a small part
+of a page in each update, but the location of the change move 
+in each update 4)
+the page is completely overhauled at every update. Depending
+on which change pattern a page follows, we may want to adop different
+refresh policies.
+
+To realize this idea, we need to address many interesting questions:
+How can we detect different patterns of changes?
+We may not be able to store all past versions of a page due to 
+our limited storage space, and detecting change patters in this
+scenario will be difficult.
+Also, exactly how should we adjust revisit policies 
+based on the detected patterns?
+We need to define the clear notion of ``freshness'' and 
+compare tradeoffs carefully to answer these questions.
+\end{itemize}
+
+
+\subsection{Heterogeneous data integration}
+  
+
+\subsection{Related work}
+There exists a large body of literature that studies how to automatically
+collect data from the Web. This data collection is often conducted by
+a program, called a {\em Web crawler}, which traverses the link structure
+of the Web to discover and download pages. 
+
+\paragraph{Focused crawling}
+Because a crawler has limited download and storage resources,
+a {\em focused crawler}
+tries to collect only the pages related to a 
+{\em particular topic}~\cite{chak99a,chak99b,dil00,mukh00,agga01,
+menc01,cho98,mcca99,hers98}. 
+In most of the existing work,
+researchers have studied how to analyze keywords and the link
+structure around a page to judge its relevance to a topic.
+For example, in our previous work~\cite{cho98},
+we found that a page has a high chance 
+to be related to a certain topic, when the page is linked 
+to a page that is already found to be relevant.
+References~\cite{chak99a,chak99b,dil00} and~\cite{agga01} 
+propose more improved versions of this basic idea. 
+The crawler described in \cite{chak99a,chak99b} has two modules,
+a classifier and a distiller, that judge the relevance of a page 
+and determines page download order. The decision is 
+based on the relevance of the page and its potential proximity to 
+other relevant pages. 
+Researchers have also tried to use {\em machine learning} techniques
+to build a focused crawler. For instance,
+reference~\cite{mcca99} adopts {\em reinforcement learning} 
+and applies Bayes classifiers to the full text and anchor text of a page 
+to classify a page.
+
+We believe our {\em sampling-based} approach 
+has a great potential to improve the effectiveness of a crawler even
+further. Since it {\em samples} various parts of the Web,
+it has a less chance to be {\em trapped} in a small cluster of relevant
+pages and miss other more relevant pages. Also, the overhead from sampling
+can be minimal, because we use only a small portion of our download
+resources for sampling. Also note that
+a {\em sampling} crawler can still incorporate many of the mechanisms 
+proposed in the literature. For example, we can use the Bayes classifier
+to judge the relevance of a page, potentially improving the accuracy of 
+judgement.
+
+
+\paragraph{Data refresh}
+A lot of work has been done on maintainging 
+replicated data consistent~\cite{bern84,alon90,
+bern80,barb92,carv82,colby97,krish91,krish94,ladin92,olston00}. 
+Most of the work studies the 
+tradeoff between consistency and read/write 
+performance~\cite{krish94,ladin92,alon90,olston00}
+and tries to guarantee a certain level of consistency
+under various definitions of consistency~\cite{alon90,barb92,bern80}. 
+However, most of the work assumes a {\em push} model,
+where the updates to the data sources are {\em not} autonomous 
+and the sources notify the replicated data of the updates. 
+In contrast, we assume a {\em polling} model where
+updates are made {\em independently} and {\em autonomously} at the sources.
+
+References~\cite{coff97,cho00a} study how a crawler can maintain its index
+up-to-date when the Web pages are independently updated. While 
+both work shows optimal refresh strategies when the crawler know how often
+pages change, neither of them addresses how the crawler can estimate the change
+frequencies of pages. 
+References~\cite{wolman99,evol-att,evol-cache,BC2000,cho00b} 
+experimentally estimate change frequencies
+of Web pages. In~\cite{cho01a}, we studied change frequency estimation
+when a crawler has limited change history of a page.
+However, we mainly separated frequency estimation 
+from actual page refresh, and we assumed that the estimation is done
+only once. We plan to extend the previous work to {\em combine} 
+page estimation with page refresh, where we estimate change frequencies
+dynamically and continally over time.
+
+\paragraph{Automatic data extraction}
+%Data extraction from Web pages has got much attention recently.
+%References~\cite{cho97}
+
+\paragraph{Heterogeneous data integration}
+
+%%% Local Variables: 
+%%% mode: latex
+%%% TeX-master: "main"
+%%% End: 

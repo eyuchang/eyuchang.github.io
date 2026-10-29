@@ -1,0 +1,26 @@
+If we take the derivative of $E(\psi)$, we can find the optimal $\psi$ value,
+denoted by $\psi^{*}$:
+
+\[
+\psi^{*} = \frac{1}{ln \frac{1}{1-p}}
+\]
+
+However, $\psi^{*}$ can only take integer values between $1$ and $\Psi$. So:
+
+\[
+\psi^{*} = 1, if \frac{1}{ln \frac{1}{1-p}} < 1,
+\psi^{*} = \Psi, if \frac{1}{ln \frac{1}{1-p}} > \Psi
+\psi^{*} = \frac{1}{ln \frac{1}{1-p}}, if \frac{1}{ln \frac{1}{1-p}} is
+an integer \]
+
+Otherwise: 
+
+\[
+\psi^{*}=\lfloor \frac{1}{ln \frac{1}{1-p}} \rfloor, 
+if E(\lfloor \frac{1}{ln \frac{1}{1-p}} \rfloor) \geq E(\lceil \frac{1}{ln
+\frac{1}{1-p}} \rceil),
+\psi^{*}=\lceil \frac{1}{ln \frac{1}{1-p}} \rceil, 
+if E(\lfloor \frac{1}{ln \frac{1}{1-p}} \rfloor) < E(\lceil \frac{1}{ln
+\frac{1}{1-p}} \rceil)
+\]
+

@@ -1,0 +1,558 @@
+<html>
+
+<head>
+<meta name="Microsoft Theme 2.00" content="Journal 111">
+<meta http-equiv=Content-Type content="text/html; charset=gb2312">
+<meta name=Generator content="Microsoft Word 11 (filtered)">
+<title>NSF IIS 0535085 </title>
+
+<style>
+<!--
+ /* Font Definitions */
+ @font-face
+	{font-family:Wingdings;
+	panose-1:5 0 0 0 0 0 0 0 0 0;}
+@font-face
+	{font-family:..;
+	panose-1:2 1 6 0 3 1 1 1 1 1;}
+@font-face
+	{font-family:Verdana;
+	panose-1:2 11 6 4 3 5 4 4 2 4;}
+@font-face
+	{font-family:"Palatino Linotype";
+	panose-1:2 4 5 2 5 5 5 3 3 4;}
+@font-face
+	{font-family:"\@..";
+	panose-1:2 1 6 0 3 1 1 1 1 1;}
+ /* Style Definitions */
+ p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0in;
+	margin-bottom:.0001pt;
+	font-size:12.0pt;
+	font-family:Verdana;
+	color:#00277A;}
+h1
+	{margin-top:12.0pt;
+	margin-right:0in;
+	margin-bottom:3.0pt;
+	margin-left:0in;
+	page-break-after:avoid;
+	font-size:16.0pt;
+	font-family:Verdana;
+	color:#00277A;}
+h2
+	{margin-top:12.0pt;
+	margin-right:0in;
+	margin-bottom:3.0pt;
+	margin-left:0in;
+	page-break-after:avoid;
+	font-size:14.0pt;
+	font-family:Verdana;
+	color:#00277A;
+	font-weight:normal;}
+h3
+	{margin-top:12.0pt;
+	margin-right:0in;
+	margin-bottom:3.0pt;
+	margin-left:0in;
+	page-break-after:avoid;
+	font-size:13.0pt;
+	font-family:Verdana;
+	color:#00277A;
+	font-weight:normal;}
+h4
+	{margin-top:12.0pt;
+	margin-right:0in;
+	margin-bottom:3.0pt;
+	margin-left:0in;
+	page-break-after:avoid;
+	font-size:14.0pt;
+	font-family:Verdana;
+	color:#00277A;
+	font-weight:normal;}
+h5
+	{margin-top:12.0pt;
+	margin-right:0in;
+	margin-bottom:3.0pt;
+	margin-left:0in;
+	font-size:13.0pt;
+	font-family:Verdana;
+	color:#00277A;
+	font-weight:normal;}
+h6
+	{margin-top:12.0pt;
+	margin-right:0in;
+	margin-bottom:3.0pt;
+	margin-left:0in;
+	font-size:11.0pt;
+	font-family:Verdana;
+	color:#00277A;
+	font-weight:normal;}
+a:link, span.MsoHyperlink
+	{color:#FF3C00;
+	text-decoration:underline;}
+a:visited, span.MsoHyperlinkFollowed
+	{color:#DF9300;
+	text-decoration:underline;}
+@page Section1
+	{size:8.5in 11.0in;
+	margin:1.0in 1.25in 1.0in 1.25in;}
+div.Section1
+	{page:Section1;}
+ /* List Definitions */
+ ol
+	{margin-bottom:0in;}
+ul
+	{margin-bottom:0in;}
+-->
+</style>
+
+</head>
+
+<body bgcolor=white background="Edward_Y_Chang_files/image004.gif"
+lang=EN-US link="#FF3C00" vlink="#DF9300">
+
+<div class=Section1>
+
+<h1><span style='font-size:14.0pt;font-family:"Palatino Linotype";color:black'>NSF
+IIS 0535085 Project Home Page</span></h1>
+
+<h1><span style='font-size:12.0pt;font-family:"Palatino Linotype";color:black'>Scalable,
+Multimodal Algorithms for Multimedia Information Retrieval</span></h1>
+
+<p class=MsoNormal><span style='font-size:10.0pt;font-family:"Palatino Linotype";
+color:black'><a href="http://infolab.stanford.edu/~echang/">Edward Y. Chang</a>,
+ University of California, Santa Barbara</span></p>
+
+<p class=MsoNormal><span style='font-size:10.0pt;font-family:"Palatino Linotype"'>&nbsp;</span></p>
+
+<p class=MsoNormal style='margin-left:.5in;text-indent:-.5in'><span
+style='font-family:"Palatino Linotype";color:blue'>I.<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><span style='font-family:"Palatino Linotype";color:blue'>Project
+Summary</span></p>
+
+<p class=MsoNormal style='margin-left:.25in'><span style='font-size:10.0pt;
+font-family:"Palatino Linotype";color:black'>&nbsp;</span></p>
+
+<p class=MsoNormal><span style='font-size:10.0pt;font-family:"Palatino Linotype";
+color:black'>The principal design goal of a multimedia retrieval system is to
+return data images or video clips that accurately match users' <i>query
+concepts</i> (e.g., `animals,' `landscape' or `architectures'). To achieve this
+design goal, the system must first comprehend a user's query concept
+thoroughly, and then search efficiently through large repositories to find
+images or videos that match the concept. These concept-learning and
+efficient-retrieval requirements pose new scalability challenges for the
+learning algorithms and indexing methods that do the job. Three major
+challenges are 1) <i>scarcity of training data</i>, 2) <i>scalability of
+learning algorithms</i>, and 3) <i>non-traditional and high-dimensional queries</i>.
+This proposed project will address these challenges in three separate but
+interrelated research thrusts.</span></p>
+
+<p class=MsoNormal><i><span style='font-size:10.0pt;font-family:"Palatino Linotype";
+color:black'>&nbsp;</span></i></p>
+
+<p class=MsoNormal style='margin-left:.25in;text-indent:-.25in'><span
+style='font-size:10.0pt;font-family:Wingdings;color:black'><img width=4
+height=11 src="Edward_Y_Chang_files/image001.gif" alt="*"><span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><i><span style='font-size:10.0pt;font-family:"Palatino Linotype";
+color:black'>Multimodal active learning algorithms.</span></i><span
+style='font-size:10.0pt;font-family:"Palatino Linotype";color:black'> Keywords
+and perceptual features will be jointly explored for devising <i>active-learning
+</i>algorithms that can learn a target query-concept based on the concept's
+characteristics.</span></p>
+
+<p class=MsoNormal><span style='font-size:10.0pt;font-family:"Palatino Linotype";
+color:black'>&nbsp;</span></p>
+
+<p class=MsoNormal style='margin-left:.25in;text-indent:-.25in'><span
+style='font-size:10.0pt;font-family:Wingdings;color:black'><img width=4
+height=11 src="Edward_Y_Chang_files/image001.gif" alt="*"><span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><i><span style='font-size:10.0pt;font-family:"Palatino Linotype";
+color:black'>Scalable kernel machines</span></i><span style='font-size:10.0pt;
+font-family:"Palatino Linotype";color:black'>. Kernel machines such as kernel
+PCA and Support Vector Machines (SVMs) are essential statistical tools for
+analyzing and annotating media data, but their computational intensity is O(n<sup>3</sup>).
+This research thrust will investigate <i>recursive</i> <i>decomposition</i> and
+
+<i>parallel</i> algorithms to reduce the computational intensity to O(log<sup>2</sup>
+n).</span></p>
+
+<p class=MsoNormal><span style='font-size:10.0pt;font-family:"Palatino Linotype";
+color:black'>&nbsp;</span></p>
+
+<p class=MsoNormal style='margin-left:.25in;text-indent:-.25in'><span
+style='font-size:10.0pt;font-family:Wingdings;color:black'><img width=4
+height=11 src="Edward_Y_Chang_files/image001.gif" alt="*"><span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><i><span style='font-size:10.0pt;font-family:"Palatino Linotype";
+color:black'>Kernel indexers for hyperplane queries</span></i><span
+style='font-size:10.0pt;font-family:"Palatino Linotype";color:black'>.&nbsp; A
+concept learned by SVMs is a hyperplane, not a point. This research thrust will
+develop novel high-dimensional indexing methods to support hyperplane queries
+to work with kernel methods in general, and SVMs in particular.</span></p>
+
+<p class=MsoNormal><span style='font-size:10.0pt;font-family:"Palatino Linotype";
+color:black'>&nbsp;</span></p>
+
+<p class=MsoNormal><span style='font-size:10.0pt;font-family:"Palatino Linotype";
+color:black'>The <i>scalable kernel machines</i> thrust improves the efficiency
+to analyze and annotate multimedia data. The <i>multimodal active learning</i>
+thrust uses the analysis and annotation to perform concept-dependent
+learning.&nbsp; The <i>kernel indexer</i> thrust makes the other two thrusts
+efficient for retrieval of data matching certain criteria. Together, these
+three integrated research thrusts provide a solid foundation for building
+large-scale, next-generation, multimedia information-retrieval systems.</span></p>
+
+<p class=MsoNormal><span style='font-size:10.0pt;font-family:"Palatino Linotype";
+color:black'>&nbsp;</span></p>
+
+<p class=MsoNormal style='margin-left:.5in;text-indent:-.5in'><span
+style='font-family:"Palatino Linotype";color:blue'>II.<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><span style='font-family:"Palatino Linotype";color:blue'>Participants
+&amp; Collaborators</span></p>
+
+<p class=MsoNormal><span style='font-family:"Palatino Linotype";color:blue'>&nbsp;</span></p>
+
+<p class=MsoNormal><span style='font-size:10.0pt;font-family:"Palatino Linotype";
+color:black'>PhD Students</span></p>
+
+<p class=MsoNormal style='margin-left:.25in;text-indent:-.25in'><span
+style='font-size:10.0pt;font-family:Wingdings;color:black'><img width=4
+height=11 src="Edward_Y_Chang_files/image001.gif" alt="*"><span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><span style='font-size:10.0pt;font-family:"Palatino Linotype";
+color:black'>Arun Qamra (CS 2002 - )</span></p>
+
+<p class=MsoNormal style='margin-left:.25in;text-indent:-.25in'><span
+style='font-size:10.0pt;font-family:Wingdings;color:black'><img width=4
+height=11 src="Edward_Y_Chang_files/image001.gif" alt="*"><span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><span style='font-size:10.0pt;font-family:"Palatino Linotype";
+color:black'>Wen-Yen Chen (CS, 2005 - )</span></p>
+
+<p class=MsoNormal style='margin-left:.25in;text-indent:-.25in'><span
+style='font-size:10.0pt;font-family:Wingdings;color:black'><img width=4
+height=11 src="Edward_Y_Chang_files/image001.gif" alt="*"><span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><span style='font-size:10.0pt;font-family:"Palatino Linotype";
+color:black'>Gengxin Miao (ECE, 2006 - )</span></p>
+
+<p class=MsoNormal><span style='font-size:10.0pt;font-family:"Palatino Linotype";
+color:black'>&nbsp;</span></p>
+
+<p class=MsoNormal><span style='font-size:10.0pt;font-family:"Palatino Linotype";
+color:black'>Industry Collaborators</span></p>
+
+<p class=MsoNormal style='margin-left:.25in;text-indent:-.25in'><span
+style='font-size:10.0pt;font-family:Wingdings;color:black'><img width=4
+height=11 src="Edward_Y_Chang_files/image001.gif" alt="*"><span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><span style='font-size:10.0pt;font-family:"Palatino Linotype";
+color:black'>Intel</span></p>
+
+<p class=MsoNormal style='margin-left:.25in;text-indent:-.25in'><span
+style='font-size:10.0pt;font-family:Wingdings;color:black'><img width=4
+height=11 src="Edward_Y_Chang_files/image001.gif" alt="*"><span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><span style='font-size:10.0pt;font-family:"Palatino Linotype";
+color:black'>Google</span></p>
+
+<p class=MsoNormal><span style='font-size:10.0pt;font-family:"Palatino Linotype";
+color:black'>&nbsp;</span></p>
+
+<p class=MsoNormal><span style='font-size:10.0pt;font-family:"Palatino Linotype";
+color:black'>Past Collaborators</span></p>
+
+<p class=MsoNormal style='margin-left:.25in;text-indent:-.25in'><span
+style='font-size:10.0pt;font-family:Wingdings;color:black'><img width=4
+height=11 src="Edward_Y_Chang_files/image001.gif" alt="*"><span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><span style='font-size:10.0pt;font-family:"Palatino Linotype";
+color:black'>Navneet Panda (now at Google)</span></p>
+
+<p class=MsoNormal style='margin-left:.25in;text-indent:-.25in'><span
+style='font-size:10.0pt;font-family:Wingdings;color:black'><img width=4
+height=11 src="Edward_Y_Chang_files/image001.gif" alt="*"><span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><span style='font-size:10.0pt;font-family:"Palatino Linotype";
+color:black'>Gang Wu (now at Microsoft)</span></p>
+
+<p class=MsoNormal style='margin-left:.25in;text-indent:-.25in'><span
+style='font-size:10.0pt;font-family:Wingdings;color:black'><img width=4
+height=11 src="Edward_Y_Chang_files/image001.gif" alt="*"><span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><span style='font-size:10.0pt;font-family:"Palatino Linotype";
+color:black'>Yi Wu (now at Intel Research)</span></p>
+
+<p class=MsoNormal style='margin-left:.25in;text-indent:-.25in'><span
+style='font-size:10.0pt;font-family:Wingdings;color:black'><img width=4
+height=11 src="Edward_Y_Chang_files/image001.gif" alt="*"><span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><span style='font-size:10.0pt;font-family:"Palatino Linotype";
+color:black'>Zhihua Zhang (now at UC Berkeley)</span></p>
+
+<p class=MsoNormal><span style='font-size:10.0pt;font-family:"Palatino Linotype";
+color:blue'>&nbsp;</span></p>
+
+<p class=MsoNormal><span style='font-size:10.0pt;font-family:"Palatino Linotype";
+color:blue'>&nbsp;</span></p>
+
+<p class=MsoNormal style='margin-left:.5in;text-indent:-.5in'><span
+style='font-family:"Palatino Linotype";color:blue'>III.<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><span style='font-family:"Palatino Linotype";color:blue'>Key
+Results</span></p>
+
+<p class=MsoNormal><span style='font-family:"Palatino Linotype";color:blue'>&nbsp;</span></p>
+
+<p class=MsoNormal><span style='font-size:10.0pt;font-family:"Palatino Linotype";
+color:black'>Results of 1<sup>st</sup> year (Sept 2006 - Aug 2007):</span></p>
+
+<p class=MsoNormal><span style='font-size:10.0pt;font-family:"Palatino Linotype";
+color:black'>&nbsp;</span></p>
+
+<p class=MsoNormal><span style='font-size:10.0pt;font-family:"Palatino Linotype";
+color:black'>We have made two contributions, though this project is only at its
+early stage.&nbsp; </span></p>
+
+<p class=MsoNormal><span style='font-size:10.0pt;font-family:"Palatino Linotype";
+color:black'>&nbsp;</span></p>
+
+<p class=MsoNormal><span style='font-size:10.0pt;font-family:"Palatino Linotype";
+color:black'>First, we demonstrated that matrix inversion can be parallelized
+on distributed computers.&nbsp; This parallelization is achieved through
+approximate matrix factorization and intelligently reordering computation
+steps.&nbsp; This method has been applied to parallelizing SVMs, and we are
+exploring to use it to parallelize other mission-critical algorithms including
+SVD and EM.</span></p>
+
+<p class=MsoNormal><span style='font-size:10.0pt;font-family:"Palatino Linotype";
+color:black'>&nbsp;</span></p>
+
+<p class=MsoNormal><span style='font-size:10.0pt;font-family:"Palatino Linotype";
+color:black'>Second, we showed that in even an infinite dimensional space,
+indexing can be done effectively.&nbsp; This is accomplished by projecting data
+to the surface of a hypersphere, and then dividing the surface into concentric
+regions for indexing.</span></p>
+
+<p class=MsoNormal><span style='font-size:10.0pt;font-family:"Palatino Linotype";
+color:black'>&nbsp;</span></p>
+
+<p class=MsoNormal><span style='font-size:10.0pt;font-family:"Palatino Linotype";
+color:black'>The PI expects the benefits of these two contributions to be
+further developed and explored in the 2nd year of the project.</span></p>
+
+<p class=MsoNormal><span style='font-family:"Palatino Linotype";color:blue'>&nbsp;</span></p>
+
+<p class=MsoNormal><span style='font-family:"Palatino Linotype";color:blue'>&nbsp;</span></p>
+
+<p class=MsoNormal style='margin-left:.5in;text-indent:-.5in'><span
+style='font-family:"Palatino Linotype";color:blue'>IV.<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><span style='font-family:"Palatino Linotype";color:blue'>Publications</span></p>
+
+<p class=MsoNormal><span style='font-family:"Palatino Linotype";color:blue'>&nbsp;</span></p>
+
+<p class=MsoNormal><span style='font-size:10.0pt;font-family:"Palatino Linotype";
+color:black'>Publications are listed by the three thrusts of this research
+project.</span></p>
+
+<p class=MsoNormal><span style='font-size:10.0pt;font-family:"Palatino Linotype";
+color:black'>&nbsp;</span></p>
+
+<p class=MsoNormal style='margin-left:.25in;text-indent:-.25in'><span
+style='font-size:10.0pt;font-family:Wingdings;color:black'><img width=4
+height=11 src="Edward_Y_Chang_files/image001.gif" alt="*"><span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><i><u><span style='font-size:10.0pt;font-family:"Palatino Linotype";
+color:black'>Multimodal active learning algorithms</span></u></i><i><span
+style='font-size:10.0pt;font-family:"Palatino Linotype";color:black'>.</span></i><span
+style='font-size:10.0pt;font-family:"Palatino Linotype";color:black'> </span></p>
+
+<p class=MsoNormal style='margin-left:.5in;text-indent:-.25in'><span
+style='font-size:10.0pt;font-family:Wingdings;color:black'><img width=4
+height=11 src="Edward_Y_Chang_files/image002.gif" alt="*"><span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><span style='font-size:10.0pt;font-family:"Palatino Linotype";
+color:black'>Navneet Panda, King-Shy Goh, Edward Y. Chang: Active learning in
+very large databases. Multimedia Tools Appl. 31(3): 249-267 (2006)</span></p>
+
+<p class=MsoNormal style='margin-left:.5in;text-indent:-.25in'><span
+style='font-size:10.0pt;font-family:Wingdings;color:black'><img width=4
+height=11 src="Edward_Y_Chang_files/image002.gif" alt="*"><span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><span style='font-size:10.0pt;font-family:"Palatino Linotype";
+color:black'>Steven C. H. Hoi, Michael R. Lyu, Edward Y. Chang: Learning the
+unified kernel machines for classification. KDD 2006: 187-196</span></p>
+
+<p class=MsoNormal style='margin-left:.25in;text-indent:-.25in'><span
+style='font-size:10.0pt;font-family:Wingdings;color:black'><img width=4
+height=11 src="Edward_Y_Chang_files/image001.gif" alt="*"><span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><i><u><span style='font-size:10.0pt;font-family:"Palatino Linotype";
+color:black'>Scalable kernel machines</span></u></i><span style='font-size:
+10.0pt;font-family:"Palatino Linotype";color:black'>. </span></p>
+
+<p class=MsoNormal style='margin-left:.5in;text-indent:-.25in'><span
+style='font-size:10.0pt;font-family:Wingdings;color:black'><img width=4
+height=11 src="Edward_Y_Chang_files/image002.gif" alt="*"><span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><span style='font-size:10.0pt;font-family:"Palatino Linotype";
+color:black'>E. Y. Chang, et. al, Parellel SVMs on Distributed Computers, NIPS
+2007 (submitted)</span></p>
+
+<p class=MsoNormal style='margin-left:.5in;text-indent:-.25in'><span
+style='font-size:10.0pt;font-family:Wingdings;color:black'><img width=4
+height=11 src="Edward_Y_Chang_files/image002.gif" alt="*"><span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><span style='font-size:10.0pt;font-family:"Palatino Linotype";
+color:black'>Gang Wu, Edward Y. Chang, Yen-Kuang Chen, Christoper Hughes:
+Incremental approximate matrix factorization for speeding up support vector
+machines. KDD 2006: 760-766</span></p>
+
+<p class=MsoNormal style='margin-left:.5in;text-indent:-.25in'><span
+style='font-size:10.0pt;font-family:Wingdings;color:black'><img width=4
+height=11 src="Edward_Y_Chang_files/image002.gif" alt="*"><span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><span style='font-size:10.0pt;font-family:"Palatino Linotype";
+color:black'>Nonparametric Regression Using Reproducing Kernel Hilbert Spaces, Zhihua
+Zhang, Gang Wu and Edward Y. Chang, IEEE Transactions on Neural Networks,
+September 2007</span></p>
+
+<p class=MsoNormal style='margin-left:.25in;text-indent:-.25in'><span
+style='font-size:10.0pt;font-family:Wingdings;color:black'><img width=4
+height=11 src="Edward_Y_Chang_files/image001.gif" alt="*"><span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><i><u><span style='font-size:10.0pt;font-family:"Palatino Linotype";
+color:black'>Kernel indexers for hyperplane queries</span></u></i><span
+style='font-size:10.0pt;font-family:"Palatino Linotype";color:black'>.&nbsp; </span></p>
+
+<p class=MsoNormal style='margin-left:.5in;text-indent:-.25in'><span
+style='font-size:10.0pt;font-family:Wingdings;color:black'><img width=4
+height=11 src="Edward_Y_Chang_files/image002.gif" alt="*"><span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><span style='font-size:10.0pt;font-family:"Palatino Linotype";
+color:black'>Navneet Panda, Edward Y. Chang: KDX: An Indexer for Support Vector
+Machines. IEEE Trans. Knowl. Data Eng. 18(6): 748-763 (2006)</span></p>
+
+<p class=MsoNormal style='margin-left:.5in;text-indent:-.25in'><span
+style='font-size:10.0pt;font-family:Wingdings;color:black'><img width=4
+height=11 src="Edward_Y_Chang_files/image002.gif" alt="*"><span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><span style='font-size:10.0pt;font-family:"Palatino Linotype";
+color:black'>RCMap: Efficiently Creating High-Quality Euclidean Embeddings, A.
+Qamra and E. Y. Chang, SIAM International Conference on Data Mining (SDM),
+Minneapolis, Minnesota, April 2007.</span></p>
+
+<p class=MsoNormal style='margin-left:.5in;text-indent:-.25in'><span
+style='font-size:10.0pt;font-family:Wingdings;color:black'><img width=4
+height=11 src="Edward_Y_Chang_files/image002.gif" alt="*"><span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><span style='font-size:10.0pt;font-family:"Palatino Linotype";
+color:black'>Navneet Panda, Edward Y. Chang: Efficient top-k hyperplane query
+processing for multimedia information retrieval. ACM Multimedia 2006: 317-326</span></p>
+
+<p class=MsoNormal style='margin-left:.5in;text-indent:-.25in'><span
+style='font-size:10.0pt;font-family:Wingdings;color:black'><img width=4
+height=11 src="Edward_Y_Chang_files/image002.gif" alt="*"><span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><span style='font-size:10.0pt;font-family:"Palatino Linotype";
+color:black'>Navneet Panda, Edward Y. Chang, Gang Wu: Concept boundary
+detection for speeding up SVMs. ICML 2006: 681-688</span></p>
+
+<p class=MsoNormal><span style='font-family:"Palatino Linotype";color:blue'>&nbsp;</span></p>
+
+<p class=MsoNormal style='margin-left:.5in;text-indent:-.5in'><span
+style='font-family:"Palatino Linotype";color:blue'>V.<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+</span></span><span style='font-family:"Palatino Linotype";color:blue'>Presentations</span></p>
+
+<p class=MsoNormal><span style='font-family:"Palatino Linotype";color:blue'>&nbsp;</span></p>
+
+<p class=MsoNormal style='margin-left:.25in;text-indent:-.25in'><span
+style='font-size:10.0pt;font-family:Wingdings;color:black'><img width=4
+height=11 src="Edward_Y_Chang_files/image001.gif" alt="*"><span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><span style='font-size:10.0pt;font-family:"Palatino Linotype";
+color:black'>Web-scale Multimedia Data Management: Challenges and Remidies (<b>keynote</b>),
+Visual and Multimedia Digital Libraries, sponsored by European Commission
+Networks of Excellence, Modena, Italy, September 2007. </span></p>
+
+<p class=MsoNormal style='margin-left:.25in;text-indent:-.25in'><span
+style='font-size:10.0pt;font-family:Wingdings;color:black'><img width=4
+height=11 src="Edward_Y_Chang_files/image001.gif" alt="*"><span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><span style='font-size:10.0pt;font-family:"Palatino Linotype";
+color:black'>Challenges of and Remedies for Large-scale Multimedia Information
+Retrieval (<b>keynote</b>), CVDB in conjunction with ACM SIGMOD, Beijing, June 2007. </span></p>
+
+<p class=MsoNormal style='margin-left:.25in;text-indent:-.25in'><span
+style='font-size:10.0pt;font-family:Wingdings;color:black'><img width=4
+height=11 src="Edward_Y_Chang_files/image001.gif" alt="*"><span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><span style='font-size:10.0pt;font-family:"Palatino Linotype";
+color:black'>Internet, Past and Future (<b>panel moderator</b>), Internet+
+Conference, Beijing, March 2007. </span></p>
+
+<p class=MsoNormal style='margin-left:.25in;text-indent:-.25in'><span
+style='font-size:10.0pt;font-family:Wingdings;color:black'><img width=4
+height=11 src="Edward_Y_Chang_files/image001.gif" alt="*"><span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><span style='font-size:10.0pt;font-family:"Palatino Linotype";
+color:black'>Web 2.0 and Multimedia (<b>keynote</b>), International Conf. on
+Multimedia Modeling, Singapore, January 2007. </span></p>
+
+<p class=MsoNormal style='margin-left:.25in;text-indent:-.25in'><span
+style='font-size:10.0pt;font-family:Wingdings;color:black'><img width=4
+height=11 src="Edward_Y_Chang_files/image001.gif" alt="*"><span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><span style='font-size:10.0pt;font-family:"Palatino Linotype";
+color:black'>Parallel Support Vector Machines, Google Tech Talk, Mountain View, December 2006. </span></p>
+
+<p class=MsoNormal style='margin-left:.25in;text-indent:-.25in'><span
+style='font-size:10.0pt;font-family:Wingdings;color:black'><img width=4
+height=11 src="Edward_Y_Chang_files/image001.gif" alt="*"><span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+</span></span><span style='font-size:10.0pt;font-family:"Palatino Linotype";
+color:black'>Unified &amp; Scalable Learning for Multimedia Information
+Retrieval (<b>keynote</b>), MIR Workshop at ACM MM Conf., Santa Barbara,
+October 2006. </span></p>
+
+<p class=MsoNormal style='margin-left:.25in'><span style='font-family:"Palatino Linotype";
+color:blue'>&nbsp;</span></p>
+
+<p class=MsoNormal style='margin-left:.5in;text-indent:-.5in'><span
+style='font-family:"Palatino Linotype";color:blue'>VI.<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><span style='font-family:"Palatino Linotype";color:blue'>Demos</span></p>
+
+<p class=MsoNormal><span style='font-family:"Palatino Linotype";color:blue'>&nbsp;</span></p>
+
+<p class=MsoNormal style='margin-left:.25in;text-indent:-.25in'><span
+style='font-size:10.0pt;font-family:Wingdings;color:black'><img width=4
+height=11 src="Edward_Y_Chang_files/image001.gif" alt="*"><span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+</span></span><span style='font-size:10.0pt;font-family:"Palatino Linotype";
+color:black'>Benjamin N. Lee, Wen-Yen Chen, Edward Y. Chang: A scalable service
+for photo annotation, sharing, and search. ACM Multimedia 2006: 699-702</span></p>
+
+<p class=MsoNormal style='margin-left:.25in;text-indent:-.25in'><span lang=DE
+style='font-size:10.0pt;font-family:Wingdings;color:black'><img width=4
+height=11 src="Edward_Y_Chang_files/image001.gif" alt="*"><span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><span lang=DE style='font-size:10.0pt;font-family:"Palatino Linotype";
+color:black'><a href="http://www.fotofiti.com/">Fotofiti online demo</a></span></p>
+
+<p class=MsoNormal><span lang=DE style='font-size:10.0pt;font-family:"Palatino Linotype";
+color:black'>&nbsp;</span></p>
+
+<p class=MsoNormal><span lang=DE style='font-size:10.0pt;font-family:"Palatino Linotype";
+color:black'>&nbsp;</span></p>
+
+</div>
+
+</body>
+
+</html>
+

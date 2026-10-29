@@ -1,0 +1,63 @@
+
+body {
+	font-family: 'Noto Sans SC', sans-serif;
+	max-width: 1000px;
+	margin-top: 40px;
+	margin-bottom: 60px;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+h1, h2, .icon {
+	padding: 0;
+	margin: 0;
+	vertical-align: middle;
+	display: inline-block;
+	font-weight: 700;
+}
+
+h1 {
+	font-size: 50px;
+	padding-left: 10px;
+}
+
+h1, h2, h3, h4, b {
+	color: #333366;
+}
+
+.content {
+	padding-left: 60px;
+}
+
+hr {
+	opacity: 10%;
+	margin-top: 30px;
+	margin-bottom: 30px;
+	height: 1px;
+	border: none;
+	background-color: #000;
+}
+
+h3 {
+	font-weight: 500;
+}
+
+h4 {
+	font-weight: 400;
+}
+
+p {
+	font-weight: 300;
+	color: #495572;
+}
+
+a {
+	color: #349cff;
+}
+
+bullet {
+  color: #349cff; /* Change the color */
+  font-weight: bold; /* If you want it to be bold */
+  display: inline-block; /* Needed to add space between the bullet and the text */
+  width: 1.5em; /* Also needed for space (tweak if needed) */
+}

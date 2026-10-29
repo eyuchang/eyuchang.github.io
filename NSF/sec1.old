@@ -1,0 +1,371 @@
+\section{RESEARCH PLAN}
+\subsection{Motivation}
+
+Traditionally, watching a television program has been a passive experience:
+All viewers receive the same TV content at the same
+playback pace, regardless of individual preferences.
+Not being able to select viewing pace 
+can be inconvenient and even unproductive 
+sometimes. For instance, when one
+is interrupted while watching a news program
+(say, by a phone call or biological need), one may 
+miss the information (e.g., stock quotes, weather forecast,
+etc.) that one has been waiting for.  Similarly, when
+one misses a crucial point while viewing a televised
+lecture, one may not be able to comprehend the materials
+after that point.
+What is desirable is {\em viewing interactivity}
+---pause, fast-forward and instant replay---allowing
+the time-shifting of a program so the viewer can
+watch at whatever pace he or she finds comfortable.
+
+In addition to viewing interactivity, being able to 
+interact with the content of a program (what I call
+{\em content interactivity}) can enrich viewing experience.
+Content interactivity is
+especially beneficial for educational programs. For instance,
+children would be able to change the attributes 
+(e.g., colors, size, position 
+and even the personality) of the ``bunny,'' ``big bird'' and
+other characters in the {\it Sesame Street} program.
+A grade school student can learn American states
+by interacting with a map.
+A class of high school students can conduct science experiments
+in small groups through a virtual lab and their instructor
+can keep track of their progress in real-time. 
+Many other applications exist.
+
+To support interactivity, many studies suggest a server-based
+architecture (e.g., \cite{ex80,ex49,ex54,ex1,ex86}),
+in which a server schedules
+its resources (i.e., memory and disk bandwidth)
+to support interactivity.
+In a server-based architecture, the receivers are assumed
+to be passive---simply receiving bits and rendering frames.
+However, because of the typical long end-to-end transmission
+delay between a server and a receiver and the Interet's limited bandwidth,
+it is practically infeasible for the server
+to support ``real-time'' viewing interactivity for tens of
+thousands of simultaneous users.  Furthermore,
+on a broadcast channel (e.g., CNN), one simply cannot request
+the server to pause or replay a program.
+ 
+Instead of the server-based approach, I plan to investigate
+new hybrids of technologies for 
+a receiver-based architecture to support viewing interactivity 
+and content interactivity. Figure~\ref{fig-dtv-pipeline} depicts a 
+Digital TV (DTV) pipeline.  A receiver in this architecture
+is equipped with a large and inexpensive disk and may have an 
+Internet back-channel in addition to the broadcast channel.
+The economical caching together with the random
+access capability of the disk enables a DTV receiver to support
+time-shift operations.  A viewer can pause a live TV
+program to take a break from viewing while the broadcast
+stream continues arriving and being written to the local disk.
+The viewer can resume watching the program after the pause
+with a delay, or fast-forward the program to get back in synch with
+the broadcast stream.  
+While a given broadcast stream remains the same
+for all viewers, various data objects can be transmitted to
+individual viewers via the Internal channel.
+Image-based rendering techniques can
+overlay a number of data objects with the broadcast stream to
+produce a customized program for content
+interaction.
+
+\begin{figure}[t]
+\epsfxsize=300pt
+\centerline{\epsffile{fig-dtv-pipeline.eps}}
+\caption{The DTV Pipeline.}
+\label{fig-dtv-pipeline}
+\vspace{.1in}
+\end{figure}
+
+To enable viewing and content interactivity,
+we need a multimedia receiver that can display
+more than one stream of TV, radio and Web data,
+can time-shift a stream, and can query and change
+the content of a stream.  To accomplish these
+goals, the multimedia receiver
+needs a {\em buffer manager} that can schedule the
+receiver's memory and
+disk bandwidth effectively to satisfy
+various interactive scenarios, and it needs a {\em data manager}
+that can manage data of TV, radio and Web
+for supporting efficient queries and retrieval.
+
+Although progress has been made in buffer and
+data management, many issues, especially in managing multimedia
+data and managing buffer for rendering and
+for querying multimedia data,
+and in developing an architecture that can be adaptive
+to both resource constraints and {\em Quality of
+Service} (QoS) requirements, remain open.
+I plan to address these issues, and to build on
+work from several fields, most notably from the
+image processing, operating system and database fields.
+In particular, I am interested in developing the
+following technologies:
+                             
+\begin{nlist}
+\item {\bf 1}. Caching and prefetching techniques that satisfy
+the real-time data requirement of the continuous media data
+(i.e, video and audio) on the one hand, and minimize the
+initial latency in responding to an interactive request
+on the other.
+\item {\bf 2}.
+QoS-adaptive buffer-management architectures that manage
+memory and disk bandwidth adaptively to
+the receiver's resource constraints and
+the viewer's QoS requirements.
+\item {\bf 3}.
+Temporal and spatial indexing structures that support
+efficient stream synchronization and media queries.
+\item {\bf 4}.
+Image/video layered coding schemes that allow
+a multimedia stream to scale gracefully (mainly due
+to resource constraints) during
+both the decoding and indexing phases, and
+\item {\bf 5}.
+Query processing that handles heterogeneous
+media queries efficiently.
+\end{nlist}   
+
+In addition, I envision constructing demonstrations
+that use these technologies.
+Here is a list of some of the demonstrations I am planning
+to indicate the progress of this project:
+\begin{nlist}
+\item {\bf i}.
+A multimedia database that supports content-based
+queries,
+\item {\bf ii}.
+A digital-VCR that supports pause, fast-forward and instant
+replay, and
+\item {\bf iii}.
+A multi-camera video surveillance system (e.g., for
+monitoring in a nuclear power facility).
+\end{nlist}
+
+The multimedia database system provides the digital-VCR
+project with an efficient storage and an effective query
+engine that can help the viewer select content
+before the viewer issues a fast-forward or replay command.
+The digital-VCR, which receives only one stream at a time,
+in turn, is extended by the multi-camera video surveillance project,
+which handles multiple cameras, streams and viewers simultaneously.
+                           
+Much of the research I propose will be joint efforts
+with colleagues and students at the University of California,
+Santa Barbara and Stanford University.
+
+In the remaining sections of this proposal, I enumerate the challenges
+this project faces, the core technologies I plan to develop, 
+my prior accomplishments, and
+the demonstrations I plan to implement.   
+
+\subsection{Technical Challenges}
+
+To enable viewing and content interactivity, the receiver faces
+many technical challenges that we enumerate in the following:
+
+\subsection{Enabling Viewing Interactivity}
+
+Viewing interactivity allows viewers to select their own
+temporal view of the TV content in real-time.
+A temporal view is created by a time-shift VCR-like 
+operation---pause, replay or fast-forward. Extending a DRAM cache
+by adding a disk increases the cache size and thereby
+enables the support of these time-shift operations economically.
+However, adding a disk to a DRAM cache also increases the complexity of
+the receiver's {\em buffer management}.
+This increased complexity is primarily introduced by the fact that
+video and audio data must be made available continuously
+to meet {\em real-time} playback deadlines, or playback interruptions
+occur. In addition, to achieve acceptable interactive performance,
+the buffer manager must make the requested data available
+in main memory with {\em minimum initial latency}, e.g.,
+when a viewer issues a replay, response time should be very low.
+Satisfying these two potentially conflicting performance 
+objectives with minimum DRAM (and hence at minimum cost) 
+is a challenging design task.
+
+To support effective time-shift operations, the receiver needs
+an {\em indexing scheme} that supports index creation
+and convenient data retrieval. For instance, a lecture can be
+divided into sections by the instructor when the
+recording is taken place, but individual students may also
+want to bookmark the section they feel important for
+later replay. Meaningful labels describing a bookmark
+should be automatically generated based on 
+content and context without requiring the
+instructor or students to pause to enter labels.
+%For object lookup, temporal
+%index structures should be built in such a way that
+%when one of the objects in a scene is accessed, all
+%temporal related objects can be referenced.
+
+Building indexes can be very challenging. 
+For example, to
+answer a query like ``play all scenes in which
+a truck is parking in front of the building,'' the database
+must construct complex indexing structures. 
+First, the features (e.g., colors,
+texture and shapes in the frames,
+sound in the audio tracks, and texts in the subtitle)  
+of each scene must be extracted.
+These features are then clustered and
+recorded in the descriptor for each scene.
+Finally, indexes are built on 
+scene descriptors for efficient search.
+I will investigate multimedia database design issues, including
+{\em feature extraction},
+{\em feature clustering},
+{\em indexing} and {\em query processing}.
+
+%\vspace{-.1in}
+%\subsubsection{Spatial View}
+%
+%A simple spatial view can be a pan or a zoom, which does not 
+%change the camera position. 
+%While potentially interesting,
+%pan and zoom do not seem to pose difficult
+%research questions, so I omit theme here.
+%Instead, I will explore the techniques to
+%knit temporal adjacent frames into a {\em panoramic view}
+%for a single camera.
+
+\subsection{Enabling Content Interactivity}
+
+Content interactivity allows a viewer to change the content
+of a program locally. For instance, the viewer can change
+the attributes (e.g., colors, positions and speed)
+of the objects in a scene. 
+Content interactivity can be enriched if the TV is connected
+to a bi-directional Internet back-channel.
+Using distance education as an example,
+a student can interact with a 3D globe
+during a world geography lecture.
+The instructor can quiz the students on-line to understand 
+how the students absorb the lecture materials and make real-time
+adjustments.
+
+To support content interactivity the receiver must synchronize
+the rendering of the data objects in a scene. 
+%Fortunately, much low-hanging fruit 
+%in this area is ready to be plunked. 
+This knowledge is already available.
+For example, MPEG-4 has proposed standards to
+separate interactive objects from the scenes, to change
+visual or acoustic properties of an object, and to
+specify the spatio-temporal relations between objects.
+However, MPEG-4 does not address {\em data organization}
+and {\em QoS adaptivity} issues, issues I intend to investigate.
+
+\begin{figure}[t]
+\epsfysize=125pt
+\centerline{\epsffile{fig-scene-desc.eps}}
+\caption{An Example Scene Description.}
+\label{fig-scene-desc}
+\end{figure}
+                  
+Figure~\ref{fig-scene-desc} shows a schematic example of these issues,
+an MPEG-4 scene description of a simplified geography
+lecture. The scene at its top level is divided into four
+objects: a 2D background, furniture, a white board and 
+an instructor.
+The furniture ``object'' consists of a desk, a chair and a globe
+``subobject''.  The instructor object consists of a 
+voice and a sprite subobject.  Among these objects, a student 
+can interact with the white board and the globe.
+What this means is that the 2D background and the instructor 
+are broadcast via satellite, and the furniture and white board
+are delivered via the Internet. The receiver faces the
+challenge of synchronizing
+these two streams in both spatial and temporal dimensions.
+
+To simplify our discussion,
+let us focus on the temporal synchronization.
+The receiver must synchronize two streams in the temporal
+dimension properly.  If streams are delivered and
+rendered in real-time, the temporal synchronization may be
+less a problem since the receiver can render the objects in
+the streams as they arrive. However, if the viewer issues a 
+pause, the streams may be stored on the local disk and how 
+these streams are stored on disk will affect their subsequent
+retrieval performance. For example, the 
+temporarily related objects can be stored contiguously
+on disk. This approach, however, may not be feasible
+if objects appear in many scenes.
+Various data organization policies will be experimented with
+to discover rules for storing temporally related data.
+
+%Should all objects be
+%stored? (e.g., Some data objects such as HTML and XML pages
+%may not need to be cached.) How should temporally 
+%related objects be stored?
+%How should the receiver manage its
+%disk space? At the retrieval end, when a selected scene is 
+%is replayed, how should the data be organized on disk so that 
+%all relevant objects can be found and retrieved efficiently?
+%All these data organization issues must be addressed.
+
+Adding complexity to the problems, the receiver must be
+{\em QoS adaptive} and must be able to scale gracefully in the following
+two areas:
+\begin{jlist}
+\item Resources:
+The available hardware resources can differ from one receiver
+to another. The local resources may not be adequate
+to support a particular interactive scenario.
+For instance, interacting with the globe in the geography class
+example may require downloading a high
+resolution video clip, which the processor cannot decode
+in real-time.  Therefore, it is critical for the resource 
+manager to be adaptive to
+the resource constraints and to degrade, if degradation is
+unavoidable, in a graceful manner.  
+\item QoS requirements:
+The QoS preference can be different from one viewer to another.
+For instance, some students in the geography class may not care
+about the chair object until the instructor sits down. 
+Some students may prefer seeing the write board
+to the fidelity of the video, or vice versa.
+\end{jlist}
+
+To summarize, I intend to investigate
+the following technologies for supporting
+viewing and content interactivity:
+\begin{jlist}
+\item
+QoS-adaptive resource-management architectures:
+caching, data prefetching, data placement and QoS-adaptive scheduling.
+\item
+Multimedia databases: image/video layered coding,
+feature extraction, feature clustering,
+indexing, query processing and data organization.
+\end{jlist}
+
+%To summarize, I intend to investigate
+%the following technologies for supporting
+%viewing and content interactivity:
+%\begin{jlist}
+%\item Viewing interactivity: 
+%\begin{nlist}
+%\item {\bf 1}: Resource management: 
+%caching, prefetching, data placement, real-time scheduling.
+%\item {\bf 2}: Data management: 
+%feature extraction, feature clustering, indexing and 
+%query processing.
+%\end{nlist}
+%
+%\item For enabling content interactivity: 
+%\begin{nlist}
+%\item {\bf 1}: Resource management: QoS-adaptive resource management.
+%\item {\bf 2}: Data management: layered ecoding schemes, and
+%data organization.
+%\end{nlist}
+%
+%\end{jlist}
+
+

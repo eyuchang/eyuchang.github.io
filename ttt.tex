@@ -1,0 +1,692 @@
+
+
+\subsection{Motivating Example}
+                                                  
+Below we show a toy example problem that illustrates
+the need for MEGA. We will use this simple example throughout
+this paper to explain various aspects of our approach
+and to contrast our approach with others. 
+This example models an admission concept that
+consists of a small number of boolean predicates.
+In Section~\ref{sec-expimage} we
+show that MEGA works well to learn complex query concepts 
+of fuzzy predicates
+for a high-dimensional image dataset.
+
+Suppose Jane plans to apply to
+a graduate school. Before filling out the
+forms and paying the application fees, she would like
+to estimate her chances of being admitted. Since
+she does not know the admission criteria, 
+she decides to learn the admission concept by 
+induction\footnote{
+At first sight, this example may seem very different from, say,
+an image search scenario, where a user queries similar
+images by example(s). But if we treat the admission officer
+as the user who knows what he/she likes and who can, accordingly, 
+label an item as {\it true} or {\it false}, and if
+we treat Jane as the search engine who tries to
+find out what the admission officer thinks, then
+it is evident that this example represents a typical
+search scenario.
+}.
+She calls up a few friends who applied
+last year and obtains
+the information shown in Table~\ref{tab-ex1}.
+
+\begin{table}[ht]
+\begin{footnotesize}
+\begin{center}
+\begin{tabular}{|c|c|c|c|c|} \hline
+{\it Name} & {\it GPA} & {\it GRE} & {\it Has Publications?} & {\it Was Admitted?} \\ \hline \hline
+{\it Joe}   & {\it high} & {\it high} & {\it false} & {\it true}  \\
+{\it Mary}  & {\it high} & {\it low}  & {\it true}  & {\it true}  \\
+{\it Emily} & {\it high} & {\it low}  & {\it true}  & {\it true}  \\
+{\it Lulu}  & {\it high} & {\it high} & {\it true}  & {\it true}  \\
+{\it Anna}  & {\it low}  & {\it low}  & {\it true}  & {\it false} \\
+{\it Peter} & {\it low}  & {\it high} & {\it false} & {\it false} \\
+{\it Mike}  & {\it high} & {\it low}  & {\it false} & {\it false} \\
+{\it Pica}  & {\it low}  & {\it low}  & {\it false} & {\it false} \\
+\hline
+\hline
+\end{tabular} 
+\end{center}
+\end{footnotesize}
+\caption{Admission Samples.}
+\label{tab-ex1}
+\end{table}
+
+If we look at the GRE scores in the table, we see that students with 
+either high or low GRE scores were admitted, and both kinds were
+rejected. Hence, we may 
+conclude that the GRE is irrelevant in the admission process. 
+Likewise, one's publication record does not affect admission
+acceptance, nor does having a high GPA.  
+It may appear that the admission decision is entirely
+random. However, the 
+graduate school actually uses a combination of
+reasonable criteria: it requires a
+high GPA and either a high GRE or publications. In other words,
+$Admission~:~ GPA = high \wedge (GRE = high \vee Publications = true)$.
+
+An obvious question arises: ``Are all the samples in Table~\ref{tab-ex1}
+equally useful for learning the target concept?''
+% and, ``What features in the table are relevant to the learning task?''
+%\begin{jlist}
+%\item Are all samples equally useful?
+Apparently not, for several
+reasons.  First, it seems that $Pica$'s record may not be useful
+since she was unlikely to be admitted (i.e., her record is unlikely
+to be labeled positive). Second, both Emily and Mary have the 
+same record, so one of these two records can be redundant. Third, Lulu's 
+record is perfect and hence does not provide additional insight for
+learning the admission criteria.  This example indicates that choosing 
+samples randomly may not produce useful information for learning a 
+target concept. 
+In this paper, we will show how and why MEGA can quickly learn
+a target concept like the example of
+admission criteria, whereas other methods may not.
+%\item Are all features relevant? To determine relevancy, we
+%examine the features in the table.
+%The feature {\it ``Gender''} does not seem to
+%be relevant to graduate admissions.
+%The presence of irrelevant features
+%can slow down concept learning exponentially \cite{LI93,LS97}.
+%\end{jlist}
+
+
+
+
+\section{The MEGA Algorithm}
+\label{sec-learn}
+
+%In this section, we describe
+%how our learning algorithm, MEGA, works.
+%In Section~\ref{sec-db-issues}, we discuss how MEGA deals
+%with very large database issues such as high dimensional data and
+%very large datasets.
+
+Our learning algorithm consists of two major parts:
+\begin{jlist}
+%\item Initialization: Provide users with a reasonable way to
+%convey initial hints to the system.
+\item Refinement: Refine the query concept based on 
+positive-labeled instances. The refinement step 
+is carefully designed to tolerate noisy data.
+\item Sampling: Refine the sampling space based
+on negative-labeled instances and select samples
+judiciously for expediting the learning process.
+\end{jlist}
+
+\subsection{Refinement}
+
+We use Valiant's learning algorithm \cite{V84}
+as the starting point to refine a $k$-CNF concept. 
+We extend the algorithm to
+\begin{nlist}
+\item {\bf 1}: Handle the 
+fuzzy membership functions (described in Section~\ref{sec-formulate}), 
+\item {\bf 2}: Select samples judiciously to
+expedite the learning process (Section~\ref{sec-sampling}), and
+\item {\bf 3}: Tolerate user errors (Section~\ref{sec-vote}).
+\end{nlist}
+
+\begin{figure}[ht]
+\epsfysize=100pt
+\centerline{\epsffile{fig-qccs.eps}}
+\vspace{-.1in}
+\caption{MEGA's Sampling Space: $CCS \wedge \overline{QCS}$.}
+\vspace{-.1in}
+\label{fig-qccs}
+\end{figure}
+               
+MEGA initializes
+the query concept space ($QCS$) as the most specific $k$-CNF
+and the candidate concept space ($CCS$) as the most general $k$-DNF.
+%The $QCS$ starts as the most specific concept
+%and the $CCS$ as the most general concept.
+The target concept
+that MEGA learns is more general than the initial
+$QCS$ and more specific than the initial $CCS$. 
+It will become evident shortly that MEGA learns the $QCS$,
+while at the same time refining the $CCS$ to delimit
+the boundary of the sampling space. (The
+shaded area in Figure~\ref{fig-qccs} shows the sampling space
+between the $QCS$ and the $CCS$).
+
+Figure~\ref{fig-learner} depicts the learning algorithm.
+The first step initializes $QCS$ and $CCS$.
+The second step describes how a query concept is
+refined through relevance feedback. This refinement
+step consists of the four substeps shown.
+
+\begin{figure}[htbp]
+%\begin{footnotesize}
+{\bf Algorithm MEGA}
+\begin{nlist} 
+\item {\it Input}: $U$, $K_c$, $K_d$, $K_{\alpha}$;
+\item {\it Output}: $QCS$;
+\item {\it Procedure calls}: $f()$, $Vote()$, $Sample()$, $Feedback()$, 
+                            $Collapsed?()$, $Converged?()$;
+\item {\it Variables}: $c$, $d$, $u$, $y$, $P_{t_i|y_j}$, $P_{t_i|y}$;
+\item {\bf Begin}
+\item {\bf 1} Initialize the version space
+ \begin{nlist}
+ \item $QCS \leftarrow \{d_1, d_2, \dots\}$; $CCS \leftarrow \{c_1, c_2, \dots\}$;
+ \end{nlist}
+\item {\bf 2} Refine query concept via relevance feedback
+  \begin{nlist}
+   \item {While} ($not~Collapsed?(QCS, CCS)~and~not~Converged?(QCS, CCS)$) 
+   \item {\bf 2.a} Select informative samples
+   \begin{nlist}
+   \item $u \leftarrow Sample(QCS, CCS, U, K_{\alpha})$; 
+   \end{nlist}
+   \item {\bf 2.b} Solicit user feedback
+   \begin{nlist}
+   \item For each $u_i \in u$
+    \begin{nlist}
+    \item $y_i \leftarrow Feedback(u_i)$; 
+    \end{nlist}
+   \end{nlist}
+   \item {\bf 2.c} Reduce irrelevant terms
+   \begin{nlist}
+   \item {\bf 2.c.1} Refine $k$-CNF using positive samples
+
+   \begin{nlist}
+   \item For each $d_i \in QCS$
+    \begin{nlist}
+     \item For each $y_j \in y^+$
+     \begin{nlist}
+     \item $P_{d_i|y_j} \leftarrow f(d_i, O_j, QCS)$;
+     \end{nlist}
+    \item $P_{d_i|y^+} \leftarrow Vote(y^+, P_{d_i | y_j \in y^+}, \gamma)$;
+    \item If ($P_{d_i|y^+} > K_d$)
+     \begin{nlist}
+     \item $QCS \leftarrow QCS - \{d_j\}$;
+     \end{nlist}
+    \end{nlist}
+   \end{nlist}
+
+   \item {\bf 2.c.2} Refine $k$-DNF using negative samples
+   \begin{nlist}
+   \item For each $c_i \in CCS$
+    \begin{nlist}
+     \item For each $y_j \in y^-$
+     \begin{nlist}
+     \item $P_{c_i|y_j} \leftarrow f(c_i, O_j, CCS)$;
+     \end{nlist}
+    \item $P_{c_i|y^-} \leftarrow Vote(y^-, P_{c_i | y_j \in y^-}, \gamma)$;
+    \item If ($P_{c_i|y^-} > K_c$)
+     \begin{nlist}
+     \item $CCS \leftarrow CCS - \{c_j\}$;
+     \end{nlist}
+    \end{nlist}
+   \end{nlist}
+  \end{nlist}
+
+  \item {\bf 2.d} Bookkeeping
+   \begin{nlist}
+   \item $U \leftarrow U - u$;
+   \end{nlist}
+\end{nlist}
+
+\item {\bf 3} Return query concept
+\begin{nlist}
+  \item Output $QCS$; 
+\end{nlist}
+\item {\bf End}
+\end{nlist}  
+\caption{Algorithm MEGA.}
+\label{fig-learner}
+%\end{footnotesize}
+\end{figure}
+
+\begin{nlist}
+\item {\bf Step 2.a}: 
+MEGA Generates
+sample set $u$ from the unlabeled pool $U$.
+This step passes $QCS$, $CCS$ and $U$ to procedure {\it Sample}
+to generate $K_{\alpha}$ samples.
+We will discuss procedure {\it Sample} in Section~\ref{sec-sampling}.
+
+\item {\bf Step 2.b}: MEGA solicits user feedback. A user marks
+an object positive if the object fits his/her query
+concept.  An unmarked object is considered negative. 
+
+\item {\bf Step 2.c}: 
+This is MEGA's term reduction step. It
+refines both $QCS$ and $CCS$. 
+
+{Step 2.c.1} refines $QCS$.  For each disjunctive term in the $QCS$, 
+MEGA examines each positive-labeled instance
+and uses function $f$ to compute the probability that
+the disjunctive term should be eliminated.
+MEGA then calls procedure {\it Vote} to tally the votes among the
+positive-labeled instances and compares the vote with threshold $K_d$
+to decide whether that disjunctive term is to be removed. 
+If sufficient numbers of positive-labeled instances contradict the
+$QCS$ with respect to a disjunctive term (i.e., if the
+threshold is exceeded), the term is removed from the $QCS$.
+We discuss procedure {\it Vote}, which decides how
+aggressive MEGA is in eliminating terms, in Section~\ref{sec-vote}.
+
+{Step 2.c.2} refines $CCS$.
+Similar to the steps in 2.c.1, for each conjunctive term in
+the $CCS$, MEGA examines each negative-labeled instance,
+and uses function $f$ to compute the probability that
+the conjunctive term should be eliminated.
+MEGA then calls procedure {\it Vote}
+to tally the votes among the
+negative-labeled instances.
+Then it compares the vote with threshold $K_c$
+to decide whether that conjunctive term is to be removed.
+If sufficient numbers of negative-labeled 
+instances satisfy the $CCS$ with respect to
+a conjunctive term, the term is removed from the $CCS$.
+
+\item {\bf Step 2.d}: MEGA performs bookkeeping by reducing the
+unlabeled pool.
+\end{nlist}
+
+The refinement step terminates when the learning
+process converges to the target concept ($Converged?=true$) or the
+concept is collapsed ($Collapsed?=true$).  ($Converged?$ and
+$Collapsed?$ are defined below.)
+In practice, the refinement stops when no unlabeled instance
+$u$ can be found between the $QCS$ and the $CCS$.
+
+\vspace{.1in}
+\sspace
+\noindent
+{\bf Definition 3:} $Converged?(QCS, CCS)$
+\[
+Converged?(QCS, CCS) \leftarrow~true~if~CCS == QCS;~~false~otherwise.
+\]
+
+\noindent
+{\bf Definition 4:} $Collapsed?(QCS, CCS)$
+\[
+Collapsed?(QCS, CCS) \leftarrow~true~if~CCS \in QCS;~~false~otherwise.
+\]
+\nspace
+
+\subsection*{Remarks}
+
+Notice that MEGA does not require seeding a
+query with relevant images.  MEGA intelligently generates
+images to seek for user feedback.
+If all of the images
+generated in the first round of its relevance feedback are irrelevant,
+it will use these irrelevant images to reduce
+the sampling space
+%the set of potentially relevant images substantially
+so that a relevant image will be
+generated in the next round with high probability.
+                                                      
+
+\subsection{Sampling}
+\label{sec-sampling}
+
+MEGA invokes procedure {\it Sample}
+to select the next $K_{\alpha}$ unlabeled instances
+%\footnote{
+%In this study we focus our discussion on sample selection
+%criteria rather than on access methods for finding samples
+%on disk. We are currently enhancing a high-dimensional
+%indexing scheme that we have developed \cite{Lch00} 
+%to achieve efficient sample retrieval.} 
+to ask for user feedback. From the 
+college-admission example presented in Section~\ref{sec-intro}, we
+learn that if we would like to reduce our work (i.e.,
+call a minimum number of friends), we should choose
+our samples judiciously. 
+But, what constitutes a good sample?  We know that we
+learn nothing from a sample if
+\begin{jlist}
+\item It agrees with the concept in all terms.
+\item It has the same features as another sample.
+\item It is unlikely to be labeled positive.
+\end{jlist}
+
+To make sure that a sample is useful, MEGA employs two strategies:
+\begin{nlist}
+\item {\bf 1}. Bounding the sample space:
+MEGA avoids choosing useless unlabeled instances by using
+the $CCS$ and $QCS$ to delimit the sampling boundary. 
+%Figure~\ref{fig-qccs} shows the candidate space where MEGA
+%selects unlabeled instances is between $CCS$ and $QCS$
+%(the shaded area in the figure).
+\item {\bf 2}. Maximizing the usefulness of a sample:
+MEGA chooses a sample that
+shall remove the maximum expected number of disjunctive
+terms in QCS. In other words, MEGA chooses a sample
+that can maximize the expected generalization of the concept.
+\end{nlist}
+
+It may appear that
+if we pick a sample that has more dissimilar
+disjunctions (compared to the $QCS$), we may have
+a better chance of eliminating more disjunctive terms. 
+This is, however, not true.
+A sample must be labeled by the user as positive to be
+useful for refining $QCS$. Unfortunately, a sample with
+more disjunctions that are dissimilar
+to the target concept is less likely to be
+labeled positive.  Therefore, in choosing a sample,
+there is a tradeoff between those with more contradictory
+terms and those more likely to be labeled positive.
+
+Let $\Psi$ denote the number of disjunctions remaining in the concept.
+The number of disjunctions that can be eliminated in the current round 
+of sampling (denoted as $\psi$) is between zero and $\Psi$.
+For a sample contradicting exactly $\psi$ disjunctive terms in QCS,
+we can
+write the probability of its being labeled positive as $P_e(\psi)$.
+$P_e(\psi)$ is a monotonically decreasing function of $\psi$.
+
+Our MEGA scheme attempts to find the $\psi$ that
+can eliminate the maximum expected number
+of disjunctive terms, given a sample.
+MEGA's objective function can be written as
+\begin{equation}
+\psi^{*} = argmax_{\psi} E(\psi) = argmax_{\psi} (\psi \times P_e(\psi)).
+\label{eq-mega}
+\end{equation}
+To solve $\psi^{*}$, we must know $P_e(\psi)$, which
+can be estimated by the two methods below: {\it probabilistic estimation}
+and {\it empirical estimation}.
+
+\subsection{Probabilistic Estimation}
+
+We first consider how to estimate $\psi^*$ using a
+probability model.
+As we have seen in the college-admission analogy, if a sample contradicts
+more disjunctive terms, it is more likely to be labeled negative
+(i.e., less likely to be labeled positive).
+For example, a sample that contradicts term $T_1$ is
+labeled negative only if $T_1$ is in the user's query concept.
+A sample that contradicts both terms
+$T_1$ and $T_2$ is labeled negative if
+either $T_1$ or $T_2$ is in the user's query concept.
+
+Formally, let random variable $\Phi_i$ be 1 if $T_i$ is in
+the concept and $0$ otherwise.  For simplicity, let us assume 
+that the $\Phi_i$'s are iid (independent and identically distributed),
+and the probability of $\Phi_i$ being $1$ is $p$ ($0<p<1$).
+For a sample contradicting $\psi$ disjunctive terms, it
+is marked positive only when
+none of these $\psi$ terms appears in the user's query concept. 
+This probability is $(1-p)^\psi$.  
+If we substitute $P_e(\psi)$ by $(1-p)^\psi$
+on the right-hand side of Equation~\ref{eq-mega}, we get
+\[
+E(\psi) = \psi(1 - p)^\psi.
+\]
+If we take the derivative of 
+$E(\psi)$, we can find the optimal
+$\psi$ value, denoted by $\psi^{*}$:
+\[
+\psi^{*} = \Psi,~if~\frac{1}{ln \frac{1}{1-p}} > \Psi,~~~
+\psi^{*} = \frac{1}{ln \frac{1}{1-p}},~ otherwise.
+\]
+
+%We can round the value up to the nearest integer, or
+%
+%%\noindent
+%$\psi^{*} = \Psi$, if $\lceil \frac{1}{ln \frac{1}{1-p}} \rceil > \Psi$,
+%
+%%\noindent
+%$\psi^{*} = \lceil \frac{1}{ln \frac{1}{1-p}} \rceil$, otherwise.
+%Your sampling method assumes that each clause in the current concept is
+%equally likely to be eliminated - clearly a very big assumption. From
+%what I understand, the sampling method only gives you the number of
+%clauses that it wants to eliminate rather than the specific clauses it 
+%thinks it can eliminate. I wonder if there is a way to make the sampling
+%algorithm take into account the structure of specific clauses in the
+%current concept.
+
+Of course, it may be too strong an assumption that the 
+probability $p$ of all disjunctions is iid.
+However, we do not need a precise estimation here for 
+the following two reasons:
+\begin{enumerate}
+\item Precise estimation may not be feasible
+and can be computationally intensive.
+\item An approximate estimation is sufficient for bootstrapping.
+Once the system is up and running for a while and collects
+enough data, it can empirically
+estimate $P_e(\psi)$ using its past experience.  We 
+discuss this process next.
+\end{enumerate}
+
+\subsection{Empirical estimation}
+
+MEGA can estimate
+$P_e(\psi)$ based on its past experience. 
+For each sample it presents, it records how many disjunctions
+the sample contradicts with respect to the query concept and whether
+the sample is labeled positive.  Once the system collects
+a sufficient amount of data, we can estimate $P_e(\psi)$
+empirically. We then pick the $\psi^{*}$ that can
+eliminate the maximum expected number of disjunctive terms. 
+
+Again, a reasonable approach to estimate $P_e(\psi)$ is to use
+probabilistic estimation when the system first
+starts and then switches to empirical estimation when the
+system has collected sufficient data.
+In such a case there can
+be an abrupt transition when MEGA switches
+from one estimation to the other, since the two
+estimates of $P_e(\psi)$ may differ substantially. 
+This may lead to a sudden change in behavior of the sampling 
+component of the active learner.  To remedy this problem, 
+we employ a Bayesian smoothing approach.
+Essentially the probabilistic estimation is the prior guess at the
+distribution over $\psi$ and the empirical approach is the guess based 
+purely on the data that MEGA has seen so far. 
+The Bayesian approach
+combines both of these guesses in a principled manner. 
+Before we start, we imagine that we have seen a number of
+samples of $\psi$. After refinement iteration
+we gather new samples for $\psi$; then we
+add them to our current samples and adjust $P_e(\psi)$. 
+
+For example, before we start, we assume that 
+we have already seen samples with $\psi= 1$ being labeled positive
+three out of five times and samples with
+$\psi = 2$ being labeled positive seven out of $20$ times.
+In other words, we
+have successfully eliminated $\psi = 1$ term three times out of
+five, and we have successfully eliminated $\psi = 2$ terms
+$7$ times out of $20$.  Thus initially 
+$P_e(\psi = 1) = 3/5 = 0.6$ and $P_e(\psi = 2) = 7/20 = 0.35$.
+Now suppose we do a query in which we observe a
+sample with $\psi = 2$ being labeled positive. Then our 
+new distribution is
+$P_e(\psi = 1) = 3/5$ and $P_e(\psi = 2) = 8/21$.
+We continue in this manner.  At first the prior assumption 
+has quite an effect on our guess about the
+distribution. The more imaginary samples we have in our prior 
+assumption, the larger its effect. 
+For instance, if we assume that $\psi = 1$ being
+labeled positive $30$ out of $50$ times and that
+$\psi = 2$ being labeled positive $70$ out of $200$ times,
+it takes more real samples to change $P_e(\psi)$.
+With time, the more real samples we get, the less the
+effect of the prior assumption becomes, 
+until eventually it has virtually no
+effect, and the observed data dominate the expression. 
+This procedure gives us a smooth transition between the ``probabilistic'' 
+and the ``empirical'' methods.
+
+%(Formally, in this example we have placed a Beta(3,2) prior on the
+%parameter $\theta_a$ where $\theta_a$ corresponds to P(A=true). We have also
+%placed a Beta(7,20) prior on $\theta_b$. We then have done regular Bayesian  
+%updating.
+%
+%For a more complete explanation take a look at the first couple of
+%sections of David Heckerman's tutorial on learning with Bayesian
+%Networks:
+%http://www.research.microsoft.com/scripts/pubdb/pubsasp.asp?recordID=63 )
+                     
+%\begin{figure}
+%\begin{center}
+%\begin{tabular}{lr}
+%\epsfxsize=120pt
+%\epsfysize=80pt
+%\subfigure[Random]{\epsfbox{fig-mega-random.eps}} 
+%\hspace{.2in}
+%\epsfxsize=120pt
+%\epsfysize=80pt
+% \subfigure[Guarded Random]{\epsfbox{fig-mega-G-random.eps}} \\     
+%\epsfxsize=120pt
+%\epsfysize=80pt
+% \subfigure[MEGA]{\epsfbox{fig-mega-mega.eps}} 
+%\hspace{.2in}
+%\epsfxsize=120pt
+%\epsfysize=80pt
+% \subfigure[Aggressive]{\epsfbox{fig-mega-aggresive.eps}} \\
+%\end{tabular}
+%\end{center}
+%\vspace{-.2in}
+%\caption{Sampling Schemes.}
+%\vspace{-.1in}
+%\label{fig-mega}
+%\end{figure}      
+%
+
+\subsection*{Remarks}
+
+Once the criteria for selecting samples is determined, we
+use Clindex, a clustering/indexing combined indexer to retrieve
+the most informative samples.  We discuss this high-dimensional
+access method in detail in \cite{Lch00}.  
+
+\subsection*{Sampling Example}
+
+Let us revisit the college-admission analogy to explain
+how MEGA works. Suppose Joe is interested in applying for 
+a graduate school.
+He knows the profiles of a few students in his 
+senior class, but he does not know if they were admitted
+to that particular school. 
+According to MEGA, we write the initial $CCS$ and $QCS$ in
+$2$-CNF and $2$-DNF, respectively, as
+
+\sspace
+\[
+QCS = (GRE = high)~ \wedge ~(GPA = high)~ \wedge~ (Publications = true) 
+~\wedge~ (GRE = high \vee GPA = high) 
+\]
+\[
+~\wedge~ (Publications = true \vee GPA = high) ~\wedge~
+(GRE = high \vee Publications = true).
+\]
+\vspace{-.1in}
+\[
+CCS = (GRE = high)~ \vee ~(GPA = high)~ \vee~ (Publications = true) 
+~\vee~ (GRE = high \wedge GPA = high) 
+\]
+\[
+~\vee~ (Publications = true \wedge GPA = high) ~\vee~ 
+(GRE = high \wedge Publications = true).
+\]
+\nspace
+
+Suppose $\psi^{*}$ is one. 
+Joe starts by calling his friends
+whose ``profile'' fails by exactly one disjunctive term.
+Joe calls three people and two give him a positive answer,
+as shown in Table~\ref{tab-round1}.
+
+\begin{table}[ht]
+\begin{footnotesize}
+\begin{center}
+\begin{tabular}{|c|c|c|c|c|c|} \hline
+{\it Round $\#$} & {\it Name} & {\it GPA} & {\it GRE} & {\it Has Publications?} & {\it Was Admitted?}\\ \hline
+\hline
+{\it 1st} & {\it Joe} & {\it high} & {\it high} & {\it false} & {\it true} \\
+{} & {\it Emily} & {\it high} & {\it low} & {\it true} & {\it true} \\
+{} & {\it Dora} & {\it low} & {\it high} & {\it true} & {\it false} \\
+\hline \hline
+{\it 2nd} & {\it Kevin} & {\it high} & {\it low} & {\it false} & {\it false} \\
+\hline \hline
+\end{tabular}
+\end{center}
+\end{footnotesize}
+\caption{MEGA Sampling Rounds.}
+\label{tab-round1}
+\end{table}
+                             
+Based on the feedback, Joe can generalize the concept to
+$QCS = (GPA = high)~\wedge~ (Publications = true \vee GPA = high) ~\wedge~
+(GRE = high \vee Publications = true)~\wedge~
+(GPA = high \vee GRE = high)$.
+At the same time, the $CCS$ is shrunk to
+$CCS = (GPA = high)~ \vee~
+(GRE = high \wedge GPA = high)
+~\vee~ (Publications = true \wedge GPA = high)$.
+
+In the second round, Joe attempts to call friends to
+see if any of the remaining terms can be removed. He calls
+Kevin, whose profile is listed in the table.
+Since this sample is labeled negative, the $QCS$ is not changed.
+But the $CCS$ is reduced to 
+$(GRE = high \wedge GPA = high)
+~\vee~ (Publications = true \wedge GPA = high)$.
+
+Simplifying and rewriting
+both $QCS$ and $CCS$ gives us the following identical
+expression:
+\[
+QCS = (GPA = high) ~\wedge~ (GRE = high \vee Publications = true).
+\]
+The concept converges and the
+refinement terminates at this point. We have learned the
+admission criterion --- a high GPA and either a high GRE or
+publications $\Box$
+
+\subsection{Procedure Vote}
+\label{sec-vote}
+
+In the previous example, we assume that all samples are noise-free.
+This assumption may not be realistic. There can be two sources of
+noise:
+
+\begin{jlist}
+\item Model bias: The target concept may not be in $k$-CNF.
+\item User errors: A user may label some positive instances negative
+and vice versa.
+\end{jlist}
+
+\begin{figure}[thbp]
+{\bf Procedure Vote}
+\begin{nlist}
+\item {\it Input}: $y$, $P_{t_i| y_j \in y}$, $\gamma$;
+\item {\it Output}: $P_{t_i|y}$;
+%\item {\it Procedure call}: $\omega$(); /* weighting function */
+\item {\bf Begin}
+\begin{nlist}
+
+\item Sort $P_{t_i|y_j}$ in the descending order;
+\item Return the $\gamma^{th}$ highest $P_{t_i|y_j}$;
+\end{nlist}
+\item {\bf End}
+\end{nlist}
+\caption{Procedure Vote.}
+\end{figure}        
+
+Procedure {\it Vote} controls the strictness of voting using
+$\gamma$.  The larger the value of $\gamma$ is, the more strict the
+voting is and therefore the harder it is to eliminate a term.
+When the noise level is high, we have less confidence in the correctness
+of user feedback. Thus, we want to be more cautious 
+about eliminating a term.
+Being more cautious means increasing $\gamma$.
+Increasing $\gamma$, however, makes the learning process
+converge more slowly.  To learn a concept when noise is present,
+one has to buy accuracy with time.  
+In Section~\ref{sec-errors} we show how the voting threshold $\gamma$ affects
+search accuracy and convergence speed through our experimental results,
+and we suggest heuristics for selecting a proper $\gamma$.
+

@@ -1,0 +1,8 @@
+
+
+Information filtering
+	o coding at the server
+	o filtering at the client
+
+
+

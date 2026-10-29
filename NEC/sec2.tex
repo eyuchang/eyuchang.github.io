@@ -1,0 +1,89 @@
+\section{Definition}
+
+In this section we define the parameters and terms
+that we use to formally describe a bookmark tree.
+
+A bookmark tree, denoted as $T$, is a rooted tree. Each node 
+of the tree, denoted as $N$, is
+assigned with a label $\lambda$. 
+A node without children is a leaf representing a document,
+or it is an internal node representing a category. 
+A category can contain both child categories and documents.
+(In this paper we use the terms
+{\it subcategory} when we stress that
+a category is contained in another category. Nevertheless, 
+all categories are internal nodes of the tree.)
+To identify a node uniquely,
+we concatenate the labels from the root to that node.
+Figure~\ref{fig-labels} shows an example bookmark tree.
+The labeled rectangles are categories and shaded
+boxes are bookmarks. For example, following a 
+label ``News:Stories'' we can locate the 
+{\it Stories} subcategory under the {\it News} category.
+
+\begin{figure}[t]
+\epsfysize=180pt
+\epsfxsize=320pt
+\centerline{\epsffile{fig-labels.eps}}
+\caption{A Bookmark Tree}
+\label{fig-labels}
+\end{figure}
+
+The length of the path from the root to a node is the {\it depth}
+of the node, denoted as $\delta$. 
+The largest depth of any node is the {\it height}
+of $T$, denoted as $h$. The number of children of a node,
+both subcategories and documents, is 
+called the {\it degree} of the node, denoted as $d$. 
+When the degree of a category exceeds the splitting
+threshold, the category may be split into subcategories.
+When the degree of a subcategory becomes too small,
+it may be merged back to its parent node, if the
+parent node has adequate space. 
+
+%For instance, the depth and degree of node A in Figure~\ref{fig-labels}
+%is two and eight (one subcategory and seven documents),
+%respectively; the height of the tree is four.
+%A directory has a unique name since each tree path is unique.
+%However, since a bookmark can belong to multiple
+%categories and be stored in
+%more than one directory (discussed in
+%Section~\ref{sec-get-labels}), aliases of a bookmark may exist.
+%We thus maintain an {\it alias table} in which the aliases of
+%bookmarks are stored. When a bookmark is deleted by the user,
+%all the bookmark's aliases must be removed 
+%from the category tree as well as from the alias table.
+
+To assist the reader, Table~\ref{table-parameters}
+summarizes these parameters, together with other parameters that will
+be introduced later. 
+
+\sspace
+\begin{table}
+\centerline{
+\begin{tabular}{|c|l|} \hline
+{\it Parameter} & {\it Description} \\ \hline \hline
+{\it $T$} & The bookmark tree \\
+{\it $N$} & Total number of bookmarks \\
+{\it $h$} & The height of $T$ \\
+{\it $V$} & A vertex of $T$ \\
+{\it $V.L$} & The label of vertex $V$ \\ 
+{\it $V.\delta$} & The depth of vertex $V$ \\ 
+{\it $V.d$} & The degree of vertex $V$ \\ 
+{\it $V.v$} & The number of children of vertex $V$ \\ 
+{\it $V.B$} & The name of the bookmark stored in the leaf vertex \\
+{\it $\alpha$} & The maximum degree allowed in a directory \\             
+{\it $\delta_{split}$} & The threshold beyond $\alpha$ to split a directory\\
+{\it $\delta_{merge}$} & The threshold below $\alpha$ to merge subdirectories \\
+{\it $\kappa$} & The maximum allowable aliases of a bookmark \\             
+{\it $c_{min}$} & The minimum required coverage of a bookmark label \\      
+{\it $g_{min}$} & The minimum required coverage of a group of bookmark labels\\             
+\hline
+\hline
+\end{tabular}}
+\caption{Parameters}
+\label{table-parameters}
+\end{table}
+\nspace
+                 
+

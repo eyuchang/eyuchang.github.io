@@ -1,0 +1,83 @@
+
+Lecture #7 	4/25/2000
+
+Perspective I
+
+o Perspective
+
+  - An image is a 2D canvas that contains 3D information
+  - Despite its flatness, we do not have much trouble to perceive
+    the sizes, shapes and distance of depicted objects.
+  - How the real world differs from the depicted world?
+
+  - the ubiquitous and compelling analogy between the eye and
+    the camera has ensured a central role for the retinal image
+  - the retinal images formed in our eyes: what we see is
+    not the world but its images!!!
+
+  - constructivist theory
+    * poor/ambiguous images provide cues or clues to the 
+      layout of the scene depicted
+  - ecological approach
+    * perception depends on  the richly informative spatiotemporal
+      optical structures in the transforming optical array of an 
+      active, exploring perceiver.
+
+o Theoretical approach
+  - Alberti:  
+    * outline a rectangle as an open window through which the
+      objects to be painted are seen, plane P
+    * determine the height of a man, H (horizon)
+    * divide the base into scales (braccia, one braccio = 1/3 man height)
+    * decide the point, V, at which the centric ray strikes the picture
+    * join the braccio divisions to the perspective focus, V, to give
+      the orthogonals
+    ** positions of depth 
+    * in side elevation, lines are drawn from braccio divisions behind
+      P ot the eye at E.  the points of intersection on P are noted
+    * diagonals drawn through the projected square meets precisely
+      at two lateral points, Z1 and Z2.
+    * ZV = EV
+  - Francesca:
+    * viewing angle should be restricted to less than 90 degree
+    * the diminution of objects placed at different distance...
+
+o Recover 3D from 2D
+  - E 
+  - Optical slant (from texture...)
+
+  - Horizon
+    * T: top, B: bottom of an object
+      height = TB / HB
+
+
+o How about distance, slant and direction?
+
+o Image features:
+  - meaningful
+  - detectable
+  * Corollary: it does not make much sense to pursue "perfect"
+    feature extraction per se, as the adequacy of a feature
+    detection algorithm should be ultimately addressed in the 
+    context of the complete system
+  
+o Next time: Edge detection...
+
+o Viewing a picture away from its center of projection
+  
+o Bigger Picture
+
+  - Image features: 
+    quantity
+    quality
+
+  - Curse of the dimensionality
+    pre-processing
+    storage
+    search
+
+  - What is a landscape image?
+    sky + mountains + trees + flowers + grass + animal - people
+    green + blue + brown?
+
+

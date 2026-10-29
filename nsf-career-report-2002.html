@@ -1,0 +1,619 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<!-- saved from url=(0069)http://www-faculty.cs.uiuc.edu/~kcchang/report-metaquerier-Apr02.html -->
+<html xmlns:v="urn:schemas-microsoft-com:vml"
+xmlns:o="urn:schemas-microsoft-com:office:office"
+xmlns:w="urn:schemas-microsoft-com:office:word"
+xmlns="http://www.w3.org/TR/REC-html40">
+
+<head>
+<meta http-equiv=Content-Type content="text/html; charset=iso-8859-1">
+<meta name=ProgId content=Word.Document>
+<meta name=Generator content="Microsoft Word 9">
+<meta name=Originator content="Microsoft Word 9">
+<link rel=File-List href="./nsf-career-report-2002_files/filelist.xml">
+<title>MNS IDM'2000 Project Report Format</title>
+<!--[if gte mso 9]><xml>
+ <o:DocumentProperties>
+  <o:Author>Edward Chang</o:Author>
+  <o:Template>Normal</o:Template>
+  <o:LastAuthor>Edward Chang</o:LastAuthor>
+  <o:Revision>11</o:Revision>
+  <o:TotalTime>54</o:TotalTime>
+  <o:Created>2002-04-19T07:09:00Z</o:Created>
+  <o:LastSaved>2002-04-19T08:07:00Z</o:LastSaved>
+  <o:Pages>3</o:Pages>
+  <o:Words>1167</o:Words>
+  <o:Characters>6657</o:Characters>
+  <o:Company>University of California</o:Company>
+  <o:Lines>55</o:Lines>
+  <o:Paragraphs>13</o:Paragraphs>
+  <o:CharactersWithSpaces>8175</o:CharactersWithSpaces>
+  <o:Version>9.3821</o:Version>
+ </o:DocumentProperties>
+</xml><![endif]-->
+<style>
+<!--
+ /* Font Definitions */
+@font-face
+	{font-family:Tahoma;
+	panose-1:2 11 6 4 3 5 4 4 2 4;
+	mso-font-charset:0;
+	mso-generic-font-family:swiss;
+	mso-font-pitch:variable;
+	mso-font-signature:553679495 -2147483648 8 0 66047 0;}
+@font-face
+	{font-family:"Arial Unicode MS";
+	panose-1:2 11 6 4 2 2 2 2 2 4;
+	mso-font-charset:128;
+	mso-generic-font-family:swiss;
+	mso-font-pitch:variable;
+	mso-font-signature:-1 -369098753 63 0 4129023 0;}
+@font-face
+	{font-family:"\@Arial Unicode MS";
+	mso-font-charset:128;
+	mso-generic-font-family:swiss;
+	mso-font-pitch:variable;
+	mso-font-signature:-1 -369098753 63 0 4129023 0;}
+ /* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{mso-style-parent:"";
+	margin:0in;
+	margin-bottom:.0001pt;
+	mso-pagination:widow-orphan;
+	font-size:12.0pt;
+	font-family:"Times New Roman";
+	mso-fareast-font-family:"Times New Roman";}
+h1
+	{mso-style-next:Normal;
+	margin:0in;
+	margin-bottom:.0001pt;
+	mso-pagination:widow-orphan;
+	page-break-after:avoid;
+	mso-outline-level:1;
+	font-size:18.0pt;
+	mso-bidi-font-size:24.0pt;
+	font-family:"Times New Roman";
+	mso-font-kerning:0pt;
+	font-weight:bold;}
+h2
+	{mso-style-next:Normal;
+	margin:0in;
+	margin-bottom:.0001pt;
+	mso-pagination:widow-orphan;
+	page-break-after:avoid;
+	mso-outline-level:2;
+	font-size:16.0pt;
+	mso-bidi-font-size:18.0pt;
+	font-family:"Times New Roman";
+	font-weight:bold;}
+p.MsoHeader, li.MsoHeader, div.MsoHeader
+	{margin:0in;
+	margin-bottom:.0001pt;
+	mso-pagination:widow-orphan;
+	tab-stops:center 3.0in right 6.0in;
+	font-size:12.0pt;
+	font-family:"Times New Roman";
+	mso-fareast-font-family:"Times New Roman";}
+p.MsoFooter, li.MsoFooter, div.MsoFooter
+	{margin:0in;
+	margin-bottom:.0001pt;
+	mso-pagination:widow-orphan;
+	tab-stops:center 3.0in right 6.0in;
+	font-size:12.0pt;
+	font-family:"Times New Roman";
+	mso-fareast-font-family:"Times New Roman";}
+p.MsoBodyText, li.MsoBodyText, div.MsoBodyText
+	{margin:0in;
+	margin-bottom:.0001pt;
+	mso-pagination:widow-orphan;
+	font-size:11.0pt;
+	mso-bidi-font-size:12.0pt;
+	font-family:"Times New Roman";
+	mso-fareast-font-family:"Times New Roman";}
+a:link, span.MsoHyperlink
+	{color:blue;
+	text-decoration:underline;
+	text-underline:single;}
+a:visited, span.MsoHyperlinkFollowed
+	{color:purple;
+	text-decoration:underline;
+	text-underline:single;}
+p.MsoDocumentMap, li.MsoDocumentMap, div.MsoDocumentMap
+	{margin:0in;
+	margin-bottom:.0001pt;
+	mso-pagination:widow-orphan;
+	background:navy;
+	font-size:12.0pt;
+	font-family:Tahoma;
+	mso-fareast-font-family:"Times New Roman";}
+p
+	{margin-right:0in;
+	mso-margin-top-alt:auto;
+	mso-margin-bottom-alt:auto;
+	margin-left:0in;
+	mso-pagination:widow-orphan;
+	font-size:12.0pt;
+	font-family:"Times New Roman";
+	mso-fareast-font-family:"Times New Roman";}
+pre
+	{margin:0in;
+	margin-bottom:.0001pt;
+	mso-pagination:widow-orphan;
+	tab-stops:45.8pt 91.6pt 137.4pt 183.2pt 229.0pt 274.8pt 320.6pt 366.4pt 412.2pt 458.0pt 503.8pt 549.6pt 595.4pt 641.2pt 687.0pt 732.8pt;
+	font-size:10.0pt;
+	font-family:"Courier New";
+	mso-fareast-font-family:"Courier New";}
+@page Section1
+	{size:8.5in 11.0in;
+	margin:1.0in 1.25in 1.0in 1.25in;
+	mso-header-margin:.5in;
+	mso-footer-margin:.5in;
+	mso-paper-source:0;}
+div.Section1
+	{page:Section1;}
+ /* List Definitions */
+@list l0
+	{mso-list-id:342971846;
+	mso-list-type:hybrid;
+	mso-list-template-ids:-1708859202 1582586124 -2128605014 -1015377604 318543884 -1482754868 -1089449800 268747814 1592532236 -1738759284;}
+@list l0:level1
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0B7;
+	mso-level-tab-stop:.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Symbol;}
+@list l0:level2
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0B7;
+	mso-level-tab-stop:1.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Symbol;}
+@list l1
+	{mso-list-id:487983744;
+	mso-list-type:hybrid;
+	mso-list-template-ids:-305992558 662890606 67698689 -1796047302 359412086 -232992044 -1945736062 1121506828 555913970 -421334226;}
+@list l1:level1
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0B7;
+	mso-level-tab-stop:.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Symbol;}
+@list l1:level2
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0B7;
+	mso-level-tab-stop:1.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	font-family:Symbol;}
+@list l2
+	{mso-list-id:606735181;
+	mso-list-type:hybrid;
+	mso-list-template-ids:-1825255686 -365897148 515810692 1363961786 -1281179180 1599609144 -379308202 1143254200 -1375985180 -1337832330;}
+@list l3
+	{mso-list-id:1315797474;
+	mso-list-type:hybrid;
+	mso-list-template-ids:938493630 944663114 482226088 -1341459052 -846694652 849764636 14831736 -1762886974 -363722430 1863484204;}
+@list l3:level1
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0B7;
+	mso-level-tab-stop:.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Symbol;}
+@list l3:level2
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0B7;
+	mso-level-tab-stop:1.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Symbol;}
+@list l4
+	{mso-list-id:1743287664;
+	mso-list-type:hybrid;
+	mso-list-template-ids:502941558 -244699586 -2089664820 2052258618 1933639668 -31401774 1795732012 -182417166 994457126 -1501404792;}
+@list l5
+	{mso-list-id:2089495612;
+	mso-list-type:hybrid;
+	mso-list-template-ids:1458614652 1428168694 -2082435670 340983116 291266448 1963478346 -1856710870 -533182318 1684335574 802827470;}
+@list l5:level1
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0B7;
+	mso-level-tab-stop:.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Symbol;}
+ol
+	{margin-bottom:0in;}
+ul
+	{margin-bottom:0in;}
+-->
+</style>
+<!--[if gte mso 9]><xml>
+ <o:shapedefaults v:ext="edit" spidmax="1027"/>
+</xml><![endif]--><!--[if gte mso 9]><xml>
+ <o:shapelayout v:ext="edit">
+  <o:idmap v:ext="edit" data="1"/>
+ </o:shapelayout></xml><![endif]--><!-- saved from url=(0022)http://internet.e-mail --><!--[if gte mso 9]><xml>
+ <u1:DocumentProperties>
+  <u1:Author>gultekin Ozsoyoglu</u1:Author>
+  <u1:LastAuthor>gultekin ozsoyoglu</u1:LastAuthor>
+  <u1:Revision>2</u1:Revision>
+  <u1:TotalTime>11</u1:TotalTime>
+  <u1:Created>2000-01-26T19:38:00Z</u1:Created>
+  <u1:LastSaved>2000-01-26T19:38:00Z</u1:LastSaved>
+  <u1:Pages>3</u1:Pages>
+  <u1:Words>602</u1:Words>
+  <u1:Characters>3436</u1:Characters>
+  <u1:Company>CWRU</u1:Company>
+  <u1:Lines>28</u1:Lines>
+  <u1:Paragraphs>6</u1:Paragraphs>
+  <u1:CharactersWithSpaces>4219</u1:CharactersWithSpaces>
+  <u1:Version>9.2720</u1:Version>
+ </u1:DocumentProperties>
+</xml><![endif]--><!--[if gte mso 9]><xml>
+ <u2:WordDocument>
+  <u2:ActiveWritingStyle Lang="EN-US" VendorID="64" DLLVersion="131077" NLCheck="1">1</u2:ActiveWritingStyle>
+ </u2:WordDocument>
+</xml><![endif]--><!--[if gte mso 9]><xml>
+ <u3:shapedefaults u4:ext="edit" spidmax="1026">
+  <u3:colormru u4:ext="edit" colors="#ffc"/>
+  <u3:colormenu u4:ext="edit" fillcolor="#ffc"/>
+ </u3:shapedefaults>
+</xml><![endif]--><!--[if gte mso 9]><xml>
+ <u5:shapelayout u6:ext="edit">
+  <u5:idmap u6:ext="edit" data="1"/>
+ </u5:shapelayout>
+</xml><![endif]-->
+</head>
+
+<body bgcolor=white lang=EN-US link=blue vlink=purple style='tab-interval:.5in'>
+
+<div class=Section1>
+
+<h1>CAREER: Intelligent Sampling for Learning Complex Query Concepts</h1>
+
+<p class=MsoNormal><br>
+<span style='font-size:10.0pt;mso-bidi-font-size:12.0pt'>Edward Chang<o:p></o:p></span></p>
+
+<p class=MsoBodyText><span style='font-size:10.0pt;mso-bidi-font-size:12.0pt'>Department
+of Electrical &amp; Computer Engineering <br>
+University of California, Santa Barbara<o:p></o:p></span></p>
+
+<p style='mso-outline-level:1'><b><span style='font-size:16.0pt;mso-bidi-font-size:
+18.0pt'>Contact Information</span></b><span style='font-size:16.0pt;mso-bidi-font-size:
+12.0pt'> </span><b><span style='font-size:16.0pt;mso-bidi-font-size:18.0pt'><o:p></o:p></span></b></p>
+
+<p class=MsoNormal><span style='font-size:10.0pt;mso-bidi-font-size:12.0pt'>Edward
+Chang <o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:10.0pt;mso-bidi-font-size:12.0pt'>Department
+of Electrical &amp; Computer Engineering<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:10.0pt;mso-bidi-font-size:12.0pt'>University
+of California<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:10.0pt;mso-bidi-font-size:12.0pt'>Santa
+Barbara, CA 93106<br>
+Phone: (805)893-2971<br>
+Fax : (805) 893-3262<br>
+Email: echang@ece.ucsb.edu <br>
+URL: <a href="http://www.mmdb.ece.ucsb.edu/~echang/">http://www.mmdb.ece.ucsb.edu/~echang/</a>
+<br>
+</span>&nbsp; </p>
+
+<p style='mso-outline-level:1'><b><span style='font-size:16.0pt;mso-bidi-font-size:
+18.0pt'>WWW PAGE</span></b><span style='font-size:16.0pt;mso-bidi-font-size:
+12.0pt'> </span><b><span style='font-size:16.0pt;mso-bidi-font-size:18.0pt'><o:p></o:p></span></b></p>
+
+<p style='mso-outline-level:1'><span style='font-size:10.0pt;mso-bidi-font-size:
+12.0pt'><a href="http://www.mmdb.ece.ucsb.edu/~echang/career.html">http://www.mmdb.ece.ucsb.edu/~echang/career.html</a><o:p></o:p></span></p>
+
+<p style='mso-outline-level:1'><b><span style='font-size:16.0pt;mso-bidi-font-size:
+18.0pt'>List of Supported Students and Staff</span></b><span style='font-size:
+16.0pt;mso-bidi-font-size:12.0pt'> </span><b><span style='font-size:16.0pt;
+mso-bidi-font-size:18.0pt'><o:p></o:p></span></b></p>
+
+<p><span style='font-size:10.0pt;mso-bidi-font-size:12.0pt'>Beitao Li: Graduate
+research assistant <o:p></o:p></span></p>
+
+<p style='mso-outline-level:1'><b><span style='font-size:16.0pt;mso-bidi-font-size:
+18.0pt'>Project Award Information</span></b><span style='font-size:16.0pt;
+mso-bidi-font-size:12.0pt'> </span><b><span style='font-size:16.0pt;mso-bidi-font-size:
+18.0pt'><o:p></o:p></span></b></p>
+
+<ul type=disc>
+ <li class=MsoNormal style='mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;
+     mso-list:l5 level1 lfo3;tab-stops:list .5in'><span style='font-size:10.0pt;
+     mso-bidi-font-size:12.0pt'>Award Number: IIS-0133802 <o:p></o:p></span></li>
+ <li class=MsoNormal style='mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;
+     mso-list:l5 level1 lfo3;tab-stops:list .5in'><span style='font-size:10.0pt;
+     mso-bidi-font-size:12.0pt'>Duration: five years, 04/1/2002 -- 01/31/2007
+     (in the beginning of the first year) <o:p></o:p></span></li>
+ <li class=MsoNormal style='mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;
+     mso-list:l5 level1 lfo3;tab-stops:list .5in'><span style='font-size:10.0pt;
+     mso-bidi-font-size:12.0pt'>Title: CAREER: </span><span lang=EN
+     style='font-size:10.0pt;mso-bidi-font-size:12.0pt;mso-ansi-language:EN'>Intelligent
+     Sampling for Learning Complex Query Concepts</span><span style='font-size:
+     11.0pt;mso-bidi-font-size:12.0pt'><o:p></o:p></span></li>
+</ul>
+
+<h2><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></h2>
+
+<h2>Keywords</h2>
+
+<p class=MsoNormal style='mso-outline-level:1'><br>
+<span style='font-size:10.0pt;mso-bidi-font-size:12.0pt'>Active learning,
+personalization, query-concept learning, similarity search<o:p></o:p></span></p>
+
+<p class=MsoNormal style='mso-outline-level:1'><br>
+<b><span style='font-size:16.0pt;mso-bidi-font-size:18.0pt'>Project Summary<o:p></o:p></span></b></p>
+
+<p><span style='font-size:10.0pt;mso-bidi-font-size:12.0pt'>For a multimedia
+search task, a query concept is hard to articulate, and articulation can be
+subjective. For instance, in an image search, it is difficult for a user to
+describe a desired image using low-level features such as color, shape and
+texture. In addition, different users may perceive the same image differently.
+Even if an image is perceived similarly, users may use different vocabulary
+(i.e., different combinations of low-level features) to depict it. Furthermore,
+most users are not trained to specify simple query criteria using, for example,
+Boolean algebra. In order to make information access easier and more personal,
+it is both necessary (for capturing subjective concepts) and desirable (for
+alleviating users from specifying complex query concepts) to build intelligent
+search engines that can quickly <i>learn</i> users' query concepts
+through&nbsp; <i>active learning</i>.&nbsp; <o:p></o:p></span></p>
+
+<h2>Project Impact</h2>
+
+<p class=MsoNormal><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></p>
+
+<ul type=disc>
+ <li class=MsoNormal style='mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;
+     mso-list:l0 level1 lfo6;tab-stops:list .5in'><span style='font-size:10.0pt;
+     mso-bidi-font-size:12.0pt'>Human Resources: <o:p></o:p></span></li>
+</ul>
+
+<p class=MsoNormal style='mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;
+margin-left:1.0in;text-indent:-.25in;mso-list:l0 level2 lfo6;tab-stops:list .5in 1.0in'><![if !supportLists]><span
+style='font-size:10.0pt;mso-bidi-font-size:12.0pt;font-family:Symbol'>·<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><![endif]><span style='font-size:10.0pt;mso-bidi-font-size:12.0pt'>Ph.D.
+students: Beitao Li (directly funded by this grant),<span style="mso-spacerun:
+yes">&nbsp; </span>Kingshy Goh, Yan Meng, Yi Wu, and Gang Wu<o:p></o:p></span></p>
+
+<p class=MsoNormal style='mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;
+margin-left:1.0in;text-indent:-.25in;mso-list:l0 level2 lfo6;tab-stops:list .5in'><![if !supportLists]><span
+style='font-size:10.0pt;mso-bidi-font-size:12.0pt;font-family:Symbol'>·<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><![endif]><span style='font-size:10.0pt;mso-bidi-font-size:12.0pt'>M.S.
+students: Gerard Sychay (thesis).<o:p></o:p></span></p>
+
+<ul type=disc>
+ <li class=MsoNormal style='mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;
+     mso-list:l0 level1 lfo6;tab-stops:list .5in'><span style='font-size:10.0pt;
+     mso-bidi-font-size:12.0pt'>Education and curriculum development:<span
+     style="mso-spacerun: yes">&nbsp; </span>Created a new course ECE160
+     ---<span style="mso-spacerun: yes">&nbsp; </span>Multimedia Computing in
+     Spring 2001. This course introduces multimedia theories and applications,
+     including cognitive psychology, perceptual feature extraction,
+     high-dimensional indexing, classification, and machine learning theories
+     for modeling image semantics.&nbsp; The course was built on the context of
+     the proposal of this project, and it was designed to foster
+     inter-disciplinary and undergraduate research.<o:p></o:p></span></li>
+</ul>
+
+<ul type=disc>
+ <li class=MsoNormal style='mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;
+     mso-list:l3 level1 lfo9;tab-stops:list .5in'><span style='font-size:10.0pt;
+     mso-bidi-font-size:12.0pt'>Broader Impact: The project's broader impacts
+     upon information retrieval are potentially substantial. First, rapid
+     proliferation of multimedia content in digital libraries and on the Web
+     underscores the increasing importance of having effective multimedia
+     search tools. Second, intelligent query-concept learners will directly or
+     indirectly make traditional text-based information retrieval easier and
+     more personal. Directly, a text collection can employ an intelligent
+     learner to better capture users' query concepts. Indirectly, for instance,
+     multimedia data can be added to a text collection so that searches can be
+     conducted through interfaces that contain pictures and graphics. Even
+     young students who have not learned Boolean algebra can use images and
+     graphics to search for stories and books. In addition to bringing benefits
+     to education, we believe that this research project will further
+     contribute to making information more accessible for underprivileged users
+     who are not yet able to enjoy the full benefits of the information revolution.<o:p></o:p></span></li>
+</ul>
+
+<h2><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></h2>
+
+<h2>Goals, Objectives, and Targeted Activities</h2>
+
+<p class=MsoNormal><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></p>
+
+<p><span style='font-size:10.0pt;mso-bidi-font-size:12.0pt'>The goal of the
+proposed research plan is to make fundamental advances towards intelligent
+search engines through the development of online query-concept learners. The
+specific targets are as follows:<o:p></o:p></span></p>
+
+<ol start=1 type=1>
+ <li class=MsoNormal style='mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;
+     mso-list:l4 level1 lfo12;tab-stops:list .5in'><span style='font-size:10.0pt;
+     mso-bidi-font-size:12.0pt'>To design <i>novel learning algorithms</i> that
+     grasp a user's query concept quickly despite time, sample, and seeding
+     constraints. <o:p></o:p></span></li>
+ <li class=MsoNormal style='mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;
+     mso-list:l4 level1 lfo12;tab-stops:list .5in'><span style='font-size:10.0pt;
+     mso-bidi-font-size:12.0pt'>To develop techniques that can detect <i>concept
+     drift </i>during a relevance feedback session, and to handle concept drift
+     in the learning algorithms. <o:p></o:p></span></li>
+ <li class=MsoNormal style='mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;
+     mso-list:l4 level1 lfo12;tab-stops:list .5in'><span style='font-size:10.0pt;
+     mso-bidi-font-size:12.0pt'>To devise <i>multi-resolution image
+     characterization methods</i> for improving both search accuracy and search
+     efficiency. <o:p></o:p></span></li>
+ <li class=MsoNormal style='mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;
+     mso-list:l4 level1 lfo12;tab-stops:list .5in'><span style='font-size:10.0pt;
+     mso-bidi-font-size:12.0pt'>To ensure the <i>scalability</i> in feature
+     dimension, dataset size, and concept complexity of the developed learning
+     algorithms. <o:p></o:p></span></li>
+ <li class=MsoNormal style='mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;
+     mso-list:l4 level1 lfo12;tab-stops:list .5in'><span style='font-size:10.0pt;
+     mso-bidi-font-size:12.0pt'>To conduct validation on developed learning
+     algorithms with experimental data provided by colleagues at IBM
+     Laboratories, Sony, and Benchthalon.</span> </li>
+</ol>
+
+<p style='mso-outline-level:1'><b><span style='font-size:16.0pt;mso-bidi-font-size:
+18.0pt'>Project References<o:p></o:p></span></b></p>
+
+<ol start=1 type=1>
+ <li class=MsoNormal style='mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;
+     mso-list:l2 level1 lfo15;tab-stops:list .5in'><span style='font-size:10.0pt;
+     mso-bidi-font-size:12.0pt'>Dynamic Partial Function, <br>
+     B. Li, E. Chang, C.-T. Wu, <br>
+     IEEE International Conference on Image Processing, New York, September,
+     2002. </span><span style='font-size:10.0pt;mso-bidi-font-size:12.0pt;
+     mso-fareast-font-family:"Arial Unicode MS"'><o:p></o:p></span></li>
+ <li class=MsoNormal style='mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;
+     mso-list:l2 level1 lfo15;tab-stops:list .5in'><span style='font-size:10.0pt;
+     mso-bidi-font-size:12.0pt'>On Learning Perceptual Distance Functions for
+     Image Retrieval (Invited), <br>
+     E. Chang and B. Li, <br>
+     IEEE International Conference on Acoustics, Speech and Signal Processing,
+     Orlando, May 2002. <o:p></o:p></span></li>
+ <li class=MsoNormal style='mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;
+     mso-list:l2 level1 lfo15;tab-stops:list .5in'><span style='font-size:10.0pt;
+     mso-bidi-font-size:12.0pt'>Indexing Multimedia Data in High-dimensional
+     and Dynamic Weighted Feature Spaces (Invited), <br>
+     K. Goh and E. Chang, <br>
+     The 6th Visual Database Conference, Australia, May 2002. <o:p></o:p></span></li>
+ <li class=MsoNormal style='mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;
+     mso-list:l2 level1 lfo15;tab-stops:list .5in'><span style='font-size:10.0pt;
+     mso-bidi-font-size:12.0pt'>Supporting Subjective Image Queries without
+     Seeding Requirements --- Proposing Test Queries for Benchathlon, <br>
+     E. Chang and T. Cheng, <br>
+     Internet Imaging III, pp.225-232, San Jose, January 2002.<o:p></o:p></span></li>
+ <li class=MsoNormal style='mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;
+     mso-list:l2 level1 lfo15;tab-stops:list .5in'><span style='font-size:10.0pt;
+     mso-bidi-font-size:12.0pt'>Spin Discriminant Analysis: Using a One
+     Dimensional Classifier for High-Dimensional Classification Problems, <br>
+     H. You and E. Chang, <br>
+     Proceedings of IEEE Conference on Computer Vision and Pattern Recognition
+     (CVPR), pp.968-975, Hawaii, December 2001. <o:p></o:p></span></li>
+ <li class=MsoNormal style='mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;
+     mso-list:l2 level1 lfo15;tab-stops:list .5in'><span style='font-size:10.0pt;
+     mso-bidi-font-size:12.0pt'>Mining Image Features for Efficient Query
+     Processing, <br>
+     B. Li, W. Lai, E. Chang and T. Cheng, <br>
+     Proceedings of the first IEEE Data Mining Conference, pp.353-360, San
+     Jose, November 2001. <o:p></o:p></span></li>
+ <li class=MsoNormal style='mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;
+     mso-list:l2 level1 lfo15;tab-stops:list .5in'><span style='font-size:10.0pt;
+     mso-bidi-font-size:12.0pt'>SVM Binary Classifier Ensembles for Multi-Class
+     Image Classification, <br>
+     K. Goh, E. Chang and T. Cheng, <br>
+     Proceedings of ACM International Conference on Information and
+     Knowledgment Management (CIKM), pp.395-402, Atlanta, November 2001.</span><span
+     style='font-size:10.0pt;mso-bidi-font-size:18.0pt'><o:p></o:p></span></li>
+ <li class=MsoNormal style='mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;
+     mso-list:l2 level1 lfo15;tab-stops:list .5in'><span style='font-size:10.0pt;
+     mso-bidi-font-size:12.0pt'><a
+     href="http://www-db.stanford.edu/~echang/svmactive.pdf">Support Vector
+     Machine Active Learning for Image Retrieval</a>, <br>
+     S. Tong and E. Chang, <br>
+     Proceedings of ACM International Conference on Multimedia, pp.107-118,
+     Ottawa, October 2001. </span><span style='font-size:10.0pt;mso-bidi-font-size:
+     12.0pt;mso-fareast-font-family:"Arial Unicode MS"'><o:p></o:p></span></li>
+ <li class=MsoNormal style='mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;
+     mso-list:l2 level1 lfo15;tab-stops:list .5in'><span style='font-size:10.0pt;
+     mso-bidi-font-size:12.0pt'><a
+     href="http://www-db.stanford.edu/~echang/acmmm01-demo.pdf">PBIR: A System
+     that Learns Subjective Image Query Concepts</a>, <br>
+     E. Chang, T. Cheng, W. Lai, C. Wu, C. Chang and Y. Wu, <br>
+     Proceedings of ACM International Conference on Multimedia, pp.611-614,
+     Ottawa, October 2001. </span><span style='font-size:10.0pt;mso-bidi-font-size:
+     18.0pt'><o:p></o:p></span></li>
+ <li class=MsoNormal style='mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;
+     mso-list:l2 level1 lfo15;tab-stops:list .5in'><span style='font-size:10.0pt;
+     mso-bidi-font-size:12.0pt'>Learning Image Query Concepts via Intelligent
+     Sampling, <br>
+     B. Li, E. Chang, and C.-S. Li, <br>
+     Proceedings of IEEE International Conference on Multimedia, pp.1168-1171,
+     Tokyo, August 2001.</span><span style='font-size:10.0pt;mso-bidi-font-size:
+     18.0pt'><o:p></o:p></span></li>
+ <li class=MsoNormal style='mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;
+     mso-list:l2 level1 lfo15;tab-stops:list .5in'><span style='font-size:10.0pt;
+     mso-bidi-font-size:12.0pt'>PBIR - Perception-Based Image Retrieval, <a
+     href="http://www-db.stanford.edu/~echang/sigmod01-demo.ps">[Demo
+     Description]</a><span style="mso-spacerun: yes">&nbsp; </span><br>
+     E. Chang, T. Cheng and L. Chang, <br>
+     Proceedings of ACM Sigmod, Santa Barbara, May 2001.</span><span
+     style='font-size:10.0pt;mso-bidi-font-size:18.0pt'><o:p></o:p></span></li>
+</ol>
+
+<p style='mso-outline-level:1'><b><span style='font-size:16.0pt;mso-bidi-font-size:
+18.0pt'>Area Background</span></b><span style='font-size:16.0pt;mso-bidi-font-size:
+12.0pt'> </span><b><span style='font-size:16.0pt;mso-bidi-font-size:18.0pt'><o:p></o:p></span></b></p>
+
+<p><span style='font-size:10.0pt;mso-bidi-font-size:12.0pt'>Traditional
+learning and relevance feedback techniques may not be suitable for online query-concept
+learning for at least two reasons.<o:p></o:p></span></p>
+
+<ul type=disc>
+ <li class=MsoNormal style='mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;
+     mso-list:l1 level1 lfo18;tab-stops:list .5in'><span style='font-size:10.0pt;
+     mso-bidi-font-size:12.0pt'>Time and sample constraints. Traditional
+     learning methods such as decision trees and neural networks require a
+     large number of training instances (i.e., samples) and can take a long
+     time (more than a few seconds) to learn a concept. But, online users are
+     typically impatient and cannot be expected to wait around or to provide a
+     great deal of feedback. <o:p></o:p></span></li>
+ <li class=MsoNormal style='mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;
+     mso-list:l1 level1 lfo18;tab-stops:list .5in'><span style='font-size:10.0pt;
+     mso-bidi-font-size:12.0pt'>Seeding constraint. All traditional relevance
+     feedback methods require users to provide good examples to seed a query.
+     However, finding good seeds is the job of the search engine itself, and
+     this circular requirement leaves the core problem---learning users' query
+     concepts---unsolved. <o:p></o:p></span></li>
+</ul>
+
+<p style='mso-outline-level:1'><b><span style='font-size:16.0pt;mso-bidi-font-size:
+18.0pt'>Area References</span></b><span style='font-size:16.0pt;mso-bidi-font-size:
+12.0pt'> </span><b><span style='font-size:16.0pt;mso-bidi-font-size:18.0pt'><o:p></o:p></span></b></p>
+
+<ul type=disc>
+ <li class=MsoNormal style='mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;
+     mso-list:l1 level1 lfo18;tab-stops:list .5in'><span style='font-size:10.0pt;
+     mso-bidi-font-size:12.0pt'>The Nature of Statistical Learning Theory , V.
+     Vapnik, Springer-Verlag, 1995.<o:p></o:p></span></li>
+ <li class=MsoNormal style='mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;
+     mso-list:l1 level1 lfo18;tab-stops:list .5in'><span style='font-size:10.0pt;
+     mso-bidi-font-size:12.0pt'>Support Vector Machine Active Learning with
+     Applications to Text Classification,<span style="mso-spacerun: yes">&nbsp;
+     </span>Simon Tong and Daphne Koller, Proceedings of the 17th International
+     Conference on Machine Learning, pp.401-412, June,2000.<o:p></o:p></span></li>
+ <li class=MsoNormal style='mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;
+     mso-list:l1 level1 lfo18;tab-stops:list .5in'><span style='font-size:10.0pt;
+     mso-bidi-font-size:12.0pt'>Image Retrieval: Current Techniques, Promising
+     Directions and Open Issues, Yong Rui and Thomas S. Huang and Shih-Fu
+     Chang, Journal of Visual Communication and Image Representation, March
+     1999.<o:p></o:p></span></li>
+</ul>
+
+<p class=MsoNormal style='mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;
+margin-left:.25in'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></p>
+
+<p class=MsoNormal style='mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;
+margin-left:.25in'><span style="mso-spacerun: yes">&nbsp; </span></p>
+
+</div>
+
+</body>
+
+</html>

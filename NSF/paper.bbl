@@ -1,0 +1,278 @@
+\begin{thebibliography}{10}\setlength{\itemsep}{-1ex}\small
+
+\bibitem{Hyp92}
+Hypermedia/time-based document structure language (hytime).
+\newblock 1992.
+
+\bibitem{Abi97}
+S.~Abiteboul.
+\newblock Querying semistructured data.
+\newblock {\em Proceedings of the International Conference on Database Theory},
+  pages 1--18, January 1997.
+
+\bibitem{AM94}
+S.~Arya, D.~Mount, N.~Netanyahu, R.~Silverman, and A.~Wu.
+\newblock An optimal algorithm for approximate nearest neighbor searching in
+  fixed dimensions.
+\newblock {\em Proceedings of the 5th SODA}, pages 573--82, 1994.
+
+\bibitem{Bc94}
+G.~Brown and M.~Cooke.
+\newblock Computational auditory scene analysis.
+\newblock {\em Computer Speech and Language}, pages 297--336, August 1994.
+
+\bibitem{Bun97}
+P.~Buneman.
+\newblock Semistructured data.
+\newblock {\em Proceedings of the Sixth ACM SIGACT-SIGMOD-SIGART Symposium on
+  Principles of Database Systems. Tutorial}, May 1997.
+
+\bibitem{ex56}
+A.~Campbell and G.~Coulson.
+\newblock A qos adaptive transport system.
+\newblock {\em Proceedings of ACM Multimedia}, pages 117--127, Nov. 1996.
+
+\bibitem{ex80}
+E.~Chang and H.~Garcia-Molina.
+\newblock Bubbleup - low latency fast-scan for media servers.
+\newblock {\em Proceedings of the 5th ACM Multimedia Conference}, pages 87--98,
+  November 1997.
+
+\bibitem{ex49}
+E.~Chang and H.~Garcia-Molina.
+\newblock Effective memory use in a media server.
+\newblock {\em Proceedings of the 23rd VLDB Conference}, pages 496--505, August
+  1997.
+
+\bibitem{ex54}
+E.~Chang and H.~Garcia-Molina.
+\newblock Reducing initial latency in media servers.
+\newblock {\em IEEE Multimedia}, 4(3):50--61, July-September 1997.
+
+\bibitem{ex200}
+E.~Chang and H.~Garcia-Molina.
+\newblock Cost-based media server design.
+\newblock {\em Proceedings of the 8th Research Issues in Data Engineering},
+  pages 76--83, Feburary 1998.
+
+\bibitem{ex100}
+E.~Chang and H.~Garcia-Molina.
+\newblock Medic: Memory and disk cache for media servers.
+\newblock {\em Proceedings of ICMCS'99}, pages 493--499, June 1999.
+
+\bibitem{ex90-1}
+E.~Chang, H.~Garcia-Molina, and C.~Li.
+\newblock 2d bubbleup - managing parallel disks for media servers.
+\newblock {\em Proceedings of the 5th Foundations on Data Organization}, pages
+  221--230, November 1998.
+
+\bibitem{Lch99}
+E.~Chang, C.~Li, H.~Garcia-Molina, J.~Wang, and G.~Wilderhold.
+\newblock Clindex: Clustering for similarity queries in high-dimensional spaces
+  (extended version).
+\newblock {\em Stanford Technical Report SIDL-WP-1998-0100}, Feb. 1999.
+
+\bibitem{Clw99}
+E.~Chang, C.~Li, J.~Wang, P.~Mork, and G.~Wiederhold.
+\newblock Search near-replicas of images via clustering.
+\newblock {\em Proc. of SPIE Symposium of Voice, Video, and Data
+  Communications}, September 1999.
+
+\bibitem{Cwl98}
+E.~Chang, J.~Wang, C.~Li, and G.~Wiederhold.
+\newblock {RIME} - a replicated image detector for the world-wide web.
+\newblock {\em Proc. of SPIE Symposium of Voice, Video, and Data
+  Communications}, November 1998.
+
+\bibitem{Ccmsz97}
+S.-F. Chang, W.~Chen, H.~Meng, H.~Sundaram, and D.~Zhong.
+\newblock Videoq.
+\newblock {\em ACM Multimedia}, pages 313--324, November 1997.
+
+\bibitem{ex121}
+M.-S. Chen and P.~Yu.
+\newblock Storage and retrieval methods to support fully interactive playout in
+  a disk-array-based video server.
+\newblock {\em ACM Multimedia Systsmes}, 3(3):126--35, July 1995.
+
+\bibitem{Cla94}
+K.~Clarkson.
+\newblock An algorithm for approximate closest-point queries.
+\newblock {\em Proceedings of the 10th SCG}, pages 160--64, 1994.
+
+\bibitem{Co96}
+J.-P. Courtiat and R.~D. Oliveira.
+\newblock Proving temporal consistency in a new multimedia synchrnization
+  model.
+\newblock {\em ACM Multimedia}, pages 141--152, November 1996.
+
+\bibitem{img11}
+M.~Flickner, H.~Sawhney, W.~Niblack, J.~Ashley, Q.~Huang, and et~al.
+\newblock Query by image and video content: the {QBIC} system.
+\newblock {\em IEEE Computer}, 28(9):23--32, 1995.
+
+\bibitem{ex1}
+S.~Ghandeharizadeh.
+\newblock Continuous retrieval of multimedia data using parallelism.
+\newblock {\em IEEE Transactions on Knowledge and Data Engineering},
+  5(4):658--69, 1993.
+
+\bibitem{Gr95}
+V.~Gudivada and V.~Raghavan.
+\newblock Design and evaluation of algorithms for image retrieval by spatial
+  similarity.
+\newblock {\em ACM Transactions on Information Systems}, 13(2), April 1995.
+
+\bibitem{img13}
+A.~Gupta and R.~Jain.
+\newblock Visual information retrieval.
+\newblock {\em Comm. of the ACM}, 40(5):69--79, 1997.
+
+\bibitem{Ha96}
+M.~Haindl.
+\newblock A new multimedia synchronization model.
+\newblock {\em IEEE Journal on Selected Areas in Communications}, 14(1):73--83,
+  January 1996.
+
+\bibitem{Hjw95}
+A.~Hampapur, R.~Jain, and T.~Weymoutn.
+\newblock Production model based digital video segmentation.
+\newblock {\em Journal of Multimedia Tools and Applications}, 1:1--38, March
+  1995.
+
+\bibitem{HFK95}
+N.~Hizalla, B.~Falchuk, and A.~Karmouch.
+\newblock A temporal model for interactive multimedia scenarios.
+\newblock {\em IEEE Multimedia}, pages 24--31, Fall 1995.
+
+\bibitem{Hkm97}
+J.~Huang, S.~Kumar, M.~Mitra, Z.~E-J, and Z.~Zabih.
+\newblock Image indexing using color correlograms.
+\newblock {\em Proceedings of the IEEE Conference on Computer Vision and
+  Pattern Recogintion}, pages 762--768, June 1997.
+
+\bibitem{IM98}
+P.~Indyk and R.~Motwani.
+\newblock Approximate nearest neighbors: Towards removing the curse of
+  dimensionality.
+\newblock {\em Proceedings of the 30th STOC}, pages 604--13, 1998.
+
+\bibitem{ex96}
+T.~Johnson and A.~Zhang.
+\newblock A framework for supporting quality-based presentation of continuous
+  multimedia streams.
+\newblock {\em Proceedings of the 4th IEEE Conference on Multimedia Computing
+  and Systems}, pages 169--176, June 1996.
+
+\bibitem{Jk97}
+J.~M. Kleinberg.
+\newblock Two algorithms for nearest-neighbor search in high dimensions.
+\newblock {\em Proceedings of the 29th STOC}, 1997.
+
+\bibitem{Mp4}
+R.~Koenen.
+\newblock Mpeg-4 overview (seoul version).
+\newblock {\em ISO/IEC JTCI/SC29/WG11 N2725}, March 1999.
+
+\bibitem{KOR98}
+E.~Kushilevitz, R.~Ostrovsky, and Y.~Rabani.
+\newblock Efficient search for approximate nearest neighbor in high dimensional
+  spaces.
+\newblock {\em Proceedings of the 30th STOC}, pages 614--23, 1998.
+
+\bibitem{Mmz95}
+K.~Mai, J.~Miller, and R.~Zabih.
+\newblock A feature-based algorithm for detecting and classifying scene break.
+\newblock {\em ACM Multimedia}, pages 189--200, November 1995.
+
+\bibitem{MW99}
+J.~McHugh and J.~Widom.
+\newblock Query optimization for xml.
+\newblock {\em Proceedings of the 25th VLDB Conference}, September 1999.
+
+\bibitem{Mc96}
+J.~Meng and S.-F. Chang.
+\newblock A compressed video editing and parsing system.
+\newblock {\em ACM Multimedia}, pages 43--53, November 1996.
+
+\bibitem{ex62}
+S.~Murthy and H.~Lalgudi.
+\newblock Impact of qos requirement on video coding for atm networks.
+\newblock {\em Multimedia Systems}, 4:316--27, 1996.
+
+\bibitem{ex86}
+B.~Ozden, R.~Rastogi, and A.~Silberschaz.
+\newblock {\em The Storage and Retrieval of Continuous Media Data, a Chapter in
+  Multimedia Database Systems}.
+\newblock Springer, 1996.
+
+\bibitem{PBC99}
+S.~Paek, A.~Benitez, and S.-F. Chang.
+\newblock Self-describing schemes for interoperable mpeg-7 content indexing.
+\newblock {\em IEEE/SPIE, Visual Communications and Image Processing}, January
+  1999.
+
+\bibitem{Pzm96}
+G.~Pass, R.~Zabin, and J.~Miller.
+\newblock Comparing images using color coherence vectors.
+\newblock {\em ACM Multimedia}, pages 65--73, November 1996.
+
+\bibitem{Pps96}
+A.~Pentland, R.~Picard, and S.~Sclaroff.
+\newblock Photobook: Content-based manipulation of image databases.
+\newblock {\em International Journal of Computer Vision}, 18(3):233--254, 1996.
+
+\bibitem{ex95}
+S.~Ramanathan and P.~Rangan.
+\newblock Adaptive feedback techniques for synchronized multimedia retrieval
+  over integrated networks.
+\newblock {\em IEEE/ACM Transactions on Networking}, 1(2):246--290, April 1993.
+
+\bibitem{Pfe96}
+S.~F. S.~Pfeiffer and W.~Effelsberg.
+\newblock Automatic audio content analysis.
+\newblock {\em ACM Multimedia}, pages 21--30, November 1996.
+
+\bibitem{ex220}
+K.~Sayood.
+\newblock {\em Introduction to Data Compression}.
+\newblock Morgan Kaufmann, 1996.
+
+\bibitem{ex8-1}
+C.~Shahabi and S.~Ghandeharizadeh.
+\newblock Continuous display of presentations sharing clips.
+\newblock {\em ACM/Springer-Verlag Multimedia Systems Journal}, May 1995.
+
+\bibitem{img12}
+J.~R. Smith and S.-F. Chang.
+\newblock Visualseek: A fully automated content-based image query system.
+\newblock {\em ACM Multimedia Conference}, 1996.
+
+\bibitem{ex18}
+F.~Tobagi, J.~Pang, R.~Baird, and M.~Gang.
+\newblock Streaming raid-a disk array management system for video files.
+\newblock {\em First ACM Conference on Multimedia}, August 1993.
+
+\bibitem{ex9}
+H.~M. Vin. and P.~V. Rangan.
+\newblock Designing a multi-user hdtv storage server.
+\newblock {\em IEEE Journal on Selected Areas in Communication}, 11(1), January
+  1993.
+
+\bibitem{ex302}
+Y.~Wang, J.~Liu, D.~Du, and J.~Hsieh.
+\newblock Efficient video file allocation schemes for vod services.
+\newblock {\em ACM Multimedia Systems}, 5, September 1997.
+
+\bibitem{ex10}
+P.~Yu, M.-S. Chen, and D.~Kandlur.
+\newblock Grouped sweeping scheduling for {D}{A}{S}{D}-based multimedia storage
+  management.
+\newblock {\em Multimedia Systems}, 1(1):99--109, January 1993.
+
+\bibitem{Zks93}
+H.~Zhang, A.~Kankanhalli, and S.~W. Smoliar.
+\newblock Automatic partitioning of full-motion video.
+\newblock {\em Multimedia Systems}, 1:10--28, 1993.
+
+\end{thebibliography}

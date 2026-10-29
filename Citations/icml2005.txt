@@ -1,0 +1,6 @@
+@inproceedings{Wu2005AnAO,
+  title={An Analysis of Transformation on Non - Positive Semidefinite Similarity Matrix for Kernel Machines},
+  author={Gang Wu and Edward Y. Chang and Zhihua Zhang},
+  booktitle={ICML 2005},
+  year={2005}
+}

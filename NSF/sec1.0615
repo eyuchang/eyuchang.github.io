@@ -1,0 +1,270 @@
+\section{RESEARCH PLAN}
+\subsection{Motivation}
+
+Traditionally, watching television is a passive activity:
+All viewers receive the same TV content at the same
+playback pace, regardless of individual preferences
+and situations.
+Not being able to select viewing pace or to interact
+with content can be inconvenient and even unproductive 
+sometimes. For instance, when one
+is interrupted during watching a news program
+(e.g., by a phone call or biological need), one may 
+miss the information (e.g., stock quotes, weather forcast,
+etc.) that he is waiting for.
+Similarly, when
+one misses a crucial point during viewing a distance
+lecture, he may not be able to comprehend the materials
+after that point.
+It is desirable if {\em viewing interactivity}
+---pause, fast-forward and instant replay---can
+be supported so that one can time-shift a program at his 
+own comfortable pace.
+
+In addition to viewing interactivity, being able to 
+interact with the content of a program (that I call
+{\em content interactivity}) can enrich viewing experience.
+Content interactivity is
+especially beneficial to distance education. For instance,
+kids can change the attributes (e.g., colors, size and position)
+of the ``bunny'', ``big bird'' and
+other characters in the {\it Sesame Street}.
+A grade school student can learn American states
+by interacting with a map.
+A high school student can conduct science experiments
+through a virtual lab. Many applications exist.
+
+To support interactive TV, many studies suggest a server-based
+architectures (e.g., \cite{ex80,ex49,ex54,ex1,ex86}),
+in which a server schedules
+its resources (i.e., memory and disk bandwidth)
+to support viewing interactivity.
+In a server-based architecture, the receivers are assumed
+to be passive---simply receiving bits and rendering frames.
+However, because of the typical long end-to-end transmission
+delay between a server and a client and the Interet's limited bandwidth,
+it is practically unfeasible for the server
+to support ``real-time'' viewing interactivity for tens of
+thousands of simultaneous users.  Furthermore,
+on a broadcast channel (e.g., CNN), one simply cannot request
+the server to pause or replay a program.
+ 
+In this proposal, we present a client-based interactive DTV
+architecture.
+
+
+Recent advancements in data compression, networking
+and image-based rendering technologies, and the
+proliferation of infrastructures have created the the
+resurgence of interest in the interactive television.
+A full interactive system (e.g., telepresence) would allow
+the person to be immersed in a distant environment
+and act upon it as he was there, but we are far from
+what is possible given the technology of the near future.
+However, supporting viewing interactivity and
+content interactivity (defined next) is within the
+reach of the technology and economy in the next few years.
+
+The degree of interactivity can be categories into
+viewing, content and full interactivity:
+\begin{jlist}
+\item
+Viewing interactivity: A viewer can select his own
+spatio-temporal view on the TV content in real-time.
+A spatial view can be a pan or a zoom. A temporal
+view is created by a time-shift
+VCR-like operation---pause, replay or fast-forward.
+\item
+Content interactivity: The viewer can change the content
+of a program locally. For instance, the viewer can change
+the attributes (e.g., colors, positions and speed)
+of objects in scenes.
+\item
+Full interactivity: The viewer can convey a sense of
+presence to a remote location.
+\end{jlist}
+
+I plan to investigate new hybrids of technologies for 
+supporting viewing and content 
+interactivity. 
+My primary focus will be on the receiver 
+technology (not on the head-end technology), specifically
+on how to manage the receiver's system resources (i.e.,
+memory and disk bandwidth), on how to
+index and store multimedia data for efficient 
+and effective search and retrieval, and on how to
+build data and resource managers that can scale with
+resource constraints and QoS requirements. In addition,
+I will also investigate image content processing technology,
+including image segmentation and rendering techniques
+for enhancing interactivity. 
+
+Although recent efforts have made progress in aforementioned
+areas, many issues remain tantalizingly open.
+I plan to address these open issues, and to build on the
+work from several fields, most notably from the 
+image processing, operating system and database fields.
+I intend to combine these technologies in fruitful
+ways to address the challenges of supporting
+interactive TVs, which I believe will enrich applications
+such as distance education, video surveillance and
+consumer television, to name just a few.
+
+\subsection{Enabling Viewing Interactivity}
+
+Viewing interactivity allows a viewer to select a
+spatio-temporal view of the scene.
+
+\begin{enumerate}
+\item Spatial view: A simple 
+spatial view can be a pan or a zoom, which does not 
+change the camera position. However, supporting
+zoom out and pan requires frames to be larger than 
+the display device. While potentially interesting,
+pan and zoom do not seem to pose difficult
+research questions, so I omit them here.
+Instead, I propose exploring techniques to
+construct panoramic views. For a single camera,
+I will expolre the techniques to
+knit temporal adjacent frames into a panoramic view.
+For instance, a remote student can get a panoramic
+view of the lecture hall, rather than just the
+instructor, to feel the presence in the hall.
+%
+%For a single camera, this requires a method for locating 
+%frames that contain smooth
+%camera pans or tilts, from which the panoramic
+%view can be synthesized. For multiple cameras 
+%camera calibration and synchronization are 
+%critical.
+
+\item Time-shift operations: 
+To enable viewing interactivity, we need a large cache
+at the receiver. An economical way to extent the
+receiver's cache is to add a disk to its DRAM.
+Equipped with a large and
+inexpensive disk, the receiver can cache a large amount of
+media data. A viewer can pause a live 
+program to take a break from viewing while the broadcast
+stream continues arriving and being written to the local disk.
+The viewer can resume watching the program after the pause
+with a delay, or fast-forward the program to get back in synch with
+the broadcast stream. 
+One can also record programs at multiple channels at the same
+time (which a tape-based VCR cannot do), filter out unwanted
+content and produce a customized program.   
+\end{enumerate}
+
+Extending DRAM cache with a disk adds complexity
+to the receiver's buffer management, especially that
+video and audio data must be made available continuously
+to meet playback deadlines, or playback interruptions
+occur. In addition, to achieve acceptable interactive performance,
+the buffer manager must make the requested data available
+in main memory with minimum delay, e.g.,
+when a viewer issues a replay,
+response time should be very low.
+Satisfying these performance requirements
+with minimum DRAM (and hence at minimum cost) is a challenging task.
+
+%Furthermore, the data description and organization plays a
+%crucial role in the retrieval performance.
+%The video/audio data must be indexed
+%for supporting user-friendly replay and fast-forward.
+
+\subsection{Enabling Content Interactivity}
+
+A transmitted program must be in a digital format so that
+the content of the scene can be interacted upon.
+Fortunately, much low-hanging fruit 
+in this area is ready to be plunked. 
+For example, MPEG-4 has proposed standards to
+separate interactive objects from the scenes, to change
+visual or acoustic properties of an object, and to
+specify the spatio-temporal relations between objects.
+
+%However, what the standards do not specify 
+%is the segmentation algorithms to extract objects from the scene.
+%Segmenting an object from an image is a non-trival task
+%due to occulusion and noise in the image. However, with
+%a sequence of frames, if may be possible to greatly
+%improve the robustness of extraction algorithms.
+%
+%hybrid depth-alpha 
+%Although extraction of alpha mattes, which designates each 
+%pixel in an image as being opaque or transparent, is a fairly 
+%mature technology, the problem is a nevertheless a 
+%difficult one for general scenes. As a result, it is an 
+%active research area, and new algorithms are being 
+%proposed nearly every year. One possibility that has 
+%not yet been explored to our knowledge is the use of 
+%range information to aid in the extraction process. 
+%Given a video stream and an adjunct real-time range 
+%stream, it is possible to greatly improve the 
+%robustness of matte extraction algorithms. 
+
+Content interactivity can be enriched if the TV is connected
+to a bi-directional Internet back-channel.
+While a given broadcast stream remains the same
+for all viewers, various data objects can be transmitted to
+individual viewers via the Internet channel. 
+%Data objects
+%can be textual (e.g., an HTML page), binary (e.g., a java appelet),
+%or continuous (e.g., a video/audio stream).
+Image-based rendering techniques can then
+overlay a number of data objects with the broadcast stream to
+provide a customized program. 
+Using distance learning as an example,
+a student can download a 3D animated laboratory
+during a science lecture to perform interactive experiments.
+The instructor can quiz the students on-line to understand 
+how the students absorb the lecture materials and make real-time
+adjustments. Many other application exist.
+
+If we do not need to store media data on disk, 
+synchronize data objects to support content interactivity 
+is straightforwad. However, since supporting viewing
+interactivity may record data objects on disk and 
+a viewer can record a TV program, we have to consider
+how data should be stored on disk so that the latency
+of retrieving these data for later plakback encounters
+minimum overhead. In addition, some data objects may be
+transient, e.g., a HTML page, and do not require storage.
+Some data objects may not need to be stored since the
+disk bandwidth cannot keep up with handling
+so many objects.  If a data object
+must be stored, the data object should
+be stored adjacent to the video frames that are
+rendered at the same time
+(temporally correlated). I will investigate
+efficient data organization and indexing schemes 
+to improve the performance of content interactivity.
+%temporal-spatio database
+
+\subsection{QoS-Adaptive Content and Resource Management}
+
+Since the available hardware resources differ from one
+receiver to another and the QoS requirements at a
+receiver can also differ from one time to another,
+it is critical to design a system that is
+adaptive to its environment. For example, the
+processor in a receiver can be a low-end or a high-end
+one (affecting decoding speed) and the amont of DRAM
+in a set-top box can range widely. A viewer watching
+a cooking lesson may care only seeing the recipe (texts)
+at one time, but cares high video/audio quality 
+when the dishes are cooked.
+
+To summarize, the following technologies will be 
+investigate for supporting viewing and content
+interactivity:
+\begin{jlist}
+\item Viewing interactivity: video panoramas, real-time buffer 
+management and media data indexing.
+\item Content interactivity: image segmentation, media data 
+indexing and organization.
+\item QoS-Adaptive content and resource management:
+QoS-adaptive resource scheduling.
+\end{jlist}
+
+

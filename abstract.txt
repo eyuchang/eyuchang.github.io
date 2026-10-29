@@ -1,0 +1,74 @@
+
+BIRDS-1 marks a step forward for establishing a standardized 
+benchmark for measuring the performance of content-based image 
+retrieval (CBIR) systems.  However, the sample queries proposed
+in BIRDS-1 may not adequately reflect how users typically search 
+for visual content.  First, query types #1 and #4 may require users
+to provide seed images to start a query.  We argue that finding good 
+seeds is the job of the search engine itself, and this circular 
+requirement leaves the core problem---understanding users' query 
+concepts---unsolved. Second, the benchmark does not seem to consider 
+subjective perception, that is, different users may 
+perceive the same image differently and may use different vocabulary to 
+describe it. It may not be realistic to expect that there is only 
+one ground truth for measuring image "similarity."
+
+We have proposed a new image search paradigm: perception-based 
+image retrieval (PBIR), which requires no seeding and measures
+similarity considering individuals' subjectivity.  We have
+demonstrated a prototype in Sigmod 2001 [1], and it receives 
+positive feedback.  In the extended version of this paper, we will 
+describe in details how a PBIR system can learn a user's subjective 
+query concept both quickly and in a small number of feedback rounds.   
+In the remainder of this abstract, we describe how a 
+PBIR query works and propose two new test queries for BIRDS-1.
+
+A PBIR query iterates the following three steps until
+the user terminates the query:
+
+1. The system presents a set of image samples to the
+   user.  The user marks the images that are relevant to 
+   his/her query concept.
+
+2. The system learns the query concept based on the feedback,
+   and report the top-k most similar images based on the
+   learned concept at this point.  Continue to Step 3 unless
+   the query is terminated.
+
+3. The system further refines the bound to perform the next 
+   round of sample generation.  The samples selected in the
+   refined sampling space are the ones that can collect maximum 
+   information from the user to learn the target concept.
+   Return to Step one.
+
+Note the PBIR system does not require seeding a query.  The system 
+presents randomly selected images as the first round of examples.
+Even if all of the images generated in the first round are irrelevant,
+the PBIR system uses the negative images to reduce the set of potentially
+relevant images substantially.  Thus, the probability is high that
+a relevant image will be generated in the next round.
+
+To measure the performance of a PBIR query, we propose the following
+two test queries.  
+
+Query #1. How fast to find a target image R.  Insert image R into 
+the database.  Without seeding, use the search method provided 
+by the system to find R in the database.  
+Metrics = Time to return the response. 
+
+Query #2. Find images that satisfy a query concept C. 
+A concept may be a category like landscape, and can be an abstract
+concept like dancing.  The system returns images that are related 
+to the concept.
+Metrics = Accuracy of response; time to return the response. 
+
+In brief, it is critical for an multimedia search engine to
+take individuals' subjectivity into consideration.  It 
+is important not to expect "perfect samples" can be provided
+by users to start a query.  Therefore, the standard benchmark
+should include test queries like the ones proposed above to 
+measure a system's capability to fulfill these two requirements.
+
+[1] PBIR - Perception-Based Image Retrieval, Proceedings
+of ACM Sigmod, Santa Barbara, May, 2001.
+

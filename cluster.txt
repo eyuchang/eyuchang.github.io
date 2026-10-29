@@ -1,0 +1,132 @@
+cluster,  pca  -  Hierarchical  Cluster  Analysis  and  Principal
+Component  Analysis  performs Hierarchical Cluster Analysis (HCA)
+on a set of vectors and  outputs  the  result  in  a  variety  of
+formats   on   standard  output.   performs  Principal  Component
+Analysis (PCA) on a set of vectors and prints the transformed set
+of  vectors  on  standard  output.  If is given it is read as the
+file containing the vector data, one vector per line,  components
+separated  by  whitespace.   An  optional  can be given to assign
+names (arbitrary  strings)  to  these  vectors.   Names  must  be
+specified  one  per line, matching the number of vectors in Names
+are either  contiguous  non-whitespace  characters  or  arbitrary
+strings  delimited  by an initial double quote `"' and the end of
+line.  Vector names may also be given in  itself,  following  the
+vector  components  on  each  line.   If  no  names are provided,
+vectors in the output are  identified  by  their  input  sequence
+number instead.  Either of these files may be given as indicating
+that the corresponding information should be read  from  standard
+input.   If  no  arguments  are  given  standard  input  is read,
+allowing to be used as a  filter.   and  also  provide  a  simple
+scaling  facility.   If the first line of the input is terminated
+by the keyword it is interpreted as a vector of scaling  factors.
+The  following  lines are then read as data as usual, except that
+vector components are multiplied by their  corresponding  scaling
+factors.  To specify scaling factors on the command line use
+        (echo ... _SCALE_ ; \
+        cat ) | cluster - [  ]  Yet  another  potentially  useful
+feature  is  that  vector  components  may be specified as (don't
+care), meaning that that component will always contribute zero in
+computing  distances  to  other  vectors.   In PCA mode, each D/C
+value is replaced by the mean of all  non-D/C  values  along  its
+dimension.   Force  PCA  mode, even when the program is called as
+and are different incarnations of the same program, depending  on
+the  zeroth  argument.)  Suppress scaling.  Vector components are
+not scaled, even if a line was found.  This is useful to  produce
+both  scaled  and  unscaled  analyses  from  the same input file.
+Verbose output. Reports the number and dimension of vectors  read
+and  precedes  each  output  section with an explanatory message.
+For execution of the computational steps  involved  is  reported.
+Output  all pairs of clusters formed, along with their respective
+inter-cluster distances.  Clusters are given as lists of vectors.
+Represent  the hierarchical clusters as a tree lying on its side.
+The leaves of the tree  are  formed  by  vector  names,  and  the
+horizontal spacing between nodes is proportional to the distances
+between  clusters.   The  output  uses  only  ASCII   characters,
+resulting in a rough approximation of the true proportions.  Same
+as but the cluster tree is displayed  in  a  pad.   The  terminal
+screen  can  be  scrolled  around the tree representation.  Also,
+VT100 graphics characters are used for line drawing if available.
+While  displaying the tree, the following one-key commands can be
+used:  Home, H Scroll to upper-left corner of window.  h,  j,  k,
+l, arrow keys Scroll left, down, up, right by one position.  Tab,
+BackTab Scroll right, left by 8 positions.  n, p Sroll  down,  up
+by  one  page.   R  Redraw  screen.  q Quit the display.  Set the
+width of the tree representation used by and to characters.   The
+default  width is 80 or the terminal width as determined by Wider
+trees are more difficult to view but give a more accurate picture
+of  relative  distances.   Same  as  but  the graphical output is
+specified in a format suitable for the UNIX utility, which allows
+further  formatting  such as bounding box, axes labels, rotation,
+and scaling.  in turn produces plotting instructions according to
+the  format,  for  which  a variety of output filters exist.  The
+following are typical command lines.
+
+Previewing on a standard terminal:
+        cluster -g | graph -g1 | plot -Tcrt
+Previewing under X windows:
+        cluster -g  | graph -g1 | xplot
+or
+        cluster -g  | xgraph
+If neither xplot nor xgraph are available,  run  an  switched  to
+Tektronics mode and use
+        cluster -g | graph -g1 | plot -Ttek
+Converting to postscript:
+        cluster -g | graph -g1 | psplot
+Printing on a printer supporting format:
+        cluster -g | graph -g1 | lpr -g
+Same as except that double drawing  of  lines  is  avoided,  thus
+saving space and time.  This requires however that be called with
+the option to correctly assemble the tree from pieces:
+        cluster -b | graph -b The input vectors are output as bit
+vectors  induced  by  the  cluster  tree.   The  cluster  tree is
+interpreted as a code tree, i.e., for each left or  right  branch
+are  `0' or `1' bit, respectively, is printed.  An `x' is used to
+pad vectors to the depth  of  the  tree.   Norm  to  be  used  as
+distance  metric between vectors.  A positive integer specifies a
+metric based on the LThe value selects  the  maximum  norm.   The
+default  is  (Euclidean  distance).   For  compatibility  with an
+earlier  version  of  the  program,  the  default   behavior   of
+corresponds  to  the  combination  of  options Use as a file with
+precomputed eigenvectors.  If the file exists, it is read and the
+relatively  costly  eigenvalue computation is avoided.  This also
+allows transforming a data set according to principle  components
+determined  from  a  different  data  set.   If the file does not
+exist, an eigenbase is computed from the current input and  saved
+in  the  file.   Select  a subset of the principal components for
+output, as typically used for dimensionality reduction of  vector
+sets.   Components  of  the transformed vectors are listed in the
+order specified  by  the  comma-separated  list  of  numbers  For
+example,  prints  the  fourth and second principal components (in
+that order).  Output the eigenvalues instead of  the  transformed
+input vectors.  Eigenvalues are printed in descending order or as
+specified by the option.  This option forces recomputation of the
+eigenbase  even if an existing file is specified with the option.
+Halfhearted error handling.  If vectors and names  are  given  in
+the  same  file,  the name at the end of the first line must be a
+non-numerical  string,  or  it  will  be  mistaken  as  a  vector
+component.   The  vector  names at the leaves of the cluster tree
+tend to stretch beyond the bounding box of the plot.  This  is  a
+feature  since  leaves  the  graphing  process  entirely to which
+doesn't care about the length of strings.  This can be  corrected
+by  explicitly  specifying  an  upper limit for the x coordinate.
+The clustering algorithm could be optimized further.   graph(1G),
+plot(5),  plot(1G),  xplot(1),  xgraph(1),  xterm(1),  psplot(1),
+curses(3),  lpr(1).    Original   version   by   Yoshiro   Miyata
+(miyata@boulder.colorado.edu).
+Minor fixes, various options, support, output and PCA addition by
+Andreas Stolcke (stolcke@icsi.berkeley.edu).
+Scaling and algorithm improvements suggested by  Steve  Omohundro
+(om@icsi.berkeley.edu).
+Don't    care    values    suggested     by     Kim     Daugherty
+(kimd@gizmo.usc.edu).
+Bit    vector    output    suggested     by     Joseph     Devlin
+(jdevlin@maestro.usc.edu).
+The  algorithms   for   eigenvalue   computation   and   Gaussian
+elimination  were  adapted  from  by Press, Flannery, Teukolsky &
+Vetterling.
+Finally, this program is freely distributable, but nobody  should
+try  to make money off of it, and it would be nice if researchers
+using it acknowledged the people mentioned above.
+
+
+

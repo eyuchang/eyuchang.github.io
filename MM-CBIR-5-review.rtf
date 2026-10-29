@@ -1,0 +1,115 @@
+{\rtf1\ansi\ansicpg936\deff0\deflang1033\deflangfe2052{\fonttbl{\f0\fmodern\fcharset0 Arial;}{\f1\fswiss\fcharset0 Arial;}}
+\viewkind4\uc1\pard\f0\fs20 =============== Referee Form =============================\par
+\par
+%%  \{please do not remove this line\} \par
+--------------------------------------------------------------------------\par
+     REFEREE FORM FOR ACM Multimedia Systems  JOURNAL (Springer)\par
+---------------------------------------------------------------------------\par
+PAPER #: MM-CBIR-1\par
+Title of the Paper: Foundation for Content-Based Image Database Systems\par
+Author(s):Lionel Bruine, Solomon Atnafu, and Harald Kosch \par
+\par
+\par
+---------------------------------------------------------------------------\par
+ Rating Category    Your Rating       Scale Definition\par
+---------------------------------------------------------------------------\par
+Relevance to the \par
+CBIR special issue   |-----|    5=Good match\par
+                     |  5  |    3=Marginal match\par
+                     |-----|    1=not match\par
+---------------------------------------------------------------------------\par
+Evaluation of Work             \par
+and Contribution     |-----|    5=Good solid work of some importance\par
+                     |  3  |    3=Marginal work and minor contribution\par
+                     |-----|    1=Very questionable work and contribution\par
+---------------------------------------------------------------------------\par
+Originality                     \par
+Novelty              |-----|    5=Contains an original contribution\par
+                     |  2  |    3=Variation of a known concept \par
+                     |-----|    1=Complete lack of original ideas\par
+---------------------------------------------------------------------------\par
+Quality of                      \par
+Presentation         |-----|    5= Well written\par
+                     |  4  |    3= Readable\par
+                     |-----|    1= Needs considerable work\par
+---------------------------------------------------------------------------\par
+Technical                       \par
+Correctness          |-----|    5=Good\par
+                     |  3  |    3=Flaws but Easy to Correct \par
+                     |-----|    1=Several Flaws\par
+---------------------------------------------------------------------------\par
+Overall                         \par
+Rating               |-----|    5=Accept with Minor Revisions\par
+                     |  2  |    3=Consider for Publication (Major Revision)\par
+                     |-----|    1=Definitely reject \par
+---------------------------------------------------------------------------\par
+\par
+DETAILED COMMENTS (to be returned to the author(s))\par
+[Reviewers are encouraged to provide substantitive comments \par
+supporting their numerical scale ratings. Reviews without \par
+such comments may not be considered in the overall rating of the paper.]\par
+
+This paper shows that when an image set is partially annotated with
+keywords, multimodality searches achieve higher accuracy than can be 
+obtained by using visual information alone. Although the paper is 
+fairly well written, the authors have not proposed any new techniques 
+or presented any results that are not already known.  In the CBIR 
+community, it is well known that multimodality can improve image-search 
+accuracy.  Merely confirming this fact does not warrant the publication 
+of this work.
+
+The paper would have been more interesting had the authors proposed 
+reliable methods to provide annotation to images, or had they provided 
+in-depth treatment on, for example, the following subjects:
+
+o Textual features. The paper would benefit by detailing how exactly 
+Wordnet was used by the system.  Wordnet may be able to link "ocean"  to 
+"sea" but it may fail in many other situations, such as "International 
+waters".  The authors should also explain the limitations of Wordnet. 
+(For instance, a very general word such as "water" may retrieve too many 
+images.)   When Wordnet is counter-productive, could the effectiveness 
+of the tunnel technique suffer as well?
+
+o Image features.  The authors use color features only, even though
+they seem to acknowledge that texture and shape features would help.
+With rather weak visual features, the performance gap between
+visual searches and multimodality searches is certainly large.
+When visual features are more robust, I expect the gap in Figure 6 
+to be substantially smaller. Has the effectiveness of "tunneling" 
+become exaggerated because of the poor visual features?
+
+o Ad hoc indexing.  It is believable that annotating 5% selected
+images can work better than randomly annotate 40% of the images.
+However, the procedure of selecting the most useful images
+to annotate should be precisely documented.  The authors refer to 
+using clustering to assist in grouping semantically- and 
+visually-related images.  Unfortunately, obtaining quality 
+clusters is still an open research problem when an image dataset 
+is very large and when the data dimension is very high.  When the 
+cluster quality is below par, would tunneling be less effective?
+\par
+%%  \{please do not remove this line\}\par
+---------------------------------------------------------------------------\par
+CONFIDENTIAL COMMENTS TO THE EDITOR\par
+[(to be withheld from the author(s))].  \par
+If necessary, Please include here any comments \par
+about why the paper should be accepted or rejected.\par
+\par
+\par
+The technical depth of this paper is not as good as many other
+papers I read recently. This paper basically just confirms that 
+multimodality searches could help improve visual search accuracy, which 
+is nothing new.   However, if the authors wish to rework their paper and 
+provide more helpful data and details, you might want to reconsider it.
+\par
+\par
+\par
+Name and Address of the Referee: E. Chang, echang@ece.ucsb.edu\par
+\par
+\par
+\par
+---------------------------------------------------------------------------\par
+$$ \{please do not remove this line\}\par
+\par
+\lang2052\f1\par
+}

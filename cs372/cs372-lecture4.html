@@ -1,0 +1,853 @@
+#!/usr/bin/env python3
+"""Generate HTML slides for CS372 Lecture 4: Parts III-VI"""
+
+import os
+
+slides = []
+
+# Slide 16: Part III Section Divider
+slides.append(('slide16.html', '''<!DOCTYPE html>
+<html>
+<head><meta charset="UTF-8"><link rel="stylesheet" href="custom.css"></head>
+<body class="col center" style="width: 960px; height: 540px; background: linear-gradient(135deg, #007C92 0%, #005566 100%);">
+  <div style="text-align: center; color: white; padding: 40px;">
+    <p style="font-size: 13px; letter-spacing: 2px; margin: 0 0 16px; opacity: 0.7;">PART III</p>
+    <h1 style="font-size: 44px; font-family: Georgia, serif; margin: 0 0 16px;">How LLM Reasoning Works</h1>
+    <p style="font-size: 16px; margin: 0 0 24px; opacity: 0.9;">Chain-of-Thought, Self-Consistency, and Tree of Thoughts</p>
+    <div style="width: 100px; height: 3px; background: rgba(255,255,255,0.5); margin: 0 auto;"></div>
+  </div>
+</body>
+</html>'''))
+
+# Slide 17: Chain-of-Thought
+slides.append(('slide17.html', '''<!DOCTYPE html>
+<html>
+<head><meta charset="UTF-8"><link rel="stylesheet" href="custom.css"></head>
+<body class="col" style="width: 960px; height: 540px; background: #FFFFFF;">
+  <div style="background: #007C92; padding: 6px 32px;">
+    <p style="font-size: 11px; color: white; margin: 0; letter-spacing: 1px;">PART III: HOW LLM REASONING WORKS</p>
+  </div>
+  <div style="padding: 20px 32px 0; width: 896px;">
+    <h1 style="font-size: 28px; font-family: Georgia, serif; color: #8C1515; margin: 0;">Chain-of-Thought (CoT) Prompting</h1>
+  </div>
+  <div class="row" style="flex: 1; padding: 16px 32px; gap: 24px;">
+    <div style="flex: 1;">
+      <p style="font-size: 12px; color: #2E2D29; margin: 0 0 12px; line-height: 1.5;">Generate a sequence of intermediate reasoning steps before the final answer.</p>
+      <p style="font-size: 13px; font-weight: bold; color: #8C1515; margin: 0 0 10px;">Key Insight</p>
+      <div style="background: #F4F4F4; padding: 12px; border-radius: 6px; margin-bottom: 12px;">
+        <p style="font-size: 11px; color: #2E2D29; margin: 0; line-height: 1.5;">Emergent capability at ~100B parameters. Smaller models don't benefit from CoT prompting.</p>
+      </div>
+      <p style="font-size: 13px; font-weight: bold; color: #8C1515; margin: 0 0 10px;">Variants</p>
+      <ul style="font-size: 11px; color: #2E2D29; margin: 0; padding-left: 16px; line-height: 1.6;">
+        <li style="margin-bottom: 6px;"><b>Few-shot:</b> Provide examples with reasoning</li>
+        <li><b>Zero-shot:</b> "Let's think step by step"</li>
+      </ul>
+    </div>
+    <div style="flex: 1;">
+      <p style="font-size: 13px; font-weight: bold; color: #8C1515; margin: 0 0 10px;">Example</p>
+      <div style="background: #2E2D29; color: #E0E0E0; padding: 12px; border-radius: 6px; font-family: Courier New, monospace; font-size: 9px;">
+        <p style="margin: 0 0 6px; color: #007C92;">Q: Roger has 5 tennis balls. He buys 2 cans of 3 balls. How many?</p>
+        <p style="margin: 0 0 4px; color: #8B8680;">A (without CoT): 11</p>
+        <p style="margin: 0 0 4px; color: #90EE90;">A (with CoT):</p>
+        <p style="margin: 0 0 2px; padding-left: 8px;">Roger starts with 5 balls.</p>
+        <p style="margin: 0 0 2px; padding-left: 8px;">2 cans × 3 balls = 6 balls.</p>
+        <p style="margin: 0; padding-left: 8px;">5 + 6 = 11 balls. ✓</p>
+      </div>
+      <div style="background: #007C92; color: white; padding: 10px 12px; border-radius: 4px; margin-top: 12px;">
+        <p style="font-size: 10px; margin: 0;"><b>Connection to CRIT:</b> CoT makes reasoning explicit, similar to how CRIT requires justification for each argument.</p>
+      </div>
+    </div>
+  </div>
+  <div style="padding: 0 32px 12px;">
+    <p style="font-size: 9px; color: #8B8680; margin: 0;">Wei et al., "Chain-of-Thought Prompting Elicits Reasoning in LLMs" (NeurIPS 2022)</p>
+  </div>
+</body>
+</html>'''))
+
+# Slide 18: Self-Consistency
+slides.append(('slide18.html', '''<!DOCTYPE html>
+<html>
+<head><meta charset="UTF-8"><link rel="stylesheet" href="custom.css"></head>
+<body class="col" style="width: 960px; height: 540px; background: #FFFFFF;">
+  <div style="background: #007C92; padding: 6px 32px;">
+    <p style="font-size: 11px; color: white; margin: 0; letter-spacing: 1px;">PART III: HOW LLM REASONING WORKS</p>
+  </div>
+  <div style="padding: 20px 32px 0; width: 896px;">
+    <h1 style="font-size: 28px; font-family: Georgia, serif; color: #8C1515; margin: 0;">Self-Consistency</h1>
+  </div>
+  <div class="row" style="flex: 1; padding: 16px 32px; gap: 24px;">
+    <div style="flex: 1;">
+      <p style="font-size: 12px; color: #2E2D29; margin: 0 0 12px; line-height: 1.5;">Sample multiple diverse reasoning paths, then select the most consistent answer via majority voting.</p>
+      <p style="font-size: 13px; font-weight: bold; color: #8C1515; margin: 0 0 10px;">Key Idea</p>
+      <div style="background: #F4F4F4; padding: 12px; border-radius: 6px; margin-bottom: 12px;">
+        <p style="font-size: 11px; color: #2E2D29; margin: 0; line-height: 1.5;">Complex reasoning problems often have multiple valid paths to the correct answer. Consistency across paths signals reliability.</p>
+      </div>
+      <p style="font-size: 13px; font-weight: bold; color: #8C1515; margin: 0 0 10px;">Benefits</p>
+      <ul style="font-size: 11px; color: #2E2D29; margin: 0; padding-left: 16px; line-height: 1.6;">
+        <li style="margin-bottom: 6px;">Reduces variance from greedy decoding</li>
+        <li style="margin-bottom: 6px;">Works with any CoT prompt</li>
+        <li>Simple ensemble approach</li>
+      </ul>
+    </div>
+    <div style="flex: 1;">
+      <p style="font-size: 13px; font-weight: bold; color: #8C1515; margin: 0 0 10px;">Process</p>
+      <div style="display: flex; flex-direction: column; gap: 8px;">
+        <div style="background: #007C92; color: white; padding: 8px 12px; border-radius: 4px;">
+          <p style="font-size: 10px; margin: 0;">1. Sample k reasoning paths (high temperature)</p>
+        </div>
+        <div style="background: #007C92; color: white; padding: 8px 12px; border-radius: 4px;">
+          <p style="font-size: 10px; margin: 0;">2. Extract final answer from each path</p>
+        </div>
+        <div style="background: #007C92; color: white; padding: 8px 12px; border-radius: 4px;">
+          <p style="font-size: 10px; margin: 0;">3. Take majority vote across answers</p>
+        </div>
+      </div>
+      <div style="background: #8C1515; color: white; padding: 10px 12px; border-radius: 4px; margin-top: 12px;">
+        <p style="font-size: 10px; margin: 0;"><b>Connection to CRIT:</b> Like CRIT's prompt ensemble — same question, different phrasings, vote on answer.</p>
+      </div>
+    </div>
+  </div>
+  <div style="padding: 0 32px 12px;">
+    <p style="font-size: 9px; color: #8B8680; margin: 0;">Wang et al., "Self-Consistency Improves Chain of Thought Reasoning" (ICLR 2023)</p>
+  </div>
+</body>
+</html>'''))
+
+# Slide 19: Tree of Thoughts
+slides.append(('slide19.html', '''<!DOCTYPE html>
+<html>
+<head><meta charset="UTF-8"><link rel="stylesheet" href="custom.css"></head>
+<body class="col" style="width: 960px; height: 540px; background: #FFFFFF;">
+  <div style="background: #007C92; padding: 6px 32px;">
+    <p style="font-size: 11px; color: white; margin: 0; letter-spacing: 1px;">PART III: HOW LLM REASONING WORKS</p>
+  </div>
+  <div style="padding: 20px 32px 0; width: 896px;">
+    <h1 style="font-size: 28px; font-family: Georgia, serif; color: #8C1515; margin: 0;">Tree of Thoughts (ToT)</h1>
+  </div>
+  <div class="row" style="flex: 1; padding: 16px 32px; gap: 24px;">
+    <div style="flex: 1;">
+      <p style="font-size: 12px; color: #2E2D29; margin: 0 0 12px; line-height: 1.5;">Combines deliberate reasoning with systematic search. The LLM generates, evaluates, and explores thought branches.</p>
+      <p style="font-size: 13px; font-weight: bold; color: #8C1515; margin: 0 0 10px;">Three Key Components</p>
+      <ul style="font-size: 11px; color: #2E2D29; margin: 0; padding-left: 16px; line-height: 1.6;">
+        <li style="margin-bottom: 6px;"><b>Generate:</b> Multiple candidate thoughts per step</li>
+        <li style="margin-bottom: 6px;"><b>Evaluate:</b> Self-assess progress toward goal</li>
+        <li><b>Search:</b> BFS or DFS through thought tree</li>
+      </ul>
+      <div style="background: #F4F4F4; padding: 10px 12px; border-radius: 6px; margin-top: 12px;">
+        <p style="font-size: 10px; color: #544948; margin: 0; line-height: 1.5;"><b>Best for:</b> Tasks requiring exploration, backtracking, or planning (e.g., Game of 24, crosswords)</p>
+      </div>
+    </div>
+    <div style="flex: 1;">
+      <p style="font-size: 13px; font-weight: bold; color: #8C1515; margin: 0 0 10px;">ToT vs CoT vs Self-Consistency</p>
+      <div style="background: #2E2D29; color: white; padding: 12px; border-radius: 6px; font-size: 10px;">
+        <div style="display: flex; border-bottom: 1px solid #544948; padding-bottom: 6px; margin-bottom: 6px;">
+          <p style="margin: 0; width: 30%; font-weight: bold;">Method</p>
+          <p style="margin: 0; width: 35%; font-weight: bold;">Reasoning</p>
+          <p style="margin: 0; width: 35%; font-weight: bold;">Aggregation</p>
+        </div>
+        <div style="display: flex; margin-bottom: 4px;">
+          <p style="margin: 0; width: 30%;">CoT</p>
+          <p style="margin: 0; width: 35%;">Linear chain</p>
+          <p style="margin: 0; width: 35%;">None</p>
+        </div>
+        <div style="display: flex; margin-bottom: 4px;">
+          <p style="margin: 0; width: 30%;">SC</p>
+          <p style="margin: 0; width: 35%;">Multiple chains</p>
+          <p style="margin: 0; width: 35%;">Vote</p>
+        </div>
+        <div style="display: flex;">
+          <p style="margin: 0; width: 30%;">ToT</p>
+          <p style="margin: 0; width: 35%;">Tree search</p>
+          <p style="margin: 0; width: 35%;">Best path</p>
+        </div>
+      </div>
+      <div style="background: #007C92; color: white; padding: 10px 12px; border-radius: 4px; margin-top: 12px;">
+        <p style="font-size: 10px; margin: 0;"><b>Connection to CRIT:</b> ToT's self-evaluation mirrors CRIT's elenchus — validating each reasoning step.</p>
+      </div>
+    </div>
+  </div>
+  <div style="padding: 0 32px 12px;">
+    <p style="font-size: 9px; color: #8B8680; margin: 0;">Yao et al., "Tree of Thoughts: Deliberate Problem Solving with Large Language Models" (2023)</p>
+  </div>
+</body>
+</html>'''))
+
+# Slide 20: Part IV Section Divider
+slides.append(('slide20.html', '''<!DOCTYPE html>
+<html>
+<head><meta charset="UTF-8"><link rel="stylesheet" href="custom.css"></head>
+<body class="col center" style="width: 960px; height: 540px; background: linear-gradient(135deg, #2E2D29 0%, #1A1A1A 100%);">
+  <div style="text-align: center; color: white; padding: 40px;">
+    <p style="font-size: 13px; letter-spacing: 2px; margin: 0 0 16px; opacity: 0.7;">PART IV</p>
+    <h1 style="font-size: 44px; font-family: Georgia, serif; margin: 0 0 16px;">Evaluating Reasoning Quality</h1>
+    <p style="font-size: 16px; margin: 0 0 24px; opacity: 0.9;">Benchmarks, Reward Models, and Test-Time Scaling</p>
+    <div style="width: 100px; height: 3px; background: rgba(255,255,255,0.5); margin: 0 auto;"></div>
+  </div>
+</body>
+</html>'''))
+
+# Slide 21: Key Reasoning Benchmarks
+slides.append(('slide21.html', '''<!DOCTYPE html>
+<html>
+<head><meta charset="UTF-8"><link rel="stylesheet" href="custom.css"></head>
+<body class="col" style="width: 960px; height: 540px; background: #FFFFFF;">
+  <div style="background: #2E2D29; padding: 6px 32px;">
+    <p style="font-size: 11px; color: white; margin: 0; letter-spacing: 1px;">PART IV: EVALUATING REASONING QUALITY</p>
+  </div>
+  <div style="padding: 20px 32px 0; width: 896px;">
+    <h1 style="font-size: 28px; font-family: Georgia, serif; color: #8C1515; margin: 0;">Key Reasoning Benchmarks</h1>
+  </div>
+  <div style="flex: 1; padding: 12px 32px;">
+    <div class="row" style="gap: 16px;">
+      <div style="flex: 1;">
+        <p style="font-size: 11px; font-weight: bold; color: #8C1515; margin: 0 0 8px;">Mathematical Reasoning</p>
+        <div style="background: #F4F4F4; padding: 8px 10px; border-radius: 4px; margin-bottom: 6px;">
+          <p style="font-size: 10px; margin: 0;"><b>GSM8K:</b> 8.5K grade school math (Cobbe 2021)</p>
+        </div>
+        <div style="background: #F4F4F4; padding: 8px 10px; border-radius: 4px; margin-bottom: 6px;">
+          <p style="font-size: 10px; margin: 0;"><b>MATH:</b> 12.5K competition-level (Hendrycks 2021)</p>
+        </div>
+        <div style="background: #F4F4F4; padding: 8px 10px; border-radius: 4px;">
+          <p style="font-size: 10px; margin: 0;"><b>MGSM:</b> Multilingual GSM (Shi 2022)</p>
+        </div>
+      </div>
+      <div style="flex: 1;">
+        <p style="font-size: 11px; font-weight: bold; color: #007C92; margin: 0 0 8px;">Knowledge & Commonsense</p>
+        <div style="background: #F4F4F4; padding: 8px 10px; border-radius: 4px; margin-bottom: 6px;">
+          <p style="font-size: 10px; margin: 0;"><b>MMLU:</b> 57 subjects, 15K questions</p>
+        </div>
+        <div style="background: #F4F4F4; padding: 8px 10px; border-radius: 4px; margin-bottom: 6px;">
+          <p style="font-size: 10px; margin: 0;"><b>GPQA:</b> Graduate-level science</p>
+        </div>
+        <div style="background: #F4F4F4; padding: 8px 10px; border-radius: 4px;">
+          <p style="font-size: 10px; margin: 0;"><b>HellaSwag:</b> Sentence completion</p>
+        </div>
+      </div>
+      <div style="flex: 1;">
+        <p style="font-size: 11px; font-weight: bold; color: #B83A4B; margin: 0 0 8px;">Multi-Step Reasoning</p>
+        <div style="background: #F4F4F4; padding: 8px 10px; border-radius: 4px; margin-bottom: 6px;">
+          <p style="font-size: 10px; margin: 0;"><b>MuSR:</b> Murder mysteries, planning</p>
+        </div>
+        <div style="background: #F4F4F4; padding: 8px 10px; border-radius: 4px; margin-bottom: 6px;">
+          <p style="font-size: 10px; margin: 0;"><b>ARC:</b> Science question answering</p>
+        </div>
+        <div style="background: #F4F4F4; padding: 8px 10px; border-radius: 4px;">
+          <p style="font-size: 10px; margin: 0;"><b>StrategyQA:</b> Implicit multi-hop</p>
+        </div>
+      </div>
+    </div>
+    <div style="background: #8C1515; color: white; padding: 12px 16px; border-radius: 6px; margin-top: 16px;">
+      <p style="font-size: 11px; margin: 0;"><b>Key Limitation:</b> Most benchmarks only evaluate final answer (outcome), not the reasoning process itself. This is where Process Reward Models (PRMs) become essential.</p>
+    </div>
+  </div>
+</body>
+</html>'''))
+
+# Slide 22: ORM vs PRM
+slides.append(('slide22.html', '''<!DOCTYPE html>
+<html>
+<head><meta charset="UTF-8"><link rel="stylesheet" href="custom.css"></head>
+<body class="col" style="width: 960px; height: 540px; background: #FFFFFF;">
+  <div style="background: #2E2D29; padding: 6px 32px;">
+    <p style="font-size: 11px; color: white; margin: 0; letter-spacing: 1px;">PART IV: EVALUATING REASONING QUALITY</p>
+  </div>
+  <div style="padding: 20px 32px 0; width: 896px;">
+    <h1 style="font-size: 28px; font-family: Georgia, serif; color: #8C1515; margin: 0;">ORM vs PRM: Reward Models</h1>
+  </div>
+  <div class="row" style="flex: 1; padding: 16px 32px; gap: 20px;">
+    <div style="flex: 1; background: #F4F4F4; padding: 14px; border-radius: 8px;">
+      <p style="font-size: 14px; font-weight: bold; color: #544948; margin: 0 0 10px;">Outcome Reward Model (ORM)</p>
+      <ul style="font-size: 11px; color: #2E2D29; margin: 0; padding-left: 16px; line-height: 1.7;">
+        <li style="margin-bottom: 6px;">Evaluates only the final answer</li>
+        <li style="margin-bottom: 6px;">Coarse-grained, sparse signal</li>
+        <li style="margin-bottom: 6px;">Lower annotation cost</li>
+        <li>May overlook intermediate errors</li>
+      </ul>
+      <div style="background: #544948; color: white; padding: 8px 10px; border-radius: 4px; margin-top: 12px;">
+        <p style="font-size: 10px; margin: 0; font-family: Courier New, monospace;">score = f(final_answer)</p>
+      </div>
+    </div>
+    <div style="flex: 1; background: #007C92; color: white; padding: 14px; border-radius: 8px;">
+      <p style="font-size: 14px; font-weight: bold; margin: 0 0 10px;">Process Reward Model (PRM)</p>
+      <ul style="font-size: 11px; margin: 0; padding-left: 16px; line-height: 1.7;">
+        <li style="margin-bottom: 6px;">Evaluates each reasoning step</li>
+        <li style="margin-bottom: 6px;">Fine-grained, dense signal</li>
+        <li style="margin-bottom: 6px;">Higher annotation effort</li>
+        <li>Better credit assignment</li>
+      </ul>
+      <div style="background: rgba(255,255,255,0.2); padding: 8px 10px; border-radius: 4px; margin-top: 12px;">
+        <p style="font-size: 10px; margin: 0; font-family: Courier New, monospace;">score = Π f(step_i)</p>
+      </div>
+    </div>
+  </div>
+  <div style="padding: 0 32px 16px;">
+    <div style="background: #8C1515; color: white; padding: 10px 14px; border-radius: 6px;">
+      <p style="font-size: 11px; margin: 0;"><b>Key Finding (Lightman 2023):</b> "Process supervision trains more reliable reward models than outcome supervision."</p>
+    </div>
+  </div>
+</body>
+</html>'''))
+
+# Slide 23: PRM Training Methods
+slides.append(('slide23.html', '''<!DOCTYPE html>
+<html>
+<head><meta charset="UTF-8"><link rel="stylesheet" href="custom.css"></head>
+<body class="col" style="width: 960px; height: 540px; background: #FFFFFF;">
+  <div style="background: #2E2D29; padding: 6px 32px;">
+    <p style="font-size: 11px; color: white; margin: 0; letter-spacing: 1px;">PART IV: EVALUATING REASONING QUALITY</p>
+  </div>
+  <div style="padding: 20px 32px 0; width: 896px;">
+    <h1 style="font-size: 28px; font-family: Georgia, serif; color: #8C1515; margin: 0;">Training Process Reward Models</h1>
+  </div>
+  <div class="row" style="flex: 1; padding: 16px 32px; gap: 16px;">
+    <div style="flex: 1;">
+      <div style="background: #8C1515; color: white; padding: 12px; border-radius: 6px; margin-bottom: 12px;">
+        <p style="font-size: 12px; font-weight: bold; margin: 0 0 6px;">1. Human Annotation</p>
+        <p style="font-size: 10px; margin: 0; opacity: 0.9;">Experts label each step as correct/incorrect. Gold standard but expensive (~$20/hour × many steps).</p>
+      </div>
+      <div style="background: #007C92; color: white; padding: 12px; border-radius: 6px; margin-bottom: 12px;">
+        <p style="font-size: 12px; font-weight: bold; margin: 0 0 6px;">2. Monte Carlo Estimation</p>
+        <p style="font-size: 10px; margin: 0; opacity: 0.9;">Complete multiple rollouts from each step, estimate correctness from success rate. Scalable but noisy.</p>
+      </div>
+      <div style="background: #544948; color: white; padding: 12px; border-radius: 6px;">
+        <p style="font-size: 12px; font-weight: bold; margin: 0 0 6px;">3. LLM-as-Judge</p>
+        <p style="font-size: 10px; margin: 0; opacity: 0.9;">Use strong LLM to evaluate each step. Fast and scalable, but may inherit biases.</p>
+      </div>
+    </div>
+    <div style="flex: 1;">
+      <p style="font-size: 13px; font-weight: bold; color: #8C1515; margin: 0 0 10px;">Evaluation Methods</p>
+      <div style="background: #F4F4F4; padding: 10px 12px; border-radius: 4px; margin-bottom: 8px;">
+        <p style="font-size: 11px; font-weight: bold; margin: 0 0 4px;">Best-of-N</p>
+        <p style="font-size: 10px; color: #544948; margin: 0;">Sample N solutions, select highest-scored by PRM</p>
+      </div>
+      <div style="background: #F4F4F4; padding: 10px 12px; border-radius: 4px; margin-bottom: 8px;">
+        <p style="font-size: 11px; font-weight: bold; margin: 0 0 4px;">ProcessBench</p>
+        <p style="font-size: 10px; color: #544948; margin: 0;">Evaluate step-level error detection accuracy</p>
+      </div>
+      <div style="background: #B83A4B; color: white; padding: 10px 12px; border-radius: 4px;">
+        <p style="font-size: 11px; margin: 0;"><b>Warning:</b> PRMs optimized for Best-of-N may drift toward outcome assessment (Qwen2.5-Math study).</p>
+      </div>
+    </div>
+  </div>
+</body>
+</html>'''))
+
+# Slide 24: Test-Time Compute Scaling
+slides.append(('slide24.html', '''<!DOCTYPE html>
+<html>
+<head><meta charset="UTF-8"><link rel="stylesheet" href="custom.css"></head>
+<body class="col" style="width: 960px; height: 540px; background: #FFFFFF;">
+  <div style="background: #2E2D29; padding: 6px 32px;">
+    <p style="font-size: 11px; color: white; margin: 0; letter-spacing: 1px;">PART IV: EVALUATING REASONING QUALITY</p>
+  </div>
+  <div style="padding: 20px 32px 0; width: 896px;">
+    <h1 style="font-size: 28px; font-family: Georgia, serif; color: #8C1515; margin: 0;">Test-Time Compute Scaling</h1>
+  </div>
+  <div class="row" style="flex: 1; padding: 16px 32px; gap: 24px;">
+    <div style="flex: 1;">
+      <p style="font-size: 12px; color: #2E2D29; margin: 0 0 12px; line-height: 1.5;">Paradigm shift: Instead of bigger models (train-time), use more inference compute (test-time) for better reasoning.</p>
+      <p style="font-size: 13px; font-weight: bold; color: #8C1515; margin: 0 0 10px;">Methods</p>
+      <ul style="font-size: 11px; color: #2E2D29; margin: 0; padding-left: 16px; line-height: 1.6;">
+        <li style="margin-bottom: 6px;">Best-of-N with verifier scoring</li>
+        <li style="margin-bottom: 6px;">Beam search with step-level rewards</li>
+        <li style="margin-bottom: 6px;">Self-verification and refinement loops</li>
+        <li>Extended chain-of-thought generation</li>
+      </ul>
+    </div>
+    <div style="flex: 1;">
+      <p style="font-size: 13px; font-weight: bold; color: #8C1515; margin: 0 0 10px;">Key Metrics</p>
+      <div style="background: #F4F4F4; padding: 10px 12px; border-radius: 4px; margin-bottom: 8px;">
+        <p style="font-size: 11px; font-weight: bold; margin: 0 0 4px;">Pass@K</p>
+        <p style="font-size: 10px; color: #544948; margin: 0;">Probability that at least 1 of K samples is correct</p>
+      </div>
+      <div style="background: #F4F4F4; padding: 10px 12px; border-radius: 4px; margin-bottom: 8px;">
+        <p style="font-size: 11px; font-weight: bold; margin: 0 0 4px;">CoT-Pass@K</p>
+        <p style="font-size: 10px; color: #544948; margin: 0;">Verifies intermediate steps, not just final answer (Wen 2025)</p>
+      </div>
+      <div style="background: #007C92; color: white; padding: 10px 12px; border-radius: 4px;">
+        <p style="font-size: 11px; margin: 0;"><b>Insight:</b> Test-time scaling can match or exceed gains from model scaling, at lower cost per query.</p>
+      </div>
+    </div>
+  </div>
+</body>
+</html>'''))
+
+# Slide 25: Part V Section Divider
+slides.append(('slide25.html', '''<!DOCTYPE html>
+<html>
+<head><meta charset="UTF-8"><link rel="stylesheet" href="custom.css"></head>
+<body class="col center" style="width: 960px; height: 540px; background: linear-gradient(135deg, #544948 0%, #2E2D29 100%);">
+  <div style="text-align: center; color: white; padding: 40px;">
+    <p style="font-size: 13px; letter-spacing: 2px; margin: 0 0 16px; opacity: 0.7;">PART V</p>
+    <h1 style="font-size: 44px; font-family: Georgia, serif; margin: 0 0 16px;">State of the Art</h1>
+    <p style="font-size: 16px; margin: 0 0 24px; opacity: 0.9;">DeepSeek R1, RLVR, and Self-Verification</p>
+    <div style="width: 100px; height: 3px; background: rgba(255,255,255,0.5); margin: 0 auto;"></div>
+  </div>
+</body>
+</html>'''))
+
+# Slide 26: DeepSeek R1
+slides.append(('slide26.html', '''<!DOCTYPE html>
+<html>
+<head><meta charset="UTF-8"><link rel="stylesheet" href="custom.css"></head>
+<body class="col" style="width: 960px; height: 540px; background: #FFFFFF;">
+  <div style="background: #544948; padding: 6px 32px;">
+    <p style="font-size: 11px; color: white; margin: 0; letter-spacing: 1px;">PART V: STATE OF THE ART</p>
+  </div>
+  <div style="padding: 20px 32px 0; width: 896px;">
+    <h1 style="font-size: 28px; font-family: Georgia, serif; color: #8C1515; margin: 0;">DeepSeek R1: A Breakthrough (Jan 2025)</h1>
+  </div>
+  <div class="row" style="flex: 1; padding: 16px 32px; gap: 24px;">
+    <div style="flex: 1;">
+      <div style="background: #8C1515; color: white; padding: 12px; border-radius: 6px; margin-bottom: 12px;">
+        <p style="font-size: 12px; font-weight: bold; margin: 0 0 6px;">Key Discovery</p>
+        <p style="font-size: 11px; margin: 0; line-height: 1.5;">Reasoning capabilities emerge from pure RL with verifiable rewards — no CoT supervision needed!</p>
+      </div>
+      <p style="font-size: 13px; font-weight: bold; color: #8C1515; margin: 0 0 10px;">Emergent Capabilities</p>
+      <ul style="font-size: 11px; color: #2E2D29; margin: 0; padding-left: 16px; line-height: 1.6;">
+        <li style="margin-bottom: 6px;">Self-reflection during reasoning</li>
+        <li style="margin-bottom: 6px;">Self-verification of solutions</li>
+        <li style="margin-bottom: 6px;">Extended thinking chains</li>
+        <li>Open-weight model release</li>
+      </ul>
+    </div>
+    <div style="flex: 1;">
+      <p style="font-size: 13px; font-weight: bold; color: #8C1515; margin: 0 0 10px;">Training Approach: GRPO</p>
+      <div style="background: #F4F4F4; padding: 10px 12px; border-radius: 4px; margin-bottom: 10px;">
+        <p style="font-size: 10px; color: #2E2D29; margin: 0; line-height: 1.5;">Group Relative Policy Optimization: rewards based on verifiable outcomes (math correctness, code execution).</p>
+      </div>
+      <p style="font-size: 13px; font-weight: bold; color: #8C1515; margin: 0 0 10px;">Impact</p>
+      <div style="background: #007C92; color: white; padding: 10px 12px; border-radius: 4px; margin-bottom: 10px;">
+        <p style="font-size: 10px; margin: 0; line-height: 1.5;">Sparked wave of "thinking" model variants from all major labs (o1-style reasoning).</p>
+      </div>
+      <div style="background: #2E2D29; color: white; padding: 10px 12px; border-radius: 4px;">
+        <p style="font-size: 10px; margin: 0;"><b>Connection:</b> Validates CRIT's intuition that reasoning should be verified, not just generated.</p>
+      </div>
+    </div>
+  </div>
+</body>
+</html>'''))
+
+# Slide 27: RLVR
+slides.append(('slide27.html', '''<!DOCTYPE html>
+<html>
+<head><meta charset="UTF-8"><link rel="stylesheet" href="custom.css"></head>
+<body class="col" style="width: 960px; height: 540px; background: #FFFFFF;">
+  <div style="background: #544948; padding: 6px 32px;">
+    <p style="font-size: 11px; color: white; margin: 0; letter-spacing: 1px;">PART V: STATE OF THE ART</p>
+  </div>
+  <div style="padding: 20px 32px 0; width: 896px;">
+    <h1 style="font-size: 28px; font-family: Georgia, serif; color: #8C1515; margin: 0;">Reinforcement Learning with Verifiable Rewards</h1>
+  </div>
+  <div class="row" style="flex: 1; padding: 16px 32px; gap: 24px;">
+    <div style="flex: 1;">
+      <p style="font-size: 12px; color: #2E2D29; margin: 0 0 12px; line-height: 1.5;">RLVR uses objective verification (code execution, mathematical proofs) instead of learned reward models.</p>
+      <p style="font-size: 13px; font-weight: bold; color: #8C1515; margin: 0 0 10px;">Key Advantages</p>
+      <ul style="font-size: 11px; color: #2E2D29; margin: 0; padding-left: 16px; line-height: 1.6;">
+        <li style="margin-bottom: 6px;">No reward hacking possible</li>
+        <li style="margin-bottom: 6px;">Perfect signal for verifiable domains</li>
+        <li style="margin-bottom: 6px;">Extends reasoning boundary (not just sampling)</li>
+        <li>Incentivizes correct reasoning early</li>
+      </ul>
+    </div>
+    <div style="flex: 1;">
+      <p style="font-size: 13px; font-weight: bold; color: #8C1515; margin: 0 0 10px;">Verifiable Domains</p>
+      <div style="display: flex; flex-direction: column; gap: 8px;">
+        <div style="background: #007C92; color: white; padding: 8px 10px; border-radius: 4px;">
+          <p style="font-size: 10px; margin: 0;"><b>Math:</b> Check if final answer is numerically correct</p>
+        </div>
+        <div style="background: #007C92; color: white; padding: 8px 10px; border-radius: 4px;">
+          <p style="font-size: 10px; margin: 0;"><b>Code:</b> Execute and verify output matches expected</p>
+        </div>
+        <div style="background: #007C92; color: white; padding: 8px 10px; border-radius: 4px;">
+          <p style="font-size: 10px; margin: 0;"><b>Logic:</b> Formal verification of proofs</p>
+        </div>
+      </div>
+      <div style="background: #8C1515; color: white; padding: 10px 12px; border-radius: 4px; margin-top: 12px;">
+        <p style="font-size: 10px; margin: 0;"><b>Connection to CRIT:</b> Like CRIT's source credibility (θ) — verifiable rewards provide ground truth for evaluation.</p>
+      </div>
+    </div>
+  </div>
+</body>
+</html>'''))
+
+# Slide 28: Self-Verification
+slides.append(('slide28.html', '''<!DOCTYPE html>
+<html>
+<head><meta charset="UTF-8"><link rel="stylesheet" href="custom.css"></head>
+<body class="col" style="width: 960px; height: 540px; background: #FFFFFF;">
+  <div style="background: #544948; padding: 6px 32px;">
+    <p style="font-size: 11px; color: white; margin: 0; letter-spacing: 1px;">PART V: STATE OF THE ART</p>
+  </div>
+  <div style="padding: 20px 32px 0; width: 896px;">
+    <h1 style="font-size: 28px; font-family: Georgia, serif; color: #8C1515; margin: 0;">Self-Verification: Can LLMs Check Themselves?</h1>
+  </div>
+  <div class="row" style="flex: 1; padding: 16px 32px; gap: 24px;">
+    <div style="flex: 1;">
+      <p style="font-size: 12px; color: #2E2D29; margin: 0 0 12px; line-height: 1.5;">Unified generation and verification in a single model, eliminating the need for separate reward models.</p>
+      <p style="font-size: 13px; font-weight: bold; color: #8C1515; margin: 0 0 10px;">Gnosis Approach</p>
+      <div style="background: #F4F4F4; padding: 12px; border-radius: 6px; margin-bottom: 12px;">
+        <p style="font-size: 11px; color: #2E2D29; margin: 0; line-height: 1.5;">A ~5M parameter verifier head outperforms billion-parameter reward models and even Gemini 2.5 Pro on ProcessBench!</p>
+      </div>
+      <p style="font-size: 13px; font-weight: bold; color: #8C1515; margin: 0 0 10px;">Key Insight</p>
+      <p style="font-size: 11px; color: #2E2D29; margin: 0; line-height: 1.5;">The model learns to identify errors in its own reasoning during the generation process.</p>
+    </div>
+    <div style="flex: 1;">
+      <p style="font-size: 13px; font-weight: bold; color: #8C1515; margin: 0 0 10px;">Benefits</p>
+      <ul style="font-size: 11px; color: #2E2D29; margin: 0; padding-left: 16px; line-height: 1.6;">
+        <li style="margin-bottom: 6px;">Single model for generate + verify</li>
+        <li style="margin-bottom: 6px;">Shared representations</li>
+        <li style="margin-bottom: 6px;">No separate RM needed</li>
+        <li>Lower inference cost</li>
+      </ul>
+      <div style="background: #007C92; color: white; padding: 10px 12px; border-radius: 4px; margin-top: 14px;">
+        <p style="font-size: 10px; margin: 0;"><b>Connection to CRIT:</b> The maieutics method — helping the model reveal its own understanding through self-examination.</p>
+      </div>
+    </div>
+  </div>
+</body>
+</html>'''))
+
+# Slide 29: Benchmark Limitations
+slides.append(('slide29.html', '''<!DOCTYPE html>
+<html>
+<head><meta charset="UTF-8"><link rel="stylesheet" href="custom.css"></head>
+<body class="col" style="width: 960px; height: 540px; background: #FFFFFF;">
+  <div style="background: #544948; padding: 6px 32px;">
+    <p style="font-size: 11px; color: white; margin: 0; letter-spacing: 1px;">PART V: STATE OF THE ART</p>
+  </div>
+  <div style="padding: 20px 32px 0; width: 896px;">
+    <h1 style="font-size: 28px; font-family: Georgia, serif; color: #8C1515; margin: 0;">Limitations of Current Benchmarks</h1>
+  </div>
+  <div class="row" style="flex: 1; padding: 16px 32px; gap: 24px;">
+    <div style="flex: 1;">
+      <p style="font-size: 13px; font-weight: bold; color: #B83A4B; margin: 0 0 10px;">Major Concerns</p>
+      <ul style="font-size: 11px; color: #2E2D29; margin: 0; padding-left: 16px; line-height: 1.7;">
+        <li style="margin-bottom: 8px;"><b>Data contamination:</b> Test questions in training data</li>
+        <li style="margin-bottom: 8px;"><b>Saturation:</b> Top models near ceiling (e.g., GSM8K >95%)</li>
+        <li style="margin-bottom: 8px;"><b>Narrow scope:</b> Focus on math, coding; neglect open-ended reasoning</li>
+        <li><b>Outcome-only:</b> Ignore process quality</li>
+      </ul>
+    </div>
+    <div style="flex: 1;">
+      <p style="font-size: 13px; font-weight: bold; color: #8C1515; margin: 0 0 10px;">Emerging Solutions</p>
+      <div style="background: #F4F4F4; padding: 10px 12px; border-radius: 4px; margin-bottom: 8px;">
+        <p style="font-size: 10px; margin: 0;"><b>ProcessBench:</b> Step-level evaluation</p>
+      </div>
+      <div style="background: #F4F4F4; padding: 10px 12px; border-radius: 4px; margin-bottom: 8px;">
+        <p style="font-size: 10px; margin: 0;"><b>MuSR:</b> Multi-step reasoning with real-world scenarios</p>
+      </div>
+      <div style="background: #F4F4F4; padding: 10px 12px; border-radius: 4px; margin-bottom: 8px;">
+        <p style="font-size: 10px; margin: 0;"><b>GPQA Diamond:</b> Expert-level, contamination-resistant</p>
+      </div>
+      <div style="background: #007C92; color: white; padding: 10px 12px; border-radius: 4px;">
+        <p style="font-size: 10px; margin: 0;"><b>CRIT approach:</b> Evaluate argument validity and source credibility, not just correctness.</p>
+      </div>
+    </div>
+  </div>
+</body>
+</html>'''))
+
+# Slide 30: CRIT Connections
+slides.append(('slide30.html', '''<!DOCTYPE html>
+<html>
+<head><meta charset="UTF-8"><link rel="stylesheet" href="custom.css"></head>
+<body class="col" style="width: 960px; height: 540px; background: #FFFFFF;">
+  <div style="background: #544948; padding: 6px 32px;">
+    <p style="font-size: 11px; color: white; margin: 0; letter-spacing: 1px;">PART V: STATE OF THE ART</p>
+  </div>
+  <div style="padding: 20px 32px 0; width: 896px;">
+    <h1 style="font-size: 28px; font-family: Georgia, serif; color: #8C1515; margin: 0;">CRIT ↔ Modern Reasoning Evaluation</h1>
+  </div>
+  <div style="flex: 1; padding: 16px 32px;">
+    <p style="font-size: 12px; color: #2E2D29; margin: 0 0 14px; line-height: 1.5;">The Socratic methods in CRIT anticipate many principles underlying modern ML evaluation approaches:</p>
+    <div class="row" style="gap: 12px;">
+      <div style="flex: 1; background: #8C1515; color: white; padding: 12px; border-radius: 6px;">
+        <p style="font-size: 11px; font-weight: bold; margin: 0 0 4px;">Elenchus → Process Verification</p>
+        <p style="font-size: 10px; margin: 0; opacity: 0.9;">Step-by-step validation like PRMs</p>
+      </div>
+      <div style="flex: 1; background: #007C92; color: white; padding: 12px; border-radius: 6px;">
+        <p style="font-size: 11px; font-weight: bold; margin: 0 0 4px;">Dialectic → Self-Consistency</p>
+        <p style="font-size: 10px; margin: 0; opacity: 0.9;">Exploring opposing views, majority voting</p>
+      </div>
+      <div style="flex: 1; background: #B83A4B; color: white; padding: 12px; border-radius: 6px;">
+        <p style="font-size: 11px; font-weight: bold; margin: 0 0 4px;">γ, θ Scores → Reward Models</p>
+        <p style="font-size: 10px; margin: 0; opacity: 0.9;">Validity and credibility as learned scores</p>
+      </div>
+    </div>
+    <div class="row" style="gap: 12px; margin-top: 12px;">
+      <div style="flex: 1; background: #2E2D29; color: white; padding: 12px; border-radius: 6px;">
+        <p style="font-size: 11px; font-weight: bold; margin: 0 0 4px;">Counterfactual → Robustness Testing</p>
+        <p style="font-size: 10px; margin: 0; opacity: 0.9;">"What if" variations to test reasoning</p>
+      </div>
+      <div style="flex: 1; background: #544948; color: white; padding: 12px; border-radius: 6px;">
+        <p style="font-size: 11px; font-weight: bold; margin: 0 0 4px;">Maieutics → Emergent Reasoning</p>
+        <p style="font-size: 10px; margin: 0; opacity: 0.9;">Drawing out latent capability (RLVR)</p>
+      </div>
+      <div style="flex: 1; background: #F4F4F4; color: #2E2D29; padding: 12px; border-radius: 6px;">
+        <p style="font-size: 11px; font-weight: bold; margin: 0 0 4px;">Source Credibility → Verifiable Rewards</p>
+        <p style="font-size: 10px; margin: 0; color: #544948;">Ground truth from execution/proofs</p>
+      </div>
+    </div>
+    <div style="background: #8C1515; color: white; padding: 12px 16px; border-radius: 6px; margin-top: 14px;">
+      <p style="font-size: 11px; margin: 0;"><b>Key Insight:</b> Classical critical thinking frameworks provide principled foundations for modern AI evaluation methods.</p>
+    </div>
+  </div>
+</body>
+</html>'''))
+
+# Slide 31: Part VI Section Divider
+slides.append(('slide31.html', '''<!DOCTYPE html>
+<html>
+<head><meta charset="UTF-8"><link rel="stylesheet" href="custom.css"></head>
+<body class="col center" style="width: 960px; height: 540px; background: linear-gradient(135deg, #8C1515 0%, #2E2D29 100%);">
+  <div style="text-align: center; color: white; padding: 40px;">
+    <p style="font-size: 13px; letter-spacing: 2px; margin: 0 0 16px; opacity: 0.7;">PART VI</p>
+    <h1 style="font-size: 44px; font-family: Georgia, serif; margin: 0 0 16px;">Looking Ahead</h1>
+    <p style="font-size: 16px; margin: 0 0 24px; opacity: 0.9;">Future Directions and Research Opportunities</p>
+    <div style="width: 100px; height: 3px; background: rgba(255,255,255,0.5); margin: 0 auto;"></div>
+  </div>
+</body>
+</html>'''))
+
+# Slide 32: Open Problems
+slides.append(('slide32.html', '''<!DOCTYPE html>
+<html>
+<head><meta charset="UTF-8"><link rel="stylesheet" href="custom.css"></head>
+<body class="col" style="width: 960px; height: 540px; background: #FFFFFF;">
+  <div style="background: #8C1515; padding: 6px 32px;">
+    <p style="font-size: 11px; color: white; margin: 0; letter-spacing: 1px;">PART VI: LOOKING AHEAD</p>
+  </div>
+  <div style="padding: 20px 32px 0; width: 896px;">
+    <h1 style="font-size: 28px; font-family: Georgia, serif; color: #8C1515; margin: 0;">Open Problems in Reasoning Evaluation</h1>
+  </div>
+  <div class="row" style="flex: 1; padding: 16px 32px; gap: 20px;">
+    <div style="flex: 1;">
+      <p style="font-size: 13px; font-weight: bold; color: #8C1515; margin: 0 0 10px;">Fundamental Challenges</p>
+      <ul style="font-size: 11px; color: #2E2D29; margin: 0; padding-left: 16px; line-height: 1.7;">
+        <li style="margin-bottom: 8px;">What makes a reasoning step "correct"?</li>
+        <li style="margin-bottom: 8px;">How do we evaluate reasoning in non-verifiable domains?</li>
+        <li style="margin-bottom: 8px;">Can we separate reasoning quality from knowledge?</li>
+        <li>How do we handle subjective or contested claims?</li>
+      </ul>
+    </div>
+    <div style="flex: 1;">
+      <p style="font-size: 13px; font-weight: bold; color: #8C1515; margin: 0 0 10px;">Technical Questions</p>
+      <ul style="font-size: 11px; color: #2E2D29; margin: 0; padding-left: 16px; line-height: 1.7;">
+        <li style="margin-bottom: 8px;">Optimal granularity for process supervision?</li>
+        <li style="margin-bottom: 8px;">How to prevent reward hacking in PRMs?</li>
+        <li style="margin-bottom: 8px;">Scaling laws for test-time compute?</li>
+        <li>Self-verification reliability bounds?</li>
+      </ul>
+    </div>
+  </div>
+  <div style="padding: 0 32px 16px;">
+    <div style="background: #007C92; color: white; padding: 10px 14px; border-radius: 6px;">
+      <p style="font-size: 11px; margin: 0;"><b>CRIT Perspective:</b> These questions map to source credibility (θ) and the challenge of validating claims recursively.</p>
+    </div>
+  </div>
+</body>
+</html>'''))
+
+# Slide 33: Research Opportunities
+slides.append(('slide33.html', '''<!DOCTYPE html>
+<html>
+<head><meta charset="UTF-8"><link rel="stylesheet" href="custom.css"></head>
+<body class="col" style="width: 960px; height: 540px; background: #FFFFFF;">
+  <div style="background: #8C1515; padding: 6px 32px;">
+    <p style="font-size: 11px; color: white; margin: 0; letter-spacing: 1px;">PART VI: LOOKING AHEAD</p>
+  </div>
+  <div style="padding: 20px 32px 0; width: 896px;">
+    <h1 style="font-size: 28px; font-family: Georgia, serif; color: #8C1515; margin: 0;">Research Opportunities for CS372</h1>
+  </div>
+  <div class="row" style="flex: 1; padding: 12px 32px; gap: 16px;">
+    <div style="flex: 1;">
+      <p style="font-size: 11px; font-weight: bold; color: #8C1515; margin: 0 0 8px;">Framework Extensions</p>
+      <ul style="font-size: 10px; color: #2E2D29; margin: 0; padding-left: 14px; line-height: 1.6;">
+        <li style="margin-bottom: 4px;">Implement CRIT as automated pipeline</li>
+        <li style="margin-bottom: 4px;">Extend PRM training to open domains</li>
+        <li>Design better counterfactual prompts</li>
+      </ul>
+      <p style="font-size: 11px; font-weight: bold; color: #8C1515; margin: 12px 0 8px;">Verification Methods</p>
+      <ul style="font-size: 10px; color: #2E2D29; margin: 0; padding-left: 14px; line-height: 1.6;">
+        <li style="margin-bottom: 4px;">Combine CoT with step verification</li>
+        <li style="margin-bottom: 4px;">Create CRIT-style benchmarks</li>
+        <li>Develop interpretable evaluation metrics</li>
+      </ul>
+    </div>
+    <div style="flex: 1;">
+      <p style="font-size: 11px; font-weight: bold; color: #007C92; margin: 0 0 8px;">Robustness & Safety</p>
+      <ul style="font-size: 10px; color: #2E2D29; margin: 0; padding-left: 14px; line-height: 1.6;">
+        <li style="margin-bottom: 4px;">Study PRM generalization to OOD</li>
+        <li style="margin-bottom: 4px;">Investigate sycophancy in reasoning</li>
+        <li>Dialectic methods for safety checking</li>
+      </ul>
+      <p style="font-size: 11px; font-weight: bold; color: #007C92; margin: 12px 0 8px;">Practical Applications</p>
+      <ul style="font-size: 10px; color: #2E2D29; margin: 0; padding-left: 14px; line-height: 1.6;">
+        <li style="margin-bottom: 4px;">Study reward hacking in PRMs</li>
+        <li style="margin-bottom: 4px;">Design robust evaluation protocols</li>
+        <li>Build interpretable reasoning systems</li>
+      </ul>
+    </div>
+  </div>
+  <div style="padding: 0 32px 12px;">
+    <div style="background: #8C1515; color: white; padding: 10px 14px; border-radius: 6px;">
+      <p style="font-size: 10px; margin: 0;"><b>Project Ideas Welcome:</b> Combine CRIT's principled framework with modern ML techniques for reasoning evaluation.</p>
+    </div>
+  </div>
+</body>
+</html>'''))
+
+# Slide 34: Summary
+slides.append(('slide34.html', '''<!DOCTYPE html>
+<html>
+<head><meta charset="UTF-8"><link rel="stylesheet" href="custom.css"></head>
+<body class="col" style="width: 960px; height: 540px; background: #FFFFFF;">
+  <div style="background: #8C1515; padding: 6px 32px;">
+    <p style="font-size: 11px; color: white; margin: 0; letter-spacing: 1px;">SUMMARY</p>
+  </div>
+  <div style="padding: 20px 32px 0; width: 896px;">
+    <h1 style="font-size: 28px; font-family: Georgia, serif; color: #8C1515; margin: 0;">The Reasoning Evaluation Landscape</h1>
+  </div>
+  <div style="flex: 1; padding: 16px 32px;">
+    <div class="row" style="gap: 16px; margin-bottom: 16px;">
+      <div style="flex: 1; background: #8C1515; color: white; padding: 14px; border-radius: 6px;">
+        <p style="font-size: 12px; font-weight: bold; margin: 0 0 6px;">Socratic Foundation</p>
+        <p style="font-size: 10px; margin: 0; line-height: 1.5;">Definition, Elenchus, Dialectic, Maieutics provide principled approaches to critical inquiry.</p>
+      </div>
+      <div style="flex: 1; background: #B83A4B; color: white; padding: 14px; border-radius: 6px;">
+        <p style="font-size: 12px; font-weight: bold; margin: 0 0 6px;">CRIT Framework</p>
+        <p style="font-size: 10px; margin: 0; line-height: 1.5;">Systematic validation with γ (validity) and θ (credibility) scores for arguments.</p>
+      </div>
+    </div>
+    <div class="row" style="gap: 16px; margin-bottom: 16px;">
+      <div style="flex: 1; background: #007C92; color: white; padding: 14px; border-radius: 6px;">
+        <p style="font-size: 12px; font-weight: bold; margin: 0 0 6px;">Reasoning Methods</p>
+        <p style="font-size: 10px; margin: 0; line-height: 1.5;">CoT, Self-Consistency, ToT enable explicit reasoning in LLMs.</p>
+      </div>
+      <div style="flex: 1; background: #2E2D29; color: white; padding: 14px; border-radius: 6px;">
+        <p style="font-size: 12px; font-weight: bold; margin: 0 0 6px;">Evaluation Tools</p>
+        <p style="font-size: 10px; margin: 0; line-height: 1.5;">ORMs, PRMs, and verifiable rewards assess reasoning quality.</p>
+      </div>
+    </div>
+    <div style="background: #F4F4F4; padding: 14px 16px; border-radius: 6px;">
+      <p style="font-size: 12px; font-weight: bold; color: #8C1515; margin: 0 0 6px;">Key Takeaway</p>
+      <p style="font-size: 11px; color: #2E2D29; margin: 0; line-height: 1.5;">Classical critical thinking frameworks (CRIT) and modern ML techniques (PRMs, RLVR) converge on the same insight: <b>process matters as much as outcome</b>.</p>
+    </div>
+  </div>
+</body>
+</html>'''))
+
+# Slide 35: Key Takeaways
+slides.append(('slide35.html', '''<!DOCTYPE html>
+<html>
+<head><meta charset="UTF-8"><link rel="stylesheet" href="custom.css"></head>
+<body class="col" style="width: 960px; height: 540px; background: #FFFFFF;">
+  <div style="background: #8C1515; padding: 6px 32px;">
+    <p style="font-size: 11px; color: white; margin: 0; letter-spacing: 1px;">SUMMARY</p>
+  </div>
+  <div style="padding: 20px 32px 0; width: 896px;">
+    <h1 style="font-size: 28px; font-family: Georgia, serif; color: #8C1515; margin: 0;">Key Takeaways</h1>
+  </div>
+  <div style="flex: 1; padding: 16px 32px;">
+    <div style="display: flex; flex-direction: column; gap: 12px;">
+      <div style="background: #F4F4F4; padding: 12px 16px; border-radius: 6px; border-left: 4px solid #8C1515;">
+        <p style="font-size: 12px; font-weight: bold; color: #8C1515; margin: 0 0 4px;">1. Reasoning ≠ Pattern Matching</p>
+        <p style="font-size: 11px; color: #2E2D29; margin: 0;">LLMs need structured approaches to move from System 1 to System 2 thinking.</p>
+      </div>
+      <div style="background: #F4F4F4; padding: 12px 16px; border-radius: 6px; border-left: 4px solid #007C92;">
+        <p style="font-size: 12px; font-weight: bold; color: #007C92; margin: 0 0 4px;">2. Verification is Essential</p>
+        <p style="font-size: 11px; color: #2E2D29; margin: 0;">Whether through elenchus (CRIT) or PRMs (ML), step-by-step validation improves reliability.</p>
+      </div>
+      <div style="background: #F4F4F4; padding: 12px 16px; border-radius: 6px; border-left: 4px solid #B83A4B;">
+        <p style="font-size: 12px; font-weight: bold; color: #B83A4B; margin: 0 0 4px;">3. Counter-Arguments Matter</p>
+        <p style="font-size: 11px; color: #2E2D29; margin: 0;">Dialectic thinking and self-consistency expose weaknesses in reasoning.</p>
+      </div>
+      <div style="background: #F4F4F4; padding: 12px 16px; border-radius: 6px; border-left: 4px solid #2E2D29;">
+        <p style="font-size: 12px; font-weight: bold; color: #2E2D29; margin: 0 0 4px;">4. Process Over Outcome</p>
+        <p style="font-size: 11px; color: #2E2D29; margin: 0;">Correct final answers can come from flawed reasoning; evaluate the journey, not just the destination.</p>
+      </div>
+      <div style="background: #F4F4F4; padding: 12px 16px; border-radius: 6px; border-left: 4px solid #544948;">
+        <p style="font-size: 12px; font-weight: bold; color: #544948; margin: 0 0 4px;">5. Classical Meets Modern</p>
+        <p style="font-size: 11px; color: #2E2D29; margin: 0;">2,400-year-old Socratic methods provide foundations for cutting-edge AI evaluation.</p>
+      </div>
+    </div>
+  </div>
+</body>
+</html>'''))
+
+# Slide 36: References
+slides.append(('slide36.html', '''<!DOCTYPE html>
+<html>
+<head><meta charset="UTF-8"><link rel="stylesheet" href="custom.css"></head>
+<body class="col" style="width: 960px; height: 540px; background: #FFFFFF;">
+  <div style="background: #544948; padding: 6px 32px;">
+    <p style="font-size: 11px; color: white; margin: 0; letter-spacing: 1px;">REFERENCES</p>
+  </div>
+  <div style="padding: 20px 32px 0; width: 896px;">
+    <h1 style="font-size: 28px; font-family: Georgia, serif; color: #8C1515; margin: 0;">Key Papers and Resources</h1>
+  </div>
+  <div class="row" style="flex: 1; padding: 12px 32px; gap: 20px;">
+    <div style="flex: 1;">
+      <p style="font-size: 11px; font-weight: bold; color: #8C1515; margin: 0 0 8px;">CRIT & Critical Thinking</p>
+      <ul style="font-size: 9px; color: #2E2D29; margin: 0; padding-left: 14px; line-height: 1.6;">
+        <li style="margin-bottom: 4px;">Chang (2023). "Prompting LLMs With the Socratic Method"</li>
+        <li style="margin-bottom: 4px;">Paul & Elder (2007). "Critical Thinking: The Art of Socratic Questioning"</li>
+        <li>Browne & Keeley (2001). "Asking the Right Questions"</li>
+      </ul>
+      <p style="font-size: 11px; font-weight: bold; color: #007C92; margin: 12px 0 8px;">Reasoning Methods</p>
+      <ul style="font-size: 9px; color: #2E2D29; margin: 0; padding-left: 14px; line-height: 1.6;">
+        <li style="margin-bottom: 4px;">Wei et al. (2022). "Chain-of-Thought Prompting" (NeurIPS)</li>
+        <li style="margin-bottom: 4px;">Wang et al. (2023). "Self-Consistency" (ICLR)</li>
+        <li style="margin-bottom: 4px;">Yao et al. (2023). "Tree of Thoughts"</li>
+        <li>Kojima et al. (2022). "Zero-shot CoT"</li>
+      </ul>
+    </div>
+    <div style="flex: 1;">
+      <p style="font-size: 11px; font-weight: bold; color: #B83A4B; margin: 0 0 8px;">Reward Models & Evaluation</p>
+      <ul style="font-size: 9px; color: #2E2D29; margin: 0; padding-left: 14px; line-height: 1.6;">
+        <li style="margin-bottom: 4px;">Lightman et al. (2023). "Let's Verify Step by Step" (OpenAI)</li>
+        <li style="margin-bottom: 4px;">Cobbe et al. (2021). "Training Verifiers" (GSM8K)</li>
+        <li style="margin-bottom: 4px;">Uesato et al. (2022). "Solving Math Word Problems"</li>
+        <li>Wang et al. (2024). "Math-Shepherd"</li>
+      </ul>
+      <p style="font-size: 11px; font-weight: bold; color: #2E2D29; margin: 12px 0 8px;">State of the Art (2025)</p>
+      <ul style="font-size: 9px; color: #2E2D29; margin: 0; padding-left: 14px; line-height: 1.6;">
+        <li style="margin-bottom: 4px;">DeepSeek (2025). "R1: Incentivizing Reasoning"</li>
+        <li style="margin-bottom: 4px;">Qu et al. (2025). "Gnosis: Self-Verification"</li>
+        <li style="margin-bottom: 4px;">Wen et al. (2025). "CoT-Pass@K"</li>
+        <li>Snell et al. (2024). "Scaling LLM Test-Time Compute"</li>
+      </ul>
+    </div>
+  </div>
+</body>
+</html>'''))
+
+# Slide 37: Questions slide
+slides.append(('slide37.html', '''<!DOCTYPE html>
+<html>
+<head><meta charset="UTF-8"><link rel="stylesheet" href="custom.css"></head>
+<body class="col center" style="width: 960px; height: 540px; background: linear-gradient(135deg, #8C1515 0%, #2E2D29 100%);">
+  <div style="text-align: center; color: white; padding: 40px;">
+    <p style="font-size: 13px; letter-spacing: 2px; margin: 0 0 20px; opacity: 0.7;">CS372: AGI FOR REASONING, PLANNING AND DECISION MAKING</p>
+    <h1 style="font-size: 48px; font-family: Georgia, serif; margin: 0 0 24px;">Questions?</h1>
+    <div style="width: 100px; height: 3px; background: rgba(255,255,255,0.5); margin: 0 auto 28px;"></div>
+    <div style="background: rgba(255,255,255,0.1); padding: 20px 32px; border-radius: 10px; max-width: 600px; margin: 0 auto;">
+      <p style="font-size: 13px; margin: 0 0 12px; opacity: 0.9;">Discussion Topics:</p>
+      <p style="font-size: 11px; margin: 0 0 8px; opacity: 0.85; line-height: 1.5;">How can CRIT's credibility scoring (θ) extend to contested domains?</p>
+      <p style="font-size: 11px; margin: 0 0 8px; opacity: 0.85; line-height: 1.5;">What are the limits of self-verification in LLMs?</p>
+      <p style="font-size: 11px; margin: 0; opacity: 0.85; line-height: 1.5;">Interpretability (CRIT) vs Scalability (PRMs) — which to prioritize?</p>
+    </div>
+    <p style="font-size: 12px; margin: 28px 0 0; opacity: 0.6;">Lecture 4 | Professor Edward Y. Chang | Stanford University</p>
+  </div>
+</body>
+</html>'''))
+
+# Write all slides
+for filename, content in slides:
+    filepath = os.path.join('/home/claude/lecture4', filename)
+    with open(filepath, 'w') as f:
+        f.write(content)
+    print(f"Created {filename}")
+
+print(f"\\nCreated {len(slides)} slides (16-37)")

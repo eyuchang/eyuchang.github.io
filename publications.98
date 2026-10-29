@@ -1,0 +1,196 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML 3.0//EN">
+<HTML>  
+</HEAD>
+<BODY TEXT="#000000" LINK="#CC3300" VLINK="#10057F" ALINK="#CC3300" BGCOLOR="#FFFFFF">  
+
+<TABLE BORDER="0" CELLPADDING="2" CELLSPACING="0" WIDTH="600">    
+<TR>
+<TD ALIGN=LEFT VALIGN=MIDDLE BGCOLOR="#330066">
+<FONT FACE="Arial, Helvetica" COLOR="#FFFFFF"><FONT SIZE ="5"><B>Publications</B></FONT>
+</TD>
+</TR>                
+<TR>
+<TD ALIGN=LEFT VALIGN=MIDDLE BGCOLOR="#F1FF72">
+<FONT FACE="Arial, Helvetica" COLOR="#000000">
+<FONT SIZE="4"><B>Edward Chang</B></FONT></FONT>
+</TD>
+</TR>                
+<TR>
+<TD>
+Hyperlinks access the publication in postscript format. Italicized titles indicate that the publication is available in hard-copy only. Publications are divided roughly into topic categories. 
+</TD>
+</TR>
+</TABLE>
+
+<br>
+<TABLE BORDER="0" CELLPADDING="2" CELLSPACING="0" WIDTH="600">
+<TR>
+<TD ALIGN=LEFT VALIGN=MIDDLE BGCOLOR="#330066">
+<FONT FACE="Arial, Helvetica" COLOR="#F1FF72">
+<FONT SIZE="3"><B>Image Databases:</B></FONT></FONT>
+</TD>
+</TR>
+</TABLE>
+             
+<ul>
+<li><a href="http://www-db.stanford.edu/~echang/papers/rime.ps">
+RIME: A Replicated Image Detector for the World-Wide Web</a>,
+<br>Edward Chang, James Ze Wang, Chen Li, and Gio Wiederhold,
+<br>Proceedings of SPIE Symposium of Voice, Video, and Data Communications,
+<br>Boston, November 1998.
+<li>
+<i>Clustering for Similarity Search in High-Dimensional Spaces</i>,
+<br>Chen Li, Edward Chang, Hector Garcia-Molina, 
+James Wang, and Gio Wiederhold,
+<br>Technical Report SIDL-WP-1998-0100, Feburary 1999. 
+</ul>
+
+<br>
+<TABLE BORDER="0" CELLPADDING="2" CELLSPACING="0" WIDTH="600">
+<TR>
+<TD ALIGN=LEFT VALIGN=MIDDLE BGCOLOR="#330066">
+<FONT FACE="Arial, Helvetica" COLOR="#F1FF72">
+<FONT SIZE="3"><B>Digital TV:</B></FONT></FONT>
+</TD>
+</TR>
+</TABLE>
+             
+<ul>
+<li><a href="http://www-db.stanford.edu/~echang/papers/medic.html">
+MEDIC: A Memory & Disk Cache for Multimedia Clients</a>,
+<br>Edward Chang and Hector Garcia-Molina,
+<br>Proceedings of the 6th IEEE International Conference on Multimedia Computing and Systems,
+<br>Florence, Italy, June 1999 (to appear).
+<li><a href="http://www-db.stanford.edu/~echang/papers/idms98.html">
+An Image Coding and Reconstruction Scheme for Mobile Computing</a>,
+<br>Edward Chang,
+<br>Proceedings of the 5th IDMS (Springer-Verlag LNCS #1483), p.137-148,
+<br>Oslo, Norway, September 1998.
+<br>(Selected for journal submission)
+</ul>
+
+<br>
+<TABLE BORDER="0" CELLPADDING="2" CELLSPACING="0" WIDTH="600">
+<TR>
+<TD ALIGN=LEFT VALIGN=MIDDLE BGCOLOR="#330066">
+<FONT FACE="Arial, Helvetica" COLOR="#F1FF72">
+<FONT SIZE="3"><B>Document Classification:</B></FONT></FONT>
+</TD>
+</TR>
+</TABLE>
+
+<ul>
+<li><i>PowerBookmarks: A System for Personalizable Web
+Information Organization, Sharing, and Management</i>,
+<br>With Wen-Syan Li at NEC Research Labs,
+<br>Proceedings of ACM Sigmod (Demo Track), Philadephia, June 1999 (to appear).
+<li>
+<i>On Constructing Personalized Navigation Trees for Web Documents</i>,
+<br>With Wen-Syan Li at NEC Research Labs,
+<br>Proceedings of WWW8, Toronto, May 1999 (to appear).
+</ul>
+
+<p>
+</TABLE>
+<br>
+<TABLE BORDER="0" CELLPADDING="2" CELLSPACING="0" WIDTH="600">
+<TR>
+<TD ALIGN=LEFT VALIGN=MIDDLE BGCOLOR="#330066">
+<FONT FACE="Arial, Helvetica" COLOR="#F1FF72">
+<FONT SIZE="3"><B>Media Servers:</B></FONT></FONT>
+</TD>
+</TR>
+</TABLE>
+             
+<ul>
+<li><a href="http://www-db.stanford.edu/~echang/papers/2db.ps">
+2D BubbleUp - Managing Parallel Disks for Media Servers</a>,
+<br>Edward Chang, Hector Garcia-Molina, and Chen Li,
+<br>Proceedings of the 5th International Conference
+on Foundations of Data Organization (FODO), p221-230,
+<br>Kobe, Japan, November 1998.
+<br>
+<li>
+<i>Accounting for Memory Use, Cost, Throughput, and
+Latency in the Design of a Media Server</i>,
+<br>Edward Chang and Hector Garcia-Molina,
+<br>Technical Report SIDL-WP-1998-0096, May 1998.
+<br>(In preparation for journal publication)
+<br>
+
+<li><a href="http://www-db.stanford.edu/~echang/papers/ride98.ps">
+Cost-Based Media Server Design</a>,
+<br>Edward Chang and Hector Garcia-Molina,
+<br>[IEEE Copyright] Proceedings of the 8th Research Issues in Data Engineering, p.76-83,
+<br>Orlando, February, 1998.
+<br>(Selected for journal submission)
+<br>
+
+<li><a href="http://www-db.stanford.edu/~echang/papers/bubbleup.ps">
+BubbleUp: Low Latency Fast-Scan for Media Servers</a>,
+<br>Edward Chang and Hector Garcia-Molina,
+<br>[ACM Copyright] Proceedings of the 5th ACM International Conference on Multimedia, p.87-98,
+<br>Seattle, November 1997.
+<br>
+
+<li><a href="http://www-db.stanford.edu/~echang/papers/mm-vldb.ps">
+Effective Memory Use in a Media Server</a>,
+<br>Edward Chang and Hector Garcia-Molina,
+<br>[VLDB Copyright] Proceedings of the 23rd Very Large Data Base (VLDB) Conference, p.496-505,
+<br>Athens, Greece, August 1997.
+<br>
+
+<li><a href="http://computer.org/multimedia/mu1997/u3toc.htm">
+Reducing Initial Latency in Media Servers</a>,
+<br>Edward Chang and Hector Garcia-Molina,
+<br>[IEEE Copyright] IEEE Multimedia, vol.4, no.3, p.50-61, July 1997.
+<br>
+
+<li>
+<i>Reducing Initial Latency in a Multimedia Storage System</i>,
+<br>Edward Chang and Hector Garcia-Molina,
+<br>[IEEE Copyright] Proceedings of the 3rd International Workshop on Multimedia Databases, p.2-11,
+<br>New York, August 1996.
+<br>
+
+<li><a href="http://www-db.stanford.edu/~echang/papers/proof.ps">
+Minimizing Memory Requirements in Media Servers</a>,
+<br>Edward Chang and Yi-Yin Chen,
+<br>Technical Report SIDL-WP-1996-0045, March 1996. 
+<br>
+</ul>
+
+<br>
+<TABLE BORDER="0" CELLPADDING="2" CELLSPACING="0" WIDTH="600">
+<TR>
+<TD ALIGN=LEFT VALIGN=MIDDLE BGCOLOR="#330066">
+<FONT FACE="Arial, Helvetica" COLOR="#F1FF72">
+<FONT SIZE="3"><B>Transaction Processing:</B></FONT></FONT>
+</TD>
+</TR>
+</TABLE>
+
+<ul>
+<li>
+<i>
+Transaction Manager Design and Implementation - An
+Object Oriented Approach,
+</i>
+<br>Edward Chang,
+<br>First International Relational Database Conference, Orlando, 1992.
+<br>
+
+<li>
+<i>An Open and Extensible Event-based Transaction Manager,
+</i>
+<br>
+Edward Cheng, Edward Chang, and et al.,
+<br>
+Proceedings of the Summer 1991 USENIX.
+</ul>
+
+Back to Ed's <a href="http://www-db.stanford.edu/~echang/">home page</a>.   
+</TABLE>
+                  
+</BODY>
+

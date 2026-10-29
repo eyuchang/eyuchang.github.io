@@ -1,0 +1,353 @@
+\section{Core Technologies}
+\label{sec-core}
+
+In the following paragraphs, I enumerate the technologies
+we plan to work on to tackle the challenges, 
+beginning with our efforts in synchronizing media streams.
+
+\subsection{Temporal Indexing for Scene Synchronization}
+
+Content interactivity allows a viewer to change the content
+of a program locally. For instance, the viewer can change
+the attributes (e.g., colors, positions and speed)
+of the objects in a scene. 
+Content interactivity can be enriched if the TV is connected
+to a bi-directional Internet back-channel.
+Using distance education as an example,
+a student can interact with a 3D globe
+during a world geography lecture.
+The instructor can quiz the students on-line to understand 
+how the students absorb the lecture materials and can make real-time
+adjustments.
+
+To support content interactivity, the receiver must synchronize
+the rendering of the data objects in a scene. 
+%Fortunately, much low-hanging fruit 
+%in this area is ready to be plunked. 
+This knowledge is already available.
+For example, MPEG-4 \cite{Mp4} has proposed standards to
+separate interactive objects from the scenes, to change
+visual or acoustic properties of an object, and to
+specify the spatio-temporal relations between objects.
+Many studies have also proposed synchronization models
+and languages \cite{Hyp92,Co96,Gr95,Ha96,HFK95,Hkm97}.
+However, neither MPEG-4 nor these studies 
+address {\em data organization}
+and {\em QoS adaptivity} issues, issues I intend to investigate.
+
+\begin{figure}[t]
+\epsfysize=140pt
+\centerline{\epsffile{fig-scene-desc.eps}}
+\caption{An Example Scene Description.}
+\label{fig-scene-desc}
+\end{figure}
+                  
+Figure~\ref{fig-scene-desc} shows a schematic example of these issues,
+an MPEG-4 scene description of a simplified geography
+lecture. The scene at its top level is divided into four
+objects: a 2D background, furniture, a white board and 
+an instructor.
+The furniture ``object'' consists of a desk, a chair and a globe
+``subobject.''  The instructor object consists of a 
+voice and a sprite subobject.  
+Of these objects, a student 
+can interact with the white board and the globe.
+What this means is that the 2D background and the instructor 
+are broadcast via satellite, and the furniture and white board
+are delivered via the Internet. The receiver faces the
+challenge of synchronizing
+these two streams in both spatial and temporal dimensions.
+
+To simplify our discussion,
+let us focus on the temporal synchronization.
+The receiver must properly synchronize two streams in the temporal
+dimension.  If streams are delivered and
+rendered in real-time, the temporal synchronization may not be
+a major problem since the receiver can render the objects in
+the streams as they arrive. However, if the viewer issues a 
+pause, the streams may be stored on the local disk, and how 
+they are stored on disk will affect their subsequent
+retrieval. 
+%For example, the 
+%temporarily related objects can be stored contiguously
+%on disk. This approach, however, may not be feasible
+%if objects appear in many scenes.
+%Various data organization policies will be experimented with
+%to discover rules for storing temporally related data.
+
+When a data object
+is referenced, it and all its temporally related objects should be
+found quickly, and, once requested, be retrieved efficiently.
+Indexing temporally related objects can be tricky.
+In principle, all temporally related object should be
+stored contiguously on disk to minimize the disk latency
+necessary to retrieve them.
+However, since an object may be shared in many scenes,
+replication may not always be desirable. One alternative is
+storing shared objects in the middle tracks so their
+access latency is constrainted. Another alternative
+is storing shared objects on the outer tracks to take
+advantage of their higher data transfer rates.
+We will experiment with various data placement policies to
+examine if some rules of thumb can work most of the time.
+
+It seems that building temporal indexes at the scene level is
+appropriate. Once a scene can be located, the
+scene description can tell where its data objects
+reside. I believe that the combination of hashing and XML
+may be an appropriate structure for indexing scenes \cite{PBC99}.
+A hash table provides fast scene lookup; XML
+provides the flexibility to describe semistructured
+objects in a scene. We will investigate how to
+deal with efficient updates (primarily necessary because of changes
+of the object's location)
+and queries on XML structures \cite{Abi97,Bun97,MW99}.
+
+One useful feature that the receiver can support is video
+editing (changing the temporal sequence of 
+scenes). A video editing tool can combine scenes from
+different videos into a customized clip. Supporting
+video editing introduces additional scene management issues.
+When a scene is shared by two or more clips, the scene
+should not be copied entirely. A scene is copied only
+when its substantial content is modified. Otherwise,
+we may want to create a shell scene, which maintains
+links to its parent scene and keeps only those objects that it
+modified.
+              
+\subsection{Caching and Prefetching Techniques}
+
+Viewing interactivity allows viewers to select their own
+temporal view of the TV content in real time.
+A temporal view is created by a time-shift VCR-like 
+operation---pause, replay or fast-forward. Extending a DRAM cache
+by adding a disk increases the cache size and thereby
+enables the support of these time-shift operations economically.
+However, adding a disk to a DRAM cache also increases the complexity of
+the receiver's buffer management.
+This increased complexity is primarily introduced by the fact that
+video and audio data must be made available continuously
+to meet {\em real-time} playback deadlines \cite{ex9}, or playback 
+interruptions occur. In addition, to achieve acceptable 
+interactive performance,
+the buffer manager must make the requested data available
+in main memory with {\em minimum initial latency}, e.g.,
+when a viewer issues a replay, the response time should be very short.
+Satisfying these two potentially conflicting performance 
+objectives with minimum DRAM (and hence at minimum cost) 
+is a challenging design task.
+For instance, in the geography lecture example, a
+student my click on the globe object on the desk to request a
+video clip about the earth, while the instructor
+is speaking. We do not want to interrupt the
+continuation of the audio track but we also want
+to render the video clip as soon as possible.
+To deal with these conflicting goals will be a challenge.
+
+Much work has been done at the server side to schedule IOs
+for retrieving
+multimedia data \cite{ex121,ex86,ex8-1,ex18,ex302,ex10}.
+It is important to note that the {\em receiver-side}
+analysis differs from these more
+``traditional'' server-side analyses.
+In particular, in a server environment, the server has full control of
+the data generation rate, while at the receiver, data arrival (from
+the network) is unpredictable.
+In other words, the server schedules events while the receiver
+reacts to events.
+
+To achieve minimum initial latency,
+the buffer manager
+must be able to service an interactive request
+promptly. Since the disk IO is the bottleneck of
+the performance, the objective is to schedule IOs
+in the right order so that the disk arm on the one hand can
+quickly service the newly requested
+interactive task and on the other hand can fulfill
+the real-time constraints of other data objects.
+                                         
+Three techniques for making IO scheduling more flexible can
+be explored. They are: {\em data
+prefetching}, {\em caching}, and {\em data placement}.
+When the disk bandwidth is under-utilized, the disk
+can be scheduled to perform prefetching
+for continuous data so that when
+an interactive request arrives, a sufficient amount of
+continuous data has
+been staged in main memory to meet their real-time
+requirements. This gives the disk arm
+freedom to service the interactive request immediately.
+To minimize the DRAM requirement (and hence reduce the
+cost of the receiver), the buffer manager
+should minimize disk latency, which requires implementing
+intelligent disk-scheduling and data-placement policies.
+We will evaluate the tradeoffs between
+various factors (e.g., cost, speed and complexity) and devise
+efficient and cost-effective buffer management strategies
+for the receiver to meet the low initial latency goal 
+under real-time data constraints.
+                              
+\subsection{QoS-Adaptive Buffer Management}
+
+Adding complexity to the problems, the buffer manager must be
+{\em QoS adaptive} and must be able to scale gracefully in the following
+two areas:
+\begin{itemize}
+\item Resources:
+As mentioned earlier, the
+available hardware resources can differ from one receiver
+to another. The local resources may not be adequate
+to support a particular interactive scenario.
+For instance, interacting with an object in a scene 
+may require downloading a high
+resolution video clip, which the processor cannot decode
+in real-time.  Therefore, it is critical for the resource 
+manager to be adaptive to
+the resource constraints and to degrade, if degradation is
+unavoidable, in a graceful manner.  
+\item QoS requirements:
+The QoS preference can be different from one viewer to another.
+For instance, some students watching a televised lecture 
+may prefer seeing the write board
+to the fidelity of the video, or vice versa.
+\end{itemize}
+
+The degradation of content can happen on two different
+levels: on the object level and on the scene level.
+                                                 
+\begin{itemize}
+\item On the object level, a layered coding scheme can
+be used so that only selected layers are decoded to achieve
+the targeted QoS.  Much effort has been devoted to developing a
+layered coding scheme that supports scalable QoS \cite{ex220,ex62},
+and there have also been studies on QoS adaptivity
+in the network transport layer \cite{ex56,ex96,ex95}.
+We will evaluate these technologies and choose the ones
+that suit our needs.
+
+\item On the scene level, some data objects
+that are occluded can be kept from
+being processed. The remaining objects can be scheduled
+based on a combination of the viewer's QoS specification
+and the delay functions of the data objects. The goal
+of the scheduler is to maximize the total QoS
+under the resource constraints.
+Suppose that in the geography lecture example the
+system resources cannot render both the white board object
+and the instructor object. In this case the resource manager
+renders the object that receives a higher QoS assignment   
+from the student.
+\end{itemize}
+
+The challenge posed by all the above issues---caching, data prefetching
+and placement, QoS-adaptivity, initial latency, real-time
+data constraints and cost---will be to
+devise a resource management policy that satisfies all
+requirements at the same time.
+To achieve this aim, we plan to
+first develop effective techniques for caching, data
+prefetching and placement, and scheduling, and then to
+combine individual techniques to achieve our global
+objective: maximizing QoS. We plan to
+formulate the resource management plans quantitatively.
+Our preliminary idea is to develop a model that considers all
+constraints together with QoS requirements
+and that can be solved efficiently in real time
+for a schedule that achieves maximum total QoS.
+                                                     
+\subsection{Media Query Processing}
+
+To support effective time-shift operations, the receiver needs
+a {\em search engine} that supports fast lookup and retrieval
+of the viewer's desired video clip. For instance, a
+viewer may want to replay a particular section of a
+lecture in which the history of television is discussed.
+The search engine looks up the indexes to find
+scene descriptors that best match the key words ``television
+history'' and returns
+a list of scenes in a ranking order.
+Another way to specify a query is content-based. The viewer can draw
+an object and its trajectory \cite{Ccmsz97}, and 
+the search engine finds
+and returns the scenes that have a similar object 
+moving in the same trajectory. 
+
+For each video, the search engine builds its scene descriptors and stores
+these descriptors in the database.  This process can be divided into
+two major steps: {\em feature selection} and {\em indexing}. 
+
+{\it Feature selection}
+has enjoyed much attention lately, as is witnessed by the
+large number of recent articles on it.
+For example, \cite{Ccmsz97,Hjw95,Mmz95,Mc96,Zks93} propose
+feature extraction techniques for video, \cite{Bc94,Pfe96} for audio
+and \cite{img11,img12,img13,Pps96,Pzm96,Hkm97} for images.
+In addition to evaluating and using some of these
+existing approaches, we will experiment with 
+a {\em variance control model}
+that decides how fine the features used should be 
+based on 1) the user's definition of a ``match'' 
+and 2) the size of the database.  Take image searching as an example.
+If one wants to find near-copies of an image,
+the search engine should extract fine details
+from the query image and perform a close match.
+If one wants to find  
+images of similar colors that are not necessarily
+at the same spots, the seach engine
+can extract a coarser color distribution from the query image
+to perform the lookup.  Consider the
+size of the database. While a small database 
+(the typical database of a receiver) requires a 
+small set of features to tell media objects apart, a
+large image database (the typical database of a content provider)
+requires a large set of features.
+Intuition tells us that the selection of features
+during the indexing and query processing steps
+should depend on the semantics of
+the search, the size of the database, and the 
+available resources.  We will investigate
+if this variance-controlled approach can be fruitful.
+
+Content-based retrieval
+is inherently expensive, especially when
+it needs a large number of dimensions to characterize the
+target object (e.g., an image or a video scene).
+There is simply no way to
+build an index on disk such that {\em all} nearest neighbors to {\em
+any} query point are physically near on disk.
+Fortunately, in many cases it is
+sufficient to perform an {\em approximate search} that returns many
+but not all nearest neighbors~\cite{AM94,Cla94,IM98,Jk97,KOR98}.  (A
+feature vector is often an approximate characterization of an object,
+so we are already dealing with approximations anyway.)
+I have recently proposed a
+clustering/indexing combined scheme that achieves approximate
+similarity search with high efficiency \cite{Lch99}.
+This proposed clustering/indexing combined scheme should
+provide a solid foundation for continued work,
+but many challenges remain. We are, for one, not
+convinced that the Euclidean distance
+is the only way to measure similarity for multimedia data.
+Thus, we are investigating other similarity measures
+(e.g., Hamming distance, etc.). For another,
+we think similarity should be personalizable.
+We will thus investigate new measures for similarity.
+
+Finally, a challenging issue about building indexes for video scenes
+is that some scenes may have missing features and that different
+scenes may be best represented by different sets of
+features.  For instance, the video frames in a lecture and in a news program
+may provide little useful information about the content
+of the program if all they show is a ``talking head.''
+In this case, using their audio tracks
+and text captions may better tell the content. For scenes that
+have motion, on the other hand, audio tracks and captions may not be useful.
+Rather, the motion vectors in the inter-coded frames
+can tell the speed and trajectory
+of the moving object. We plan to investigate if
+assigning different weights to different features may 
+help promote those features with greater significance.
+We will also investigate techniques that can deal
+with missing features when indexes are built.
+
+

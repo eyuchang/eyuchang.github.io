@@ -1,0 +1,231 @@
+<BASE HREF="http://cvpr.ai.mit.edu/2001/papers/reviews.tcl?pid=711">
+<html>
+<head>
+<title>CVPR See Reviews</title>
+
+<link rel=stylesheet type="text/css" href="/2001/art/cvpr.css">
+<script language="JavaScript">
+<!--
+function reFresh(url) {
+  window.location.href=url
+}
+-->
+</script>
+</head>
+<body bgcolor=white>
+<!- Heading -->
+<a name=top></a>
+<table border=0 cellspacing=0 cellpadding=0 width=100%>
+<tr>
+<td valign=middle bgcolor=#333399>
+  <table border=0 cellpadding=5 cellspacing=0 width=100%>
+  <tr>
+  <td height=50 valign=middle align=left>
+    <font face='verdana,helvetica,arial' color=#f3e087 size=+1><b>&nbsp;CVPR Submissions</b></font>
+  </td>
+  <td valign=middle align=center>
+    <font color=white><b>See Reviews</b></font>
+  </td>
+  </tr>
+  </table>
+</td>
+</tr>
+</table>
+
+<table border=0 cellspacing=0 cellpadding=4 width=100%>
+<tr>
+<td valign=top width=1% bgcolor=#eeeeee>
+  <img src="/2001/art/spacer.gif" height=1 width=100><br>
+  <table border=0 cellspacing=0 cellpadding=4 width=100%>
+  <tr><td><a href="http://vision.cse.psu.edu/cvpr2001/">
+    <img src="/2001/art/logo.gif" width=93 height=121 border=0 alt="CVPR 2001"></a></td></tr>
+  <tr><td>&nbsp;</td></tr>
+  <tr>
+  
+  <tr>
+  <td valign=top><a class=sort href="/2001/" target=_top>Instructions</a></td>
+  </tr>
+    
+  <tr>
+  <td valign=top><a class=sort href="/2001/papers/" target=_top>My Papers</a></td>
+  </tr>
+    
+  <tr>
+  <td valign=top><a class=sort href="/2001/profile/" target=_top>My Profile</a></td>
+  </tr>
+    
+  <tr>
+  <td valign=top><a class=sort href="http://vision.cse.psu.edu/cvpr2001/" target=_top>CVPR Home</a></td>
+  </tr>
+    
+  <tr>
+  <td valign=top><a class=sort href="/2001/gateway/login.tcl" target=_top>Login</a></td>
+  </tr>
+    
+  <tr>
+  <td valign=top><a class=sort href="/2001/gateway/logout.tcl" target=_top>Logout</a></td>
+  </tr>
+    
+    </table>
+</td>
+<td valign=top>
+  <table border=0 cellspacing=10 cellpadding=5 width=100%>
+  <tr>
+  <td valign=top bgcolor=#ffffff>
+  
+<p>
+<p>
+Numerical ratings are 1-5, where 5 is the highest score, and 0 represents no entry by the reviewer.
+<p>
+<table border=0 cellspacing=3 cellpadding=2>
+<tr>
+<td class=tblhdr valign=top align=center nowrap><b>Reviews for Paper #711:
+
+	A Variational Bayes Mixture Model for Unsupervised Image Segmentation
+	</b></td> 
+	</tr> </table>
+	<table border=0 cellspacing=3 cellpadding=2>
+	
+<tr>
+<td> <b><font color = #cc0000 >Review #1:</font></b></td>
+</tr>
+<tr>
+<td valign=right valign=top nowrap width = 12%><b>Key Contribution:</td>
+<td bgcolor=#eeeeee width=50%>Applies variational methods for model selection in Gaussian mixture models, results then applied to image segmentation by color.</td>
+</tr>
+<tr>
+<td valign=right valign=top nowrap><b>Comments to Author:</td>
+<td bgcolor=#eeeeee>The math here is fine, reasonably novel, and comprehensible to one well versed in the literature.  <br><br>Hagai Attias also gave a variation solution for Gaussian mixture model selection two years ago; his formulation is more elegant and computationally more tractable but presumably also more approximate.  Or is it?<br><br>The split and merge operations are technically correct but not appear to be well motivated in the sense that they simply constitute moves in a search and do not usefully predict the posterior probability of the new model.  There may be a theorem to that effect in the cited paper by Richardson and Green but I do not remember it.  <br><br>The main weakness is the empirical section.  I have seen these images color-segmented before and the results in this paper are just about the same as everybody else''s.  Moreover, there is no comparison with any other algoriithm, and no reporting of run-times or even time-evolution of the posterior.!
+  In short, this is a very computationally expensive algorithm and there''s no way to decide whether it''s preferable to any other recent image segmentation or GMM model-selection method.</td>
+</tr>
+<tr>
+<td valign=right valign=top nowrap><b>Overall Rating:</td>
+<td bgcolor=#eeeeee>3</td>
+</tr>
+<tr>
+<td valign=right valign=top nowrap><b>Confidence in Review:</td>
+<td bgcolor=#eeeeee>4</td>
+</tr>
+<tr>
+<td valign=right valign=top nowrap><b>Relevance to CVPR:</td>
+<td bgcolor=#eeeeee>4</td>
+</tr>
+<tr>
+<td valign=right valign=top nowrap><b>Novelty:</td>
+<td bgcolor=#eeeeee>3</td>
+</tr>
+<tr>
+<td valign=right valign=top nowrap><b>Clarity:</td>
+<td bgcolor=#eeeeee>3</td>
+</tr>
+<tr>
+<td valign=right valign=top nowrap><b>Correctness:</td>
+<td bgcolor=#eeeeee>4</td>
+</tr>
+<tr>
+<td valign=right valign=top nowrap><b>Experimental Evaluation:</td>
+<td bgcolor=#eeeeee>1</td>
+</tr>
+    
+<tr>
+<td> <b><font color = #cc0000 >Review #2:</font></b></td>
+</tr>
+<tr>
+<td valign=right valign=top nowrap width = 12%><b>Key Contribution:</td>
+<td bgcolor=#eeeeee width=50%>A formulation of unsupervised image segmentation using variational<br>Bayes.  The main contributions are (1) formulating image segmentation<br>so that it is tractable using variational Bayes, and (2) proposing a<br>new method for &quot;split&quot; proposals which assist with model selection.</td>
+</tr>
+<tr>
+<td valign=right valign=top nowrap><b>Comments to Author:</td>
+<td bgcolor=#eeeeee>There are some interesting ideas here and the approach seems<br>promising.  The method appears to use standard variational Bayes<br>assuming independent Gaussian mixtures at every pixel.  I.e. no<br>spatial coherence -- spatial coherence is only enforced in<br>postprocessing.  The main novel contribution appears to be the sampling<br>method for &quot;split&quot; proposals.  I''m no expert on variational Bayes,<br>but if this is really new it should be given much more prominence and<br>explained more clearly.  In particular, why is it an efficient approach<br>to select the column corresponding to the maximum eigenvalue?<br><br>The results are reasonable but not spectacular.<br><br>There are many typos, which make the paper difficult to read.  For<br>example on the first page known-&gt; unknown, prior-&gt; priori, section-&gt;<br>selection.  In the bibliography, Deppster-&gt; Dempster.<br><br>In section 3, you need to clearly explain which equ!
+ations and<br>assumptions are part of the standard variational Bayes approach, and<br>which are specific to this implementation (e.g. pixel-wise<br>independence).<br><br>In section 4.2, the theorem quoted is the standard and very well-known<br>fact that real symmetric matrices can be diagonalized -- it''s<br>confusing to present this as a theorem.<br><br>Please quote the calculation speed somewhere.</td>
+</tr>
+<tr>
+<td valign=right valign=top nowrap><b>Overall Rating:</td>
+<td bgcolor=#eeeeee>3</td>
+</tr>
+<tr>
+<td valign=right valign=top nowrap><b>Confidence in Review:</td>
+<td bgcolor=#eeeeee>3</td>
+</tr>
+<tr>
+<td valign=right valign=top nowrap><b>Relevance to CVPR:</td>
+<td bgcolor=#eeeeee>5</td>
+</tr>
+<tr>
+<td valign=right valign=top nowrap><b>Novelty:</td>
+<td bgcolor=#eeeeee>4</td>
+</tr>
+<tr>
+<td valign=right valign=top nowrap><b>Clarity:</td>
+<td bgcolor=#eeeeee>2</td>
+</tr>
+<tr>
+<td valign=right valign=top nowrap><b>Correctness:</td>
+<td bgcolor=#eeeeee>4</td>
+</tr>
+<tr>
+<td valign=right valign=top nowrap><b>Experimental Evaluation:</td>
+<td bgcolor=#eeeeee>4</td>
+</tr>
+    
+<tr>
+<td> <b><font color = #cc0000 >Review #3:</font></b></td>
+</tr>
+<tr>
+<td valign=right valign=top nowrap width = 12%><b>Key Contribution:</td>
+<td bgcolor=#eeeeee width=50%>Applies Bayes variational method and mixture of gaussians to segmentation.</td>
+</tr>
+<tr>
+<td valign=right valign=top nowrap><b>Comments to Author:</td>
+<td bgcolor=#eeeeee>Experimental section is weak. Needs evaluation of results. Discussion of appropriateness of gaussian mixture model.</td>
+</tr>
+<tr>
+<td valign=right valign=top nowrap><b>Overall Rating:</td>
+<td bgcolor=#eeeeee>3</td>
+</tr>
+<tr>
+<td valign=right valign=top nowrap><b>Confidence in Review:</td>
+<td bgcolor=#eeeeee>3</td>
+</tr>
+<tr>
+<td valign=right valign=top nowrap><b>Relevance to CVPR:</td>
+<td bgcolor=#eeeeee>4</td>
+</tr>
+<tr>
+<td valign=right valign=top nowrap><b>Novelty:</td>
+<td bgcolor=#eeeeee>4</td>
+</tr>
+<tr>
+<td valign=right valign=top nowrap><b>Clarity:</td>
+<td bgcolor=#eeeeee>4</td>
+</tr>
+<tr>
+<td valign=right valign=top nowrap><b>Correctness:</td>
+<td bgcolor=#eeeeee>0</td>
+</tr>
+<tr>
+<td valign=right valign=top nowrap><b>Experimental Evaluation:</td>
+<td bgcolor=#eeeeee>1</td>
+</tr>
+    
+</table>
+<p>
+
+
+  </td>
+  </tr>
+  </table>
+</td>
+</tr>
+</table>
+  
+<table border=0 cellpadding=3 cellspacing=0 width=100%>
+<tr>
+<td bgcolor=#333399 align=center valign=center>
+  <font color=white>Questions? Please contact </font>
+  <a href="mailto:cvpr2001@ai.mit.edu"><font color=white>cvpr2001@ai.mit.edu</font></a>
+</td>
+</tr>
+</table> 
+</body>
+</html>

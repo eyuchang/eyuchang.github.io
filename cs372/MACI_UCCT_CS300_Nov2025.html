@@ -1,0 +1,183 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Two Paradigm Bridges: From LLMs to AGI| Video Summary</title>
+  <meta name="description" content="Expanded summary of Edward Y. Chang's talk for Stanford PhD students. Includes full context, timestamps, and direct video link." />
+  <link rel="canonical" href="https://www.youtube.com/watch?v=rSz_mFK-GAU" />
+  <style>
+    :root {
+      --bg: #ffffff;
+      --fg: #111111;
+      --muted: #555555;
+      --accent: #1e3a8a;
+      --accent-2: #2563eb;
+      --card: #f8fafc;
+      --border: #e5e7eb;
+    }
+    html, body { height: 100%; }
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--fg);
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+      line-height: 1.65;
+      text-rendering: optimizeLegibility;
+    }
+    a { color: var(--accent-2); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    .container { max-width: 1000px; margin: 0 auto; padding: 2.5rem 1.25rem 4rem; }
+    header { margin-bottom: 1.25rem; padding-bottom: 1.25rem; border-bottom: 1px solid var(--border); }
+    h1 { font-size: clamp(1.9rem, 2.5vw, 2.5rem); margin: 0 0 0.25rem 0; letter-spacing: .2px; }
+    .subtitle { color: var(--muted); margin: 0.3rem 0 0; }
+    .meta { display: flex; flex-wrap: wrap; gap: .75rem 1.25rem; margin-top: .75rem; color: var(--muted); font-size: .95rem; }
+    .hero { display: flex; gap: 1rem; flex-wrap: wrap; margin-top: 1rem; }
+    .btn { display: inline-block; padding: .75rem 1rem; border-radius: 10px; border: 1px solid var(--border); background: #eef2ff; font-weight: 600; }
+    .btn.primary { background: var(--accent-2); color: white; border-color: var(--accent-2); }
+    .btn.secondary { background: var(--card); }
+    nav.toc { background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 1rem 1.25rem; margin: 1.5rem 0 2rem; }
+    nav.toc strong { display: block; margin-bottom: .5rem; }
+    section { margin: 2rem 0; }
+    h2 { font-size: 1.35rem; margin-bottom: .5rem; }
+    h3 { font-size: 1.12rem; margin: 1.25rem 0 .4rem; }
+    p { margin: .45rem 0 .85rem; }
+    ul { margin: .4rem 0 1rem 1.25rem; }
+    li { margin: .35rem 0; }
+    .card { background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 1rem 1.25rem; }
+    .ts { font-variant-numeric: tabular-nums; font-size: .92rem; color: var(--muted); white-space: nowrap; }
+    .example { border-left: 3px solid var(--accent-2); padding: .75rem 1rem; background: #f1f5ff; border-radius: 8px; margin: .75rem 0 1rem; }
+    .note { color: var(--muted); font-size: .95rem; }
+    footer { margin-top: 3rem; padding-top: 1rem; border-top: 1px solid var(--border); color: var(--muted); font-size: .95rem; }
+    .backtop { text-align: right; margin-top: .75rem; }
+    @media print { nav.toc { page-break-inside: avoid; } .container { padding: 0; } .btn { display: none; } }
+      .book-cover { display: flex; align-items: center; gap: 1rem; margin-top: 0.75rem; }
+    .book-cover img { max-width: 220px; height: auto; border-radius: 10px; border: 1px solid var(--border); }
+    .book-cover figcaption { font-size: .95rem; color: var(--muted); }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header id="top">
+      <h1>Two Paradigm Bridges: From LLMs to AGI</h1>
+      <p class="subtitle">Expanded video summary for quick reference</p>
+      <div class="meta">
+        <div><strong>Speaker:</strong> Prof. <a href="http://infolab.stanford.edu/~echang/">Edward Y. Chang</a> (Stanford)</div>
+        <div><strong>Audience:</strong> PhD students</div>
+        <div><strong>Theme:</strong> Limits of current LLMs and two bridges toward AGI</div>
+      </div>
+      <div class="hero" role="group" aria-label="Primary actions">
+        <a class="btn primary" href="https://www.youtube.com/watch?v=rSz_mFK-GAU" target="_blank" rel="noopener" aria-label="Watch the video on YouTube">▶ Watch the video</a>
+        <a class="btn secondary" href="https://dl.acm.org/doi/book/10.1145/3749421" target="_blank" rel="noopener" aria-label="Open the MACI book">📘 Book:  2nd edition (June 2025)</a>
+        <a class="btn secondary" href="http://infolab.stanford.edu/~echang/SocraSynth.html">Publications</a>
+        <a class="btn secondary" href="https://online.stanford.edu/courses/cs372-artificial-general-intelligence-reasoning-planning-and-decision-making">Online Course</a>
+      </div>
+      <figure class="book-cover">
+        <img src="MACI-COVER-YouTube.jpeg" alt="Book cover: Multi LLM Agent Collaborative Intelligence: The Path to AGI (ACM Books)" />
+        <figcaption>Cover of <em>Multi LLM Agent Collaborative Intelligence: The Path to AGI (3rd Edition)</em>. To be released by ACM Books at NeurIPS, December 2025.</figcaption>
+      </figure>
+    </header>
+
+    <nav class="toc card" aria-label="Table of contents">
+      <strong>Contents</strong>
+      <ol>
+        <li><a href="#overview">Overview</a></li>
+        <li><a href="#critique">Critique of Current LLMs</a></li>
+        <li><a href="#bridge1">Paradigm Bridge 1: Unified Cognitive Consciousness Theory (UCCT)</a></li>
+        <li><a href="#bridge2">Paradigm Bridge 2: Modulating Behavior in Multi-Agent Debate</a></li>
+        <li><a href="#pillars">Eight pillars of AGI</a></li>
+        <li><a href="#full-summary">Full summary</a></li>
+      </ol>
+    </nav>
+
+    <section id="pillars">
+      <h2>Eight pillars of AGI (MACI system-2 scaffold)</h2>
+      <figure class="card" style="text-align:center">
+        <img src="MACI%20System1-to-System2.png" alt="Classical temple diagram: roof labeled System-2 supported by eight pillars labeled UCCT, CRIT, SocraSynth, EVINCE, BEAM, Dike-Eris, SagaLLM/ALAS, Polynthesis; base labeled System-1 Pattern Repository" style="max-width:100%; height:auto; border-radius:10px;"/>
+        <figcaption class="note">Illustration of the system-2 scaffold over a system-1 pattern repository. Place the PNG next to this HTML file or update the src path.</figcaption>
+      </figure>
+    </section>
+
+    <section id="overview">
+      <h2>Overview</h2>
+      <p>The talk urges new researchers to move past limitations of next‑token prediction. It first critiques the System 1 nature of current LLMs, then proposes two bridges: UCCT for semantic anchoring that shapes a task‑conditioned posterior, and behavior‑aware multi‑agent debate that regulates contention to convert information exchange into progress.</p>
+    </section>
+
+    <section id="critique">
+      <h2>Critique of Current LLMs</h2>
+      <h3>System 1 without grounded semantics <a class="ts" href="https://www.youtube.com/watch?v=rSz_mFK-GAU&t=131s" target="_blank" rel="noopener">[02:11]</a></h3>
+      <ul>
+        <li>LLMs are trained for next‑token prediction and operate as high‑dimensional pattern repositories.</li>
+        <li>Patterns are not the same as semantics. Output often reflects frequency rather than meaning.</li>
+      </ul>
+      <h3>Patches that do not supply real reasoning</h3>
+      <ul>
+        <li>Chain of Thought is described as a prompt pattern, not a formal reasoning method <a class="ts" href="https://www.youtube.com/watch?v=rSz_mFK-GAU&t=212s" target="_blank" rel="noopener">[03:32]</a>.</li>
+        <li>RLHF is instance‑based and context‑dependent with a forgetting effect that undermines stability <a class="ts" href="https://www.youtube.com/watch?v=rSz_mFK-GAU&t=263s" target="_blank" rel="noopener">[04:23]</a>.</li>
+      </ul>
+      <h3>Fixed prior favors popularity over accuracy <a class="ts" href="https://www.youtube.com/watch?v=rSz_mFK-GAU&t=785s" target="_blank" rel="noopener">[13:05]</a></h3>
+      <p>Training sets a prior over patterns. Without additional control, the model may converge to popular answers when they diverge from accurate ones.</p>
+    </section>
+
+    <section id="bridge1">
+      <h2>Paradigm Bridge 1: Unified Cognitive Consciousness Theory (UCCT)</h2>
+      <p>UCCT proposes adding System 2 control over System 1 by using <em>semantic anchoring</em> to shift the model from a fixed prior to a task‑conditioned posterior.</p>
+      <h3>Semantic anchoring as a control handle <a class="ts" href="https://www.youtube.com/watch?v=rSz_mFK-GAU&t=760s" target="_blank" rel="noopener">[12:40]</a></h3>
+      <ul>
+        <li>Provide concrete examples or intents as anchors that steer the distribution the model samples from.</li>
+        <li>Anchors act like bait that select compatible latent patterns while suppressing incompatible ones.</li>
+      </ul>
+      <h3>Inferencing rather than formal reasoning <a class="ts" href="https://www.youtube.com/watch?v=rSz_mFK-GAU&t=856s" target="_blank" rel="noopener">[14:16]</a></h3>
+      <div class="example" role="note" aria-label="Arithmetic anchoring example">
+        <p>Given anchors 2−3=5 and 10−4=11, a query 15−8 is interpreted as 15+8, producing 23. The model adapts to the anchor pattern rather than obeying subtraction rules.</p>
+      </div>
+      <h3>Unconscious pattern repository <a class="ts" href="https://www.youtube.com/watch?v=rSz_mFK-GAU&t=1324s" target="_blank" rel="noopener">[22:04]</a></h3>
+      <ul>
+        <li>The pre‑trained model stores a vast unconscious of patterns gathered from large corpora.</li>
+        <li>Few examples can form an on‑the‑fly classifier by activating relevant regions in this repository, similar to a child learning the concept of cat from a handful of labeled images.</li>
+      </ul>
+      <h3>Phase transition behavior <a class="ts" href="https://www.youtube.com/watch?v=rSz_mFK-GAU&t=1550s" target="_blank" rel="noopener">[25:50]</a></h3>
+      <ul>
+        <li>Anchoring exhibits a threshold effect. Once anchoring strength and pattern density exceed a level, behavior shifts sharply.</li>
+        <li>Below threshold, outputs drift back to the prior; above threshold, the posterior is stable for the task.</li>
+      </ul>
+    </section>
+
+    <section id="bridge2">
+      <h2>Paradigm Bridge 2: Modulating Behavior in Multi‑Agent Debate</h2>
+      <p>To turn debate into discovery, regulate behavior in addition to exchanging information.</p>
+      <h3>Debate needs behavior control <a class="ts" href="https://www.youtube.com/watch?v=rSz_mFK-GAU&t=1902s" target="_blank" rel="noopener">[31:42]</a></h3>
+      <ul>
+        <li>Key variable is contentiousness. It governs whether agents explore, converge, or stall.</li>
+      </ul>
+      <h3>Contentiousness schedule <a class="ts" href="https://www.youtube.com/watch?v=rSz_mFK-GAU&t=1938s" target="_blank" rel="noopener">[32:18]</a> <a class="ts" href="https://www.youtube.com/watch?v=rSz_mFK-GAU&t=2044s" target="_blank" rel="noopener">[34:04]</a> <a class="ts" href="https://www.youtube.com/watch?v=rSz_mFK-GAU&t=2079s" target="_blank" rel="noopener">[34:39]</a></h3>
+      <ul>
+        <li>Too contentious: agents talk past each other without synthesis.</li>
+        <li>Too agreeable: friendly chat lacks novelty and rigor.</li>
+        <li>Target schedule: begin with high exploration, then lower contention to enable exploitation and integration.</li>
+      </ul>
+      <h3>Emulable tone and emotion <a class="ts" href="https://www.youtube.com/watch?v=rSz_mFK-GAU&t=2164s" target="_blank" rel="noopener">[36:04]</a></h3>
+      <ul>
+        <li>Training data contain stylistic and affective patterns. Models can emulate tone and emotional stance.</li>
+        <li>Use this lever to shape debate dynamics and improve planning and reasoning outcomes.</li>
+      </ul>
+    </section>
+
+    <section id="full-summary">
+      <h2>Full summary</h2>
+      <div class="card">
+        <p><strong>Thesis.</strong> Current LLMs behave like System 1 pattern matchers. Real progress toward AGI requires two bridges: (1) UCCT uses semantic anchoring to construct a task‑conditional posterior and enables on‑the‑fly classifiers from the unconscious pattern store; (2) Multi‑agent debate must be behavior‑aware, with contentiousness modulated over time to evolve from breadth to depth.</p>
+        <p><strong>Motivation.</strong> Band‑aid improvements such as CoT and RLHF do not supply grounded semantics or stable reasoning. A mechanism is needed to control distributional behavior at inference and to orchestrate agent interactions.</p>
+        <p><strong>Bridge 1 details.</strong> Anchors select and reweight latent patterns. Sufficient anchor strength and pattern density cause a phase transition that stabilizes the posterior. The arithmetic example illustrates inferential shift under anchoring rather than rule‑based deduction.</p>
+        <p><strong>Bridge 2 details.</strong> Debate without behavior control becomes either unproductive conflict or shallow agreement. A scheduled modulation of contentiousness turns exploration into exploitation and supports convergence on stronger arguments and plans.</p>
+      </div>
+      <div class="backtop"><a href="#top">Back to top</a></div>
+    </section>
+
+    <footer>
+      <p>Source video: <a href="https://www.youtube.com/watch?v=rSz_mFK-GAU" target="_blank" rel="noopener">Two Paradigm Bridges: From LLMs to Intelligence</a>. Talk by Edward Y. Chang for Stanford PhD students.</p>
+    </footer>
+  </div>
+</body>
+</html>
+

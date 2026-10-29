@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dresden Walking Tour Map</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+        }
+        
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        
+        .header h1 {
+            color: #2c3e50;
+            margin: 0 0 10px 0;
+            font-size: 2.5em;
+            font-weight: 300;
+        }
+        
+        .subtitle {
+            color: #7f8c8d;
+            font-size: 1.1em;
+        }
+        
+        .map-container {
+            position: relative;
+            width: 100%;
+            height: 600px;
+            background: linear-gradient(135deg, #a8e6cf 0%, #88d8a3 100%);
+            border-radius: 15px;
+            overflow: hidden;
+            margin: 20px 0;
+        }
+        
+        .map-svg {
+            width: 100%;
+            height: 100%;
+        }
+        
+        .elbe-river {
+            fill: #3498db;
+            opacity: 0.7;
+        }
+        
+        .street {
+            stroke: #95a5a6;
+            stroke-width: 2;
+            fill: none;
+        }
+        
+        .major-street {
+            stroke: #7f8c8d;
+            stroke-width: 3;
+            fill: none;
+        }
+        
+        .route-path {
+            stroke: #e74c3c;
+            stroke-width: 4;
+            fill: none;
+            stroke-dasharray: 8,4;
+            animation: dashMove 20s linear infinite;
+        }
+        
+        @keyframes dashMove {
+            0% { stroke-dashoffset: 0; }
+            100% { stroke-dashoffset: 100; }
+        }
+        
+        .attraction {
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .attraction:hover {
+            transform: scale(1.2);
+        }
+        
+        .attraction-marker {
+            fill: #667eea;
+            stroke: white;
+            stroke-width: 2;
+        }
+        
+        .attraction-number {
+            fill: white;
+            font-size: 14px;
+            font-weight: bold;
+            text-anchor: middle;
+            dominant-baseline: central;
+        }
+        
+        .attraction-label {
+            fill: #2c3e50;
+            font-size: 12px;
+            font-weight: bold;
+            text-anchor: middle;
+        }
+        
+        .district-label {
+            fill: #7f8c8d;
+            font-size: 16px;
+            font-weight: bold;
+            text-anchor: middle;
+        }
+        
+        .bridge {
+            stroke: #95a5a6;
+            stroke-width: 8;
+            fill: none;
+        }
+        
+        .info-panel {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin-top: 20px;
+        }
+        
+        .legend {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 10px;
+            border-left: 4px solid #667eea;
+        }
+        
+        .legend h3 {
+            margin-top: 0;
+            color: #2c3e50;
+        }
+        
+        .legend-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+        
+        .legend-symbol {
+            width: 20px;
+            height: 20px;
+            margin-right: 10px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            font-size: 12px;
+        }
+        
+        .route-line {
+            width: 20px;
+            height: 4px;
+            background: #e74c3c;
+            margin-right: 10px;
+            background-image: repeating-linear-gradient(45deg, transparent, transparent 4px, white 4px, white 8px);
+        }
+        
+        .timing-info {
+            background: #e8f4f8;
+            padding: 20px;
+            border-radius: 10px;
+            border-left: 4px solid #3498db;
+        }
+        
+        .timing-info h3 {
+            margin-top: 0;
+            color: #2c3e50;
+        }
+        
+        .time-stop {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 8px;
+            font-size: 14px;
+        }
+        
+        .tooltip {
+            position: absolute;
+            background: #2c3e50;
+            color: white;
+            padding: 8px 12px;
+            border-radius: 6px;
+            font-size: 12px;
+            pointer-events: none;
+            opacity: 0;
+            transition: opacity 0.3s;
+            z-index: 100;
+        }
+        
+        .tooltip.show {
+            opacity: 1;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🗺️ Dresden Walking Tour Map</h1>
+            <div class="subtitle">Interactive map with 8-stop route through historic Dresden</div>
+        </div>
+        
+        <div class="map-container">
+            <svg class="map-svg" viewBox="0 0 800 600">
+                <!-- Elbe River -->
+                <path class="elbe-river" d="M 0 300 Q 200 280 400 300 Q 600 320 800 300 L 800 350 Q 600 370 400 350 Q 200 330 0 350 Z"/>
+                
+                <!-- Streets -->
+                <line class="major-street" x1="50" y1="450" x2="750" y2="450"/>
+                <line class="street" x1="100" y1="400" x2="700" y2="400"/>
+                <line class="street" x1="150" y1="500" x2="650" y2="500"/>
+                <line class="major-street" x1="200" y1="100" x2="200" y2="550"/>
+                <line class="street" x1="300" y1="120" x2="300" y2="530"/>
+                <line class="street" x1="400" y1="100" x2="400" y2="280"/>
+                <line class="street" x1="400" y1="350" x2="400" y2="550"/>
+                <line class="street" x1="500" y1="120" x2="500" y2="530"/>
+                <line class="street" x1="600" y1="100" x2="600" y2="550"/>
+                
+                <!-- Augustus Bridge -->
+                <line class="bridge" x1="380" y1="300" x2="420" y2="300"/>
+                
+                <!-- Route Path -->
+                <path class="route-path" d="M 150 550 L 300 450 L 250 400 L 350 380 L 450 420 L 500 350 L 400 200 L 350 180 L 300 450"/>
+                
+                <!-- Attractions -->
+                <!-- 1. Hauptbahnhof -->
+                <g class="attraction" data-name="Hauptbahnhof" data-time="9:00 AM" data-info="Starting point - Main train station">
+                    <circle class="attraction-marker" cx="150" cy="550" r="18"/>
+                    <text class="attraction-number" x="150" y="550">1</text>
+                    <text class="attraction-label" x="150" y="575">Hauptbahnhof</text>
+                </g>
+                
+                <!-- 2. Frauenkirche -->
+                <g class="attraction" data-name="Frauenkirche" data-time="9:30 AM" data-info="Iconic baroque church with dome views">
+                    <circle class="attraction-marker" cx="300" cy="450" r="18"/>
+                    <text class="attraction-number" x="300" y="450">2</text>
+                    <text class="attraction-label" x="300" y="475">Frauenkirche</text>
+                </g>
+                
+                <!-- 3. Dresden Castle -->
+                <g class="attraction" data-name="Dresden Castle" data-time="10:30 AM" data-info="Royal residence with Green Vault treasures">
+                    <circle class="attraction-marker" cx="250" cy="400" r="18"/>
+                    <text class="attraction-number" x="250" y="400">3</text>
+                    <text class="attraction-label" x="250" y="425">Dresden Castle</text>
+                </g>
+                
+                <!-- 4. Zwinger Palace -->
+                <g class="attraction" data-name="Zwinger Palace" data-time="12:30 PM" data-info="Baroque palace with Old Masters Gallery">
+                    <circle class="attraction-marker" cx="350" cy="380" r="18"/>
+                    <text class="attraction-number" x="350" y="380">4</text>
+                    <text class="attraction-label" x="350" y="405">Zwinger</text>
+                </g>
+                
+                <!-- 5. Semperoper -->
+                <g class="attraction" data-name="Semperoper" data-time="2:30 PM" data-info="Famous opera house">
+                    <circle class="attraction-marker" cx="450" cy="420" r="18"/>
+                    <text class="attraction-number" x="450" y="420">5</text>
+                    <text class="attraction-label" x="450" y="445">Semperoper</text>
+                </g>
+                
+                <!-- 6. Brühl's Terrace -->
+                <g class="attraction" data-name="Brühl's Terrace" data-time="3:15 PM" data-info="Balcony of Europe with river views">
+                    <circle class="attraction-marker" cx="500" cy="350" r="18"/>
+                    <text class="attraction-number" x="500" y="350">6</text>
+                    <text class="attraction-label" x="500" y="375">Brühl's Terrace</text>
+                </g>
+                
+                <!-- 7. Neustadt -->
+                <g class="attraction" data-name="Neustadt District" data-time="4:00 PM" data-info="Alternative district with cafes and street art">
+                    <circle class="attraction-marker" cx="400" cy="200" r="18"/>
+                    <text class="attraction-number" x="400" y="200">7</text>
+                    <text class="attraction-label" x="400" y="225">Neustadt</text>
+                </g>
+                
+                <!-- 8. Evening Altstadt -->
+                <g class="attraction" data-name="Evening Altstadt" data-time="5:45 PM" data-info="Golden hour photos and dinner">
+                    <circle class="attraction-marker" cx="350" cy="430" r="18"/>
+                    <text class="attraction-number" x="350" y="430">8</text>
+                    <text class="attraction-label" x="350" y="455">Evening Return</text>
+                </g>
+                
+                <!-- District Labels -->
+                <text class="district-label" x="350" y="480">ALTSTADT</text>
+                <text class="district-label" x="400" y="150">NEUSTADT</text>
+                <text class="district-label" x="400" y="320" style="fill: #3498db; font-size: 14px;">Elbe River</text>
+                <text class="district-label" x="410" y="305" style="fill: #7f8c8d; font-size: 10px;">Augustus Bridge</text>
+            </svg>
+            
+            <div class="tooltip" id="tooltip"></div>
+        </div>
+        
+        <div class="info-panel">
+            <div class="legend">
+                <h3>🗺️ Map Legend</h3>
+                <div class="legend-item">
+                    <div class="legend-symbol" style="background: #667eea;">1-8</div>
+                    <span>Tour stops in order</span>
+                </div>
+                <div class="legend-item">
+                    <div class="route-line"></div>
+                    <span>Walking route (~4km total)</span>
+                </div>
+                <div class="legend-item">
+                    <div style="width: 20px; height: 4px; background: #3498db; margin-right: 10px;"></div>
+                    <span>Elbe River</span>
+                </div>
+                <div class="legend-item">
+                    <div style="width: 20px; height: 2px; background: #7f8c8d; margin-right: 10px;"></div>
+                    <span>Major streets</span>
+                </div>
+            </div>
+            
+            <div class="timing-info">
+                <h3>⏰ Timing Guide</h3>
+                <div class="time-stop">
+                    <span>🚂 Start (Hauptbahnhof)</span>
+                    <span>9:00 AM</span>
+                </div>
+                <div class="time-stop">
+                    <span>⛪ Frauenkirche</span>
+                    <span>9:30 AM</span>
+                </div>
+                <div class="time-stop">
+                    <span>🏰 Dresden Castle</span>
+                    <span>10:30 AM</span>
+                </div>
+                <div class="time-stop">
+                    <span>🎭 Zwinger Palace</span>
+                    <span>12:30 PM</span>
+                </div>
+                <div class="time-stop">
+                    <span>🎼 Semperoper</span>
+                    <span>2:30 PM</span>
+                </div>
+                <div class="time-stop">
+                    <span>🌉 Brühl's Terrace</span>
+                    <span>3:15 PM</span>
+                </div>
+                <div class="time-stop">
+                    <span>🎨 Neustadt District</span>
+                    <span>4:00 PM</span>
+                </div>
+                <div class="time-stop">
+                    <span>🌅 Evening Return</span>
+                    <span>5:45 PM</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        // Interactive tooltips
+        const attractions = document.querySelectorAll('.attraction');
+        const tooltip = document.getElementById('tooltip');
+        
+        attractions.forEach(attraction => {
+            attraction.addEventListener('mouseenter', (e) => {
+                const name = e.currentTarget.dataset.name;
+                const time = e.currentTarget.dataset.time;
+                const info = e.currentTarget.dataset.info;
+                
+                tooltip.innerHTML = `<strong>${name}</strong><br>${time}<br>${info}`;
+                tooltip.classList.add('show');
+            });
+            
+            attraction.addEventListener('mousemove', (e) => {
+                tooltip.style.left = e.pageX + 10 + 'px';
+                tooltip.style.top = e.pageY - 50 + 'px';
+            });
+            
+            attraction.addEventListener('mouseleave', () => {
+                tooltip.classList.remove('show');
+            });
+        });
+    </script>
+</body>
+</html>

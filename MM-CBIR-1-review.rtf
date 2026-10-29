@@ -1,0 +1,111 @@
+{\rtf1\ansi\ansicpg936\deff0\deflang1033\deflangfe2052{\fonttbl{\f0\fmodern\fcharset0 Arial;}{\f1\fswiss\fcharset0 Arial;}}
+\viewkind4\uc1\pard\f0\fs20 =============== Referee Form =============================\par
+\par
+%%  \{please do not remove this line\} \par
+--------------------------------------------------------------------------\par
+     REFEREE FORM FOR ACM Multimedia Systems  JOURNAL (Springer)\par
+---------------------------------------------------------------------------\par
+PAPER #: MM-CBIR-1\par
+Title of the Paper: Foundations for Content-Based Image Database Systems\par
+Author(s):Lionel Bruine, Solomon Atnafu, and Harald Kosch \par
+\par
+\par
+---------------------------------------------------------------------------\par
+ Rating Category    Your Rating       Scale Definition\par
+---------------------------------------------------------------------------\par
+Relevance to the \par
+CBIR special issue   |-----|    5=Good match\par
+                     |  1  |    3=Marginal match\par
+                     |-----|    1=not match\par
+---------------------------------------------------------------------------\par
+Evaluation of Work             \par
+and Contribution     |-----|    5=Good solid work of some importance\par
+                     |  1  |    3=Marginal work and minor contribution\par
+                     |-----|    1=Very questionable work and contribution\par
+---------------------------------------------------------------------------\par
+Originality                     \par
+Novelty              |-----|    5=Contains an original contribution\par
+                     |  2  |    3=Variation of a known concept \par
+                     |-----|    1=Complete lack of original ideas\par
+---------------------------------------------------------------------------\par
+Quality of                      \par
+Presentation         |-----|    5= Well written\par
+                     |  3  |    3= Readable\par
+                     |-----|    1= Needs considerable work\par
+---------------------------------------------------------------------------\par
+Technical                       \par
+Correctness          |-----|    5=Good\par
+                     |  1  |    3=Flaws but Easy to Correct \par
+                     |-----|    1=Several Flaws\par
+---------------------------------------------------------------------------\par
+Overall                         \par
+Rating               |-----|    5=Accept with Minor Revisions\par
+                     |  1  |    3=Consider for Publication (Major Revision)\par
+                     |-----|    1=Definitely reject \par
+---------------------------------------------------------------------------\par
+\par
+DETAILED COMMENTS (to be returned to the author(s))\par
+[Reviewers are encouraged to provide substantitive comments \par
+supporting their numerical scale ratings. Reviews without \par
+such comments may not be considered in the overall rating of the paper.]\par
+\par
+This paper proposes a few operators for integrating traditional
+and the content-based data management techniques.  I have at least
+three major concerns about this paper.
+
+1. Novelty?  When a fuel-efficient engine is designed,
+   we say that the engine is a novel invention.  However, "inventing"
+   a name for the engine can hardly be a scientific breakthrough.
+   In this paper, the authors defined a few operators, and repeatedly
+   (more than three times) claimed for novelty.  It is appropriate to
+   replace "novel" with "new."
+
+2. Is similarity-join really new?
+   The authors did not cite/discuss the following related similarity-join 
+   papers.  (The number of papers on similarity-join is not negligible, 
+   and the authors could have found them easily via google.) The novelty 
+   claim of this paper is thus in jeopardy.  The authors should perform 
+   a survey on related work and argue what are new in this paper.
+
+   [1] R. Agrawal, et. al. A Fast Algorithm for High-dimensional 
+   Similarity Joins, ICDE, 1997.
+   [2] J. Shafer, R. Agrawal. Parallel Algorithms for High-dimensional 
+   Proximity Joins, VLDB 1997.
+   
+3. Should similarity be symmetric?
+   A major contribution (the only thing "new" that I can identify in 
+   this work) that the authors claimed is that they made
+   similarity-join symmetric, and the resulting commutative property 
+   made query optimization feasible.  Unfortunately, this is precisely 
+   the wrong thing to do for content-based image retrieval.  It has been
+   well known in the cognitive psychology community that perceptual
+   similarity is non-metric.  The CBIR community has just begun 
+   to seriously face/treat this issue.  Performing query optimization on
+   the assumption that similarity is symmetric will lead to erroneous 
+   results.
+
+%%  \{please do not remove this line\}\par
+---------------------------------------------------------------------------\par
+CONFIDENTIAL COMMENTS TO THE EDITOR\par
+[(to be withheld from the author(s))].  \par
+If necessary, Please include here any comments \par
+about why the paper should be accepted or rejected.\par
+\par
+\par
+It is risky for this MM journal to endorse the proposal of
+a new database operator that has not been validated by the DB community.
+In addition, the symmetric assumption on similarity makes the 
+proposed join-operator useless for the CBIR community.  I therefore
+cannot recommend this paper to be accepted.
+\par
+\par
+\par
+Name and Address of the Referee: E. Chang, echang@ece.ucsb.edu, UCSB\par
+\par
+\par
+\par
+---------------------------------------------------------------------------\par
+$$ \{please do not remove this line\}\par
+\par
+\lang2052\f1\par
+}

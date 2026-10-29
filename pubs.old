@@ -1,0 +1,149 @@
+<title>Publications </title>
+
+<!bgsound src="whyme.mid" loop=infinite>
+<h2>Publications </h2>
+
+<BACKGROUND="http://www-db.stanford.edu/gifs/whitgran.gif">
+<p><img src="http://www-cs.stanford.edu/gifs/line.blue.gif"><p>
+
+<h3>  
+Image Databases:
+</h3>
+
+<ul>
+<li><a href="papers/protected.ps">
+<i>Clustering for Searching Near-Replicas of Images on the World-Wide Web</i></a>.
+<br>Edward Chang, Chen Li, and James Wang.
+<br>Technical Report SIDL-WP-1998-0103, November 1998. 
+<br>
+<li><a href="papers/rime.ps">
+RIME: A Replicated Image Detector for the World-Wide Web</a>.
+<br>Edward Chang, James Ze Wang, Chen Li, and Gio Wiederhold
+<br>Proceedings of SPIE Symposium of Voice, Video, and Data Communications,
+<br>Boston, November 1998.
+<br>
+</ul>
+<h3>  
+Digital TV:
+</h3>
+<ul>
+<li><a href="papers/medic.html">
+MEDIC: A Memory & Disk Cache for Multimedia Clients</a>.
+<br>Edward Chang and Hector Garcia-Molina
+<br>Technical Report SIDL-WP-1997-0076, November 1997. 
+<br>Submitted to IEEE Multimedia.
+<li><a href="papers/idms98.html">
+An Image Coding and Reconstruction Scheme for Mobile Computing</a>.
+<br>Edward Chang 
+<br>Proceedings of the 5th IDMS (Springer-Verlag LNCS #1483), p.137-148,
+<br>Oslo, Norway, September 1998.
+<br>Selected for journal submission.
+</ul>
+
+<h3>  
+Multimedia Systems:
+</h3>
+
+<ul>
+<li><a href="papers/2db.ps">
+2D BubbleUp - Managing Parallel Disks for Media Servers</a>.
+<br>Edward Chang, Hector Garcia-Molina, and Chen Li
+<br>Proceedings of the 5th International Conference 
+on Foundations of Data Organization (FODO), p221-230,
+<br>Kobe, Japan, November 1998.
+<br>
+<li><a href="papers/jvldb.ps">
+<i>Accounting for Memory Use, Cost, Throughput, and
+Latency in the Design of a Media Server</i></a>
+<br>Edward Chang and Hector Garcia-Molina
+<br>Technical Report SIDL-WP-1998-0096, May 1998
+<br>(In preparation for journal publication).
+<br>
+
+<li><a href="papers/ride98.ps">
+Cost-Based Media Server Design</a>.
+<br>Edward Chang and Hector Garcia-Molina
+<br>[IEEE Copyright] Proceedings of the 8th Research Issues in Data Engineering, p.76-83,
+<br>Orlando, February, 1998.
+<br>Selected for journal submission.
+<br>
+
+<li><a href="papers/bubbleup.ps">
+BubbleUp: Low Latency Fast-Scan for Media Servers</a>.
+<br>Edward Chang and Hector Garcia-Molina
+<br>[ACM Copyright] Proceedings of the 5th ACM International Conference on Multimedia, p.87-98,
+<br>Seattle, November 1997.
+<br>
+
+<li><a href="papers/mm-vldb.ps">
+Effective Memory Use in a Media Server</a>.
+<br>Edward Chang and Hector Garcia-Molina
+<br>[VLDB Copyright] Proceedings of the 23rd Very Large Data Base (VLDB) Conference, p.496-505,
+<br>Athens, Greece, August 1997.
+<br>
+
+<li><a href="http://computer.org/multimedia/mu1997/u3toc.htm">
+Reducing Initial Latency in Media Servers</a>.
+<br>Edward Chang and Hector Garcia-Molina
+<br>[IEEE Copyright] IEEE Multimedia, vol.4, no.3, p.50-61, July 1997.
+<br>
+
+<li><a href="papers/latency.ps">
+<i>Reducing Initial Latency in a Multimedia Storage System</a></i>.  
+<br>Edward Chang and Hector Garcia-Molina
+<br>[IEEE Copyright] Proceedings of the 3rd International Workshop on Multimedia Databases, p.2-11,
+<br>New York, August 1996.
+<br>
+
+<li><a href="papers/proof.ps">
+Minimizing Memory Requirements in Media Servers</a>.  
+<br>Edward Chang and Yi-Yin Chen
+<br>Technical Report SIDL-WP-1996-0045, March 1996. 
+<br>
+</ul>
+
+<h3>  
+Transaction Processing:
+</h3>
+
+<ul>
+<li><a href="papers/noavail.ps">
+<i>
+Transaction Manager Design and Implementation - An
+Object Oriented Approach.
+</i>
+</a>
+<br>Edward Chang
+<br>First International Relational Database Conference, Orlando, 1992.
+<br>
+
+<li><a href="papers/noavail.ps">
+<i>An Open and Extensible Event-based Transaction
+Manager.
+</i>
+</a>
+<br>
+Edward Cheng, Edward Chang, and et al.,
+<br>
+Proceedings of the Summer 1991 USENIX.
+</ul>
+
+<h3>  
+Working Papers: 
+</h3>
+
+<ul>
+<li><a href="papers/protected.ps">
+<i>Clustering for Similarity Search in High-Dimensional Spaces</i></a>.
+<br>Chen Li, Edward Chang, Hector Garcia-Molina, and James Wang.
+<br>Technical Report SIDL-WP-1998-0100, November 1998. 
+<br>
+<li><a href="papers/protected.ps">
+<i>Clustering and Managing Web Documents</i></a>.
+<br>With NEC Research Labs.
+<br>
+</ul>
+
+<p><img src="http://www-cs.stanford.edu/gifs/line.blue.gif"><p>
+
+<p>

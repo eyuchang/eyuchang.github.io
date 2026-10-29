@@ -1,0 +1,106 @@
+\section{Related Work}
+
+Color histograms have been widely used to index images in large image 
+databases. They are easy to compute and have proven useful for
+content-based image retrieval. However, since color 
+histograms do not contain spatial information of colors,
+images of the similar colors but different distributions 
+can be mistreated as similar ones.
+Besides, color histograms can be very sensitive
+to minor image alteration such as cropping,
+adding borders and framing.
+We thus deem that color histograms may not be 
+the appropriate feature set for image copy detection.
+
+Several methods have been proposed to remedy
+the shortcomings of color histograms.
+Pass and Zabih [1,2] developed the {\it color coherence vector} 
+(CCV) method,
+which partitions each color into a coherent and an incoherent
+portion. CCV is still easy to compute (about ten times slower than color 
+histograms) and has been shown to produce better results than color histograms
+in similarity search. However, CCV can neither cope with
+adding borders or framing. This is because adding borders or frames
+increases the number of pixels in certain coherent color buckets
+significantly and thus the magnitude distance (which is used as the
+indicator of similarity between images in CCV) can be large between the
+modified and the original image. As a result, CCV tends to deem the
+modified image not similar to the original one. Hsu et al. [3] selects a set
+of dominant colors from a image and partitions the image into 
+rectangular regions, each contains one color. The similarity of two
+images is then determined by the degree of overlap between regions of the
+same color. Smith and Chang [4] employ histogram back-projection [5] to
+partition the image into regions. They allow one region to have multiple 
+different colors and the colors of each region are represented by a
+binary color set. The binary color sets and their location information
+combined is the feature vector for an image. This approach can support
+querying by the spatial locations of the color regions. However, there is
+no performance report on the feature vectors for Hsu's
+and Smith's algorithms. Since they both involve some computationally
+expensive algorithms to partition the image into regions, they will not be
+able to generate the feature vectors in a time comparable to color
+histograms. Besides, the feature vectors of both approaches depend on the
+pixel positions. So it may not tolerate large appearance changes such as
+transitions or rotations. Huang et al. [6,7] tries to encode the spatial
+correlation of color-bin pairs by the "color correlogram". It has been
+shown to be more effective in similarity search than color histograms and
+CCV as it includes the local spatial correlation between colors into the
+feature vector. It has also been shown to be robust to large image
+appearance changes. But while computing the feature vector, for each pixel
+of the image, this approach needs to survey the colors of a good amount of
+the surrounding pixels. So the computational complexity is much higher
+than that of the color histograms, which only need to survey the color of
+the pixel itself.
+
+    Texture and shape can also serve as feature vector. The application of
+texture-based feature vector is largely limited to the high resolution,
+textural images. As for the shape-based feature vector, it often requires
+the segmentation of the image into color homogeneous regions, which is a
+very hard problem itself and requires intensive computation. 
+
+    Our approach tries to find an efficient way to incorporate the spatial 
+information of the colors into the feature of images. By introducing the
+variances of colors into the color histograms, we compose the
+Variance-Augmented Color Histogram (VACH). The use of variances can be
+traced back to the seven moments method proposed by Hu[8], who uses the
+variances of colors as one of the seven moments to do shape analysis and
+at the same time circumvents the hard problem of segmenting the image into
+homogeneous color regions. Since color variances are indicators about the
+global distribution of colors, they give a good idea about how the colors
+are distributed in the image. At the same time, they do not depend much
+on the exact position of the pixels. This makes them robust to the large
+appearance change of images. VACH can be computed in a single pass over
+the image and the computing time is comparable to that of color 
+histograms. VACH is especially effective in finding the similarity between 
+the image and the image with borders or frames because it weights color
+regions of high variance less than that with low variance. VACH can also
+serve as a general-purposed feature vector in the image retrieval system.
+    
+1. G. Pass, R. Zabih and J. Miller. Comparing Images Using Color 
+Coherence Vectors, Proceedings of the Fourth ACM Multimedia Conference, 
+pages 65-73,1996. 
+
+2. G. Pass and R. Zabih. Histogram refinement for content-based image 
+retrieval. IEEE Workshop on Applications of Computer Vision, pages 
+96-102, 1996.
+
+3. Wynne Hsu, T. S. Chua, and H. K. Pung. An integrated color-spatial 
+approach to content-based image retrieval. ACM Multimedia Conference, 
+pages 305-313, 1995.
+
+4. J. Smith and S-F Chang. Tools and techniques for color image 
+retrieval. SPIE proceedings, 2670:1630-1639, 1996.
+
+5. Michael Swain and Dana Ballard. Color Indexing. International Journal 
+of Computer Vision , 7(1):11-32, 1991.	 
+
+6. J. Huang, S. R. Kumar, M. Mitra, W.-J. Zhu and R. Zabih. Image 
+indexing using color correlograms.  Proc. IEEE Comp. Soc. Conf. Comp. 
+Vis. and Patt. Rec., pages 762-768. 1997.
+
+7. J. Huang, S. R. Kumar, M. Mitra. Combining supervised learning with 
+color correlograms for content-based image retrieval. ACM Multimedia 
+conference, pages 325-334. 1997.
+
+8. M.K. Hu, Visual Pattern Recognition by Moment Invariants", IRE Trans.
+Information Theory, IT-8, 2, February 1962, 179-187.

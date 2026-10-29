@@ -1,0 +1,1340 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Edward Y. Chang | Stanford University</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@400;600&family=Source+Serif+Pro:wght@600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --navy: #1a365d;
+      --navy-light: #2c5282;
+      --accent: #c53030;
+      --accent-bg: #fff5f5;
+      --teal: #0d9488;
+      --teal-bg: #f0fdfa;
+      --gray-100: #f7fafc;
+      --gray-200: #edf2f7;
+      --gray-600: #718096;
+      --gray-800: #2d3748;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Source Sans Pro', -apple-system, BlinkMacSystemFont, sans-serif;
+      font-size: 16px;
+      line-height: 1.6;
+      color: var(--gray-800);
+      background: var(--gray-100);
+    }
+
+    a {
+      color: var(--navy-light);
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+    /* Layout */
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 2rem;
+    }
+
+    /* Header */
+    header {
+      background: linear-gradient(135deg, var(--navy) 0%, #2d4a77 100%);
+      color: white;
+      padding: 2.5rem 0;
+    }
+
+    .header-content {
+      display: flex;
+      gap: 3rem;
+      align-items: flex-start;
+    }
+
+    .profile-photo {
+      width: 200px;
+      height: 288px;
+      object-fit: cover;
+      border-radius: 6px;
+      border: 4px solid rgba(255,255,255,0.3);
+      box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+    }
+
+    .header-text h1 {
+      font-family: 'Source Serif Pro', Georgia, serif;
+      font-size: 2.4rem;
+      font-weight: 700;
+      margin-bottom: 0.25rem;
+    }
+
+    .header-text .chinese-name {
+      font-size: 1.5rem;
+      opacity: 0.9;
+      font-weight: 400;
+    }
+
+    .header-text .positions {
+      margin-top: 1rem;
+      font-size: 0.95rem;
+      line-height: 1.9;
+      opacity: 0.95;
+    }
+
+    .header-text .positions a {
+      color: #90cdf4;
+    }
+
+    .header-text .positions a:hover {
+      color: white;
+    }
+
+    .header-links {
+      margin-top: 1.25rem;
+      display: flex;
+      gap: 1.5rem;
+      font-size: 0.9rem;
+    }
+
+    .header-links a {
+      color: #90cdf4;
+      padding-bottom: 2px;
+      border-bottom: 1px solid transparent;
+      transition: all 0.2s;
+    }
+
+    .header-links a:hover {
+      color: white;
+      border-bottom-color: white;
+      text-decoration: none;
+    }
+
+    /* Navigation */
+    nav {
+      background: white;
+      border-bottom: 1px solid var(--gray-200);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+    }
+
+    nav ul {
+      display: flex;
+      list-style: none;
+      gap: 0;
+    }
+
+    nav a {
+      display: block;
+      padding: 1rem 1.5rem;
+      font-weight: 600;
+      color: var(--gray-600);
+      border-bottom: 3px solid transparent;
+      transition: all 0.2s;
+    }
+
+    nav a:hover,
+    nav a.active {
+      color: var(--navy);
+      border-bottom-color: var(--navy);
+      text-decoration: none;
+    }
+
+    /* Main Content */
+    main {
+      background: white;
+      min-height: 60vh;
+    }
+
+    section {
+      padding: 3rem 0;
+      border-bottom: 1px solid var(--gray-200);
+    }
+
+    section:last-child {
+      border-bottom: none;
+    }
+
+    h2 {
+      font-family: 'Source Serif Pro', Georgia, serif;
+      font-size: 1.6rem;
+      color: var(--navy);
+      margin-bottom: 1.5rem;
+      padding-bottom: 0.5rem;
+      border-bottom: 2px solid var(--gray-200);
+    }
+
+    /* News/Highlights */
+    .news-grid {
+      display: grid;
+      gap: 1rem;
+    }
+
+    .highlight {
+      background: var(--accent-bg);
+      border-left: 4px solid var(--accent);
+      padding: 1rem 1.5rem;
+      border-radius: 0 4px 4px 0;
+    }
+
+    .highlight.teal {
+      background: var(--teal-bg);
+      border-left-color: var(--teal);
+    }
+
+    .highlight-title {
+      font-weight: 600;
+      color: var(--accent);
+      margin-bottom: 0.25rem;
+      font-size: 0.85rem;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .highlight.teal .highlight-title {
+      color: var(--teal);
+    }
+
+    .highlight p {
+      margin: 0;
+    }
+
+    /* ==============================
+       PIONEER BLOCK
+       ============================== */
+    .pioneer-section {
+      background: linear-gradient(135deg, #1a202c 0%, #2d3748 50%, #1a365d 100%);
+      color: #e2e8f0;
+      padding: 3rem 0;
+      border-bottom: none;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .pioneer-section::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background:
+        radial-gradient(ellipse at 20% 50%, rgba(49, 130, 206, 0.08) 0%, transparent 50%),
+        radial-gradient(ellipse at 80% 50%, rgba(197, 48, 48, 0.06) 0%, transparent 50%);
+      pointer-events: none;
+    }
+
+    .pioneer-inner {
+      position: relative;
+      z-index: 1;
+    }
+
+    .pioneer-section h2 {
+      color: #e2e8f0;
+      border-bottom-color: rgba(255,255,255,0.15);
+      font-size: 1.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .pioneer-badge {
+      display: inline-block;
+      background: var(--accent);
+      color: white;
+      font-family: 'Source Sans Pro', sans-serif;
+      font-size: 0.65rem;
+      font-weight: 600;
+      padding: 0.25rem 0.6rem;
+      border-radius: 3px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      vertical-align: middle;
+    }
+
+    .pioneer-narrative {
+      font-size: 1.05rem;
+      line-height: 1.75;
+      color: #cbd5e0;
+      margin-bottom: 2rem;
+      max-width: 900px;
+    }
+
+    .pioneer-narrative strong {
+      color: #e2e8f0;
+    }
+
+    .pioneer-narrative em {
+      color: #90cdf4;
+      font-style: normal;
+      font-weight: 600;
+    }
+
+    .pioneer-timeline {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1rem;
+      margin-top: 1.5rem;
+    }
+
+    .pioneer-item {
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 6px;
+      padding: 1.25rem;
+      transition: background 0.2s, border-color 0.2s;
+    }
+
+    .pioneer-item:hover {
+      background: rgba(255,255,255,0.1);
+      border-color: rgba(255,255,255,0.2);
+    }
+
+    .pioneer-item-year {
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: #90cdf4;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 0.35rem;
+    }
+
+    .pioneer-item-title {
+      font-weight: 600;
+      color: #e2e8f0;
+      font-size: 0.95rem;
+      margin-bottom: 0.25rem;
+    }
+
+    .pioneer-item-detail {
+      font-size: 0.85rem;
+      color: #a0aec0;
+      line-height: 1.5;
+    }
+
+    .pioneer-item-detail em {
+      color: #90cdf4;
+      font-style: italic;
+    }
+
+    /* Research */
+    .research-areas {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 1.5rem;
+      margin-top: 1.5rem;
+    }
+
+    .research-card {
+      background: var(--gray-100);
+      padding: 1.5rem;
+      border-radius: 6px;
+      border: 1px solid var(--gray-200);
+    }
+
+    .research-card h3 {
+      font-size: 1.1rem;
+      color: var(--navy);
+      margin-bottom: 0.75rem;
+    }
+
+    .research-card p {
+      font-size: 0.95rem;
+      color: var(--gray-600);
+      margin: 0;
+    }
+
+    /* Books Grid */
+    .books-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .book-card {
+      display: flex;
+      gap: 1.25rem;
+      padding: 1.25rem;
+      background: var(--gray-100);
+      border-radius: 6px;
+      border: 1px solid var(--gray-200);
+      transition: box-shadow 0.2s;
+    }
+
+    .book-card:hover {
+      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    }
+
+    .book-card img {
+      width: 100px;
+      height: 136px;
+      object-fit: cover;
+      border-radius: 4px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+    }
+
+    .book-info h3 {
+      font-size: 0.95rem;
+      margin-bottom: 0.2rem;
+      line-height: 1.0;
+      color: var(--gray-800);
+    }
+
+    .book-info h3 a {
+      color: var(--gray-800);
+    }
+
+    .book-info h3 a:hover {
+      color: var(--navy-light);
+    }
+
+    .book-info .meta {
+      font-size: 0.85rem;
+      color: var(--gray-600);
+    }
+
+    .book-badge {
+      display: inline-block;
+      background: var(--accent);
+      color: white;
+      font-size: 0.7rem;
+      padding: 0.2rem 0.2rem;
+      border-radius: 3px;
+      margin-bottom: 0.2rem;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    /* Publications */
+    .pub-list {
+      list-style: none;
+    }
+
+    .pub-item {
+      padding: 1.5rem 0;
+      border-bottom: 1px solid var(--gray-200);
+    }
+
+    .pub-item:last-child {
+      border-bottom: none;
+    }
+
+    .pub-venue-tag {
+      display: inline-block;
+      background: var(--navy);
+      color: white;
+      font-size: 0.7rem;
+      padding: 0.2rem 0.6rem;
+      border-radius: 3px;
+      margin-bottom: 0.5rem;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .pub-citation {
+      display: inline-block;
+      background: var(--accent);
+      color: white;
+      font-size: 0.7rem;
+      padding: 0.2rem 0.6rem;
+      border-radius: 3px;
+      margin-left: 0.5rem;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .pub-title {
+      font-weight: 600;
+      color: var(--gray-800);
+      margin-bottom: 0.35rem;
+      font-size: 1.05rem;
+      line-height: 1.4;
+    }
+
+    .pub-authors {
+      font-size: 0.9rem;
+      color: var(--gray-600);
+      margin-bottom: 0.5rem;
+    }
+
+    .pub-links {
+      margin-top: 0.5rem;
+      font-size: 0.85rem;
+    }
+
+    .pub-links a {
+      display: inline-block;
+      margin-right: 1rem;
+      color: var(--navy-light);
+    }
+
+    .pub-tldr {
+      font-size: 0.9rem;
+      color: var(--gray-600);
+      margin-top: 0.5rem;
+      padding: 0.75rem;
+      background: var(--gray-100);
+      border-radius: 4px;
+      line-height: 1.5;
+    }
+
+    .pub-tldr strong {
+      color: var(--navy);
+    }
+
+    .pub-section-title {
+      font-family: 'Source Serif Pro', Georgia, serif;
+      font-size: 1.15rem;
+      color: var(--gray-800);
+      margin-top: 2rem;
+      margin-bottom: 1rem;
+      padding-bottom: 0.5rem;
+      border-bottom: 1px solid var(--gray-200);
+    }
+
+    .pub-subsection {
+      font-family: 'Source Serif Pro', Georgia, serif;
+      font-size: 1.15rem;
+      color: var(--gray-800);
+      margin-top: 2rem;
+      margin-bottom: 1rem;
+      padding-bottom: 0.5rem;
+      border-bottom: 1px solid var(--gray-200);
+    }
+
+    .view-all {
+      display: inline-block;
+      margin-bottom: 1.5rem;
+      color: var(--gray-600);
+      font-size: 0.95rem;
+    }
+
+    /* Teaching */
+    .course-list {
+      list-style: none;
+    }
+
+    .course-item {
+      padding: 1rem 0;
+      display: flex;
+      gap: 1.5rem;
+      border-bottom: 1px solid var(--gray-200);
+    }
+
+    .course-item:last-child {
+      border-bottom: none;
+    }
+
+    .course-term {
+      min-width: 130px;
+      font-weight: 600;
+      color: var(--navy);
+      font-size: 0.9rem;
+    }
+
+    .course-info {
+      flex: 1;
+    }
+
+    .course-info .course-code {
+      font-weight: 600;
+      color: var(--gray-800);
+    }
+
+    .course-info .course-title {
+      color: var(--gray-600);
+    }
+
+    .course-info .course-note {
+      margin-top: 0.2rem;
+      color: var(--gray-600);
+      font-size: 0.9rem;
+    }
+
+    /* Talks */
+    .talks-intro {
+      color: var(--gray-600);
+      margin-bottom: 1rem;
+    }
+
+    /* Background Section */
+    .background-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2rem;
+    }
+
+    .background-col h3 {
+      font-size: 1rem;
+      color: var(--navy);
+      margin-bottom: 1rem;
+      padding-bottom: 0.5rem;
+      border-bottom: 1px solid var(--gray-200);
+    }
+
+    .background-col ul {
+      list-style: none;
+    }
+
+    .background-col li {
+      padding: 0.5rem 0;
+      font-size: 0.95rem;
+      color: var(--gray-600);
+    }
+
+    .background-col li strong {
+      color: var(--gray-800);
+    }
+
+    /* Footer */
+    footer {
+      background: var(--gray-800);
+      color: rgba(255,255,255,0.8);
+      padding: 2rem 0;
+      text-align: center;
+      font-size: 0.9rem;
+    }
+
+    footer a {
+      color: #90cdf4;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .header-content {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+      }
+
+      .header-links {
+        justify-content: center;
+        flex-wrap: wrap;
+      }
+
+      nav ul {
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+
+      nav a {
+        padding: 0.75rem 1rem;
+        font-size: 0.9rem;
+      }
+
+      .books-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .course-item {
+        flex-direction: column;
+        gap: 0.25rem;
+      }
+
+      .course-term {
+        min-width: auto;
+      }
+
+      .pioneer-timeline {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .pioneer-timeline {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+<!-- HEADER -->
+<header>
+  <div class="container">
+    <div class="header-content">
+      <img src="img/Ed03122026.jpeg" alt="Edward Y. Chang" class="profile-photo">
+      <div class="header-text">
+        <h1>Edward Y. Chang <span class="chinese-name">張智威</span></h1>
+        <div class="positions">
+          Co-Editor-in-Chief, <a href="https://dl.acm.org/acmbooks">ACM Books</a><br>
+          Founder and CEO, <a href="https://quadriumai.com/">QuadriumAI</a> <br>
+          Advisor, <a href="https://clinicalmindai.stanford.edu/">Clinical Mind AI Lab</a>, Stanford School of Medicine and Graduate School of Education<br>
+         Adjunct Professor, Computer Science, Stanford University (2019 - 2026)<br>
+	Director of Research, Google (2006 - 2012)<br>
+	Fellow of ACM and IEEE<br>
+ 
+        </div>
+        <div class="header-links">
+          <a href="bio-short-2026.html">Bio</a>
+          <a href="https://en.wikipedia.org/wiki/Edward_Y._Chang">Wikipedia</a>
+          <a href="https://www.linkedin.com/in/edward-y-chang-218b182/">LinkedIn</a>
+          <a href="https://scholar.google.com/citations?user=XXXXXXX">Google Scholar</a>
+          <a href="mailto:echang@cs.stanford.edu">Email</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- NAVIGATION -->
+<nav>
+  <div class="container">
+    <ul>
+      <li><a href="#news" class="active">News</a></li>
+      <li><a href="#pioneer">Pioneer</a></li>
+      <li><a href="#research">Research</a></li>
+      <li><a href="#publications">Publications</a></li>
+      <li><a href="#books">Books</a></li>
+      <li><a href="#teaching">Teaching</a></li>
+      <li><a href="#background">Background</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- MAIN CONTENT -->
+<main>
+  <div class="container">
+
+    <!-- NEWS -->
+    <section id="news">
+      <h2>News</h2>
+      <div class="news-grid">
+
+       <div class="highlight">
+          <div class="highlight-title">The Path to AGI, Volume #2</div>
+          <p><a href="https://dl.acm.org/doi/book/10.1145/3822380">System-2 Reasoning:
+From Semantic Anchoring to Causal Intelligence</a> <strong>ACM Books</strong>, July 2026</p>
+        </div>
+
+	<div class="highlight">
+          <div class="highlight-title">Keynote</div>
+          <p><a href="https://youtu.be/KnW_HQTeh6w">From Walking to Thinking  Feedback, Memory, and Causal Reasoning for Embodied AGI</a>, <strong>Symposium on Humanoid Robotics &amp; Sovereign AI for Future Living</strong> — Keynote speaker alongside robotics pioneers <strong>Oussama Khatib</strong> (Director, Stanford Robotics Center) and <strong>Hiroshi Ishiguro</strong> (Director, Intelligent Robotics Lab, Osaka University), February 2026</p>
+        </div>
+
+       <div class="highlight">
+          <div class="highlight-title">The Path to AGI, Volume #1</div>
+          <p><a href="https://dl.acm.org/doi/book/10.1145/3749421">Multi-LLM Agent Collaborative Intelligence: The Path to AGI</a> — First edition published by SocraSynth, March 2024; acquired and published by <strong>ACM Books</strong>, December 2025</p>
+        </div>
+
+        <div class="highlight">
+          <div class="highlight-title">PhD Seminar</div>
+          <p><a href="http://infolab.stanford.edu/~echang/cs372/MACI_UCCT_CS300_Nov2025.html">Two Paradigm Bridges to AGI</a> — Presented to Stanford PhD students, November 2025</p>
+        </div>
+      </div>
+    </section>
+  </div>
+
+    <!-- ============================
+         PIONEER OF DATA-CENTRIC AI
+         ============================ -->
+    <section id="pioneer" class="pioneer-section">
+      <div class="container">
+        <div class="pioneer-inner">
+          <h2>
+            Pioneering Data-Centric AI 
+            <span class="pioneer-badge">2007–2012</span>
+          </h2>
+
+          <p class="pioneer-narrative">
+            Between <em>NeurIPS 2007</em> and <em>2012</em>, while serving as Director of Google Research (Beijing),
+            our team built the scalable infrastructure and large-scale datasets that would become
+            foundational to modern data-centric AI — years before the term was coined. We produced one of the
+            first <strong>web-scale annotated image datasets</strong> (30,000+ real web images with multimodal signals),
+            sponsored <strong>Fei-Fei Li's ImageNet project</strong> at Google, and published a series of
+            <strong>parallel machine learning algorithms</strong> on MapReduce that enabled training at
+            unprecedented scale. This body of work was consolidated in the Springer book
+            <em><a href="https://link.springer.com/content/pdf/10.1007/978-3-642-20429-6.pdf" style="color:#90cdf4;">Foundations of Large-Scale Multimedia Information Management and Retrieval</a></em> (2011),
+            whose Chapter 2 explicitly formulated a <strong>data-driven + model-based hybrid architecture (DMD)</strong>,
+            asking "Can more data help a model?" — a decade before "data-centric AI" became a recognized paradigm.
+          </p>
+
+          <div class="pioneer-timeline">
+            <div class="pioneer-item">
+              <div class="pioneer-item-year">2008</div>
+              <div class="pioneer-item-title">Web-Scale Image Annotation</div>
+              <div class="pioneer-item-detail">30K+ web images annotated via distributed LDA on MapReduce — matching the then-largest dataset with real web data and multimodal signals</div>
+            </div>
+            <div class="pioneer-item">
+              <div class="pioneer-item-year">2011</div>
+              <div class="pioneer-item-title">Springer Book: Data-Centric ML</div>
+              <div class="pioneer-item-detail"><em>Foundations of Large-Scale Multimedia</em> — Ch. 2 proposes the DMD hybrid (model-based + data-driven) architecture; Chs. 9–12 document all parallel algorithms</div>
+            </div>
+            <div class="pioneer-item">
+              <div class="pioneer-item-year">2010–2012</div>
+              <div class="pioneer-item-title">ImageNet Sponsor</div>
+              <div class="pioneer-item-detail">Met and collaborated with Fei-Fei Li; sponsored the ImageNet project while at Google Research</div>
+            </div>
+            <div class="pioneer-item">
+              <div class="pioneer-item-year">2007</div>
+              <div class="pioneer-item-title">Parallel SVMs</div>
+              <div class="pioneer-item-detail">Scalable support vector machines on distributed systems (NeurIPS 2007)</div>
+            </div>
+            <div class="pioneer-item">
+              <div class="pioneer-item-year">2008</div>
+              <div class="pioneer-item-title">Parallel LDA</div>
+              <div class="pioneer-item-detail">Distributed Gibbs sampling for Latent Dirichlet Allocation on MapReduce</div>
+            </div>
+            <div class="pioneer-item">
+              <div class="pioneer-item-year">2008–2010</div>
+              <div class="pioneer-item-title">Parallel Spectral Clustering</div>
+              <div class="pioneer-item-detail">Large-scale graph partitioning and spectral methods on distributed infrastructure</div>
+            </div>
+            <div class="pioneer-item">
+              <div class="pioneer-item-year">2009–2010</div>
+              <div class="pioneer-item-title">Parallel Frequent Itemset Mining</div>
+              <div class="pioneer-item-detail">Scalable pattern mining algorithms for web-scale data on MapReduce</div>
+            </div>
+            <div class="pioneer-item">
+              <div class="pioneer-item-year">2010–2012</div>
+              <div class="pioneer-item-title">Parallel CNN</div>
+              <div class="pioneer-item-detail">Early distributed convolutional neural network training — anticipating the deep learning revolution</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  <div class="container">
+
+<!-- AGI RESEARCH -->
+<section id="research">
+  <h2>Research</h2>
+  <p>My research focuses on building the theoretical and practical foundations for safe, reliable AGI systems.</p>
+  
+  <div class="research-areas">
+
+    <!-- 1 -->
+    <div class="research-card">
+      <h3>Developing System-2 on LLMs for AGI</h3>
+      <p>Enabling multiple LLM agents to collaborate through structured debate, perspective synthesis, and consensus-building. Includes SocraSynth, CRIT, EVINCE, SagaLLM, and the UCCT theoretical foundation.</p>
+    </div>
+
+    <!-- 3 -->
+    <div class="research-card">
+      <h3>SagaLLM: Transaction Guarantees for Multi-Agent Planning</h3>
+      <p>Bringing database-style transactional guarantees (atomicity, consistency, recovery via compensating actions) to multi-agent LLM planning. Focuses on robust context management, validation, and failure-safe orchestration.</p>
+    </div>
+
+    <!-- 6 -->
+    <div class="research-card">
+      <h3>AI Safety &amp; Alignment</h3>
+      <p>Checks-and-balances frameworks for ethical AI, including RAudit for real-time verification and multi-branch governance architectures.</p>
+    </div>
+
+    <!-- 4 -->
+    <div class="research-card">
+      <h3>UCCT: Unified Cognitive Consciousness Theory</h3>
+      <p>A theoretical foundation for how language models convert pretrained capacity into goal-directed behavior through semantic anchoring and threshold effects. Formalizes anchoring strength and connects in-context learning, retrieval, and fine-tuning under a unified mechanism.</p>
+    </div>
+
+    <!-- 2 -->
+    <div class="research-card">
+      <h3>UAudit: Enhancing Reasoning Capability of LLMs</h3>
+      <p>Auditing and strengthening LLM reasoning through blind verification protocols, structured probes, and consistency checks — enabling third-party evaluation of black-box model reasoning.</p>
+    </div>
+
+    <!-- 5 -->
+    <div class="research-card">
+      <h3>Transactional Swarm Orchestration (TSO)</h3>
+      <p>Enabling robots to discover causal relationships through physical intervention, with transactional guarantees and epistemic regret minimization.</p>
+    </div>
+
+  </div>
+</section>
+
+
+
+<!-- PUBLICATIONS -->
+<section id="publications">
+      <style>
+        /* Tighter spacing between and within paper entries (id-scoped overrides) */
+        #publications .pub-list   { margin-top: 0; margin-bottom: 0; }
+        #publications .pub-item   { margin-bottom: 0.05em; line-height: 1.3; }
+        #publications .pub-item > div { margin: 0.06em 0; }
+        #publications .pub-title  { margin: 0.08em 0; }
+        #publications .pub-authors{ margin: 0.04em 0; }
+        #publications .pub-tldr   { margin: 0.1em 0; }
+        #publications .pub-links  { margin-top: 0.12em; }
+        #publications .pub-subsection { margin: 0.9em 0 0.3em; }
+      </style>
+      <h2>AGI Publications</h2>
+      <a href="https://scholar.google.com/citations?hl=en&user=pZmOvyYAAAAJ" class="view-all">View full publication at Google Scholar →</a>
+
+      <!-- Working Papers -->
+      <h3 class="pub-subsection">Working Papers & Preprints</h3>
+      <ul class="pub-list">
+
+        <li class="pub-item">
+          <span class="pub-venue-tag">July 2026</span><span class="pub-citation">ground-breaking</span>
+          <div class="pub-title">TRW: TRACE-RealWorld — An Auditable Consistency Contract
+         for World Models as Materialized Views</div>
+          <div class="pub-authors">Edward Y. Chang</div>
+          <div class="pub-tldr"><strong>TL;DR: </strong>A ground-breaking paper which ensures consistency between the real world and the digital world.</div>
+          <div class="pub-links">
+            <a href="https://arxiv.org/abs/2607.21910">arXiv</a>
+            <a href="ArchitecturalWisdom.bib">BibTeX</a>
+          </div>
+        </li>
+
+
+        <li class="pub-item">
+          <span class="pub-venue-tag">July 2026</span><span class="pub-citation">new</span>
+
+          <div class="pub-title">TRACE: An Operational Reasoning Schema for Auditable Agentic Commitments
+</div>
+          <div class="pub-authors">Edward Y. Chang and Emily J. Chang</div>
+          <div class="pub-tldr"><strong>TL;DR: </strong>This paper defines TRACE (Typed Reasoning And Commitment Evidence): a typed, versioned schema for recording reasoning traces, a reference procedure for writing records against it, and one operating discipline, no durable state change without a record. The paper argues in three layers that reasoning is not in the language model: the autoregressive mechanism natively computes association; chain-of-thought and reinforcement learning inherit its limits; and the formal constructs of reasoning theory, from Socratic procedure to Pearl's ladder, are absent as machinery. </div>
+          <div class="pub-links">
+            <a href="https://arxiv.org/abs/2607.12480">arXiv</a>
+            <a href="ArchitecturalWisdom.bib">BibTeX</a>
+          </div>
+        </li>
+
+
+        <li class="pub-item">
+          <span class="pub-venue-tag">June 2026</span><span class="pub-citation">new</span>
+
+          <div class="pub-title">Mnemosyne: Agentic Transaction Processing for Validating and Repairing AI-generated Workflows</div>
+          <div class="pub-authors">Edward Y. Chang, Longling Geng, and Emily J. Chang</div>
+          <div class="pub-tldr"><strong>TL;DR: </strong>To protect transactional integrity from unreliable generative planners, Agentic Transaction Processing (ATP) treats all model actions as untrusted proposals that must pass deterministic runtime admission under an executable constraint set, a model realized by the open-source Mnemosyne runtime to decouple committed-state correctness from the intelligence layer with minimal computational overhead.</div>
+          <div class="pub-links">
+            <a href="https://arxiv.org/abs/2607.00269">arXiv</a>
+            <a href="ArchitecturalWisdom.bib">BibTeX</a>
+          </div>
+        </li>
+
+      <ul class="pub-list">
+        <li class="pub-item">
+          <span class="pub-venue-tag">June 2026</span><span class="pub-citation">new</span>
+
+          <div class="pub-title">Architectural Wisdom: A Framework for Governing Optimization in AI Systems</div>
+          <div class="pub-authors">Edward Y. Chang</div>
+          <div class="pub-tldr"><strong>TL;DR: </strong>A framework for governing what AI systems optimize: a wisdom layer that constrains what an agent should optimize, restrain, and preserve, rather than only how well it optimizes. Foundational to <a href="https://dl.acm.org/doi/book/10.1145/3749421">The Path to AGI, Volume III</a>.</div>
+          <div class="pub-links">
+            <a href="https://arxiv.org/abs/2606.16319">arXiv</a>
+            <a href="ArchitecturalWisdom.bib">BibTeX</a>
+          </div>
+        </li>
+
+      <ul class="pub-list">
+        <li class="pub-item">
+          <span class="pub-venue-tag">May 2026</span><span class="pub-citation">new</span>
+
+          <div class="pub-title">Trivium: Temporal Regret as a First-Class Objective for Causal-Memory Controllers</div>
+          <div class="pub-authors">Edward Y. Chang</div>
+          <div class="pub-tldr"><strong>TL;DR: </strong>Promotes long-horizon temporal regret to a first-class objective alongside outcome regret: outcome-only correction captures only the <em>what</em> of failure, while epistemic and temporal regret add the <em>why</em> and the <em>when</em>, yielding logarithmic delayed-identification regret over a persistent causal transaction log. </div>
+          <div class="pub-links">
+            <a href="https://arxiv.org/abs/2606.04421">arXiv</a>
+            <a href="Trivium.bib">BibTeX</a>
+          </div>
+        </li>
+
+
+      <ul class="pub-list">
+        <li class="pub-item">
+          <span class="pub-venue-tag">March-April 2026</span><span class="pub-citation">new</span>
+
+          <div class="pub-title">Exploring Collatz Dynamics with Human–LLM Collaboration</div>
+          <div class="pub-authors">Edward Y. Chang</div>
+          <div class="pub-tldr"><strong>TL;DR: </strong>We prove that Collatz burst–gap dynamics exhibit geometric distributions in a modular model, yielding a conditional convergence framework that reduces the conjecture to a single orbit equidistribution hypothesis — developed and stress-tested through a documented human–LLM collaboration whose failure modes are themselves analyzed. </div>
+          <div class="pub-links">
+            <a href="https://arxiv.org/abs/2603.11066">arXiv</a>
+            <a href="CausalT5K.bib">BibTeX</a>
+          </div>
+        </li>
+
+      <ul class="pub-list">
+        <li class="pub-item">
+          <span class="pub-venue-tag">February 2026</span><span class="pub-citation">new</span>
+
+          <div class="pub-title">Epistemic Regret Minimization: Label-Free Causal Critique Beyond Outcome Reward</div>
+          <div class="pub-authors">Edward Y. Chang, Longling Geng</div>
+          <div class="pub-tldr"><strong>TL;DR:</strong>ERM critiques how LLMs reason causally, not just what they answer, catching shortcuts that outcome-only reward entrenches, without requiring ground-truth labels.</div>
+          <div class="pub-links">
+            <a href="https://arxiv.org/abs/2602.11675">arXiv</a>
+            <a href="RAudit.bib">BibTeX</a>
+          </div>
+        </li>
+
+        <li class="pub-item">
+          <span class="pub-venue-tag">arXiv 2025</span>
+          <div class="pub-title">UCCT: The Unified Cognitive Consciousness Theory for Language Models: Anchoring Semantics, Thresholds of Activation, and Emergent Reasoning</div>
+          <div class="pub-authors">Edward Y. Chang, Zeyneb N. Kaya, Ethan Chang</div>
+          <div class="pub-tldr"><strong>TL;DR:</strong> A unified theory explaining how LLMs turn pretrained capacity into goal-directed behavior via semantic anchoring. Formalizes anchoring strength S = ρ<sub>d</sub> − d<sub>r</sub> − log k, predicting threshold-like performance flips and generalizing ICL, retrieval, and fine-tuning as anchoring variants.</div>
+          <div class="pub-links">
+            <a href="https://arxiv.org/abs/2506.02139">arXiv</a>
+            <a href="UCCT.bib">BibTeX</a>
+          </div>
+        </li>
+
+        <li class="pub-item">
+          <span class="pub-venue-tag">arXiv 2024</span>
+          <div class="pub-title">EVINCE: Optimizing Adversarial LLM Dialogues via Conditional Statistics and Information Theory</div>
+          <div class="pub-authors">Edward Y. Chang</div>
+          <div class="pub-tldr"><strong>TL;DR:</strong> Uses information-theoretic metrics to optimize multi-agent debates, measuring when additional dialogue rounds yield diminishing returns.</div>
+          <div class="pub-links">
+            <a href="https://arxiv.org/abs/2408.14575">arXiv</a>
+            <a href="EVINCE2024.bib">BibTeX</a>
+          </div>
+        </li>
+      </ul>
+
+      <!-- Recent Publications -->
+      <h3 class="pub-subsection">Accepted Publications (2023–2026)</h3>
+      <ul class="pub-list">
+
+
+        <li class="pub-item">
+          <span class="pub-venue-tag">ACM Books 2026</span><span class="pub-citation">new</span>
+          <div class="pub-title">System-2 Reasoning: From Semantic Anchoring to Causal Intelligence, The Path to AGI volume 2</div>
+          <div class="pub-authors">Edward Y. Chang</div>
+          <div class="pub-tldr"><strong>TL;DR: </strong> Twelve chapters of ground-breaking research on reasoning and semantic anchoring.</div>
+          <div class="pub-links">
+            <a href="https://dl.acm.org/doi/book/10.1145/3822380">DOI</a>
+            <a href="CausalT5K.bib">BibTeX</a>
+          </div>
+        </li>
+
+        <li class="pub-item">
+          <span class="pub-venue-tag">ACM KDD 2026</span><span class="pub-citation">new</span>
+          <div class="pub-title">CausalT5K: Diagnosing and Informing Refusal for Trustworthy Causal Reasoning of Skepticism, Sycophancy, Detection-Correction, and Rung Collapse</div>
+          <div class="pub-authors">Longling Geng, Andy Ouyang, Theodore Wu, Daphne Barretto, Matthew John Hayes, Rachael Cooper, Yuqiao Zeng, Sameer Vijay, Gia Ancone, Ankit Rai, Matthew Wolfman, Patrick Flanagan, Edward Y. Chang</div>
+          <div class="pub-tldr"><strong>TL;DR: </strong> A large-scale benchmark (5,000+ samples) for evaluating causal reasoning in LLMs, covering intervention queries, counterfactual reasoning, and causal graph discovery across multiple domains.</div>
+          <div class="pub-links">
+            <a href="https://arxiv.org/abs/2602.08939">arXiv</a>
+            <a href="CausalT5K.bib">BibTeX</a>
+          </div>
+        </li>
+
+
+        <li class="pub-item">
+          <span class="pub-venue-tag">ACM KDD 2026</span><span class="pub-citation">new</span>
+          <div class="pub-title">REALM-Bench: A Real-World Planning Benchmark for LLMs and Multi-Agent Systems</div>
+          <div class="pub-authors">Longling Geng, Edward Y. Chang</div>
+          <div class="pub-tldr"><strong>TL;DR:</strong> Benchmark featuring real-world planning tasks (travel, scheduling, logistics) that exposes the gap between LLM reasoning capabilities and practical deployment.</div>
+          <div class="pub-links">
+            <a href="https://dl.acm.org/doi/10.1145/3770854.3785692">DOI</a>
+            <a href="REALM2025.bib">BibTeX</a>
+          </div>
+        </li>
+
+        <li class="pub-item">
+          <span class="pub-venue-tag">ICML 2026</span>
+          <div class="pub-title">AGI Requires a Coordination Layer on Top of Pattern Repositories (Regular Paper, Position Track)</div>
+          <div class="pub-authors">Edward Y. Chang</div>
+          <div class="pub-tldr"><strong>TL;DR: </strong>Critiques miss the bottleneck: LLMs need System-2 coordination. An anchoring theory and multi-agent stack (debate, verification, memory) fix sycophancy and causal failures, arguing AGI runs through LLMs. This is one of the anchor papers of <a href="https://dl.acm.org/doi/book/10.1145/3749421">The Path to AGI, Volume I, ACM Books, December 2025</a></div>
+          <div class="pub-links">
+            <a href="https://arxiv.org/pdf/2512.05765">PDF</a>
+            <a href="ICML2026.bib">BibTeX</a>
+          </div>
+        </li>
+
+
+        <li class="pub-item">
+          <span class="pub-venue-tag">ACL 2026</span>
+          <div class="pub-title">Diagnosing and Mitigating Sycophancy and Skepticism in LLM Causal Judgment</div>
+          <div class="pub-authors">Edward Y. Chang</div>
+          <div class="pub-tldr"><strong>TL;DR: </strong>We diagnose a Skepticism Trap and a Scaling Paradox in frontier models, showing that larger LLMs often regress into paralysis when faced with causal ambiguity. Using our CausalT3 benchmark and Recursive Causal Audit protocol, we demonstrate that these pathologies can be mitigated at inference time through structured process verification.</div>
+          <div class="pub-links">
+            <a href="https://arxiv.org/abs/2601.08258">PDF</a>
+            <a href="ACL2026.bib">BibTeX</a>
+          </div>
+        </li>
+
+        <li class="pub-item">
+          <span class="pub-venue-tag">ACM Books 2025</span><span class="pub-citation">Top-Seller</span>
+          <div class="pub-title">Multi-LLM Agent Collaborative Intelligence: The Path to Artificial General Intelligence</div>
+          <div class="pub-authors">Edward Y. Chang</div>
+          <div class="pub-tldr"><strong>TL;DR: </strong> Foundation pillars of artificial general intelligence (AGI)</div>
+          <div class="pub-links">
+            <a href="https://dl.acm.org/doi/book/10.1145/3822380">DOI</a>
+            <a href="CausalT5K.bib">BibTeX</a>
+          </div>
+        </li>
+
+
+        <li class="pub-item">
+          <span class="pub-venue-tag">VLDB 2025</span><span class="pub-citation">ground-breaking</span>
+          <div class="pub-title">SagaLLM: Context Management, Validation, and Transaction Guarantees for Multi-Agent LLM Planning</div>
+          <div class="pub-authors">Edward Y. Chang, Longling Geng</div>
+          <div class="pub-tldr"><strong>TL;DR:</strong> Brings database-style ACID guarantees to multi-agent LLM systems — ensuring plans are atomic, consistent, and recoverable through compensating transactions.</div>
+          <div class="pub-links">
+            <a href="https://dl.acm.org/doi/10.14778/3750601.3750611">DOI</a>
+            <a href="SagaLLM.bib">BibTeX</a>
+          </div>
+        </li>
+
+        <li class="pub-item">
+          <span class="pub-venue-tag">ICML 2025</span>
+          <div class="pub-title">A Checks-and-Balances Framework for Ethical AI Alignment</div>
+          <div class="pub-authors">Edward Y. Chang</div>
+          <div class="pub-tldr"><strong>TL;DR:</strong> A three-branch governance architecture (Executive, Legislative, Judicial) for AI systems that prevents any single component from unilateral harmful actions.</div>
+          <div class="pub-links">
+            <a href="https://proceedings.mlr.press/v267/chang25a.html">PDF</a>
+            <a href="AISafety.bib">BibTeX</a>
+          </div>
+        </li>
+
+        <li class="pub-item">
+          <span class="pub-venue-tag">NeurIPS AI Safety 2024</span>
+          <div class="pub-title">A Three-Branch Checks-and-Balances Framework for Context-Aware Ethical Alignment of Large Language Models</div>
+          <div class="pub-authors">Edward Y. Chang</div>
+          <div class="pub-tldr"><strong>TL;DR:</strong> Early version of checks-and-balances framework demonstrating how separation of powers prevents single-point-of-failure in AI alignment.</div>
+          <div class="pub-links">
+            <a href="#">PDF</a>
+          </div>
+        </li>
+
+        <li class="pub-item">
+          <span class="pub-venue-tag">IEEE MIPR 2024</span>
+          <div class="pub-title">Behavioral Emotion Analysis Model for Large Language Models (invited paper)</div>
+          <div class="pub-authors">Edward Y. Chang</div>
+          <div class="pub-tldr"><strong>TL;DR:</strong> A framework for analyzing and modeling emotional behaviors in LLM responses, enabling more nuanced human-AI interaction.</div>
+          <div class="pub-links">
+            <a href="https://ieeexplore.ieee.org/document/10708009">PDF</a>
+            <a href="MIPR2024.bib">BibTeX</a>
+          </div>
+        </li>
+
+        <li class="pub-item">
+          <span class="pub-venue-tag">IEEE CCWC 2023</span><span class="pub-citation">ground-breaking</span> <span class="pub-citation">100+ citations</span>
+          <div class="pub-title">Prompting Large Language Models With the Socratic Method (CRIT)`</div>
+          <div class="pub-authors">Edward Y. Chang</div>
+          <div class="pub-tldr"><strong>TL;DR:</strong> Introduces SocraSynth — using Socratic questioning to elicit deeper reasoning from LLMs through structured multi-turn dialogue and adversarial probing.</div>
+          <div class="pub-links">
+            <a href="https://arxiv.org/abs/2303.08769">PDF</a>
+            <a href="CCWC.bib">BibTeX</a>
+          </div>
+        </li>
+
+        <li class="pub-item">
+          <span class="pub-venue-tag">IEEE CSCI 2023</span><span class="pub-citation">ground-breaking</span> <span class="pub-citation">100+ citations</span>
+          <div class="pub-title">Examining GPT-4's Capabilities and Enhancement with SocraSynth </div>
+          <div class="pub-authors">Edward Y. Chang</div>
+          <div class="pub-tldr"><strong>TL;DR:</strong> Systematic evaluation of GPT-4's reasoning capabilities and introduction of CRIT — a critique-based method that improves accuracy through iterative refinement and self-correction.</div>
+          <div class="pub-links">
+            <a href="https://www.researchgate.net/publication/374753069">PDF</a>
+            <a href="ExamingGPT4.bib">BibTeX</a>
+          </div>
+        </li>
+      </ul>
+    </section>
+
+
+   <section id="books">
+      <h2>Books</h2>
+      <div class="books-grid">
+
+        <div class="book-card">
+          <img src="img/AGIVIII-Cover-LS.jpg" alt="The Path to AGI, Volume 3">
+          <div class="book-info">
+            <span class="book-badge">Forthcoming</span>
+            <h3><a href="#">Beyond Intelligence: From Operational AGI to Wisdom (The Path to AGI, Volume 3)</a></h3>
+            <div class="meta">2027, expected</div>
+          </div>
+        </div>
+
+        <div class="book-card">
+          <img src="img/AGIVII-Cover-LS.jpg" alt="The Path to AGI, Volume 2">
+          <div class="book-info">
+            <span class="book-badge">Pioneer Work</span>
+            <h3><a href="https://dl.acm.org/doi/book/10.1145/3822380">System-2 Reasoning: From Semantic Anchoring to Causal Inference (The Path to AGI, Volume 2)</a></h3>
+            <div class="meta">ACM Books, July 2026</div>
+          </div>
+        </div>
+
+        <!-- The Path to AGI trilogy -->
+        <div class="book-card">
+          <img src="img/MACICover.png" alt="The Path to AGI, Volume 1">
+          <div class="book-info">
+            <span class="book-badge">Pioneer Work</span>
+            <h3><a href="https://dl.acm.org/doi/book/10.1145/3749421">Multi-LLM Agent Collaborative Intelligence (The Path to AGI)</a></h3>
+            <div class="meta">ACM Books, December 2025</div>
+          </div>
+        </div>
+
+        <div class="book-card">
+          <img src="img/Aphorisms.png" alt="Unlocking the Wisdom of Large Language Models">
+          <div class="book-info">
+            <h3><a href="https://www.researchgate.net/publication/383611061_Unlocking_the_Wisdom_of_Large_Language_Models_An_Introduction_to_The_Path_to_Artificial_General_Intelligence">Unlocking the Wisdom of Large Language Models: An Introduction to The Path to Artificial General Intelligence</a></h3>
+            <div class="meta">September 2024</div>
+          </div>
+        </div>
+
+        <!-- Poetry -->
+        <div class="book-card">
+          <img src="img/JMind.jpg" alt="Journey of the Mind, Ascending Everest">
+          <div class="book-info">
+            <span class="book-badge">Poetry &amp Philosophy</span>
+            <h3><a href="https://drive.google.com/file/d/1ZymvQKD4nuNRpmvSt2FY88wj6JckiJv6/view?usp=sharing">Journey of the Mind, Ascending Everest</a></h3>
+            <div class="meta">2022</div>
+          </div>
+        </div>
+
+        <div class="book-card">
+          <img src="img/WhatisLife-Cover.jpg" alt="What is Life, Mind and Matter">
+          <div class="book-info">
+            <span class="book-badge">Philosophy</span>
+            <h3><a href="https://drive.google.com/file/d/1d-LLFybB_M8OVAluoHwShJJo4hzkyM6h/view?usp=sharing">What Is Lfe (Traditional Chinese Translation)</a></h3>
+            <div class="meta">2021</div>
+          </div>
+        </div>
+
+        <div class="book-card">
+          <img src="img/BigDataCover.jpeg" alt="Big Data Analytics">
+          <div class="book-info">
+            <h3><a href="https://www.wiley.com/en-us/Big+Data+Analytics+for+Large+Scale+Multimedia+Search-p-9781119376972">Big Data Analytics for Large-Scale Multimedia Search</a></h3>
+            <div class="meta">Wiley, 2019 (Co-editor)</div>
+          </div>
+        </div>
+
+        <div class="book-card">
+          <img src="img/book-ne.jpg" alt="Nomadic Eternity">
+          <div class="book-info">
+            <span class="book-badge">Poetry</span>
+            <h3><a href="nomadic-eternity.html">Nomadic Eternity</a></h3>
+            <div class="meta">Tsinghua University Press, 2012</div>
+          </div>
+        </div>
+
+        <!-- Earlier works -->
+        <div class="book-card">
+          <img src="img/FMMDMCover.png" alt="Foundations of Large-Scale Multimedia">
+          <div class="book-info">
+            <h3><a href="https://link.springer.com/book/10.1007/978-3-642-20429-6">Foundations of Large-Scale Multimedia Information Management and Retrieval</a></h3>
+            <div class="meta">Springer, 2011</div>
+          </div>
+        </div>
+
+
+      </div>
+    </section>
+
+    <!-- TEACHING -->
+    <section id="teaching">
+      <h2>Teaching</h2>
+      <ul class="course-list">
+        <li class="course-item">
+          <div class="course-term">Spring 2026-2027</div>
+          <div class="course-info">
+            <div class="course-code">Stanford University</div>
+            <div class="course-title">CS472/372R Advanced Large Language Models Research Seminar</div>
+          </div>
+        </li>
+
+        <li class="course-item">
+          <div class="course-term">Winter 2025- 2027</div>
+          <div class="course-info">
+            <div class="course-code">Stanford University</div>
+            <div class="course-title"><a href="cs372/cs372-syllabus.html">CS372 Artificial General Intelligence for Reasoning, Planning, and Decision Making</a></div>
+          </div>
+        </li>
+
+        <li class="course-item">
+          <div class="course-term">Spring 2019–2024</div>
+          <div class="course-info">
+            <div class="course-code">Stanford University</div>
+            <div class="course-title">CS372 Artificial Intelligence for Disease Diagnosis and Information Recommendations</div>
+          </div>
+        </li>
+      </ul>
+    </section>
+
+    <!-- BACKGROUND -->
+    <section id="background">
+      <h2>Background</h2>
+      <div class="background-grid">
+        <div class="background-col">
+          <h3>Education</h3>
+          <ul>
+            <li><strong>Ph.D., Electrical Engineering</strong><br>Stanford University</li>
+            <li><strong>M.S., Computer Science</strong><br>Stanford University</li>
+            <li><strong>M.S., IEOR</strong><br>University of California, Berkeley</li>
+          </ul>
+        </div>
+        <div class="background-col">
+          <h3>Industry Experience</h3>
+          <ul>
+            <li><strong>Director of Research</strong><br>Google, 2006–2012</li>
+            <li><strong>President</strong><br>HTC Healthcare, 2012–2021</li>
+          </ul>
+        </div>
+        <div class="background-col">
+          <h3>Selected Honors</h3>
+          <ul>
+            <li><strong>XPRIZE Tricorder</strong><br>$1M Award for AI Medical Diagnosis, 2017</li>
+            <li><strong>ACM Fellow, IEEE Fellow</strong><br>Citations: for contributions in scalable machine learning and healthcare</li>
+          </ul>
+        </div>
+        <div class="background-col">
+          <h3>Previous Academic</h3>
+          <ul>
+            <li><strong>Professor (tenured)</strong><br>UC Santa Barbara, 1999–2006</li>
+            <li><strong>Visiting Professor</strong><br>UC Berkeley, 2017–2019</li>
+            <li><strong>Adjunct Professor</strong><br>Stanford University, 2019–2026</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+  </div>
+</main>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <p>© 2025 Edward Y. Chang · Stanford University · Gates 486 · <a href="mailto:echang@cs.stanford.edu">echang@cs.stanford.edu</a></p>
+  </div>
+</footer>
+
+<!-- Smooth scrolling for navigation -->
+<script>
+  document.querySelectorAll('nav a').forEach(link => {
+    link.addEventListener('click', function(e) {
+      e.preventDefault();
+      const targetId = this.getAttribute('href').substring(1);
+      const targetEl = document.getElementById(targetId);
+      if (targetEl) {
+        targetEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+      // Update active state
+      document.querySelectorAll('nav a').forEach(a => a.classList.remove('active'));
+      this.classList.add('active');
+    });
+  });
+
+  // Update active nav on scroll
+  window.addEventListener('scroll', () => {
+    const sections = document.querySelectorAll('section');
+    let current = '';
+    sections.forEach(section => {
+      const sectionTop = section.offsetTop - 100;
+      if (pageYOffset >= sectionTop) {
+        current = section.getAttribute('id');
+      }
+    });
+    document.querySelectorAll('nav a').forEach(a => {
+      a.classList.remove('active');
+      if (a.getAttribute('href') === '#' + current) {
+        a.classList.add('active');
+      }
+    });
+  });
+</script>
+
+</body>
+</html>

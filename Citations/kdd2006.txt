@@ -1,0 +1,18 @@
+@inproceedings{Hoi:2006:LUK:1150402.1150426,
+ author = {Hoi, Steven C. H. and Lyu, Michael R. and Chang, Edward Y.},
+ title = {Learning the Unified Kernel Machines for Classification},
+ booktitle = {Proceedings of the 12th ACM SIGKDD International Conference on Knowledge Discovery and Data Mining},
+ series = {KDD '06},
+ year = {2006},
+ isbn = {1-59593-339-5},
+ location = {Philadelphia, PA, USA},
+ pages = {187--196},
+ numpages = {10},
+ url = {http://doi.acm.org/10.1145/1150402.1150426},
+ doi = {10.1145/1150402.1150426},
+ acmid = {1150426},
+ publisher = {ACM},
+ address = {New York, NY, USA},
+ keywords = {active learning, classification, kernel logistic regressions, kernel machines, semi-supervised learning, spectral kernel learning, supervised learning, unsupervised kernel design},
+} 
+

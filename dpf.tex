@@ -1,0 +1,103 @@
+\vspace*{-3ex}
+\subsection{Adaptive Similarity Measure}
+\vspace*{-1ex}
+\label{sec-dpf}
+
+Using some results of our extensive image-data mining \cite{DPF-ICIP02},
+we formulate the {\em dynamic partial} distance function (DPF) as follows.
+Let $\delta_i = |x_i-y_i|$ denote the difference 
+between objects $x$ and $y$ in feature $i$, for $i=1,\cdots, p$.
+We first define set $\Delta_m$ as
+\[
+\Delta_m = \{ The~~smallest~~m~\delta's~~of~~(\delta_1, ..., \delta_p)\}.
+\]
+The first approximation of a desired perceptual function looks like
+\begin{equation}
+d_{DPF}(X, Y) = (\sum\limits_{\delta_i \in \Delta_m}{\delta_i}^{r})^{\frac{1}{r}
+}.
+\label{eq-dpf}
+\end{equation}
+The above formulation shows that
+DPF activates different features for
+different object pairs. The activated features are those
+with minimum differences---those which provide coherence
+between the objects.  If coherence can be maintained
+(because a sufficient number of features are similar), then
+the objects paired are perceived as similar.
+Our empirical studies in image retrieval \cite{DPF-ICIP02}
+and in shot-boundary detection \cite{WC02} have shown that
+DPF performs significantly better than Minkowski-like
+functions.  
+
+The effectiveness of DPF can be explained in
+similarity theories in cognitive science.
+Some important work in the cognitive psychology community
+has provided ample evidence that
+similarity is both {\em dynamic} and {\em non-metric}
+\cite{MM85, Tev77}.  Most recently, Goldstone \cite{Gold93}
+shows that similarity perception
+is the {\em process} that determines the respects (i.e.,
+features, or attributes) for measuring similarity.
+More precisely, a similarity function for measuring
+a pair of objects is formulated only after the objects
+are compared, not before the comparison is made; and the
+respects for the comparison are {\em dynamically} activated in
+this formulation process.  Let us use a simple example to explain.
+Suppose we are asked to name two places that are similar
+to England.  Among several possibilities, Scotland and
+New England could be two reasonable answers.  However,
+the respects in which England is similar to Scotland differ from those
+in which England is similar to New England.
+If we use the shared attributes of
+England and Scotland to compare England and New England,
+the latter pair might not seem similar, and vice versa.
+Thus, a distance function using a fixed set of respects
+(e.g., the traditional weighted Minkowski function) cannot
+capture objects that are similar in different sets of respects.
+
+\subsubsection*{\underline{Task: Perceptual Distance Functions}}
+
+As we have discussed in Section~\ref{sec-dpf}, DPF dynamically
+selects $m$ out of $p$ total features for measuring
+similarity between two objects.
+Even though DPF performs markedly better than traditional
+distance functions, there is still much room for improvement.  
+
+When the similarity of an object-pair is measured, DPF 
+chooses $m$ feature-channels that have the smallest distance
+to produce an aggregated distance.   Ideally, the optimal $m$ value should
+be determined in a pairwise fashion.  But the current version 
+of DPF uses an ``on average optimal'' $m$ learned from
+a set of training pairs.  This one-$m$-fits-all approach
+clearly cannot work optimally for all object-pairs.
+
+We plan to investigate two methods to tune $m$ adaptively for each 
+object-pair: {\em thresholding} and {\em sampling}.
+\begin{nlist}
+\item {\bf 1. \em Thresholding}.
+ Intuitively, we know that we need to find $m$ similar feature-channels 
+ between two objects.  The thresholding method finds for
+ each object-pair $m$ channels that have a distance 
+ below a given threshold.  In other words, given a threshold,
+ the $m$ value can be determined pairwise.
+ A potential shortcoming of this method is that
+ we still need to find an ``on average
+ optimal'' threshold for all object pairs.  
+ 
+\item {\bf 2. \em Sampling}.
+ Another method we plan to study is sampling,
+ which picks a number of candidate $m$'s
+ in a range, say, within three standard deviations of the
+ ``on average optimal'' $m$. Using $w$ sampling points, DPF
+ can compute $w$ different distance measures for each object pair.
+ To return top-$k$ results, the sampling method can return 
+ the objects that enjoy the highest ``votes'' among these $w$ 
+ measures.
+
+ The key idea behind the sampling method is that 
+ among the $w$ sampling points, one of them is 
+ likely to be near the optimal $m$.  We plan to
+ conduct extensive experiments to find the best
+ sampling range, sampling frequency, and voting method.
+\end{nlist}
+

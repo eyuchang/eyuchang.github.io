@@ -1,0 +1,12 @@
+# Semantic Anchoring: What an LLM Is, Where Its Boundary Lies, and Where Semantics Comes From
+
+**Edward Y. Chang, Stanford University**
+Position statement, v1.0. August 9, 2026.
+
+One invariant should be recognized across the field: an LLM is a pattern repository. The training objective, maximum-likelihood next-token prediction, mentions no truth, no goals, and no meaning; the object it produces is a distribution over continuations, dense with associations and semantically uncommitted. Post-training does not change the category. Fine-tuning, including alignment, resculpts the repository, moving which clusters are dense and near; an LLM with a thousand fine-tunings is still a System-1 pattern repository. The operational boundary is one question: does the tool touch model parameters? Everything that does not, prompts, chain-of-thought orchestration, retrieval, tools, lives above the line, in the system rather than the model. (Companion note: "Where the LLM Ends.")
+
+Where, then, does semantics come from? From anchoring. The Unified Cognitive Consciousness Theory quantifies it: an anchor's strength is S equal to target density minus representational distance minus the log of the anchor budget, and behavior crosses from prior-driven to anchored at a critical threshold. The claims are measured, not metaphorical. Three worked examples can redefine the minus sign at inference time, flipping target binding from 0.000 to 1.000 with McNemar p below ten to the minus one hundred, and the flip is rule-sensitive, not format-sensitive: structurally identical prompts whose examples imply the prior produce zero rebinding. The few-shot threshold scales as distance over density: two-digit arithmetic, identical in complexity across numeral bases, crosses at 0.28 shots in base ten, 1.83 in base eight, and 2.91 in base nine, with phase width and final accuracy following the same ordering, and the underlying quantities are visible as layer-wise representation trajectories inside the network.
+
+The consequence of the invariant is a redirection of the field's question. Whether a model "can" do X is ill-posed; the well-posed question is what anchor strength X requires, and whether the deployed system supplies it. Capability is a property of the anchored system, not of the frozen weights. Semantics is not in the box; it is in the binding.
+
+Full development: *The Path to AGI*, Vol. 1 (Chs. 4, 14) and Vol. 2 (Chs. 1 to 3).

@@ -1,0 +1,256 @@
+#!/usr/local/bin/perl
+
+#---------- Subroutines ------------
+
+sub GetRainbowAccuracy() { #get accuracy from a rainbow formatted result file
+  my($line);
+  open(RAINBOWOUTFILE, "<$temp_file") || die "Cannot open $temp_file: $!\n";
+  while($line = <RAINBOWOUTFILE>) {
+    if($line =~ "Percent_Accuracy") {
+      $line =~ s/^.+average\s(.+)\sstderr.*$/\1/;
+      chomp($line);
+      close(RAINBOWOUTFILE);
+      return($line);
+    }
+  }
+}
+
+sub GetSvmAccuracy() { #get accuracy from a svm_classify formatted result file
+  my($line);
+  open(SVMOUTFILE, "<$temp_file") || die "Cannot open $temp_file: $!\n";
+  while($line = <SVMOUTFILE>) {
+    if($line =~ "Accuracy") {
+      $line =~ s/^.+set\:\s(.+)\%.*$/\1/;
+      chomp($line);
+      close(SVMOUTFILE);
+      return($line);
+    }
+  }
+}
+
+sub GetRestrictedPrecision { #get restricted precision from a svm_classify formatted result file. Need to pass it an argument $_[0] for the top_limit.
+  my($line);
+#  print "Looking for: $_[0]\n";
+  open(SVMOUTFILE, "<$temp_file") || die "Cannot open $temp_file: $!\n";
+  while($line = <SVMOUTFILE>) {
+    if($line =~ "Precision on top") {
+#	print "Looking at line: $line";
+	if($line =~ "$_[0] docs") {
+	    $line =~ s/^.+docs\:\s(.+)\%.*$/\1/;
+	    chomp($line);
+	    close(SVMOUTFILE);
+#	    print "**** Found! Returning $line\n";
+	    return($line);
+	}
+    }
+  }
+}
+
+sub GetSvmBreakEven() { #get breakeven point from a svm_classify formatted result file
+  my($line);
+  open(SVMOUTFILE, "<$temp_file") || die "Cannot open $temp_file: $!\n";
+  while($line = <SVMOUTFILE>) {
+    if($line =~ "breakeven") {
+      $line =~ s/^.+point\:\s(.+)\%.*$/\1/;
+      chomp($line);
+      close(SVMOUTFILE);
+      return($line);
+    }
+  }
+}
+
+# --------------- Main program ------------------
+
+#---------- Initialisation ---------
+$desired_topic = shift(@ARGV) || die "Usage: imageActiveRun <topic> <num_train> <num_runs> <kernel type (1=poly 2=gaussian)> <kernel param> <num_simultaneous queries> [number initial random queries]\n";
+#$pool_size = shift(@ARGV) || die "Usage: imageActiveRun <topic> <pool_size> <num_train> <num_runs> <kernel type (1=poly 2=gaussian)> <kernel param> <num_simultaneous queries> [number initial random queries]\n";
+$num_train = shift(@ARGV) || die "Usage: imageActiveRun <topic> <num_train> <num_runs> <kernel type (1=poly 2=gaussian)> <kernel param> <num_simultaneous queries> [number initial random queries]\n";
+$num_runs = shift(@ARGV) || die "Usage: imageActiveRun <topic> <num_train> <num_runs> <kernel type (1=poly 2=gaussian)> <kernel param> <num_simultaneous queries> [number initial random queries]\n";
+$kernel_type = shift(@ARGV) || die "Usage: imageActiveRun <topic> <num_train> <num_runs> <kernel type (1=poly 2=gaussian)> <kernel param> <num_simultaneous queries> [number initial random queries]\n";
+$kernel_param = shift(@ARGV) || die "Usage: imageActiveRun <topic> <num_train> <num_runs> <kernel type (1=poly 2=gaussian)> <kernel param> <num_simultaneous queries> [number initial random queries]\n";
+$num_simultaneous = shift(@ARGV) || die "Usage: imageActiveRun <topic> <num_train> <num_runs> <kernel type (1=poly 2=gaussian)> <kernel param> <num_simultaneous queries> [number initial random queries]\n";
+$num_initial_random_queries = shift(@ARGV);
+
+$z=0;
+
+$num_query_rounds = int(($num_train - $num_initial_random_queries - 2)/$num_simultaneous);
+
+if($kernel_type != 1 && $kernel_type != 2) {
+    die "Illegal kernel type\n";
+}
+
+$output_file = "$desired_topic.results";
+
+#Get the pool size
+#open(LABELFILE, "<$desired_topic.train.dat");
+#$pool_size =0;
+#while($line = <LABELFILE>) {
+#    if($line =~ /^[\d\+\-]/) {
+#	$pool_size++;
+#    }
+#}
+#close(LABELFILE);
+
+$regularization = 0;
+
+for($k=0; $k<$num_query_rounds+1; $k++) {
+    $file_suffix = $k*$num_simultaneous+2+$num_initial_random_queries; 
+
+    open(OUTFILE, ">$output_file.$file_suffix.txt");
+    print OUTFILE "Topic: $desired_topic\n";
+#    print OUTFILE "Pool size: $pool_size\n";
+    print OUTFILE "Number of inital random queries: $num_initial_random_queries\n";
+    print OUTFILE "Number of querying rounds: $k\n";
+    print OUTFILE "Number of simulanteous queries per round: $num_simultaneous\n";
+    print OUTFILE "Number of labeled instances seen: $file_suffix\n";
+    if($kernel_type == 1) {
+	print OUTFILE "Polynomial Degree: $kernel_param\n";
+    } else {
+	print OUTFILE "Gamma: $kernel_param\n";
+    }
+    print OUTFILE "Number of runs: $num_runs\n\n";
+    print OUTFILE "Ran";
+    for($i=0; $i<20; $i++) {
+	print OUTFILE ($i+1)*10 . "\t";
+    }
+    print OUTFILE "SAct";
+    for($i=0; $i<20; $i++) {
+	print OUTFILE ($i+1)*10 . "\t";
+    }
+    print OUTFILE "\n";
+    close(OUTFILE);
+}
+
+for ($j = 0; $j < $num_runs ; $j++) {
+
+  system("/bin/rm *.mdl*");
+  system("/bin/rm queries*");
+
+  #generate training and test file
+#  system("datCreateTrainTest $desired_topic.dat $pool_size");
+
+  print "****** Note: Testing on training set *******\n";
+  system("ln -s $desired_topic.dat $desired_topic.train.dat");
+  system("ln -s $desired_topic.dat $desired_topic.test.dat");
+
+  $temp_file = "result.$desired_topic.$num_train.svm";
+
+  #create active data training sets
+  $temp1 = $num_initial_random_queries+2;
+  system("datCreateActiveTrain $desired_topic.train.dat $temp1");
+  system("cp $desired_topic.train.passive.dat $desired_topic.train.active.dat");
+
+  $total_num_queries = $num_query_rounds*$num_simultaneous;
+
+  # For poly kernels
+  if($kernel_type == 1) {
+      #create model for passive data set, one after each individual query
+      system("svm_learn_active -b 0 -o 3 -z $z -t $kernel_type -d $kernel_param -k $desired_topic.train.dat -n $total_num_queries $desired_topic.train.active.dat $desired_topic.passive.mdl");
+
+      #create model for simple active data set, one after each query round
+      system("svm_learn_active -b 0 -o 1 -w $num_simultaneous -z $z -t $kernel_type -d $kernel_param -k $desired_topic.train.dat -n $num_query_rounds $desired_topic.train.active.dat $desired_topic.simpleactive.mdl");
+
+  # For gaussian kernels
+  } else {
+      #create model for passive data set, one after each individual query
+      system("svm_learn_active -b 0 -o 3 -z $z -t $kernel_type -g $kernel_param -k $desired_topic.train.dat -n $total_num_queries $desired_topic.train.active.dat $desired_topic.passive.mdl");
+
+      #create model for simple active data set, one after each query round
+      system("svm_learn_active -b 0 -o 1 -w $num_simultaneous -z $z -t $kernel_type -g $kernel_param -k $desired_topic.train.dat -n $num_query_rounds $desired_topic.train.active.dat $desired_topic.simpleactive.mdl");
+  }
+
+  # ----------- Classifying using each model in turn ------------
+
+  for($k=0; $k<$num_query_rounds+1; $k++) {
+
+      #reset current errors
+      @current_errors = ();
+
+      #first append the initial two training instances and random queries to our query list
+      $file_suffix = $k*$num_simultaneous + 2 + $num_initial_random_queries;
+      system("cat $desired_topic.train.picked.log >> queries.random.log.$file_suffix");
+      system("cat $desired_topic.train.picked.log >> queries.simple.log.$file_suffix");
+
+      #classify using model for passive data set
+      # taking into account documents that we've already queried
+
+      system(" svm_classify -q queries.random.log.$file_suffix $desired_topic.test.dat $desired_topic.passive.mdl.$file_suffix $desired_topic.passive.out > $temp_file");
+#      system(" svm_classify $desired_topic.test.dat $desired_topic.passive.mdl.$file_suffix $desired_topic.passive.out > $temp_file");
+
+      for($i=0; $i<20; $i++) {
+	  $current_error = GetRestrictedPrecision(($i+1)*10);
+	  push(@current_errors,$current_error);
+	  $total[$k][$i] = $total[$k][$i] + $current_error;
+	  $total_sq[$k][$i] = $total_sq[$k][$i] + $current_error*$current_error;
+      }
+
+      #classify using for simple active data set
+      # taking into account documents that we've already queried
+
+      system(" svm_classify -q queries.simple.log.$file_suffix $desired_topic.test.dat $desired_topic.simpleactive.mdl.$file_suffix $desired_topic.active.out > $temp_file");
+
+#      system(" svm_classify $desired_topic.test.dat $desired_topic.simpleactive.mdl.$file_suffix $desired_topic.active.out > $temp_file");
+
+      for($i=0; $i<20; $i++) {
+	  $current_error = GetRestrictedPrecision(($i+1)*10);
+	  push(@current_errors,$current_error);
+	  $total[$k][$i+20] = $total[$k][$i+20] + $current_error;
+	  $total_sq[$k][$i+20] = $total_sq[$k][$i+20] + $current_error*$current_error;
+      }
+
+      #----------- Output ------------
+  
+      open(OUTFILE, ">>$output_file.$file_suffix.txt");
+      $line = join("\t",@current_errors);
+      print OUTFILE "$line\n";
+      close(OUTFILE);
+  }
+}
+
+#----------- Output Means ------------
+for($k=0; $k<$num_query_rounds+1; $k++) {
+    $file_suffix = $k*$num_simultaneous + 2 + $num_initial_random_queries;
+    @current_err=();
+    @current_stderr=();
+    for($i=0; $i<20*2; $i++) {
+	push(@current_err,$total[$k][$i]/$num_runs);
+
+	# stderr is 0 if variance is "negative" because of underflow, 
+	# or if we are only doing one run.
+	if($num_runs>1) {
+	    $variance = (($total_sq[$k][$i]/$num_runs)-($total[$k][$i]*$total[$k][$i]/($num_runs*$num_runs)))/($num_runs-1);
+	}
+	if($variance < 0 || $num_runs==1) {
+	    $stderr = 0;
+	} else {
+	    $stderr = sqrt($variance);
+	}
+	
+	push(@current_stderr,$stderr);
+    }
+	
+    open(OUTFILE, ">>$output_file.$file_suffix.txt");
+    print OUTFILE "\nMean and StdErr\n";
+    $line = join("\t",@current_err);
+    print OUTFILE "$line\n";
+    $line = join("\t",@current_stderr);
+    print OUTFILE "$line\n";
+    close(OUTFILE);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

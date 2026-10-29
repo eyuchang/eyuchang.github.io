@@ -1,0 +1,53 @@
+I. Outline
+
+o Intro
+
+o Algorithms
+
+o Experiments
+
+  # of Dimensions:	3	30	100
+  Number of points:	10,000
+
+  Datasets:
+	- Well clustered
+	- Random
+	- Real-data
+
+  TSVQ, cluster, M-tree.
+
+o Metrics
+
+  - E-distance
+  - Quality measurement
+
+
+II. Execution Steps
+
+o Pipeline setup for brute force cluster 
+  (improving running time later)
+
+  - cluster, with three datasets
+    * the cluster quality is good. 
+    * we like to see accuracy vs IOs...
+
+    3 - 5 clusters, and total retrieval time < 100 ms.
+    
+    *** challenges ***
+    - cluster size
+      * 256, 512, 1024...
+    - distance threshold
+      * min
+      * u
+      * delta
+      * outlier percentage -> 1, 2, 3 delta
+    - need a chart of distance vs. size?
+    - what data are needed to make a decision?
+
+  - SVM with decision boundaries
+
+  - Search for clusters (top-k query)
+    * See if centroid alone is fine
+    * See if centroid + SV help
+
+

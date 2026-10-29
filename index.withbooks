@@ -1,0 +1,286 @@
+<!DOCTYPE HTML>
+
+<html>
+    
+<head>
+    <meta charset="UTF-8">
+<title>Edward Y. Chang</title>
+    <link rel="stylesheet" href="Edstyle.css">
+   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="effects.js"></script>
+</head>
+
+    <body>
+	<p id="bio" class="side">BIO</p>
+	<p id="pub" class="side">PUBLICATIONS</p>
+	<p id="research" class="side">RESEARCH</p>
+	<p id="teach" class="side">TEACHING</p>
+<!--
+	<div class="column1">
+		<div id="homePhoto"></div>
+	</div>	
+-->
+	<div class="column1">
+		<p><b id="head">Edward Y. Chang</b> <br><br><font size="4.5">President, DeepQ Health</font> <br><font size="4.5"></font><br>
+ 			<a href="http://ai.deepq.com/">Open Big Data Group</a> <br>
+<!--
+			<a href="mailto:eyuchang@gmail.com">eyuchang@gmail.com</a> <br><br>
+-->			
+			Bio please visit <a href="https://www.linkedin.com/in/edward-chang-218b182/">Linkin Profile</a><br>
+		</p>
+	</div>
+    
+	<div id="pubsection">
+		<p><b class="title">Books</b><br><br>
+
+	<a href="https://g.co/kgs/sU45Mz">Google Author Panel</a>
+
+
+        <div id="NN" class="pubimg"></div><br><b><a href="https://www.wiley.com/en-us/Big+Data+Analytics+for+Large+Scale+Multimedia+Search-p-9781119376972">Big Data Analytics for Large-Scale Multimedia Search
+</a></b><br>
+Stefanos Vrochidis, Benoit Huet, Edward Y. Chang, and Ioannis Kompatsiaris<br> 
+Wiley, 2019.
+                <br><br><br><br>
+
+
+        <div id="NN" class="pubimg"></div><br><b><a = href="http://infolab.stanford.edu/~echang/nomadic-eternity.html">Nomadic Eternity (Poetry)</a></b><br>
+                Edward Y Chang<br> Tsinghua University Press, 2012. 
+                <br><br><br><br>
+
+
+        <div id="NN" class="pubimg"></div><br><b><a href="https://www.springer.com/us/book/9783642204289?gclid=Cj0KCQjw-tXlBRDWARIsAGYQAmdbW_HNSSFOVN1GjH8-sf1qNCJrDppnLfc0c3g0feKsP6zUCE4-lw0aApr9EALw_wcBa">Foundations of Large-Scale Multimedia Information Management and Retrieval</a></b><br>
+Edward Y. Chang<br>
+Springer, 2011.
+                <br><br><br><br>
+
+</p>
+
+
+
+
+
+
+	</div>
+
+	<div id="pubsection">
+		<p><b class="title">Selected Publications (visit <a href="http://infolab.stanford.edu/~echang/chronological-order.html">full list</a>)</b><br>Healthcare, Deep Learning, Scalable Machine Learning, Computer Vision<br><br>
+
+		<div id="Tricorder" class="pubimg"></div><br><b>Artificial Intelligence in XPRIZE DeepQ Tricorder (XPRIZE Award)</b><br>
+		EY Chang, MH Wu, KF Tang, HC Kao, CN Chou <br> Proceedings of the 2nd International Workshop on Multimedia for Personal Health and Health Care, 2017 <br> ACM Multimedia Conference Keynote, 2017 <br><a href="http://infolab.stanford.edu/~echang/AIinDeepQ.pdf">PDF</a> | Bibtex | <a href="https://www.youtube.com/watch?v=qgtdMNJSc1U&feature=youtu.be">Keynote Youtube</a> | <a href="https://www.prnewswire.com/news-releases/dynamical-biomarkers-group-reaches-final-of-qualcomm-tricorder-xprize-challenge-300439493.html">Press</a>
+		<br><br><br><br>	
+	
+                <div id="NN" class="pubimg"></div><br><b>MBS: Macroblock Scaling for CNN Model Reduction</b><br>
+                YH Lin, CN Chou, EY Chang<br> IEEE International Conference on Computer Vision and Pattern Recognition (CVPR), 2019 <br> <a href="https://arxiv.org/pdf/1809.06569.pdf">PDF</a> | BibTex
+                <br><br><br><br>
+
+
+		<div id="NN" class="pubimg"></div><br><b>Toward Fusing Domain Knowledge with Generative Adversarial Networks to Improve Supervised Learning for Medical Diagnoses </b><br>
+		FC Chang, JJ Chang, CN Chou, EY Chang <br> IEEE MIPR Conference (invited paper), 2019 <br> <a href="http://infolab.stanford.edu/~echang/IEEE_MIPR_2019_Invited.pdf">PDF</a> | BibTex
+		<br><br><br><br>	
+
+
+		<div id="NN" class="pubimg"></div><br><b>EA-CG: An Approximate Second-Order Method for Training Fully-Connected Neural Networks</b><br>
+		SW Chen, CN Chou, EY Chang <br> AAAI Conference, 2019 <br> <a href="https://arxiv.org/pdf/1802.06502.pdf">PDF</a> | BibTex
+		<br><br><br><br>	
+
+		<div id="HealthCare" class="pubimg"></div><br><b>REFUEL: Exploring Sparse Features in Deep Reinforcement Learning for Fast Disease Diagnosis</b><br>
+		YS Peng, KF Tang, HT Lin, EY Chang <br> Advances in Neural Information Processing Systems (NeurIPS) Conference, 2018 <br> <a href="http://papers.nips.cc/paper/7962-refuel-exploring-sparse-features-in-deep-reinforcement-learning-for-fast-disease-diagnosis.pdf">PDF</a> | BibTex
+		<br><br><br><br>
+
+		<div id="HealthCare" class="pubimg"></div><br><b>Context-Aware Symptom Checking for Disease Diagnosis Using Hierarchical Reinforcement Learning</b><br>
+		HC Kao, KF Tang, EY Chang <br> AAAI Conference, 2018 <br> <a href="http://infolab.stanford.edu/~echang/aaai-2018-context.pdf">PDF</a> | BibTex
+		<br><br><br><br>
+
+		<div id="NN" class="pubimg"></div><br><b>Improving Sequential Recommendation with Knowledge-Enhanced Memory Networks</b><br>
+		J Huang, WX Zhao, H Dou, JR Wen, EY Chang <br> ACM SIGIR Conference, 2018 <br> <a href="https://dl.acm.org/citation.cfm?id=3210017">Paper</a> | BibTex
+		<br><br><br><br>	
+
+		<div id="NN" class="pubimg"></div><br><b>Predicting the Popularity of Online Content with Knowledge-enhanced Neural Networks</b><br>
+		H Dou, WX Zhao, Y Zhao, D Dong, JR Wen, EY Chang <br> ACM KDD Conference, 2018 <br> <a href="https://www.kdd.org/kdd2018/files/deep-learning-day/DLDay18_paper_8.pdf">PDF</a> | BibTex
+		<br><br><br><br>	
+
+		<div id="DataScience" class="pubimg"></div><br><b>Joint Representation Learning for Location-Based Social Networks with Multi-Grained Sequential Contexts</b><br>
+		WX Zhao, F Fan, JR Wen, EY Chang <br> ACM Transactions on Knowledge Discovery from Data (TKDD) 12 (2), 22, 2018 <br> Paper | BibTex
+		<br><br><br><br>	
+
+                <div id="DLedger" class="pubimg"></div><br><b>DeepLinQ: Distributed Multi-Layer Ledgers for Privacy-Preserving Data Sharing</b><br>
+                SW Liao, EY Chang, CT Liu, WC Lin, PW Liao, WK Fu, CH Mei, EJ Chang <br> IEEE Conference on Artificial Intelligence and Virtual Reality (AIVR), 2018 <br> <a href="http://infolab.stanford.edu/~echang/AIVR18_DeepLinQ.pdf">PDF</a> | BibTex
+                <br><br><br><br>
+
+		<div id="Tricorder" class="pubimg"></div><br><b>DeepQ Arrhythmia Database: A Large-Scale Dataset for Arrhythmia Detector Evaluation</b><br>
+		MH Wu, EY Chang <br> Proceedings of the 2nd International Workshop on Multimedia for Personal Health and Health Care, 2017 <br> <a href="https://storage.googleapis.com/research_htc_com_assets/publications/ecg-mmh17.pdf">PDF</a> | BibTex
+		<br><br><br><br>
+
+		<div id="BIGDATA" class="pubimg"></div><br><b>Distributed Training Large-Scale Deep Architectures</b><br>
+		SX Zou, CY Chen, JL Wu, CN Chou, CC Tsao, KC Tung, TW Lin, CL Sung, EY Chang <br> International Conference on Advanced Data Mining and Applications, 18-32, 2017 <br> <a href="https://arxiv.org/pdf/1709.06622.pdf">PDF</a> | BibTex
+		<br><br><br><br>	
+
+		<div id="CV" class="pubimg"></div><br><b>ARISTO: An Augmented Reality Platform for Immersion and Interactivity</b><br>
+		Z Zheng, B Wang, Y Wang, S Yang, Z Dong, T Yi, C Choi, EJ Chang, EY Chang<br> ACM Multimedia Conference, 690-698, 2017<br> <a href="http://infolab.stanford.edu/~echang/p690-zheng.pdf">PDF</a> | BibTex
+		<br><br><br><br>	
+
+		<div id="CV" class="pubimg"></div><br><b>CLKN: Cascaded Lucas-kanade Networks for Image Alignment</b><br>
+		CH Chang, CN Chou, EY Chang <br>IEEE Conference on Computer Vision and Pattern Recognition (CVPR), 2017 <br> <a href="http://openaccess.thecvf.com/content_cvpr_2017/papers/Chang_CLKN_Cascaded_Lucas-Kanade_CVPR_2017_paper.pdf">PDF</a> | BibTex
+		<br><br><br><br>	
+
+		<div id="NN" class="pubimg"></div><br><b>A Neural Network Approach to Jointly Modeling Social Networks and Mobile Trajectories</b><br>
+		C Yang, M Sun, WX Zhao, Z Liu, EY Chang<br> ACM Transactions on Information Systems (TOIS) 35 (4), 36, 2017<br> Paper | BibTex
+		<br><br><br><br>
+
+		<div id="DataScience" class="pubimg"></div><br><b>Mining Product Adopter Information from Online Reviews for Improving Product Recommendation</b><br>
+		WX Zhao, J Wang, Y He, JR Wen, EY Chang, X Li<br> ACM Transactions on Knowledge Discovery from Data (TKDD) 10 (3), 29:1-29:23, 2016<br> Paper | BibTex
+		<br><br><br><br>	
+
+		<div id="DataScience" class="pubimg"></div><br><b>Connecting Social Media to E-Commerce: Cold-Start Product Recommendation Using Microblogging Information</b><br>
+		WX Zhao, S Li, Y He, EY Chang, JR Wen, X Li<br>IEEE Transactions on Knowledge and Data Engineering (TKDE) 28 (5), 1147-1159, 2016<br> Paper | BibTex
+		<br><br><br><br>	
+
+		<div id="DataScience" class="pubimg"></div><br><b>Tweet Timeline Generation with Determinantal Point Processes</b><br>
+		J Yao, F Fan, WX Zhao, X Wan, EY Chang, J Xiao<br> AAAI Conference, 3080-3086, 2016 <br> <a href="https://www.aaai.org/ocs/index.php/AAAI/AAAI16/paper/view/12237/12064">PDF</a> | BibTex
+		<br><br><br><br>	
+
+		<div id="HealthCare" class="pubimg"></div><br><b>Transfer Representation Learning for Medical Image Analysis</b><br>
+		CK Shie, CH Chuang, CN Chou, MH Wu, EY Chang<br> IEEE International Conference on Engineering in Medicine and Biology Society (EMBC), 2015<br> Paper | BibTex
+		<br><br><br><br>
+
+		<div id="DataScience" class="pubimg"></div><br><b>Network Representation Learning with Rich Text Information</b><br>
+		C Yang, Z Liu, D Zhao, M Sun, EY Chang <br>IJCAI, 2111-2117, 2015<br> Paper | BibTex
+		<br><br><br><br>	
+
+		<div id="DataScience" class="pubimg"></div><br><b>Exact Recoverability of Robust PCA via Outlier Pursuit with Tight Recovery Bounds</b><br>
+		H Zhang, Z Lin, C Zhang, EY Chang<br>AAAI Conference, 3143-3149, 2015<br> <a href="https://www.aaai.org/ocs/index.php/AAAI/AAAI15/paper/view/9505/9993">PDF</a> | BibTex
+		<br><br><br><br>
+
+                <div id="CV" class="pubimg"></div><br><b>A New Retraction for Accelerating the Riemannian Three-Factor Low-Rank Matrix Completion Algorithm</b><br>
+                Z Li, D Zhao, Z Lin, EY Chang<br>IEEE Conference on Computer Vision and Pattern Recognition (CVPR), 2015<br> Paper | BibTex
+                <br><br><br><br>
+
+                <div id="BIGDATA" class="pubimg"></div><br><b>Big Data Small Footprint: the Design of a Low-Power Classifier for Detecting Transportation Modes</b><br>
+                MC Yu, T Yu, SC Wang, CJ Lin, EY Chang<br>Proceedings of the VLDB Endowment 7 (13), 1429-1440, 2014<br> <A href="http://www.vldb.org/pvldb/vol7/p1429-yu.pdf">PDF</a> | BibTex
+                <br><br><br><br>
+
+                <div id="DataScience" class="pubimg"></div><br><b>Context-aware Computing: Opportunities and Open Issues</b><br>
+                EY Chang<br>Proceedings of the VLDB Endowment 6 (11), 1172-1173, 2013<br> <a href="http://www.cs.cmu.edu/~junchenj/moist.pdf">PDF</a> | BibTex
+                <br><br><br><br>
+
+                <div id="DataScience" class="pubimg"></div><br><b>MOIST: A Scalable and Parallel Moving Object Indexer with School Tracking</b><br>
+                J Jiang, H Bao, EY Chang, Y Li<br>Proceedings of the VLDB Endowment 5 (12), 1838-1849, 2012<br> <a href="http://www.cs.cmu.edu/~junchenj/moist.pdf">PDF</a> | BibTex
+                <br><br><br><br>
+
+                <div id="DataScience" class="pubimg"></div><br><b>A Data-Driven Approach to Question Subjectivity Identification in Community Question Answering</b><br>
+                TC Zhou, X Si, EY Chang, I King, MR Lyu<br>AAAI, 2012<br> <a href="https://static.googleusercontent.com/media/research.google.com/en//pubs/archive/38388.pdf">PDF</a> | BibTex
+                <br><br><br><br>
+
+                <div id="BIGDATA" class="pubimg"></div><br><b>PLDA+: Parallel Latent Dirichlet Allocation with Data Placement and Pipeline Processing</b><br>
+                Z Liu, Y BIGDATA, EY Chang, M Sun<br>ACM Transactions on Intelligent Systems and Technology (TIST) 2 (3), 2011<br> <a href="http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.702.8217&rep=rep1&type=pdf">PDF</a> | BibTex | <a href="http://ai.deepq.com/plda/">Open Source</a>
+                <br><br><br><br>
+
+                <div id="BIGDATA" class="pubimg"></div><br><b>Parallel Spectral Clustering in Distributed Systems</b><br>
+                Wen-Yen Chen, Yangqiu Song, Hongjie Bai, Chih-Jen Lin,  EY Chang, M Sun<br>IEEE Transactions on Pattern Analysis and Machine Intelligence (PAMI), 33 (3), 2011<br> <a href="https://static.googleusercontent.com/media/research.google.com/en//pubs/archive/34703.pdf">PDF</a> | BibTex | <a href="http://ai.deepq.com/pspectralclustering/">Open Source</a>
+                <br><br><br><br>
+
+                <div id="DataScience" class="pubimg"></div><br><b>Confucius and its Intelligent Disciples: Integrating Social with Search</b><br>
+                X Si, EY Chang, Z Gyöngyi, M Sun<br>Proceedings of the VLDB Endowment 3 (1-2), 1505-1516, 2010<br> <a href="http://infolab.stanford.edu/~echang/Confucius-VLDB10.pdf">PDF</a> | BibTex
+                <br><br><br><br>
+
+                <div id="DataScience" class="pubimg"></div><br><b>Adheat: An Influence-based Diffusion Model for Propagating Hints to Match Ads (best paper)</b><br>
+                H Bao, EY Chang<br>World Wide Web Conference (WWW), 71-80, 2010<br> <a href="https://static.googleusercontent.com/media/research.google.com/en//pubs/archive/36258.pdf">PDF</a> | BibTex
+                <br><br><br><br>
+
+		<div id="BIGDATA" class="pubimg"></div><br><b>PLDA: Parallel Latent Dirichlet Allocation for Large-Scale Applications</b><br>
+                Yi Wang, Hongjie Bai, Matt Stanton, Wen-Yen Chen, EY Chang <br>International Conference on Algorithmic Applications in Management, 301-314, 2009<br> <a href="http://citeseer.ist.psu.edu/viewdoc/summary;jsessionid=9FEF09AD27EF3BDCA3117D72D98A4A1B?doi=10.1.1.163.9720">PDF</a> | BibTex | <a href="https://ai.deepq.com/plda/">Open Source</a>
+                <br><br><br><br>
+
+		<div id="BIGDATA" class="pubimg"></div><br><b>PFP: Parallel FP-Growth for Query Recommendation</b><br>
+                H Li, Yi Wang, D Zhang, M Zhang, EY Chang <br>ACM Conference on Recommendation Systems, 107-114, 2008<br> <a href="https://static.googleusercontent.com/media/research.google.com/en//pubs/archive/34668.pdf">PDF</a> | BibTex | <a href="https://mahout.apache.org/users/misc/parallel-frequent-pattern-mining.html">Open Source</a>
+                <br><br><br><br> 
+
+                <div id="BIGDATA" class="pubimg"></div><br><b>PSVM: Parallelizing Support Vector Machines on Distributed Computers</b><br>
+                EY Chang, K Zhu, H Wang, H Bai, J Li, Z Qiu, H Cui <br>Advances in Neural Information Processing Systems (NIPS), 257-264, 2007<br> <a href="https://papers.nips.cc/paper/3202-parallelizing-support-vector-machines-on-distributed-computers.pdf">PDF</a> | BibTex | <a href="http://ai.deepq.com/psvm/">Open Source</a>
+                <br><br><br><br>
+
+
+                <div id="DataScience" class="pubimg"></div><br><b>Learning the Unified Kernel Machines for Classification</b><br>
+                SCH Hoi, MR Lyu, EY Chang <br>ACM SIGKDD Conference, 187-196, 2006<br> <a href="http://www.cse.cuhk.edu.hk/~lyu/paper_pdf/KDD06-hoi.pdf">PDF</a> | BibTex 
+                <br><br><br><br>
+
+                <div id="DataScience" class="pubimg"></div><br><b>Concept Boundary Detection for Speeding up SVMs</b><br>
+                Navneet Panda, Edward Y Chang, Gang Wu <br>International Conference on Machine Learning (ICML), 681-688, 2006<br> <a href="">PDF</a> | BibTex 
+                <br><br><br><br>
+
+
+                <div id="DataScience" class="pubimg"></div><br><b>An Analysis of Transformation on Non-Positive Semidefinite Similarity Matrix for Kernel Machines</b><br>
+                Gang Wu, Edward Y Chang, Zhihua Zhang  <br>International Conference on Machine Learning (ICML), 2005<br> <a href="http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.133.4077&rep=rep1&type=pdf">PDF</a> | BibTex
+                <br><br><br><br>
+
+                <div id="CV" class="pubimg"></div><br><b>Formulating Context-Dependent Similarity Functions</b><br>
+                G Wu, EY Chang, N Panda <br>ACM Multimedia Conference, 725-734, 2005<br> <a href="http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.90.9176&rep=rep1&type=pdf">PDF</a> | BibTex
+                <br><br><br><br>
+
+                <div id="DataScience" class="pubimg"></div><br><b>Formulating Distance Functions via the Kernel Trick</b><br>
+                G Wu, EY Chang, N Panda <br>ACM KDD Conference, 703-709, 2005<br> <a href="http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.387.1118&rep=rep1&type=pdf">PDF</a> | BibTex 
+                <br><br><br><br>
+
+                <div id="DataScience" class="pubimg"></div><br><b>KBA: Kernel Boundary Alignment Considering Imbalanced Data Distribution</b><br>
+                M Fan, D Zhao, Q Zhou, Z Liu, TF Zheng, EY Chang<br>IEEE Transactions on Knowledge and Data Engineering (TKDE), 17 (6), 786-795, 2005<br> <a href="http://aixpaper.com/view/kba_kernel_boundary_alignment_considering_imbalanced_data_distribution">PDF</a> | BibTex
+                <br><br><br><br>
+
+                <div id="CV" class="pubimg"></div><br><b>Enhanced Perceptual Distance Functions and Indexing for Image Replica Recognition</b><br>
+                A Qamra, Y Meng, EY Chang<br>IEEE Transactions on Pattern Analysis and Machine Intelligence (PAMI), 27 (3), 379-391, 2005<br> <a href="http://infolab.stanford.edu/~echang/DPF-PAMI-2005.pdf">PDF</a> | BibTex
+                <br><br><br><br>
+
+
+                <div id="DataScience" class="pubimg"></div><br><b>Adaptive Stream Resource Management Using Kalman Filters</b><br>
+                A Jain, EY Chang, YF Wang<br>ACM SIGMOD International Conference on Management of Data, 11-22, 2004<br> <a href="http://www.cs.ucsb.edu/~yfwang/papers/sigmod04.pdf">PDF</a> | BibTex 
+                <br><br><br><br>
+
+
+                <div id="CV" class="pubimg"></div><br><b>Multimodal Concept-Dependent Active Learning for Image Retrieval</b><br>
+                KS Goh, EY Chang, WC Lai <br>ACM Multimedia Conference, 564-571, 2004<br> <a href="http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.75.2683&rep=rep1&type=pdf">PDF</a> | BibTex 
+                <br><br><br><br>
+
+                <div id="CV" class="pubimg"></div><br><b>Multi-Camera Spatio-Temporal Fusion and Biased Sequence-Data Learning for Security Surveillance</b><br>
+                G Wu, Y Wu, L Jiao, YF Wang, EY Chang <br>ACM Multimedia Conference, 528-538, 2004<br> <a href="http://citeseerx.ist.psu.edu/viewdoc/download;jsessionid=A2E9F2E5317A8D15A920B686FC1D3BFD?doi=10.1.1.2.5070&rep=rep1&type=pdf">PDF</a> | BibTex
+                <br><br><br><br>
+
+                <div id="DataScience" class="pubimg"></div><br><b>The Anatomy of a Multimodal Information Filter</b><br>
+                YL Wu, KS Goh, B Li, H You, EY Chang <br>ACM KDD Conference, 2003<br> <a href="https://dl.acm.org/citation.cfm?doid=956750.956803">PDF</a> | BibTex
+                <br><br><br><br>
+
+                <div id="DataScience" class="pubimg"></div><br><b>Adaptive Feature-Space Conformal Transformation for Imbalanced-Data Learning</b><br>
+                G Wu, EY Chang <br>International Conference on Machine Learning (ICML), 816-823, 2003<br> <a href="https://pdfs.semanticscholar.org/e9e8/5624bb85c08c59c11f252116f426c7367c1d.pdf">PDF</a> | BibTex 
+                <br><br><br><br>
+
+                <div id="DataScience" class="pubimg"></div><br><b>Class-Boundary Alignment for Imbalanced Dataset Learning</b><br>
+                G Wu, EY Chang<br>ICML workshop on Learning from Imbalanced Data Sets, 2003<br> <a href="http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.94.9007&rep=rep1&type=pdf">PDF</a> | BibTex
+                <br><br><br><br>
+
+                <div id="CV" class="pubimg"></div><br><b>CBSA: Content-Based Soft Annotation for Multimodal Image Retrieval Using Bayes Point Machines (invited paper)</b><br>
+                EY Chang, K Goh, G Sychay, G Wu<br>IEEE Transactions on Circuits and Systems for Video Technology, 13 (1), 26-38, 2003<br>
+		<a href="https://ieeexplore.ieee.org/abstract/document/1180379">PDF</a> | <a href="https://www.semanticscholar.org/paper/CBSA%3A-content-based-soft-annotation-for-multimodal-Chang-Goh/29c169580719d4722135951c99b9d508f58fa641">BibTex</a>
+		<br><br><br><br>
+
+
+                <div id="CV" class="pubimg"></div><br><b>DynDex: A Dynamic and Non-Metric Space Indexer</b><br>
+                KS Goh, B Li, EY Chang <br>ACM Multimedia Conference, 466-475, 2002<br> <a href="http://citeseerx.ist.psu.edu/viewdoc/download;jsessionid=C161929676B20AD8F7ADB8AF181D0FDD?doi=10.1.1.330.421&rep=rep1&type=pdf">PDF</a> | BibTex 
+                <br><br><br><br>
+
+                <div id="CV" class="pubimg"></div><br><b>DPF - A Perceptual Distance Function for Image Retrieval</b><br>
+                B Li, EY Chang, CT Wu <br>IEEE International Conference on Image Processing (ICIP), 2002<br> <a href="https://pdfs.semanticscholar.org/7f09/24308c06fe49061b83c357701bae780b59ce.pdf">PDF</a> | <a href="http://infolab.stanford.edu/~echang/Citations/icip2002.txt">BibTex</a>
+                <br><br><br><br>
+
+                <div id="CV" class="pubimg"></div><br><b>Support Vector Machine Active Learning for Image Retrieval</b><br>
+                S Tong, EY Chang<br>ACM Multimedia Conference, 107-118, 2001<br> <a href="http://infolab.stanford.edu/~echang/svmactive.pdf">PDF</a> | BibTex
+                <br><br><br><br>
+
+                <div id="DataScience" class="pubimg"></div><br><b>Effective Memory Use in a Media Server</b><br>
+                EY Chang, H Garcia-Molina<br>VLDB Conference, 496-505, 1997<br> <a href="http://www.vldb.org/conf/1997/P496.PDF">PDF</a> | <a href="https://dl.acm.org/citation.cfm?id=671022">BibTex</a>
+                <br><br><br><br>
+
+		</p>
+	</div>
+        
+             
+    </body>
+    
+</html>

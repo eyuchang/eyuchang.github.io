@@ -1,0 +1,123 @@
+\section*{PROJECT SUMMARY}
+%\vspace{-.1in}
+
+The goal of this research project is to build an infrastructure
+that helps multimedia viewers interact with the content and 
+change the pace of a televised program.
+A fully interactive system (e.g., telepresence) would allow
+the person to be immersed in a distant environment
+and act upon it as if he was there, but we are far from
+that capacity given the technology of the near future.
+In this proposal, I present a receiver-based
+architecture that supports {\em viewing interactivity}
+and {\em content interactivity}. Viewing interactivity enables
+a viewer to time-shift a televised program through
+pause, fast-forward and instant replay operations. 
+Content interactivity allows a viewer to query or to
+change the content of multimedia data. 
+
+With viewing interactivity, one can watch a program at 
+whatever pace one finds comfortable. For instance, 
+when one misses a crucial point while viewing a televised
+lecture, one can replay the missed section and then 
+continue viewing the lecture with a phase delay, or fast-forward
+the lecture to get back in synch with the televised stream.
+One can also record programs at multiple channels at the same
+time, filter out unwanted
+content and produce a customized program. 
+(Using today's tape-based VCR, one cannot record
+and replay a program or record more than one program 
+at the same time.)
+Content interactivity enables one to introduce one's 
+creativity into a program.
+For example, children would be able to change the attributes 
+(e.g., colors, size, position and even the personality)
+of the ``bunny'' and ``big bird'' 
+characters in the {\it Sesame Street} program.  
+With the capabilities to change both pace and content,
+a class of high school students could conduct science experiments
+in small groups through a virtual lab and their instructor
+could keep track of their progress in real-time.   
+Many other applications exist.
+
+To enable viewing and content interactivity, 
+we need a multimedia receiver that can display
+more than one stream of TV, radio and the Web data,
+can time-shift a stream, and can query and change
+the content of a stream.  To accomplish these
+goals, the multimedia receiver
+needs a {\em buffer manager} that can schedule the
+receiver's memory and 
+disk bandwidth effectively to satisfy 
+various interactive scenarios, and it needs a {\em data manager}
+that can manage data from TV, radio and the Web 
+for supporting efficient queries and retrieval.
+
+Although progress has been made in buffer and
+data management, many issues, especially in managing multimedia
+data and managing buffer for rendering and
+for querying multimedia data,
+and in developing an architecture that can be adaptive
+to both resource constraints and {\em Quality of
+Service} (QoS) requirements, remain open.
+I plan to address these issues, and to build on
+work from several fields, most notably from the
+image processing, operating system and database fields.
+In particular, I am interested in developing the 
+following technologies:
+
+\begin{nlist}
+\item {\bf 1}.
+Temporal indexing structures that support
+efficient stream synchronization.
+\item {\bf 2}. Caching and prefetching techniques that satisfy
+the real-time data requirement of the continuous media data
+(i.e., video and audio) on the one hand, and minimize the
+initial latency in responding to an interactive request
+on the other.
+\item {\bf 3}.  
+QoS-adaptive buffer-management architectures that manage
+memory and disk bandwidth by adapting to
+the receiver's resource constraints and
+the viewer's QoS requirements.
+\item {\bf 4}.
+Media query processing that handles heterogeneous
+media queries efficiently. 
+\end{nlist}
+
+In addition, I envision constructing demonstrations 
+that use these technologies.
+Here is a list of some of the demonstrations I am planning
+to indicate the progress of this project:
+\begin{jlist}
+\item 
+A multimedia database that supports content-based 
+queries,
+\item 
+A digital VCR that supports pause, fast-forward and instant 
+replay, and
+\item 
+A multi-camera video surveillance system (e.g., for 
+monitoring in a nuclear power facility).
+\end{jlist}
+
+%The multimedia database system provides the digital-VCR 
+%project with an efficient storage and an effective query 
+%engine that can help the viewer select content 
+%before the viewer issues a fast-forward or replay command.
+%The digital-VCR, which receives only one stream at a time,
+%in turn, is extended by the multi-camera video surveillance project,
+%which handles multiple cameras, streams and viewers simultaneously.
+
+Finally, my education objectives include the expansion of
+the curriculum in database and multimedia systems at U.C. Santa
+Barbara. In particular, a new course that I am developing
+will cover the latest 
+trends in database and multimedia systems. 
+
+In summary, this project will develop an infrastructure 
+that provides a framework for building
+a wide variety of interactive multimedia applications
+in the educational, commercial, government and
+military sector.
+

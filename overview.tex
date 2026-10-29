@@ -1,0 +1,182 @@
+\title{Collaborative Proposal --- ITR/IIS: Cross-modality Heterogeneous
+Web Source Integration for High Quality Internet Information Access}
+
+\newcommand{\MEGA}{\mathsf{MEGA}}
+\newcommand{\SVMActive}{\mathsf{SVM}_{\mbox{\scriptsize{\textit{Active}}}}}
+
+
+\section{Overview and Significance}
+\label{sec-overview}
+
+In this project we intend to develop fundamental technologies that 
+will enable the users to access information
+seamlessly, intuitively and quickly from the Web. 
+The advent and success  of the World Wide Web has demonstrated 
+the enormous opportunity that an easy-to-use and always-available
+information system can bring. The users can access any information
+at any time without any geographical constraints.
+However, the very success of the Web also makes its current limitation
+painfully obvious:
+
+\begin{enumerate}
+
+\item {\em Keyword-only search}:
+  Internet search engines provide a great help
+  to the users when the users look for Web pages on a certain topic.
+  Simply by typing a couple of keywords, the user can quickly
+  find relevant pages. However, the current search engines
+  only provide {\em keyword} inferfaces, so the user is helpless
+  when her ``information need'' cannot be described 
+  by mere keywords. The rich set of multimedia information 
+  on the Web is being totally ignored.
+
+\item {\em Difficult query articulation}:
+  Again, given her information need, the {\em user} has to
+  come up with the appropriate keywords (or queries) that 
+  describe her need succinctly. This task if often too difficult
+  especially for novice users, leading to the user's frustration.
+  How can a user describe ``I want to find more about paintings
+  similar to the one that I saw a couple of days ago?''
+
+\item {\em Stale and untimely information}:
+  The Web is inherently dynamic medium: New pages
+  are constantly created, obsolete pages are continually deleted
+  and existing pages are updated over time.
+  Therefore, it is often difficult to access ``up-to-date'' information,
+  unless the user knows exactly where the information is located.
+  For example, most search engines refresh their
+  indexes periodically -- typically less than once a month --
+  so recently created Web pages are often missing in their indexes. 
+  In order to access these pages,
+  the user needs to go directly to the appropriate Web site.
+  Also, many of the pages returned by search engines
+  are often obsolete and do not exist on the Web.
+
+\item {\em Growing amount of dynamic information}:
+  More and more information on the Web is dynamically generated.
+  Often, the user can access this dynamic information
+  only by visiting individual Web site and submitting queries,
+  because search engines typically skip this ``hidden Web.''
+  The pages cannot be reached by following links,
+  so it is difficult for the search engines discover
+  these pages. Clearly, it is both time consuming and difficult
+  for the user to visit every Web site and issue
+  queries to each of them to collect all information.
+  
+\end{enumerate}
+
+To overcome these shortcomings, our project will develop new
+technologies that can {\em discover} and {\em integrate} 
+new and high-quality information from the Web in a timely manner,
+support ``cross-modality'' search on multimedia objects, and
+{\em learn} user's ``query concepts'' actively and quickly.
+Towards these goals, we will organize our research around three main 
+thrusts. Each thrust addresses a subset of the issues,
+and as a whole our technologies will make the World Wide Web
+easier to access even by naive users.
+
+\begin{enumerate}
+\item {\em Intelligent query concept formulation through active learning}.
+ In order to make query formulation easy and complete, it is both
+ necessary (for capturing abstract and subjective concepts) and
+ desirable (for alleviating difficulties from specifying complex query
+ concepts) to build intelligent search engines that can quickly {\em
+ learn} users' query concepts through {\em active learning}.  We plan
+ to extend our active learning algorithms $\MEGA$ 
+ and $\SVMActive$ \cite{LCL01,SVM01},
+ and develop new algorithms for
+ cross-modality query-concept learning.
+
+\item {\em Support of cross-modality search}. Depending on
+  the domain of the information being sought for, the user
+  should be able to query a database (or a search engine) 
+  in different ``modes.''
+  For example, if the user is looking for paintings similar
+  to a particular one at hand, the colors, textures and ambience of images
+  might be the best way to ``capture'' the user's ``query concept.''
+  On the contrary, if the user is looking for Impressionism paintings,
+  the keyword ``impressionism'' might be the best way to capture the user's
+  concept. 
+
+  We will develop technologies that can provide multiple ``modes''
+  of interaction to the user. In particular, the user will
+  be able to ``switch back and forth'' between different modes of
+  interaction according to her varying need. 
+  We will study techniques that can automatically extract
+  textual meta data for multimedia objects from the Web.
+
+\item {\em Efficient data collection and refresh}.
+  We will develop algorithms for discovering ``important''
+  and ``relevant'' information quickly from the Web
+  and for downloading this information efficiently.
+  We will also study mechanisms to track
+  changes on the Web and refresh our database efficiently.
+  We will also study how to {\em integrate} dynamic Web information
+  seamlessly, so that the users can access the information 
+  at a {\em single} point through a uniform interface.
+\end{enumerate}
+
+Our three research thrusts are both complementary and synergistic: Our
+cross-modality paradigm will enrich Web data representation.  The
+active learning algorithms will enable users to articulate their
+``information need'' more intuitively and effectively, and thereby
+make query formulation more personalized and complete.  And a timely
+and comprehensive data collected from the Web will enhance the query
+results.  The faculty involved in this proposal will all work on more
+than one thrust.
+%We have a record of sharing research interests, working together
+%and joint publications. 
+Our thrusts are a convenient way to organize our research agenda, but
+are certainly not meant to partition the project.
+
+
+\subsection{Example scenario}
+
+{\bf (Now, our example scenario here. Junghoo 11/1)}
+
+Consider that CIA wants to identify all information sources 
+containing atomic bomb design in the Internet.
+(This example was provided by In-Q-Tel, a CIA branch at Palo Alto.)
+Unlike that most queries can be satisfied by just a couple of
+good results, queries of this kind demand high recall.
+To achieve high recall, a search engine
+faces three hurdles:
+comprehending the query concept completely, 
+characterizing the data at hand adequately, 
+and integrating with as much useful sources in the Internet 
+as possible.
+These three hurdles for achieving the performance goal are
+precisely caused by the the three problems enumerated above.
+This project aims to investigate novel 
+techniques in three thrusts to overcome these three hurdles.
+
+
+
+\subsection{Impact}
+{\bf (We may need to revise this section, too. Junghoo 11/1)}
+
+This project could have substantial impact upon image retrieval in
+general, and upon education and military intelligence in particular.
+For improving education, rapid proliferation of multimedia content in
+digital libraries and on the Web underscores the increasing importance
+of having effective cross-modality search tools.  Intelligent
+query-concept learners will directly or indirectly make traditional
+text-based information retrieval easier and more personalized.
+Directly, a text collection can employ an intelligent learner to
+better capture users' query concepts.  Indirectly, for instance,
+multimedia data can be added to a text collection so that searches can
+be conducted through interfaces that contain pictures and graphics. As
+a result, even young students who have not learned Boolean algebra can
+use images and graphics to search for stories and books.  For military
+intelligence, the present world situation makes the gathering of
+intelligence more essential than ever.  The ability to find
+information that fit a query profile in a massive database offers a
+strategic advantage to those who can assemble such information quickly
+and accurately.
+
+
+
+%%% Local Variables: 
+%%% mode: latex
+%%% TeX-master: "main"
+%%% End: 

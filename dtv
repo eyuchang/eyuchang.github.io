@@ -1,0 +1,207 @@
+From chenli@CS.Stanford.EDU Thu Mar 23 12:24 PST 2000
+Received: from Xenon.Stanford.EDU (Xenon.Stanford.EDU [171.64.66.201])
+	by xanadu.ece.ucsb.edu (8.9.1/8.9.1) with ESMTP id MAA20618
+	for <echang@xanadu.ece.ucsb.edu>; Thu, 23 Mar 2000 12:24:24 -0800 (PST)
+Received: from localhost (chenli@localhost)
+	by Xenon.Stanford.EDU (8.9.1/8.9.1) with ESMTP id MAA13439;
+	Thu, 23 Mar 2000 12:24:33 -0800 (PST)
+Date: Thu, 23 Mar 2000 12:24:33 -0800 (PST)
+From: Chen Li <chenli@CS.Stanford.EDU>
+To: Edward Chang <echang@xanadu.ece.ucsb.edu>
+cc: Milton Chen <miltchen@Graphics.Stanford.EDU>
+Subject: Re: new version
+In-Reply-To: <Pine.SOL.3.96.1000320164342.4157A-100000@xanadu.ece.ucsb.edu>
+Message-ID: <Pine.GSO.4.21.0003231200160.3553-100000@Xenon.Stanford.EDU>
+MIME-Version: 1.0
+Content-Type: TEXT/PLAIN; charset=US-ASCII
+Content-Length: 3170
+Status: RO
+X-Status: 
+
+Ed,
+
+I read the paper.  Here are my comments:
+
+OVERALL
+-------
+  I think the paper is well written and much polished than before.  The
+  abstract is very impressive.  It should get in.
+
+SPECIFICS
+---------
+
+1. Sec1, par 2, sen 1.  "to support viewing interactivity" appears twice.
+
+2. Sec2, par 1.  I don't understand the calculation here.  If 1.8GBytes
+   cushion is needed for 6.4Mbps stream, then 1.8*3=5.4MBytes cushion
+   should be needed for 19.2Mbps stream, NOT 4.8GBytes.  Do I miss
+   something here?  Also the key idea for this paragraph is that we use
+   disk to buffer incoming stream using the ping-pong scheme.  I think
+   TiVo also uses the same idea, though they may use different scheme.  So
+   I don't know the sentence "... so that the DRAM requirement can be
+   virtually eliminated" is really original.
+
+3. Sec2, last par, bullet 1, again, is this idea original?
+
+4. Sec3, par 2.  This paragraph seems to be written in a rush.
+
+    - The second sentence is not complete.
+
+    - "(e.g., an I and a P frames)" -> "(e.g., an I frame and a P frame)."
+
+    - "We also explain..."   has two "that".  Get rid of the first "that".
+
+    - "a few selected speed": "speed" -> "speeds"
+  
+    - "fast>scan", a wrong character between "fast" and "scan."
+
+5. Sec3.1, par 1. "\delta-frame" is introduced without definition.  Do we
+   assume that the reader has strong background of MPEG?  At least I don't
+   quite understand what the "\delta-frame" means.
+
+6. Sec3.1, par 1, middle.  Again, we only need to store
+   the I-files to support fast-scan and replay.  But why?  Why we don't
+   need the P and B frames?  It's not clear to me from the paragraph.
+
+7. Sec3.1, par 1, last sen.  "fast>scan", a wrong character between
+   "fast" and "scan."  Globally check.
+
+8. Sec3.1, what's the difference between "\kappa" and "K"?  Are they
+   really the same thing?
+
+9. Sec3.1, para 3, bullets 1 and 2.  "K = \delta \times n" or "K =
+   \delta"?   These two bullets are not symmetric.
+
+10. Sec3.2, middle.  "Equation 6 that we present in .."  Get rid of "that
+    we present."
+
+11. I still didn't quite following the analysis in Sec 3.3.  Since it's
+    part of your thesis, I assume it's correct.
+
+12. Sec 4.2, equations 14 and 15.  I see that the space is very
+    restrictive.  But these formulas are confusing: "else" should be put
+    after the second part of the equations, not before.  Otherwise,
+    "else" looks like a variable.
+
+13. Sec 5.2, par 4.  "\kappa-file" looks strange.  Shorten the hyphen.
+
+14. Sec 6, "o" is extra.
+
+Chen
+
+
+On Mon, 20 Mar 2000, Edward Chang wrote:
+
+> 
+> Chen and Milton:
+> 
+> I just found out the submission deadline is deferred by a week
+> when I went to the web site to submit...
+> 
+> This gives us a few more days to proof-read the paper. What
+> I hope that you could help me is to read the paper one more
+> time and give me both content and writing suggestions.
+> If you could give me your comments by Wed noon would be great.
+> I plan to send it out this Friday so that I can take my
+> kids to the Disney Land this weekend :-)
+> 
+> The paper is located at
+> http://www-db.stanford.edu/~echang/dtv.ps
+> 
+> Thanks,
+> Ed
+> 
+> 
+
+
+
+
+
+From miltchen@pan.Stanford.EDU Wed Mar 22 21:36 PST 2000
+Received: from pan.Stanford.EDU (pan.Stanford.EDU [171.64.77.226])
+	by xanadu.ece.ucsb.edu (8.9.1/8.9.1) with ESMTP id VAA11717
+	for <echang@xanadu.ece.ucsb.edu>; Wed, 22 Mar 2000 21:36:51 -0800 (PST)
+Received: from localhost (miltchen@localhost)
+	by pan.Stanford.EDU (8.9.0/8.9.0) with SMTP id VAA12145;
+	Wed, 22 Mar 2000 21:36:52 -0800 (PST)
+Date: Wed, 22 Mar 2000 21:36:51 -0800 (PST)
+From: Milton Chen <miltchen@Graphics.Stanford.EDU>
+Reply-To: Milton Chen <miltchen@Graphics.Stanford.EDU>
+To: Edward Chang <echang@xanadu.ece.ucsb.edu>
+cc: chenli@db.stanford.edu
+Subject: Re: new version
+In-Reply-To: <Pine.SOL.3.96.1000320164342.4157A-100000@xanadu.ece.ucsb.edu>
+Message-ID: <Pine.SGI.3.96.1000322203343.11530E-100000@pan.Stanford.EDU>
+MIME-Version: 1.0
+Content-Type: TEXT/PLAIN; charset=US-ASCII
+Content-Length: 2950
+Status: RO
+X-Status: A
+
+Sorry about the late reply.  I miss read your message as "by Wednesday
+night".
+
+1. The title is not quite exact.  When I think of interactive, the first
+thing that comes to mind is some 3D stuff.  The title also does not
+capture the multi-stream stuff.  How about something like "Supporting
+Multi-Stream DTV Time Shifting".  Actually this one is horrible :)
+
+2. Sec 1, Par 1, Sen 2.  "raise" -> "enables"
+
+3. Sec 1, Par 2, last sen. Could move (...) to before the "." since a VCR
+cannot filter out contents or customizes.
+
+4. Sec 1, Par 3, first sen.  Maybe change to "To support viewing
+interactivity, we have proposed a receiver-based architecture."  3rd
+sentence, "The economical caching", this phrase doesn't make sense.  I
+think you should also talk about DRAM in this par., like why it is used
+and how it affects total costs, because in the next par. you mention how
+you can "virtually eliminate the DRAM constrain", but a lay reader (like
+me) would not know that DRAM poses a constrain.  Maybe something like "To
+support viewing interactivity, we have proposed a receiver-based
+architecture[3,4].  A receiver in this architecture is equipped with a
+DRAM buffer and a large hard disk.  The speed of the DRAM and the
+economics of large inexpensive disk, together with the random access
+nature of these memories, enables a multimedia receiver to time shift
+large amount of data.  (maybe this sentence can be replaced with one that
+talks about how DRAM makes things simple, but is too expensive, thus the
+goal of limiting the amount of DRAM is a very worthy one)".
+
+5. Sec 1, Par 4. I like your examples of how multi-streams caching can be
+used, but both examples could also use multiple single stream caching
+devices, rather than a single box that supports multiple streams.  I would
+add a third example, where the multiple streams are part of a single
+program, thus you must cache all streams by one device.  Examples include
+branching movies and multi-view sports broadcast.
+
+6. Sec 1, last par, 1st sen.  "(the standard DTV bitrate)" ->(a standard
+definition DTV bitstream).  I would also add "(up to 81x)" after
+"high-speed" in this sentence.  If I stop reading here, it would be nice
+to give me one of your key results.
+
+7. Sec 3, par 1, last sen.  This sentence is misleading.  ATVEF is based
+on IP, it uses the MPEG2 transport stream, rather than the MPEG2 video
+encoding standard.  How about "We discuss the k-file scheme in the context
+of DTV video encoding standard, MPEG2.".  I think this is enough since
+pretty much everybody knows the importance of MPEG2, and it is the only
+high bitrate standard (I think).
+
+8. Sec 6, Par 1.  Extra "o" on the first line.
+
+9. I like your traffic light and stop sign analogy, but that is true only
+for traffic lights without car sensors.  For most of the traffic lights
+around my parents' house, traffice light will always beat stop sign.
+
+I think this paper is a sure acceptance :)
+
+Milton
+
+
+
+
+
+
+
+
+
+

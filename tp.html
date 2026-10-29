@@ -1,0 +1,112 @@
+<HTML>
+<HEAD>
+</HEAD>
+<BODY>
+</CENTER>
+<H1>These Proposal - Three Dimensional Database Environments</H1>
+<H2>Introduction</H2>
+The presentation and manipulation of information is the central issue in interacting with database 
+systems. The efficacy of the interaction with the user is determined by the interface to the database 
+and therefore the design and usability of such interfaces requires investigation to ensure optimal 
+facilitation.
+<P></P>
+The traditional approach to providing interfaces to databases is through a variety of textual language 
+interfaces, such as the popular SQL.
+However, as these languages require a degree of programming skill to use, 
+they only serve as a barrier 
+between many users and their information.  An interface must not obscure 
+access to the data. A few notable results 
+have been found on providing graphical interfaces to 
+relational databases [Zloof 1975, Stonebraker & Kalash 1982, Herot 1980, Wong & Kuo 1982]. Form-based interfaces are commonplace in end-user applications.
+<P></P>
+Graphical interfaces that support complex models of information have flourished in the past five years. 
+However, with the 
+emergence of object-oriented database systems, the variety and complexity of information modeled 
+has increased. Two dimensional interfaces to object oriented databases have been developed for 
+specific applications [EcoSystem: Barclay & Kennedy 1992b, HIBROWSE: Ellis et al. 1994], as well 
+as general applications, such as schema designers and browsers [Almarode 1991, Deux et al. 1991, 
+Monk 1994].
+<P></P>
+Recently, software and hardware technology has improved to the point where the practical use of 
+applications with interactive three dimensional graphics is a viable prospect. Three dimensional 
+interfaces afford opportunities for representation not previously possible with 2D interfaces. With this 
+in mind, 3D interfaces to databases are beginning to emerge [WINONA: Rapley & Kennedy 1994, 
+Amaze: Boyle et al. 1994, PIT: Benford & Mariani 1994].
+As yet there is little firm agreement on what constitutes a good interface. In the above  
+implementations the interfaces are restricted to one or two possible representations. Rather than bind 
+users to one particular interface, a solution may be found in allowing users to specify their own 
+interface. Work has been done on providing multiple interfaces and visualizations of databases 
+[Cooper 1991, Mitchell 1994, King & Novak 1987, 1989]. However, these are restricted to 2D 
+interfaces.
+<P></P>
+The aim of this work is to develop an application based on a generic framework for 3D database 
+environments allowing the investigation of user configurable database interfaces. This will permit the 
+study of existing and prototype database environments and be of practical use to database users with 
+specific interface requirements. It is recognized that the data model underlying this system will be 
+highly conceptual in nature. It is envisaged that conceptually oriented, Napier Object Model (NOM) 
+[Barclay & Kennedy 1991] will provide a suitable data model for this purpose.
+<H2>Background</H2>
+<H3>Object Oriented Databases</H3>
+<P></P>
+Object-oriented databases have emerged as part of trend towards the object oriented paradigm in the 
+computer industry. The concepts behind object oriented systems date back to the sixties with the 
+programming language SIMULA [Dahl and Nygaard 1966]. Database systems using object oriented 
+technology are particularly well suited to simulation, graphical user interfaces, complex data 
+structures, meta-modeling and modular software [Cattel 1991]. Therefore, they are ideal for the 
+development of the system. The NOM conceptual level data model will be used in this research. NOM 
+provides a fully object oriented data model enhanced with constructs for roles, triggers, migration, 
+constraints, etc., and is compliant to the ODMG (Object Database Management Group) standard 
+[Atwood 1993].
+<H3>Database Visualization</H3>
+As the complexity and variety of information increases through the use of object oriented data models, 
+the need for clear ways of viewing this information also increases. Work in this area has grown 
+through the availability of high performance graphics workstations.
+<P></P>
+In providing tools for prototyping visualizations, there is a limited amount of work. Cooper [1992] has 
+developed a configurable data modeling system, which permits the specification of data modeling 
+interfaces. NIOME [Mitchell et al. 1994] is a notation independent object modeling environment, 
+which provides interactive use and specification of a wide range of object model notations. The meta-
+model used in NIOME enables any given object model to swap its visual representation without 
+disturbing the information of the model. This provides a means of assessing the relative success of 
+different notations to represent the same information. It is intended that this work will draw from the 
+techniques used in the development of NIOME, to achieve the genericity required. Haber et al. [1994] 
+have presented a formal approach for specifying visual metaphors, with the intention of improving the 
+presentation of data schemata.
+<H3>Human-Computer Interaction</H3>
+The field of human-computer interaction has a strong bearing on the proposed work. This area looks 
+at ways in which the use of computers can be enhanced by researching issues on human cognitive 
+psychology, technology for I/O devices, and models of interaction [Dix et al. 1993]. Shneiderman 
+[1983] has identified direct manipulation as a desirable feature of graphics based interactive systems. 
+This has played an important role in the evolution of user interfaces. Ongoing work on the usability of 
+database interfaces and the criteria for interface evaluation [Paton et al. 1994, Barclay et al. 1994] 
+will provide a basis for assessment of 3D database environments.
+<H3>Three Dimensional Database Environment - A Definition</H3>
+A 3D database environment is a visual database interface in which the user may navigate and 
+manipulate data structures in three dimensions. As technology advances the sophistication of such 
+environments approaches what many would call virtual reality [Rheingold 1991]. Here, the user is 
+immersed in an environment created by a computer interacting with the subject's senses and 
+movements. As with object oriented technology, virtual reality also dates back to the sixties, with the 
+Ultimate Display, a head mounted computer graphic display system. The range of 
+experience provided by a multi-modal virtual reality interface presents opportunities for improved 
+interaction. Determining the practicality of these environments will be addressed in this research.
+<H2>Objectives</H2>
+The aim of this work is to develop an application based on a generic framework for 3D database 
+environments, allowing the investigation of user configurable database interfaces. There are three 
+main objectives of this goal:
+<UL>
+<LI>1) Develop a generic framework for 3D database environments.
+<LI>2) Implement a 3D interactive environment builder in an object oriented database system based on the 
+framework.
+</UL>
+Traditional database views are used to give users access to information particular to their needs. It is 
+envisaged that this toolkit will enable the provision of environments according to specific databases 
+users needs. This will also serve as a tool for the rapid prototyping of new environments.
+<UL>
+<LI>3) Develop prototype database environments for specific applications/users.
+<LI>4) Investigate the criteria affecting the efficacy of interfaces to databases and evaluate the prototype 
+environments for user facilitation.
+</UL>
+This will attempt to find answers to issues such as:- how to provide access to large amounts of data, 
+how to visually represent declarative and procedural structures, and how to visually represent schema-
+level and instance-level information.
+<P></P>

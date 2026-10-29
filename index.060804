@@ -1,0 +1,541 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<!-- saved from url=(0035)http://www.db.stanford.edu/~echang/ -->
+<html xmlns:v="urn:schemas-microsoft-com:vml"
+xmlns:o="urn:schemas-microsoft-com:office:office"
+xmlns:w="urn:schemas-microsoft-com:office:word"
+xmlns:dt="uuid:C2F41010-65B3-11d1-A29F-00AA00C14882"
+xmlns="http://www.w3.org/TR/REC-html40">
+
+<head>
+<meta name="Microsoft Theme 2.00" content="poetic 011">
+<meta http-equiv=Content-Type content="text/html; charset=windows-1252">
+<meta name=ProgId content=Word.Document>
+<meta name=Generator content="Microsoft Word 9">
+<meta name=Originator content="Microsoft Word 9">
+<link rel=File-List href="./Edward_Y_Chang_files/filelist.xml">
+<link rel=Edit-Time-Data href="./Edward_Y_Chang_files/editdata.mso">
+<!--[if !mso]>
+<style>
+v\:* {behavior:url(#default#VML);}
+o\:* {behavior:url(#default#VML);}
+w\:* {behavior:url(#default#VML);}
+.shape {behavior:url(#default#VML);}
+</style>
+<![endif]-->
+<title>Edward Y. Chang's Site</title>
+<!--[if gte mso 9]><xml>
+ <o:DocumentProperties>
+  <o:Author>Dean</o:Author>
+  <o:Template>Normal</o:Template>
+  <o:LastAuthor>Dean</o:LastAuthor>
+  <o:Revision>8</o:Revision>
+  <o:TotalTime>13</o:TotalTime>
+  <o:Created>2004-03-11T02:16:00Z</o:Created>
+  <o:LastSaved>2004-06-09T01:14:00Z</o:LastSaved>
+  <o:Pages>2</o:Pages>
+  <o:Words>572</o:Words>
+  <o:Characters>3263</o:Characters>
+  <o:Lines>27</o:Lines>
+  <o:Paragraphs>6</o:Paragraphs>
+  <o:CharactersWithSpaces>4007</o:CharactersWithSpaces>
+  <o:Version>9.3821</o:Version>
+ </o:DocumentProperties>
+</xml><![endif]-->
+<style>
+<!--
+ /* Font Definitions */
+@font-face
+	{font-family:"Book Antiqua";
+	panose-1:2 4 6 2 5 3 5 3 3 4;
+	mso-font-charset:0;
+	mso-generic-font-family:roman;
+	mso-font-pitch:variable;
+	mso-font-signature:647 0 0 0 159 0;}
+ /* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{mso-style-parent:"";
+	margin:0in;
+	margin-bottom:.0001pt;
+	mso-pagination:widow-orphan;
+	font-size:12.0pt;
+	font-family:"Book Antiqua";
+	mso-fareast-font-family:"Times New Roman";
+	mso-bidi-font-family:Arial;
+	color:#666666;}
+h1
+	{mso-style-next:Normal;
+	margin-top:12.0pt;
+	margin-right:0in;
+	margin-bottom:3.0pt;
+	margin-left:0in;
+	mso-pagination:widow-orphan;
+	page-break-after:avoid;
+	mso-outline-level:1;
+	font-size:24.0pt;
+	font-family:"Book Antiqua";
+	mso-bidi-font-family:Arial;
+	color:#CC9900;
+	mso-font-kerning:16.0pt;
+	font-weight:normal;
+	mso-bidi-font-weight:bold;}
+h2
+	{mso-style-next:Normal;
+	margin-top:12.0pt;
+	margin-right:0in;
+	margin-bottom:3.0pt;
+	margin-left:0in;
+	mso-pagination:widow-orphan;
+	page-break-after:avoid;
+	mso-outline-level:2;
+	font-size:18.0pt;
+	font-family:"Book Antiqua";
+	mso-bidi-font-family:Arial;
+	color:#CC9900;
+	font-weight:normal;
+	mso-bidi-font-weight:bold;
+	mso-bidi-font-style:italic;}
+h3
+	{mso-style-next:Normal;
+	margin-top:12.0pt;
+	margin-right:0in;
+	margin-bottom:3.0pt;
+	margin-left:0in;
+	mso-pagination:widow-orphan;
+	page-break-after:avoid;
+	mso-outline-level:3;
+	font-size:14.0pt;
+	font-family:"Book Antiqua";
+	mso-bidi-font-family:Arial;
+	color:#CC9900;
+	font-weight:normal;
+	mso-bidi-font-weight:bold;}
+h4
+	{mso-style-next:Normal;
+	margin-top:12.0pt;
+	margin-right:0in;
+	margin-bottom:3.0pt;
+	margin-left:0in;
+	mso-pagination:widow-orphan;
+	page-break-after:avoid;
+	mso-outline-level:4;
+	font-size:12.0pt;
+	font-family:"Book Antiqua";
+	mso-bidi-font-family:Arial;
+	color:#CC9900;
+	font-weight:normal;
+	mso-bidi-font-weight:bold;}
+h5
+	{mso-style-next:Normal;
+	margin-top:12.0pt;
+	margin-right:0in;
+	margin-bottom:3.0pt;
+	margin-left:0in;
+	mso-pagination:widow-orphan;
+	mso-outline-level:5;
+	font-size:10.0pt;
+	font-family:"Book Antiqua";
+	mso-bidi-font-family:Arial;
+	color:#CC9900;
+	font-weight:normal;
+	mso-bidi-font-weight:bold;
+	mso-bidi-font-style:italic;}
+h6
+	{mso-style-next:Normal;
+	margin-top:12.0pt;
+	margin-right:0in;
+	margin-bottom:3.0pt;
+	margin-left:0in;
+	mso-pagination:widow-orphan;
+	mso-outline-level:6;
+	font-size:8.0pt;
+	font-family:"Book Antiqua";
+	mso-bidi-font-family:Arial;
+	color:#CC9900;
+	font-weight:normal;
+	mso-bidi-font-weight:bold;}
+a:link, span.MsoHyperlink
+	{color:#666699;
+	text-decoration:underline;
+	text-underline:single;}
+a:visited, span.MsoHyperlinkFollowed
+	{color:#339999;
+	text-decoration:underline;
+	text-underline:single;}
+@page Section1
+	{size:8.5in 11.0in;
+	margin:1.0in 1.25in 1.0in 1.25in;
+	mso-header-margin:.5in;
+	mso-footer-margin:.5in;
+	mso-paper-source:0;}
+div.Section1
+	{page:Section1;}
+-->
+</style>
+<!--[if gte mso 9]><xml>
+ <o:shapedefaults v:ext="edit" spidmax="1048"/>
+</xml><![endif]--><!--[if gte mso 9]><xml>
+ <o:shapelayout v:ext="edit">
+  <o:idmap v:ext="edit" data="1"/>
+ </o:shapelayout></xml><![endif]-->
+<meta
+content="pbir, cbir, content-based image retrieval, perception-based image retrieval, vima, ..."
+name=keywords>
+</head>
+
+<body bgcolor="#dfeeed" background="./Edward_Y_Chang_files/image001.gif"
+lang=EN-US link="#666699" vlink="#339999" style='tab-interval:.5in'
+alink="#cc3300">
+<!--[if gte mso 9]><xml>
+ <v:background id="_x0000_s1046" o:bwmode="white" fillcolor="#dfeeed"
+  o:targetscreensize="800,600">
+  <v:fill src="./Edward_Y_Chang_files/image002.gif" o:title="poetextb"
+   type="frame"/>
+ </v:background></xml><![endif]-->
+
+<div class=Section1>
+
+<table border=0 cellspacing=0 cellpadding=0 width=700 style='width:525.0pt;
+ mso-cellspacing:0in;mso-padding-alt:1.5pt 1.5pt 1.5pt 1.5pt'>
+ <tr>
+  <td style='padding:1.5pt 1.5pt 1.5pt 1.5pt'>
+  <p class=MsoNormal><img width=144 height=168 id="_x0000_i1025"
+  src="Edward_Y_Chang_files\chang256.jpg" align=middle border=1><span
+  style='color:black'><o:p></o:p></span></p>
+  </td>
+  <td style='padding:1.5pt 1.5pt 1.5pt 1.5pt'>
+  <p class=MsoNormal align=center style='text-align:center'><b><span
+  style='font-size:13.5pt;font-family:Arial;color:#222222'>Edward Y. Chang</span></b><span
+  style='font-size:13.5pt;font-family:Arial;color:#222222'> </span><span
+  style='font-family:Arial;color:#222222'><br>
+  Associate Professor <br>
+  <a href="http://www.ece.ucsb.edu/">Department of Electrical &amp; Computer
+  Engineering</a><br>
+  <a href="http://www.ucsb.edu/">University of California, Santa Barbara</a> <br>
+  Email: echang@ece.ucsb.edu Tel: (805) 893-2971 <br>
+  Assistant: Helen Gordon Tel: (805) 893-7110 </span><span style='color:black'><o:p></o:p></span></p>
+  </td>
+ </tr>
+</table>
+
+<p class=MsoNormal><span style='display:none;mso-hide:all'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></p>
+
+<table border=0 cellspacing=0 cellpadding=0 width=700 style='width:525.0pt;
+ mso-cellspacing:0in;mso-padding-alt:1.5pt 1.5pt 1.5pt 1.5pt'>
+ <tr>
+  <td style='padding:1.5pt 1.5pt 1.5pt 1.5pt'>
+  <p class=MsoNormal><![if !supportEmptyParas]>&nbsp;<![endif]><span
+  style='color:black'><o:p></o:p></span></p>
+  </td>
+ </tr>
+ <tr>
+  <td style='background:#330066;padding:1.5pt 1.5pt 1.5pt 1.5pt'>
+  <p class=MsoNormal><b><i><span style='font-size:13.5pt;font-family:Arial;
+  color:white'>BIOGRAPHY</span></i></b><span style='font-family:Arial;
+  color:white'> </span><span style='color:black'><o:p></o:p></span></p>
+  </td>
+ </tr>
+ <tr>
+  <td style='padding:1.5pt 1.5pt 1.5pt 1.5pt'>
+  <p class=MsoNormal style='mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;
+  margin-left:.25in;tab-stops:list .5in'><span style='font-size:10.0pt;
+  font-family:"Times New Roman";color:windowtext'><!--[if gte vml 1]><v:shapetype
+   id="_x0000_t75" coordsize="21600,21600" o:spt="75" o:preferrelative="t"
+   path="m@4@5l@4@11@9@11@9@5xe" filled="f" stroked="f">
+   <v:stroke joinstyle="miter"/>
+   <v:formulas>
+    <v:f eqn="if lineDrawn pixelLineWidth 0"/>
+    <v:f eqn="sum @0 1 0"/>
+    <v:f eqn="sum 0 0 @1"/>
+    <v:f eqn="prod @2 1 2"/>
+    <v:f eqn="prod @3 21600 pixelWidth"/>
+    <v:f eqn="prod @3 21600 pixelHeight"/>
+    <v:f eqn="sum @0 0 1"/>
+    <v:f eqn="prod @6 1 2"/>
+    <v:f eqn="prod @7 21600 pixelWidth"/>
+    <v:f eqn="sum @8 21600 0"/>
+    <v:f eqn="prod @7 21600 pixelHeight"/>
+    <v:f eqn="sum @10 21600 0"/>
+   </v:formulas>
+   <v:path o:extrusionok="f" gradientshapeok="t" o:connecttype="rect"/>
+   <o:lock v:ext="edit" aspectratio="t"/>
+  </v:shapetype><v:shape id="_x0000_i1026" type="#_x0000_t75" style='width:11.25pt;
+   height:11.25pt' o:bullet="t">
+   <v:imagedata src="./Edward%20Y_%20Chang_files/image003.gif" o:title="poebul1a"/>
+  </v:shape><![endif]--><![if !vml]><img border=0 width=15 height=15
+  src="./Edward%20Y_%20Chang_files/image003.gif" alt="*" v:shapes="_x0000_i1026"><![endif]><span
+  style='mso-tab-count:1'>   </span></span><span style='font-size:10.0pt'>Ph.D.,
+  Electrical Engineering, Stanford University, 1995-1999 <o:p></o:p></span></p>
+  <p class=MsoNormal style='mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;
+  margin-left:.25in;tab-stops:list .5in'><span style='font-size:10.0pt;
+  font-family:"Times New Roman";color:windowtext'><!--[if gte vml 1]><v:shape
+   id="_x0000_i1027" type="#_x0000_t75" style='width:11.25pt;height:11.25pt'
+   o:bullet="t">
+   <v:imagedata src="./Edward%20Y_%20Chang_files/image003.gif" o:title="poebul1a"/>
+  </v:shape><![endif]--><![if !vml]><img border=0 width=15 height=15
+  src="./Edward%20Y_%20Chang_files/image003.gif" alt="*" v:shapes="_x0000_i1027"><![endif]><span
+  style='mso-tab-count:1'>   </span></span><span style='font-size:10.0pt'>M.S.,
+  Computer Science, Stanford University, 1992-1994 <o:p></o:p></span></p>
+  <p class=MsoNormal style='mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;
+  margin-left:.25in;tab-stops:list .5in'><span style='font-size:10.0pt;
+  font-family:"Times New Roman";color:windowtext'><!--[if gte vml 1]><v:shape
+   id="_x0000_i1028" type="#_x0000_t75" style='width:11.25pt;height:11.25pt'
+   o:bullet="t">
+   <v:imagedata src="./Edward%20Y_%20Chang_files/image003.gif" o:title="poebul1a"/>
+  </v:shape><![endif]--><![if !vml]><img border=0 width=15 height=15
+  src="./Edward%20Y_%20Chang_files/image003.gif" alt="*" v:shapes="_x0000_i1028"><![endif]><span
+  style='mso-tab-count:1'>   </span></span><span style='font-size:10.0pt'><a
+  href="http://www-db.stanford.edu/~echang/bio-short.html">Short Bio</a> (last updated
+  11/2003) </span><span style='font-size:10.0pt;color:black'><o:p></o:p></span></p>
+  </td>
+ </tr>
+ <tr>
+  <td style='background:#330066;padding:1.5pt 1.5pt 1.5pt 1.5pt'>
+  <p class=MsoNormal><b><i><span style='font-size:13.5pt;font-family:Arial;
+  color:white'>RESEARCH</span></i></b><span style='font-family:Arial;
+  color:white'> </span><span style='color:black'><o:p></o:p></span></p>
+  </td>
+ </tr>
+ <tr>
+  <td style='padding:1.5pt 1.5pt 1.5pt 1.5pt'>
+  <p class=MsoNormal><span style='font-size:10.0pt'><a
+  href="http://www-db.stanford.edu/~echang/CV/research.html"></a></span><span
+  class=MsoHyperlink><o:p></o:p></span></p>
+  <p class=MsoNormal style='margin-left:.25in;tab-stops:list .5in'><a
+  href="http://www-db.stanford.edu/~echang/CV/research.html"><span
+  style='font-size:10.0pt;font-family:"Times New Roman";color:windowtext;
+  text-decoration:none;text-underline:none'><!--[if gte vml 1]><v:shape id="_x0000_i1029"
+   type="#_x0000_t75" style='width:11.25pt;height:11.25pt' o:bullet="t">
+   <v:imagedata src="./Edward%20Y_%20Chang_files/image003.gif" o:title="poebul1a"/>
+  </v:shape><![endif]--><![if !vml]><img border=0 width=15 height=15
+  src="./Edward%20Y_%20Chang_files/image003.gif" alt="*" v:shapes="_x0000_i1029"><![endif]><span
+  style='mso-tab-count:1'>   </span></span><span style='font-size:10.0pt;
+  color:#7C3300'>Research Projects &amp; Students</span></a><span
+  style='font-size:10.0pt'> <o:p></o:p></span></p>
+  <p class=MsoNormal style='margin-left:.25in;tab-stops:list .5in'><span
+  style='font-size:10.0pt'>PBIR: Perception-based Image Retrieval (NSF Career
+  IIS-0133802) <br>
+  SIEC: Statistical Inferences under Extreme Constraints (NSF ITR IIS-0219885,
+  IBM) <br>
+  ISE: Interactive Streaming Everywhere (NSF EIA-0080134, SONY, UC DiMI) <br>
+  VSN: Video Sensor Networks (Intel, NEC, Proximex)<br>
+  <b>Positions Full</b>, will not accept any new graduate students in 2004 <o:p></o:p></span></p>
+  <p class=MsoNormal style='mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;
+  margin-left:.25in;tab-stops:list .5in'><span style='font-size:10.0pt;
+  font-family:"Times New Roman";color:windowtext'><!--[if gte vml 1]><v:shape
+   id="_x0000_i1030" type="#_x0000_t75" style='width:11.25pt;height:11.25pt'
+   o:bullet="t">
+   <v:imagedata src="./Edward%20Y_%20Chang_files/image003.gif" o:title="poebul1a"/>
+  </v:shape><![endif]--><![if !vml]><img border=0 width=15 height=15
+  src="./Edward%20Y_%20Chang_files/image003.gif" alt="*" v:shapes="_x0000_i1030"><![endif]><span
+  style='mso-tab-count:1'>   </span></span><span style='font-size:10.0pt'><a
+  href="http://www-db.stanford.edu/~echang/schedule.txt">Schedule</a> <o:p></o:p></span></p>
+  <p class=MsoNormal style='mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;
+  margin-left:.25in;tab-stops:list .5in'><span style='font-size:10.0pt;
+  font-family:"Times New Roman";color:windowtext'><!--[if gte vml 1]><v:shape
+   id="_x0000_i1031" type="#_x0000_t75" style='width:11.25pt;height:11.25pt'
+   o:bullet="t">
+   <v:imagedata src="./Edward%20Y_%20Chang_files/image003.gif" o:title="poebul1a"/>
+  </v:shape><![endif]--><![if !vml]><img border=0 width=15 height=15
+  src="./Edward%20Y_%20Chang_files/image003.gif" alt="*" v:shapes="_x0000_i1031"><![endif]><span
+  style='mso-tab-count:1'>   </span></span><span style='font-size:10.0pt'><a
+  href="http://www.vimatech.com/">VIMA Technologies </a>, Co-founder &amp; CTO </span><span
+  style='font-size:10.0pt;color:black'><o:p></o:p></span></p>
+  </td>
+ </tr>
+ <tr>
+  <td style='background:#330066;padding:1.5pt 1.5pt 1.5pt 1.5pt'>
+  <p class=MsoNormal><b><i><span style='font-size:13.5pt;font-family:Arial;
+  color:white'>PUBLICATIONS, INVITED TALKS, SERVICES</span></i></b><span
+  style='font-family:Arial;color:white'> </span><span style='color:black'><o:p></o:p></span></p>
+  </td>
+ </tr>
+ <tr>
+  <td style='padding:1.5pt 1.5pt 1.5pt 1.5pt'>
+  <p class=MsoNormal style='mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;
+  margin-left:.25in;tab-stops:list .5in'><span style='font-size:10.0pt;
+  font-family:"Times New Roman";color:windowtext'><!--[if gte vml 1]><v:shape
+   id="_x0000_i1032" type="#_x0000_t75" style='width:11.25pt;height:11.25pt'
+   o:bullet="t">
+   <v:imagedata src="./Edward%20Y_%20Chang_files/image003.gif" o:title="poebul1a"/>
+  </v:shape><![endif]--><![if !vml]><img border=0 width=15 height=15
+  src="./Edward%20Y_%20Chang_files/image003.gif" alt="*" v:shapes="_x0000_i1032"><![endif]><span
+  style='mso-tab-count:1'>   </span></span><span style='font-size:10.0pt'><a
+  href="http://www-db.stanford.edu/~echang/chronological-order.html">Complete
+  Publication List by Year</a> <o:p></o:p></span></p>
+  <p class=MsoNormal style='mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;
+  margin-left:.25in;tab-stops:list .5in'><span style='font-size:10.0pt;
+  font-family:"Times New Roman";color:windowtext'><!--[if gte vml 1]><v:shape
+   id="_x0000_i1033" type="#_x0000_t75" style='width:11.25pt;height:11.25pt'
+   o:bullet="t">
+   <v:imagedata src="./Edward%20Y_%20Chang_files/image003.gif" o:title="poebul1a"/>
+  </v:shape><![endif]--><![if !vml]><img border=0 width=15 height=15
+  src="./Edward%20Y_%20Chang_files/image003.gif" alt="*" v:shapes="_x0000_i1033"><![endif]><span
+  style='mso-tab-count:1'>   </span></span><span style='font-size:10.0pt'><a
+  href="http://www-db.stanford.edu/~echang/talks.html">Selected Recent Invited
+  Talks </a></span><span class=MsoHyperlink><o:p></o:p></span></p>
+  <p class=MsoNormal style='mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;
+  margin-left:.25in;tab-stops:list .5in'><a
+  href="http://www-db.stanford.edu/~echang/talks.html"><span style='font-size:
+  10.0pt;font-family:"Times New Roman";color:windowtext;text-decoration:none;
+  text-underline:none'><!--[if gte vml 1]><v:shape id="_x0000_i1034" type="#_x0000_t75"
+   style='width:11.25pt;height:11.25pt' o:bullet="t">
+   <v:imagedata src="./Edward%20Y_%20Chang_files/image003.gif" o:title="poebul1a"/>
+  </v:shape><![endif]--><![if !vml]><img border=0 width=15 height=15
+  src="./Edward%20Y_%20Chang_files/image003.gif" alt="*" v:shapes="_x0000_i1034"><![endif]><span
+  style='mso-tab-count:1'>   </span></span></a><a
+  href="http://www-db.stanford.edu/~echang/services.html"><span
+  style='font-size:10.0pt'>Complete List of Services</span></a><span
+  style='font-size:10.0pt'> <br>
+  Recent Program Committee Services: ACM SIGMOD, ACM Multimedia, ACM CIKM, SIAM
+  Data Mining, IEEE Data Engineering, IEEE Multimedia, International Conf. on
+  Artificial Intelligence, International Conf. on Computer Vision, etc. <br>
+  Associate Editor: IEEE Transactions on Knowledge and Data Engineering (TKDE) <br>
+  Guest Editor: ACM Multimedia System Journal Special Issue on Video
+  Surveillance <br>
+  Co-chair, <a href="http://www.mmdb.ece.ucsb.edu/~echang/acmmm-iwvs03.htm">Annual
+  ACM International Workshop on Video Surveillance</a>, 2003; 2004<br>
+  Co-chair, ARDA Workshop on A Large Scale Concept Ontology for Multimedia
+  Understanding, 2004<br>
+  Co-chair, IS&amp;T/SPIE Conf. on Storage and Retrieval for Media Data, San
+  Jose, January 2005</span><span style='font-size:10.0pt;color:black'><o:p></o:p></span></p>
+  </td>
+ </tr>
+ <tr>
+  <td style='background:#330066;padding:1.5pt 1.5pt 1.5pt 1.5pt'>
+  <p class=MsoNormal><b><i><span style='font-size:13.5pt;font-family:Arial;
+  color:white'>ONLINE DEMOS</span></i></b><span style='font-family:Arial;
+  color:white'> </span><span style='color:black'><o:p></o:p></span></p>
+  </td>
+ </tr>
+ <tr>
+  <td style='padding:1.5pt 1.5pt 1.5pt 1.5pt'>
+  <p class=MsoNormal style='mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;
+  margin-left:.25in;tab-stops:list .5in'><span style='font-size:10.0pt;
+  font-family:"Times New Roman";color:windowtext'><!--[if gte vml 1]><v:shape
+   id="_x0000_i1035" type="#_x0000_t75" style='width:11.25pt;height:11.25pt'
+   o:bullet="t">
+   <v:imagedata src="./Edward%20Y_%20Chang_files/image003.gif" o:title="poebul1a"/>
+  </v:shape><![endif]--><![if !vml]><img border=0 width=15 height=15
+  src="./Edward%20Y_%20Chang_files/image003.gif" alt="*" v:shapes="_x0000_i1035"><![endif]><span
+  style='mso-tab-count:1'>   </span></span><span style='font-size:10.0pt'><a
+  href="http://www.imagebeagle.com/">ImageBeagle</a>: An Objectionable Image
+  Locator <a href="http://www.imagebeagle.com/risk_freetrial.html">free-tiral
+  download </a><br>
+  - Finding out what's on the hard drives! <br>
+  - Safeguarding a productive learning/working environment!! <o:p></o:p></span></p>
+  <p class=MsoNormal style='mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;
+  margin-left:.25in;tab-stops:list .5in'><span style='font-size:10.0pt;
+  font-family:"Times New Roman";color:windowtext'><!--[if gte vml 1]><v:shape
+   id="_x0000_i1036" type="#_x0000_t75" style='width:11.25pt;height:11.25pt'
+   o:bullet="t">
+   <v:imagedata src="./Edward%20Y_%20Chang_files/image003.gif" o:title="poebul1a"/>
+  </v:shape><![endif]--><![if !vml]><img border=0 width=15 height=15
+  src="./Edward%20Y_%20Chang_files/image003.gif" alt="*" v:shapes="_x0000_i1036"><![endif]><span
+  style='mso-tab-count:1'>   </span></span><span style='font-size:10.0pt'><a
+  href="http://mmdb.ece.ucsb.edu/~demo/corelacm/">Perception-based Image
+  Retrieval (PBIR)</a> <br>
+  - Named by ICME 2002 Panel &quot;a major breakthrough in CBIR&quot; <br>
+  - Demonstrated at ACM SIGMOD, ACM Multimedia, IEEE CVPR, and NSF workshops at
+  Paris, Harvard, and DC <o:p></o:p></span></p>
+  <p class=MsoNormal style='mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;
+  margin-left:.25in;tab-stops:list .5in'><span style='font-size:10.0pt;
+  font-family:"Times New Roman";color:windowtext'><!--[if gte vml 1]><v:shape
+   id="_x0000_i1037" type="#_x0000_t75" style='width:11.25pt;height:11.25pt'
+   o:bullet="t">
+   <v:imagedata src="./Edward%20Y_%20Chang_files/image003.gif" o:title="poebul1a"/>
+  </v:shape><![endif]--><![if !vml]><img border=0 width=15 height=15
+  src="./Edward%20Y_%20Chang_files/image003.gif" alt="*" v:shapes="_x0000_i1037"><![endif]><span
+  style='mso-tab-count:1'>   </span></span><span style='font-size:10.0pt'><a
+  href="http://pbir.morphosoft.com/large/">Password Protected Advanced Demos</a>
+  for paper reviewers, funding agencies, etc. </span><span style='font-size:
+  10.0pt;color:black'><o:p></o:p></span></p>
+  </td>
+ </tr>
+ <tr>
+  <td style='background:#330066;padding:1.5pt 1.5pt 1.5pt 1.5pt'>
+  <p class=MsoNormal><b><i><span style='font-size:13.5pt;font-family:Arial;
+  color:white'>TEACHING</span></i></b><span style='font-family:Arial;
+  color:white'> </span><span style='color:black'><o:p></o:p></span></p>
+  </td>
+ </tr>
+ <tr>
+  <td style='padding:1.5pt 1.5pt 1.5pt 1.5pt'>
+  <p class=MsoNormal style='mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;
+  margin-left:.25in;tab-stops:list .5in'><span style='font-size:10.0pt;
+  font-family:"Times New Roman";color:windowtext'><!--[if gte vml 1]><v:shape
+   id="_x0000_i1038" type="#_x0000_t75" style='width:11.25pt;height:11.25pt'
+   o:bullet="t">
+   <v:imagedata src="./Edward%20Y_%20Chang_files/image003.gif" o:title="poebul1a"/>
+  </v:shape><![endif]--><![if !vml]><img border=0 width=15 height=15
+  src="./Edward%20Y_%20Chang_files/image003.gif" alt="*" v:shapes="_x0000_i1038"><![endif]><span
+  style='mso-tab-count:1'>   </span></span><span style='font-size:10.0pt'><a
+  href="http://www.mmdb.ece.ucsb.edu/~echang/ECE160">ECE160</a> Advanced
+  Algorithms for Multimedia Systems, Spring, 2000,2001,2002,2003,2004,2005. <o:p></o:p></span></p>
+  <p class=MsoNormal style='mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;
+  margin-left:.25in;tab-stops:list .5in'><span style='font-size:10.0pt;
+  font-family:"Times New Roman";color:windowtext'><!--[if gte vml 1]><v:shape
+   id="_x0000_i1039" type="#_x0000_t75" style='width:11.25pt;height:11.25pt'
+   o:bullet="t">
+   <v:imagedata src="./Edward%20Y_%20Chang_files/image003.gif" o:title="poebul1a"/>
+  </v:shape><![endif]--><![if !vml]><img border=0 width=15 height=15
+  src="./Edward%20Y_%20Chang_files/image003.gif" alt="*" v:shapes="_x0000_i1039"><![endif]><span
+  style='mso-tab-count:1'>   </span></span><span style='font-size:10.0pt'><a
+  href="http://www.mmdb.ece.ucsb.edu/~ece154/">ECE154</a> Computer
+  Architecture, Winter, 2003,2004. <o:p></o:p></span></p>
+  <p class=MsoNormal style='mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;
+  margin-left:.25in;tab-stops:list .5in'><span style='font-size:10.0pt;
+  font-family:"Times New Roman";color:windowtext'><!--[if gte vml 1]><v:shape
+   id="_x0000_i1040" type="#_x0000_t75" style='width:11.25pt;height:11.25pt'
+   o:bullet="t">
+   <v:imagedata src="./Edward%20Y_%20Chang_files/image003.gif" o:title="poebul1a"/>
+  </v:shape><![endif]--><![if !vml]><img border=0 width=15 height=15
+  src="./Edward%20Y_%20Chang_files/image003.gif" alt="*" v:shapes="_x0000_i1040"><![endif]><span
+  style='mso-tab-count:1'>   </span></span><span style='font-size:10.0pt'><a
+  href="http://www.db.stanford.edu/~echang/CS182/">CS182</a> Advanced Algorithms
+  for Multimedia Computing, Fall, 2003. <o:p></o:p></span></p>
+  <p class=MsoNormal style='mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;
+  margin-left:.25in;tab-stops:list .5in'><span style='font-size:10.0pt;
+  font-family:"Times New Roman";color:windowtext'><!--[if gte vml 1]><v:shape
+   id="_x0000_i1041" type="#_x0000_t75" style='width:11.25pt;height:11.25pt'
+   o:bullet="t">
+   <v:imagedata src="./Edward%20Y_%20Chang_files/image003.gif" o:title="poebul1a"/>
+  </v:shape><![endif]--><![if !vml]><img border=0 width=15 height=15
+  src="./Edward%20Y_%20Chang_files/image003.gif" alt="*" v:shapes="_x0000_i1041"><![endif]><span
+  style='mso-tab-count:1'>   </span></span><span style='font-size:10.0pt'><a
+  href="http://www-db.stanford.edu/~echang/Class/ece268/">ECE268</a> Internet
+  Computing and Web Technologies, Fall. 2002,2003,2004; Winter, 2001,2002. <o:p></o:p></span></p>
+  <p class=MsoNormal style='mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;
+  margin-left:.25in;tab-stops:list .5in'><span style='font-size:10.0pt;
+  font-family:"Times New Roman";color:windowtext'><!--[if gte vml 1]><v:shape
+   id="_x0000_i1042" type="#_x0000_t75" style='width:11.25pt;height:11.25pt'
+   o:bullet="t">
+   <v:imagedata src="./Edward%20Y_%20Chang_files/image003.gif" o:title="poebul1a"/>
+  </v:shape><![endif]--><![if !vml]><img border=0 width=15 height=15
+  src="./Edward%20Y_%20Chang_files/image003.gif" alt="*" v:shapes="_x0000_i1042"><![endif]><span
+  style='mso-tab-count:1'>   </span></span><span style='font-size:10.0pt'><a
+  href="http://www-db.stanford.edu/~echang/Class/ece153a">ECE153A</a> Hardware
+  Software Interface, Fall, 1999,2000,2001. <o:p></o:p></span></p>
+  <p class=MsoNormal style='mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;
+  margin-left:.25in;tab-stops:list .5in'><span style='font-size:10.0pt;
+  font-family:"Times New Roman";color:windowtext'><!--[if gte vml 1]><v:shape
+   id="_x0000_i1043" type="#_x0000_t75" style='width:11.25pt;height:11.25pt'
+   o:bullet="t">
+   <v:imagedata src="./Edward%20Y_%20Chang_files/image003.gif" o:title="poebul1a"/>
+  </v:shape><![endif]--><![if !vml]><img border=0 width=15 height=15
+  src="./Edward%20Y_%20Chang_files/image003.gif" alt="*" v:shapes="_x0000_i1043"><![endif]><span
+  style='mso-tab-count:1'>   </span></span><span style='font-size:10.0pt'><a
+  href="http://www-db.stanford.edu/~echang/Class/ece594">ECE594</a> Internet
+  Computing and Digital TV, Winter, 2000. </span><span style='font-size:10.0pt;
+  color:black'><o:p></o:p></span></p>
+  </td>
+ </tr>
+</table>
+
+<p class=MsoNormal><!><ahref="http://view.showstat.com/showview.asp?user=echang"><!>Last
+Updated June 8<sup>th</sup>, 2004 <span style='color:black'><o:p></o:p></span></p>
+
+</div>
+
+</body>
+
+</html>

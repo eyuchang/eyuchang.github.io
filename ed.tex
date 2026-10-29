@@ -1,0 +1,233 @@
+\subsection{Future Work}
+\label{sec-future-work}
+
+Our future work 
+can be divided into three thrusts consisting
+of seven {\em initial} tasks:
+\begin{enumerate}
+\item {\em Learning method improvement thrust} (Tasks $A$, $B$, and $C$).
+
+We will improve the effectiveness of
+$\MEGA$ and $\SVMActive$, and possibly lead to
+the development of new online learning algorithms
+(e.g., Bayes Point Machines with Active Learning). We plan to 
+investigate algorithms to perform {\em adaptive sampling}, and
+to explore {\em co-training} using $\MEGA$ and $\SVMActive$,
+and study integrating active learning with
+Bayes Point Machines. 
+
+\item {\em Chen's thrust} (Tasks $D$, $E$, $F$).
+
+\input{chen.tex}
+
+\item {\em Junghoo's thrust} (Tasks $G$, $H$, and $I$).
+\end{enumerate}
+
+\subsubsection*{\underline{Task $A$: Adaptive Sampling}}
+
+Both $\MEGA$ and $\SVMActive$ rely on effective sampling 
+to select the most informative training data to query endusers.
+The sampling methods of these schemes can be
+improved in the following two directions:
+
+First, both schemes use the same sampling method from one
+user iteration to another.  Our new hypothesis is that
+in different stages of the learning process, the learner
+may want to place more weight on {\em exploring} or
+on {\em exploiting}.
+Intuitively, when the learner is used to explore the
+uncertainty space, a more aggressive sampling approach should be used. 
+When the learner needs to perform fine-grained concept refinement, 
+it should employ a more
+conservative sampling scheme such as the traditional ``nearest neighbor.''
+One possible criterion for determining whether to
+employ a more
+aggressive or more conservative sampling scheme 
+can be the number of instances in the
+positive-labeled pool.  When 
+few samples have been labeled positive, we would 
+want the learner 
+to be more explorative in the uncertain feature space.
+For example, if a red flower is
+the only positive-labeled instance, this does not necessarily
+mean that the user's query concept is red flowers.  It is
+possible that the query concept is ``something red'' or
+``flowers of other kinds.''  In this case,
+the sampling scheme 
+should be more explorative.  Conversely, if the learner has
+collected a fairly large number of positive-labeled instances
+that are similar to each other, then the preferred sampling
+scheme would be 
+fine-grained refinement.  We will first conduct extensive
+experiments to examine whether the above hypothesis
+holds.  If it does hold,
+we will develop a theoretical framework for adaptively
+determining the appropriate sampling scheme.
+
+The second research
+direction is to design more effective sampling schemes.
+Once a user determines that the learner 
+should be more explorative, 
+it needs a robust sampling method to find the most appropriate samples
+to quickly reduce the uncertain space.
+$\SVMActive$ currently employs Tong \&
+Koller's {\em simple method} \cite{TK00-b}, which selects all samples 
+nearest the hyperplane that divides the positive-
+and negative-labeled instances.  However, this theorem
+has been found to work optimally only when
+samples are taken one at a time.  But it is
+necessary to present a reasonable number
+of samples to query users in each user iteration, since
+most users will not engage in even a moderate
+number of feedback rounds.  
+
+One of our conjectures is considering {\em transduction}.
+{Transduction} takes advantage of not only the labeled instances but
+also the unlabeled instances to learn a user's query concept.
+Intuitively, the unlabeled instances are likely to be clustered. This
+tendency provides us with some extra information which we may use to
+refine our idea of the user's query concept.  Transduction
+has been successfully applied to regular passive SVMs for text
+classification~\cite{Joachims:ICML99} showing that using unlabeled
+data can indeed improve performance. An exciting 
+direction for new research is to see
+whether transduction can be applied to the image retrieval domain and
+furthermore, whether it can also be combined with active learning.
+
+Our preliminary experiments with transduction agrees with 
+some observations \cite{GHK00} that ``transduction consistently behaves 
+inconsistently.''  However, with active learning, 
+our results show that transduction can be made more effective
+through {\em confirmation}. 
+We can present nearest neighbors of positive/negative samples
+to the user for confirmation.  
+Depending on user feedback, our algorithm can adjust
+how aggressively it conducts transduction.
+
+\subsubsection*{\underline{Task $B$: Co-training}}
+
+$\MEGA$ is an inductive-based active learning algorithm, and $\SVMActive$
+is a margin-based one.
+$\MEGA$ and $\SVMActive$ can complement each other in 
+at least two ways.  
+First, $\SVMActive$ requires seeding at least one
+positive and one negative sample to initiate learning
+a query concept.  Finding a positive sample can be very difficult 
+when the concept complexity is high.  For instance, 
+finding a flower image in a large and diversified 
+dataset containing thousands of image categories
+can take quite a while.  $\MEGA$, on the other hand, does not
+require seeding.  If all of the images
+generated in the first round of feedback are found irrelevant,
+it will use the negative images to reduce the set of potentially
+relevant images substantially; thus the
+probability is higher that a relevant image will be
+generated in the next round.
+The logical design choice is using $\MEGA$ to bootstrap
+a learning session until at least one sample
+is labeled positive.
+
+After identifying some positive and some negative labeled instances,
+$\SVMActive$ employs a well-founded 
+sample selection method (at least so far) for selecting 
+data objects nearest the hyperplane 
+that divides positive from
+negative instances. $\MEGA$, on the other hand, 
+depends more on heuristics in choosing samples
+that can eliminate the maximum expected number of
+disjunctive terms.  
+$\MEGA$ and $\SVMActive$ present two distinct views
+of each example, and this fits the co-training model
+proposed by Blum and Mitchell \cite{BM98}.
+It is logical for two schemes
+to exchange sampling information, and if these
+methods can be adapted to work
+in a complementary manner, even more effective
+learning may result.
+
+\subsubsection*{\underline{Task $C$: Active Learning with Bayes Point Machines}}
+
+\begin{figure}[h]
+\centerline{
+\begin{tabular}{ccc}
+\psfig{figure=vspace1.eps,height=1.5in,angle=270} &
+\hspace{-0.1in}
+\psfig{figure=vspace2.eps,height=1.5in,angle=270} \\
+(a) & (b)
+\end{tabular}}
+\footnotesize{
+\caption{(a) Version space duality. The surface of the hypersphere
+represents unit weight vectors. Each of the two hyperplanes
+corresponds to a labeled training instance. Each hyperplane restricts
+the area on the hypersphere in which consistent hypotheses can
+be situated. Here version space is the surface segment of the hypersphere
+closest to the camera. (b) An SVM classifier in version space. The
+dark embedded sphere is the largest radius sphere whose center lies in
+version space and whose surface does not intersect with the
+hyperplanes. The center of the embedded sphere corresponds to the SVM,
+its radius is the margin of the SVM in $\setF$, and the training points
+corresponding to the hyperplanes that it touches are the support
+vectors.}
+}
+\label{fig:duality}
+\label{fig:simple1}
+\end{figure}
+
+From a Bayesian perspective Support Vector Machines choose the 
+hypothesis corresponding to the largest possible hypersphere 
+that can be inscribed in version space, i.e. in the 
+space of all consistent hypotheses given a training set \cite{SVM01}.
+Given a set of labeled training data and a Mercer kernel $K$, there is
+a set of hyperplanes that separate the data in the induced feature
+space $\setF$. We call this set of consistent hyperplanes or {\em
+hypotheses} the {\em version space}~\cite{Mitchell:AI82}. In other
+words, hypothesis $f$ is in version space if for every training
+instance $\vc{x}_i$ with label $y_i$ we have that $f(\vc{x}_i) > 0$ if
+$y_i = 1$ and $f(\vc{x}_i) < 0$ if $y_i = -1$.
+Clearly, by definition, points in $\setW$ correspond to hyperplanes in
+$\setF$. The intuition behind the converse is that observing a
+training instance $\vc{x}_i$ in feature space restricts the set of
+separating hyperplanes to ones that classify $\vc{x}_i$ correctly. In
+fact, we can show that the set of allowable points $\vc{w}$ in $\setW$
+is restricted to lie on one side of a hyperplane in $\setW$.  More
+formally, to show that points in $\setF$ correspond to hyperplanes in
+$\setW$, suppose we are given a new training instance $\vc{x}_i$ with
+label $y_i$. Then any separating hyperplane must satisfy
+$y_i(\innerprod{\vc{w}}{\Phi(\vc{x}_i)}) > 0$. Now, instead of viewing
+$\vc{w}$ as the normal vector of a hyperplane in $\setF$, think of
+$y_i \Phi(\vc{x}_i)$ as being the normal vector of a hyperplane in
+$\setW$. Thus $y_i(\innerprod{\vc{w}}{\Phi(\vc{x}_i)}) =
+\innerprod{\vc{w}}{y_i \Phi(\vc{x}_i}) > 0$ defines a half-space in
+$\setW$.  Furthermore $\innerprod{\vc{w}}{y_i \Phi(\vc{x}_i}) = 0$
+defines a hyperplane in $\setW$ that acts as one of the boundaries to
+version space $\setV$. Notice that version space is a connected region
+on the surface of a hypersphere in parameter space. 
+
+Figure~\ref{fig:duality}(a) presents an example.
+SVMs find the center of the largest radius hypersphere whose center
+can be placed in version space and whose surface does not intersect
+with the hyperplanes corresponding to the labeled instances, as in
+Figure~\ref{fig:duality}(b). It can be easily shown that the
+hyperplanes touched by the maximal radius hypersphere
+correspond to the support vectors and that the radius of the
+hypersphere is the margin of the SVM.
+
+An alternative and potentially better approach is to construct the 
+hypothesis using the whole of version space. This is achieved by using a 
+Bayes Point Machine that finds the midpoint of the region of 
+intersection of all 
+hyperplanes bisecting version space into two halves of equal volume (the 
+Bayes point) \cite{Herbrich+al,HG01,HGC01}. It is known that the centre of 
+mass of version space 
+approximates the Bayes point. The initial work of
+Herbrich and Graepel estimates the centre of 
+mass by averaging over the trajectory of a billiard 
+ball bouncing in version space, sampling version space using a 
+Gibbs sampler and approximative methods using the perceptron 
+learning algorithm \cite{GH01}.
+This method, however, is not efficient.
+We plan to investigate new algorithms that can find the 
+centre of mass more efficiently.  We also plan to
+implement active learning with Bayes Point Machines and
+compare its performance with $\SVMActive$.
+

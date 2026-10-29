@@ -1,0 +1,45 @@
+From chenli@CS.Stanford.EDU Mon Aug 23 10:36:03 1999
+Received: from Xenon.Stanford.EDU (Xenon.Stanford.EDU [171.64.66.201])
+	by DB.Stanford.EDU (8.8.8/8.8.8) with ESMTP id KAA14624;
+	Mon, 23 Aug 1999 10:36:02 -0700
+Received: (from chenli@localhost)
+	by Xenon.Stanford.EDU (8.9.1/8.9.1) id KAA05398;
+	Mon, 23 Aug 1999 10:35:02 -0700 (PDT)
+Date: Mon, 23 Aug 1999 10:35:01 -0700 (PDT)
+From: Chen Li <chenli@CS.Stanford.EDU>
+Reply-To: Chen Li <chenli@CS.Stanford.EDU>
+To: beitao@leland.stanford.edu, cho@CS.Stanford.EDU,
+        Edward Chang <echang@DB.Stanford.EDU>,
+        Peter Mork <pmork@CS.Stanford.EDU>, Ze Wang <wangz@CS.Stanford.EDU>
+cc: Chen Li <chenli@CS.Stanford.EDU>
+Subject: schedule for the next few weeks
+In-Reply-To: <Pine.GSO.3.96.990820121007.29002B-100000@Xenon.Stanford.EDU>
+Message-ID: <Pine.GSO.3.96.990823102525.27581L-100000@Xenon.Stanford.EDU>
+MIME-Version: 1.0
+Content-Type: TEXT/PLAIN; charset=US-ASCII
+Status: OR
+
+Hi guys,
+
+As we discussed last Friday, the following is the approximate
+schedule for the next few weeks:
+
+   8/27, Friday		Meeting, discuss the latest progress
+   9/3,  Friday		Finish our writing, version 0,
+			Peter will finish the experiments about
+			the new idea, and have a draft.  Beitao will 
+			have a draft about the related work.
+			The rest of us will work on other sections.
+   following weeks      keep polishing the draft
+
+We will try to shoot for SIGMOD, even for a technical paper.
+If we cannot make it, then we try a demo paper, or a paper to
+ACM Multimedia Conference this December.
+
+Chen
+
+PS: Ed, if necessary, you may add this schedule to our RIME homepage
+    as our note for the meeting.
+
+
+

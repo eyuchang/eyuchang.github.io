@@ -1,0 +1,497 @@
+
+
+---------- Forwarded message ----------
+Date: Fri, 08 Feb 2002 14:39:47 -0500
+From: R. Manmatha <manmatha@cs.umass.edu>
+To: Edward Chang <echang@xanadu.ece.ucsb.edu>
+Subject: Re: Reviews of your paper TOIS 1098
+
+Dear Dr. Chang,
+
+	Please mention these details (on the overlap) in your response
+to the reviewers along with the revised manuscript.
+
+	I look forward to receiving your revised manuscript.
+
+Regards
+Manmatha
+
+Edward Chang wrote:
+>
+> Dear Dr. Manmatha,
+>
+> Thank you and the reviewers' helpful comments.  We will
+> enhance the paper by carefully following all the suggestions.
+> We will resubmit our revision in 203 months (due to substantial
+> additional work).
+>
+> As to the overlap concern that one reviewer raised, the
+> overlap of this manuscript and our two related publications
+> is not substantial.
+>
+> o IEEE Multimedia.  We had a 4-page short paper in the
+>   proceedings.  The paper outlines MEGA, but we could not
+>   present the full algorithm nor experiments due to the
+>   limited space.
+>
+> o IEEE Data Mining.  We presented the feature grouping
+>   idea in the proceedings.  Feature grouping is just an
+>   implementation enhancement technique for speeding up
+>   MEGA.  MEGA itself was not presented in the paper.
+>
+> o This manuscript is cited by both the above publications
+>   as the extended version.
+>
+> By the overlap definition of VLDB, this paper seems to pass
+> the test fine.  We do also plan to enhance the paper and
+> to present more balanced results.  Please do let me know
+> if overlap could still be of a concern down the road.
+>
+> Thank you very much for your helpful comments.
+> Ed
+>
+> On Fri, 8 Feb 2002, R. Manmatha wrote:
+>
+> > Dear Dr. Chang and Dr. Li,
+> >
+> >     This message is with reference to the paper you submitted for ACM
+> > TOIS.
+> >
+> >  MEGA: The maximizing expected generalization algorithm for
+> > learning complex query concepts (ACM TOIS #1098).
+> >
+> > On the basis of the enclosed reviews it is recommended that you
+> > revise and resubmit the paper paying close attention to the reviewer's remarks:
+> >
+> > While revising your paper please pay particular attention to the following
+> > comments of the reviewers (please do address all the comments of the
+> > reviewers):
+> >
+> > 1) There is some concern that some of the claims made about MEGA are
+> > a little too strong - for example the claim that MEGA does not need a seed.
+> > Please modify the claims/language appropriately or provide more evidence
+> > to convince the reviewers.
+> >
+> > 2) It is important that the question of whether MEGA can
+> > learn quickly enough (with a limited number of positive examples)
+> > for interactive retrieval applications be addressed.
+> > It might also be useful to point out situations in which such
+> > limitations do not apply (i.e. there are probably many applications
+> > where the number of positive samples is large).
+> >
+> > 3) Which aspects of MEGA contribute best to the performance of the system.
+> > A careful analysis/set of experiments would be useful to many researchers.
+> >
+> > 4) A more balanced comparison of other systems would be useful. In addition,
+> > experiments on another data set besides the Corel Set would be more
+> > convincing.
+> >
+> > 5) One of the reviewers has expressed his concern that the work in this
+> > paper has been presented at a number of different venues. Please point out
+> > how this version of the paper differs from other submissions.
+> >
+> >
+> >     If you have any questions, please feel free to contact me.
+> >
+> > Regards
+> > Manmatha
+> >
+> > Associate Editor TOIS
+> > ****************************************************************************************
+> >
+> > Review 1:
+> >
+> > ACM Transactions on Information Systems
+> >
+> > Review Form  - For Author(s)
+> >
+> > Manuscript:  TOIS #__1098___
+> >
+> > Title: MEGA: The maximizing expected generalization algorithm for
+> > learning complex query concepts
+> >
+> > Author(s): E. Chang and B. Li
+> >
+> > Please Circle:                    RATINGS
+> >
+> >                       LOW                           HIGH
+> >
+> > Suitability for TOIS  1    2    3    4     5     *6*      7
+> >
+> > Technical content     1    2    3    4     *5*     6      7
+> >
+> > Originality           1    2    3    *4*     5     6      7
+> >
+> > Writing quality       1    2    3    *4*     5     6      7
+> >
+> > Overall assessment    1    2    *3*    4     5     6      7
+> >
+> >
+> > Comments for author(s);  suggestions for improvement, or specific reasons
+> > for rejecting.  Please write clearly and use additional pages as needed:
+> >
+> > This paper presents an approach to automatically learning a k-CNF query
+> > based on user feedback.  The approach -- MEGA -- finds feature
+> > combinations using a combination of approaches, including an extension of
+> > Valiant's algorithm for refining queries, a genetic algorithm for
+> > selecting features, a utility-based approach for sampling data, and fuzzy
+> > logic for softening query boundaries.  The descriptions of algorithms and
+> > other technical details in the paper are often excellent.  In particular,
+> > the review of prior work is very good.  It focuses on work that is
+> > directly relevant to MEGA, and clearly contrasts those approaches with
+> > those discussed in the paper.
+> >
+> > Unfortunately, several issues remain to be resolved.  First, MEGA will
+> > not be practially useful until users are asked to label fewer instances.
+> > Second, the current MEGA algorithm will perform poorly when overall
+> > frequency of positive instances is low.  Because of this, either the
+> > claims about MEGA should be reduced or MEGA should be modified so
+> > performance remains high in the face of low positive rates.  Third,
+> > additional experiments should be performed to identify the necessary and
+> > sufficient components of MEGA.  These issues are discussed in greater
+> > detail below, along with other more minor issues.
+> >
+> > As currently constructed, MEGA requires a user to label an unreasonably
+> > large number of instances before finding an accurate query.  The
+> > experimental results are discussed in terms of the number of iterations
+> > rather than the number of total instances labeled by a user.  In
+> > Experiment I, the user would have to examine and label 60 instances
+> > before obtaining a correct query.  This number is already prohibitive for
+> > most applications, and this number will increase as the concepts become
+> > more difficult to learn, as the positive rate decreases (see below), and
+> > as a user's error rate increases.  While MEGA learns quickly, it is still
+> > not appropriate for interactive retrieval applications.  Either MEGA
+> > needs to learn more quickly (perhaps by reducing its search space) or it
+> > should be targeted for other applications for which more data exist (for
+> > example, persistent filtering applications).
+> >
+> > MEGA will not perform well when early queries contain no instances that a
+> > user labels as positive.  For most concepts, there are a vastly larger
+> > number of ways that an instance can be negative than positive (consider
+> > the number of ways of not being a picture of a fish).  This problem poses
+> > a central challenge for the claims of the paper, that "[MEGA] learns a
+> > concept without the need for good seeds" (p. 4).  For this claim to be
+> > generally true, it must hold when the proportion of positive instances in
+> > the population is quite small.  In such situations, the probability that
+> > a random query will contain positive instances is very small and finding
+> > such instances would require the user to label an extremely large number
+> > of instances.  A low overall positive rate characterizes most document
+> > retrieval applications, and I strongly suspect it will be true for most
+> > other retrieval tasks.  The experiments do not appear to consider this
+> > issue.  The data set described on p. 17, for example, contains 52,000
+> > images in only 18 categories.  Regardless of the distribution of
+> > instances among these categories, any experiments with these categories
+> > will contain tasks with very high positive frequency.
+> >
+> > MEGA is a complex system, and it is not clear which aspects of the system
+> > are necessary or sufficient to achieve similar performance. As a result,
+> > the current experiments with MEGA do little to advance our general
+> > knowledge of how to construct adaptive query systems.  Is it necessary to
+> > use fuzzy logic, genetic algorithms, or k-CNF concepts to achieve similar
+> > performance?  One way of examining these questions is to use additional
+> > ablation studies that replace one element of the system with a simpler
+> > version.  Experiment I appears to be such a study, but only examines only
+> > one component of the system and its description does not make clear
+> > whether the comparison systems employed only new sampling approaches or
+> > both sampling and learning approaches.
+> >
+> > The paper would be improved by a more balanced discussion of results.  In
+> > Experiment I, the description of results does not acknowledge that other
+> > systems perform nearly as well as MEGA.  For example, both the B-Random
+> > and Aggressive systems achieve nearly the same results (and both perform
+> > better after two iterations) in Table 4.  Indeed, MEGA achieves the
+> > lowest accuracy of any system on the second iteration.  The choice of
+> > three iterations as the cutoff for Figure 5 (and perhaps other figures)
+> > particularly benefits MEGA over other systems.
+> >
+> > The discussion at the bottom of  p. 14 cites model bias and user errors
+> > as the two primary sources of noise.  Another common source is the use of
+> > "inadequate" attributes.  That is, the attributes in the data set may be
+> > inadequate to partition the classes, even though such a set of attributes
+> > exists beyond the data set.  Considering this source of noise would
+> > improve the paper.
+> >
+> > All the graphs that show predicates used to identify particular image
+> > classes (figures 20 and 21) show remarkable similarity in the group of
+> > features and negations used.  It appears that nearly every time that a
+> > predicate is used, so is its negation.  Additional explanation of this
+> > phenomenon would improve the paper.
+> >
+> > The paper sometimes refers to individual data instances (documents or
+> > images) as "samples" (as in, "...it will use the negative-labeled samples
+> > to reduce the set...").  In other cases, "sample" is used to refer to a
+> > set of instances drawn from the set of all available instances.  This
+> > latter use is far more common and should be preferred.
+> >
+> >
+> > **************************
+> >
+> > Review 2:
+> >
+> >
+> >                                     ACM Transactions on Information Systems
+> >
+> >                                             Review Form  - For Author(s)
+> >
+> >                                                    Manuscript:  TOIS #1098
+> >
+> >
+> > Title:Mega: the maximizing expected .... for learning
+> > complex query concepts.
+> >
+> > Author(s): Chang et. al.
+> >
+> > Reviewer's name (optional):
+> >
+> > Please Circle:                           RATINGS
+> >                                          LOW                         ***HIGH***
+> >
+> > Suitability for TOIS
+> >               1         2           3           4            5            6           *** 7***
+> >
+> > Technical content
+> >
+> >               1         2           3           4            5          ***6***           7
+> >
+> > Originality
+> >               1         2           3           4            5           ***6***             7
+> >
+> > Writing quality
+> >               1         2           3           4           ***5***            6             7
+> >
+> > Overall assessment
+> >               1         2           3           4            5            ***6***             7
+> >
+> >
+> > Comments for author(s);  suggestions for improvement, or specific reasons for rejecting.
+> > Please write clearly and use additional pages as needed:
+> >
+> >
+> > Overview:
+> >
+> > The paper presents an algorithm to perform relevance
+> > feedback over (fuzzified) Boolean expressions of features.
+> > It maintains two "regions" that lower- and upper-bound the
+> > "interesting" space that the user "really wants". The
+> > authers claim that it does not require a seed as opposed to
+> > other algorithms.
+> >
+> > Here are my comments:
+> >
+> > (Please read them fully, they are written as the
+> > paper progresses and thing become clear)
+> >
+> > 1. My first reaction to the prominent claim that the
+> > algorithms does not require a seed to work and is therefore
+> > superior to others is skepticism. While technically true,
+> > the authors describe that they show to users the "most
+> > discriminating examples" to quickly converge to a good
+> > answer. This itself represents in some way a
+> > seeding. (See algorithm step 2a.)
+> > Conversely, many other algorithms could start with
+> > some random seed and move towards the desired results, how
+> > fast is a separate question. page 2 second paragraph can
+> > also be countered with a query by sketch interface which
+> > obviates the seed finding problem. Therefore I think the
+> > claim of not needing a seed is a bit overrated, I would
+> > suggest to weaken this claim.
+> >
+> > 2. I would suggest to the authors to reconsider rewriting
+> > the introduction. While not bad, I find that it is not as
+> > motivating as it could be. In particular, lines 2-5 of the
+> > introduction which starts with this example are
+> > unconvincing. This is not a technical issue, but more of a
+> > stylistic issue. There are other areas of the introduction
+> > that feel awkward.
+> >
+> > 3. The last pareagraph of page 2 mentions tha "curse of
+> > diomensionality". I'm not sure that term applies in this
+> > context, as the problem described is in my mind closer to
+> > "combinatorial explosion" (cf. AI) than dimensionality curse
+> > related to e.g. indexing.
+> >
+> > 4. Please capitalize all instances of Boolean.
+> >
+> > 5. Relating to issue 2, the example in section 1.1 with the
+> > adimission samples, feels awkward. In particular, there is
+> > a level of indirection between the table shown here, and the
+> > way this algorithm would be used on a real dataset. While
+> > you mention later on of a function to "fuzzify" values to
+> > membership functions, I think this example doesn't do a good
+> > job of conveying the overall idea. Also, the example is out
+> > of touch with the image search overall paper topic. In fact,
+> > you did mention this very problem in footnote 2. I
+> > completely understand this, and the fact that "it doesn't
+> > matter", but I repeat my stylistic concern.
+> >
+> > 6. Page 4, sec 1.2 contribution #2 is a bit unclear. The
+> > whole multi-resolution issue is sketchy.
+> >
+> > 7. Page 4, last paragraph "The rest of this paper is
+> > organized into SIX sections". There are really 7 more
+> > sections, conclusions is sec 8.
+> >
+> > 8. Related work: please add references to the Feedback
+> > Bypass paper is last (or before) vldb. It is relevant to the
+> > work you're doing, although it doesn't exactly deal with the
+> > same Boolean structure. Else, I'm satisfied with your
+> > bibliography.
+> >
+> > 9. Section 3. Not sure that \theta is the best way to limit
+> > the number of of terms. Its ok, but I tend to prefer simple
+> > notation when possible.
+> >
+> > 9. Section 3 page 6. "A database consists of a number of
+> > predicates" doesn't quite ring ok to me. I would have
+> > expected a database to contain features (facts), there are
+> > potentially many (atomic) predicates applicable to each
+> > fact, and some are "loaded", "installed" or whatever in a
+> > DBMS. Then as you say, these are hooked together with
+> > Boolean operators. Please clarify these statements.
+> >
+> > 10. At some point in the paper (last paragraph of sec 2.),
+> > you say that MEGA learns concepts regardless of the
+> > underlying structure of the query (model bias). In my
+> > experience, this is next to impossible. Every system in the
+> > literature that I have seen adopts one or a few assumed
+> > query structures and expresses both "optimal" and
+> > "real" queries in this mode, therefore convergence, etc. are
+> > tested within the assumed structure of the system. Your
+> > structure is Boolean, and thus adapting to other assumed
+> > structures seems unreal. While reading the paper, I could
+> > easily find queries that would work in other systems that
+> > mega would never be able to learn, (of course, this is hard
+> > to prove in this review), what I'm saying is that I believe
+> > MEGA also suffers from model bias, therefore this statement
+> > should be weakened.
+> >
+> > 11. The algorithm treats items for which the user gave no
+> > feedback as negative examples. In my experience, this is
+> > often too optimistic, as users tend to be happy point out a
+> > few positive examples, and then stop (please see the work of
+> > Amanda spink on this topic, although she worked on text
+> > retrieval). I do understand however that this assumption is
+> > central to your algorithm.
+> >
+> > 12. Please bew consisten in capitalization of sections
+> > (e.g., sec 4.3: Probabilistic Estimation vs. sec
+> > 4.4: Probabilistic estimation)
+> >
+> > 13. Please explain better the example on page 15. It could
+> > be a bit more verbose to explain how CCS is shrunk, I don't
+> > think its sufficently easy to follow.
+> >
+> > 14. In Sec 5, p 15 last paragraph. Don't you mean 144
+> > (12^(k=3)-1 = 12^2=144) instead of 140?
+> >
+> > 14. The whole of section 5 is confusing. You only present in
+> > the last paragraph the method to come up with featue
+> > groupings. The begining states the purpose: reduce the
+> > potential number of terms, but then its easy to get lost
+> > until we get to the end of the section. It would be better
+> > to describe since the beginning how the feature grouping
+> > would run and what it will accomplish. On this note, I'm
+> > unsure that this is generalizable to other datasets where
+> > its not feasible to do this "pre-training" of features.
+> > I suggest restructuring this section and stating the logcial
+> > flow of the algorithm to select feature grouping and how it
+> > could be accomplished in general.
+> >
+> > 15. In section 6, page 18 before last paragraph. You
+> > describe precision and recall, I don't quite think the
+> > recall definitions is correct, I would replace it with
+> > either a formula or more strict definition than this.
+> >
+> > 16. Same paragraph, at the end you say "but ran ten
+> > iterations to show how poorly other schemes perform".
+> > This should be removed outright. As I wrote above, and sec 6
+> > confirms (3rd paragraph), you are "assum[ing] all target
+> > concepts are in 3-CNF". Your experiments exhibit a model
+> > bias that unduly penalizes other models. It may be true that
+> > they perform badly in general or not, but given the way
+> > queries are generated, I fully expect them to perform
+> > badly. I would at the very least remove or vastly restate
+> > this assertion. The only way this would hold is with a full
+> > human based testing approach as proposed in IR where the
+> > ultimate model is the human consumer.
+> >
+> > 17. Page 22 second paragraph. You again acuse nn and query
+> > expansion of model bias, yet, your experiments are also
+> > suffer from this problem.
+> >
+> > 18. You make up for this in section 6.2 with a query model
+> > based on weighted summation. However, this query, as
+> > described, does not quite conform to the way desribed in the
+> > references you cite, therefore its not as credible as it
+> > would be otherwise. I do however fully appreciate the
+> > benefits of MEGA.
+> >
+> > 19. One problem I've noticed throughout the paper is that
+> > the definition of a query and a feature are not very
+> > good. For example, nowhere is a feature defined and the
+> > issue is confused between a multidimensional attribute such
+> > as a color histogram and a single number (which is what I
+> > understand you are using). Also, the meaning of P1 and so
+> > forth is not very stable thoughout the paper in my opinion.
+> >
+> > 20. The very last sentence in the paper is superfluous.
+> >
+> > *************************************************************************************
+> >
+> > Review 3:
+> >                                     ACM Transactions on Information Systems
+> >
+> >                                             Review Form  - For Author(s)
+> >
+> >                                                    Manuscript:  TOIS # 1098
+> >
+> >
+> > Title: MEGA : The Maximizing Expected Generalization Algorithm for Learning Complex Query Concepts
+> >
+> > Author(s): Edward Chang and Beitao Li
+> >
+> > Reviewer's name (optional): ___________________________________________
+> >
+> > Please Circle:                                              RATINGS
+> >
+> >                                                                  LOW
+> > HIGH
+> >
+> > Suitability for TOIS  1  2   3   4            5            X             7
+> >
+> > Technical content     1  2  3  4            5            X             7
+> >
+> > Originality           1  2  3  4            5            X             7
+> >
+> > Writing quality       1  2  3  4            X            6             7
+> >
+> > Overall assessment    1  2  3   4            X  <-> X             7
+> >
+> >
+> > Comments for author(s);  suggestions for improvement, or specific reasons for rejecting.  Please
+> > write clearly and use additional pages as needed:
+> >
+> > This paper presents a novel approach for learning concepts in view of its use in CBIR. The approach
+> > taken is to maximise the amount of information contained in possible feedback given to the system.
+> > The study is well-motivated with a thorough review and the technique described at a sufficienctly
+> > delatailed level. The paper is well-written and remains a fairly technical paper. In this respect,
+> > it may be benefitable to it to:
+> >  * recall a bit more the context of DNF and CNF (for the non-specialist reader)
+> >  * emphasise more the practical implications of this novel learning paradigm (as a further
+> > motivation for the use of this algorithm).
+> >
+> >   Further, a number of experiments have been performed and results are given. However, it is known
+> > that the Corel collection is an "easy" one where concept are well clustered from the begining.
+> > Again, it would be useful to test on other generic collections (eg Washington DB).
+> >
+> >  Results are given under the form of various measures including precision and recall. While, this is
+> > very useful,  having consistent PR-graphs for every test would make the comparison and reading of
+> > results easier.
+> >
+> >  It is not clear whether the "concept signature" (eg fig 20) is optimal for readability (since
+> > predicates are unordered). Unfortunately, I could not recommend a better representation.
+> >
+> >  However, as it stands the paper seems to be acceptable for direct publication and the above
+> > comments should be taken as hints for improving the quality of the paper.
+> >
+

@@ -1,0 +1,55 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>AI Committee Discussion</title>
+    <link rel="stylesheet" type="text/css" href="styles.css">
+</head>
+<body>
+    <!-- Banner Section -->
+    <header>
+        <img src="banner.jpg" alt="Banner representing AI discovering unknown unknowns">
+    </header>
+
+    <!-- Committee Section -->
+    <section>
+        <label for="committee-size">Committee Size: </label>
+        <select id="committee-size">
+            <option value="2" selected>2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+            <option value="6">6</option>
+            <option value="7">7</option>
+            <option value="8">8</option>
+        </select>
+        <!-- Committee head and members will be generated dynamically here -->
+    </section>
+
+    <!-- User Interaction Section -->
+    <section>
+        <label for="user-question">Your Question: </label>
+        <input type="text" id="user-question">
+        <button id="ask-question">Ask</button>
+    </section>
+
+    <!-- Committee Discussion Log -->
+    <section>
+        <h2>Discussion Log</h2>
+        <div id="discussion-log" style="height:200px; overflow:auto;">
+            <!-- Committee discussion will be logged here dynamically -->
+        </div>
+    </section>
+
+    <!-- Response Section -->
+    <section>
+        <h2>Committee Response</h2>
+        <div id="committee-response">
+            <!-- Committee's final response will be shown here dynamically -->
+        </div>
+    </section>
+
+    <script src="app.js"></script>
+</body>
+</html>
+

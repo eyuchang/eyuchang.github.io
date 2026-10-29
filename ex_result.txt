@@ -1,0 +1,26 @@
+
+Iyer: 	Shows adequate knowledge on the subjects. Demonstrates good 
+ 	analytical skills. Can tackle a problem from basic
+	definitions. Has good problem solving skills and approaches.
+
+	Score: 8 - 9
+
+Liu:	Has adequate knowledge on the subjects.
+	Thinking process is reasonably organized. 
+
+	Score: 6 - 7
+
+Yang: 	Has adequate knowledge on the subjects. Answers questions
+        primarily based on memory. Thinking process is not very
+	well organized.
+
+	Score: 5 - 6
+
+Huang:  Has some basic knowledge on all subjects, but cannot 
+	articulate the basic definitions of some basic concepts.
+	Has to answer questions based on memory. Thinking 
+        process is clouded.
+
+	Score: 3 - 4
+
+

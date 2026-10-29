@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<style>
+    a:link, a:visited {
+      color: gray;
+      text-decoration: underline;
+    }
+  </style>
+
+  <style>
+    .alert-blink {
+      color: blue;
+      font-weight: bold;
+      font-size: 20px;
+      animation: flash 2.8s infinite;
+      text-shadow: 0 0 10px green;
+    }
+
+    @keyframes flash {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0; }
+    }
+  </style>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CS372: AI for Reasoning, Planning, and Decision Making (Winter 2026)</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background: #8C1515;
+            color: white;
+            padding: 15px 20px;
+            text-align: center;
+        }
+        nav {
+            background: #333;
+            padding: 10px;
+            text-align: center;
+        }
+        nav a {
+            color: white;
+            text-decoration: none;
+            padding: 10px 20px;
+            display: inline-block;
+        }
+        nav a:hover {
+            background: #555;
+        }
+        .container {
+            width: 80%;
+            margin: auto;
+            overflow: hidden;
+            padding: 20px;
+        }
+        h2 {
+            color: #8C1515;
+        }
+        footer {
+            background: #222;
+            color: white;
+            text-align: center;
+            padding: 10px;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>CS372: Artificial Intelligence for Reasoning, Planning, and Decision Making</h1>
+    <h3>Winter 2026, Stanford University</h3>
+    <p><strong>Instructor:</strong> Prof. <a href="http://infolab.stanford.edu/~echang/">Edward Y. Chang</a></p>
+    <p><strong>Course Assistants:</strong> TBD</p>
+    <p><strong>Lectures:</strong> Mondays & Wednesdays, 4:30 PM - 5:50 PM (Starting January 5, 2026)</p>
+    <p><strong>Room:</strong> <a href="https://campus-map.stanford.edu/?id=01-420">420 041</a></p>
+</header>
+
+
+
+<nav>
+    <a href="#announcement">Announcement</a>
+    <a href="#overview">Overview</a>
+    <a href="#schedule">Schedule</a>
+    <a href="#resources">Resources</a>
+</nav>
+
+<div class="container">
+    <section id="announcement">
+        <h2>Announcement</h2>
+
+<section id="overview">
+    <h2>Course Overview</h2>
+
+<p>Join us for an audacious aim—elevating LLMs from pattern matching to conscious reasoning, validation, and planning.</p>
+
+<p>Large Language Models (LLMs) have revolutionized AI through remarkable pattern matching capabilities. However, the path to Artificial General Intelligence (AGI) requires advancing beyond unconscious, reactive processing (automatic, stimulus-response behavior) to deliberate reasoning and validated planning. This course explores approaches to enhance LLMs with AGI-oriented capabilities through systematic reasoning, planning, and decision-making.</p>
+
+<h3>Core Questions:</h3>
+<ol>
+    <li>How can we enable LLMs to transition from pattern matching to conscious deliberation?</li>
+    <li>What frameworks support robust reasoning and verifiable decisions?</li>
+    <li>How do we implement planning and temporal awareness in LLM systems?</li>
+    <li>What role does multi-LLM agent collaboration play in advancing toward AGI capabilities?</li>
+    <li>More generally, what are the limitations of the current LLM architecture to overcome?</li>
+</ol>
+<h3>The course examines:</h3>
+<ol>
+    <li>Theoretical foundations of consciousness, reasoning, and planning in AI</li>
+    <li>Multi-LLM Agent Collaborative Intelligence (MACI) frameworks</li>
+    <li>Entropy-guided information exchange</li>
+    <li>AI ethical alignment with checks and balance </li>
+    <li>Linguistic behavior modeling</li>
+    <li>Persistent memory management for validation and long-live workflow.
+    <li>Temporal reasoning and planning system architectures</li>
+</ol>
+<p>
+Through lectures, discussions, and hands-on projects, students will explore and implement multi-agent systems that advance beyond current state-of-the-art frameworks (e.g., LangGraph) to address planning problems across various domains, including project planning, supply chain management, emergency room logistics, and natural disaster response.</p>
+
+<strong>Prerequisites:</strong> Completion of Machine Learning and Deep Learning courses, along with substantial experience with LLMs.
+
+<h3>Grading:</h3> 
+<ol>
+<li>Assignments 30% 
+<li>Dashes: 20% 
+<li>Final Presentation and Report: 40% 
+<li>Class Participation: 10% 
+</ol>
+
+
+<section id="resources">
+    <h2>Resources</h2>
+
+    <h3>Textbook</h3>
+    <p>
+        The required textbook:  
+        <strong>Multi-LLM Collaborative Intelligence (MACI), The Path to AGI</strong> by Edward Y. Chang.  
+        Available on <a href="https://www.amazon.com/dp/B0F26PB4G9" target="_blank">Amazon</a> ($19.98 printing cost).
+    </p>
+
+    <h3>Reading Materials</h3>
+    <p>
+        Additional reading materials and supplementary content can be found on  
+        <a href="https://SocraSynth.com" target="_blank">SocraSynth.com</a>.
+    </p>
+
+
+    <h3>Office Hours</h3>
+<ol>
+</ol>
+
+
+</section>
+
+    <section id="schedule">
+        <h2>Schedule</h2>
+        <p>The following schedule is a sample from last year.</p>
+
+        <table border="1" cellspacing="0" cellpadding="5" width="100%">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Date</th>
+                    <th>Description</th>
+                    <th>Course Materials</th>
+                    <th>Instructor and Participants</th>
+                    <th>Deadlines</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>1</td>
+                    <td>1/5/2026</td>
+                    <td>Course Aims and Syllabus; From QA to Complex Reasoning and Planning;<br>Can LLMs achieve AGI, or are they a necessary but insufficient component on the path to AGI?</td>
+                    <td><a href="https://drive.google.com/file/d/1yGRPV6nXecL5fh8S9zuDX-ZfvvwqPZbW/view?usp=sharing">Slides</a> | Preface, Chapter 3 </td>
+                    <td>E. Chang</td>
+                    <td><a href="./Assignment1.html">Assignment #1</a> out</td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td></td>
+                    <td><li><a href="https://arxiv.org/abs/2409.01007">Twelve Alphorisms to Uncover LLM Myth and Limittions</a>. 
+<li><a href="https://www.researchgate.net/publication/374753069_Examining_GPT-4's_Capabilities_and_Enhancement_with_SocraSynth">Examining GPT-4’s Capabilities and Enhancement with SocraSynth</a>.</td>
+                    <td><a href="https://drive.google.com/file/d/1UB8lHXOh_SzecpI4P1enxGCbuPdZjk9B/view?usp=sharing">Slides</a> | <a href="https://youtu.be/u9vw335tPMY">Recorded Lecture</a> | Chapters 5 and 15 </td>
+                    <td>E. Chang</td>
+                    <td>-</td>
+                </tr>
+                <tr>
+                    <td>3</td>
+                    <td></td>
+                    <td>LangGraph Intro to Model Agentic Workflow for Planning</td>
+                    <td><a href="https://drive.google.com/file/d/1Arm9amE0rS50i-3vU87ARNOw_im_ZBpY/view?usp=sharing">Slides</a> | <a href="https://youtu.be/qPttVHFzHsE">Recorded Lecture</a> | Chapter 10</a></td>
+                    <td>Leonie Freisinger, Startup</td>
+                    <td>-</td>
+                </tr>
+                <tr>
+                    <td>4</td>
+                    <td></td>
+                    <td>
+<b>Reasoning 1:</b> <a href="https://www.researchgate.net/publication/369020456_Prompting_Large_Language_Models_With_the_Socratic_Method"> Prompting Large Language Models With the Socratic Method</a>.
+</td>
+		
+                    <td><a href="https://drive.google.com/file/d/10DCONVqtQUC-hFBDQZUNNaqzRzrxrRrx/view?usp=sharing">Slides</a> | <a href="https://youtu.be/4uJCjV3PU1M">Recorded Lecture</a> | Chapter 4</td>
+                    <td>E. Chang</td>
+                    <td>--</td>
+                </tr>
+                <tr>
+                    <td>5</td>
+                    <td></td>
+                    <td>
+<b>Reasoning 2:</b> <a href="https://www.researchgate.net/publication/383425368_EVINCE_Optimizing_Adversarial_LLM_Dialogues_via_Conditional_Statistics_and_Information_Theory">Establishing Theoretical Foundation for Multi-LLM Joint Predition</a>.</td>
+</td>
+                    <td><a href="https://drive.google.com/file/d/1G-0a9U5vAT8eDd8WvDz7XP99ls7ZmKdc/view?usp=sharing">Slides</a> | Chapter 6</a></td>
+                    <td>E. Chang</td>
+                    <td>Assignment 1 due</td>
+                </tr>
+                <tr>
+                    <td>6</td>
+                    <td></td>
+                    <td>In class debate: Can LLMs lead to AGI?<br>
+			Project team formation.</td>
+                    <td>Slides | Preface</td>
+                    <td>All</td>
+                    <td>Assignment 2 out</td>
+                </tr>
+                <tr>
+                    <td>7</td>
+                    <td></td>
+                    <td>Highlights of Natural Language Processing History, 70 Years in 70 Minutes </td>
+<td><a href="https://drive.google.com/file/d/1CyjM6BXVtP4cpZVvZ4ZnrxIBUqIxNGN0/view?usp=sharing">Slides</a> | <a href="https://youtu.be/-qnTP8N9E8I">Recorded Lecture</a> | Chapter 1
+                    <td>Online </td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>8</td>
+                    <td></td>
+                    <td>Project Dash 1</td>
+                    <td> </td>
+                    <td>All</td>
+                    <td>Dash 2 starts</td>
+                </tr>
+                    <td>9</td>
+                    <td></td>
+                    <td>
+<b>Planning 1:</b> <a href="http://infolab.stanford.edu/~echang/SocraSynth.html">ALAS: An Adaptive Multi-Agent System for Mitigating LLM Planning Limitations</a>
+</td>
+                    <td><a href="https://drive.google.com/file/d/1SRIvk4nlaN5r5mxJsnK3P1gvRPbNWsQg/view?usp=sharing">Slides</a> | Chapter 10 </td>
+                    <td>E. Chang</td>
+                    <td>Term project proposal due</td>
+                </tr>
+                <tr>
+                    <td>10</td>
+                    <td></td>
+                    <td>
+<b>Planning 2:</b> <a href="https://www.researchgate.net/publication/389855859_SagaLLM_Context_Management_Validation_and_Transaction_Guarantees_for_Multi-Agent_LLM_Planning">SagaLLM: Context Management, Validation, and Transaction Guarantees for Multi-Agent LLM Planning</a>.
+</td>
+                    <td><a href="https://drive.google.com/file/d/1Z4Nom5mlidiTY9mXFQBTSQO-XVxM-gvH/view?usp=drive_link">Slides</a> | Chapter 11  </td>
+                    <td>E. Chang</td>
+                    <td>Assignment 2 due</td>
+                </tr>
+                <tr>
+                    <td>12</td>
+                    <td></td>
+		    <td>Data Debiasing and Novel Data Synthesis</td>
+                    <td>Slides | Chapters 6 and 7</td>
+                    <td>E. Chang</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>11</td>
+                    <td></td>
+                    <td>MACI application on Healthcare; Project Dash 2 session 1</td>
+                    <td><a href="https://drive.google.com/file/d/1u1XboeOyQzlLkBq5_7xdK8xZclMCWPo0/view?usp=drive_link">Slides</a> | Chapter 9</td>
+                    <td>E. Chang</td>
+                    <td>--</td>
+                </tr>
+                <tr>
+                    <td>13</td>
+                    <td></td>
+                    <td>Project Dash 2, session 2 </td>
+                    <td></td>
+                    <td>All</td>
+                    <td>--</td>
+                </tr>
+                <tr>
+                    <td>14</td>
+                    <td></td>
+<td>
+<b>Reasoning 3: The Socratic Method and Critical Thinking</b> <a href="https://www.researchgate.net/publication/369020456_Prompting_Large_Language_Models_With_the_Socratic_Method"> Prompting Large Language Models With the Socratic Method</a>. </td>
+                    <td><a href="https://drive.google.com/file/d/1_G-1wBwe_ywh2cmr4mqtj-Ags2PmIsqk/view?usp=sharing">Slides</a> | Chapters 4 and 6 </td>
+                    <td>E. Chang</td>
+                    <td>--</td>
+                </tr>
+                <tr>
+                    <td>15</td>
+                    <td></td>
+                    <td>Consciousness Modeling: What Is Consciousness?</td>
+                    <td><a href="https://drive.google.com/file/d/1Mf-MddOO8R46VaTeB1hmIiXLLImW_3aE/view?usp=drive_link">Slides</a> | Chapter 12</td>
+                    <td>E. Chang</td>
+                    <td>--</td>
+                </tr>
+                <tr>
+                    <td>16</td>
+                    <td></td>
+                    <td>Consciousness Modeling: Free Will, Sins, Chang Theorem </td>
+                    <td><a href="https://drive.google.com/file/d/1cWty78Q_W6ciEpAtAvZAvJmYqb8DnmVD/view?usp=sharing">Slides</a> | What is Life, by Erwin Shrodinger</a></td>
+                    <td>E. Chang</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>17</td>
+                    <td></td>
+                    <td></td>
+                    <td>--</td>
+                    <td>--</td>
+                    <td>--</td>
+                </tr>
+                <tr>
+                    <td>18</td>
+                    <td></td>
+                    <td>Course Summary and Office Hours </td>
+                    <td>Slides | Chapter 14</td>
+                    <td>E. Chang</td>
+                    <td>--</td>
+                </tr>
+                <tr>
+                    <td>19</td>
+                    <td></td>
+                    <td>Final Presentation</td>
+                    <td>Slides | <a href="https://SocraSynth.com">Readings</a></td>
+                    <td>Group 1</td>
+                    <td>--</td>
+                </tr>
+                <tr>
+                    <td>20</td>
+                    <td>March 13, 2026</td>
+                    <td>Final Presentation</td>
+                    <td>Slides | <a href="https://SocraSynth.com">Readings</a></td>
+                    <td>Group 2</td>
+                    <td>--</td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+
+
+
+</div>
+<footer>
+    <p>&copy; 2025-26 Stanford University | CS372: AI for Reasoning, Planning, and Decision Making</p>
+</footer>
+
+</body>
+</html>
+

@@ -1,0 +1,190 @@
+\section{Core Technologies}
+
+In addition to investigating new techniques for managing
+system resources and data, we will attempt to share a common image
+representation for both resource and data management.
+Traditionally, the image processing community and the database 
+community have been developing their own image representations, i.e.,
+the image processing community proposes 
+compression algorithms and the database community proposes image
+feature representations (e.g., color histograms).
+A fascinating research direction may be to build search indexes 
+on the compressed data directly. We are especially interested
+in exploring {\em layered coding} techniques that can support
+both scalable content degradation and scalable content-based indexing.
+
+Finally, our design goal is not only to provide the 
+interactive functions, but also
+provide these functions with minimum resource requirement
+(hence at minimum cost) and with minimum initial latency.
+In the following sections, I enumerate the technologies 
+we plan to work on, beginning with our efforts in resource
+management. 
+
+\subsubsection{Indexing for Temporally Related Data}
+
+When a data object
+is referenced, it and all its temporally related objects should be
+found quickly, and once requested, be retrieved efficiently. 
+Indexing temporally related objects can be tricky.
+In principle, all temporally related object should be 
+stored contiguously on disk to minimize the disk latency 
+necessary to retrieve them.
+However, since an object is often shared in many scenes,
+replication may not always be desirable. One alternative is
+storing shared objects in the middle tracks so their
+access latency is constrainted. Another alternative
+is storing shared objects on the outer tracks to take
+advantage of their higher data transfer rates. 
+We will experiment with various data placement policies to
+examine if some rules of thumb can work most of the time.
+
+It seems that building indexes at the scene level is
+appropriate since a scene is a reasonable search 
+unit (why this is so is discussed further 
+in the content-based retrieval section,
+which follows). Once a scene can be located, the 
+scene description can tell where its data objects
+reside. I believe that the combination of hashing and XML
+may be an appropriate structure for indexing scenes.
+A hash table provides fast scene lookup; XML
+provides the flexibility to describe semistructured
+objects in a scene. We will investigate how to
+deal with efficient updates (primarily necessary because of changes
+of the object's location)
+and queries on XML structures \cite{Abi97,Bun97,MW99}.
+Another challenging problem and a new research direction
+is performing similarity queries on semi-structured 
+data that is in XML format.
+
+One useful feature that the receiver can support is video
+editing. A video editing tool can combine scenes from
+different videos into a customized clip. Supporting
+video editing introduces additional scene management issues.
+When a scene is shared by more than one clip, the scene
+should not be copied entirely. A scene is copied only 
+when its substantial content is modified. Otherwise,
+we may want to create a shell scene, which maintains
+links to its parent scene and keeps only those objects that it
+modified. 
+
+\subsubsection{Indexing for Content-Based Retrieval}
+
+To support effective time-shift operations and general
+multimedia database queries, we
+intent to build a content-based video scene
+retrieval system. 
+A video can be divided into a number of sequences,
+a sequence a number of scenes, and a scene a number
+of frames.  We believe that a scene should be a reasonable
+query unit. Supporting queries on the frame level 
+is simply too expensive (a one-hour video
+at 25 frames/second frame rate has $90$K frames).
+Furthermore, indexing on the frame level 
+cannot describe motion, e.g., a bus is approaching.
+Supporting queries on the sequence level
+may be too coarse and may hurt query precision.
+Therefore, we plan to build scene descriptors
+and build indexes on these scene descriptors.
+
+Building such a system faces
+four challenging steps: 1) selecting and extracting features from
+multimedia data objects, 2) clustering the extracted features,
+3) indexing objects based on their feature clusters, and 4) devising
+query processing steps that find matches efficiently
+in the database.
+
+Selecting and extracting features can be complicated.
+Fortunately, much low-hanging fruit in this area is ready to be plucked.
+We plan to rely
+on existing tools as much as possible. For feature clustering,
+a large number of papers \cite{img11,img12,img13}
+have been published with many of
+ideas. Instead of coming up with yet another feature
+cluster, we will experiment with a variance control model
+that will decide how fine the features must be clusters to attain
+good similarity results.
+Take image searching as an example.
+If one wants to find near-copies of an image,
+the feature cluster should record finer details 
+of the color distribution on the query image. If one wants to find
+images of similar colors that are not necessarily
+at the same spots, the feature vector can record 
+coarser color distribution. 
+Extensive exploration and experiments will 
+be performed to verify if this variance controlled 
+approach can be fruitful.
+
+Content-based retrieval 
+is inherently expensive, especially when
+it needs a large number of dimensions to characterize the
+target object (e.g., an image or a video scene).  
+There is simply no way to
+build an index on disk such that {\em all} nearest neighbors to {\em
+any} query point are physically near on disk.  
+Fortunately, in many cases it is
+sufficient to perform an {\em approximate search} that returns many
+but not all nearest neighbors~\cite{AM94,Cla94,IM98,Jk97,KOR98}.  (A
+feature vector is often an approximate characterization of an object,
+so we are already dealing with approximations anyway.)  
+I have recently proposed a
+clustering/indexing combined scheme that achieves approximate
+similarity search with high efficiency \cite{Lch99}.
+This proposed clustering/indexing combined scheme should
+provide a solid foundation for continued work,
+but many challenges remain. We are, for one, not
+convinced that the Euclidean distance
+is the only way to measure similarity for multimedia data.
+Thus, we are investigating other similarity measures
+(e.g., Hamming distance, etc.). For another,
+we think similarity should be personalizable.
+We will thus investigate new measures for similarity.
+
+Finally, 
+for query processing, we will investigate 
+data models, query languages and query optimization techniques.
+
+%\subsection{Image Coding and Packetization}
+%\label{sec-image}
+%
+%The researchers in the compression
+%camp have been devised compression techniques 
+%for coding efficiency and robustness. The
+%researchers in the database camp have been devised
+%indexing data organization schemes for efficient data retrieval.
+%Researchers in two camps often characterize an image 
+%differently. Consequently, an image may have one
+%representation (e.g., JPEG) in transmission and
+%another representation (e.g., color histograms)
+%for the indexing phase. 
+%It would be nice if two efforts can
+%share one common data representation. At this time, wavelets
+%seem to be an attractive choice.
+%Wavelets' scalability fits well
+%for supporting both scalable content degradation and
+%scalable content-based indexing.
+%
+%%While studying image representation, we also want to
+%investigate how an image should be packetized to
+%be more error resilient.
+%One idea is that for the base image/audio/video layer, 
+%forward error correction (FEC) code can be applied to
+%improve its error resiliency. For progressive layers, 
+%however, we may not want to
+%spend additional bits on channel encoding. Instead, we can rely on 
+%error concealment and reconstruction techniques to
+%recover an image after encountering channel errors.
+%
+%We will also investigate image-based rendering techniques.
+%At this end, our focus is on video panoramas for supporting
+%spatial viewing interactivity.
+%For a single camera, supporting
+%video panoramas requires a method for locating
+%frames that contain smooth
+%camera pans or tilts, from which the panoramic
+%view can be synthesized.
+%
+
+%\subsection{Putting All the Pieces Together}
+
+

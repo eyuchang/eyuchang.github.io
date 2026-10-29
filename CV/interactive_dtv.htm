@@ -1,0 +1,109 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<meta http-equiv="Content-Language" content="en-us">
+<meta name="GENERATOR" content="Microsoft FrontPage 4.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<title>ISE: Interactive Media Streaming Everywhere</title>
+</head>
+
+<body>
+
+<div align="center">
+  <center>
+  <table border="0" cellpadding="0" cellspacing="8" width="701">
+    <tr>
+      <td align="right" valign="top" width="137"><font size="7" color="#FFFFFF">
+ISE</font> &nbsp;</td>
+      <td width="8" >&nbsp;</td>
+      <td valign="bottom" width="518" ><font size="7" color="#138317">Interactive Streaming Everywhere</font></td>
+    </tr>
+    <tr>
+      <td valign="top" width="137">Faculty<font size="2"><br>
+        <a href="http://www-db.stanford.edu/~echang/">Edward Chang</a></font>
+        <p><font size="2"><strong>PhD Students</strong></font><font size="4"><br>
+        </font><font size="2">Zoran Dimitrijevic<br>
+        Raju Rangaswami<br>Gerard Sychay</font></p>
+        <p><font size="2"><strong><a href="http://www-db.stanford.edu/~echang/publications.html">Publications</a></strong></font></p>
+        <p><font size="2"><strong>Sponsors</strong></font><font size="3"><br>
+        </font><font size="2"><a href="http://www.dimi.ucsb.edu/">DiMI</a><br>
+        <a href="http://www.nsf.gov">NSF</a> Digital Campus<br>
+        <a href="http://www.sonymusic.com">SONY</a></font></p>
+        <p><font size="2"><b>Collaborators</b></font><font size="4"><br>
+        </font><font size="2">Gary Chan, HKUST<br>
+        Milton Chen, Stanford</font><font size="3"><br>
+        </font></td>
+      <td width="8"></td>
+      <td valign="top" width="1288"><font size="3"><img src="Vlad.jpg" width="358" height="234"><br>
+<font face="MS Serif">
+The father of TV,
+Dr. Vladimir Zworykin, with a display of <br>historic television camera tubes.
+        </font><br>
+<br>
+<br>
+
+This project is a part of the <a href="http://www.cs.ucsb.edu/~wireless/">UCSB Digital Campus project</a> funded by NSF. Specifically, the PI is responsible for <a href="http://www.cs.ucsb.edu/~wireless/researchdesc/collaboration/interactivity.shtml">the interactive theme</a> of the project.  The goal of this interactive-streaming-everywhere (ISE) project is to build
+file-system and operating-system infrastructures for supporting 
+both wired and wireless streaming on campus.  Our vision is to support 
+<b>interactive lecture everywhere</b> before the end of 2004.
+<br>
+<br>
+        <font>A fully interactive system (e.g., telepresence) would allow
+        a viewer to be immersed in a distant environment and act upon it as if she/he were there, but we are far from
+        that capacity given the technology of the near future. In this project, we research and develop
+        enabling system infrastructures for supporting <i>viewing interactivity</i>&nbsp;
+        and <i>content interactivity</i>. Viewing interactivity gives a viewer the capability to time-shift a televised program through
+        pause, fast-forward and instant replay. Content interactivity allows a viewer to query or to
+        change the content of multimedia data. With the capabilities to change both pace and content,
+        a class of high school students could conduct science experiments in small groups through a virtual lab and their instructor
+        could review their progress in real-time or with a phase delay. Many other benefits exist.</font>
+        <p><font>In this project, we plan to investigate a client/server
+        dual architecture that turns non-interactive broadcast streams into interactive ones for supporting simultaneous users.
+        On the one hand, the client/server dual system acts as a client for broadcasters (or content providers)
+        to enable interactivity. On the other hand, it caches and indexes streams for servicing a number of interactive users.
+        We believe that this architecture is attractive because it is more practical and easier to deploy than
+        the traditional server-based model, and it is scalable compared to the single-user digital-VCR model.</font></p>
+        <p><font>Designing a client/server dual system for supporting
+        interactivity presents many challenges. Besides the need for IOs to be properly
+        scheduled to fulfill real-time data requirements and to minimize response time (these issues have
+        been studied before), a client/server dual system faces the following four new research challenges, though there are others:</font></p>
+        <ol>
+          <li><font>Balancing reads and writes that have dynamic
+            changing read/write ratios on parallel disks,</font></li>
+          <li><font>Dealing with high disk bandwidth requirement for
+            supporting fast-scans (When simultaneous fast-scans are requested, the reads can happen at very high
+            bitrates.),</font></li>
+          <li><font>Retrieving heterogeneous data objects that have
+            different performance requirements, and</font></li>
+          <li><font>Scheduling processes that have synchronized CPU and IO deadlines
+            (Traditional real-time models and systems assume that real-time processes do not synchronize with each other.).&nbsp;</font></li>
+        </ol>
+        <p><font>To tackle the above technical challenges, this project will design and implement four system components:</font></p>
+        <ol>
+          <li><font>Parallel disk manager. We will first develop a SCSI-disk analyzer, which probes and
+            extracts disk parameters. With a performance map of disks, we can study, implement, and evaluate various
+            data placement, data replication, and indexing policies on parallel disks.</font></li>
+          <li><font>Buffer manager. We will study effective caching and
+            pre-fetching techniques that minimize the DRAM use (and hence minimize the cost)
+            for supporting time-shift operations.</font></li>
+          <li><font>CPU &amp; IO integrated real-time scheduler.
+            We will re-architect the operating system scheduler to handle both real-time periodic tasks and
+            aperiodic tasks to meet their CPU and IO deadlines.</font></li>
+          <li><font>Wireless support.  We plan to develop infrastructures for supporting wireless clients.</font></li> 
+        </ol>
+        <p><font>We will conduct this research project in an implementation-centric manner so
+        that we can fully grasp the intricacy of the interplay and tradeoffs between various design parameters.
+        The developed infrastructures will be made publicly available so that other research institutes can use them
+        to advance other aspects of multimedia research. Our partners, NSF, SONY,
+        and California Digital Media Innovation Program, will help provide support
+        in the areas of expertise, funding and evaluation.</font></p>
+        <p>&nbsp;</td>
+    </tr>
+  </table>
+  </center>
+</div>
+
+</body>
+
+</html>

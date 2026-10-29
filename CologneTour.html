@@ -1,0 +1,671 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cologne Tour Plan</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.css" />
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background: linear-gradient(135deg, #ff6b6b 0%, #feca57 100%);
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+        }
+        
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 3px solid #ff6b6b;
+        }
+        
+        .header h1 {
+            color: #2c3e50;
+            margin: 0;
+            font-size: 2.5em;
+            font-weight: 300;
+        }
+        
+        .subtitle {
+            color: #7f8c8d;
+            font-size: 1.1em;
+            margin-top: 10px;
+        }
+        
+        .day-tabs {
+            display: flex;
+            margin: 20px 0;
+            border-radius: 10px;
+            overflow: hidden;
+            background: #f8f9fa;
+        }
+        
+        .tab {
+            flex: 1;
+            padding: 15px 20px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: none;
+            background: #e9ecef;
+            font-size: 1.1em;
+            font-weight: bold;
+        }
+        
+        .tab.active {
+            background: #ff6b6b;
+            color: white;
+        }
+        
+        .tab:hover {
+            background: #fd79a8;
+            color: white;
+        }
+        
+        .day-content {
+            display: none;
+        }
+        
+        .day-content.active {
+            display: block;
+        }
+        
+        .map-container {
+            position: relative;
+            width: 100%;
+            height: 500px;
+            border-radius: 15px;
+            overflow: hidden;
+            margin: 20px 0;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+        
+        #map-evening, #map-fullday {
+            width: 100%;
+            height: 100%;
+        }
+        
+        .custom-popup {
+            text-align: center;
+            font-family: 'Segoe UI', sans-serif;
+        }
+        
+        .popup-time {
+            color: #e74c3c;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+        
+        .popup-title {
+            color: #2c3e50;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+        
+        .popup-desc {
+            color: #5a6c7d;
+            font-size: 0.9em;
+        }
+        
+        .custom-marker {
+            background: #ff6b6b;
+            border: 3px solid white;
+            border-radius: 50%;
+            color: white;
+            width: 35px;
+            height: 35px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 14px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.3);
+        }
+        
+        .evening-marker {
+            background: #9b59b6;
+        }
+        
+        .itinerary-grid {
+            display: grid;
+            gap: 20px;
+            margin-top: 20px;
+        }
+        
+        .time-block {
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            border-radius: 15px;
+            padding: 20px;
+            border-left: 6px solid #ff6b6b;
+            transition: all 0.3s ease;
+        }
+        
+        .time-block:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(255, 107, 107, 0.2);
+        }
+        
+        .time-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+        
+        .time-badge {
+            background: #ff6b6b;
+            color: white;
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-weight: bold;
+            margin-right: 15px;
+            font-size: 0.9em;
+        }
+        
+        .activity-title {
+            color: #2c3e50;
+            font-size: 1.3em;
+            font-weight: bold;
+            margin: 0;
+        }
+        
+        .activity-description {
+            color: #5a6c7d;
+            line-height: 1.6;
+            margin-top: 10px;
+        }
+        
+        .activity-tips {
+            background: #fff3cd;
+            border: 1px solid #ffeaa7;
+            border-radius: 8px;
+            padding: 10px;
+            margin-top: 10px;
+            font-size: 0.9em;
+        }
+        
+        .info-panels {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin-top: 30px;
+        }
+        
+        .info-panel {
+            background: linear-gradient(135deg, #fd79a8 0%, #fdcb6e 100%);
+            color: white;
+            padding: 20px;
+            border-radius: 15px;
+        }
+        
+        .info-panel h3 {
+            margin-top: 0;
+            font-size: 1.4em;
+        }
+        
+        .info-list {
+            margin: 0;
+            padding-left: 20px;
+        }
+        
+        .info-list li {
+            margin-bottom: 8px;
+            line-height: 1.4;
+        }
+        
+        .weather-transport {
+            background: linear-gradient(135deg, #00b894 0%, #00cec9 100%);
+        }
+        
+        .map-controls {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            z-index: 1000;
+            background: white;
+            padding: 10px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .control-button {
+            background: #ff6b6b;
+            color: white;
+            border: none;
+            padding: 8px 12px;
+            margin: 2px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 12px;
+        }
+        
+        .control-button:hover {
+            background: #fd79a8;
+        }
+        
+        .leaflet-popup-content-wrapper {
+            border-radius: 8px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🗺️ Cologne Real Map Tour</h1>
+            <div class="subtitle">Interactive real maps with OpenStreetMap data | Click markers for details</div>
+        </div>
+        
+        <div class="day-tabs">
+            <button class="tab active" onclick="showDay('evening')">🌆 Evening Arrival (6 PM)</button>
+            <button class="tab" onclick="showDay('fullday')">🌅 Full Day Tour</button>
+        </div>
+        
+        <!-- Evening Content -->
+        <div id="evening" class="day-content active">
+            <div class="map-container">
+                <div id="map-evening"></div>
+                <div class="map-controls">
+                    <button class="control-button" onclick="showRoute('evening')">Show Route</button>
+                    <button class="control-button" onclick="fitBounds('evening')">Fit View</button>
+                </div>
+            </div>
+            
+            <div class="itinerary-grid">
+                <div class="time-block">
+                    <div class="time-header">
+                        <div class="time-badge">6:00 PM</div>
+                        <h3 class="activity-title">🚂 Arrival & Check-in</h3>
+                    </div>
+                    <div class="activity-description">
+                        Arrive at Cologne Central Station (Hauptbahnhof). The cathedral is literally 2 minutes away! Check into your hotel or drop bags, then head straight to the Dom for your first impressive view.
+                    </div>
+                    <div class="activity-tips">
+                        💡 <strong>Tip:</strong> Cologne Central Station has lockers if you need to store luggage temporarily.
+                    </div>
+                </div>
+                
+                <div class="time-block">
+                    <div class="time-header">
+                        <div class="time-badge">6:15 PM</div>
+                        <h3 class="activity-title">⛪ First Cathedral View</h3>
+                    </div>
+                    <div class="activity-description">
+                        Get your first look at the magnificent Gothic cathedral. Walk around the exterior, take photos, and soak in the impressive architecture. The interior stays open until 7:30 PM if you want a quick peek inside.
+                    </div>
+                    <div class="activity-tips">
+                        📸 <strong>Photo tip:</strong> Best exterior shots from the cathedral steps and nearby Roncalliplatz.
+                    </div>
+                </div>
+                
+                <div class="time-block">
+                    <div class="time-header">
+                        <div class="time-badge">7:00 PM</div>
+                        <h3 class="activity-title">🏛️ Old Town Evening Stroll</h3>
+                    </div>
+                    <div class="activity-description">
+                        Wander through the charming Altstadt with its colorful medieval buildings, narrow cobblestone streets, and traditional shops. Perfect golden hour lighting for photos and getting oriented with the city layout.
+                    </div>
+                    <div class="activity-tips">
+                        🚶‍♂️ <strong>Route:</strong> Walk from Dom via Unter Goldschmied to Heumarkt, then circle back through side streets.
+                    </div>
+                </div>
+                
+                <div class="time-block">
+                    <div class="time-header">
+                        <div class="time-badge">8:00 PM</div>
+                        <h3 class="activity-title">🍺 Traditional Kölsch Experience</h3>
+                    </div>
+                    <div class="activity-description">
+                        Dinner at a traditional brewhouse! Try authentic Kölsch beer (served in small 0.2L glasses) with local specialties like Himmel un Ääd (heaven and earth - mashed potatoes with apples and black pudding) or Halver Hahn (rye bread with cheese).
+                    </div>
+                    <div class="activity-tips">
+                        🍻 <strong>Recommendations:</strong> Früh am Dom, Gaffel Haus, or Peters Brauhaus for authentic atmosphere.
+                    </div>
+                </div>
+                
+                <div class="time-block">
+                    <div class="time-header">
+                        <div class="time-badge">9:30 PM</div>
+                        <h3 class="activity-title">🌉 Rhine River Evening Walk</h3>
+                    </div>
+                    <div class="activity-description">
+                        End your evening with a peaceful stroll along the Rhine promenade. The cathedral looks stunning when illuminated, and you'll get beautiful views from the river embankment. Perfect way to wind down and plan tomorrow.
+                    </div>
+                    <div class="activity-tips">
+                        🌅 <strong>Best time:</strong> Stay until around 10 PM to see the cathedral's evening illumination.
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Full Day Content -->
+        <div id="fullday" class="day-content">
+            <div class="map-container">
+                <div id="map-fullday"></div>
+                <div class="map-controls">
+                    <button class="control-button" onclick="showRoute('fullday')">Show Route</button>
+                    <button class="control-button" onclick="fitBounds('fullday')">Fit View</button>
+                </div>
+            </div>
+            
+            <div class="itinerary-grid">
+                <div class="time-block">
+                    <div class="time-header">
+                        <div class="time-badge">9:00 AM</div>
+                        <h3 class="activity-title">⛪ Cathedral Tower Climb</h3>
+                    </div>
+                    <div class="activity-description">
+                        Start early with the 533-step climb up the south tower of Cologne Cathedral. The panoramic views over the city and Rhine are incredible, and you'll avoid the crowds by going first thing in the morning.
+                    </div>
+                    <div class="activity-tips">
+                        💪 <strong>Fitness tip:</strong> It's quite a workout! €6 entrance. Open from 9 AM.
+                    </div>
+                </div>
+                
+                <div class="time-block">
+                    <div class="time-header">
+                        <div class="time-badge">10:30 AM</div>
+                        <h3 class="activity-title">🎨 Museum Ludwig</h3>
+                    </div>
+                    <div class="activity-description">
+                        Explore one of Europe's finest modern art collections. See works by Picasso, Warhol, Lichtenstein, and other masters. The museum is right next to the cathedral, making it perfectly convenient.
+                    </div>
+                    <div class="activity-tips">
+                        🎫 <strong>Cost:</strong> €13 adult ticket. Audio guide recommended for €4 extra.
+                    </div>
+                </div>
+                
+                <div class="time-block">
+                    <div class="time-header">
+                        <div class="time-badge">12:30 PM</div>
+                        <h3 class="activity-title">⛵ Rhine River Cruise</h3>
+                    </div>
+                    <div class="activity-description">
+                        Take a relaxing 1-hour Rhine cruise to see Cologne from the water. Great views of the cathedral, bridges, and riverfront. Perfect lunch break with onboard café service available.
+                    </div>
+                    <div class="activity-tips">
+                        🚢 <strong>Departure:</strong> Boats leave hourly from near Hohenzollern Bridge. €15-20 per person.
+                    </div>
+                </div>
+                
+                <div class="time-block">
+                    <div class="time-header">
+                        <div class="time-badge">2:30 PM</div>
+                        <h3 class="activity-title">🛍️ Belgian Quarter Exploration</h3>
+                    </div>
+                    <div class="activity-description">
+                        Discover Cologne's trendiest neighborhood! Browse unique boutiques, independent galleries, vintage shops, and cozy cafes. The area has a distinctly different vibe from the historic center.
+                    </div>
+                    <div class="activity-tips">
+                        ☕ <strong>Coffee break:</strong> Try Café Extrablatt or Van Dyck for excellent coffee and people-watching.
+                    </div>
+                </div>
+                
+                <div class="time-block">
+                    <div class="time-header">
+                        <div class="time-badge">4:00 PM</div>
+                        <h3 class="activity-title">⛪ Great St. Martin Church</h3>
+                    </div>
+                    <div class="activity-description">
+                        Visit this impressive Romanesque church with its distinctive cloverleaf choir and tower. Offers a nice architectural contrast to the Gothic cathedral and beautiful interior frescoes.
+                    </div>
+                    <div class="activity-tips">
+                        🏛️ <strong>Architecture:</strong> One of twelve Romanesque churches in Cologne's old town.
+                    </div>
+                </div>
+                
+                <div class="time-block">
+                    <div class="time-header">
+                        <div class="time-badge">5:00 PM</div>
+                        <h3 class="activity-title">🍫 Chocolate Museum</h3>
+                    </div>
+                    <div class="activity-description">
+                        End your cultural day with something sweet! Learn about 3,000 years of chocolate history, watch chocolate being made, and enjoy generous tastings. The chocolate fountain is a highlight!
+                    </div>
+                    <div class="activity-tips">
+                        🍬 <strong>Sweet deal:</strong> €15 entrance includes tastings. Great gift shop for souvenirs.
+                    </div>
+                </div>
+                
+                <div class="time-block">
+                    <div class="time-header">
+                        <div class="time-badge">6:30 PM</div>
+                        <h3 class="activity-title">💝 Hohenzollern Bridge</h3>
+                    </div>
+                    <div class="activity-description">
+                        Walk across the famous railway bridge covered with thousands of love locks. This is THE spot for cathedral photos, especially during golden hour. Watch trains pass beneath your feet!
+                    </div>
+                    <div class="activity-tips">
+                        📸 <strong>Photo magic:</strong> Best cathedral shots are from the middle of the bridge around sunset.
+                    </div>
+                </div>
+                
+                <div class="time-block">
+                    <div class="time-header">
+                        <div class="time-badge">7:30 PM</div>
+                        <h3 class="activity-title">🍺 Traditional Brewhouse Tour</h3>
+                    </div>
+                    <div class="activity-description">
+                        Cap off your day with a mini brewhouse crawl! Visit 2-3 traditional brewhouses to compare different Kölsch varieties and enjoy hearty Rhine cuisine. Each brewery has its own character and recipes.
+                    </div>
+                    <div class="activity-tips">
+                        🍻 <strong>Route:</strong> Start at Früh am Dom, then Gaffel Haus, end at Peters Brauhaus for dinner.
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="info-panels">
+            <div class="info-panel">
+                <h3>🎯 Essential Tips</h3>
+                <ul class="info-list">
+                    <li><strong>KölnCard:</strong> €9/day for public transport + museum discounts</li>
+                    <li><strong>Cathedral entry:</strong> Free, but tower climb costs €6</li>
+                    <li><strong>Kölsch culture:</strong> Beer comes in small 0.2L glasses, waiters keep bringing them!</li>
+                    <li><strong>Cash vs Card:</strong> Most places accept cards, but carry some euros</li>
+                    <li><strong>Language:</strong> English widely spoken in tourist areas</li>
+                    <li><strong>Sunday note:</strong> Many shops closed, but attractions and restaurants open</li>
+                </ul>
+            </div>
+            
+            <div class="info-panel weather-transport">
+                <h3>🚊 Getting Around</h3>
+                <ul class="info-list">
+                    <li><strong>Walking:</strong> Most attractions within 15-min walk of cathedral</li>
+                    <li><strong>U-Bahn/Trams:</strong> Excellent network, tickets from €3</li>
+                    <li><strong>Rhine cruise:</strong> €15-20, departures every hour</li>
+                    <li><strong>Taxi/Uber:</strong> Available but walking is usually faster in center</li>
+                    <li><strong>Bike rental:</strong> KVB-Rad stations throughout city</li>
+                    <li><strong>Airport transfer:</strong> S-Bahn S13 direct to city center</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.js"></script>
+    <script>
+        let eveningMap, fulldayMap;
+        let eveningRoutePolyline, fulldayRoutePolyline;
+        let eveningMarkers = [], fulldayMarkers = [];
+        
+        // Cologne coordinates
+        const cologneCenter = [50.9375, 6.9603];
+        
+        // Evening attractions coordinates
+        const eveningAttractions = [
+            { name: "Cologne Central Station", time: "6:00 PM", coords: [50.9430, 6.9589], info: "Arrival point - 2 min walk to cathedral", icon: "🚂" },
+            { name: "Cologne Cathedral", time: "6:15 PM", coords: [50.9413, 6.9583], info: "Evening cathedral exterior and surroundings", icon: "⛪" },
+            { name: "Old Town Evening Walk", time: "7:00 PM", coords: [50.9369, 6.9603], info: "Cobblestone streets and medieval atmosphere", icon: "🏛️" },
+            { name: "Traditional Brewhouse", time: "8:00 PM", coords: [50.9385, 6.9570], info: "Kölsch beer and Rhine cuisine", icon: "🍺" },
+            { name: "Rhine Evening Stroll", time: "9:30 PM", coords: [50.9395, 6.9650], info: "Sunset views and cathedral illumination", icon: "🌉" }
+        ];
+        
+        // Full day attractions coordinates
+        const fulldayAttractions = [
+            { name: "Cathedral Tower Climb", time: "9:00 AM", coords: [50.9413, 6.9583], info: "533 steps to panoramic city views", icon: "1" },
+            { name: "Museum Ludwig", time: "10:30 AM", coords: [50.9406, 6.9598], info: "Modern art - Picasso, Warhol, Lichtenstein", icon: "2" },
+            { name: "Rhine Cruise", time: "12:30 PM", coords: [50.9415, 6.9665], info: "1-hour scenic river cruise", icon: "3" },
+            { name: "Belgian Quarter", time: "2:30 PM", coords: [50.9455, 6.9435], info: "Trendy shopping and cafes", icon: "4" },
+            { name: "Great St. Martin Church", time: "4:00 PM", coords: [50.9375, 6.9620], info: "Romanesque architecture contrast", icon: "5" },
+            { name: "Chocolate Museum", time: "5:00 PM", coords: [50.9320, 6.9650], info: "3000 years of chocolate history + tastings", icon: "6" },
+            { name: "Hohenzollern Bridge", time: "6:30 PM", coords: [50.9415, 6.9665], info: "Love locks and best cathedral photos", icon: "7" },
+            { name: "Evening Brewhouse Tour", time: "7:30 PM", coords: [50.9395, 6.9575], info: "Multiple traditional brewhouses", icon: "8" }
+        ];
+        
+        function createCustomIcon(text, isEvening = false) {
+            return L.divIcon({
+                className: 'custom-marker',
+                html: text,
+                iconSize: [35, 35],
+                iconAnchor: [17.5, 17.5],
+                popupAnchor: [0, -17.5]
+            });
+        }
+        
+        function initializeEveningMap() {
+            eveningMap = L.map('map-evening').setView(cologneCenter, 14);
+            
+            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                attribution: '© OpenStreetMap contributors'
+            }).addTo(eveningMap);
+            
+            // Add markers
+            eveningAttractions.forEach((attraction, index) => {
+                const marker = L.marker(attraction.coords, {
+                    icon: createCustomIcon(attraction.icon, true)
+                }).addTo(eveningMap);
+                
+                const popupContent = `
+                    <div class="custom-popup">
+                        <div class="popup-time">${attraction.time}</div>
+                        <div class="popup-title">${attraction.name}</div>
+                        <div class="popup-desc">${attraction.info}</div>
+                    </div>
+                `;
+                
+                marker.bindPopup(popupContent);
+                eveningMarkers.push(marker);
+            });
+            
+            // Create route
+            const routeCoords = eveningAttractions.map(a => a.coords);
+            eveningRoutePolyline = L.polyline(routeCoords, {
+                color: '#9b59b6',
+                weight: 4,
+                opacity: 0.8,
+                dashArray: '10, 5'
+            });
+        }
+        
+        function initializeFulldayMap() {
+            fulldayMap = L.map('map-fullday').setView(cologneCenter, 13);
+            
+            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                attribution: '© OpenStreetMap contributors'
+            }).addTo(fulldayMap);
+            
+            // Add markers
+            fulldayAttractions.forEach((attraction, index) => {
+                const marker = L.marker(attraction.coords, {
+                    icon: createCustomIcon(attraction.icon)
+                }).addTo(fulldayMap);
+                
+                const popupContent = `
+                    <div class="custom-popup">
+                        <div class="popup-time">${attraction.time}</div>
+                        <div class="popup-title">${attraction.name}</div>
+                        <div class="popup-desc">${attraction.info}</div>
+                    </div>
+                `;
+                
+                marker.bindPopup(popupContent);
+                fulldayMarkers.push(marker);
+            });
+            
+            // Create route
+            const routeCoords = fulldayAttractions.map(a => a.coords);
+            fulldayRoutePolyline = L.polyline(routeCoords, {
+                color: '#e74c3c',
+                weight: 4,
+                opacity: 0.8,
+                dashArray: '10, 5'
+            });
+        }
+        
+        function showDay(day) {
+            // Hide all day contents
+            document.querySelectorAll('.day-content').forEach(content => {
+                content.classList.remove('active');
+            });
+            
+            // Remove active class from all tabs
+            document.querySelectorAll('.tab').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            
+            // Show selected day content
+            document.getElementById(day).classList.add('active');
+            
+            // Add active class to clicked tab
+            event.target.classList.add('active');
+            
+            // Initialize maps when tabs are switched
+            setTimeout(() => {
+                if (day === 'evening' && !eveningMap) {
+                    initializeEveningMap();
+                } else if (day === 'fullday' && !fulldayMap) {
+                    initializeFulldayMap();
+                }
+                
+                // Invalidate size to fix rendering issues
+                if (day === 'evening' && eveningMap) {
+                    eveningMap.invalidateSize();
+                } else if (day === 'fullday' && fulldayMap) {
+                    fulldayMap.invalidateSize();
+                }
+            }, 100);
+        }
+        
+        function showRoute(day) {
+            if (day === 'evening' && eveningMap && eveningRoutePolyline) {
+                if (eveningMap.hasLayer(eveningRoutePolyline)) {
+                    eveningMap.removeLayer(eveningRoutePolyline);
+                } else {
+                    eveningRoutePolyline.addTo(eveningMap);
+                }
+            } else if (day === 'fullday' && fulldayMap && fulldayRoutePolyline) {
+                if (fulldayMap.hasLayer(fulldayRoutePolyline)) {
+                    fulldayMap.removeLayer(fulldayRoutePolyline);
+                } else {
+                    fulldayRoutePolyline.addTo(fulldayMap);
+                }
+            }
+        }
+        
+        function fitBounds(day) {
+            if (day === 'evening' && eveningMap) {
+                const group = new L.featureGroup(eveningMarkers);
+                eveningMap.fitBounds(group.getBounds().pad(0.1));
+            } else if (day === 'fullday' && fulldayMap) {
+                const group = new L.featureGroup(fulldayMarkers);
+                fulldayMap.fitBounds(group.getBounds().pad(0.1));
+            }
+        }
+        
+        // Initialize the evening map by default
+        document.addEventListener('DOMContentLoaded', function() {
+            initializeEveningMap();
+        });
+    </script>
+</body>
+</html>

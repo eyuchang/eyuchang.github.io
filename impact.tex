@@ -1,0 +1,248 @@
+\vspace*{-3ex}
+\subsection{Impacts and Relations of the Proposed Research}
+\label{impact}
+\vspace*{-1ex}
+
+{\bf Our research is aimed at advancing image and video database
+retrieval and indexing by addressing a board range of critical problems 
+in such enterprise, including the design of features, adaptive 
+distance measures, and learning algorithms.} 
+
+\paragraph{Invariant features}
+The proposed framework of invariants ameliorates many difficulties
+encountered in computing invariant image features. Because the
+basis functions used (wavelets \cite{Daubechies88,Mallat89a},
+short-time Fourier analysis \cite{Gabor46,Rabiner78}, and splines
+\cite{Farin83,Rogers90}) have compact support, the proposed technique
+tolerates a certain degree of self-occlusion unlike the invariants based on
+global analysis \cite{Hu61,Teh88}.  Furthermore, it does not require
+estimating any derivatives such as in the invariants using local analysis
+\cite{Rivlin95,Weiss93b}.  Whence, the new method is more robust.  
+
+The marriage of global models and local invariants allow us to
+address the recognition and retrieval of objects of complex structures
+and articulating parts. The use of local invariants allows component
+objects to be recognized in a way insensitive to changes in lighting
+and viewpoint.  The use of global models is beneficial in that
+variation of an object's appearance due to articulated motion can be
+accommodated.  By augmenting local invariants with global models, we
+achieve efficient recognition of complex patterns insensitive to many
+environmental changes.
+
+Finally, {\bf the solutions to the {\em invariant, intra-class retrieval}
+problem can have significant practical
+implications} and will facilitate the design of retrieval subsystems
+for real-world image databases.
+
+\paragraph{Perceptual Similarity}
+\label{sec-related-dpf}
+
+Extensive work has been done on mapping color spectrums and textures to
+the perceptual space \cite{B99,MWNS01,TMY78,W95,Jiawei98}.  Until
+recently, little has been done on finding a good perceptual distance
+function for aggregating individual perceptual features (work that has
+been done will be discussed shortly).
+
+Most researchers quantify the difference between two feature vectors by
+their Minkowski distance or its variants.  However, in
+\cite{Stricker95}, it was shown that for image retrieval the Minkowski
+distance results in many false negatives and thus yields low recall.
+Rubner et al. \cite{Rtg98} propose Earth Mover's Distance (EMD) for
+image retrieval and claim marginal improvement (about $10$ percentile
+in recall) over the Minkowski distances. However, their results may not
+be conclusive, since only a few queries were tested, and those were on
+small datasets.  The weighted Minkowski function introduces feature
+weights into the distance function \cite{PMO99,RH00}. The shortcoming
+of this metric is that images similar to the query image cannot be
+captured by just one static set of weights.  For instance, both a
+down-sampled and a cropped image are perceptually similar to the
+original image.  But the similarity of the down-sampled image is
+primarily captured in the color features (texture features are changed
+when an image is down-sampled), whereas the similarity of the cropped
+image may be captured in the texture features (color histograms are
+changed when an image is cropped).  Using a static feature subset to
+find both down-sampled and cropped images will not work effectively
+because it cannot adapt to such changes.
+
+Some other distance functions such as the quadratic-form distances
+proposed by \cite{img11, ISF98}, have been shown to perform marginally
+better than the Minkowski distance function.  Recently, the fractional
+distance function \cite{Agg-ICDT01} has been shown to outperform both
+L1 and L2 distance functions.  Our work shows that even better
+functions can be derived, and the function that we derive (presented in
+Section~\ref{sec-dpf}) not only works well but can also be interpreted
+by perceptual principles in cognitive science.
+
+Feature reduction has been shown to be a useful method for improving
+the quality of similarity searches in the text domain.  The data is
+transformed to a lower-dimensional space where most information is
+preserved, by using methods such as Principle Component Analysis
+(PCA).  Although PCA-like feature reduction has been widely used, the
+work of C. Aggarwal \cite{Agg-PODS01} points out that the effectiveness
+of feature reduction can be domain-dependent and data-dependent.
+Moreover, for image retrieval, we have not found PCA very useful for
+two reasons.  First, the perceptual features employed to characterize
+images (such as color, texture, and shape) are sufficiently independent
+of one another.  This agrees with C. Aggarwal's observation that when
+the dimensions are relatively uncorrelated to one another, dimension
+reduction can be counter-productive.  Second, and more importantly,
+image perception is subjective, and hence feature reduction in the
+image domain must be conducted in a user-dependent way, not in a
+data-dependent way.  Our approach is first to use learning methods such
+as $\MEGA$ and $\SVMActive$ to perform implicit feature transformation
+in a user-dependent and query-dependent manner.  After a more effective
+feature space is found, our dynamic partial distance function (DPF)
+performs dynamic feature reduction for each pair of images. The
+similarity of different pairs of images is measured in different
+subspaces.  We explain in Section~\ref{sec-dpf} why this method works
+effectively both empirically and theoretically.
+
+\paragraph{Active Learning Algorithms}
+
+Machine learning and relevance feedback techniques 
+have been proposed to learn and to refine query concepts.
+The problem is that most traditional techniques
+require a large number of training instances \cite{Bish98,KV94,Mit97,ZH01}, 
+and they require seeding a query with ``good'' 
+examples \cite{JW97,PCM99,WFSP00}.
+Unfortunately, in many practical scenarios, 
+a learning algorithm must work with
+a scarcity of training data
+and a limited amount of training time.
+
+Of late, ensemble techniques such as {\em bagging} \cite{Bre96},
+{\em arcing} \cite{Bre98},
+and {\em boosting} \cite{Grove+Schuurmans:AAAI98,Schapire+al:ICML97} 
+have been proposed to improve learning
+accuracy for decision trees and neural networks.
+These ensemble schemes enjoy success in improving
+classification accuracy
+through bias or variance reduction,
+but they do not help reduce the number of samples and time required
+to learn a query concept.  In fact, most ensemble schemes
+actually increase learning time because they
+introduce learning redundancy in order to improve prediction
+accuracy \cite{DB-95,Grove+Schuurmans:AAAI98,JH97,MM-98}.
+
+To reduce the number of required samples, researchers
+in the machine learning community have conducted 
+several studies of active learning \cite{Cohn+al:1996,CFH97}
+for classification.  Active learning can be modeled formally 
+as follows: Given a dataset $S$ consisting of 
+an unlabeled subset $U$ and a labeled subset $X$, an active
+learner $L$ has two components: $f$ and $s$. The $f$ component
+is a classifier that is trained on the current set of
+labeled data $X$. The second component $s$ is the sampling
+function that, given a current labeled set $X$, decides which
+subset $u$ in $U$ to select to query the user.
+The active learner returns a new $f$ after each round
+of relevance feedback.  The sampling techniques
+employed by the active learner determine the selection of 
+the next batch of unlabeled instances to be labeled by the user.
+
+The {\em query by committee} (QBC)
+algorithm~\cite{Freund+al:ML97,Seung+al:COLT92} is
+a representative active learning scheme.  QBC uses a distribution
+over all possible classifiers and attempts greedily to reduce the
+entropy of this distribution. This general purpose algorithm has been
+applied in a number of domains (although, to our knowledge,
+not to the image retrieval domain) using classifiers (such as Naive
+Bayes classifiers~\cite{Dagan+Engelson:ICML95,McCallum+Nigam:ICML98})
+for which specifying and sampling classifiers from a distribution is
+natural.  Probabilistic models such as the Naive Bayes classifier
+provide interpretable results and principled ways to incorporate prior
+knowledge. However, they typically do not
+perform as well as discriminative methods such as
+SVMs~\cite{Joachims:ECML97,Dumais+al:CIKM98}, especially when
+the amount of training data is scarce.
+(See our SVM-based approach in Section~\ref{sec-svm}.)
+For image retrieval where a query concept is typical non-linear\footnote{
+A query such as ``animals'', ``women'', and 
+``european architecture'' does not reside contiguously in the
+space formed by the image features.}, our $\MEGA$ 
+and $\SVMActive$ with kernel mapping
+provide more flexible and accurate concept modeling.
+
+%Two computational challenges in applying active
+%learning in general and the QBC algorithm in
+%particular to a learning task are 
+%\begin{itemize} 
+%\item Finding useful committee members quickly, and
+%\item Finding informative unlabeled instances efficiently.
+%\end{itemize} 
+
+Specifically for image retrieval, the PicHunter 
+system \cite{PicHunter96a,PicHunter96b,PicHunter97,CMM00} 
+uses Bayesian
+prediction to infer the goal image, based upon users' input.
+Mathematically, the goal of PicHunter is 
+to find a single goal point in the feature
+space (e.g., a particular flower image), whereas our goal is
+to hunt down all points that match a query concept
+(e.g., the entire flower category,
+which consists of flowers of different colors, shapes, and
+textures, and against different backgrounds).  Note that
+the points matching a target concept can be scattered all over 
+the feature space. To find these points
+quickly with few hints, 
+our learning algorithms must deal with many daunting challenges.
+
+The study of \cite{PMO99} puts relevance feedback techniques
+proposed by the Information Retrieval (IR) 
+into three categories: {\it query reweighting},
+{\it query point movement} and {\it query expansion}.
+\begin{jlist}
+\item {\it Query reweighting} and {\it query point movement}
+\cite{ISF98,ORCWMH98,ORCMH97,PCM99,RHOM98}.
+Both query reweighting and query point movement
+use nearest-neighbor sampling: They return top ranked
+objects to be examined by the user and then refine the query
+based on the user's feedback. If the initial query example
+is good and the query concept is convex in the feature space
+\cite{ISF98,WFSP00}, this nearest-neighbor sampling approach works
+fine. Unfortunately, most users do not have a good example to
+start a query, and most image-query concepts are non-convex.
+%Refining a search around bad examples
+%is analogous to trying to
+%find oranges in the middle of an apple orchard by refining one's
+%search to a few rows of apple trees at a time.
+%It will take a long time to find oranges (the desired result).
+
+\item {\it Query expansion} \cite{PMO99,WFSP00}.
+The {\it query expansion} approach can be
+regarded as a multiple-instances sampling approach.
+The samples of a subsequent round are selected from the
+neighborhood (not necessarily the nearest ones) of the
+positive-labeled instances of the previous round. The study
+of \cite{PMO99} shows that query expansion
+achieves only a slim margin of improvement (about $10\%$
+in precision/recall) over query point movement.
+\end{jlist}
+
+All traditional relevance feedback methods
+require seeding the methods with ``good''
+positive examples \cite{img11,img13,HVO99,MM96,SC,img12,img9},
+and most methods do not use negative-labeled instances effectively.
+For instance, sunset images must be supplied 
+as examples in order to search for sunset pictures.
+As we stated in Section~\ref{sec-overview},
+finding good examples is the job of a search engine itself.
+Our learning methods effectively use negative-labeled
+instances to corner the positive instances, and 
+select the most informative unlabeled instances to query
+user feedback.  Because of the effective use of negative
+and unlabeled instances, our method can learn a query
+concept much faster and more accurately than the traditional
+relevance-feedback methods.
+
+%In short, the relevance feedback schemes that
+%require seeding a query, and ineffective methods of
+%sample selection, are not very useful at this stage.  Our proposed
+%$\MEGA$ algorithm does not require seeding a query.
+%(See Section~\ref{sec-mega}.)  Both $\MEGA$ and $\SVMActive$ employ 
+%intelligent sampling methods that maximize
+%the usefulness of each sample, and thereby
+%achieve much better learning performance than earlier methods.
+
+
+

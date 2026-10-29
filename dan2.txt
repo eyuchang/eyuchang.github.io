@@ -1,0 +1,73 @@
+
+
+---------- Forwarded message ----------
+Date: Wed, 13 Nov 2002 07:16:37 -0800
+From: danb <danb@ece.ucsb.edu>
+To: Shi Frank <fgshi@uci.edu>, Banerjee Kaustav <kaustav@ece.ucsb.edu>,
+     Hu Evelyn <hu@ece.ucsb.edu>, Chang Edward <echang@ece.ucsb.edu>,
+     Fiona Goodchild <fiona@mrl.ucsb.edu>,
+     Cheng Kwang-Ting <timcheng@ece.ucsb.edu>,
+     Coldren Larry <coldren@ece.ucsb.edu>,
+     Hespanha Joao <hespanha@ece.ucsb.edu>, Bowers John <bowers@ece.ucsb.edu>,
+     West Tom <twest@cenic.org>, Clarke David <clarke@engineering.ucsb.edu>,
+     Fainman Yeshaiahu <fainman@ece.ucsd.edu>, Teel Andy <teel@ece.ucsb.edu>,
+     Dagli Nadir <dagli@ece.ucsb.edu>,
+     Kokotovic Petar <petar@bradbury.ece.ucsb.edu>,
+     MacDonald Noel <nmacd@engineering.ucsb.edu>,
+     Liu-Yen Kramer <liu-yen@engineering.ucsb.edu>,
+     Blumenthal Daniel <danb@ece.ucsb.edu>, Jalali Bahram <jalali@ucla.edu>,
+     Ayanoglu Ender <ayanoglu@uci.edu>, Papen George <gpapen@ucsd.edu>
+Subject: Alternate Motivation/intro
+
+The first version I sent out last night was supposed to be a somewhat
+different motivation for the pre-proposal. This is an alternate version
+i wrote up a couple of days ago but was not happy with. What would be
+the best approach for introducing the challenges and making the
+reviewers want to read on and ask us to submit a pre-proposal? The
+large ITR is a big deal and there will have to be unique vision behind
+it. i am somewhat concerned that the typical claim to needing just more
+bandwidth, etc may fall into the noise due to the Internet bubble.
+Another approach to take would be to link this to BW requirements for
+social needs that don't change with the economic tides (Medical, etc).
+
+1.1 Motivation and Challenges (earlier version)
+As the capability to generate and house massive amounts of data
+globally continues to increase at unprecedented rates, the capability
+for end users to access and interact with this data on a pervasive
+scale remains elusive. From scientists to elementary school children,
+there is a need to interact with each other and with these vast
+storehouses of data, and the failure to provide true high bandwidth
+information access has become the single most critical bottleneck to
+pervasive deployment of broadband networks and generation of new
+applications today. The impact of removing this bottleneck will be to
+change the way we educate and learn, conduct collaborative science and
+engineering, and grow new economically stimulating applications and
+businesses that can reach all segments of society.
+The proposed Project is our vision of how to expand the frontiers of IT
+and its applications by enabling pervasive interaction with
+Gigabit-per-Second optical information. We see the future as not just
+about accessing high bandwidth data but being interactive with the data
+where large amounts of information will be sent out as well as
+received, in contrast to many of today’s asymmetric broadband
+solutions. We realize that at the highly pervasive scale (i.e. to every
+home user), this technology may initially lead to symmetrical 100 Mp/s
+with a roadmap to Gb/s.The symmetrical flow of Gigabit-per-Second data
+will require the bandwidth supplied by optical fibers and the fiber
+wiring itself to be pervasive.  The question whether high bandwidth
+will be needed on a pervasive basis and on a symmetrical basis is an
+open issue. There are indicators for scientific applications like iGrid
+2002 (we could put some quotes in here for BW needs from the actual NSF
+studies).
+Delivery of this technology on a mass scale will not be possible
+without significant advances in photonic integration akin to the
+revolution in electronic integration in the 1960s. However, the
+development of integrated photonic technologies cannot be done in a
+vacuum but must be done in concert with other circuit technologies,
+with knowledge of how this technology will interplay with the network
+architecture and it’s functions, the computing architecture and the end
+user applications. It is equally important that the impact of pervasive
+gigabit photons on the applications themselves and the way scientists,
+engineering, students and the general public will do their work and
+live their lives in the future.
+Next Paragraph is more detail summary about the proposed research.
+

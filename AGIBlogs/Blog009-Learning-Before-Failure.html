@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Learning Before Failure: From Socratic Audit to Preventive Intelligence | The AGI Forum</title>
+<meta content="How can AI learn from past errors and prevent the same mistakes in the future? Current methods address feedback, reflection, and memory, but the harder problem is using the right lesson in the right situation before failure returns." name="description"/>
+<meta content="Edward Y. Chang" name="author"/>
+<link href="https://infolab.stanford.edu/~echang/AGIBlogs/Blog009-Learning-Before-Failure.html" rel="canonical"/>
+<meta content="article" property="og:type"/>
+<meta content="The AGI Forum" property="og:site_name"/>
+<meta content="Learning Before Failure: From Socratic Audit to Preventive Intelligence" property="og:title"/>
+<meta content="How can AI learn from past errors and prevent the same mistakes in the future? From reasoning audit and causal repair to using the right lesson before failure returns." property="og:description"/>
+<meta content="http://infolab.stanford.edu/~echang/AGIBlogs/Blog009-Learning-Before-Failure.html" property="og:url"/>
+<meta content="summary_large_image" name="twitter:card"/>
+<style>
+    :root {
+      --bg-color:#fafbfc; --card-bg:#ffffff; --text-main:#24292f; --text-muted:#57606a;
+      --slate:#57606a; --accent:#0969da; --accent-tint:#f6f8fa; --border-color:#d0d7de;
+      --gold:#c8a24a; --gold-soft:#e6d9b8; --navy:#1b2a4a; --crimson:#9d2b2b;
+      --safe:#547fa0; --danger:#a85a57; --green:#58765d;
+      --font-body:-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;
+      --font-serif:"Iowan Old Style","Palatino Linotype","Book Antiqua",Palatino,Georgia,serif;
+      --font-mono:ui-monospace,SFMono-Regular,"SF Mono",Menlo,Consolas,monospace;
+    }
+    * { box-sizing:border-box; margin:0; padding:0; }
+    html { scroll-behavior:smooth; }
+    body { background:var(--bg-color); color:var(--text-main); font-family:var(--font-body); line-height:1.8; font-size:18px; -webkit-font-smoothing:antialiased; }
+    .container { max-width:860px; margin:0 auto; padding:40px 24px 80px; }
+    .site-nav { display:flex; gap:18px; font-size:14px; border-bottom:1px solid var(--border-color); padding-bottom:14px; margin-bottom:28px; flex-wrap:wrap; }
+    .site-nav a { color:var(--text-muted); text-decoration:none; }
+    .site-nav a:hover { color:var(--accent); text-decoration:underline; }
+    .site-nav a.back-hub { color:var(--accent); font-weight:700; }
+    .masthead { border-bottom:2px solid var(--text-main); padding-bottom:18px; margin-bottom:30px; }
+    .forum-title { font-size:22px; font-weight:800; letter-spacing:-.01em; text-transform:uppercase; color:#1f2328; margin-bottom:4px; }
+    .forum-title a { color:inherit; text-decoration:none; }
+    .forum-subtitle { font-size:14px; color:var(--text-muted); }
+    .return-bar { display:inline-flex; align-items:center; gap:8px; margin-bottom:24px; font-size:14px; font-weight:600; }
+    .return-bar a,.return-bottom a { color:var(--accent); text-decoration:none; }
+    .return-bar a:hover,.return-bottom a:hover { text-decoration:underline; }
+    header { margin-bottom:36px; border-bottom:1px solid var(--border-color); padding-bottom:28px; }
+    .series-tag { font-size:13px; font-weight:600; color:var(--crimson); text-transform:uppercase; letter-spacing:.08em; margin-bottom:12px; display:inline-block; }
+    h1 { font-family:var(--font-serif); font-size:38px; line-height:1.2; letter-spacing:-.012em; font-weight:700; color:#1f2328; margin-bottom:12px; max-width:820px; }
+    .subtitle { font-size:19px; color:var(--slate); font-style:italic; margin-bottom:16px; line-height:1.45; }
+    .meta { font-size:15px; color:var(--text-muted); display:flex; gap:14px; align-items:center; flex-wrap:wrap; }
+    .article-body h2 { font-family:var(--font-serif); font-size:25px; letter-spacing:-.01em; margin:46px 0 18px; padding-bottom:8px; border-bottom:1px solid var(--border-color); color:#1f2328; scroll-margin-top:24px; }
+    .article-body h3 { font-family:var(--font-serif); font-size:20px; margin:28px 0 10px; color:var(--navy); }
+    .article-body p { margin-bottom:22px; }
+    .article-body ol,.article-body ul { margin-bottom:22px; padding-left:28px; }
+    .article-body li { margin-bottom:10px; }
+    .article-body a { color:var(--navy); text-decoration:none; border-bottom:1px solid var(--gold-soft); }
+    .article-body a:hover { color:var(--crimson); border-bottom-color:var(--crimson); }
+    .lead { font-family:var(--font-serif); font-size:20px; line-height:1.65; color:#2f4050; }
+    .dropcap:first-letter { float:left; font-family:var(--font-serif); font-size:66px; line-height:.88; padding-right:9px; padding-top:8px; color:var(--navy); }
+    .pull { border-left:4px solid var(--crimson); background:#fdf6f6; font-size:20px; font-family:var(--font-serif); padding:18px 24px; margin:32px 0; border-radius:0 6px 6px 0; color:#1f2328; line-height:1.6; }
+    .note { background:var(--card-bg); border:1px solid var(--border-color); border-left:5px solid var(--navy); border-radius:8px; padding:20px 22px; margin:28px 0; color:#3f5366; box-shadow:0 1px 3px rgba(0,0,0,.03); }
+    .note strong { color:var(--navy); }
+    .warning { border-left-color:var(--crimson); background:#fff8f8; color:#4a3a3a; }
+    .principles { counter-reset:p; margin:28px 0; }
+    .principle { position:relative; padding:16px 18px 16px 64px; margin:14px 0; background:#fff; border:1px solid var(--border-color); border-radius:8px; }
+    .principle:before { counter-increment:p; content:counter(p); position:absolute; left:18px; top:17px; width:30px; height:30px; border-radius:50%; display:grid; place-items:center; background:var(--navy); color:#fff; font-weight:700; font-size:15px; }
+    .principle strong { color:var(--navy); }
+    figure { margin:30px 0 34px; }
+    figure img { display:block; width:100%; height:auto; border:1px solid var(--border-color); border-radius:8px; background:#fff; }
+    figcaption { font-size:14px; color:var(--text-muted); line-height:1.55; margin-top:10px; }
+    .compare-wrap { overflow-x:auto; margin:30px 0; }
+    .compare-table { width:100%; border-collapse:collapse; background:#fff; font-size:15px; line-height:1.55; min-width:700px; }
+    .compare-table th,.compare-table td { border:1px solid var(--border-color); padding:12px 14px; vertical-align:top; }
+    .compare-table th { background:#f6f8fa; color:var(--navy); text-align:left; }
+    .compare-table td:first-child { font-weight:700; color:#2c3f52; width:19%; }
+    .equation { font-family:var(--font-serif); font-size:20px; text-align:center; margin:26px 0; padding:16px 18px; background:#fff; border-top:1px solid var(--gold-soft); border-bottom:1px solid var(--gold-soft); overflow-x:auto; }
+    .flow { display:grid; grid-template-columns:repeat(5,minmax(0,1fr)); gap:10px; align-items:stretch; margin:30px 0 12px; }
+    .node { position:relative; border:1px solid var(--border-color); border-radius:8px; padding:16px 10px; background:#fff; text-align:center; font-size:14px; line-height:1.45; }
+    .node strong { display:block; color:var(--navy); margin-bottom:4px; }
+    .node:not(:last-child)::after { content:"→"; position:absolute; right:-10px; top:50%; transform:translate(50%,-50%); color:var(--crimson); background:var(--bg-color); padding:0 2px; font-weight:800; z-index:2; }
+    .node.gate { border:2px solid var(--crimson); background:#fff8f8; }
+    .dual { display:grid; grid-template-columns:1fr 1fr; gap:16px; margin:28px 0; }
+    .card { background:#fff; border:1px solid var(--border-color); border-radius:8px; padding:22px; box-shadow:0 1px 3px rgba(0,0,0,.03); }
+    .card h3 { margin-top:0; }
+    .card p:last-child { margin-bottom:0; }
+    .card.physical { border-top:5px solid var(--gold); }
+    .card.cyber { border-top:5px solid var(--accent); }
+    .evidence-grid { display:grid; grid-template-columns:1fr 1fr; gap:16px; margin:28px 0; }
+    .evidence-card { background:#fff; border:1px solid var(--border-color); border-radius:8px; padding:20px; box-shadow:0 1px 3px rgba(0,0,0,.03); }
+    .evidence-card h3 { margin:0 0 9px; font-family:var(--font-serif); font-size:20px; color:var(--navy); }
+    .evidence-card p { font-size:16px; line-height:1.65; margin-bottom:12px; }
+    .evidence-card p:last-child { margin-bottom:0; }
+    .evidence-stat { font-family:var(--font-serif); font-size:18px; color:var(--crimson); font-weight:700; }
+    .source-note { font-size:15px; color:var(--text-muted); border-left:4px solid var(--gold); padding:12px 16px; background:#fdfaf2; margin:24px 0 30px; }
+    .semantic-box { background:#fff; border:1px solid var(--border-color); border-radius:8px; padding:22px; margin:28px 0; }
+    .semantic-row { display:grid; grid-template-columns:1fr auto 1fr; gap:14px; align-items:center; padding:12px 0; border-bottom:1px solid #eef1f4; }
+    .semantic-row:last-child { border-bottom:0; }
+    .literal,.meaning { font-family:var(--font-mono); background:#f6f8fa; border:1px solid #e1e5e8; border-radius:6px; padding:11px 12px; text-align:center; }
+    .meaning.bad { color:#8c2f2f; background:#fff7f7; border-color:#ebcaca; font-weight:700; }
+    .arrow { color:var(--crimson); font-weight:800; }
+    .threat-loop { display:grid; grid-template-columns:1fr 44px 1fr 44px 1fr; align-items:center; gap:6px; margin:28px 0; }
+    .loop-box { border:1px solid var(--border-color); border-radius:8px; background:#fff; padding:18px 14px; text-align:center; font-size:15px; }
+    .loop-box strong { display:block; font-family:var(--font-serif); color:var(--navy); margin-bottom:4px; font-size:18px; }
+    .loop-arrow { text-align:center; color:var(--crimson); font-size:26px; font-weight:800; }
+    .closing { margin-top:40px; padding:26px; border:1px solid var(--gold-soft); border-left:5px solid var(--gold); background:#fdfaf2; border-radius:8px; }
+    .closing p:last-child { margin-bottom:0; }
+    .related-post { margin-top:38px; padding-top:22px; border-top:1px solid var(--border-color); font-size:16px; }
+    .return-bottom { margin-top:18px; font-size:14px; font-weight:700; }
+    footer { margin-top:56px; border-top:1px solid var(--border-color); padding-top:28px; font-size:14px; color:var(--text-muted); text-align:center; }
+    footer a { color:var(--navy); text-decoration:none; }
+    .skip-link { position:absolute; left:16px; top:-90px; z-index:10; background:var(--navy); color:#fff; padding:10px 16px; border-radius:5px; font-size:15px; }
+    .skip-link:focus { top:12px; }
+    a:focus-visible { outline:3px solid var(--gold); outline-offset:4px; }
+    @media (max-width:760px) {
+      .dual,.evidence-grid { grid-template-columns:1fr; }
+      .flow { grid-template-columns:1fr; }
+      .node:not(:last-child)::after { content:"↓"; right:auto; left:50%; top:auto; bottom:-14px; transform:translate(-50%,50%); }
+      .threat-loop { grid-template-columns:1fr; }
+      .loop-arrow { transform:rotate(90deg); }
+      .semantic-row { grid-template-columns:1fr; }
+      .arrow { text-align:center; transform:rotate(90deg); }
+    }
+    @media (max-width:640px) {
+      .container { padding:24px 18px 52px; }
+      .site-nav { gap:10px 16px; line-height:1.5; }
+      .forum-title { font-size:20px; }
+      h1 { font-size:31px; }
+      .subtitle { font-size:18px; }
+      .lead { font-size:18px; }
+      .meta { gap:7px 10px; font-size:14px; }
+      .series-tag { font-size:12px; letter-spacing:.06em; }
+      .article-body h2 { font-size:24px; line-height:1.35; }
+      .pull { padding:16px 19px; }
+    }
+    @media (prefers-reduced-motion:reduce) { html { scroll-behavior:auto; } }
+    @media print { .site-nav,.return-bar,.return-bottom,.skip-link{display:none}.container{max-width:none;padding:0}body{background:#fff;font-size:12pt;line-height:1.55}.card,.note,.principle,.closing,.semantic-box{break-inside:avoid}h2,h3{break-after:avoid} }
+  
+    .paper-banner { margin:22px 0 30px; padding:18px 20px; background:#f6f8fa; border:1px solid var(--border-color); border-left:5px solid var(--accent); border-radius:8px; font-size:15px; line-height:1.6; }
+    .paper-banner strong { color:var(--navy); }
+    .try-box { margin:28px 0; padding:22px; background:#fff; border:1px solid var(--border-color); border-top:5px solid var(--gold); border-radius:8px; }
+    .try-box h3 { margin-top:0; }
+    .prompt-box { white-space:pre-wrap; font-family:var(--font-mono); font-size:14px; line-height:1.55; background:#f6f8fa; border:1px solid #e1e5e8; border-radius:7px; padding:16px; overflow-x:auto; margin:14px 0 10px; }
+    .split-view { display:grid; grid-template-columns:1fr 1fr; gap:16px; margin:28px 0; }
+    .view-card { background:#fff; border:1px solid var(--border-color); border-radius:8px; padding:20px; }
+    .view-card h3 { margin-top:0; }
+    .view-card.scanner { border-top:5px solid var(--slate); }
+    .view-card.model { border-top:5px solid var(--crimson); }
+    .glossary { margin:30px 0; padding:22px; background:#fff; border:1px solid var(--border-color); border-radius:8px; }
+    .glossary h3 { margin-top:0; }
+    .glossary-grid { display:grid; grid-template-columns:1fr 1fr; gap:12px 20px; }
+    .glossary-item { font-size:15px; line-height:1.55; }
+    .glossary-item strong { color:var(--navy); }
+    .references { margin-top:46px; }
+    .references ol { padding-left:24px; }
+    .references li { margin-bottom:14px; font-size:15px; line-height:1.6; }
+    .cite-ref { font-size:.72em; vertical-align:super; line-height:0; }
+    .cite-ref a { border-bottom:0; }
+    .small-note { font-size:14px; color:var(--text-muted); line-height:1.55; }
+    .compound-box { margin:30px 0; padding:22px; background:#fff8f8; border:1px solid #ebcaca; border-left:5px solid var(--crimson); border-radius:8px; }
+    .compound-box p:last-child { margin-bottom:0; }
+    @media (max-width:760px) { .split-view,.glossary-grid { grid-template-columns:1fr; } }
+
+
+    /* Dispatch 08 additions: shared AGI Forum typography and restrained visual storytelling. */
+    .deck { margin:24px 0 30px; padding:20px 23px; background:var(--card-bg); border-left:5px solid var(--gold); border-top:1px solid var(--gold-soft); border-bottom:1px solid var(--gold-soft); font-size:18px; line-height:1.65; }
+    .scene-grid { display:grid; grid-template-columns:1fr 1fr; gap:18px; margin:28px 0 32px; }
+    .scene { background:#fff; border:1px solid var(--border-color); border-radius:8px; padding:22px; }
+    .scene h3 { margin:0 0 10px; font-family:var(--font-serif); font-size:21px; color:var(--navy); }
+    .scene p { font-size:16px; line-height:1.65; margin:0; }
+    .scene strong { color:var(--navy); }
+    .metric { font-size:27px; line-height:1.2; font-family:var(--font-serif); color:var(--crimson); display:block; font-weight:700; margin:5px 0 10px; }
+    .timeline { position:relative; margin:30px 0 34px; border-left:3px solid var(--gold-soft); padding-left:26px; }
+    .timeline-item { position:relative; margin:0 0 24px; padding:0 0 4px; }
+    .timeline-item::before { content:''; position:absolute; width:13px; height:13px; border-radius:50%; background:var(--navy); border:3px solid #fff; left:-35px; top:7px; box-shadow:0 0 0 1px var(--gold-soft); }
+    .timeline-year { text-transform:uppercase; color:var(--crimson); font-size:13px; font-weight:800; letter-spacing:.055em; }
+    .timeline-item strong { display:block; color:var(--navy); font-size:18px; margin:3px 0 5px; }
+    .timeline-item p { margin:0; font-size:16.5px; line-height:1.65; }
+    .vs { display:grid; grid-template-columns:1fr 1fr; gap:14px; margin:26px 0 31px; }
+    .vs .card { padding:21px; }
+    .vs .card h3 { margin:0 0 12px; font-size:20px; }
+    .vs .card p { margin:0; font-size:16px; }
+    .vs .card.vote { border-top:5px solid var(--slate); }
+    .vs .card.discover { border-top:5px solid var(--gold); }
+    .field-note { font-size:14px; color:var(--text-muted); padding:9px 0 18px; }
+    .flow-wrap { margin:28px 0 32px; }
+    .flow-caption { font-size:14px; color:var(--slate); line-height:1.6; }
+    .takeaway { margin:32px 0; padding:18px 22px; border:1px solid var(--gold-soft); border-left:5px solid var(--gold); background:#fdfaf2; border-radius:8px; }
+    .takeaway p { margin:0; }
+    .author-note { font-size:15px; color:var(--slate); background:#fff; border:1px solid var(--border-color); padding:14px 19px; border-radius:8px; margin:25px 0 35px; }
+    @media (max-width:760px) { .scene-grid,.vs { grid-template-columns:1fr; } .timeline { padding-left:23px; } .timeline-item::before { left:-32px; } }
+</style>
+<meta content="http://infolab.stanford.edu/~echang/AGIBlogs/Blog009-Fig1-Socratic-Symposium.png" property="og:image"/><meta content="http://infolab.stanford.edu/~echang/AGIBlogs/Blog009-Fig1-Socratic-Symposium.png" name="twitter:image"/></head>
+<body>
+<a class="skip-link" href="#article">Skip to article</a>
+<div class="container">
+<nav aria-label="AGI Forum navigation" class="site-nav">
+<a class="back-hub" href="AGIForumIndex.html">← The AGI Forum Index</a>
+<a href="http://infolab.stanford.edu/~echang/">Stanford Home</a>
+<a href="Blog003-Path-to-AGI-Trilogy.html">The Path to AGI Trilogy</a>
+<a href="https://socrasynth.com/" rel="noopener noreferrer" target="_blank">SocraSynth / QuadriumAI</a>
+</nav>
+<div class="masthead"><div class="forum-title"><a href="AGIForumIndex.html">The AGI Forum: Theories, Practice, Safety, Risk &amp; Policy</a></div>
+<div class="forum-subtitle">Dispatches on Theoretical Paradigms, Architectural Practice, and Global AI Policy</div></div>
+<div class="return-bar"><a href="AGIForumIndex.html">← Back to Forum Home Page</a></div>
+<header><div class="series-tag">Dispatch No. 09 · Reasoning, Memory &amp; Preventive Intelligence</div>
+<h1>Learning Before Failure: From Socratic Audit to Preventive Intelligence</h1>
+<div class="subtitle">How can AI learn from past errors and use the right lesson in time to prevent the same mistake from happening again?</div>
+<div class="meta"><span>Edward Y. Chang</span><span aria-hidden="true">•</span><span>Stanford InfoLab</span><span aria-hidden="true">•</span><time datetime="2026-10-13">October 13, 2026</time><span aria-hidden="true">•</span><span>12 min read</span></div></header>
+<main class="article-body" id="article">
+<p class="lead dropcap"><strong>How can AI learn from past errors and prevent the same mistakes in the future?</strong></p>
+<p>Current methods address important pieces of this problem, but they do not by themselves solve the whole problem. An AI can be corrected after a mistake, receive feedback, write a reflection, or store a lesson in memory. Yet none of those steps guarantees that, when a similar situation appears later, the system will recognize the warning signs, retrieve the <strong>right</strong> lesson, determine that the lesson actually applies, and use it <strong>before the failure happens again</strong>.</p>
+<p>Suppose an AI makes a serious mistake. We show it what went wrong, and afterward it can explain the lesson perfectly. <strong>Has it learned?</strong> Not necessarily. Explaining yesterday's failure is different from preventing tomorrow's repetition.</p>
+<p>Humans understand this intuitively. A good driver does not merely explain why an earlier accident happened; the driver changes behavior when the same danger appears again. A physician does not simply document an adverse reaction; the lesson matters when it helps protect the next patient in time.</p>
+<div class="pull"><strong>Learning is not just correcting yesterday's mistake. Learning means using the right lesson at the right moment to prevent tomorrow's repetition.</strong></div>
+<p>This is the gap we call <strong>Learning Before Failure</strong>. The challenge is not simply to make AI remember its mistakes. It is to make validated experience change future behavior when, where, and only when it should.</p>
+<p>Our research leading to this point has moved through three questions. First: can an AI recognize flawed reasoning even when it does not know the correct answer? Second: can it identify <em>why</em> the reasoning failed and repair the causal mistake? Third, and most importantly here: <strong>once a lesson has been learned, can the system recognize when it matters again and act in time?</strong></p>
+<p>Existing approaches have made substantial progress on feedback, reflection, memory, and post-hoc correction. The harder end-to-end requirement is connecting a supported lesson from the past to the right future decision before harm recurs, while avoiding the equally dangerous mistake of applying the wrong lesson.</p>
+<p>That final step turns memory from a record of the past into something potentially much more valuable: <strong>preventive intelligence</strong>.</p>
+<p>To test this idea, we use a simulated rescue mission. A flood is rising, information may be stale, vehicles can fail, and decisions have deadlines. The important question is not whether the AI can explain a past mistake. It is whether a lesson from that mistake reaches the next decision soon enough to prevent another failure.</p>
+<p>This essay follows three steps in a research program: <a href="https://aclanthology.org/2026.findings-acl.427/" rel="noopener noreferrer" target="_blank">Recursive Causal Audit (Findings of ACL 2026)</a>, <a href="https://arxiv.org/abs/2602.11675" rel="noopener noreferrer" target="_blank">Epistemic Regret Minimization (ERM, 2026)</a>, and <a href="https://doi.org/10.5281/zenodo.22309384" rel="noopener noreferrer" target="_blank"><em>Learning Before Failure: The Preventable Moment</em></a> (LBF), publicly archived on Zenodo. They address different parts of one problem: <strong>how an intelligent system turns criticism and experience into better future judgment</strong>.<sup class="cite-ref"><a href="#ref-1">[1]</a></sup><sup class="cite-ref"><a href="#ref-2">[2]</a></sup><sup class="cite-ref"><a href="#ref-3">[3]</a></sup></p>
+<h2>The professor who does not know the answer</h2>
+<p>Imagine a doctoral student presenting a brilliant new idea. The student may understand the underlying model or experiment far better than the senior professor. A good mentor need not claim to possess the undiscovered result. Instead, the professor asks: <em>What assumption connects this evidence to that conclusion? What alternative explanation have you excluded? Did you confuse correlation with an intervention? Would your claim survive a counterexample?</em></p>
+<p>These questions can expose a defective argument even when neither student nor professor knows the ultimate answer. The Socratic tradition made such inquiry central to intellectual life. One does not become wise by agreeing with the most confident speaker or by demanding an answer key for every question. One learns to examine the reasons for a belief.<sup class="cite-ref"><a href="#ref-4">[4]</a></sup></p>
+<div class="pull"><strong>A critic can know that a conclusion does not follow from its premises without knowing whether the conclusion happens to be true.</strong></div>
+<p>Consider a familiar logical error: <em>If a road floods, its surface becomes wet. The road is wet. Therefore, it flooded.</em> The road might be wet because of rainfall or a water truck. The inference is invalid even if the road did, in fact, flood. The difference between <em>correct conclusion</em> and <em>correct reasoning</em> is where our first research step begins.</p>
+<figure><img alt="An imagined cross-era symposium with Socrates, other classical thinkers, and AI agents discussing the shift from reactive correction to preventive intelligence." loading="lazy" src="Blog009-Fig1-Socratic-Symposium.png"/><figcaption><strong>Figure 1. A symbolic symposium across eras.</strong> This is an imagined scene, not a historical meeting: Socratic questioning, causal reasoning, and AI agents converge on the transition from fixing past errors to using the right lesson before failure returns.</figcaption></figure><h2>First step: ACL 2026 — audit the reason, not the answer key</h2>
+<p>In <a href="https://aclanthology.org/2026.findings-acl.427/" rel="noopener noreferrer" target="_blank"><em>Diagnosing and Mitigating Sycophancy and Skepticism in LLM Causal Judgment</em></a>, published in <strong>Findings of ACL 2026</strong>, we introduced <strong>Recursive Causal Audit (RCA)</strong>. The independent judge does not see the gold-answer labels. It examines the model's stated causal derivation, internal consistency, whether the conclusion follows from the derivation, and whether a forceful user's hint has improperly displaced that reasoning.<sup class="cite-ref"><a href="#ref-1">[1]</a></sup></p>
+<p>This is an operational form of the Socratic idea: ask a model to explain its reasoning, examine the proposed warrant, and challenge the step that does not follow. The goal is not to have another model confidently guess the same answer. It is to make a defect in the reasoning visible.</p>
+<p>The paper also identified two opposing failures. In <strong>sycophancy</strong>, a model bends toward the user's preferred answer. In excessive <strong>skepticism</strong>, it becomes so reluctant to accept evidence that it rejects valid inferences or declines to act. Both can make a system unreliable. An effective reasoning audit must recognize when to challenge and when a conclusion is adequately supported.</p>
+<div class="note"><strong>What answer-key-free audit establishes.</strong> RCA can identify a broken link between expressed premises, reasoning, and conclusion without knowing the benchmark's correct label. It does not automatically prove that the premises are true. A perfectly consistent but false causal story may still pass a consistency check. That distinction motivates the next step.</div>
+<h2>Second step: ERM — correct a causal model, not just its output</h2>
+<p>A model can be <em>right for the wrong reason</em>. Suppose hospital readmissions fall after staffing levels rise. If the model claims staffing caused the improvement while ignoring a simultaneous discharge-policy change, a correct-looking answer may be supported by an invalid causal story. Rewarding only the final outcome risks strengthening that shortcut.</p>
+<p><a href="https://arxiv.org/abs/2602.11675" rel="noopener noreferrer" target="_blank"><em>Epistemic Regret Minimization: Label-Free Causal Critique Beyond Outcome Reward</em></a>, developed with Longling Geng, takes this problem deeper. ERM critiques the causal structure of the exposed reasoning: unexamined confounders, correlation–intervention confusion, unjustified counterfactual steps, and missing causal paths. It then supplies targeted feedback so the reasoner can reconsider the defective inference.<sup class="cite-ref"><a href="#ref-2">[2]</a></sup></p>
+<p>Crucially, this need not begin with a known correct answer or a complete true causal graph. Established causal principles can identify a missing assumption or unsupported inference. But critique still needs evidence and disciplined verification: finding a plausible flaw is not the same as discovering ground truth.</p>
+<div class="flow-wrap"><div aria-label="Progression from causal reasoning audit to preventive decision" class="flow">
+<div class="node"><strong>EXPOSE</strong>What did the model conclude, and why?</div>
+<div class="node"><strong>AUDIT</strong>Does the conclusion follow?</div>
+<div class="node"><strong>REPAIR</strong>Which causal assumption is flawed?</div>
+<div class="node"><strong>RETAIN</strong>What generalizable lesson survives?</div>
+<div class="node gate"><strong>APPLY</strong>Does that lesson fit this case, in time?</div>
+</div><div class="flow-caption">The research trajectory. RCA and ERM address diagnostic and repair questions; Learning Before Failure studies a later, distinct problem: how a previously audited lesson influences a fresh decision.</div></div>
+<p>ERM also challenges an overly narrow conception of feedback. Reinforcement learning does <em>not</em> universally require ground-truth answer labels: many reward signals are possible. The deeper issue is that <strong>rewarding what happened does not by itself explain why it happened</strong>. An agent that repeatedly succeeds for a spurious reason may be accumulating a dangerous weakness that outcome scores will not expose.<sup class="cite-ref"><a href="#ref-5">[5]</a></sup></p>
+<h2>Third step: Learning Before Failure — remembering is not using</h2>
+<p>Now imagine that an agent <em>already has</em> a collection of well-formed lessons from earlier rescue missions. One lesson concerns a rising flood crest; another, a stale report; a third, an unreliable vehicle. Each describes a failure, a supported correction, the situations where it applies, and the time left to act.</p>
+<p>All the lessons are present in memory. Yet the agent may still select the wrong correction, overlook the relevant lesson, or act after the prevention window has closed.</p>
+<div class="pull"><strong>Stored knowledge becomes useful only when the right lesson reaches the right decision, applies to the present situation, and arrives before the deadline.</strong></div>
+<p>The 2026 study <a href="https://doi.org/10.5281/zenodo.22309384" rel="noopener noreferrer" target="_blank"><em>Learning Before Failure: The Preventable Moment</em></a>, by Edward Y. Chang and J. Roy, develops this principle and tests an implementation called <strong>LBF-Gate</strong>. Its key scientific choice is to hold the underlying model and the stored lesson bank fixed while varying <em>how</em> those same lessons are supplied to a planner.<sup class="cite-ref"><a href="#ref-3">[3]</a></sup></p>
+<p>In the central comparison, one agent sees the entire structured lesson bank with no special indication of what applies. LBF-Gate sees that <em>same</em> complete bank, but a deterministic gate checks available scope and warning-sign fields and marks the relevant lesson as an operative constraint. The model still chooses the action and its start time. A third baseline receives free-text reflections about prior failures.</p>
+<p>This is not simply a test of better writing, a larger model, or a shorter prompt. It isolates whether connecting a previously known lesson to the live decision changes behavior.</p>
+<h3>What the flood-rescue experiment found</h3>
+<div class="compare-wrap"><table aria-label="LBF-Gate compared with active memory in the latest study" class="compare-table">
+<thead><tr><th>Held-out simulated mission loss</th><th>Same lessons, unmarked</th><th>LBF-Gate</th><th>Reduction</th></tr></thead>
+<tbody>
+<tr><td>GPT-5.4 mini</td><td>0.1948</td><td>0.0864</td><td><strong>0.1084</strong></td></tr>
+<tr><td>Claude Sonnet 4.6</td><td>0.2514</td><td>0.1648</td><td><strong>0.0866</strong></td></tr>
+</tbody></table></div>
+<p class="small-note">The metric is the study's normalized simulated mission loss on a 0–1 scale; lower is better. These are absolute loss reductions, not percentage-point improvements in real rescue success. The comparison uses 375 independent load-paired blocks per recurrence class per model, with the full study preserving 162,000 planned evaluation slots, including failures. Source: <em>Learning Before Failure: The Preventable Moment</em>, Section 5.<sup class="cite-ref"><a href="#ref-3">[3]</a></sup></p>
+<p>The study reports positive lower bounds for all three tested recurrence classes on both primary models, while meeting its prespecified tolerances for cases where applying a lesson is inappropriate. Gating also outperforms the free-text reflection baseline in the primary comparisons. These are results in a <em>constructed</em> search-and-rescue environment, not physical rescue deployments.</p>
+<h2>The dangerous discovery: the wrong lesson can be worse than no lesson</h2>
+<p>Perhaps the study's most instructive result is its negative control. The researchers took the same request, the same stored bank, the same framing, and changed which lesson was marked. When the marked lesson was the wrong one, much of the advantage disappeared.</p>
+<p>For GPT-5.4 mini, wrong marking increased normalized loss by about <strong>0.113</strong> relative to leaving the bank unmarked. Instead of simply choosing a bad action, the model often escalated the decision to a human: the reported escalation rate rose from about <strong>2%</strong> under unmarked memory to <strong>56%</strong> with the wrong mark. Roughly half of those escalations completed too late to prevent the modeled failure. On Claude, wrong marking generally erased the benefit without the same measured degree of degradation.<sup class="cite-ref"><a href="#ref-3">[3]</a></sup></p>
+<p>This turns the usual enthusiasm for AI memory upside down. A lesson is not necessarily helpful just because it was learned from a previous incident. The old event may involve a different cause, a different authority, a different resource, or a different deadline. Applying it in the wrong situation can itself become the next error.</p>
+<div class="note"><strong>Learning requires knowing when <em>not</em> to use a lesson.</strong> That is why LBF pairs improvement on recurring problems with protected tests for near-miss situations: the warning sign may not match, the required correction may differ, or doing nothing may be appropriate.</div>
+<h2>Four obligations of a useful memory</h2>
+<div class="principles">
+<div class="principle"><strong>Persistence.</strong> The lesson must survive beyond the interaction in which the original failure was discovered. A transient conversation is not a reliable long-term memory.</div>
+<div class="principle"><strong>Reachability.</strong> The relevant planner or acting component must actually receive the lesson, not merely know that some database contains it.</div>
+<div class="principle"><strong>Applicability.</strong> The lesson must be bound to an appropriate scope, observable warning signs, and supporting provenance. A resemblance is not automatically causal equivalence.</div>
+<div class="principle"><strong>Timeliness.</strong> The response must be initiated and completed while prevention remains possible. A correct instruction delivered after a bridge collapses is no longer an adequate intervention.</div>
+</div>
+<p>These requirements apply beyond flood rescue. In medicine, a lesson about one patient's adverse reaction cannot be copied blindly to another patient. In finance, a past market regime may have ended. In physical robotics, a remembered safe route may now be blocked. In human relationships, yesterday's sensible advice can become today's mistake when circumstances or responsibilities change.</p>
+<h2>From critique to preventive intelligence</h2>
+<p>The three stages answer increasingly demanding questions. <strong>RCA</strong> asks whether the stated reasoning warrants the stated conclusion, including when a judge does not know the answer. <strong>ERM</strong> asks whether a causal explanation contains a defect that should be repaired. <strong>LBF</strong> asks whether a lesson supported by an earlier audit can change a new decision in time, and whether inappropriate reuse can be avoided.</p>
+<div class="compare-wrap"><table aria-label="Three layers of the reasoning-to-prevention research program" class="compare-table">
+<thead><tr><th>Research step</th><th>The central question</th><th>What it contributes</th></tr></thead>
+<tbody>
+<tr><td>RCA — ACL 2026</td><td>Does the conclusion follow from the derivation?</td><td>Gold-label-blind process audit</td></tr>
+<tr><td>ERM — 2026</td><td>Which causal assumption or inference needs repair?</td><td>Targeted causal critique and correction</td></tr>
+<tr><td>LBF — 2026 study</td><td>Will an earlier lesson improve this decision before failure?</td><td>Scope-aware, timely lesson use with negative controls</td></tr>
+</tbody></table></div>
+<p>They are distinct research results, not a claim that one complete autonomous learning loop has already been demonstrated. In particular, the LBF experiment begins with supplied audits and symbolic applicability fields; it tests how agents use those records, not whether an agent can independently discover the correct causal explanation in every domain. Connecting reliable audit, diagnosis, source validation, persistent memory, and real-world authorization remains the architectural work ahead.</p>
+<p>That is also where the broader <a href="https://dl.acm.org/doi/book/10.1145/3822380" rel="noopener noreferrer" target="_blank"><em>System-2 Reasoning</em>, Volume II of <em>The Path to AGI</em></a>, and the emerging MACI implementation enter the picture. A capable agent needs more than a powerful predictor. It needs a disciplined way to interrogate reasoning, preserve corrections, recognize when they apply, and verify their consequences across time.<sup class="cite-ref"><a href="#ref-6">[6]</a></sup></p>
+<h2>What I would ask of the next generation of AI agents</h2>
+<p>After a mistake, the agent should be able to explain what failed and distinguish that observation from the causal explanation. It should identify which evidence supports a correction, where that correction applies, and what would invalidate it. It should carry the lesson to the responsible decision-maker and intervene before the prevention window closes. And it should know when the situation is sufficiently different that the old lesson must <em>not</em> be applied.</p>
+<p>None of this replaces the need for sound evidence, external grounding, authorization, or human accountability. It makes those requirements more operational. The measure of learning is not merely whether memory contains a good sentence about the past. It is whether the right future behavior changes—and whether the system avoids damaging new situations by overgeneralizing from old ones.</p>
+<div class="closing"><p><strong>A model that corrects its answer after failure has learned something about yesterday.</strong></p>
+<p><strong>An agent that recognizes the warning signs, retrieves the right causal lesson, and acts in time may prevent tomorrow's failure.</strong></p>
+<p>That is the direction of preventive intelligence: <em>not simply remembering mistakes, but learning when, why, and how a past mistake should change the next decision.</em></p></div>
+<div class="author-note"><strong>Research status.</strong> RCA appeared in <em>Findings of ACL 2026</em>; ERM is available as a 2026 preprint; <a href="https://doi.org/10.5281/zenodo.22309384" rel="noopener noreferrer" target="_blank">LBF is publicly archived on Zenodo</a>. Its experiments use constructed search-and-rescue missions and supplied audits. The comparisons above report the study's completed experiments.</div>
+<section class="references" id="references"><h2>References and reading</h2><ol>
+<li id="ref-1"><strong>Chang, Edward Y. (2026).</strong> <a href="https://aclanthology.org/2026.findings-acl.427/" rel="noopener noreferrer" target="_blank"><em>Diagnosing and Mitigating Sycophancy and Skepticism in LLM Causal Judgment.</em></a> <em>Findings of ACL 2026</em>, 8769–8789. DOI: 10.18653/v1/2026.findings-acl.427.</li>
+<li id="ref-2"><strong>Chang, Edward Y., &amp; Geng, Longling (2026).</strong> <a href="https://arxiv.org/abs/2602.11675" rel="noopener noreferrer" target="_blank"><em>Epistemic Regret Minimization: Label-Free Causal Critique Beyond Outcome Reward.</em></a> arXiv:2602.11675, preprint.</li>
+<li id="ref-3"><strong>Chang, E. Y., &amp; Roy, J. (2026).</strong> <a href="https://doi.org/10.5281/zenodo.22309384" rel="noopener noreferrer" target="_blank"><em>Learning Before Failure: The Preventable Moment.</em></a> Zenodo. DOI: 10.5281/zenodo.22309384.</li>
+<li id="ref-4"><strong>Chang, Edward Y. (2023).</strong> <a href="https://doi.org/10.1109/CCWC57344.2023.10099179" rel="noopener noreferrer" target="_blank"><em>Prompting Large Language Models With the Socratic Method.</em></a> IEEE CCWC, March 2023. Philosophical context: <a href="https://plato.stanford.edu/entries/socrates/" rel="noopener noreferrer" target="_blank">Stanford Encyclopedia of Philosophy, Socrates</a>.</li>
+<li id="ref-5"><strong>Sutton, Richard S., &amp; Barto, Andrew G. (2018).</strong> <a href="http://incompleteideas.net/book/the-book-2nd.html" rel="noopener noreferrer" target="_blank"><em>Reinforcement Learning: An Introduction.</em></a> MIT Press, 2nd edition.</li>
+<li id="ref-6"><strong>Chang, Edward Y. (2026).</strong> <a href="https://dl.acm.org/doi/book/10.1145/3822380" rel="noopener noreferrer" target="_blank"><em>System-2 Reasoning: From Semantic Anchoring to Causal Intelligence.</em></a> <em>The Path to AGI</em>, Volume II. ACM Books, July 23, 2026.</li>
+</ol></section>
+<p class="related-post"><strong>Previous dispatch:</strong> <a href="Blog008-Collaboration-Is-Not-Voting.html">Collaboration Is Not Voting: What Agentic AI Must Learn</a>.</p>
+<div class="return-bottom"><a href="AGIForumIndex.html">← Back to Forum Home Page</a></div>
+</main>
+<footer><p>© 2026 <a href="http://infolab.stanford.edu/~echang/" rel="noopener noreferrer" target="_blank">Edward Y. Chang</a>. Published as part of <em>The AGI Forum: Theories, Practice, Safety, Risk &amp; Policy</em>.</p></footer>
+</div></body></html>

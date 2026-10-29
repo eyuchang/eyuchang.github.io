@@ -1,0 +1,412 @@
+\section{Core Technologies}
+
+There are several startup companies in the United States, Canada 
+and elsewhere who are prototyping digital-VCRs that 
+support interactive TV. However, these efforts, to the
+best of my knowledge, have not incorporated database technologies
+to enhance usability, nor have they addressed
+the efficiency, cost, scalability and QoS adaptability issues. 
+Consequently, with the help
+of my students and colleagues, 
+I plan to focus a significant portion of 
+the rearch I propose to undertake 
+on resource management and on 
+multimedia data management for interactive TV.
+
+In addition to investigating new techniques for managing
+system resources and data, we will attempt to share a common image
+representation for both resource and data management.
+Traditionally, the image processing community and the database 
+community have been developing their own image representations, i.e.,
+the image processing community proposes 
+compression algorithms and the database community proposes image
+feature representations (e.g., color histograms).
+A fascinating research direction may be to build search indexes 
+on the compressed data directly. We are especially interested
+in exploring {\em layered coding} techniques that can support
+both scalable content degradation and scalable content-based indexing.
+
+Finally, our design goal is not only to provide the 
+interactive functions, but also
+provide these functions with minimum resource requirement
+(hence at minimum cost) and with minimum initial latency.
+In the following sections, I enumerate the technologies 
+we plan to work on, beginning with our efforts in resource
+management. 
+
+\subsection{Resource Management}
+
+The design objectives of the resource manager are to:
+\begin{nlist}
+\item {\bf 1}: Minimize initial latency of an interactive request,
+\item {\bf 2}: Meet continuous data requirements of real-time data
+objects, 
+\item {\bf 3}: Be able to adapt to available resources and
+the viewer's QoS specification, and
+\item {\bf 4}: Fulfill the above objectives with
+minimize resource requirements (and hence minimum cost).
+\end{nlist}
+
+\subsubsection{Characterizing Data Objects}
+
+\begin{figure}[t]
+\epsfxsize=260pt
+\epsfysize=160pt
+\centerline{\epsffile{fig-dtv-data.eps}}
+\caption{The Characteristics of DTV Data Objects.}
+\label{fig-dtv-data}
+\end{figure}
+               
+Since not all data are equal in terms of
+their resource requirements, it
+is critical to understand the characteristics of
+the data objects we are dealing with before devising resource
+management schemes. DTV data objects can be continuous, textual, binary,
+and so forth.  These data objects are
+best characterized by their {\it sizes}
+and {\it latency constraints}. Continuous
+data are audio/video streams, which are voluminous and
+delay sensitive.
+Textual data include captions, HTML and XML documents,
+etc. Textual data occupy far less space than continuous data
+and are not as delay sensitive. Other data, such as images and applets,
+can be very copious or scant and may or may not be delay sensitive,
+depending on the nature of the application.
+Figure~\ref{fig-dtv-data} shows the characteristics of
+these data objects. The $x$-axis in the figure represents the
+delay sensitivity from low (on the left-hand side) to high
+(on the right-hand side); the $y$-axis gives the size of an object.
+At one extreme, videos are large and very sensitive to
+delay. At the other extreme, captions are small in size and not very
+sensitive to delay.      
+
+%The size of a data object is measured by the amount of storage
+%space it needs.
+%To quantify the delay sensitivity of a data object, one
+%can specify a value function for each data object.
+%The function can be defined in many ways:
+%The $x$-axis in the figure depicts delay; the $y$-axis
+%depicts the value of the object normalized to
+%from zero (worthless) to one. Function $F_a$
+%depicts an object that can tolerate delay up to $t_\delta$.
+%Function $F_b$ shows the value of an object that decays linearly
+%after $t_\delta$. Functions $F_c$ and $F_d$ have other
+%value decay patterns.
+%Function $F_a$ is a good value function for
+%an audio frame.  Function $F_b$ may be a good value function for a video
+%frame since slight delay of a frame display may be tolerable.
+%
+%\begin{figure}[t]
+%\epsfysize=160pt
+%\epsfxsize=280pt
+%\centerline{\epsffile{fig-delay-fs.eps}}
+%\caption{Delay Functions.}
+%\label{fig-delay-fs}  
+%\end{figure}
+                
+When allocating resources for data objects, we must 
+take into consideration both their sizes and latency constraints.
+
+
+\subsubsection{Low Latency Real-time Buffer Management}
+
+Viewers will like to
+switch channels or to perform viewing and content interactivity
+with minimum initial latency. To achieve minimum initial latency,
+the resource manager
+must be able to service an interactive request 
+promptly. Since the disk IO is the bottleneck of
+the performance, the objective is to schedule IOs
+in the right order so that on the one hand the disk arm can
+quickly service the newly requested 
+interactive task, and on the other hand fulfill
+the real-time constraints of other data objects.
+For instance, in the geography lecture example, a
+student my click on the globe object on the desk to request a
+video clip about the earth, while the instructor
+is speaking. We do not want to interrupt the 
+continuation of the audio track but we also want
+to render the video clip as soon as possible.
+To deal with these conflicting goals will be a challenge.
+
+
+Three techniques can be explored so that IO scheduling can
+be made more flexible. They are: {\em data
+prefetching}, {\em caching}, and {\em data placement}.
+When the disk bandwidth is under-utilized, the disk
+can be scheduled to perform prefetching
+for continuous data so that when 
+an interactive request arrives, a sufficient amount of
+continuous data has
+been staged in main memory to meet their real-time 
+requirements. This gives the disk arm 
+freedom to service the interactive request immediately.
+To minimize the DRAM requirement (and hence reduces the 
+cost of building the receiver box), the resource manager
+should minimize disk latency, which requires implementing
+intelligent disk-scheduling and data-placement policies.
+It is important to note that the {\em receiver-side}
+analysis differs from more
+``traditional'' server-side analyses \cite{ex121,ex86,ex8-1,ex302}.
+In particular, in a server environment, the server has full control of
+the data generation rate, while at the receiver, data arrival (from
+the network) is unpredictable.  
+In other words, the server schedules events while the receiver
+reacts to events;
+We will evaluate the tradeoffs between
+various factors and devise 
+efficient and cost-effective resource management strategies
+for the receiver
+to meet the low initial latency goal under real-time data constraints.
+
+
+\subsubsection{QoS-Adaptive Resource Management}
+
+A client's memory space and disk bandwidth may not be adequate
+for supporting a particular interactive scenario. 
+The resource manager should be scalable to
+the resource constraints and should degrade, if degradation is
+unavoidable, in a graceful manner.
+Furthermore, since the viewing preferences can
+differ from one user to another, the resource manager
+must be adaptive to an individual's QoS requirement.        
+%(Resource constraints and QoS requirements are
+%now added to the receiver.)
+
+The degradation of content can happen in two different
+levels: on the object level and on the scene level.
+
+\begin{nlist}
+\item {\bf On the object level}, a layered coding scheme can
+be used so that only selected layers are decoded to achieve
+the targeted QoS. 
+A part of our research effort will be devoted to designing a
+layered encoding scheme for supporting object-level
+QoS degradation as well as scalable content-based indexing. 
+
+\item {\bf On the scene level}, some data objects
+that are occluded can be kept from
+being processed. The remaining objects can be scheduled
+based on the combination of the viewer's QoS specification
+and the delay functions of the data objects. The goal
+of the scheduler is to maximize the total QoS
+under the resource constraints.
+Suppose that in the geography lecture example the
+system resources cannot render both the white board object
+and the instructor object. In this case the resource manager
+renders the object that receives a higher QoS assignment
+from the student.
+\end{nlist}
+
+The challenges posed by all the above issues---caching, data prefetching 
+and placement, QoS-adaptivity, initial latency, real-time
+data constraints and cost---will be to
+devise a resource management policy that satisfies all
+requirements at the same time.
+To achieve this aim, we plan to
+first develop effective techniques for caching, data
+prefetching and placement, and scheduling, then
+combining individual techniques to achieve global
+objective: maximizing QoS. We plan to
+formulate the resource management plans quantitatively.
+Our preliminary idea is to develop a model that considers all 
+constraints together with QoS requirements
+and that can be solved efficiently in real-time
+for a schedule that achieves maximum total QoS.
+
+%\subsubsection*{Real-time CPU Scheduling}
+%
+%The receiver's CPU must decode and render the data objects
+%frame after frame to meet their display deadlines. 
+%Although one can assume that the receiver has a real-time
+%CPU scheduler, this assumption may not be realistic.
+%Gauging from the fact that most off-the-shelf operating systems
+%do not support real-time scheduling and people do not need a real-time 
+%scheduler for most their tasks, it is desirable to build
+%a real-time scheduler on top of a conventional operating
+%system.
+%
+%Many studies \cite{} have proposed schemes that give
+%the real-time threads the top priority. This may give 
+%the real-time threads more CPU time in the long run, but
+%does not guarantee short-term CPU time to the
+%time critical threads. For short-term real-time
+%guarantee, 
+
+\subsection{Multimedia Data Management}
+
+The design objectives of the data manager are to:
+\begin{nlist}
+\item {\bf 1}. Index temporally related data properly
+for efficient object lookup and retrieval, and
+\item {\bf 2}. Support content-based queries for fast-forward and instant
+replay.
+\end{nlist}
+
+\subsubsection{Indexing for Temporally Related Data}
+
+When a data object
+is referenced, it and all its temporally related objects should be
+found quickly, and once requested, be retrieved efficiently. 
+Indexing temporally related objects can be tricky.
+In principle, all temporally related object should be 
+stored contiguously on disk to minimize the disk latency 
+necessary to retrieve them.
+However, since an object is often shared in many scenes,
+replication may not always be desirable. One alternative is
+storing shared objects in the middle tracks so their
+access latency is constrainted. Another alternative
+is storing shared objects on the outer tracks to take
+advantage of their higher data transfer rates. 
+We will experiment with various data placement policies to
+examine if some rules of thumb can work most of the time.
+
+It seems that building indexes at the scene level is
+appropriate since a scene is a reasonable search 
+unit (why this is so is discussed further 
+in the content-based retrieval section,
+which follows). Once a scene can be located, the 
+scene description can tell where its data objects
+reside. I believe that the combination of hashing and XML
+may be an appropriate structure for indexing scenes.
+A hash table provides fast scene lookup; XML
+provides the flexibility to describe semistructured
+objects in a scene. We will investigate how to
+deal with efficient updates (primarily necessary because of changes
+of the object's location)
+and queries on XML structures \cite{Abi97,Bun97,MW99}.
+Another challenging problem and a new research direction
+is performing similarity queries on semi-structured 
+data that is in XML format.
+
+One useful feature that the receiver can support is video
+editing. A video editing tool can combine scenes from
+different videos into a customized clip. Supporting
+video editing introduces additional scene management issues.
+When a scene is shared by more than one clip, the scene
+should not be copied entirely. A scene is copied only 
+when its substantial content is modified. Otherwise,
+we may want to create a shell scene, which maintains
+links to its parent scene and keeps only those objects that it
+modified. 
+
+\subsubsection{Indexing for Content-Based Retrieval}
+
+To support effective time-shift operations and general
+multimedia database queries, we
+intent to build a content-based video scene
+retrieval system. 
+A video can be divided into a number of sequences,
+a sequence a number of scenes, and a scene a number
+of frames.  We believe that a scene should be a reasonable
+query unit. Supporting queries on the frame level 
+is simply too expensive (a one-hour video
+at 25 frames/second frame rate has $90$K frames).
+Furthermore, indexing on the frame level 
+cannot describe motion, e.g., a bus is approaching.
+Supporting queries on the sequence level
+may be too coarse and may hurt query precision.
+Therefore, we plan to build scene descriptors
+and build indexes on these scene descriptors.
+
+Building such a system faces
+four challenging steps: 1) selecting and extracting features from
+multimedia data objects, 2) clustering the extracted features,
+3) indexing objects based on their feature clusters, and 4) devising
+query processing steps that find matches efficiently
+in the database.
+
+Selecting and extracting features can be complicated.
+Fortunately, much low-hanging fruit in this area is ready to be plucked.
+We plan to rely
+on existing tools as much as possible. For feature clustering,
+a large number of papers \cite{img11,img12,img13}
+have been published with many of
+ideas. Instead of coming up with yet another feature
+cluster, we will experiment with a variance control model
+that will decide how fine the features must be clusters to attain
+good similarity results.
+Take image searching as an example.
+If one wants to find near-copies of an image,
+the feature cluster should record finer details 
+of the color distribution on the query image. If one wants to find
+images of similar colors that are not necessarily
+at the same spots, the feature vector can record 
+coarser color distribution. 
+Extensive exploration and experiments will 
+be performed to verify if this variance controlled 
+approach can be fruitful.
+
+Content-based retrieval 
+is inherently expensive, especially when
+it needs a large number of dimensions to characterize the
+target object (e.g., an image or a video scene).  
+There is simply no way to
+build an index on disk such that {\em all} nearest neighbors to {\em
+any} query point are physically near on disk.  
+Fortunately, in many cases it is
+sufficient to perform an {\em approximate search} that returns many
+but not all nearest neighbors~\cite{AM94,Cla94,IM98,Jk97,KOR98}.  (A
+feature vector is often an approximate characterization of an object,
+so we are already dealing with approximations anyway.)  
+I have recently proposed a
+clustering/indexing combined scheme that achieves approximate
+similarity search with high efficiency \cite{Lch99}.
+This proposed clustering/indexing combined scheme should
+provide a solid foundation for continued work,
+but many challenges remain. We are, for one, not
+convinced that the Euclidean distance
+is the only way to measure similarity for multimedia data.
+Thus, we are investigating other similarity measures
+(e.g., Hamming distance, etc.). For another,
+we think similarity should be personalizable.
+We will thus investigate new measures for similarity.
+
+Finally, 
+for query processing, we will investigate 
+data models, query languages and query optimization techniques.
+
+%\subsection{Image Coding and Packetization}
+%\label{sec-image}
+%
+%The researchers in the compression
+%camp have been devised compression techniques 
+%for coding efficiency and robustness. The
+%researchers in the database camp have been devised
+%indexing data organization schemes for efficient data retrieval.
+%Researchers in two camps often characterize an image 
+%differently. Consequently, an image may have one
+%representation (e.g., JPEG) in transmission and
+%another representation (e.g., color histograms)
+%for the indexing phase. 
+%It would be nice if two efforts can
+%share one common data representation. At this time, wavelets
+%seem to be an attractive choice.
+%Wavelets' scalability fits well
+%for supporting both scalable content degradation and
+%scalable content-based indexing.
+%
+%%While studying image representation, we also want to
+%investigate how an image should be packetized to
+%be more error resilient.
+%One idea is that for the base image/audio/video layer, 
+%forward error correction (FEC) code can be applied to
+%improve its error resiliency. For progressive layers, 
+%however, we may not want to
+%spend additional bits on channel encoding. Instead, we can rely on 
+%error concealment and reconstruction techniques to
+%recover an image after encountering channel errors.
+%
+%We will also investigate image-based rendering techniques.
+%At this end, our focus is on video panoramas for supporting
+%spatial viewing interactivity.
+%For a single camera, supporting
+%video panoramas requires a method for locating
+%frames that contain smooth
+%camera pans or tilts, from which the panoramic
+%view can be synthesized.
+%
+
+%\subsection{Putting All the Pieces Together}
+
+

@@ -1,0 +1,661 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html xmlns:v="urn:schemas-microsoft-com:vml"
+xmlns:o="urn:schemas-microsoft-com:office:office"
+xmlns:w="urn:schemas-microsoft-com:office:word"
+xmlns:dt="uuid:C2F41010-65B3-11d1-A29F-00AA00C14882"
+xmlns="http://www.w3.org/TR/REC-html40">
+
+<head>
+<meta http-equiv=Content-Type content="text/html; charset=Big5">
+<meta name=ProgId content=Word.Document>
+<meta name=Generator content="Microsoft Word 9">
+<meta name=Originator content="Microsoft Word 9">
+<link rel=File-List href="./index2_files/filelist.xml">
+<link rel=Edit-Time-Data href="./index2_files/editdata.mso">
+<!--[if !mso]>
+<style>
+v\:* {behavior:url(#default#VML);}
+o\:* {behavior:url(#default#VML);}
+w\:* {behavior:url(#default#VML);}
+.shape {behavior:url(#default#VML);}
+</style>
+<![endif]-->
+<title>Edward Y. Chang's Site</title>
+<!--[if gte mso 9]><xml>
+ <o:DocumentProperties>
+  <o:Author>Dean</o:Author>
+  <o:Template>Normal</o:Template>
+  <o:LastAuthor>Chang</o:LastAuthor>
+  <o:Revision>10</o:Revision>
+  <o:TotalTime>47</o:TotalTime>
+  <o:Created>2004-09-13T18:35:00Z</o:Created>
+  <o:LastSaved>2006-11-07T11:28:00Z</o:LastSaved>
+  <o:Pages>1</o:Pages>
+  <o:Words>496</o:Words>
+  <o:Characters>2832</o:Characters>
+  <o:Lines>23</o:Lines>
+  <o:Paragraphs>5</o:Paragraphs>
+  <o:CharactersWithSpaces>3477</o:CharactersWithSpaces>
+  <o:Version>9.3821</o:Version>
+ </o:DocumentProperties>
+</xml><![endif]--><!--[if gte mso 9]><xml>
+ <w:WordDocument>
+  <w:Compatibility>
+   <w:UseFELayout/>
+  </w:Compatibility>
+ </w:WordDocument>
+</xml><![endif]-->
+<style>
+<!--
+ /* Font Definitions */
+@font-face
+	{font-family:SimSun;
+	panose-1:2 1 6 0 3 1 1 1 1 1;
+	mso-font-alt:SimSun;
+	mso-font-charset:134;
+	mso-generic-font-family:auto;
+	mso-font-pitch:variable;
+	mso-font-signature:3 135135232 16 0 262145 0;}
+@font-face
+	{font-family:PMingLiU;
+	panose-1:2 2 3 0 0 0 0 0 0 0;
+	mso-font-alt:PMingLiU;
+	mso-font-charset:136;
+	mso-generic-font-family:roman;
+	mso-font-pitch:variable;
+	mso-font-signature:3 137232384 22 0 1048577 0;}
+@font-face
+	{font-family:"Book Antiqua";
+	panose-1:2 4 6 2 5 3 5 3 3 4;
+	mso-font-charset:0;
+	mso-generic-font-family:roman;
+	mso-font-pitch:variable;
+	mso-font-signature:647 0 0 0 159 0;}
+@font-face
+	{font-family:SimSun;
+	panose-1:2 1 6 0 3 1 1 1 1 1;
+	mso-font-charset:134;
+	mso-generic-font-family:auto;
+	mso-font-pitch:variable;
+	mso-font-signature:3 135135232 16 0 262145 0;}
+@font-face
+	{font-family:"\@PMingLiU";
+	panose-1:2 2 3 0 0 0 0 0 0 0;
+	mso-font-charset:136;
+	mso-generic-font-family:roman;
+	mso-font-pitch:variable;
+	mso-font-signature:3 137232384 22 0 1048577 0;}
+ /* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{mso-style-parent:"";
+	margin:0in;
+	margin-bottom:.0001pt;
+	mso-pagination:widow-orphan;
+	font-size:12.0pt;
+	font-family:Arial;
+	mso-fareast-font-family:"Times New Roman";
+	color:black;
+	mso-fareast-language:ZH-TW;}
+h1
+	{mso-style-next:Normal;
+	margin-top:12.0pt;
+	margin-right:0in;
+	margin-bottom:3.0pt;
+	margin-left:0in;
+	mso-pagination:widow-orphan;
+	page-break-after:avoid;
+	mso-outline-level:1;
+	font-size:24.0pt;
+	font-family:Arial;
+	mso-fareast-font-family:PMingLiU;
+	color:#000099;
+	mso-font-kerning:16.0pt;
+	mso-fareast-language:ZH-TW;
+	font-weight:normal;
+	mso-bidi-font-weight:bold;}
+h2
+	{mso-style-next:Normal;
+	margin-top:12.0pt;
+	margin-right:0in;
+	margin-bottom:3.0pt;
+	margin-left:0in;
+	mso-pagination:widow-orphan;
+	page-break-after:avoid;
+	mso-outline-level:2;
+	font-size:18.0pt;
+	font-family:Arial;
+	mso-fareast-font-family:PMingLiU;
+	color:#000099;
+	mso-fareast-language:ZH-TW;
+	font-weight:normal;
+	mso-bidi-font-weight:bold;
+	mso-bidi-font-style:italic;}
+h3
+	{mso-style-next:Normal;
+	margin-top:12.0pt;
+	margin-right:0in;
+	margin-bottom:3.0pt;
+	margin-left:0in;
+	mso-pagination:widow-orphan;
+	page-break-after:avoid;
+	mso-outline-level:3;
+	font-size:14.0pt;
+	font-family:Arial;
+	mso-fareast-font-family:PMingLiU;
+	color:#000099;
+	mso-fareast-language:ZH-TW;
+	font-weight:normal;
+	mso-bidi-font-weight:bold;}
+h4
+	{mso-style-next:Normal;
+	margin-top:12.0pt;
+	margin-right:0in;
+	margin-bottom:3.0pt;
+	margin-left:0in;
+	mso-pagination:widow-orphan;
+	page-break-after:avoid;
+	mso-outline-level:4;
+	font-size:12.0pt;
+	font-family:Arial;
+	mso-fareast-font-family:PMingLiU;
+	color:#000099;
+	mso-fareast-language:ZH-TW;
+	font-weight:normal;
+	mso-bidi-font-weight:bold;}
+h5
+	{mso-style-next:Normal;
+	margin-top:12.0pt;
+	margin-right:0in;
+	margin-bottom:3.0pt;
+	margin-left:0in;
+	mso-pagination:widow-orphan;
+	mso-outline-level:5;
+	font-size:10.0pt;
+	font-family:Arial;
+	mso-fareast-font-family:PMingLiU;
+	color:#000099;
+	mso-fareast-language:ZH-TW;
+	font-weight:normal;
+	mso-bidi-font-weight:bold;
+	mso-bidi-font-style:italic;}
+h6
+	{mso-style-next:Normal;
+	margin-top:12.0pt;
+	margin-right:0in;
+	margin-bottom:3.0pt;
+	margin-left:0in;
+	mso-pagination:widow-orphan;
+	mso-outline-level:6;
+	font-size:8.0pt;
+	font-family:Arial;
+	mso-fareast-font-family:PMingLiU;
+	color:#000099;
+	mso-fareast-language:ZH-TW;
+	font-weight:normal;
+	mso-bidi-font-weight:bold;}
+a:link, span.MsoHyperlink
+	{color:#000099;
+	text-decoration:underline;
+	text-underline:single;}
+a:visited, span.MsoHyperlinkFollowed
+	{color:#339966;
+	text-decoration:underline;
+	text-underline:single;}
+@page Section1
+	{size:8.5in 11.0in;
+	margin:1.0in 1.25in 1.0in 1.25in;
+	mso-header-margin:.5in;
+	mso-footer-margin:.5in;
+	mso-paper-source:0;}
+div.Section1
+	{page:Section1;}
+-->
+</style>
+<!--[if gte mso 9]><xml>
+ <o:shapedefaults v:ext="edit" spidmax="1107"/>
+</xml><![endif]--><!--[if gte mso 9]><xml>
+ <o:shapelayout v:ext="edit">
+  <o:idmap v:ext="edit" data="1"/>
+ </o:shapelayout></xml><![endif]--><!-- saved from url=(0035)http://infolab.stanford.edu/~echang/ -->
+<meta http-equiv=Content-Language content=zh-CN>
+</head>
+
+<body bgcolor="#dfeeed" lang=EN-US link="#000099" vlink="#339966"
+style='tab-interval:.5in' alink="#cc3300">
+<!--[if gte mso 9]><xml>
+ <v:background id="_x0000_s1105" o:bwmode="white" fillcolor="#dfeeed"
+  o:targetscreensize="800,600">
+  <v:fill src="" o:title="captext" type="frame"/>
+ </v:background></xml><![endif]-->
+
+<div class=Section1>
+
+<table border=0 cellspacing=0 cellpadding=0 width=700 style='width:525.0pt;
+ mso-cellspacing:0in;mso-padding-alt:0in 0in 0in 0in'>
+ <tr>
+  <td>
+<a href="http://infolab.stanford.edu/~echang/foundations-of-large-scale-multimedia-information-retrieval-and-management.html">
+<img border="0" src="http://images.springer.com/cda/content/image/cda_displayimage.jpg?SGWID=0-0-16-942155-0" alt="Book Cover" width="158" height="228" /></a>
+  </td>
+  <td>
+<a href="http://infolab.stanford.edu/~echang/nomadic-eternity.html">
+<img border="0" src="http://infolab.stanford.edu/~echang/Ed-Poems/NomadicEternity-Cover.jpg?SGWID=0-0-16-942155-0" alt="Book Cover" width="158" height="228" /></a>
+  </td>
+  <td>
+<a href="https://www.fastcompany.com/40406304/more-star-trek-tech-in-real-life-the-qualcomm-tricorder-xprize">
+<img border="0" src="http://infolab.stanford.edu/~echang/TricorderWinner2017.jpg?SGWID=0-0-16-942155-0" alt="Book Cover" width="386" height="228" /></a>
+  </td>
+ </tr>
+</table>
+<br>
+<br>
+ <tr>
+ <!td style='padding:3.5pt 1.5pt 1.5pt 3.5pt'>
+  <p class=MsoNormal align=left style='text-align:ledt'><b><span
+  style='font-family:"Book Antiqua";color:#222222'>Edward Y. Chang</span></b>
+  <br>
+  <span style='font-family:"Book Antiqua";color:#222222'>
+  President, DeepQ Health<br>
+  <a href="http://openbigdatagroup.github.io/">Open Big Data Group</a><br>
+  Email: eyuchang at gmail dot com<br>
+  </span><span style='font-family:"Book Antiqua";
+  mso-fareast-font-family:SimSun;color:#222222;mso-fareast-language:ZH-CN'>
+  </span><span style='font-family:"Book Antiqua";color:#222222'><br>
+  </span><span style='font-family:"Book Antiqua"'><o:p></o:p></span></p>
+ </td>
+ <!/tr>
+
+<p class=MsoNormal><span style='font-family:"Book Antiqua";color:#666666;
+display:none;mso-hide:all'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></p>
+
+<table border=0 cellspacing=0 cellpadding=0 width=700 style='width:525.0pt;
+ mso-cellspacing:0in;mso-padding-alt:0in 0in 0in 0in'>
+ <tr>
+  <td style='padding:1.5pt 1.5pt 1.5pt 1.5pt'>
+  <p class=MsoNormal><![if !supportEmptyParas]>&nbsp;<![endif]><span
+  style='font-family:"Book Antiqua"'><o:p></o:p></span></p>
+  </td>
+ </tr>
+ <tr>
+  <td style='background:#330066;padding:1.5pt 1.5pt 1.5pt 1.5pt;background-attachment:
+  scroll;background-position-x:50%;background-position-y:0%;background-repeat:
+  repeat'>
+  <p class=MsoNormal><b><i><span style='color:white'>BIOGRAPHY</span></i></b><span
+  style='color:white'> </span><span style='font-family:"Book Antiqua"'><o:p></o:p></span></p>
+  </td>
+ </tr>
+ <tr>
+  <td style='padding:1.5pt 1.5pt 1.5pt 1.5pt'>
+  <p class=MsoNormal style='margin-left:.25in'><span style='font-size:10.0pt;
+  font-family:"Book Antiqua";color:windowtext'><!--[if gte vml 1]><v:shapetype
+   id="_x0000_t75" coordsize="21600,21600" o:spt="75" o:preferrelative="t"
+   path="m@4@5l@4@11@9@11@9@5xe" filled="f" stroked="f">
+   <v:stroke joinstyle="miter"/>
+   <v:formulas>
+    <v:f eqn="if lineDrawn pixelLineWidth 0"/>
+    <v:f eqn="sum @0 1 0"/>
+    <v:f eqn="sum 0 0 @1"/>
+    <v:f eqn="prod @2 1 2"/>
+    <v:f eqn="prod @3 21600 pixelWidth"/>
+    <v:f eqn="prod @3 21600 pixelHeight"/>
+    <v:f eqn="sum @0 0 1"/>
+    <v:f eqn="prod @6 1 2"/>
+    <v:f eqn="prod @7 21600 pixelWidth"/>
+    <v:f eqn="sum @8 21600 0"/>
+    <v:f eqn="prod @7 21600 pixelHeight"/>
+    <v:f eqn="sum @10 21600 0"/>
+   </v:formulas>
+   <v:path o:extrusionok="f" gradientshapeok="t" o:connecttype="rect"/>
+   <o:lock v:ext="edit" aspectratio="t"/>
+  </v:shapetype><v:shape id="_x0000_i1026" type="#_x0000_t75" style='width:11.25pt;
+   height:11.25pt' o:bullet="t">
+
+   <v:imagedata src="" o:title="capbul1a"/>
+  </v:shape><![endif]--><![if !vml]><img border=0 width=15 height=15
+  src="./Edward_Y_Chang_files/image003.gif" alt="*" v:shapes="_x0000_i1026"><![endif]></span><span
+  style='font-size:10.0pt;font-family:"Book Antiqua"'>President, DeepQ Health (2012-)</span><span style='font-size:10.0pt;
+  font-family:"Book Antiqua";color:#666666'><o:p></o:p></span></p>
+  <p class=MsoNormal style='margin-left:.25in'><span style='font-size:10.0pt;
+  font-family:"Book Antiqua";color:windowtext'><!--[if gte vml 1]><v:shape
+   id="_x0000_i1027" type="#_x0000_t75" style='width:11.25pt;height:11.25pt'
+   o:bullet="t">
+
+  </v:shape><![endif]--><![if !vml]><img border=0 width=15 height=15
+  src="./Edward_Y_Chang_files/image003.gif" alt="*" v:shapes="_x0000_i1026"><![endif]></span><span
+  style='font-size:10.0pt;font-family:"Book Antiqua"'>Adjunct Professor, Computer
+  Science, HKUST, HK (2012-2015)</span><span style='font-size:10.0pt;
+  font-family:"Book Antiqua";color:#666666'><o:p></o:p></span></p>
+  <p class=MsoNormal style='margin-left:.25in'><span style='font-size:10.0pt;
+  font-family:"Book Antiqua";color:windowtext'><!--[if gte vml 1]><v:shape
+   id="_x0000_i1027" type="#_x0000_t75" style='width:11.25pt;height:11.25pt'
+   o:bullet="t">
+
+
+   <v:imagedata src="" o:title="capbul1a"/>
+  </v:shape><![endif]--><![if !vml]><img border=0 width=15 height=15
+  src="./Edward_Y_Chang_files/image003.gif" alt="*" v:shapes="_x0000_i1026"><![endif]></span><span
+  style='font-size:10.0pt;font-family:"Book Antiqua"'>Director of Research,
+  Google (2006-2012)</span><span style='font-size:10.0pt;
+  font-family:"Book Antiqua";color:#666666'><o:p></o:p></span></p>
+  <p class=MsoNormal style='margin-left:.25in'><span style='font-size:10.0pt;
+  font-family:"Book Antiqua";color:windowtext'><!--[if gte vml 1]><v:shape
+   id="_x0000_i1027" type="#_x0000_t75" style='width:11.25pt;height:11.25pt'
+   o:bullet="t">
+
+   <v:imagedata src="" o:title="capbul1a"/>
+  </v:shape><![endif]--><![if !vml]><img border=0 width=15 height=15
+  src="./Edward_Y_Chang_files/image003.gif" alt="*" v:shapes="_x0000_i1026"><![endif]></span><span
+  style='font-size:10.0pt;font-family:"Book Antiqua"'>Assistant, Associate, Full Professor, Electrical
+  Engineering, University of California Santa Barbara (1999-2008)</span><span style='font-size:10.0pt;
+  font-family:"Book Antiqua";color:#666666'><o:p></o:p></span></p>
+  <p class=MsoNormal style='margin-left:.25in'><span style='font-size:10.0pt;
+  font-family:"Book Antiqua";color:windowtext'><!--[if gte vml 1]><v:shape
+   id="_x0000_i1027" type="#_x0000_t75" style='width:11.25pt;height:11.25pt'
+   o:bullet="t">
+
+   <v:imagedata src="" o:title="capbul1a"/>
+  </v:shape><![endif]--><![if !vml]><img border=0 width=15 height=15
+  src="./Edward_Y_Chang_files/image003.gif" alt="*" v:shapes="_x0000_i1026"><![endif]></span><span
+  style='font-size:10.0pt;font-family:"Book Antiqua"'>Ph.D., Electrical
+  Engineering, Stanford University (1995-1999)</span><span style='font-size:10.0pt;
+  font-family:"Book Antiqua";color:#666666'><o:p></o:p></span></p>
+  <p class=MsoNormal style='margin-left:.25in'><span style='font-size:10.0pt;
+  font-family:"Book Antiqua";color:windowtext'><!--[if gte vml 1]><v:shape
+   id="_x0000_i1027" type="#_x0000_t75" style='width:11.25pt;height:11.25pt'
+   o:bullet="t">
+   <v:imagedata src="" o:title="capbul1a"/>
+  </v:shape><![endif]--><![if !vml]><img border=0 width=15 height=15
+  src="./Edward_Y_Chang_files/image003.gif" alt="*" v:shapes="_x0000_i1027"><![endif]></span><span
+  style='font-size:10.0pt;font-family:"Book Antiqua"'>M.S., Computer Science,
+  Stanford University </span><span style='font-size:10.0pt;font-family:"Book Antiqua";
+  color:#666666'><o:p></o:p></span></p>
+  <p class=MsoNormal style='margin-left:.25in'><span style='font-size:10.0pt;
+  font-family:"Book Antiqua";color:windowtext'><!--[if gte vml 1]><v:shape
+   id="_x0000_i1028" type="#_x0000_t75" style='width:11.25pt;height:11.25pt'
+   o:bullet="t">
+   <v:imagedata src="" o:title="capbul1a"/>
+  </v:shape><![endif]--><![if !vml]><img border=0 width=15 height=15
+  src="./Edward_Y_Chang_files/image003.gif" alt="*" v:shapes="_x0000_i1028"><![endif]></span><span
+  style='font-size:10.0pt;font-family:"Book Antiqua";color:#333333'>M.S.
+  Industrial Engineering &amp; Operations Research, UC Berkeley</span><span
+  style='font-size:10.0pt;font-family:"Book Antiqua";color:#686868'><o:p></o:p></span></p>
+  <p class=MsoNormal style='margin-left:.25in'><span style='font-size:10.0pt;
+  font-family:"Book Antiqua";color:#686868'><!--[if gte vml 1]><v:shape id="_x0000_i1029"
+   type="#_x0000_t75" style='width:11.25pt;height:11.25pt' o:bullet="t">
+   <v:imagedata src="" o:title="capbul1a"/>
+  </v:shape><![endif]--><![if !vml]><img border=0 width=15 height=15
+  src="./Edward_Y_Chang_files/image003.gif" alt="*" v:shapes="_x0000_i1029"><![endif]></span><span
+  style='font-size:10.0pt;font-family:"Book Antiqua"'><a
+  href="http://infolab.stanford.edu/%7Eechang/bio-short.html">Short Bio</a>, <a
+  href="http://infolab.stanford.edu/%7Eechang/echang-cv-long.pdf">Full CV</a>
+  (last updated: 7/2016) <o:p></o:p></span></p>
+  </td>
+ </tr>
+ <tr>
+  <td style='background:#330066;padding:1.5pt 1.5pt 1.5pt 1.5pt;background-attachment:
+  scroll;background-position-x:50%;background-position-y:0%;background-repeat:
+  repeat'>
+  <p class=MsoNormal><b><i><span style='color:white'>RESEARCH</span></i></b><span
+  style='color:white'> </span><span style='font-family:"Book Antiqua"'><o:p></o:p></span></p>
+  </td>
+ </tr>
+ <tr>
+  <td style='padding:1.5pt 1.5pt 1.5pt 1.5pt'>
+  <p class=MsoNormal style='margin-left:.25in'><span style='font-size:10.0pt;
+  font-family:"Book Antiqua";color:windowtext'><!--[if gte vml 1]><v:shape
+   id="_x0000_i1030" type="#_x0000_t75" style='width:11.25pt;height:11.25pt'
+   o:bullet="t">
+   <v:imagedata src="" o:title="capbul1a"/>
+  </v:shape><![endif]--><![if !vml]><img border=0 width=15 height=15
+  src="./Edward_Y_Chang_files/image003.gif" alt="*" v:shapes="_x0000_i1030"><![endif]></span><span
+  style='font-size:10.0pt;font-family:"BooArd_changntiqua"'>
+  Tutorial at BigDat 2015: <a href="http://infolab.stanford.edu/~echang/BigDat2015/BigDat2015-Lecture1-Edward-Chang.pdf">Big Data Lecture #1</a>,
+  <a href="http://infolab.stanford.edu/~echang/BigDat2015/BigDat2015-Lecture2-Edward-Chang.pdf">Big Data Lecture #2</a>, <a href="http://infolab.stanford.edu/~echang/BigDat2015/BigDat2015-Lecture3-Simon-Wu.pdf">Big Data Lecture #3</a>.
+ </span><span style='font-size:10.0pt;
+  font-family:"Book Antiqua";color:#666666'><o:p></o:p></span></p>
+
+  <p class=MsoNormal style='margin-left:.25in'><span style='font-size:10.0pt;
+  font-family:"Book Antiqua";color:windowtext'><!--[if gte vml 1]><v:shape
+   id="_x0000_i1030" type="#_x0000_t75" style='width:11.25pt;height:11.25pt'
+   o:bullet="t">
+   <v:imagedata src="" o:title="capbul1a"/>
+  </v:shape><![endif]--><![if !vml]><img border=0 width=15 height=15
+  src="./Edward_Y_Chang_files/image003.gif" alt="*" v:shapes="_x0000_i1030"><![endif]></span><span
+  style='font-size:10.0pt;font-family:"BooArd_changntiqua"'>
+  Big Data Research and Open Source:  <a href="http://openbigdatagroup.github.io/">Open Big Data Group</a>
+ </span><span style='font-size:10.0pt;
+  font-family:"Book Antiqua";color:#666666'><o:p></o:p></span></p>
+
+  <p class=MsoNormal style='margin-left:.25in'><span style='font-size:10.0pt;
+  font-family:"Book Antiqua";color:windowtext'><!--[if gte vml 1]><v:shape
+   id="_x0000_i1030" type="#_x0000_t75" style='width:11.25pt;height:11.25pt'
+   o:bullet="t">
+   <v:imagedata src="" o:title="capbul1a"/>
+  </v:shape><![endif]--><![if !vml]><img border=0 width=15 height=15
+  src="./Edward_Y_Chang_files/image003.gif" alt="*" v:shapes="_x0000_i1030"><![endif]></span><span
+  style='font-size:10.0pt;font-family:"Book Antiqua"'>
+  Co-lead PI <a href="http://dbg.ncu.edu.tw">XPRIZE Tricorder</a> competition (top winners)</span><span style='font-size:10.0pt;
+  font-family:"Book Antiqua";color:#666666'><o:p></o:p></span></p>
+  <p class=MsoNormal style='margin-left:.25in'><span style='font-size:10.0pt;
+  font-family:"Book Antiqua";color:windowtext'><!--[if gte vml 1]><v:shape
+   id="_x0000_i1030" type="#_x0000_t75" style='width:11.25pt;height:11.25pt'
+   o:bullet="t">
+   <v:imagedata src="" o:title="capbul1a"/>
+  </v:shape><![endif]--><![if !vml]><img border=0 width=15 height=15
+  src="./Edward_Y_Chang_files/image003.gif" alt="*" v:shapes="_x0000_i1030"><![endif]></span><span
+  style='font-size:10.0pt;font-family:"Book Antiqua"'>
+  Director/Architect, Google <a href="http://infolab.stanford.edu/~echang/XINS-ACM-Ubicomp.pdf">Indoor Positioning</a> Research</span><span style='font-size:10.0pt;
+  font-family:"Book Antiqua";color:#666666'><o:p></o:p></span></p>
+  <p class=MsoNormal style='margin-left:.25in'><span style='font-size:10.0pt;
+  font-family:"Book Antiqua";color:windowtext'><!--[if gte vml 1]><v:shape
+   id="_x0000_i1030" type="#_x0000_t75" style='width:11.25pt;height:11.25pt'
+   o:bullet="t">
+   <v:imagedata src="" o:title="capbul1a"/>
+  </v:shape><![endif]--><![if !vml]><img border=0 width=15 height=15
+  src="./Edward_Y_Chang_files/image003.gif" alt="*" v:shapes="_x0000_i1030"><![endif]></span><span
+  style='font-size:10.0pt;font-family:"Book Antiqua"'>
+  Program Director, Google <a href="http://sitecontent.google.com/mobile-2014-research/">Mobile 2014</a> Research Focused Program</span><span style='font-size:10.0pt;
+  font-family:"Book Antiqua";color:#666666'><o:p></o:p></span></p>
+  <p class=MsoNormal style='margin-left:.25in'><span style='font-size:10.0pt;
+  font-family:"Book Antiqua";color:windowtext'><!--[if gte vml 1]><v:shape
+   id="_x0000_i1030" type="#_x0000_t75" style='width:11.25pt;height:11.25pt'
+   o:bullet="t">
+   <v:imagedata src="" o:title="capbul1a"/>
+  </v:shape><![endif]--><![if !vml]><img border=0 width=15 height=15
+  src="./Edward_Y_Chang_files/image003.gif" alt="*" v:shapes="_x0000_i1030"><![endif]></span><span
+  style='font-size:10.0pt;font-family:"Book Antiqua"'>
+  Director, Google <a href="http://infolab.stanford.edu/~echang/Confucius-VLDB10.pdf">Q&A with Search Social Integration</a>, launched in more than 60 countries</span><span style='font-size:10.0pt;
+  font-family:"Book Antiqua";color:#666666'><o:p></o:p></span></p>
+  <p class=MsoNormal style='margin-left:.25in'><span style='font-size:10.0pt;
+  font-family:"Book Antiqua";color:windowtext'><!--[if gte vml 1]><v:shape
+   id="_x0000_i1030" type="#_x0000_t75" style='width:11.25pt;height:11.25pt'
+   o:bullet="t">
+   <v:imagedata src="" o:title="capbul1a"/>
+  </v:shape><![endif]--><![if !vml]><img border=0 width=15 height=15
+  src="./Edward_Y_Chang_files/image003.gif" alt="*" v:shapes="_x0000_i1030"><![endif]></span><span
+  style='font-size:10.0pt;font-family:"Book Antiqua"'>
+ Big Data, Large-Scale Machine Learning Algorithms: <a href="http://code.google.com/p/psvm">PSVM</a>, <a href="http://code.google.com/p/plda">PLDA</a>, <a href="http://code.google.com/p/pspectralclustering">Parallel Spectral Clustering</a>, <a href="https://cwiki.apache.org/confluence/display/MAHOUT/Parallel+Frequent+Pattern+Mining">PFP</a>, <a href="http://openbigdatagroup.github.io/speedo/">SPeeDO (Deep Learning)</a>
+
+</span><span style='font-size:10.0pt;
+  font-family:"Book Antiqua";color:#666666'><o:p></o:p></span></p>
+  <p class=MsoNormal style='margin-left:.25in'><span style='font-size:10.0pt'><a
+  href="http://infolab.stanford.edu/~echang/CV/research.html"></a></span><span
+  style='font-family:"Book Antiqua"'><a
+  href="http://infolab.stanford.edu/~echang/CV/research.html"><span
+  style='font-size:10.0pt;color:windowtext;text-decoration:none;text-underline:
+  none'><!--[if gte vml 1]><v:shape id="_x0000_i1031" type="#_x0000_t75"
+   style='width:11.25pt;height:11.25pt' o:bullet="t">
+   <v:imagedata src="" o:title="capbul1a"/>
+  </v:shape><![endif]--><![if !vml]><img border=0 width=15 height=15
+  src="./Edward_Y_Chang_files/image003.gif" alt="*" v:shapes="_x0000_i1031"><![endif]></span><span
+  style='font-size:10.0pt;color:#7C3300'>Past Research Projects &amp; Students</span></a></span><span
+  style='font-size:10.0pt;font-family:"Book Antiqua"'> </span><span
+  style='font-size:10.0pt;font-family:"Book Antiqua";color:#666666'><o:p></o:p></span></p>
+  <p class=MsoNormal style='margin-left:.25in'><span style='font-size:10.0pt;
+  font-family:"Book Antiqua"'>- Intelligent Sampling for Learning Image Query Concepts (NSF
+  Career IIS-0133802) <br>
+  - SIEC: Statistical Inferences under Extreme Constraints (NSF ITR IIS-0219885,
+  ARDA, NEC, IBM) <br>
+  - VSN: Video Sensor Networks (ArgusSenses, Intel) <br>
+  - Scalable, Multimodal Algorithms for Multimedia Information Retrieval (NSF
+  IIS-0535085, Google) </span><span style='font-size:10.0pt;font-family:"Book Antiqua";
+  color:#666666'><o:p></o:p></span></p>
+  </td>
+ </tr>
+ <tr>
+  <td style='background:#330066;padding:1.5pt 1.5pt 1.5pt 1.5pt;background-attachment:
+  scroll;background-position-x:50%;background-position-y:0%;background-repeat:
+  repeat'>
+  <p class=MsoNormal><b><i><span style='color:white'>PUBLICATIONS, INVITED
+  TALKS, SERVICES</span></i></b><span style='color:white'> </span><span
+  style='font-family:"Book Antiqua"'><o:p></o:p></span></p>
+  </td>
+ </tr>
+ <tr>
+  <td style='padding:1.5pt 1.5pt 1.5pt 1.5pt'>
+  <p class=MsoNormal style='margin-left:.25in'><span style='font-size:10.0pt;
+  font-family:"Book Antiqua";color:windowtext'><!--[if gte vml 1]><v:shape
+   id="_x0000_i1036" type="#_x0000_t75" style='width:11.25pt;height:11.25pt'
+   o:bullet="t">
+   <v:imagedata src="" o:title="capbul1a"/>
+  </v:shape><![endif]--><![if !vml]><img border=0 width=15 height=15
+  src="./Edward_Y_Chang_files/image003.gif" alt="*" v:shapes="_x0000_i1036"><![endif]></span><span
+  style='font-size:10.0pt;font-family:"Book Antiqua"'><a
+  href="http://infolab.stanford.edu/%7Eechang/books.html">
+  Two Books Published in 2011</a> </span><span style='font-size:10.0pt;font-family:
+  "Book Antiqua";color:#666666'><o:p></o:p></span></p>
+  <p class=MsoNormal style='margin-left:.25in'><span style='font-size:10.0pt;
+  font-family:"Book Antiqua";color:windowtext'><!--[if gte vml 1]><v:shape
+   id="_x0000_i1036" type="#_x0000_t75" style='width:11.25pt;height:11.25pt'
+   o:bullet="t">
+   <v:imagedata src="" o:title="capbul1a"/>
+  </v:shape><![endif]--><![if !vml]><img border=0 width=15 height=15
+  src="./Edward_Y_Chang_files/image003.gif" alt="*" v:shapes="_x0000_i1036"><![endif]></span><span
+  style='font-size:10.0pt;font-family:"Book Antiqua"'><a
+  href="http://infolab.stanford.edu/%7Eechang/chronological-order.html">Complete
+  Publication List by Year</a> </span><span style='font-size:10.0pt;font-family:
+  "Book Antiqua";color:#666666'><o:p></o:p></span></p>
+  <p class=MsoNormal style='margin-left:.25in'><span style='font-size:10.0pt;
+  font-family:"Book Antiqua";color:windowtext'><!--[if gte vml 1]><v:shape
+   id="_x0000_i1037" type="#_x0000_t75" style='width:11.25pt;height:11.25pt'
+   o:bullet="t">
+   <v:imagedata src="" o:title="capbul1a"/>
+  </v:shape><![endif]--><![if !vml]><img border=0 width=15 height=15
+  src="./Edward_Y_Chang_files/image003.gif" alt="*" v:shapes="_x0000_i1037"><![endif]></span><span
+  style='font-size:10.0pt;font-family:"Book Antiqua"'><a
+  href="http://infolab.stanford.edu/%7Eechang/talks.html">Selected Recent
+  Invited Talks </a></span><span class=MsoHyperlink><span style='font-family:
+  "Book Antiqua"'><o:p></o:p></span></span></p>
+  <p class=MsoNormal style='margin-left:.25in'><span style='font-family:"Book Antiqua"'><a
+  href="http://infolab.stanford.edu/%7Eechang/talks.html"><span
+  style='font-size:10.0pt;color:windowtext;text-decoration:none;text-underline:
+  none'><!--[if gte vml 1]><v:shape id="_x0000_i1038" type="#_x0000_t75"
+   style='width:11.25pt;height:11.25pt' o:bullet="t">
+   <v:imagedata src="" o:title="capbul1a"/>
+  </v:shape><![endif]--><![if !vml]><img border=0 width=15 height=15
+  src="./Edward_Y_Chang_files/image003.gif" alt="*" v:shapes="_x0000_i1038"><![endif]></span></a><a
+  href="http://infolab.stanford.edu/~echang/services.html"><span
+  style='font-size:10.0pt'>Complete List of Services</span></a></span><span
+  style='font-size:10.0pt;font-family:"Book Antiqua"'> <o:p></o:p></span></p>
+  <p class=MsoNormal style='margin-left:.25in'><span style='font-size:10.0pt;
+  font-family:"Book Antiqua";color:windowtext'><!--[if gte vml 1]><v:shape
+   id="_x0000_i1035" type="#_x0000_t75" style='width:11.25pt;height:11.25pt'
+   o:bullet="t">
+   <v:imagedata src="" o:title="capbul1a"/>
+  </v:shape><![endif]--><![if !vml]><img border=0 width=15 height=15
+  src="./Edward_Y_Chang_files/image003.gif" alt="*" v:shapes="_x0000_i1035"><![endif]></span><span
+  style='font-size:10.0pt;font-family:"Book Antiqua"'><a
+  href="http://infolab.stanford.edu/%7Eechang/ed-poems.html">Poetry Page</a>
+  </span><span style='font-size:10.0pt;font-family:
+  "Book Antiqua";color:#666666'><o:p></o:p></span></p>
+  </td>
+ </tr>
+ <tr>
+ </tr>
+ <tr>
+  <td style='background:#330066;padding:1.5pt 1.5pt 1.5pt 1.5pt;background-attachment:
+  scroll;background-position-x:50%;background-position-y:0%;background-repeat:
+  repeat'>
+  <p class=MsoNormal><b><i><span style='color:white'>TEACHING</span></i></b><span
+  style='color:white'> </span><span style='font-family:"Book Antiqua"'><o:p></o:p></span></p>
+  </td>
+ </tr>
+ <tr>
+  <td style='padding:1.5pt 1.5pt 1.5pt 1.5pt'>
+  <p class=MsoNormal style='margin-left:.25in'><span style='font-size:10.0pt;
+  font-family:"Book Antiqua";color:windowtext'><!--[if gte vml 1]><v:shape
+   id="_x0000_i1040" type="#_x0000_t75" style='width:11.25pt;height:11.25pt'
+   o:bullet="t">
+   <v:imagedata src="" o:title="capbul1a"/>
+  </v:shape><![endif]--><![if !vml]><img border=0 width=15 height=15
+  src="./Edward_Y_Chang_files/image003.gif" alt="*" v:shapes="_x0000_i1040"><![endif]></span><span
+  style='font-size:10.0pt;font-family:"Book Antiqua"'>
+  ECE594 Large Scale
+  Scientific Data Mining; Winter 2006. <o:p></o:p></span></p>
+  <p class=MsoNormal style='margin-left:.25in'><span style='font-size:10.0pt;
+  font-family:"Book Antiqua";color:windowtext'><!--[if gte vml 1]><v:shape
+   id="_x0000_i1041" type="#_x0000_t75" style='width:11.25pt;height:11.25pt'
+   o:bullet="t">
+   <v:imagedata src="" o:title="capbul1a"/>
+  </v:shape><![endif]--><![if !vml]><img border=0 width=15 height=15
+  src="./Edward_Y_Chang_files/image003.gif" alt="*" v:shapes="_x0000_i1041"><![endif]></span><span
+  style='font-size:10.0pt;font-family:"Book Antiqua"'>
+  ECE268 Internet
+  Computing and Web Technologies; 2001 - 2005. <o:p></o:p></span></p>
+  <p class=MsoNormal style='margin-left:.25in'><span style='font-size:10.0pt;
+  font-family:"Book Antiqua";color:windowtext'><!--[if gte vml 1]><v:shape
+   id="_x0000_i1042" type="#_x0000_t75" style='width:11.25pt;height:11.25pt'
+   o:bullet="t">
+   <v:imagedata src="" o:title="capbul1a"/>
+  </v:shape><![endif]--><![if !vml]><img border=0 width=15 height=15
+  src="./Edward_Y_Chang_files/image003.gif" alt="*" v:shapes="_x0000_i1042"><![endif]></span><span
+  style='font-size:10.0pt;font-family:"Book Antiqua"'><a
+  href="http://www.mmdb.ece.ucsb.edu/%7Eechang/ECE160/">ECE160</a> Advanced
+  Algorithms for Multimedia Systems; Spring 2000 - 2006. </span><span
+  style='font-size:10.0pt;font-family:"Book Antiqua";color:#666666'><o:p></o:p></span></p>
+  <p class=MsoNormal style='margin-left:.25in'><span style='font-size:10.0pt;
+  font-family:"Book Antiqua";color:windowtext'><!--[if gte vml 1]><v:shape
+   id="_x0000_i1043" type="#_x0000_t75" style='width:11.25pt;height:11.25pt'
+   o:bullet="t">
+   <v:imagedata src="" o:title="capbul1a"/>
+  </v:shape><![endif]--><![if !vml]><img border=0 width=15 height=15
+  src="./Edward_Y_Chang_files/image003.gif" alt="*" v:shapes="_x0000_i1043"><![endif]></span><span
+  style='font-size:10.0pt;font-family:"Book Antiqua"'>ECE154 Computer
+  Architecture; Winter 2003, 2004. </span><span style='font-size:10.0pt;
+  font-family:"Book Antiqua";color:#666666'><o:p></o:p></span></p>
+  <p class=MsoNormal style='margin-left:.25in'><span style='font-size:10.0pt;
+  font-family:"Book Antiqua";color:windowtext'><!--[if gte vml 1]><v:shape
+   id="_x0000_i1044" type="#_x0000_t75" style='width:11.25pt;height:11.25pt'
+   o:bullet="t">
+   <v:imagedata src="" o:title="capbul1a"/>
+  </v:shape><![endif]--><![if !vml]><img border=0 width=15 height=15
+  src="./Edward_Y_Chang_files/image003.gif" alt="*" v:shapes="_x0000_i1044"><![endif]></span><span
+  style='font-size:10.0pt;font-family:"Book Antiqua"'>ECE153A Hardware Software
+  Interface (Device Drivers); Fall 1999, 2000, 2001. </span><span
+  style='font-size:10.0pt;font-family:"Book Antiqua";color:#666666'><o:p></o:p></span></p>
+  <p class=MsoNormal style='margin-left:.25in'><span style='font-size:10.0pt;
+  font-family:"Book Antiqua";color:windowtext'><!--[if gte vml 1]><v:shape
+   id="_x0000_i1045" type="#_x0000_t75" style='width:11.25pt;height:11.25pt'
+   o:bullet="t">
+   <v:imagedata src="" o:title="capbul1a"/>
+  </v:shape><![endif]--><![if !vml]><img border=0 width=15 height=15
+  src="./Edward_Y_Chang_files/image003.gif" alt="*" v:shapes="_x0000_i1045"><![endif]></span><span
+  style='font-size:10.0pt;font-family:"Book Antiqua"'><a
+  href="http://infolab.stanford.edu/%7Eechang/Class/ece594">ECE594</a> Internet
+  Computing and Digital TV; Winter 2000.</span><span style='font-size:10.0pt'> </span><span
+  style='font-size:10.0pt;font-family:"Book Antiqua"'><o:p></o:p></span></p>
+  </td>
+ </tr>
+</table>
+
+<p class=MsoNormal><ahref  ="http: //view.showstat.com/showview.asp?user=" echang&quot=""><span
+style='font-size:11.0pt;font-family:"Book Antiqua"'>Last updated 7/17/2016</span></ahref><ahref  ="http: //view.showstat.com/showview.asp?user=" echang&quot=""><o:p></o:p></p>
+
+<p class=MsoNormal></ahref><span style='font-family:PMingLiU;mso-bidi-font-family:
+"Times New Roman";color:windowtext'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></p>
+
+</div>
+
+</body>
+
+</html>

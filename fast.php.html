@@ -1,0 +1,454 @@
+<html><head><title>See all the finished reviews for Paper #57</title></head>
+
+<body><table align="center" cellspacing="2" cellpadding="1" width="95%" border="0" bgcolor="#000000"><tbody><tr> <td> <table align="center" border="0" bgcolor="#eeeeff"><tbody><tr> <td align="center" width="100%" colspan="3"> <font size="+3"> FAST-2002 Paper Submission Site </font></td> </tr><tr><td align="left" width="15%"><form method="post" action="http://www.usenix.org/events/fast02"><input type="submit" value="Go To FAST-2002 Site" name="textButton"></form></td><td width="70%" align="center" valign="center"> <font size="+2"> See all the finished reviews for Paper #57 </font></td><td align="right" width="15%"><form method="post" action="http://systems.cs.colorado.edu/FAST2002/CRP/index.php"><input type="submit" value="Go To FAST-2002 Submissions" name="textButton"></form></td></tr><tr> <td colspan="3" align="center"><font size="+1" color="red">It is currently Tuesday 29th of October 2002 02:37:50 PM MST</font></td> </tr></tbody></table></td> </tr> </tbody></table><br>
+
+
+
+<p>
+You can see the paper reviews
+until Friday 31st of October 2003 12:00:00 AM .
+</p>
+
+<center><p> There are 4 finalized reviews and 0 started, but unfinalized, reviews for your paper.<br> A total of 6 reviews were requested by the program committee.<br> You will receive an email notifcation when any of the unfinished reviews are finalized. </p></center><center><table border="1" align="center"><tbody><tr> <td width="15%"> <h3> <b> Paper #57 </b></h3></td> <td><a href="http://systems.cs.colorado.edu/FAST2002/CRP/Download/GetPaper/fast2002-paper-57.pdf" target="_blank"> (Download paper of type application/pdf ) </a>  <h3> </h3></td> </tr><tr>
+</tr><tr> <td> Title: </td> <td> Design, Analysis, and Implementation of Virtual IO
+ </td> </tr>
+<tr> <td> Abstract: </td> <td> In this paper we propose Virtual IO, which divides an<br>
+IO request into small temporal units of disk commands<br>
+for enabling preemptible disk access.  We present our <br>
+main design strategies, analyze Virtual IO&amp;#039;s performance,<br>
+and describe implementation challenges.  Our evaluation<br>
+shows that Virtual IO substantially reduces IO waiting <br>
+time with little or no loss in disk throughput. </td> </tr>
+</tbody></table></center><table width="100%"><tbody><tr bgcolor="#eeeeee"><th> <big> <big> Review #32 For Paper #57 </big></big> </th></tr><tr bgcolor="#eeeeee"><th> (review last modified Friday 11th of October 2002 05:09:55 AM) </th> </tr>
+<tr bgcolor="#eeeeee"> <td> <table columns="2" border="1" align="center">
+<tbody><tr>
+<th width="25%"> Attribute </th>
+<th width="75%" colspan="12"> Value </th>
+</tr>
+<tr> <td>
+Provide a short summary of the paper and its contributions</td> <td>
+This paper presents a method for reducing the
+<br>waiting time that an I/O encounters due to a lower priority I/O being
+in progress.  The idea is elegantly simple: many I/Os can be decomposed into
+shorter operations so that a higher priority request can, in effect, preempt
+an I/O between any two of these micro operations.  For example, a long seek
+can be decomposed into 2 smaller seeks; a long read can be decomposed into
+a series of small reads (for which we assume that track buffers hide any
+additional latency).  I kind of like the idea in its simplicity, but I fear
+it has limited applicability: real time systems rarely seem to incorporate
+I/O in my experience.  The other example cited, that of video editing doesn't
+seem to be one where various disk I/Os have different priorities.<br>
+<br>It seems that the idea of breaking up long transfers has been presented
+earlier, but these folks also figure out how to make seeks and rotational
+delay preemtible, which is also useful.<br>
+<br>
+There isn't anything deep here, but it's a nice,
+<br>
+simple technique, and it seems that it may be useful in a limited number of circumstances.</td> </tr>
+<tr> <td>
+Provide detailed, construtive comments to the author</td> <td>The
+equation and derivation on page 4 are identical to those in the Introduction.
+ This is probably the right place to introduce this explanation, so it should
+be omitted from the introduction.  In fact, much of the discussion has already
+been done in the Introduction.  Either reduce the introduction or<br>
+remove it from this section.
+<br>
+<br>On page 5, the claim is made that "for the range of chunk sizes, the
+disk throughput using chunking is optimal with negligble CPU overhead." 
+What range?  I had the same question when I saw this same thought in the
+introduction ...<br>
+<br>Given that section 3 refers repeatedly to the disk profiler, perhaps
+it makes sense to describe it first, before going into the various mechanisms
+used for decomposing operations into "micro-operations."<br>
+<br>I'm not sure I agree with the statement on page 6 that it is OK for the
+disk to report a write complete once the data is in the write-buffer.  This
+is exactly what IDE disks do and as a result, it is virtually impossible
+to use them for<br>highly reliable data storage (i.e., transactional data storage).  This
+is really a problem for some applications and should not be glossed over
+so lightly.  It's OK to say that you only target such devices, but it's not
+OK to<br>
+simply say that you can consider them done when they are in the write buffer.
+<br>
+<br>
+Nits:
+<br>
+<br>
+References are not nouns, so sentences like "Before the pioneering work of
+<br>
+[3,13]" are not OK.  Instead, say, "Before the pioneering work of Daigler et al and Marano et al,"
+<br>
+</td> </tr>
+</tbody></table></td> </tr></tbody></table><table width="100%"><tbody><tr bgcolor="#cccccc"><th> <big> <big> Review #152 For Paper #57 </big></big> </th></tr><tr bgcolor="#cccccc"><th> (review last modified Saturday 12th of October 2002 06:39:13 PM) </th> </tr>
+<tr bgcolor="#cccccc"> <td> <table columns="2" border="1" align="center">
+<tbody><tr>
+<th width="25%"> Attribute </th>
+<th width="75%" colspan="12"> Value </th>
+</tr>
+<tr> <td>
+Provide a short summary of the paper and its contributions</td> <td>
+Summary:  The authors present the idea of "virtual I/O", a method of breaking
+each high-level disk I/O operation (ie "read block X") into a series of lower-level
+operations (ie "seek halfway to the track block X is in", "seek the rest
+of the way to the track block X is in", "wait for block X to rotate under
+the head", and "read block X"), providing the opportunity for the high-level
+operation to be preempted and rescheduled. Traditionally operations like
+"read block X" are treated as invisible operations.  By breaking disk operations
+into a series of shorter (but still indivisible) operations, there are more
+rescheduling opportunities if a higher-priority request comes along in the
+meanwhile, or if a new request can be efficiently interleaved with the current
+request.  They benchmark their implementation for several trace-based workloads.</td> </tr>
+<tr> <td>
+Provide detailed, construtive comments to the author</td> <td>
+Comments:  An interesting new application of a set of ideas that
+<br>
+people have been playing with for a few years.  Reminded me quite a
+<br>
+bit of Lumb, Schindler, Ganger, Nagle, and Riedel's paper from OSDI
+<br>
+2000 "Towards higher disk head utilization:  Extracting Free bandwidth
+<br>
+from busy disk drives" and Lumb, Schindler, and Ganger's "Freeblock
+<br>
+Scheduling Outside of Disk Firmware" (FAST 2002, cited by this paper),
+<br>
+but addresses a different problem.
+<br>
+<br>
+This paper has two important "stylistic" problems that might drive
+<br>
+readers away before they have a chance to figure out what this paper
+<br>
+is really about.
+<br>
+<br>
+The first is the term "virtual IO", which confused me greatly until I
+<br>
+understood what it means-- but I still think it's simply a bad (if not
+<br>
+misleading) name for this concept.  There's nothing virtual about the
+<br>
+IO-- it's the same as it always was.  Perhaps something like
+<br>
+"preemptible I/O" or "staged I/O" (although "staged" has other
+<br>
+meanings as well).
+<br>
+<br>
+The second is an unfortunate choice of wording in the introduction.
+<br>
+When I read the sentence "Traditionally, disk IOs have been thought of
+<br>
+as blocking operations." my first reaction was incredulity and a
+<br>
+sinking feeling that the paper wasn't going to make any sense, since
+<br>
+the OSs that I think of as "traditional" haven't blocked on I/O
+<br>
+operations for decades.  It wasn't until a read a little further that
+<br>
+I understood the point-- this sentence is talking about the fact that
+<br>
+only one I/O is issued at a time PER DISK-- but even that statement
+<br>
+isn't really true!  Contemporary disks and controllers are intelligent
+<br>
+enough to manage their own scheduling, and most enlightened OSs let
+<br>
+them do it.  Tagged queuing has been around for a while in the SCSI
+<br>
+world, and is started to appear in different guises in IDE drives.
+<br>
+Eventually the point *is* made clear in the text, but if I was a
+<br>
+casual but skeptical reader, I might have set aside the paper already,
+<br>
+thinking that it addresses a problem that doesn't really exist any
+<br>
+more, and never really understanding what the paper is truly about.
+<br>
+Perhaps I am only betraying how superficial a reader I am, but I do
+<br>
+think this could be improved.
+<br>
+<br>
+Now, on the to the technical aspects...
+<br>
+I expect that some aspects of this idea, especially seek-splitting,
+<br>
+have an effect on the overall power use of the disk.  Breaking seeks
+<br>
+into sub-seeks increases the proportion of the time the actuator will
+<br>
+be accelerating/decelerating the head.  If you break the seeks into
+<br>
+small enough pieces, you'll be at maximum power during the entire seek
+<br>
+(instead of accelerating up to maximum velocity, traveling at this
+<br>
+velocity for a while, and then decelerating).  Seeking is a high-power
+<br>
+operation.  I'm interested in the impact this will have in terms of
+<br>
+both power consumption and disk wear.  Can you show the change in
+<br>
+power consumption for each configuration?
+<br>
+<br>
+Drives intended for laptops or desktops often have different firmware
+<br>
+than the identical drives intended for server use.  In particular,
+<br>
+these drives often have special heuristics to "smooth" seeks instead
+<br>
+of accelerating at maximum velocity, because fast seeks make the disk
+<br>
+noisy and cause vibration, which people don't like.  How does this
+<br>
+interact with your method (or are you assuming that this is only for
+<br>
+servers)?
+<br>
+<br>
+Please describe the parameters of the disks being tested earlier
+<br>
+(before figure 5).  The SCSI disk is described on the next page.  I
+<br>
+don't remember seeing the IDE disk described anywhere.
+<br>
+<br>
+In the structure of the paper, it feels like there is considerable
+<br>
+repetition between the introduction, the first part of section 3, and
+<br>
+the subsections of 3.
+<br>
+<br>
+For the trace-based benchmarks, how is the "priority" of the disk
+<br>
+accesses stored?  I'd like to know a lot more about these traces-- how
+<br>
+many operations are there per trace?  How much time was spent in
+<br>
+priority inversions?  What effect on the overall system performance
+<br>
+does the reduction in the expected waiting time have?  Using virtual
+<br>
+IO can slow down normal-priority operations (by 10% or less, according
+<br>
+to the traces)-- when is it worthwhile to have most operations go 10%
+<br>
+slower in order to make a small number high-priority operations
+<br>
+somewhat faster?  I don't feel like I know enough about the trade-offs
+<br>
+to decide whether I want this on my own server-- what would I need to
+<br>
+measure in order to figure this out?  (I know this is a difficult set
+<br>
+of question to answer, but I think they are critical.)
+<br>
+<br>
+Typos:
+<br>
+<br>
+All the "T_{transfer}" things should be changed because the f in
+<br>
+"transfer" is treated differently in math mode, so it looks more like
+<br>
+"trans f er".
+<br>
+<br>
+Figure 12:  "logaritmic scale" -&gt; logarithmic scale"
+<br>
+<br>
+<br>
+<br>
+</td> </tr>
+</tbody></table></td> </tr></tbody></table><table width="100%"><tbody><tr bgcolor="#eeeeee"><th> <big> <big> Review #195 For Paper #57 </big></big> </th></tr><tr bgcolor="#eeeeee"><th> (review last modified Monday 14th of October 2002 07:15:24 AM) </th> </tr>
+<tr bgcolor="#eeeeee"> <td> <table columns="2" border="1" align="center">
+<tbody><tr>
+<th width="25%"> Attribute </th>
+<th width="75%" colspan="12"> Value </th>
+</tr>
+<tr> <td>
+Provide a short summary of the paper and its contributions</td> <td>
+The paper proposes several ways to make IOs more 
+<br>
+preemptible.  1. divide the data transfer into  
+<br>
+several smaller chunks.  2. split up a long seek
+<br>
+into several shorter ones.  3. Use just-in-time
+<br>
+seeking to shift the time the disk spends waiting
+<br>
+for the right sector to reach the disk head.  The 
+<br>
+only mechanism that costs additional time is
+<br>
+splitting up a long seek (since disk heads waste
+<br>
+time during the beginning and end of each shorter
+<br>
+seek). The paper also describes using the JIT-seek
+<br>
+technique to do other useful work, such as
+<br>
+prefetching.
+<br>
+</td> </tr>
+<tr> <td>
+Provide detailed, construtive comments to the author</td> <td>
+I recommend the authors drop the 
+<br>
+discussion of prefetching--it's tangential to the
+<br>
+main point of the paper, which is enabling 
+<br>
+preemption to reduce the waiting time of higher
+<br>
+priority requests.  It it also somewhat unfair to
+<br>
+use free prefetching to offset the cost of 
+<br>
+virtual IO, since free prefetching could just as
+<br>
+well be applied to non-preemptible IO.  The point
+<br>
+of the paper is that IO can be made preemptible
+<br>
+at low overhead, not that the overhead of
+<br>
+preemptibility can be masked by general
+<br>
+techniques.
+<br>
+<br>
+This is a nice paper.  None of the techniques by
+<br>
+themselves are particularly novel, but the paper
+<br>
+does a good job combining the techniques to
+<br>
+achieve a high degree of preemptibility.
+<br>
+<br>
+Please state more clearly in the example on page
+<br>
+2 that the seek splitting doesn't cause overhead
+<br>
+IN THIS CASE (since it can be masked by Trot).
+<br>
+The paper does say this later, but it should be
+<br>
+in the first discussion (page 2, column 2,
+<br>
+paragraph 2).
+<br>
+<br>
+Footnote 3 on page 2 is essential to a proper
+<br>
+understanding of the paper.  It belongs in a
+<br>
+prominent place early in the main text.
+<br>
+<br>
+Suggest you change the term "virtual IO" to
+<br>
+"preemptible IO", since virtual connotes
+<br>
+something a bit different (at least to this
+<br>
+reader).
+<br>
+</td> </tr>
+</tbody></table></td> </tr></tbody></table><table width="100%"><tbody><tr bgcolor="#cccccc"><th> <big> <big> Review #283 For Paper #57 </big></big> </th></tr><tr bgcolor="#cccccc"><th> (review last modified Wednesday 23rd of October 2002 08:41:45 PM) </th> </tr>
+<tr bgcolor="#cccccc"> <td> <table columns="2" border="1" align="center">
+<tbody><tr>
+<th width="25%"> Attribute </th>
+<th width="75%" colspan="12"> Value </th>
+</tr>
+<tr> <td>
+Provide a short summary of the paper and its contributions</td> <td>
+This paper describes an approach to breaking time-consuming disk requests
+<br>
+into smaller pieces without increasing their completion time.  It does
+<br>
+this by exploiting detailed knowledge of the disk timings and mechanisms.
+<br>
+By doing so, it significantly reduces the amount of time that a
+<br>
+higher-priority I/O request would have to wait, simulating a degree of
+<br>
+preemptability for disk I/O.
+<br>
+</td> </tr>
+<tr> <td>
+Provide detailed, construtive comments to the author</td> <td>
+I like the idea, and the work seems solid.  The writing needs work, but
+<br>
+I think this paper should be accepted.
+<br>
+<br>
+First, and perhaps foremost, please don't use "Virtual I/O" as the name.
+<br>
+Worse than not being descriptive, it confuses one.  Perhaps "fractured I/O",
+<br>
+"Semi-preemptable I/O", or some other useful term.
+<br>
+<br>
+Be careful of over-statement: it does not "enable preemptible disk access"
+<br>
+(abstract) or "provide highly preemptible disk access" (intro).
+<br>
+<br>
+The writing is excessively repetitive.  For example, it says that it
+<br>
+"proposes Virtual I/O, which does X" perhaps a half-dozen times.  Also,
+<br>
+it seems like [7] is referenced every time Diskbench is mentioned.
+<br>
+<br>
+The authors need to spend more effort on discussing how previous work
+<br>
+in low-level disk stuff relates.  For example, the various disk profiling
+<br>
+activities provide the necessary tools, but are mentioned as an afterthought
+<br>
+(also, add Aboutabl etal (sigmetrics 1998), and Worthington etal (sigmetrics
+<br>
+1995)).  Systems like that described by Yu etal (OSDI 2000, and their
+<br>
+related work) should be mentioned.  Finally, Lumb etal (in the OSDI 2000
+<br>
+paper that predated [12]) describe free prefetching, and even coin the
+<br>
+same name for it.
+<br>
+<br>
+Do you have any insight into the bug that results in the effect described
+<br>
+in 3.1.1 and shown in Figure 3?
+<br>
+<br>
+Significant additional detail is needed in the description of the
+<br>
+experimental setup, including a bit more info about the disk and a
+<br>
+lot more information about the simulated and traced workloads.  At
+<br>
+least for the simulated workload, the metric should be "have I told
+<br>
+readers enough to let them recreate my experiments".
+<br>
+<br>
+Explain and discuss the "free prefecthing" parts of the bars.  In
+<br>
+particular, I wasn't sure if they represented potential or actual
+<br>
+bandwidth improvement experienced by the application.
+<br>
+<br>
+</td> </tr>
+</tbody></table></td> </tr></tbody></table>
+<hr><table align="center" width="50%"><tbody><tr> <td align="left"> <form method="post" action="http://systems.cs.colorado.edu/FAST2002/CRP/index.php"><input type="submit" value="Goto Main Index" name="textButton"></form></td> <td align="right"><script type="text/javascript">function footerCloseMe() {if (window.opener) window.opener.focus();window.close();return false;}</script><form><input type="submit" onclick="footerCloseMe()" value="Close Window"></form></td> </tr></tbody></table><h5><a href="http://crp.sourceforge.net/"> Conference Review Package -- Copyright © 2001  Univ. of Colorado. </a><br>All rights reserved.<br></h5></body></html>

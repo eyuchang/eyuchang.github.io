@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Collaboration Is Not Voting: What Agentic AI Must Learn | The AGI Forum</title>
+<meta content="If five AI agents vote for the same wrong answer, have they collaborated? Real collaboration must discover missing facts, challenge assumptions, and know when the group is asking the wrong question." name="description"/>
+<meta content="Edward Y. Chang" name="author"/>
+<link href="https://infolab.stanford.edu/~echang/AGIBlogs/Blog008-Collaboration-Is-Not-Voting.html" rel="canonical"/>
+<meta content="article" property="og:type"/>
+<meta content="The AGI Forum" property="og:site_name"/>
+<meta content="Collaboration Is Not Voting: What Agentic AI Must Learn" property="og:title"/>
+<meta content="If five AI agents vote for the same wrong answer, have they collaborated? Real collaboration must discover missing facts, challenge assumptions, and know when the group is asking the wrong question." property="og:description"/>
+<meta content="http://infolab.stanford.edu/~echang/AGIBlogs/Blog008-Collaboration-Is-Not-Voting.html" property="og:url"/>
+<meta content="summary" name="twitter:card"/>
+<style>
+    :root {
+      --bg-color:#fafbfc; --card-bg:#ffffff; --text-main:#24292f; --text-muted:#57606a;
+      --slate:#57606a; --accent:#0969da; --accent-tint:#f6f8fa; --border-color:#d0d7de;
+      --gold:#c8a24a; --gold-soft:#e6d9b8; --navy:#1b2a4a; --crimson:#9d2b2b;
+      --safe:#547fa0; --danger:#a85a57; --green:#58765d;
+      --font-body:-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;
+      --font-serif:"Iowan Old Style","Palatino Linotype","Book Antiqua",Palatino,Georgia,serif;
+      --font-mono:ui-monospace,SFMono-Regular,"SF Mono",Menlo,Consolas,monospace;
+    }
+    * { box-sizing:border-box; margin:0; padding:0; }
+    html { scroll-behavior:smooth; }
+    body { background:var(--bg-color); color:var(--text-main); font-family:var(--font-body); line-height:1.8; font-size:18px; -webkit-font-smoothing:antialiased; }
+    .container { max-width:860px; margin:0 auto; padding:40px 24px 80px; }
+    .site-nav { display:flex; gap:18px; font-size:14px; border-bottom:1px solid var(--border-color); padding-bottom:14px; margin-bottom:28px; flex-wrap:wrap; }
+    .site-nav a { color:var(--text-muted); text-decoration:none; }
+    .site-nav a:hover { color:var(--accent); text-decoration:underline; }
+    .site-nav a.back-hub { color:var(--accent); font-weight:700; }
+    .masthead { border-bottom:2px solid var(--text-main); padding-bottom:18px; margin-bottom:30px; }
+    .forum-title { font-size:22px; font-weight:800; letter-spacing:-.01em; text-transform:uppercase; color:#1f2328; margin-bottom:4px; }
+    .forum-title a { color:inherit; text-decoration:none; }
+    .forum-subtitle { font-size:14px; color:var(--text-muted); }
+    .return-bar { display:inline-flex; align-items:center; gap:8px; margin-bottom:24px; font-size:14px; font-weight:600; }
+    .return-bar a,.return-bottom a { color:var(--accent); text-decoration:none; }
+    .return-bar a:hover,.return-bottom a:hover { text-decoration:underline; }
+    header { margin-bottom:36px; border-bottom:1px solid var(--border-color); padding-bottom:28px; }
+    .series-tag { font-size:13px; font-weight:600; color:var(--crimson); text-transform:uppercase; letter-spacing:.08em; margin-bottom:12px; display:inline-block; }
+    h1 { font-family:var(--font-serif); font-size:38px; line-height:1.2; letter-spacing:-.012em; font-weight:700; color:#1f2328; margin-bottom:12px; max-width:820px; }
+    .subtitle { font-size:19px; color:var(--slate); font-style:italic; margin-bottom:16px; line-height:1.45; }
+    .meta { font-size:15px; color:var(--text-muted); display:flex; gap:14px; align-items:center; flex-wrap:wrap; }
+    .article-body h2 { font-family:var(--font-serif); font-size:25px; letter-spacing:-.01em; margin:46px 0 18px; padding-bottom:8px; border-bottom:1px solid var(--border-color); color:#1f2328; scroll-margin-top:24px; }
+    .article-body h3 { font-family:var(--font-serif); font-size:20px; margin:28px 0 10px; color:var(--navy); }
+    .article-body p { margin-bottom:22px; }
+    .article-body ol,.article-body ul { margin-bottom:22px; padding-left:28px; }
+    .article-body li { margin-bottom:10px; }
+    .article-body a { color:var(--navy); text-decoration:none; border-bottom:1px solid var(--gold-soft); }
+    .article-body a:hover { color:var(--crimson); border-bottom-color:var(--crimson); }
+    .lead { font-family:var(--font-serif); font-size:20px; line-height:1.65; color:#2f4050; }
+    .dropcap:first-letter { float:left; font-family:var(--font-serif); font-size:66px; line-height:.88; padding-right:9px; padding-top:8px; color:var(--navy); }
+    .pull { border-left:4px solid var(--crimson); background:#fdf6f6; font-size:20px; font-family:var(--font-serif); padding:18px 24px; margin:32px 0; border-radius:0 6px 6px 0; color:#1f2328; line-height:1.6; }
+    .note { background:var(--card-bg); border:1px solid var(--border-color); border-left:5px solid var(--navy); border-radius:8px; padding:20px 22px; margin:28px 0; color:#3f5366; box-shadow:0 1px 3px rgba(0,0,0,.03); }
+    .note strong { color:var(--navy); }
+    .warning { border-left-color:var(--crimson); background:#fff8f8; color:#4a3a3a; }
+    .principles { counter-reset:p; margin:28px 0; }
+    .principle { position:relative; padding:16px 18px 16px 64px; margin:14px 0; background:#fff; border:1px solid var(--border-color); border-radius:8px; }
+    .principle:before { counter-increment:p; content:counter(p); position:absolute; left:18px; top:17px; width:30px; height:30px; border-radius:50%; display:grid; place-items:center; background:var(--navy); color:#fff; font-weight:700; font-size:15px; }
+    .principle strong { color:var(--navy); }
+    figure { margin:30px 0 34px; }
+    figure img { display:block; width:100%; height:auto; border:1px solid var(--border-color); border-radius:8px; background:#fff; }
+    figcaption { font-size:14px; color:var(--text-muted); line-height:1.55; margin-top:10px; }
+    .compare-wrap { overflow-x:auto; margin:30px 0; }
+    .compare-table { width:100%; border-collapse:collapse; background:#fff; font-size:15px; line-height:1.55; min-width:700px; }
+    .compare-table th,.compare-table td { border:1px solid var(--border-color); padding:12px 14px; vertical-align:top; }
+    .compare-table th { background:#f6f8fa; color:var(--navy); text-align:left; }
+    .compare-table td:first-child { font-weight:700; color:#2c3f52; width:19%; }
+    .equation { font-family:var(--font-serif); font-size:20px; text-align:center; margin:26px 0; padding:16px 18px; background:#fff; border-top:1px solid var(--gold-soft); border-bottom:1px solid var(--gold-soft); overflow-x:auto; }
+    .flow { display:grid; grid-template-columns:repeat(5,minmax(0,1fr)); gap:10px; align-items:stretch; margin:30px 0 12px; }
+    .node { position:relative; border:1px solid var(--border-color); border-radius:8px; padding:16px 10px; background:#fff; text-align:center; font-size:14px; line-height:1.45; }
+    .node strong { display:block; color:var(--navy); margin-bottom:4px; }
+    .node:not(:last-child)::after { content:"→"; position:absolute; right:-10px; top:50%; transform:translate(50%,-50%); color:var(--crimson); background:var(--bg-color); padding:0 2px; font-weight:800; z-index:2; }
+    .node.gate { border:2px solid var(--crimson); background:#fff8f8; }
+    .dual { display:grid; grid-template-columns:1fr 1fr; gap:16px; margin:28px 0; }
+    .card { background:#fff; border:1px solid var(--border-color); border-radius:8px; padding:22px; box-shadow:0 1px 3px rgba(0,0,0,.03); }
+    .card h3 { margin-top:0; }
+    .card p:last-child { margin-bottom:0; }
+    .card.physical { border-top:5px solid var(--gold); }
+    .card.cyber { border-top:5px solid var(--accent); }
+    .evidence-grid { display:grid; grid-template-columns:1fr 1fr; gap:16px; margin:28px 0; }
+    .evidence-card { background:#fff; border:1px solid var(--border-color); border-radius:8px; padding:20px; box-shadow:0 1px 3px rgba(0,0,0,.03); }
+    .evidence-card h3 { margin:0 0 9px; font-family:var(--font-serif); font-size:20px; color:var(--navy); }
+    .evidence-card p { font-size:16px; line-height:1.65; margin-bottom:12px; }
+    .evidence-card p:last-child { margin-bottom:0; }
+    .evidence-stat { font-family:var(--font-serif); font-size:18px; color:var(--crimson); font-weight:700; }
+    .source-note { font-size:15px; color:var(--text-muted); border-left:4px solid var(--gold); padding:12px 16px; background:#fdfaf2; margin:24px 0 30px; }
+    .semantic-box { background:#fff; border:1px solid var(--border-color); border-radius:8px; padding:22px; margin:28px 0; }
+    .semantic-row { display:grid; grid-template-columns:1fr auto 1fr; gap:14px; align-items:center; padding:12px 0; border-bottom:1px solid #eef1f4; }
+    .semantic-row:last-child { border-bottom:0; }
+    .literal,.meaning { font-family:var(--font-mono); background:#f6f8fa; border:1px solid #e1e5e8; border-radius:6px; padding:11px 12px; text-align:center; }
+    .meaning.bad { color:#8c2f2f; background:#fff7f7; border-color:#ebcaca; font-weight:700; }
+    .arrow { color:var(--crimson); font-weight:800; }
+    .threat-loop { display:grid; grid-template-columns:1fr 44px 1fr 44px 1fr; align-items:center; gap:6px; margin:28px 0; }
+    .loop-box { border:1px solid var(--border-color); border-radius:8px; background:#fff; padding:18px 14px; text-align:center; font-size:15px; }
+    .loop-box strong { display:block; font-family:var(--font-serif); color:var(--navy); margin-bottom:4px; font-size:18px; }
+    .loop-arrow { text-align:center; color:var(--crimson); font-size:26px; font-weight:800; }
+    .closing { margin-top:40px; padding:26px; border:1px solid var(--gold-soft); border-left:5px solid var(--gold); background:#fdfaf2; border-radius:8px; }
+    .closing p:last-child { margin-bottom:0; }
+    .related-post { margin-top:38px; padding-top:22px; border-top:1px solid var(--border-color); font-size:16px; }
+    .return-bottom { margin-top:18px; font-size:14px; font-weight:700; }
+    footer { margin-top:56px; border-top:1px solid var(--border-color); padding-top:28px; font-size:14px; color:var(--text-muted); text-align:center; }
+    footer a { color:var(--navy); text-decoration:none; }
+    .skip-link { position:absolute; left:16px; top:-90px; z-index:10; background:var(--navy); color:#fff; padding:10px 16px; border-radius:5px; font-size:15px; }
+    .skip-link:focus { top:12px; }
+    a:focus-visible { outline:3px solid var(--gold); outline-offset:4px; }
+    @media (max-width:760px) {
+      .dual,.evidence-grid { grid-template-columns:1fr; }
+      .flow { grid-template-columns:1fr; }
+      .node:not(:last-child)::after { content:"↓"; right:auto; left:50%; top:auto; bottom:-14px; transform:translate(-50%,50%); }
+      .threat-loop { grid-template-columns:1fr; }
+      .loop-arrow { transform:rotate(90deg); }
+      .semantic-row { grid-template-columns:1fr; }
+      .arrow { text-align:center; transform:rotate(90deg); }
+    }
+    @media (max-width:640px) {
+      .container { padding:24px 18px 52px; }
+      .site-nav { gap:10px 16px; line-height:1.5; }
+      .forum-title { font-size:20px; }
+      h1 { font-size:31px; }
+      .subtitle { font-size:18px; }
+      .lead { font-size:18px; }
+      .meta { gap:7px 10px; font-size:14px; }
+      .series-tag { font-size:12px; letter-spacing:.06em; }
+      .article-body h2 { font-size:24px; line-height:1.35; }
+      .pull { padding:16px 19px; }
+    }
+    @media (prefers-reduced-motion:reduce) { html { scroll-behavior:auto; } }
+    @media print { .site-nav,.return-bar,.return-bottom,.skip-link{display:none}.container{max-width:none;padding:0}body{background:#fff;font-size:12pt;line-height:1.55}.card,.note,.principle,.closing,.semantic-box{break-inside:avoid}h2,h3{break-after:avoid} }
+  
+    .paper-banner { margin:22px 0 30px; padding:18px 20px; background:#f6f8fa; border:1px solid var(--border-color); border-left:5px solid var(--accent); border-radius:8px; font-size:15px; line-height:1.6; }
+    .paper-banner strong { color:var(--navy); }
+    .try-box { margin:28px 0; padding:22px; background:#fff; border:1px solid var(--border-color); border-top:5px solid var(--gold); border-radius:8px; }
+    .try-box h3 { margin-top:0; }
+    .prompt-box { white-space:pre-wrap; font-family:var(--font-mono); font-size:14px; line-height:1.55; background:#f6f8fa; border:1px solid #e1e5e8; border-radius:7px; padding:16px; overflow-x:auto; margin:14px 0 10px; }
+    .split-view { display:grid; grid-template-columns:1fr 1fr; gap:16px; margin:28px 0; }
+    .view-card { background:#fff; border:1px solid var(--border-color); border-radius:8px; padding:20px; }
+    .view-card h3 { margin-top:0; }
+    .view-card.scanner { border-top:5px solid var(--slate); }
+    .view-card.model { border-top:5px solid var(--crimson); }
+    .glossary { margin:30px 0; padding:22px; background:#fff; border:1px solid var(--border-color); border-radius:8px; }
+    .glossary h3 { margin-top:0; }
+    .glossary-grid { display:grid; grid-template-columns:1fr 1fr; gap:12px 20px; }
+    .glossary-item { font-size:15px; line-height:1.55; }
+    .glossary-item strong { color:var(--navy); }
+    .references { margin-top:46px; }
+    .references ol { padding-left:24px; }
+    .references li { margin-bottom:14px; font-size:15px; line-height:1.6; }
+    .cite-ref { font-size:.72em; vertical-align:super; line-height:0; }
+    .cite-ref a { border-bottom:0; }
+    .small-note { font-size:14px; color:var(--text-muted); line-height:1.55; }
+    .compound-box { margin:30px 0; padding:22px; background:#fff8f8; border:1px solid #ebcaca; border-left:5px solid var(--crimson); border-radius:8px; }
+    .compound-box p:last-child { margin-bottom:0; }
+    @media (max-width:760px) { .split-view,.glossary-grid { grid-template-columns:1fr; } }
+
+
+    /* Dispatch 08 additions: shared AGI Forum typography and restrained visual storytelling. */
+    .deck { margin:24px 0 30px; padding:20px 23px; background:var(--card-bg); border-left:5px solid var(--gold); border-top:1px solid var(--gold-soft); border-bottom:1px solid var(--gold-soft); font-size:18px; line-height:1.65; }
+    .scene-grid { display:grid; grid-template-columns:1fr 1fr; gap:18px; margin:28px 0 32px; }
+    .scene { background:#fff; border:1px solid var(--border-color); border-radius:8px; padding:22px; }
+    .scene h3 { margin:0 0 10px; font-family:var(--font-serif); font-size:21px; color:var(--navy); }
+    .scene p { font-size:16px; line-height:1.65; margin:0; }
+    .scene strong { color:var(--navy); }
+    .metric { font-size:27px; line-height:1.2; font-family:var(--font-serif); color:var(--crimson); display:block; font-weight:700; margin:5px 0 10px; }
+    .timeline { position:relative; margin:30px 0 34px; border-left:3px solid var(--gold-soft); padding-left:26px; }
+    .timeline-item { position:relative; margin:0 0 24px; padding:0 0 4px; }
+    .timeline-item::before { content:''; position:absolute; width:13px; height:13px; border-radius:50%; background:var(--navy); border:3px solid #fff; left:-35px; top:7px; box-shadow:0 0 0 1px var(--gold-soft); }
+    .timeline-year { text-transform:uppercase; color:var(--crimson); font-size:13px; font-weight:800; letter-spacing:.055em; }
+    .timeline-item strong { display:block; color:var(--navy); font-size:18px; margin:3px 0 5px; }
+    .timeline-item p { margin:0; font-size:16.5px; line-height:1.65; }
+    .vs { display:grid; grid-template-columns:1fr 1fr; gap:14px; margin:26px 0 31px; }
+    .vs .card { padding:21px; }
+    .vs .card h3 { margin:0 0 12px; font-size:20px; }
+    .vs .card p { margin:0; font-size:16px; }
+    .vs .card.vote { border-top:5px solid var(--slate); }
+    .vs .card.discover { border-top:5px solid var(--gold); }
+    .field-note { font-size:14px; color:var(--text-muted); padding:9px 0 18px; }
+    .flow-wrap { margin:28px 0 32px; }
+    .flow-caption { font-size:14px; color:var(--slate); line-height:1.6; }
+    .takeaway { margin:32px 0; padding:18px 22px; border:1px solid var(--gold-soft); border-left:5px solid var(--gold); background:#fdfaf2; border-radius:8px; }
+    .takeaway p { margin:0; }
+    .author-note { font-size:15px; color:var(--slate); background:#fff; border:1px solid var(--border-color); padding:14px 19px; border-radius:8px; margin:25px 0 35px; }
+    @media (max-width:760px) { .scene-grid,.vs { grid-template-columns:1fr; } .timeline { padding-left:23px; } .timeline-item::before { left:-32px; } }
+</style>
+</head>
+<body>
+<a class="skip-link" href="#article">Skip to article</a>
+<div class="container">
+<nav aria-label="AGI Forum navigation" class="site-nav">
+<a class="back-hub" href="AGIForumIndex.html">← The AGI Forum Index</a>
+<a href="http://infolab.stanford.edu/~echang/">Stanford Home</a>
+<a href="Blog003-Path-to-AGI-Trilogy.html">The Path to AGI Trilogy</a>
+<a href="https://socrasynth.com/" rel="noopener noreferrer" target="_blank">SocraSynth / QuadriumAI</a>
+</nav>
+<div class="masthead"><div class="forum-title"><a href="AGIForumIndex.html">The AGI Forum: Theories, Practice, Safety, Risk &amp; Policy</a></div>
+<div class="forum-subtitle">Dispatches on Theoretical Paradigms, Architectural Practice, and Global AI Policy</div></div>
+<div class="return-bar"><a href="AGIForumIndex.html">← Back to Forum Home Page</a></div>
+<header><div class="series-tag">Dispatch No. 08 · Collaboration, Reasoning &amp; Agentic Systems</div>
+<h1>Collaboration Is Not Voting: What Agentic AI Must Learn</h1>
+<div class="subtitle">Why agreement is not intelligence: real collaboration must discover missing facts, challenge assumptions, and know when the group is asking the wrong question.</div>
+<div class="meta"><span>Edward Y. Chang</span><span aria-hidden="true">•</span><span>Stanford InfoLab</span><span aria-hidden="true">•</span><time datetime="2026-10-12">October 12, 2026</time><span aria-hidden="true">•</span><span>12 min read</span></div></header>
+<main class="article-body" id="article">
+<p class="lead dropcap"><strong>If five AI agents all vote for the same wrong answer, have they collaborated?</strong> Not really.</p>
+<p>Much of today’s “multi-agent AI” is built around agents exchanging messages, debating for a few rounds, and then voting. That can improve answer selection. But it misses the harder reason we need collaboration in the first place.</p>
+<p><strong>Real collaboration should help us discover what one agent did not know to look for.</strong> A doctor may notice a symptom another overlooked. An engineer may question an assumption everyone else accepted. A rescue planner may realize that the map is current but the water-level reading is stale.</p>
+<div class="pull"><strong>A vote chooses among answers already proposed. Collaboration discovers what answers, facts, constraints, and questions were missing.</strong></div>
+<p>This distinction matters because a <a href="https://proceedings.neurips.cc/paper_files/paper/2025/hash/934252acd87f254d5d4672fbde283bd2-Abstract-Conference.html" rel="noopener noreferrer" target="_blank">NeurIPS 2025</a> comparison found that majority voting often beat the multi-agent debate protocols it tested. That is useful evidence for selecting among fixed answers. But it is not a verdict on the harder problem of collaborative intelligence: discovering an omitted hazard, challenging a shared assumption, finding missing evidence, or realizing that the original question was framed incorrectly.<sup class="cite-ref"><a href="#ref-10">[10]</a></sup></p>
+<p>This is the central argument of this essay: <strong>collaborative intelligence is not the same as agreement</strong>. It is the process of finding what is missing, examining why a conclusion should be believed, and knowing when the group still does not know enough.</p>
+<h2>The ancient lesson we risk forgetting</h2>
+<p><strong>Socrates</strong>, as portrayed in Plato's dialogues, did not ask a circle of people to pick the most popular assertion. He questioned definitions, tested assumptions, pursued contradictions, and asked his interlocutors to defend the <em>reasons</em> for what they claimed to know. The Socratic <em>elenchus</em> is not the exchange of talking points: it is inquiry capable of changing the question itself.</p>
+<p><strong>Plato's Cave</strong>, in Book VII of <em>The Republic</em>, warns against accepting appearances without investigating what produces them. <strong>Aristotle</strong> subsequently made causes, demonstrations, and first principles central to his account of scientific understanding: knowing a conclusion is different from understanding <em>why</em> it follows. These traditions helped shape the foundations of philosophical inquiry, logic, education, and scientific argument in Western civilization.<sup class="cite-ref"><a href="#ref-1">[1]</a></sup></p>
+<p>These thinkers did not teach that every disagreement leads to truth. Their deeper lesson is that <strong>the quality of judgment depends on examining reasons, not merely tallying conclusions</strong>. Knowledge advances when claims can be questioned, challenged, corrected, and tested against experience. A society that stops challenging its assumptions can become confidently wrong. An AI system can, too.</p>
+<div class="pull"><strong>Voting chooses among options already on the ballot. Collaboration discovers which options, facts, constraints, and questions belong on the ballot in the first place.</strong></div>
+<h2>Collaboration begins where the answer sheet ends</h2><p>That distinction is not abstract. Even a mundane dinner order can require people to uncover different needs; a rescue decision in a storm makes the same requirement urgent.</p>
+<div class="scene-grid">
+<div class="scene"><h3>A dinner order</h3><p>The group needs the right <strong>constraints and preferences</strong>: food allergies, budget, availability, culture, and what each person is comfortable eating. A majority vote cannot authorize a dish that is dangerous for one guest.</p></div>
+<div class="scene"><h3>A rescue boat in a storm</h3><p>A dispatcher needs the <strong>water level now</strong>, not yesterday's report; an accessible route, a capable boat, permission to deploy, and a plan for what happens if conditions change while the boat is moving.</p></div>
+</div>
+<p>The second situation has the same structure as the first, but the consequences are far greater. A rescue planner might correctly predict where floodwater will be in thirty minutes and still make the wrong decision because its last gauge reading is stale, a road has collapsed, or the boat is already committed elsewhere.</p>
+<p>Health care, long-term investment, military operations, and physical robots have an additional complication: <strong>the decision is not a one-shot conversation</strong>. Its premises evolve. New evidence arrives. Yesterday's accepted plan may be invalid today. A useful agent must remember what was decided, why it was decided, what has changed, and which actions have already become irreversible.</p>
+<h2>What an agentic system must support</h2>
+<p>I see four minimum requirements for serious collaborative agency. They are architectural requirements, not a proposal to make every household question as complicated as an air-traffic control system.</p>
+<div class="principles">
+<div class="principle"><strong>Long-horizon memory and accountable state change.</strong> Agents need more than a scrolling transcript or a compressed summary. They must preserve decisions, assumptions, evidence, commitments, and revisions across sessions. When workflows change outside systems—placing an order, moving funds, dispatching equipment—they need durable logging, independent validation, and transaction or compensation mechanisms where the effects are actually reversible. An edited sentence is not a rolled-back bank transfer.</div>
+<div class="principle"><strong>Reasoning that examines its own foundations.</strong> The Socratic tradition asks whether we understand a claim, which assumptions it rests on, and whether contradictions survive scrutiny. Aristotle added an insistence on explanation from causes and first principles: a persuasive conclusion is not the same thing as knowing why it follows. An LLM system must distinguish a valid inference from confident rhetoric, and evidence from repeated assertion.<sup class="cite-ref"><a href="#ref-1">[1]</a></sup></div>
+<div class="principle"><strong>Grounding in the world and in human relationships.</strong> A system must know which object is being discussed, who owns it, whose preferences matter, which cultural meanings are relevant, which authority can permit an action, and whether the supporting information is still current. A flood gauge is not a timeless fact. Neither is a patient's condition or an investor's risk tolerance.</div>
+<div class="principle"><strong>Regulated disagreement and disciplined stopping.</strong> Independent agents should explore alternatives, challenge each other's reasons, repair real errors, and preserve justified objections. A moderator should determine when more exploration is useful and when synthesis is warranted. Consensus is one possible endpoint; unresolved disagreement and a request for more evidence are also legitimate results.</div>
+</div>
+<p>These requirements are connected. Memory without reasoning preserves mistakes. Reasoning without grounding rationalizes an obsolete picture of the world. Grounding without a record of commitments cannot support accountable action. Debate without behavioral and information control can simply repeat itself until everyone agrees—or exhausts the budget.</p>
+<div class="flow-wrap">
+<div aria-label="Collaboration cycle from proposals to guarded action" class="flow">
+<div class="node"><strong>DISCOVER</strong>New factors and alternatives</div>
+<div class="node"><strong>CHALLENGE</strong>Counterarguments and evidence</div>
+<div class="node"><strong>REPAIR</strong>Reasoning and assumptions</div>
+<div class="node"><strong>GROUND</strong>Meaning, authority, fresh state</div>
+<div class="node gate"><strong>DECIDE / ACT</strong>Record, verify, revisit</div>
+</div>
+<div class="flow-caption">A collaborative cycle, not a one-way pipeline. If the arguments or world state change, the process returns to discovery, challenge, or repair. Consequential actions require a separate authorization boundary.</div>
+</div>
+<h2>From Socrates to multi-LLM deliberation: the research lineage</h2>
+<p>Artificial-intelligence research did not invent the value of debating ideas. It gave us programmable participants and an opportunity to test which forms of disagreement actually improve reasoning. Here is the lineage I consider especially important in the LLM era. Parallel research also contributed to this field; these are milestones, not a claim that all later work descended from a single paper.</p>
+<div class="timeline">
+<div class="timeline-item"><div class="timeline-year">March 2023 · IEEE CCWC</div><strong>CRIT — the Socratic method enters LLM prompting</strong><p>Published at IEEE CCWC in March 2023, my paper <em>Prompting Large Language Models With the Socratic Method</em> (CRIT) organized definition, <em>elenchus</em>, dialectic, counterfactual reasoning, and systematic questioning as practical methods for LLM prompting. Its central concern was whether a response could be examined and justified, not merely accepted as fluent output.<sup class="cite-ref"><a href="#ref-2">[2]</a></sup></p></div>
+<div class="timeline-item"><div class="timeline-year">May 2023 preprint · ICML 2024</div><strong>Du and colleagues — a compelling demonstration of multi-agent debate</strong><p>Yilun Du, Shuang Li, Antonio Torralba, Joshua B. Tenenbaum, and Igor Mordatch showed that multiple model instances could propose, critique, and revise answers over repeated rounds. Their relatively simple method demonstrated measurable benefits on several reasoning and factuality tasks and brought the idea to a broad ML audience.<sup class="cite-ref"><a href="#ref-3">[3]</a></sup></p></div>
+<div class="timeline-item"><div class="timeline-year">CSCI 2023 · arXiv January 2024</div><strong>SocraSynth — regulate debate instead of merely repeating it</strong><p>Our SocraSynth work made the moderator and the quality of deliberation central. It introduced controlled <em>contentiousness</em>: start adversarially to broaden exploration, use Socratic scrutiny to examine arguments, and then reduce contentiousness to support synthesis. The distinction between knowledge generation and reasoning evaluation is essential.<sup class="cite-ref"><a href="#ref-4">[4]</a></sup></p></div>
+<div class="timeline-item"><div class="timeline-year">August 2024</div><strong>EVINCE — measure the information exchanged</strong><p>EVINCE proposed using conditional statistics and information-theoretic signals to ask whether further interaction is useful. Its original natural setting involves common outcome labels; our current extension examines how to construct measurable, validated argument states when the debate is open-ended.<sup class="cite-ref"><a href="#ref-5">[5]</a></sup></p></div>
+<div class="timeline-item"><div class="timeline-year">2024 editions · ACM Books 2025</div>
+<strong>The Path to AGI, Volume I — a full collaborative-intelligence architecture</strong>
+<p><em>Multi-LLM Agent Collaborative Intelligence: The Path to AGI</em> brought SocraSynth, EVINCE, behavioral and governance mechanisms, and an expanding agentic architecture into a book-length research program. Author-issued editions appeared in 2024, followed by an expanded ACM Books edition in December 2025. This is the architectural specification on which the MACI implementation builds.<sup class="cite-ref"><a href="#ref-11">[11]</a></sup></p></div>
+<div class="timeline-item"><div class="timeline-year">ICML 2025</div><strong>DIKE–ERIS — checks, balances, and behavioral governance</strong><p>At <strong>ICML 2025</strong>, my paper <a href="https://proceedings.mlr.press/v267/chang25a.html" rel="noopener noreferrer" target="_blank"><em>A Checks-and-Balances Framework for Context-Aware Ethical AI Alignment</em></a> developed a three-branch architecture: LLM-based knowledge generation (executive), DIKE's ethical guardrails (legislative), and ERIS's contextual interpretation (judicial). It also explored regulating linguistic behavior through emotional conditioning. Collaboration requires independent judgment and oversight, not merely information exchange.<sup class="cite-ref"><a href="#ref-6">[6]</a></sup></p></div>
+<div class="timeline-item"><div class="timeline-year">VLDB 2025</div><strong>SagaLLM — persistent context, validation, and recoverable planning</strong><p>At <strong>VLDB 2025</strong>, our <a href="https://www.vldb.org/pvldb/vol18/p4874-chang.pdf" rel="noopener noreferrer" target="_blank"><em>SagaLLM</em></a> introduced persistent context management, independent validation, and compensating recovery for long-running multi-agent planning workflows. This is why serious collaboration needs more than an agent's shrinking context window: earlier commitments, dependencies, and changes must remain available and accountable.<sup class="cite-ref"><a href="#ref-7">[7]</a></sup></p></div>
+<div class="timeline-item"><div class="timeline-year">ICLR 2025 · NeurIPS 2025</div><strong>MACNET and Puppeteer — complementary scaling and orchestration advances</strong><p>In parallel, <strong>MACNET (ICLR 2025)</strong> investigated graph-structured collaboration and scaling, while <strong>Puppeteer (NeurIPS 2025)</strong> developed adaptive agent orchestration. These contributions address complementary questions—who communicates and who acts next—alongside the reasoning, governance, and persistence required for reliable collaboration.<sup class="cite-ref"><a href="#ref-8">[8]</a></sup></p></div>
+<div class="timeline-item"><div class="timeline-year">February–May 2026 · ERM preprint</div><strong>Epistemic Regret Minimization — correct the reason, not merely the answer</strong><p>Our <a href="https://arxiv.org/abs/2602.11675" rel="noopener noreferrer" target="_blank"><em>Epistemic Regret Minimization</em></a> work with Longling Geng formalizes a central concern: a model may obtain a correct outcome by invalid causal reasoning. ERM inspects causal warrants and offers targeted correction, including a label-free mode in which neither the answer key nor the true causal graph is available to the critic. The aim is to prevent repeated reward for the wrong reason.<sup class="cite-ref"><a href="#ref-13">[13]</a></sup></p></div>
+<div class="timeline-item"><div class="timeline-year">July 2026 · Findings of ACL</div><strong>Recursive Causal Audit — reasoning feedback without ground-truth labels</strong><p>Our <a href="https://aclanthology.org/2026.findings-acl.427/" rel="noopener noreferrer" target="_blank"><em>Diagnosing and Mitigating Sycophancy and Skepticism in LLM Causal Judgment</em></a> makes this Socratic principle concrete. Its RCA judge cannot see gold labels; instead, it checks whether the conclusion follows from the given derivation and resists pressure-induced departures from the reasoning. This separates auditing the <em>why</em> of an answer from simply checking whether its final label matches a key.<sup class="cite-ref"><a href="#ref-12">[12]</a></sup></p></div>
+<div class="timeline-item"><div class="timeline-year">July 23, 2026 · ACM Books</div><strong>The Path to AGI, Volume II — System-2 reasoning from semantic anchoring to causal intelligence</strong><p><a href="https://doi.org/10.1145/3822380" rel="noopener noreferrer" target="_blank"><em>System-2 Reasoning: From Semantic Anchoring to Causal Intelligence</em></a> brings the program's reasoning mechanisms into a unified architectural treatment, from semantic anchoring and causal audits to epistemic repair and metacognitive judgment. It provides the second major part of the functional specification for MACI, complementing Volume I's collaborative-intelligence architecture.<sup class="cite-ref"><a href="#ref-11">[11]</a></sup></p></div>
+<div class="timeline-item"><div class="timeline-year">ICML 2026 · MACI implementation</div><strong>MACI — integrating behavioral, informational, and reasoning control</strong><p>The ICML 2026 Position Track paper <a href="https://proceedings.mlr.press/v306/chang26h.html" rel="noopener noreferrer" target="_blank"><em>AGI Requires a Coordination Layer on Top of Pattern Repositories</em></a> states the architectural thesis explicitly: capable models require a System-2 coordination layer that recruits knowledge, audits reasoning, preserves state, and governs convergence. MACI is the open-source integration of that vision and the full-stack program developed in <a href="https://dl.acm.org/doi/book/10.1145/3749421" rel="noopener noreferrer" target="_blank">Volume I</a> and subsequently <a href="https://dl.acm.org/doi/book/10.1145/3822380" rel="noopener noreferrer" target="_blank">Volume II</a>.<sup class="cite-ref"><a href="#ref-9">[9]</a></sup><sup class="cite-ref"><a href="#ref-11">[11]</a></sup></p></div>
+</div>
+<h2>The NeurIPS voting result—and its blind spot</h2>
+<p>In 2025, a widely discussed NeurIPS paper—<em>Debate or Vote: Which Yields Better Decisions in Multi-Agent Large Language Models?</em>, by Hyeong Kyu Choi, Xiaojin Zhu, and Sharon Li—compared multi-agent debate with the simpler alternative of collecting independent answers and taking a majority vote.<sup class="cite-ref"><a href="#ref-10">[10]</a></sup></p>
+<p>The result deserves to be read rather than dismissed. On seven benchmark settings, majority voting often matched or outperformed the tested debate protocols. For example, in one reported arithmetic setting with Qwen2.5-7B-Instruct, majority voting achieved <strong>99%</strong> accuracy while two-round decentralized debate achieved <strong>76%</strong>. Adding debate rounds did not reliably help.</p>
+<div class="vs">
+<div class="card vote"><h3>What the experiment measures well</h3><span class="metric">99% vs. 76%</span><p>For that arithmetic benchmark, voting was substantially better at selecting a known correct answer. That is useful evidence for choosing a low-cost method on fixed-answer tasks.</p></div>
+<div class="card discover"><h3>What it does not decide</h3><span class="metric">What was missing?</span><p>Whether agents discovered a previously unnoticed constraint, corrected a causal assumption, updated stale evidence, or prevented a real-world mistake.</p></div>
+</div>
+<p>The paper's main evaluation concerns discrete, externally graded answers—including mathematics, multiple-choice knowledge tasks, inference, and alignment labels. It also includes a limited open-ended summarization experiment evaluated by ROUGE. That is worth acknowledging. But summarization scores are not a test of agents discovering an unlisted hazard in a flood, an unknown drug interaction, or a hidden obligation in a financial plan.</p>
+<p>Its theoretical result is likewise conditional: the authors model debate through a particular stochastic belief-update process and derive a martingale property under that model. It is not a theorem that evidence retrieval, causal audit, persistent memory, or Socratic intervention can never improve collective reasoning. Indeed, the authors' own targeted interventions improved results by favoring corrective signals.</p>
+<div class="pull"><strong>It is a category error to confuse the ability to pick a supplied answer with the ability to discover an omitted one.</strong> Treating a closed-answer voting result as a verdict on genuine collaboration would misdirect the design and evaluation of agentic systems.</div>
+<p>Multiple-choice questions are well suited to testing answer selection precisely because the choices, scoring rule, and task frame are supplied. Those same features make them an especially poor primary test of deliberation whose purpose is to <em>discover</em> what the problem statement omitted. This is why I resist the emerging habit of using vote-versus-debate results to suggest that genuine collaboration is dispensable.</p>
+<p>Of course, not every multi-agent conversation is productive. Poorly structured debate can amplify errors, corrupt a correct answer, or waste compute. These are reasons to improve its regulation, not to identify collaboration with its weakest implementation.</p>
+<h2>A better test: did the agents discover what mattered?</h2>
+<p>Consider a flood-response benchmark. Do not supply every possible hazard as a multiple-choice option. Instead, supply a partial situation report. Withhold a material fact—a water-level spike, bridge closure, or change in boat availability—and allow the agents to ask questions, propose alternatives, and revise a deployment plan.</p>
+<p>A successful system should not be rewarded merely for landing on the right dispatch label. We should ask whether it recognized the missing variable; identified which assumption needed checking; obtained appropriately fresh evidence; distinguished justified from persuasive objections; and avoided an unsafe commitment. If the evidence is inadequate, asking for another measurement can be the most intelligent answer.</p>
+<div class="compare-wrap"><table aria-label="Benchmark comparison" class="compare-table"><thead><tr><th>Measure</th><th>Fixed-answer evaluation</th><th>Open-problem collaboration evaluation</th></tr></thead><tbody>
+<tr><td>Alternatives</td><td>Was the correct answer selected?</td><td>Were relevant, previously unlisted alternatives discovered?</td></tr>
+<tr><td>Reasoning</td><td>Did the final answer match a key?</td><td>Did arguments survive evidence and causal scrutiny?</td></tr>
+<tr><td>Information</td><td>Did answer accuracy improve?</td><td>Did agents find missing, discriminating evidence?</td></tr>
+<tr><td>Time</td><td>Did a model answer this question?</td><td>Did the decision remain justified when the world changed?</td></tr>
+<tr><td>Outcome</td><td>Did the vote succeed?</td><td>Was a safe and appropriate plan executed, deferred, or revised?</td></tr>
+</tbody></table></div>
+<p>We should still compare against strong single-agent reasoning, self-consistency, majority voting, MACNET, and adaptive orchestrators under similar costs. Collaboration should earn its complexity. But it must be judged on the work it is actually designed to do.</p>
+<h2>MACI: toward collaboration as a disciplined process</h2>
+<p>The <strong>Multi-LLM Agent Collaborative Intelligence (MACI)</strong> program is the integration-and-implementation path for the full stack of research developed in Volumes I and II of <em>The Path to AGI</em>. The goal is to make collaboration an accountable process, rather than a chat room filled with agents.</p>
+<div class="note"><strong>Inside the MACI loop:</strong> SocraSynth and BEAM regulate how forcefully participants explore and challenge; CRIT, RCA, and ERM examine whether arguments support their conclusions; EVINCE evaluates information progress and whether further rounds are productive; semantic alignment tracks whether agents are discussing the same factor; and a SagaLLM-inspired context manager preserves the argument history and current evidence. A moderator returns to exploration when warranted convergence has not been reached.</div>
+<p>The initial implementation need not claim to have solved every long-horizon planning problem. Its central task is to demonstrate an end-to-end process that can discover factors, refute and improve arguments, avoid premature consensus, and preserve the reasons for its conclusions. When the system later acts in health care, finance, or the physical world, stronger grounding, explicit authorization, and transaction-aware workflow controls become essential. Those broader requirements are developed in <a href="https://zenodo.org/records/22738473" rel="noopener noreferrer" target="_blank">Volume III, <em>Beyond Intelligence: From Operational AGI to Wisdom</em></a>.<sup class="cite-ref"><a href="#ref-11">[11]</a></sup></p>
+<p>The deeper lesson is not that more agents automatically produce more intelligence. It is that <strong>different perspectives become valuable when a system can expose their assumptions, assess their evidence, preserve their contributions, and govern what follows from them.</strong></p>
+<div class="closing"><p><strong>The future of agentic AI should not be measured by how many agents can talk, or how quickly they agree.</strong></p><p>It should be measured by what they discover together, how well they reason, whether they know what is happening in the world now, and whether they remember enough to act responsibly tomorrow.</p><p><strong>A vote may settle an answer. Collaboration can discover that we have been asking the wrong question.</strong></p></div>
+<div class="author-note"><strong>Research program.</strong> The MACI overview, design specification, and planned open-source implementation draw on the published <a href="https://dl.acm.org/doi/book/10.1145/3749421" rel="noopener noreferrer" target="_blank">Volume I</a> and <a href="https://dl.acm.org/doi/book/10.1145/3822380" rel="noopener noreferrer" target="_blank">Volume II</a> of <em>The Path to Artificial General Intelligence</em>. The present blog expresses an architectural and evaluation agenda, not a claim that the integrated system has already been validated.</div>
+<section class="references" id="references"><h2>References and reading</h2><ol>
+<li id="ref-1"><strong>Classical foundations of inquiry.</strong> <a href="https://plato.stanford.edu/entries/socrates/" rel="noopener noreferrer" target="_blank">Stanford Encyclopedia of Philosophy, “Socrates”</a>; <a href="https://pressbooks.ulib.csuohio.edu/republic/chapter/book-7/" rel="noopener noreferrer" target="_blank">Plato, <em>Republic</em>, Book VII (the Cave)</a>; and <a href="https://plato.stanford.edu/entries/aristotle-logic/" rel="noopener noreferrer" target="_blank">Stanford Encyclopedia of Philosophy, “Aristotle’s Logic”</a>, on the <em>Posterior Analytics</em>, causes, and first principles. The blog paraphrases these traditions; it does not attribute invented quotations to the philosophers.</li>
+<li id="ref-2"><strong>Chang, Edward Y. (2023).</strong> <a href="https://doi.org/10.1109/CCWC57344.2023.10099179" rel="noopener noreferrer" target="_blank"><em>Prompting Large Language Models With the Socratic Method.</em></a> IEEE CCWC. DOI: 10.1109/CCWC57344.2023.10099179.</li>
+<li id="ref-3"><strong>Du, Yilun, et al. (2024).</strong> <a href="https://proceedings.mlr.press/v235/du24e.html" rel="noopener noreferrer" target="_blank"><em>Improving Factuality and Reasoning in Language Models through Multiagent Debate.</em></a> ICML, PMLR 235:11733–11763. <a href="https://arxiv.org/abs/2305.14325" rel="noopener noreferrer" target="_blank">First posted May 2023</a>.</li>
+<li id="ref-4"><strong>Chang, Edward Y. (2023–2024).</strong> <a href="https://doi.org/10.1109/CSCI62032.2023.00009" rel="noopener noreferrer" target="_blank"><em>Examining GPT-4's Capabilities and Enhancement with SocraSynth.</em></a> IEEE CSCI 2023; and <a href="https://arxiv.org/abs/2402.06634" rel="noopener noreferrer" target="_blank"><em>SocraSynth: Multi-LLM Reasoning with Conditional Statistics</em></a>, arXiv January 2024.</li>
+<li id="ref-5"><strong>Chang, Edward Y. (2024).</strong> <a href="https://arxiv.org/abs/2408.14575" rel="noopener noreferrer" target="_blank"><em>EVINCE: Optimizing Multi-LLM Dialogues Using Conditional Statistics and Information Theory.</em></a> arXiv:2408.14575.</li>
+<li id="ref-6"><strong>Chang, Edward Y. (2025).</strong> <a href="https://proceedings.mlr.press/v267/chang25a.html" rel="noopener noreferrer" target="_blank"><em>A Checks-and-Balances Framework for Context-Aware Ethical AI Alignment.</em></a> ICML, PMLR 267:7332–7350.</li>
+<li id="ref-7"><strong>Chang, Edward Y., &amp; Geng, Longling (2025).</strong> <a href="https://www.vldb.org/pvldb/vol18/p4874-chang.pdf" rel="noopener noreferrer" target="_blank"><em>SagaLLM: Context Management, Validation, and Transaction Guarantees for Multi-Agent LLM Planning.</em></a> PVLDB 18(12):4874–4886.</li>
+<li id="ref-8"><strong>Qian, Chen, et al. (2025).</strong> <a href="https://proceedings.iclr.cc/paper_files/paper/2025/hash/66a026c0d17040889b50f0dfa650e5e0-Abstract-Conference.html" rel="noopener noreferrer" target="_blank"><em>Scaling Large Language Model-based Multi-Agent Collaboration.</em></a> ICLR 2025. <strong>Dang, Yufan, et al. (2025).</strong> <a href="https://papers.nips.cc/paper_files/paper/2025/hash/f1320d2e2842169c6fc89dcbd80e94d0-Abstract-Conference.html" rel="noopener noreferrer" target="_blank"><em>Multi-Agent Collaboration via Evolving Orchestration.</em></a> NeurIPS 2025.</li>
+<li id="ref-9"><strong>Chang, Edward Y. (2026).</strong> <a href="https://proceedings.mlr.press/v306/chang26h.html" rel="noopener noreferrer" target="_blank"><em>Position: AGI Requires a Coordination Layer on Top of Pattern Repositories.</em></a> ICML Position Track, PMLR 306:169727–169741.</li>
+<li id="ref-10"><strong>Choi, Hyeong Kyu, Zhu, Xiaojin, &amp; Li, Sharon (2025).</strong> <a href="https://proceedings.neurips.cc/paper_files/paper/2025/hash/934252acd87f254d5d4672fbde283bd2-Abstract-Conference.html" rel="noopener noreferrer" target="_blank"><em>Debate or Vote: Which Yields Better Decisions in Multi-Agent Large Language Models?</em></a> NeurIPS 2025.</li>
+<li id="ref-11"><strong>Chang, Edward Y. (2025–2026).</strong> <a href="https://dl.acm.org/doi/book/10.1145/3749421" rel="noopener noreferrer" target="_blank"><em>Multi-LLM Agent Collaborative Intelligence</em></a> (Vol. I), ACM Books, December 2025; <a href="https://doi.org/10.1145/3822380" rel="noopener noreferrer" target="_blank"><em>System-2 Reasoning: From Semantic Anchoring to Causal Intelligence</em></a> (Vol. II), ACM Books, July 23, 2026, DOI: 10.1145/3822380; <a href="https://zenodo.org/records/22738473" rel="noopener noreferrer" target="_blank"><em>Beyond Intelligence: From Operational AGI to Wisdom</em></a> (Vol. III), Zenodo.</li>
+<li id="ref-12"><strong>Chang, Edward Y. (2026).</strong> <a href="https://aclanthology.org/2026.findings-acl.427/" rel="noopener noreferrer" target="_blank"><em>Diagnosing and Mitigating Sycophancy and Skepticism in LLM Causal Judgment</em></a>. Findings of ACL 2026, 8769–8789. DOI: <a href="https://doi.org/10.18653/v1/2026.findings-acl.427" rel="noopener noreferrer" target="_blank">10.18653/v1/2026.findings-acl.427</a>.</li>
+<li id="ref-13"><strong>Chang, Edward Y., &amp; Geng, Longling (2026).</strong> <a href="https://arxiv.org/abs/2602.11675" rel="noopener noreferrer" target="_blank"><em>Epistemic Regret Minimization: Label-Free Causal Critique Beyond Outcome Reward</em></a>. arXiv:2602.11675, preprint.</li>
+</ol></section>
+<p class="related-post"><strong>Previous dispatch:</strong> <a href="Blog007-AI-Safety-Beyond-the-False-Binary.html">Warning: When Cyber Threats Can Learn</a>.</p>
+<p class="related-post"><strong>Next dispatch:</strong> <a href="Blog009-Learning-Before-Failure.html">Learning Before Failure: From Socratic Audit to Preventive Intelligence</a>.</p><div class="return-bottom"><a href="AGIForumIndex.html">← Back to Forum Home Page</a></div>
+</main>
+<footer><p>© 2026 <a href="http://infolab.stanford.edu/~echang/" rel="noopener noreferrer" target="_blank">Edward Y. Chang</a>. Published as part of <em>The AGI Forum: Theories, Practice, Safety, Risk &amp; Policy</em>.</p></footer>
+</div></body></html>

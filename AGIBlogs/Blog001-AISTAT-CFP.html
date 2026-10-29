@@ -1,0 +1,604 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Institutionalization of AI in Peer Review | The AGI Forum</title>
+  
+  <!-- MathJax configuration with display math alignment and wrapping safeguards -->
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$', '$$'], ['\\[', '\\]']]
+      },
+      chtml: {
+        displayAlign: 'left',
+        displayIndent: '1em'
+      }
+    };
+  </script>
+  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+  <style>
+    :root {
+      --bg-color: #fafbfc;
+      --card-bg: #ffffff;
+      --text-main: #24292f;
+      --text-muted: #57606a;
+      --accent: #0969da;
+      --accent-tint: #f6f8fa;
+      --border-color: #d0d7de;
+      --danger-border: #cf222e;
+      --danger-bg: #ffebe9;
+      --citation-bg: #f8fafc;
+      --citation-border: #0969da;
+      --font-body: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+      --font-mono: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background-color: var(--bg-color);
+      color: var(--text-main);
+      font-family: var(--font-body);
+      line-height: 1.75;
+      font-size: 18px;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .container {
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 40px 24px 80px 24px;
+    }
+
+    /* Cross-Ecosystem Navigation */
+    .site-nav {
+      display: flex;
+      gap: 18px;
+      font-size: 14px;
+      border-bottom: 1px solid var(--border-color);
+      padding-bottom: 14px;
+      margin-bottom: 28px;
+      flex-wrap: wrap;
+    }
+
+    .site-nav a {
+      color: var(--text-muted);
+      text-decoration: none;
+    }
+
+    .site-nav a:hover {
+      color: var(--accent);
+      text-decoration: underline;
+    }
+
+    .site-nav a.back-hub {
+      color: var(--accent);
+      font-weight: 700;
+    }
+
+    /* Masthead Navigation */
+    .masthead {
+      border-bottom: 2px solid var(--text-main);
+      padding-bottom: 18px;
+      margin-bottom: 30px;
+    }
+
+    .forum-title {
+      font-size: 22px;
+      font-weight: 800;
+      letter-spacing: -0.01em;
+      text-transform: uppercase;
+      color: #1f2328;
+      margin-bottom: 4px;
+    }
+
+    .forum-title a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .forum-subtitle {
+      font-size: 14px;
+      color: var(--text-muted);
+      letter-spacing: 0.02em;
+    }
+
+    /* Return Bar */
+    .return-bar {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 24px;
+      font-size: 14px;
+      font-weight: 600;
+    }
+
+    .return-bar a {
+      color: var(--accent);
+      text-decoration: none;
+    }
+
+    .return-bar a:hover {
+      text-decoration: underline;
+    }
+
+    header {
+      margin-bottom: 36px;
+      border-bottom: 1px solid var(--border-color);
+      padding-bottom: 28px;
+    }
+
+    .series-tag {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--accent);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-bottom: 12px;
+      display: inline-block;
+    }
+
+    h1 {
+      font-size: 35px;
+      line-height: 1.25;
+      letter-spacing: -0.02em;
+      font-weight: 700;
+      color: #1f2328;
+      margin-bottom: 18px;
+    }
+
+    .meta {
+      font-size: 15px;
+      color: var(--text-muted);
+      display: flex;
+      gap: 14px;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    .meta-author a,
+    .article-body a {
+      font-weight: 600;
+      color: var(--accent);
+      text-decoration: none;
+    }
+
+    .meta-author a:hover,
+    .article-body a:hover {
+      text-decoration: underline;
+    }
+
+    .article-body h2 {
+      font-size: 25px;
+      letter-spacing: -0.01em;
+      margin: 44px 0 18px 0;
+      padding-bottom: 8px;
+      border-bottom: 1px solid var(--border-color);
+      color: #1f2328;
+    }
+
+    .article-body h3 {
+      font-size: 20px;
+      margin: 30px 0 12px 0;
+      color: #1f2328;
+    }
+
+    .article-body p { margin-bottom: 22px; }
+    .article-body ul, .article-body ol { margin-bottom: 22px; padding-left: 28px; }
+    .article-body li { margin-bottom: 10px; }
+
+    /* Math Block Container with Responsive Line Wrapping */
+    .math-block {
+      background-color: var(--accent-tint);
+      border: 1px solid var(--border-color);
+      border-radius: 6px;
+      padding: 16px 20px;
+      margin: 24px 0;
+      overflow-x: auto;
+      word-wrap: break-word;
+      white-space: normal;
+    }
+
+    mjx-container[jax="CHTML"][display="true"] {
+      overflow-x: auto;
+      overflow-y: hidden;
+      max-width: 100%;
+      padding: 4px 0;
+    }
+
+    /* Blockquotes & Callouts */
+    blockquote {
+      border-left: 4px solid var(--accent);
+      background-color: var(--accent-tint);
+      padding: 16px 20px;
+      margin: 28px 0;
+      border-radius: 0 6px 6px 0;
+      color: #24292f;
+      font-style: normal;
+    }
+
+    .incident-callout {
+      border-left: 4px solid var(--danger-border);
+      background-color: var(--danger-bg);
+      padding: 20px;
+      margin: 32px 0;
+      border-radius: 0 6px 6px 0;
+      font-size: 16px;
+    }
+
+    .incident-callout h4 {
+      color: #cf222e;
+      font-size: 17px;
+      margin-bottom: 8px;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    /* Comparison Table Styling */
+    .table-container {
+      width: 100%;
+      overflow-x: auto;
+      margin: 36px 0;
+      border: 1px solid var(--border-color);
+      border-radius: 8px;
+      background: var(--card-bg);
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 14px;
+      text-align: left;
+      min-width: 720px;
+    }
+
+    th {
+      background-color: var(--accent-tint);
+      color: #1f2328;
+      font-weight: 600;
+      padding: 12px 14px;
+      border-bottom: 2px solid var(--border-color);
+      white-space: nowrap;
+    }
+
+    td {
+      padding: 14px 14px;
+      border-bottom: 1px solid var(--border-color);
+      vertical-align: top;
+      line-height: 1.55;
+    }
+
+    tr:last-child td { border-bottom: none; }
+    .highlight-col { background-color: #f0f7ff; }
+
+    /* Prompt Box */
+    .code-prompt {
+      background-color: #24292e;
+      color: #f6f8fa;
+      padding: 18px;
+      border-radius: 6px;
+      font-family: var(--font-mono);
+      font-size: 14px;
+      line-height: 1.6;
+      margin: 20px 0;
+      overflow-x: auto;
+    }
+
+    /* Citation Box */
+    .citation-section {
+      margin-top: 48px;
+      background-color: var(--citation-bg);
+      border: 1px solid var(--border-color);
+      border-left: 4px solid var(--citation-border);
+      border-radius: 6px;
+      padding: 24px;
+    }
+
+    .citation-section h3 {
+      font-size: 18px;
+      margin: 0 0 12px 0;
+      color: #1f2328;
+    }
+
+    .citation-text {
+      font-family: var(--font-mono);
+      font-size: 13px;
+      line-height: 1.6;
+      background: #ffffff;
+      padding: 14px;
+      border: 1px solid var(--border-color);
+      border-radius: 4px;
+      color: #24292f;
+      margin-bottom: 16px;
+      overflow-x: auto;
+      white-space: pre-wrap;
+    }
+
+    .bibtex-block {
+      font-family: var(--font-mono);
+      font-size: 13px;
+      line-height: 1.5;
+      background: #24292e;
+      color: #e6edf3;
+      padding: 16px;
+      border-radius: 4px;
+      overflow-x: auto;
+      white-space: pre;
+    }
+
+    /* Footer */
+    footer {
+      margin-top: 64px;
+      border-top: 1px solid var(--border-color);
+      padding-top: 32px;
+      font-size: 14px;
+      color: var(--text-muted);
+      text-align: center;
+    }
+
+    footer a { color: var(--accent); text-decoration: none; }
+    footer a:hover { text-decoration: underline; }
+
+    @media (max-width: 640px) {
+      h1 { font-size: 28px; }
+      body { font-size: 17px; }
+      .container { padding: 20px 14px; }
+      .forum-title { font-size: 19px; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <!-- Cross-Platform Ecosystem Navigation -->
+  <nav class="site-nav">
+    <a href="http://infolab.stanford.edu/~echang/AGIBlogs/AGIForumIndex.html" class="back-hub">&larr; The AGI Forum Index</a>
+    <a href="http://infolab.stanford.edu/~echang/">Stanford Home</a>
+    <a href="http://infolab.stanford.edu/~echang/cs372/MACI_UCCT_CS300_Nov2025.html">The Path to AGI Trilogy</a>
+    <a href="https://socrasynth.com/" target="_blank" rel="noopener noreferrer">SocraSynth / QuadrilumAI</a>
+  </nav>
+
+  <div class="masthead">
+    <div class="forum-title">
+      <a href="http://infolab.stanford.edu/~echang/AGIBlogs/AGIForumIndex.html">The AGI Forum: Theories, Practice, Safety, Risk &amp; Policy</a>
+    </div>
+    <div class="forum-subtitle">Dispatches on Theoretical Paradigms, Architectural Practice, and Global AI Policy</div>
+  </div>
+
+  <div class="return-bar">
+    <a href="http://infolab.stanford.edu/~echang/AGIBlogs/AGIForumIndex.html">&larr; Back to Forum Home Page</a>
+  </div>
+
+  <header>
+    <div class="series-tag">Dispatch No. 01 · Scientific Governance &amp; Peer Review</div>
+    <h1>The Institutionalization of AI in Peer Review: From Covert Asymmetry to Symmetrical Auditing</h1>
+    <div class="meta">
+      <span class="meta-author">
+        <a href="http://infolab.stanford.edu/~echang/" target="_blank" rel="noopener noreferrer">Edward Y. Chang</a>
+      </span>
+      <span>•</span>
+      <span>Stanford University</span>
+      <span>•</span>
+      <time datetime="2026-09-27">September 27, 2026</time>
+      <span>•</span>
+      <span>11 min read</span>
+    </div>
+  </header>
+
+  <main class="article-body">
+    <p>
+      The release of the <a href="https://virtual.aistats.org/Conferences/2027/CallForPapers" target="_blank" rel="noopener noreferrer">AISTATS 2027 Call for Papers</a> represents a watershed moment in how the computing research community governs artificial intelligence. Rather than attempting to enforce unworkable prohibitions or relying on naive honor systems, the conference has codified a reality that researchers have grappled with informally: generative models are now actively woven into how papers are drafted, verified, and audited.
+    </p>
+
+    <h2>1. The Core Policy Shifts in AISTATS 2027</h2>
+    <p>
+      The changes introduced by AISTATS alter both author-side disclosures and reviewer-side operations across four major fronts:
+    </p>
+    <ul>
+      <li>
+        <strong>Explicit Allowance with Mandatory Disclosure:</strong> Recognizing that research workflows are fundamentally hybrid—spanning proof sketches, code generation, and iterative text refinement—generative tools are not banned. However, every manuscript must include an explicit <em>AI Use Statement</em> adhering to the ICLR disclosure format.
+      </li>
+      <li>
+        <strong>Desk Rejection for Low-Density AI Text:</strong> Authors bear strict liability for all content. Submissions that exhibit unfocused, vague, or padded prose typical of unedited synthetic text are explicit candidates for summary desk rejection.
+      </li>
+      <li>
+        <strong>Centralized AI Review for Factual Correctness:</strong> Every submitted paper will automatically receive an official, system-generated AI review targeting factual assertions.
+      </li>
+      <li>
+        <strong>Temporal Blinding of Evaluators:</strong> Human reviewers cannot view the AI review while writing their initial evaluations. The automated audit is released to authors at the rebuttal stage and shared with reviewers and Area Chairs only during the interactive discussion phase.
+      </li>
+    </ul>
+
+    <h2>2. Flagship Policy Comparison: NeurIPS, ICML, ICLR, and AISTATS</h2>
+    <p>
+      Tracing the evolution across the major machine learning venues demonstrates a rapid progression: moving from piecemeal restrictions to formal disclosure templates, and ultimately to institutionalized automated auditing.
+    </p>
+
+    <div class="table-container">
+      <table>
+        <thead>
+          <tr>
+            <th>Dimension</th>
+            <th>NeurIPS 2026</th>
+            <th>ICML 2026</th>
+            <th>ICLR 2027</th>
+            <th class="highlight-col">AISTATS 2027</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Author Tool Use</strong></td>
+            <td>Permitted in main tracks; restricted and disclosed in specialty tracks.</td>
+            <td>Permitted for writing and coding; disclosure encouraged without fixed schema.</td>
+            <td>Permitted; pioneered and standardized the mandatory <em>AI Use Statement</em>.</td>
+            <td class="highlight-col"><strong>Formally adopts ICLR-style mandatory AI Use Statement.</strong></td>
+          </tr>
+          <tr>
+            <td><strong>Rejection on AI Style</strong></td>
+            <td>Qualitative reviewer scoring on clarity and significance.</td>
+            <td>Standard criteria; handled via conventional reviewer feedback.</td>
+            <td>Standard criteria; strict liability for factual errors and hallucinations.</td>
+            <td class="highlight-col"><strong>Explicit desk-rejection threshold</strong> for padded, unfocused AI prose.</td>
+          </tr>
+          <tr>
+            <td><strong>Automated Review</strong></td>
+            <td>None at conference scale.</td>
+            <td>None at conference scale.</td>
+            <td>None at conference scale.</td>
+            <td class="highlight-col"><strong>Universal conference-run AI review</strong> targeting factual correctness.</td>
+          </tr>
+          <tr>
+            <td><strong>Reviewer LLM Usage</strong></td>
+            <td>Prohibited (outside an opt-in OpenReview trial).</td>
+            <td>Dual-track: Policy A (ban) vs. Policy B (reading assistance).</td>
+            <td>Prohibited for evaluation; reviewers held to strict confidentiality.</td>
+            <td class="highlight-col"><strong>Centralized:</strong> Individual ad-hoc prompts replaced by a uniform audit.</td>
+          </tr>
+          <tr>
+            <td><strong>Reviewer Blinding</strong></td>
+            <td>Standard double-blind.</td>
+            <td>Standard double-blind.</td>
+            <td>Standard double-blind.</td>
+            <td class="highlight-col"><strong>Temporally blinded:</strong> Reviewers write unassisted; AI audit surfaces at rebuttal.</td>
+          </tr>
+          <tr>
+            <td><strong>Platform Safeguards</strong></td>
+            <td>Ethical codes of conduct.</td>
+            <td>Explicit ban on prompt injection in PDF texts.</td>
+            <td>Subject to OpenReview bidding protocols and whistleblower flags.</td>
+            <td class="highlight-col">Whistleblower portal + explicit desk rejection for prompt injections.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h2>3. The Covert Asymmetry: Why the Shift Was Inevitable</h2>
+    <p>
+      This policy shift addresses a serious asymmetry that developed under nominal prohibition rules. Despite formal bans, authors have routinely encountered reviews bearing the clear hallmarks of long-context large language models.
+    </p>
+    <p>
+      In my own recent experience with NeurIPS submissions, we received reviews citing minor discrepancies between an introductory approximation and an exact empirical figure buried on page 40 of an appendix table. No human reviewer reads with that kind of mechanical diff-checking capability over arbitrary token distances. Compounding this, multiple official reviews on a single submission exhibited nearly identical rhetorical phrasing, section structures, and stylistic headers—the unmistakable signature of different reviewers feeding the same PDF into standard commercial models using cookie-cutter prompts.
+    </p>
+    <blockquote>
+      Prohibiting tools that reviewers can run privately creates an unmonitored asymmetry: authors write under good-faith guidelines while facing an unaccountable, synthetic audit masquerading as independent human consensus.
+    </blockquote>
+
+    <h2>4. Platform Vulnerabilities and the Threat of Idea Scooping</h2>
+    <p>
+      Treating modern AI models as simply the next iteration of the library card catalog or web search index ignores their structural differences. Search engines retrieve source documents with clear provenance; generative models synthesize, blend, and emit text detached from attribution. When combined with vulnerable peer review platforms, the risk to intellectual property becomes severe.
+    </p>
+
+    <div class="incident-callout">
+      <h4>Case in Point: The ICLR 2027 OpenReview Incident</h4>
+      <p>
+        The threat of automated harvesting is not hypothetical. During the ICLR 2027 submission cycle, a software permission vulnerability on OpenReview exposed submission abstracts and paper metadata during reviewer bidding. Malicious actors systematically scraped thousands of unpublished submissions before the final manuscript deadline.
+      </p>
+      <p style="margin-top: 10px;">
+        While program leadership initially handled the incident as an operational platform glitch, downplaying such breaches ignores the acute risk of <strong>LLM-assisted idea scooping</strong>. When bad actors ingest thousands of unpublished abstracts into frontier models, the system can synthesize competitive variations, reconstruct missing steps, or preempt experimental validation within days.
+      </p>
+      <p style="margin-top: 10px;">
+        In my formal complaint to the ICLR chairs, I argued that addressing this requires uncompromising transparency and accountability: conducting exhaustive access-log audits, releasing the list of affected submissions to their authors, cross-checking post-leak submission revisions of identified scrapers, and issuing permanent conference bans for those engaged in systematic data harvesting.
+      </p>
+    </div>
+
+    <h3>The Dilemma of Unintentional Copying</h3>
+    <p>
+      Beyond platform security, model-mediated literature exploration introduces the hazard of <em>semantic cryptomnesia</em>. Large language models memorize long-tail sequences from training data. When prompted for proof strategies or related work decompositions, a model may reproduce an uncited author's distinct phrasing or conceptual layout without quotation marks or attribution.
+    </p>
+    <p>
+      Because intent cannot be determined from model outputs, the line between deliberate theft and inadvertent reproduction becomes blurred. Conferences that enforce strict liability policies will inevitably flag good-faith authors for unintentional copying, while conventional plagiarism software—built for surface lexical matching rather than semantic reconstitution—fails to detect genuine, paraphrased theft.
+    </p>
+
+    <h2>5. The Author's Playbook: Symmetrical Pre-Submission Auditing</h2>
+    <p>
+      With AISTATS 2027 running automated factual reviews across all submissions, authors can no longer treat AI as an afterthought. If the venue deploys an automated auditor, authors must run an equivalent auditor before submission.
+    </p>
+
+    <h3>A. Global Consistency Sweeps</h3>
+    <p>
+      Before submitting, authors should run an exhaustive adversarial cross-reference prompt across their full manuscript:
+    </p>
+
+    <div class="code-prompt">
+"Examine this entire PDF, including all supplementary appendices. Cross-check every numerical claim, runtime speedup, and parameter value in Sections 1 through 5 against every empirical table and proof step in Appendices A through E. Flag any discrepancy, definition drift, or rounding contradiction."
+    </div>
+
+    <h3>B. Defensive Formatting Against Automated False Positives</h3>
+    <p>
+      Language models frequently hallucinate contradictions when summary values in an introduction diverge stylistically from empirical tables. Authors should write with explicit semantic precision, wrapping formal equations across lines to ensure unambiguous parsing:
+    </p>
+
+    <div class="math-block">
+      $$\begin{aligned}
+        \text{Introductory Abstract:} &\quad \text{Throughput Gain } \approx 85\% \\
+        \Downarrow & \\
+        \text{Explicit Main Text:} &\quad \text{"As summarized in Section 1 (}\sim 85\%\text{), exact trial-averaged} \\
+        &\quad \text{throughput gain is } 84.8\% \pm 0.4\% \text{ (see Table 4, Appendix B)."}
+      \end{aligned}$$
+    </div>
+
+    <p>
+      Similarly, eliminate ambiguous referential phrasing in proofs (such as <em>"substituting the former into the latter"</em>) in favor of explicit equation references:
+    </p>
+
+    <div class="math-block">
+      $$\begin{aligned}
+        \text{Ambiguous Formulation:} &\quad x_{t+1} = f(x_t) \implies \text{substituting previous results...} \\
+        \Downarrow & \\
+        \text{Explicit Specification:} &\quad \text{Substitute Eq. (3) into Eq. (6) to evaluate the bound on } \nabla \mathcal{L}(\theta)
+      \end{aligned}$$
+    </div>
+
+    <h3>C. Inverse Drafting: Compression over Generation</h3>
+    <p>
+      Because the <a href="https://virtual.aistats.org/Conferences/2027/CallForPapers" target="_blank" rel="noopener noreferrer">CFP</a> explicitly permits desk rejection for low-density, padded AI prose, researchers should use models in reverse: not to inflate page counts, but to condense text, remove rhetorical throat-clearing, and maximize information density.
+    </p>
+
+    <h2>The Path Forward</h2>
+    <p>
+      The AISTATS 2027 guidelines mark the normalization of hybrid scientific workflows. Bringing automated reviews into the open replaces clandestine reviewer prompts with a uniform, auditable standard.
+    </p>
+    <p>
+      However, this new paradigm demands equal vigilance regarding platform security, idea provenance, and rigorous self-auditing. When factual consistency is audited algorithmically, human peer review can finally focus where it adds true value: evaluating conceptual depth, methodological validity, and the enduring scientific impact of the work.
+    </p>
+
+    <!-- How to Cite Section -->
+    <div class="citation-section">
+      <h3>How to Cite This Post</h3>
+      <p style="font-size: 14px; color: var(--text-muted); margin-bottom: 10px;">
+        For attribution in academic manuscripts, policy memos, and articles, please cite as:
+      </p>
+      <div class="citation-text">Chang, Edward Y. "The Institutionalization of AI in Peer Review: From Covert Asymmetry to Symmetrical Auditing." The AGI Forum: Theories, Practice, Safety, Risk & Policy, Dispatch No. 01, September 27, 2026. http://infolab.stanford.edu/~echang/AGIBlogs/Blog001-AISTAT-CFP.html</div>
+      
+      <p style="font-size: 14px; color: var(--text-muted); margin-bottom: 8px;">
+        BibTeX entry:
+      </p>
+      <div class="bibtex-block">@article{chang2026institutionalization_peer_review,
+  author    = {Edward Y. Chang},
+  title     = {The Institutionalization of {AI} in Peer Review: From Covert Asymmetry to Symmetrical Auditing},
+  journal   = {The AGI Forum: Theories, Practice, Safety, Risk \& Policy},
+  number    = {Dispatch No. 01},
+  year      = {2026},
+  month     = {September},
+  url       = {http://infolab.stanford.edu/~echang/AGIBlogs/Blog001-AISTAT-CFP.html}
+}</div>
+    </div>
+  </main>
+
+  <footer>
+    <p>
+      &copy; 2026 <a href="http://infolab.stanford.edu/~echang/" target="_blank" rel="noopener noreferrer">Edward Y. Chang</a>. Published as part of <a href="http://infolab.stanford.edu/~echang/AGIBlogs/AGIForumIndex.html"><em>The AGI Forum: Theories, Practice, Safety, Risk &amp; Policy</em></a>.
+    </p>
+    <p style="margin-top: 8px; font-size: 13px;">
+      <a href="http://infolab.stanford.edu/~echang/AGIBlogs/AGIForumIndex.html">&larr; Return to Forum Index</a>
+    </p>
+  </footer>
+</div>
+
+</body>
+</html>

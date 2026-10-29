@@ -1,0 +1,242 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML 3.0//EN">
+<HTML>  
+
+
+<BODY TEXT="#000000" LINK="#CC3300" VLINK="#10057F" ALINK="#CC3300" BGCOLOR="#FFFFFF">  
+
+<TABLE BORDER="0" CELLPADDING="2" CELLSPACING="0" WIDTH="600">    
+<TR>
+<TD ALIGN=LEFT VALIGN=MIDDLE BGCOLOR="#330066">
+<FONT FACE="Arial, Helvetica" COLOR="#FFFFFF"><FONT SIZE ="5"><B>Recent Publications (1997 - )</B></FONT>
+</TD>
+</TR>                
+<TR>
+<TD ALIGN=LEFT VALIGN=MIDDLE BGCOLOR="#F1FF72">
+<FONT FACE="Arial, Helvetica" COLOR="#000000">
+<FONT SIZE="4"><B>Edward Chang</B></FONT></FONT>
+</TD>
+</TR>                
+</TABLE>
+
+<b>Caution: Any unauthorized commercial use of 
+the following UC patents 
+<br>will be fully prosecuted to the extent of the law.
+</b>
+
+<h3><b>Patents:</b></h3>
+<ul>
+<li>A Suite of Learning, Sampling, and Indexing Algorithms for Grasping Complex Query Concepts, 2001.
+<li>Intelligent Sampling for Learning Complex Query Concepts, 2001.
+<li>Perception-based & Personalizable Image Retrieval, 2000.
+<li>piDTV: A Personalizable and Interactive DTV Architecture, 2000.
+<li>Classification Considering Personalization, 1999.
+</ul>
+
+<h3><b>2001:</b></h3>
+<ul>
+<li>
+<a href = "http://www.cs.ust.hk/faculty/gchan/papers/icc01_mb.ps">
+Providing Scalable On-Demand Interactive Video Services by Means of Multicasting and Client Buffering</a>,
+<br>S.-H. Chan and E. Chang, 
+<br>Proceedings of IEEE International Conference on Communications, Helsinki, June, 2001. 
+<br>
+<li>
+<a href = "http://www-db.stanford.edu/~echang/sigmod01-demo.ps">
+PBIR - Perception-Based Image Retrieval</a>,
+<br>E. Chang, T. Cheng and L. Chang, 
+<br>Proceedings of ACM Sigmod (Exhibition), Santa Barbara, May, 2001.
+<br>
+<li>Answering Queries with Useful Bindings,
+<br>Chen Li and Edward Chang, 
+<br>ACM Transaction on Databases (accepted March 2001).
+<br>
+<li>
+<a href = "http://www-db.stanford.edu/~echang/clindex.ps">
+Approximate Similarity Queries in High-Dimensional Spaces</a>,
+<br>Chen Li, Edward Chang, Hector Garcia-Molina, and Gio Wiederhold,
+<br>IEEE Transaction on Knowledge and Data Engineering (accepted Jan. 2001).
+<br>
+<li>
+<a href = "http://www-db.stanford.edu/~chenli/pubs/ICDT2001-aqbp.ps">
+On Answering Queries in the Presence of Limited Access Patterns</a>,
+<br>Chen Li and Edward Chang,
+<br>International Conference on Database Theory (ICDT), London, January 2001.
+<br>
+</ul>
+
+
+<h3><b>2000:</b></h3>
+<ul>
+<li>
+<a href = "http://www-db.stanford.edu/~echang/cbaivl.ps">
+Towards Perception-Based Image Retrieval</a>,
+<br>Edward Chang, Beitao Li and Chen Li,
+<br>
+Proceedings of 
+IEEE Workshop on Content-based Access of Image and Video Libraries, p.101-105,
+<br>South Carolina, June, 2000.
+
+<li>
+<a href = "http://www-db.stanford.edu/~chenli/pubs/ICDE2000-qplsc.ps">Query Planning with Limited Source Capabilities</a>,
+<br>Chen Li and Edward Chang,
+<br>Proceedings of the 16th IEEE International Conference on Data Engineering (ICDE), p. 401-412,
+<br>San Diego, March 2000.
+<br>
+
+<li>
+<a href = "http://www-db.stanford.edu/~echang/book.ps">
+Managing Parallel Disks for Continuous Media Data</a>,
+<br>Edward Chang, Chen Li and Hector Garcia-Molina,
+<br>A Book Chapter in Information Organization & Databases, p.107-120
+<br>Kluwer Publisher, 2000.
+
+<li>
+<i>Maximizing QoS for Interactive DTV Clients</i>,
+<br>Edward Chang,
+<br>The Computer Communications Journal (Special Issue), Elsevier,
+Volume 23, Number 3, Febeuary 2000.
+<br>
+
+<li><i>Classifying Web Documents Considering Personalization</i>,
+<br>Quoc Vu, Wen-Syan Li and Edward Chang,
+<br>Journal of KIST, 2000 (to appear).
+<br>
+
+</ul>
+<h3><b>1999:</b></h3>
+<ul>
+<li>
+<a href="http://www-db.stanford.edu/~echang/papers/acmmm99.html">
+piDTV: A Client-Based Interactive DTV Architecture</a>,
+<br>Edward Chang,
+<br>Proceedings of the 7th ACM International Conference on Multimedia,
+Part 2, p.111-114,
+<br>Orlando, November 1999.
+<br>
+
+<li>
+<a href="http://www-db.stanford.edu/~echang/papers/spie99.ps">
+Searching Near-Replicas of Images via Clustering</a>,
+<br>Edward Chang, Chen Li, James Ze Wang, Peter Mork, and Gio Wiederhold,
+<br>Proceedings of SPIE Symposium of Voice, Video, and Data Communications, p.281-92,
+<br>Boston, September 1999.
+<br>
+
+<li>
+<a href="http://www-db.stanford.edu/~echang/papers/medic.html">
+MEDIC: A Memory & Disk Cache for Multimedia Clients</a>,
+<br>Edward Chang and Hector Garcia-Molina,
+<br>[IEEE Copyright] Proceedings of the 6th IEEE International Conference on Multimedia Computing and Systems, p.493-99,
+<br>Florence, Italy, June 1999.
+<br>
+
+<li><i>PowerBookmarks: A System for Personalizable Web
+Information Organization, Sharing, and Management</i>,
+<br>Quoc Vu, Wen-Syan Li and Edward Chang,
+<br>Proceedings of ACM Sigmod, p.565-67,
+<br>Philadephia, June 1999.
+<br>
+<li><a href="http://www-db.stanford.edu/~echang/papers/jvldb.ps">
+Accounting for Memory Use, Cost, Throughput, and
+Latency in the Design of a Media Server</a>,
+<br>Edward Chang and Hector Garcia-Molina,
+<br>Stanford University Technical Report SIDL-WP-1998-0096, July 1999.
+<br>
+
+</ul>
+<h3><b>1998:</b></h3>
+<ul>
+
+<li><a href="http://www-db.stanford.edu/~echang/papers/rime.ps">
+RIME: A Replicated Image Detector for the World-Wide Web</a>,
+<br>Edward Chang, James Ze Wang, Chen Li, and Gio Wiederhold,
+<br>[SPIE Copyright] Proceedings of SPIE Symposium of Voice, Video, and Data Communications,
+<br>Boston, November 1998.
+<br>
+
+<li><a href="http://www-db.stanford.edu/~echang/papers/2db.ps">
+2D BubbleUp - Managing Parallel Disks for Media Servers</a>,
+<br>Edward Chang, Hector Garcia-Molina, and Chen Li,
+<br>Proceedings of the 5th International Conference
+on Foundations of Data Organization (FODO), p221-230,
+<br>Kobe, Japan, November 1998.
+<br>
+
+<li><a href="http://www-db.stanford.edu/~echang/papers/idms98.html">
+An Image Coding and Reconstruction Scheme for Mobile Computing</a>,
+<br>Edward Chang,
+<br>Proceedings of the 5th IDMS (Springer-Verlag LNCS #1483), p.137-148,
+<br>Oslo, Norway, September 1998.
+<br>
+
+<li><a href="http://www-db.stanford.edu/~echang/papers/ride98.ps">
+Cost-Based Media Server Design</a>,
+<br>Edward Chang and Hector Garcia-Molina,
+<br>[IEEE Copyright] Proceedings of the 8th Research Issues in Data Engineering, p.76-83,
+<br>Orlando, February 1998.
+<br>(Selected for journal submission)
+<br>
+
+</ul>
+<h3><b>1997:</b></h3>
+<ul>
+
+<li><a href="http://www-db.stanford.edu/~echang/papers/bubbleup.ps">
+BubbleUp: Low Latency Fast-Scan for Media Servers</a>,
+<br>Edward Chang and Hector Garcia-Molina,
+<br>[ACM Copyright] Proceedings of the 5th ACM International Conference on Multimedia, p.87-98,
+<br>Seattle, November 1997.
+<br>
+
+<li><a href="http://www-db.stanford.edu/~echang/papers/mm-vldb.ps">
+Effective Memory Use in a Media Server</a>,
+<br>Edward Chang and Hector Garcia-Molina,
+<br>[VLDB Copyright] Proceedings of the 23rd Very Large Data Base (VLDB) Conference, p.496-505,
+<br>Athens, Greece, August 1997.
+<br>
+
+<li><a href="http://computer.org/multimedia/mu1997/u3toc.htm">
+Reducing Initial Latency in Media Servers</a>,
+<br>Edward Chang and Hector Garcia-Molina,
+<br>[IEEE Copyright] IEEE Multimedia, vol.4, no.3, p.50-61, July 1997.
+<br>
+</ul>
+<h3><b>Recent Releases:</b></h3>
+<ul>
+<li>Support Vector Machine Active Learning for Image Retrieval,
+<br>S. Tong and E. Chang, March 2001,
+<br>UCSB Technical Report (submitted for conference publication).
+<br>
+<li>Fined-grained Device Management for iCS,
+<br>R. Rangaswami, E. Chang and Z. Dimitrijevic, March 2001,
+<br>UCSB Technical Report (submitted for conference publication).
+<br>
+<li>Learning Image Query Concepts via Intelligent Sampling,
+<br>B. Li, E. Chang, and C.-S. Li, February 2001,
+<br>UCSB Technical Report (short paper, submitted for conference publication).
+<br>
+<li>Data Placement for Multiuser Interactive Digital VCR,
+<br>R. Rangaswami, E. Chang and M. Chen, January 2001,
+<br>UCSB Technical Report (short paper, submitted for conference publication).
+<br>
+<li>NNEW - Nearest Neighbor Expansion by Weighting in Image Database Retrieval,
+<br>H. You, E. Chang and B. Li, January 2001,
+<br>UCSB Technical Report (short paper, submitted for conference publication).
+<br>
+<li>MEGA --- The Maximizing Expected Generalization Algorithm,
+<br>E. Chang and B. Li, November 2000,
+<br>UCSB Technical Report (submitted for conference publication).
+<br>
+<li>Managing Media Data for Enabling Interactive DTV,
+<br>R. Rangaswami, E. Chang and G. Chan, November 2000,
+<br>UCSB Technical Report (submitted for conference publication).
+<br>
+</ul>
+
+<br>
+
+Back to Ed's <a href="http://www-db.stanford.edu/~echang/">home page</a>.   
+</TABLE>
+                  
+</BODY>
+

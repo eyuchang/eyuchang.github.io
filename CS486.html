@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CS486: Advanced Large Language Models Research Seminar (Spring 2026)</title>
+  <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,600;8..60,700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --stanford-red: #8C1515;
+      --stanford-red-dark: #6B1010;
+      --warm-cream: #FDF8F3;
+      --warm-sand: #F5EDE4;
+      --warm-beige: #E8DDD1;
+      --warm-terracotta: #5E81AC;
+      --warm-amber: #88C0D0;
+      --warm-brown: #4C566A;
+      --warm-chocolate: #3B4252;
+      --text-primary: #3D3225;
+      --text-secondary: #6B5D4D;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      line-height: 1.7;
+      background: linear-gradient(135deg, var(--warm-cream) 0%, var(--warm-sand) 100%);
+      color: var(--text-primary);
+      min-height: 100vh;
+    }
+
+    header {
+      background: linear-gradient(135deg, var(--stanford-red) 0%, var(--stanford-red-dark) 100%);
+      color: white;
+      padding: 3rem 2rem;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    header::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+      opacity: 0.5;
+    }
+
+    header > * { position: relative; z-index: 1; }
+
+    header h1 {
+      font-family: 'Source Serif 4', Georgia, serif;
+      font-size: clamp(1.6rem, 4vw, 2.3rem);
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+      letter-spacing: -0.02em;
+    }
+
+header h3 {
+  font-weight: 400;
+  font-size: 1.08rem;
+  opacity: 1;
+  margin-bottom: 1.5rem;
+  color: white;
+}
+
+header p {
+  font-size: 0.96rem;
+  margin: 0.35rem 0;
+  opacity: 0.98;
+  color: white;
+}
+
+header a {
+  color: white;
+  text-decoration: none;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.55);
+}
+
+    nav {
+      background: var(--warm-chocolate);
+      text-align: center;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: 0 4px 20px rgba(92, 64, 51, 0.15);
+    }
+
+    nav a {
+      color: var(--warm-cream);
+      text-decoration: none;
+      padding: 1rem 1.4rem;
+      display: inline-block;
+      font-size: 0.9rem;
+      font-weight: 500;
+      letter-spacing: 0.03em;
+      text-transform: uppercase;
+      position: relative;
+    }
+
+    nav a::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      width: 0;
+      height: 3px;
+      background: var(--warm-amber);
+      transition: all 0.3s ease;
+      transform: translateX(-50%);
+    }
+
+    nav a:hover::after { width: 80%; }
+
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 3rem 2rem;
+    }
+
+    section {
+      background: white;
+      border-radius: 16px;
+      padding: 2.5rem;
+      margin-bottom: 2rem;
+      box-shadow: 0 4px 24px rgba(139, 107, 74, 0.08);
+      border: 1px solid var(--warm-beige);
+    }
+
+    h2 {
+      font-family: 'Source Serif 4', Georgia, serif;
+      color: var(--stanford-red);
+      font-size: 1.8rem;
+      font-weight: 600;
+      margin-bottom: 1.5rem;
+      padding-bottom: 0.75rem;
+      border-bottom: 3px solid var(--warm-amber);
+      display: inline-block;
+    }
+
+    h3 {
+      font-family: 'Source Serif 4', Georgia, serif;
+      color: var(--warm-brown);
+      font-size: 1.25rem;
+      font-weight: 600;
+      margin: 1.6rem 0 1rem;
+    }
+
+    p { margin-bottom: 1rem; color: var(--text-secondary); }
+
+    .container a {
+      color: var(--warm-terracotta);
+      text-decoration: none;
+      border-bottom: 1px solid rgba(196, 112, 75, 0.3);
+    }
+
+    ol, ul { margin: 1rem 0 1.5rem 1.4rem; color: var(--text-secondary); }
+    li { margin-bottom: 0.6rem; padding-left: 0.35rem; }
+
+    .announcement-item {
+      background: linear-gradient(135deg, var(--warm-sand) 0%, var(--warm-cream) 100%);
+      border-radius: 12px;
+      padding: 1.2rem 1.4rem;
+      margin-bottom: 1rem;
+      border-left: 4px solid var(--warm-terracotta);
+    }
+
+    .announcement-date {
+      display: inline-block;
+      background: var(--warm-terracotta);
+      color: white;
+      padding: 0.28rem 0.72rem;
+      border-radius: 20px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      margin-right: 0.75rem;
+    }
+
+    .resource-card {
+      background: linear-gradient(135deg, var(--warm-cream) 0%, white 100%);
+      border: 1px solid var(--warm-beige);
+      border-radius: 12px;
+      padding: 1.5rem;
+      margin-bottom: 1rem;
+    }
+
+    .resource-card h3 { margin-top: 0; }
+
+    .table-wrapper {
+      overflow-x: auto;
+      border-radius: 12px;
+      box-shadow: 0 2px 12px rgba(139, 107, 74, 0.1);
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      background: white;
+      font-size: 0.92rem;
+    }
+
+    thead {
+      background: linear-gradient(135deg, var(--warm-brown) 0%, var(--warm-chocolate) 100%);
+      color: white;
+    }
+
+    th {
+      padding: 1rem 0.75rem;
+      text-align: left;
+      font-weight: 600;
+      font-size: 0.84rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    td {
+      padding: 1rem 0.75rem;
+      border-bottom: 1px solid var(--warm-beige);
+      vertical-align: top;
+    }
+
+    tbody tr:nth-child(even) { background: rgba(245, 237, 228, 0.5); }
+    .deadline {
+      display: inline-block;
+      background: linear-gradient(135deg, var(--warm-terracotta) 0%, #B85A3B 100%);
+      color: white;
+      padding: 0.25rem 0.6rem;
+      border-radius: 6px;
+      font-size: 0.75rem;
+      font-weight: 600;
+    }
+
+    .topic-badge {
+      display: inline-block;
+      padding: 0.2rem 0.5rem;
+      border-radius: 4px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      margin-right: 0.4rem;
+    }
+
+    .topic-build { background: #E3F2FD; color: #1565C0; }
+    .topic-systems { background: #E8F5E9; color: #2E7D32; }
+    .topic-paper { background: #FFF3E0; color: #E65100; }
+    .topic-demo { background: #F3E5F5; color: #7B1FA2; }
+
+    footer {
+      background: linear-gradient(135deg, var(--warm-chocolate) 0%, #4A3428 100%);
+      color: var(--warm-cream);
+      text-align: center;
+      padding: 2rem;
+      margin-top: 2rem;
+    }
+
+    footer p { color: rgba(253, 248, 243, 0.8); margin: 0; }
+
+    @media (max-width: 768px) {
+      header { padding: 2rem 1rem; }
+      .container { padding: 1.5rem 1rem; }
+      section { padding: 1.5rem; }
+      nav a { padding: 0.75rem 0.9rem; font-size: 0.8rem; }
+      table { font-size: 0.82rem; }
+      th, td { padding: 0.75rem 0.5rem; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>CS486: Advanced Large Language Models Research Seminar</h1>
+    <h3>Spring 2026 · Stanford University</h3>
+    <p><strong>2026 focus:</strong> Human-LLM Collaboration for Scientific Discovery</p>
+    <p><strong>Instructor:</strong> <a href="http://infolab.stanford.edu/~echang/">Edward Y. Chang</a></p>
+    <p><strong>Lectures:</strong> Mondays & Wednesdays, 4:30 PM – 5:50 PM @ Gates 100</p>
+    <p><strong>Operational format:</strong> Monday seminar; Wednesday research clinic, office hours, and team check-ins</p>
+    <p><strong>Dates:</strong> March 30, 2026 – June 3, 2026</p>
+  </header>
+
+  <nav>
+    <a href="#announcements">Announcements</a>
+    <a href="#overview">Overview</a>
+    <a href="#resources">Resources</a>
+    <a href="#schedule">Schedule</a>
+  </nav>
+
+  <div class="container">
+    <section id="announcements">
+      <h2>Announcements</h2>
+      <div class="announcement-item">
+        <span class="announcement-date">3.2026</span>
+Prerequisite: CS372 is strongly recommended. Students who have not taken CS372 may be admitted by exception with instructor approval, typically only if they are exceptionally strong coders and have substantial OpenClaw experience. Also, please check out this free online <a href="https://dl.acm.org/doi/book/10.1145/3749421">textbook</a> for the required background.
+      </div>
+      <div class="announcement-item">
+        <span class="announcement-date">3.2026</span>
+        The main goal of the seminar is to mentor student teams toward one or more NeurIPS-style submissions, with the paper ready and submitted by the tentative deadline of May 11, 2026.
+      </div>
+    </section>
+
+    <section id="overview">
+      <h2>Course Overview</h2>
+      <p><em>This seminar studies how scientists and mathematicians can conduct exploratory research through disciplined human-LLM collaboration, and how to build a platform that makes such collaboration trustworthy, productive, and publishable.</em></p>
+
+      <p>The purpose of this course is to mentor students to build a platform for scientific discovery in human-LLM collaboration settings and to write a paper for submission to NeurIPS. The tentative submission deadline is May 11, 2026, and teams should plan for the paper to be ready and submitted by that date. The course builds directly on ideas covered in CS372, but shifts from conceptual foundations to implementation, integration, evaluation, and research writing.</p>
+
+      <p>The main theme is AGI-oriented scientific discovery. We will design and implement a platform that helps scientists and mathematicians search literature, organize memory, generate hypotheses, run controlled exploration, track provenance, validate intermediate results, and produce research artifacts under human supervision. The platform itself is a research contribution. The use of the platform in mathematical or scientific case studies may also become research papers.</p>
+
+      <p>The course is motivated in part by recent remarks from Terence Tao, who has argued that AI is becoming a practical research assistant in mathematics and theoretical physics, especially for literature search, coding, calculation, and rapid exploration of candidate ideas, while the human remains responsible for selecting problems, designing workflows, and verifying correctness.</p>
+
+      <h3>Core Questions</h3>
+      <ol>
+        <li>What are the essential components of a trustworthy human-LLM research platform?</li>
+        <li>How should such a system support memory, provenance, validation, rollback, and multi-path exploration?</li>
+        <li>How do we keep the human in control of significance, correctness, and scientific judgment?</li>
+        <li>How can we evaluate whether a human-LLM platform truly improves exploratory scientific work?</li>
+        <li>How do we turn both the platform and its usage into publishable research papers?</li>
+      </ol>
+
+      <h3>Course Examines</h3>
+      <ol>
+        <li>Human-LLM collaboration protocols for scientific and mathematical discovery</li>
+        <li>Platform design for memory, validation, provenance, and research orchestration</li>
+        <li>Exploratory workflows for conjecture generation, branching search, and verification</li>
+        <li>Failure modes such as hallucination, sycophancy, context drift, and brittle overconfidence</li>
+        <li>Evaluation of scientific usefulness, controllability, and reproducibility</li>
+        <li>Paper writing and revision discipline for NeurIPS-style submissions</li>
+      </ol>
+
+      <p><strong>Prerequisite:</strong> CS372 is strongly recommended. Students who have not taken CS372 may be admitted by exception with instructor approval, typically only if they are exceptionally strong coders and have substantial OpenClaw experience.</p>
+
+      <h3>Expected Deliverables</h3>
+      <ol>
+        <li>A platform module or subsystem</li>
+        <li>An integrated prototype by mid-May</li>
+        <li>A submission-quality paper on the platform and/or its use</li>
+        <li>A final presentation and demonstration</li>
+      </ol>
+
+      <h3>Tentative Grading</h3>
+      <ol>
+        <li>Weekly milestone reports and participation: 20%</li>
+        <li>Engineering contribution to the platform: 30%</li>
+        <li>Paper draft quality and revision discipline: 25%</li>
+        <li>Final presentation and demo: 15%</li>
+        <li>Final report or submission-ready paper: 10%</li>
+      </ol>
+    </section>
+
+    <section id="resources">
+      <h2>Resources</h2>
+
+      <div class="resource-card">
+        <h3>Textbooks</h3>
+        <p><strong><a href="https://dl.acm.org/doi/book/10.1145/3749421">Multi-LLM Collaborative Intelligence (MACI), The Path to AGI Volume 1</a></strong>, ACM Books, Edward Y. Chang.</p>
+        <p><strong><a href="https://www.amazon.com/dp/1962463222">System-2 Reasoning: From Semantic Anchoring to Causal Intelligence, The Path to AGI Volume 2</a></strong>, Socrasynth, Edward Y. Chang.</p>
+      </div>
+
+      <div class="resource-card">
+        <h3>Anchor Direction</h3>
+        <p>The seminar is centered on building a platform for exploratory research in human-LLM collaboration settings, motivated by recent work on mathematical exploration and broader questions about AI-assisted scientific discovery.</p>
+      </div>
+
+      <div class="resource-card">
+        <h3>Meeting Structure</h3>
+        <p><strong>Monday:</strong> main seminar meeting, lecture, design review, milestone planning, and paper discussion.</p>
+        <p><strong>Wednesday:</strong> research clinic, implementation support, office hours, debugging, and team check-ins.</p>
+      </div>
+    </section>
+
+    <section id="schedule">
+      <h2>Schedule</h2>
+      <p>The schedule below is a draft and will be refined.</p>
+
+      <div class="table-wrapper">
+        <table>
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Date</th>
+              <th>Topic</th>
+              <th>Focus</th>
+              <th>Milestone</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>1</td>
+              <td>3/30/2026</td>
+              <td><span class="topic-badge topic-build">Kickoff</span> Course aims, platform vision, and team formation</td>
+              <td>Scientific discovery as human-LLM collaboration; course roadmap; paper targets</td>
+              <td>Team formation begins</td>
+            </tr>
+            <tr>
+              <td>2</td>
+              <td>4/6</td>
+              <td><span class="topic-badge topic-systems">Systems #1</span> Requirements for a scientific discovery platform</td>
+              <td>User stories, provenance, memory, validation, rollback, trust</td>
+              <td><span class="deadline">2-page design brief</span></td>
+            </tr>
+            <tr>
+              <td>3</td>
+              <td>4/13</td>
+              <td><span class="topic-badge topic-systems">Systems #2</span> Search, synthesis, and research memory</td>
+              <td>Literature workflows, persistent state, versioning, state management</td>
+              <td>Module ownership and interface spec</td>
+            </tr>
+            <tr>
+              <td>4</td>
+              <td>4/20</td>
+              <td><span class="topic-badge topic-systems">Systems #3</span> Conjecture generation, branching exploration, and verification</td>
+              <td>Multi-path reasoning, validator roles, computational checks, audit trails</td>
+              <td>Prototype checkpoint #1</td>
+            </tr>
+            <tr>
+              <td>5</td>
+              <td>4/27</td>
+              <td><span class="topic-badge topic-paper">Paper #1</span> Human-in-the-loop research workflows</td>
+              <td>Moderator roles, refusal, escalation, significance judgments, writing plan</td>
+              <td><span class="deadline">Evaluation plan and paper outline</span></td>
+            </tr>
+            <tr>
+              <td>6</td>
+              <td>5/4</td>
+              <td><span class="topic-badge topic-build">Build #1</span> Integrated prototype and internal review</td>
+              <td>End-to-end prototype, first case studies, debugging, interface refinement</td>
+              <td>Integrated prototype v1</td>
+            </tr>
+            <tr>
+              <td>7</td>
+              <td>5/11</td>
+              <td><span class="topic-badge topic-paper">Paper #2</span> Writing sprint and launch week</td>
+              <td>Experiments, figures, system diagrams, submission packaging</td>
+              <td><span class="deadline">Paper ready and submitted by tentative 5/11 deadline</span></td>
+            </tr>
+            <tr>
+              <td>8</td>
+              <td>5/18</td>
+              <td><span class="topic-badge topic-build">Build #2</span> Post-submission refinement and usage studies</td>
+              <td>Additional experiments, failure analysis, case-study extension</td>
+              <td>Usage-paper or extension draft</td>
+            </tr>
+            <tr>
+              <td>9</td>
+              <td>5/25</td>
+              <td><span class="topic-badge topic-demo">Generalization</span> Platform portability across domains</td>
+              <td>Mathematics, science, causal discovery, long-term roadmap</td>
+              <td>Final demo preparation</td>
+            </tr>
+            <tr>
+              <td>10</td>
+              <td>6/1</td>
+              <td><span class="topic-badge topic-demo">Finale</span> Final presentations, demos, and next steps</td>
+              <td>Lessons learned, summer continuation plans, release discussion</td>
+              <td><span class="deadline">Final presentation and report</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+  </div>
+
+  <footer>
+    <p>© 2025–26 Stanford University · CS486: Advanced Large Language Models Research Seminar</p>
+  </footer>
+</body>
+</html>
+

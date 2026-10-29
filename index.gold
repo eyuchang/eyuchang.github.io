@@ -1,0 +1,148 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML 3.0//EN">
+<HTML>
+<HEAD>
+
+<TITLE>Edward Chang's Site</TITLE>
+
+
+</HEAD>
+<BODY TEXT="#000000" LINK="#CC3300" VLINK="#10057F" ALINK="#CC3300" BGCOLOR="#FFFFFF">
+
+<TABLE BORDER="0" CELLPADDING="2" CELLSPACING="0" WIDTH="500">
+<TR ALIGN=CENTER>
+<TD>
+<IMG SRC="photos/title02.gif" ALIGN=MIDDLE WIDTH="500" HEIGHT="60" BORDER="0">
+</TD>
+
+<TR ALIGN=CENTER>
+<TD ALIGN=CENTER VALIGN=MIDDLE BGCOLOR="#FFFFFF">
+<FONT FACE="Arial, Helvetica" COLOR="#222222"><FONT SIZE="3">Department of Computer Science, Stanford University</FONT>
+<TR ALIGN=CENTER>
+<TD ALIGN=CENTER VALIGN=MIDDLE BGCOLOR="#EFFFFE">
+<FONT FACE="Arial, Helvetica" COLOR="#222222"><FONT SIZE="3">Tel: (650)725-3903
+</FONT><FONT FACE="Arial, Helvetica" COLOR="#222222"><FONT SIZE="3">
+Email: echang@cs.stanford.edu</FONT>
+</TD>
+</TR>
+	
+<TR ALIGN=CENTER>
+<TD>
+<HR SIZE="1" WIDTH="350" NOSHADE>
+<FONT FACE="Arial, Helvetica" SIZE="2">
+| <A HREF="http://www-db.stanford.edu/~echang/CV/biography.html">BIOGRAPHY</A> |
+<A HREF="http://www-db.stanford.edu/~echang/CV/publications.html">PUBLICATIONS</A> 
+| <A HREF="http://www-db.stanford.edu/~echang/CV/research.html">RESEARCH</A> 
+| <A HREF="http://www-db.stanford.edu/~echang/CV/teaching.html">TEACHING</A> 
+|</FONT>
+<HR SIZE="1" WIDTH="350" NOSHADE><BR>
+</TD>
+</TR>
+<a href="http://www-db.stanford.edu/~echang/CV/biography.html">
+<TR>
+<TD ALIGN=LEFT VALIGN=MIDDLE BGCOLOR="#330066">
+<FONT FACE="Arial, Helvetica" COLOR="#FFFFFF"><FONT SIZE="4"><B><I> BIOGRAPHY: </I></B></FONT>
+<FONT SIZE="3"><I><B>About Me</B></I></FONT></FONT>
+</TD>
+</TR>
+</a>
+<TR>
+<TD VALIGN=MIDDLE>
+</TD>
+</TR>
+<TR>
+<TD VALIGN=MIDDLE>
+<FONT SIZE="2">
+<UL TYPE=CIRCLE>
+<LI>Curriculum Vitae
+<LI>Other Interests
+</UL>
+</FONT>
+</TD>
+</TR>
+<a href="http://www-db.stanford.edu/~echang/CV/publications.html">
+<TR>
+<TD ALIGN=LEFT VALIGN=MIDDLE BGCOLOR="#330066">
+<FONT FACE="Arial, Helvetica" COLOR="#FFFFFF"><FONT SIZE="4"><B><I> PUBLICATIONS: </I></B></FONT>
+<FONT SIZE="3"><I><B>A List of Papers</B></I></FONT></FONT>
+</TD>
+</TR>
+</a>
+<TR>
+<TD VALIGN=MIDDLE>
+<FONT SIZE="2">
+<UL TYPE=CIRCLE>
+<LI>Digital TV
+<LI>Data Mining
+<LI>Media Servers
+<LI>Image Databses 
+<LI>Transaction Processing</UL>
+</FONT>
+</TD>
+</TR>
+<TR>
+<TD VALIGN=MIDDLE>
+</TD>
+</TR>
+</TD>
+<a href="http://www-db.stanford.edu/~echang/CV/research.html">
+<TR>
+<TD ALIGN=LEFT VALIGN=MIDDLE BGCOLOR="#330066">
+<FONT FACE="Arial, Helvetica" COLOR="#FFFFFF"><FONT SIZE="4"><B><I> RESEARCH: </I></B></FONT>
+<FONT SIZE="3"><I><B>Research Experience</B></I></FONT></FONT>
+</TD>
+</TR>
+</a>
+<TR>
+<TD VALIGN=MIDDLE>
+<FONT SIZE="2">
+<UL TYPE=CIRCLE>
+<LI>Digital TV
+<LI>Data Mining
+<LI>Media Servers
+<LI>Image Databases
+<LI>Multimedia Networks
+</UL>
+</FONT>
+</TD>
+</TR>
+<TR>
+<TD VALIGN=MIDDLE>
+</TD>
+</TR>
+<a href="http://www-db.stanford.edu/~echang/CV/teaching.html">
+<TR>
+<TD ALIGN=LEFT VALIGN=MIDDLE BGCOLOR="#330066">
+<FONT FACE="Arial, Helvetica" COLOR="#FFFFFF"><FONT SIZE="4"><B><I> TEACHING:  </I></B></FONT>
+<FONT SIZE="3"><I><B>Teaching Experience</B></I></FONT></FONT>
+</TD>
+</TR>
+</a>
+<TR>
+<TD VALIGN=MIDDLE>
+<FONT SIZE="2">
+<UL TYPE=CIRCLE>
+<LI>Database System Principles
+<LI>Advanced Topics in Operating Systems
+<LI>Introduction to Programming Languages
+</UL>
+</FONT>
+</TD>
+</TR>
+
+<!-- #include "External HD:Radin Ÿ:Web Site:site folder:footer.incl"	-->			
+<TR ALIGN=CENTER>
+<TD VALIGN=MIDDLE>
+<FONT FACE="Arial, Helvetica" SIZE="2">
+| <A HREF="http://www-db.stanford.edu/~echang/CV/biography.html">BIOGRAPHY</A> 
+| <A HREF="http://www-db.stanford.edu/~echang/CV/publications.html">PUBLICATIONS</A> 
+| <A HREF="http://www-db.stanford.edu/~echang/CV/research.html">RESEARCH</A> 
+| <A HREF="http://www-db.stanford.edu/~echang/CV/teaching.html">TEACHING</A> 
+| </FONT>
+<HR SIZE="1" WIDTH="350" NOSHADE>
+<BR>
+</TD>
+</TR>
+<!-- end include -->
+
+</BODY>
+</HTML>

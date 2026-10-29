@@ -1,0 +1,621 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Lineage of Image Semantic Learning and Data-Driven/Data-Centric AI | The AGI Forum</title>
+  <meta name="description" content="A primary-source historical map of the work before ImageNet: visual representation, semantic-gap research, active learning, automatic annotation, Web-scale data, and the emergence of data-centric AI.">
+  <meta name="author" content="Edward Y. Chang">
+  <link rel="canonical" href="https://infolab.stanford.edu/~echang/AGIBlogs/Blog006-The-Lineage-of-Image-Semantic-Learning.html">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="The AGI Forum">
+  <meta property="og:title" content="The Lineage of Image Semantic Learning and Data-Driven/Data-Centric AI">
+  <meta property="og:description" content="From hand-crafted visual features to learning from examples, scaling data, and treating the data itself as part of the learning system">
+  <meta property="og:url" content="http://infolab.stanford.edu/~echang/AGIBlogs/Blog006-The-Lineage-of-Image-Semantic-Learning.html">
+  <meta property="og:image" content="http://infolab.stanford.edu/~echang/AGIBlogs/Blog006-Fig1-Semantic-Gap.png">
+  <meta property="og:image:width" content="1448">
+  <meta property="og:image:height" content="1086">
+  <meta property="og:image:alt" content="From Pixels to Meaning: the semantic gap between visual features and human concepts">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="http://infolab.stanford.edu/~echang/AGIBlogs/Blog006-Fig1-Semantic-Gap.png">
+  <style>
+    :root {
+      --bg-color: #fafbfc;
+      --card-bg: #ffffff;
+      --text-main: #24292f;
+      --text-muted: #57606a;
+      --slate: #57606a;
+      --accent: #0969da;
+      --accent-tint: #f6f8fa;
+      --border-color: #d0d7de;
+      --gold: #c8a24a;
+      --gold-soft: #e6d9b8;
+      --navy: #1b2a4a;
+      --crimson: #9d2b2b;
+      --font-body: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+      --font-serif: "Iowan Old Style", "Palatino Linotype", "Book Antiqua", Palatino, Georgia, serif;
+      --font-mono: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      background-color: var(--bg-color);
+      color: var(--text-main);
+      font-family: var(--font-body);
+      line-height: 1.8;
+      font-size: 18px;
+      -webkit-font-smoothing: antialiased;
+    }
+    .container { max-width: 860px; margin: 0 auto; padding: 40px 24px 80px; }
+    .site-nav { display:flex; gap:18px; font-size:14px; border-bottom:1px solid var(--border-color); padding-bottom:14px; margin-bottom:28px; flex-wrap:wrap; }
+    .site-nav a { color:var(--text-muted); text-decoration:none; }
+    .site-nav a:hover { color:var(--accent); text-decoration:underline; }
+    .site-nav a.back-hub { color:var(--accent); font-weight:700; }
+    .masthead { border-bottom:2px solid var(--text-main); padding-bottom:18px; margin-bottom:30px; }
+    .forum-title { font-size:22px; font-weight:800; letter-spacing:-0.01em; text-transform:uppercase; color:#1f2328; margin-bottom:4px; }
+    .forum-title a { color:inherit; text-decoration:none; }
+    .forum-subtitle { font-size:14px; color:var(--text-muted); }
+    .return-bar { display:inline-flex; align-items:center; gap:8px; margin-bottom:24px; font-size:14px; font-weight:600; }
+    .return-bar a { color:var(--accent); text-decoration:none; }
+    header { margin-bottom:36px; border-bottom:1px solid var(--border-color); padding-bottom:28px; }
+    .series-tag { font-size:13px; font-weight:600; color:var(--crimson); text-transform:uppercase; letter-spacing:0.08em; margin-bottom:12px; display:inline-block; }
+    h1 { font-family:var(--font-serif); font-size:36px; line-height:1.22; letter-spacing:-0.01em; font-weight:700; color:#1f2328; margin-bottom:12px; max-width:800px; }
+    .subtitle { font-size:19px; color:var(--slate); font-style:italic; margin-bottom:16px; line-height:1.4; }
+    .meta { font-size:15px; color:var(--text-muted); display:flex; gap:14px; align-items:center; flex-wrap:wrap; }
+    .article-body h2 { font-family:var(--font-serif); font-size:25px; letter-spacing:-0.01em; margin:44px 0 18px; padding-bottom:8px; border-bottom:1px solid var(--border-color); color:#1f2328; scroll-margin-top:24px; }
+    .article-body h3 { font-size:19px; margin:28px 0 12px; color:#1f2328; }
+    .article-body p { margin-bottom:22px; }
+    .article-body ul { margin-bottom:22px; padding-left:28px; }
+    .article-body li { margin-bottom:10px; }
+    .article-body a { color:var(--navy); text-decoration:none; border-bottom:1px solid var(--gold-soft); }
+    .article-body a:hover { color:var(--crimson); border-bottom-color:var(--crimson); }
+    .lede { font-size:19px; }
+    blockquote { border-left:4px solid var(--navy); background:var(--accent-tint); padding:16px 22px; margin:28px 0; border-radius:0 6px 6px 0; color:#24292f; }
+    blockquote p:last-child { margin-bottom:0; }
+    .focal-quote { border-left:4px solid var(--crimson); background:#fdf6f6; font-size:20px; font-family:var(--font-serif); padding:18px 24px; margin:32px 0; border-radius:0 6px 6px 0; color:#1f2328; line-height:1.6; }
+    .dimension-box, .note-box { background:var(--card-bg); border:1px solid var(--border-color); border-radius:8px; padding:24px; margin:28px 0; box-shadow:0 1px 3px rgba(0,0,0,.04); }
+    .dimension-box { border-left:5px solid var(--gold); }
+    .note-box { border-left:5px solid var(--navy); }
+    .dimension-box h3, .note-box h3 { font-family:var(--font-serif); font-size:21px; color:var(--navy); margin:0 0 10px; }
+    .dimension-box p:last-child, .note-box p:last-child { margin-bottom:0; }
+    .equation { font-family:var(--font-serif); font-size:20px; text-align:center; margin:24px 0; padding:14px 16px; background:#fff; border-top:1px solid var(--gold-soft); border-bottom:1px solid var(--gold-soft); overflow-x:auto; }
+    .three-col { display:grid; grid-template-columns:repeat(3,1fr); gap:16px; margin:28px 0; }
+    .stream-grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:16px; margin:28px 0; }
+    .stream-card { border:1px solid var(--border-color); border-radius:8px; padding:20px; background:#fff; }
+    .stream-card h3 { margin:0 0 8px; font-family:var(--font-serif); color:var(--navy); font-size:20px; }
+    .stream-card p { font-size:16px; line-height:1.65; margin-bottom:10px; }
+    .stream-card p:last-child { margin-bottom:0; }
+    .stream-card .names { color:var(--text-muted); font-size:14px; }
+    .history-banner { border-top:2px solid var(--navy); border-bottom:2px solid var(--navy); padding:22px 4px; margin:34px 0; text-align:center; }
+    .history-banner strong { display:block; font-family:var(--font-serif); color:var(--navy); font-size:27px; line-height:1.25; margin-bottom:8px; }
+    .history-banner span { color:var(--text-muted); font-size:16px; }
+    .ref-group { margin:34px 0 18px; padding-top:6px; }
+    .ref-group h3 { font-family:var(--font-serif); color:var(--navy); font-size:21px; margin:0 0 14px; }
+    .compact-ref { margin:0 0 14px; padding:0 0 14px; border-bottom:1px solid #eaeef2; font-size:15px; line-height:1.55; }
+    .compact-ref:last-child { border-bottom:0; }
+
+    .mini-card { border:1px solid var(--border-color); border-radius:8px; padding:20px; background:#fff; }
+    .mini-card h3 { margin:0 0 8px; font-family:var(--font-serif); color:var(--navy); }
+    .mini-card p:last-child { margin-bottom:0; }
+    .lineage { margin:30px auto; max-width:680px; }
+    .lineage-step { position:relative; background:#fff; border:1px solid var(--border-color); border-left:5px solid var(--gold); border-radius:7px; padding:14px 18px; margin:0 0 22px; font-family:var(--font-serif); font-size:18px; color:var(--navy); text-align:center; }
+    .lineage-step:not(:last-child)::after { content:"↓"; position:absolute; left:50%; bottom:-25px; transform:translateX(-50%); color:var(--crimson); font-size:20px; }
+    .question-list { background:#fff; border:1px solid var(--border-color); border-radius:8px; padding:22px 25px; margin:28px 0; }
+    .question-list p { margin-bottom:14px; font-family:var(--font-serif); font-size:19px; color:var(--navy); }
+    .question-list p:last-child { margin-bottom:0; }
+
+    .article-figure { margin:30px 0 34px; }
+    .article-figure img { display:block; width:100%; height:auto; border:1px solid var(--border-color); border-radius:8px; background:#fff; }
+    .article-figure figcaption { font-size:14px; color:var(--text-muted); line-height:1.55; margin-top:10px; }
+    .article-figure .figure-note { font-style:italic; }
+    .technical-figure { background:#fff; border:1px solid var(--border-color); border-radius:8px; padding:22px; margin:30px 0; }
+    .technical-figure figcaption { font-size:14px; color:var(--text-muted); line-height:1.55; margin-top:14px; }
+    .kernel-flow { display:grid; grid-template-columns:repeat(5,minmax(0,1fr)); gap:10px; align-items:stretch; margin:18px 0 12px; }
+    .kernel-node { border:1px solid var(--border-color); border-radius:7px; padding:14px 10px; background:#fafbfc; text-align:center; font-size:14px; line-height:1.45; position:relative; min-width:0; }
+    .kernel-node strong { color:var(--navy); display:block; margin-bottom:5px; }
+    .kernel-node:not(:last-child)::after { content:"→"; position:absolute; right:-10px; top:50%; transform:translate(50%,-50%); color:var(--crimson); background:#fff; padding:0 2px; font-weight:700; z-index:2; }
+    .dual-space { display:grid; grid-template-columns:1fr 1fr; gap:14px; margin:18px 0; }
+    .space-card { border:1px solid var(--border-color); border-radius:7px; padding:16px; background:#fff; }
+    .space-card h4 { margin:0 0 8px; color:var(--navy); font-family:var(--font-serif); font-size:18px; }
+    .space-card p { margin:0; font-size:15px; line-height:1.6; }
+    .compare-wrap { overflow-x:auto; margin:28px 0; }
+    .compare-table { width:100%; border-collapse:collapse; background:#fff; font-size:15px; line-height:1.55; min-width:700px; }
+    .compare-table th, .compare-table td { border:1px solid var(--border-color); padding:12px 14px; vertical-align:top; }
+    .compare-table th { background:#f6f8fa; color:var(--navy); text-align:left; }
+    .epoch { display:block; font-family:var(--font-body); font-size:12px; letter-spacing:.03em; text-transform:uppercase; color:var(--crimson); margin-bottom:3px; font-weight:700; }
+    .reference-list { counter-reset:ref; margin:26px 0; }
+    .reference-entry { position:relative; padding:18px 18px 18px 48px; border-top:1px solid var(--border-color); background:#fff; }
+    .reference-entry:last-child { border-bottom:1px solid var(--border-color); }
+    .reference-entry::before { counter-increment:ref; content:counter(ref) "."; position:absolute; left:18px; top:18px; color:var(--crimson); font-weight:800; }
+    .reference-entry p { margin-bottom:8px; font-size:15px; line-height:1.6; }
+    .reference-entry details { font-size:13px; color:var(--text-muted); }
+    .reference-entry summary { cursor:pointer; color:var(--navy); font-weight:600; }
+    .reference-entry pre { white-space:pre-wrap; overflow-wrap:anywhere; background:#f6f8fa; border:1px solid var(--border-color); padding:12px; margin-top:10px; font-size:12px; line-height:1.45; }
+
+    .sources-section { margin-top:48px; }
+    .sources-section p { font-size:14px; line-height:1.7; margin-bottom:15px; }
+    .sources-section .source-scope { font-size:15px; color:var(--text-muted); }
+    .related-post { border-top:1px solid var(--border-color); padding-top:20px; }
+    footer { margin-top:64px; border-top:1px solid var(--border-color); padding-top:32px; font-size:14px; color:var(--text-muted); text-align:center; }
+    footer a { color:var(--navy); text-decoration:none; }
+    .skip-link { position:absolute; left:16px; top:-90px; z-index:10; background:var(--navy); color:#fff; padding:10px 16px; border-radius:5px; font-size:15px; }
+    .skip-link:focus { top:12px; }
+    a:focus-visible { outline:3px solid var(--gold); outline-offset:4px; }
+    @media (max-width:760px) { .three-col { grid-template-columns:1fr; } .kernel-flow { grid-template-columns:1fr; } .kernel-node:not(:last-child)::after { content:"↓"; right:auto; left:50%; top:auto; bottom:-14px; transform:translate(-50%,50%); } .dual-space{grid-template-columns:1fr;} }
+    @media (max-width:640px) {
+      .container { padding:24px 18px 52px; }
+      .site-nav { gap:10px 16px; line-height:1.5; }
+      .forum-title { font-size:20px; }
+      h1 { font-size:32px; }
+      .subtitle { font-size:18px; }
+      .lede { font-size:18px; }
+      .meta { gap:7px 10px; font-size:14px; }
+      .series-tag { font-size:12px; letter-spacing:.06em; }
+      .article-body h2 { font-size:24px; line-height:1.35; }
+      .dimension-box, .note-box { padding:20px 18px; }
+      .focal-quote { padding:16px 19px; }
+      .equation { font-size:18px; }
+    }
+    @media (prefers-reduced-motion:reduce) { html { scroll-behavior:auto; } }
+    @media print { .site-nav,.return-bar,.skip-link{display:none}.container{max-width:none;padding:0}body{background:#fff;font-size:12pt;line-height:1.55}.dimension-box,.note-box,.mini-card,.lineage-step{break-inside:avoid}h2,h3{break-after:avoid} }
+  </style>
+  <!-- Reading estimate: roughly 5,100 words; approximately 23 minutes at 220 words/minute. -->
+</head>
+<body>
+<a class="skip-link" href="#article">Skip to article</a>
+<div class="container">
+  <nav class="site-nav" aria-label="AGI Forum navigation">
+    <a href="http://infolab.stanford.edu/~echang/AGIBlogs/AGIForumIndex.html" class="back-hub">&larr; The AGI Forum Index</a>
+    <a href="http://infolab.stanford.edu/~echang/">Stanford Home</a>
+    <a href="http://infolab.stanford.edu/~echang/AGIBlogs/Blog003-Path-to-AGI-Trilogy.html">The Path to AGI Trilogy</a>
+    <a href="https://socrasynth.com/" target="_blank" rel="noopener noreferrer">SocraSynth / QuadriumAI</a>
+  </nav>
+
+  <div class="masthead">
+    <div class="forum-title"><a href="http://infolab.stanford.edu/~echang/AGIBlogs/AGIForumIndex.html">The AGI Forum: Theories, Practice, Safety, Risk &amp; Policy</a></div>
+    <div class="forum-subtitle">Dispatches on Theoretical Paradigms, Architectural Practice, and Global AI Policy</div>
+  </div>
+
+  <div class="return-bar"><a href="http://infolab.stanford.edu/~echang/AGIBlogs/AGIForumIndex.html">&larr; Back to Forum Home Page</a></div>
+
+  <header>
+    <div class="series-tag">Dispatch No. 06 &middot; History of AI &amp; Data-Centric Learning</div>
+    <h1>The Lineage of Image Semantic Learning and Data-Driven/Data-Centric AI</h1>
+    <div class="subtitle">From hand-crafted visual features to learning from examples, scaling data, and treating the data itself as part of the learning system</div>
+    <div class="meta">
+      <span>Edward Y. Chang</span><span aria-hidden="true">&bull;</span>
+      <span>Stanford University</span><span aria-hidden="true">&bull;</span>
+      <time datetime="2026-10-05">October 5, 2026</time><span aria-hidden="true">&bull;</span>
+      <span>30 min read</span>
+    </div>
+  </header>
+
+<main id="article" class="article-body">
+  <p class="lede">Artificial intelligence has repeatedly changed its answer to a deceptively simple question: <strong>Where does intelligence in a learning system come from?</strong></p>
+
+  <p>For much of the history of pattern recognition, the answer emphasized algorithms and representations. Researchers designed better features, better classifiers, better probabilistic models, and better optimization procedures. Data were indispensable, of course, but they were often treated as a relatively fixed input to the learning process.</p>
+
+  <p>Over time, another idea became increasingly important:</p>
+
+  <blockquote class="focal-quote"><p>Perhaps progress does not come only from designing a better learning algorithm. Perhaps it comes from obtaining more data, better data, better labels, broader coverage&mdash;and eventually from allowing the learning system to identify weaknesses in its own data.</p></blockquote>
+
+  <p>Today we use terms such as <strong>data-driven AI</strong> and <strong>data-centric AI</strong> to describe parts of this transition. But those terms compress several historically distinct ideas. Large-scale data are not the same thing as data-driven learning. Data-driven learning is not the same thing as data-centric AI. And building a large labeled dataset is not the same thing as designing a system in which the training data themselves can be diagnosed and improved.</p>
+
+  <p>The history is therefore more interesting than a single invention or date.</p>
+
+  <p>One particularly revealing place to reconstruct that history is <strong>image semantic learning</strong>: the effort to teach machines not merely to compare pixels, colors, and textures, but to associate visual information with human concepts such as <em>tiger</em>, <em>forest</em>, <em>building</em>, <em>sunset</em>, or <em>Eiffel Tower</em>.</p>
+
+  <p>This article begins an investigation of that lineage.</p>
+
+  <div class="history-banner">
+    <strong>Give the Work Before ImageNet Its Faces</strong>
+    <span>This is not an argument against ImageNet's importance. It is an argument against beginning the history there.</span>
+  </div>
+
+  <p>ImageNet deserves its place in history. But the ideas that made large-scale visual learning possible were developed over decades by researchers working on different pieces of the problem. Before ImageNet, researchers were already asking how to represent texture, color, shape, and local structure; how to bridge the semantic gap; how to infer a human query concept from feedback; how to annotate images automatically; how to organize concepts with lexical ontologies; and how to collect and label visual data at Web scale.</p>
+
+  <p>Three contemporaneous surveys are especially useful maps of this pre-ImageNet landscape: Rui, Huang, and Shih-Fu Chang's 1999 survey covered more than one hundred papers in content-based retrieval; Smeulders et al. surveyed roughly two hundred references in 2000 and made the <em>semantic gap</em> a central organizing problem; and Datta et al. surveyed almost three hundred contributions in image retrieval and automatic annotation in 2008. These surveys make clear that ImageNet arrived into an already deep, diverse field rather than an empty one.</p>
+
+  <div class="stream-grid">
+    <div class="stream-card"><h3>1. Visual representation</h3><p>How should an image be represented so that machines can compare it robustly? Texture statistics, perceptual texture, multiresolution wavelets, color histograms, local invariant features, and image-query systems built the representational substrate.</p><p class="names">Haralick et al. (1973); Tamura et al. (1978); Mallat (1989); Swain &amp; Ballard (1991); QBIC (1993/1995); Jacobs et al. (1995); Photobook (1996); Lowe/SIFT (1999/2004).</p></div>
+    <div class="stream-card"><h3>2. Human semantic learning</h3><p>How can a machine discover what a person means when low-level features are not the language of the query? Relevance feedback, semantic visual templates, and active learning turned interaction into a way of learning a user's concept.</p><p class="names">Rui et al. (1998); Chang, Chen &amp; Sundaram (1998); Tong &amp; Chang/SVMActive (2001).</p></div>
+    <div class="stream-card"><h3>3. Automatic semantic annotation</h3><p>How can visual observations be mapped to words and categories at scale? Statistical models, translation models, soft annotation, dynamic ensembles, and context/ontology fusion learned mappings from visual evidence to semantic concepts.</p><p class="names">Duygulu et al. (2002); CBSA (2003); Li &amp; Wang/ALIP (2003); CDE (2003/2005); EXTENT (2005).</p></div>
+    <div class="stream-card"><h3>4. Data infrastructure and scale</h3><p>How can the visual world itself become reusable learning infrastructure? WordNet, Web image search, collaborative annotation, tens of millions of Web images, distributed annotation, and finally ImageNet made scale and semantic organization first-class research objects.</p><p class="names">Miller/WordNet (1995); WebSEEk (1997); LabelMe (2007/2008); 80 Million Tiny Images (2008); Web-Scale Image Annotation (2008); ImageNet (2009).</p></div>
+  </div>
+
+  <p>The point is not to replace one creation myth with another. It is to recover the <strong>converging streams</strong>&mdash;and the people behind them&mdash;that gradually connected perception, semantics, interaction, annotation, and scale.</p>
+
+  <h2 id="pixels-to-meaning">From Pixels to Meaning</h2>
+
+  <p>Early content-based image retrieval systems exposed a fundamental problem that would remain with AI for decades: machines and humans did not naturally describe images in the same language.</p>
+
+  <p>A computer could calculate color histograms, textures, shapes, edges, and regions. A person wanted to ask for &ldquo;a tiger in the forest&rdquo; or &ldquo;a sunset over the ocean.&rdquo;</p>
+
+  <p>This discrepancy became widely known as the <strong>semantic gap</strong>.</p>
+
+  <p>One response was to engineer increasingly sophisticated visual features. Another was more consequential: <strong>learn the relationship between perceptual features and semantic concepts from examples.</strong></p>
+
+  <p>That change sounds obvious today. It was not obvious when image retrieval was dominated by carefully designed visual representations and similarity metrics.</p>
+
+  <p>The representation side itself had a long lineage. Haralick, Shanmugam, and Dinstein formalized statistical texture features in 1973; Tamura, Mori, and Yamawaki explicitly connected computable texture measures to visual perception in 1978; Mallat's 1989 wavelet theory provided a multiresolution language for image structure; Swain and Ballard's 1991 color indexing made color histograms a practical matching representation; and Lowe's 1999/2004 SIFT work established highly distinctive local features robust to scale and rotation. These methods did not solve semantics, but they made images progressively more learnable.</p>
+
+  <div class="equation">x<sub>image</sub> &rarr; y<sub>semantic</sub></div>
+
+  <figure class="article-figure" aria-labelledby="semantic-gap-caption">
+    <img src="Blog006-Fig1-Semantic-Gap.png" alt="Technical illustration of the semantic gap between low-level image features and high-level human concepts" width="1448" height="1086" loading="lazy">
+    <figcaption id="semantic-gap-caption"><strong>Figure 1. From pixels to meaning.</strong> Early image systems represented color, texture, edges, and shape, while users reasoned in terms of objects, scenes, and semantic concepts. Image semantic learning seeks to bridge these two levels.</figcaption>
+  </figure>
+
+  <p>Once semantic mapping becomes a learned function, the training examples become part of the machinery that determines what the system knows. That seemingly modest change creates a path toward data-driven AI.</p>
+
+
+  <h2 id="active-query-concept">1. Active Learning: Learning a Human Query Concept Without Words</h2>
+
+  <p>A separate thread, also in 2001, attacked the semantic gap from a different direction. Instead of asking the user to formulate a semantic query in words, <em>Support Vector Machine Active Learning for Image Retrieval</em> asked the user only for binary judgments: <strong>relevant</strong> or <strong>irrelevant</strong>. The system then learned the user's latent query concept from those examples.</p>
+
+  <div class="equation">human relevance judgments &rarr; learned feature-to-query-concept mapping</div>
+
+  <p>The distinction from much traditional relevance feedback of the period is important. Query-point movement, query reweighting, and related similarity-based schemes generally presented images that were already close to the system's current estimate of the query. If the first relevant examples were red flowers, such a system was likely to show more images resembling red flowers. That is useful exploitation, but it can explore the semantic boundary slowly.</p>
+
+  <p>SVMActive deliberately queried a different kind of example: an unlabeled image close to the current SVM decision boundary&mdash;the image whose semantic membership was most uncertain under the current classifier. The user might therefore be shown a yellow rose, a red tulip, a flower against a forest, or a red object that was not a flower. The system did not literally ask, &ldquo;Do you mean roses only?&rdquo; or &ldquo;Does the background matter?&rdquo; But the boundary example turned the image itself into an <strong>implicit semantic question</strong>.</p>
+
+  <blockquote class="focal-quote"><p>SVMActive changed relevance feedback from &ldquo;show me more of what I already think you mean&rdquo; toward &ldquo;show me the example whose label would most reduce my uncertainty about what you mean.&rdquo;</p></blockquote>
+
+  <h3>Why the kernel matters</h3>
+
+  <p>The published system represented each image by a 144-dimensional vector of hand-designed perceptual measurements. It then used a radial-basis-function (RBF) kernel. The kernel trick implicitly maps the 144-dimensional descriptor into a much richer reproducing-kernel Hilbert space (RKHS). For the standard Gaussian RBF interpretation, that RKHS is infinite-dimensional; the important historical point here is that classification is performed through a nonlinear kernel representation rather than a simple linear boundary in the original descriptor coordinates. The system never needs to enumerate those coordinates explicitly.</p>
+
+  <div class="equation">x &isin; R<sup>144</sup> &nbsp;&rarr;<sub> RBF kernel </sub>&nbsp; &phi;(x) &isin; H<sub>&infin;</sub></div>
+
+  <p>At feedback round <em>t</em>, the kernel SVM learns a maximum-margin separator:</p>
+
+  <div class="equation">f<sub>t</sub>(x) = &Sigma;<sub>m &isin; SV<sub>t</sub></sub> &alpha;<sub>m,t</sub> y<sub>m</sub> K(x<sub>m</sub>,x) + b<sub>t</sub></div>
+
+  <p>The active query is then the unlabeled image with the smallest absolute decision value:</p>
+
+  <div class="equation">x* = arg min<sub>x &isin; U</sub> |f<sub>t</sub>(x)|</div>
+
+  <p>After the user labels that boundary case, the labeled set changes, the SVM is retrained, support vectors and coefficients may change, and the maximum-margin hyperplane moves. When mapped back into the original 144-dimensional descriptor space, that moving hyperplane corresponds to a potentially complicated nonlinear semantic boundary.</p>
+
+  <!-- A raster draft, Blog006-Fig2-SVMActive-Kernel-Space-DRAFT.png, is shipped beside this HTML.
+       It is intentionally not embedded because its descriptor-dimension sublabels need correction.
+       The native HTML/CSS figure below is the publication version for now. -->
+  <figure class="technical-figure" aria-labelledby="kernel-caption">
+    <div class="kernel-flow">
+      <div class="kernel-node"><strong>1. Image descriptor</strong>x &isin; R<sup>144</sup><br>color, texture, shape attributes</div>
+      <div class="kernel-node"><strong>2. RBF kernel</strong>implicit nonlinear map &phi;(x)<br>into a rich RKHS</div>
+      <div class="kernel-node"><strong>3. Learn boundary</strong>maximum-margin hyperplane<br>in kernel space</div>
+      <div class="kernel-node"><strong>4. Query uncertainty</strong>select x* nearest<br>the current boundary</div>
+      <div class="kernel-node"><strong>5. Human semantics</strong>relevant / irrelevant<br>&rarr; retrain f<sub>t+1</sub></div>
+    </div>
+    <div class="dual-space">
+      <div class="space-card"><h4>Representation expands</h4><p><strong>R<sup>144</sup> &rarr; H<sub>&infin;</sub>.</strong> Kernelization supplies expressive nonlinear capacity. With a fixed kernel and bandwidth, this representational geometry itself remains fixed during feedback.</p></div>
+      <div class="space-card"><h4>Semantic uncertainty contracts</h4><p><strong>V<sub>0</sub> &supset; V<sub>1</sub> &supset; V<sub>2</sub> &supset; ...</strong> Each new relevance label eliminates incompatible hypotheses and can move the selected maximum-margin separator.</p></div>
+    </div>
+    <figcaption id="kernel-caption"><strong>Figure 2. Kernel-space active semantic learning.</strong> The RBF kernel expands representational capacity; active learning does not continually rebuild the kernel space when the kernel is fixed. Instead, it uses human labels on maximally informative boundary cases to contract the admissible hypothesis/version space and refine the nonlinear mapping from perceptual features to the user's intended concept.</figcaption>
+  </figure>
+
+  <p>This distinction matters. It would be inaccurate to say that active learning itself continually reshapes a fixed Gaussian RKHS. A more precise statement is:</p>
+
+  <div class="equation"><strong>RBF kernelization expands the representational space; active learning contracts the semantic hypothesis space.</strong></div>
+
+  <p>The 2001 paper motivates its uncertainty rule through version-space geometry: each labeled example constrains the set of separators still consistent with the observed judgments, and an informative query should cut away as much of that uncertainty as possible. Its formal version-space lemma is stated for a finite-dimensional feature space; the operational RBF-SVM rule is the practical boundary-distance approximation. Thus, for the infinite-dimensional Gaussian-RBF interpretation, version-space contraction is best read as the geometric motivation for the query rule rather than as a new theorem about the entire infinite-dimensional RKHS.</p>
+
+  <p>This should also be distinguished from important earlier semantic-gap work. Rui et al. (1998) used relevance feedback to adapt feature weights to a user's high-level need over a database exceeding 70,000 images, while Chang, Chen, and Sundaram's Semantic Visual Templates (1998) represented personalized concepts with successful exemplar queries. SVMActive's distinctive move was to make <strong>uncertainty itself the query policy</strong>: instead of primarily presenting top-ranked or neighborhood examples, it selected boundary cases expected to be most informative about the user's latent concept.</p>
+
+  <h3>Traditional relevance feedback versus kernel-space active learning</h3>
+
+  <div class="compare-wrap">
+    <table class="compare-table">
+      <thead><tr><th>Dimension</th><th>Traditional similarity-oriented relevance feedback</th><th>SVMActive with an RBF kernel</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Current representation</strong></td><td>Typically operates directly on a finite-dimensional visual descriptor and its chosen similarity/distance measure.</td><td>Uses the same finite-dimensional descriptor as input, but comparisons relevant to classification are mediated by an implicit nonlinear kernel representation.</td></tr>
+        <tr><td><strong>What is shown next</strong></td><td>Often top-ranked, nearest, or neighborhood examples under the current query estimate.</td><td>Examples closest to the current decision boundary: those whose relevance is most uncertain.</td></tr>
+        <tr><td><strong>Behavior</strong></td><td>Primarily exploitative: refine around what already appears relevant.</td><td>More exploratory: probe cases that can discriminate among competing interpretations of the user's concept.</td></tr>
+        <tr><td><strong>Semantic object learned</strong></td><td>Query position/weights or neighborhood around current positives.</td><td>A nonlinear binary decision function separating <em>relevant</em> from <em>irrelevant</em>.</td></tr>
+        <tr><td><strong>Role of human labels</strong></td><td>Improve ranking or adjust similarity around the current result set.</td><td>Act as constraints that can change support vectors, coefficients, and the semantic decision boundary.</td></tr>
+        <tr><td><strong>Semantic-gap interpretation</strong></td><td>Iteratively improves retrieval using feedback.</td><td>Actively learns the user's query concept without requiring the user to name it in words; each selected image acts as an implicit semantic question.</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <p>The scientific combination is therefore more specific than either kernel learning or active learning alone:</p>
+
+  <div class="equation"><strong>rich nonlinear representation + uncertainty-directed semantic labeling &rarr; rapid query-concept refinement</strong></div>
+
+  <div class="note-box">
+    <h3>Historical and personal note</h3>
+    <p>In 2020, when ACM SIGMM inaugurated its Test-of-Time program, the 2001 SVMActive paper was selected as the retrospective <a href="https://sigmm.org/Awards/testoftime" target="_blank" rel="noopener noreferrer"><strong>2001 honorable mention</strong></a> among pre-2008 SIGMM papers that could have been strong Test-of-Time candidates had the award existed in their publication year. For my own academic trajectory at UC Santa Barbara, I regard this line of work as a major part of the research record that supported tenure after three years and promotion to full professor in roughly six years.</p>
+  </div>
+
+  <h2 id="annotation">2. Learning Semantic Annotation from Examples</h2>
+
+
+  <p>Our 2003 CBSA work&mdash;<em>Content-Based Soft Annotation for Multimodal Image Retrieval Using Bayes Point Machines</em>&mdash;provides one useful historical marker.</p>
+
+  <p>The problem was not simply how to retrieve visually similar images. The objective was to start with a relatively small collection of manually labeled examples, learn classifiers from them, and then <strong>propagate semantic labels to the larger unlabeled collection</strong>.</p>
+
+  <div class="equation">labeled examples &rarr; learned visual-semantic mapping &rarr; automatic annotation</div>
+
+  <p>This is an important transition. Humans no longer need to write down the rule that distinguishes a forest from an animal or a building. They provide examples, and the statistical learner attempts to discover the decision boundary.</p>
+
+  <p>The paper tested the approach on <strong>25,000 images across 116 semantic categories</strong>, substantial scale for an image-semantic experiment at the time. More revealing for the history of data-driven learning, the experiment explicitly varied the amount of training data.</p>
+
+  <p>Using 20%, 30%, and 50% of the images for training produced annotation accuracies of approximately 49%, 56%, and 61%, respectively.</p>
+
+  <div class="equation"><strong>More training data &rarr; better semantic learning</strong></div>
+
+  <p>At roughly the same historical moment, results in natural-language processing were making the importance of scale increasingly difficult to ignore. Banko and Brill's 2001 ACL paper showed several learning curves continuing to improve as the corpus grew from millions toward roughly a billion words.</p>
+
+  <div class="note-box"><h3>A figure that changed my research direction</h3><p>For a tenure-track assistant professor trying to make progress by designing better algorithms, this was a sobering figure. All four learning schemes improved as the number of training instances grew, and the apparent winner changed with scale. It suggested that an algorithm celebrated on one dataset size might lose its advantage when the data regime changed. Rather than discouraging me, it pushed me toward a different research question: <strong>if language disambiguation keeps improving with orders of magnitude more data, would image semantics behave similarly?</strong> That question helped motivate our subsequent large-scale and Web-scale image-annotation program and, later, our efforts to diagnose which data, features, or semantic categories a learner was missing.</p></div>
+
+  <figure class="article-figure" aria-labelledby="banko-caption">
+    <img src="Blog006-Fig2-Banko-Brill-Redraw.png" alt="Banko and Brill 2001 learning curves for confusion-set disambiguation, showing accuracy improving with more training data and the leading algorithm changing with data scale" width="616" height="640" loading="lazy">
+    <figcaption id="banko-caption"><strong>Figure 2. More data kept helping—and the winner changed with scale.</strong> Banko and Brill, ACL 2001, Figure 1, showed that the accuracy of all four learning schemes continued to rise as the amount of training data increased by orders of magnitude. Just as strikingly, the algorithm that looked best at one data scale was not necessarily the one that looked best at another. The result challenged an algorithm-first view of progress: evaluation at a fixed, modest dataset size could give a misleading picture of which learning method would ultimately dominate. <a href="https://aclanthology.org/P01-1005/" target="_blank" rel="noopener noreferrer">Read the original paper.</a></figcaption>
+  </figure>
+
+  <p>These developments deserve to be studied together rather than retrospectively assigning one field a privileged starting point. Something was changing across machine learning: <strong>data quantity itself was becoming an experimental variable.</strong></p>
+
+  <h2 id="missing-data">3. But More Data Are Not Necessarily Better Data</h2>
+
+  <p>Increasing the size of L, the training set, immediately raises a harder question:</p>
+
+  <blockquote class="focal-quote"><p><strong>Which data are missing?</strong></p></blockquote>
+
+  <p>This leads to a second stage in the lineage.</p>
+
+  <p>The CDE program appeared first at ACM Multimedia 2003 in <em>Confidence-Based Dynamic Ensemble for Image Annotation and Semantics Discovery</em> and was developed more fully in the 2005 ACM TOMM paper <em>Semantics and Feature Discovery via Confidence-Based Ensemble</em>. It began with an unusual criticism of conventional classifiers. It argued that learning systems commonly assumed three components to be fixed:</p>
+
+  <div class="three-col">
+    <div class="mini-card"><h3>C</h3><p>Semantic categories.</p></div>
+    <div class="mini-card"><h3>P</h3><p>Perceptual features.</p></div>
+    <div class="mini-card"><h3>L</h3><p>Training instances.</p></div>
+  </div>
+
+  <p>That formulation is interesting when viewed from 2026. Instead of assuming that an error necessarily means that the classifier needs improvement, the system asks what produced the error.</p>
+
+  <p>A low-confidence prediction could indicate an inadequate semantic vocabulary, an inadequate feature representation, or inadequate training data. The remedies correspondingly modify C, P, or L. In particular, when training data are under-representative, the prescribed remedy is to add the problematic instance to the training set.</p>
+
+  <p>That distinction deserves attention in histories of data-centric AI.</p>
+
+  <h2 id="mutable-dataset">4. From a Large Dataset to a Mutable Dataset</h2>
+
+  <p>There is a fundamental conceptual difference between saying:</p>
+
+  <blockquote><p><strong>Train on more data.</strong></p></blockquote>
+
+  <p>and saying:</p>
+
+  <blockquote><p><strong>Use model failures to discover which training data are missing.</strong></p></blockquote>
+
+  <p>The first is primarily a scaling strategy. The second makes the dataset an <strong>adaptive component of the learning system</strong>.</p>
+
+  <p>The CDE work illustrates this with a lighthouse photograph. The system mistakes the image for a <em>wave</em> scene because the existing training set poorly represents lighthouses. The analysis considers whether the appropriate repair is to add examples to an existing semantic category or create a new semantic category, with the ontology helping determine which intervention is appropriate.</p>
+
+  <p>In modern language, we might describe aspects of this problem using terms such as dataset coverage, hard examples, underrepresented slices, data acquisition, label refinement, or dataset repair. The terminology was different in 2005.</p>
+
+  <div class="equation"><strong>What should we change in the data so that the learner becomes better?</strong></div>
+
+  <p>This is considerably closer to what is now called <strong>data-centric AI</strong> than simply training an algorithm on a large dataset. The paper itself distinguishes the approach from previous annotation methods that held C, P, and L fixed.</p>
+
+  <p>Whether this represents an early instance, a precursor, or part of a broader contemporary movement in data-centric learning is a historical question that requires a much wider literature investigation. That investigation is worth doing.</p>
+
+  <h2 id="context">5. Data Alone Were Not Enough</h2>
+
+  <p>There was another problem: an image does not exist in isolation.</p>
+
+  <p>Consider a photograph containing a tower. Pixels provide one source of evidence. But so might the location where the photograph was taken, the time, camera parameters, information about the photographer, and relationships among semantic concepts.</p>
+
+  <p>Our 2005 EXTENT work therefore took a different direction.</p>
+
+  <div class="equation"><strong>Content + Context + Semantic Ontology</strong></div>
+
+  <p>EXTENT combined these sources using an influence-diagram framework. The paper describes contextual variables including location, time, and camera parameters; perceptual information from the photograph; and semantic relationships among labels.</p>
+
+  <p>Importantly, this was neither purely hand-coded knowledge nor purely statistical learning. The model relied on <strong>both prior knowledge and data</strong>, with relationships between context/content and semantic labels and their strengths learned from observations.</p>
+
+  <p>In the landmark experiment, approximately 14,530 images were assembled from Stanford photographs, additional locally collected images, and 13,500 landmark images downloaded from the Internet. For the three-landmark experiment, location alone yielded about 30% recognition and SIFT visual features about 75%. Combining location and SIFT increased recognition to approximately <strong>95%</strong>.</p>
+
+  <p>The lesson here was not simply <em>more data</em>. It was that <strong>the meaning of an observation depends on multiple sources of evidence and their relationships.</strong></p>
+
+  <p>This thread would eventually intersect with ideas now described as multimodal learning, structured knowledge, context-aware AI, causal reasoning, and grounding.</p>
+
+  <h2 id="dataset-scale">6. Then Came the Era of Dataset Scale</h2>
+
+  <p>By the late 2000s, several complementary projects had made scale itself part of the visual-learning agenda. WordNet supplied a lexical ontology that could organize concepts; WebSEEk had demonstrated semantic organization of large Web image/video collections; LabelMe turned Web-based human annotation into shared research infrastructure; 80 Million Tiny Images demonstrated the power and messiness of Internet-scale visual collection; and distributed learning systems were beginning to make large probabilistic models practical. These were different answers to a common question: <strong>how much of the visual world can we turn into learnable, organized data?</strong></p>
+
+  <p>The next historical transition requires careful investigation.</p>
+
+  <p>During the 2000s, computer vision researchers increasingly recognized that the diversity of the visual world could not be captured by small, carefully curated datasets. The Web changed what was possible. Images existed in unprecedented quantities. Search engines provided partial semantic organization. Online communities generated tags and metadata. Distributed human labeling became practical. Computational infrastructure made increasingly large learning experiments possible.</p>
+
+  <p>Eventually, ImageNet would become the defining symbol of this transition.</p>
+
+  <p>Its importance should not be understated. ImageNet did something different from the earlier systems discussed above: it constructed an extraordinarily large, systematically organized labeled visual resource, using WordNet's semantic hierarchy as its organizational foundation.</p>
+
+  <p>And once large datasets met sufficiently powerful learning algorithms and computation, the consequences became historic.</p>
+
+  <p>The 2012 ImageNet breakthrough of deep convolutional networks did not merely improve image classification. It helped change the dominant methodology of artificial intelligence.</p>
+
+  <p>But the familiar shorthand&mdash;</p>
+
+  <div class="equation">ImageNet &rarr; deep learning</div>
+
+  <p>&mdash;can obscure the longer intellectual lineage. Long before 2012, researchers were already asking:</p>
+
+  <ul>
+    <li>Can semantic labels be learned from visual examples?</li>
+    <li>How does performance change as training data increase?</li>
+    <li>Can labels be propagated automatically?</li>
+    <li>How should ambiguous or underrepresented training examples be detected?</li>
+    <li>Can a learner identify missing semantic categories?</li>
+    <li>Should failures trigger acquisition of new training data?</li>
+    <li>How should visual evidence be combined with context and semantic knowledge?</li>
+    <li>How can these methods scale to hundreds of semantic concepts and tens of thousands&mdash;or eventually millions&mdash;of images?</li>
+  </ul>
+
+  <p>ImageNet provided a particularly successful answer to one critical part of this emerging agenda: <strong>scale the labeled visual world dramatically.</strong></p>
+
+  <p>It did not begin the entire agenda.</p>
+
+  <h2 id="terms">7. &ldquo;Data-Driven&rdquo; and &ldquo;Data-Centric&rdquo; Should Not Be Synonyms</h2>
+
+  <p>Historical clarity requires separating at least three ideas.</p>
+
+  <figure class="article-figure" aria-labelledby="data-learning-caption">
+    <img src="Blog006-Fig3-Data-Learning-Comparison.png" alt="Comparison of data-driven learning, data scaling, and data-centric learning" width="1448" height="1086" loading="lazy">
+    <figcaption id="data-learning-caption"><strong>Figure 3. Three related but distinct traditions.</strong> Data-driven learning learns from examples; data scaling increases the amount and diversity of training data; data-centric learning treats the data itself as something to diagnose, repair, and improve.</figcaption>
+  </figure>
+
+  <div class="three-col">
+    <div class="mini-card">
+      <h3>Data-driven learning</h3>
+      <p>The model's behavior is learned substantially from observations rather than specified entirely through hand-written rules.</p>
+      <div class="equation">D &rarr; M</div>
+    </div>
+    <div class="mini-card">
+      <h3>Data scaling</h3>
+      <p>Capability improves by substantially increasing the amount and diversity of training data.</p>
+      <div class="equation">|D| &uarr; &rArr; Q(M) &uarr;</div>
+    </div>
+    <div class="mini-card">
+      <h3>Data-centric learning</h3>
+      <p>The composition and quality of the dataset itself become objects of systematic diagnosis and optimization.</p>
+      <div class="equation">M(D) &rarr; diagnose &rarr; D' &rarr; M(D')</div>
+    </div>
+  </div>
+
+  <p>Under these definitions, SVMActive belongs to an early model-directed data-acquisition lineage: the learner uses uncertainty to decide which semantic label to acquire next. CBSA belongs naturally in the data-driven annotation lineage. Banko and Brill, large Web corpora, ImageNet, and later foundation-model training make data scaling increasingly visible. The CDE formulation is historically intriguing because it explicitly permits the training set L, feature set P, and semantic space C to change in response to uncertainty and failure.</p>
+
+  <p>These traditions overlap. But they are not identical.</p>
+
+  <h2 id="historical-question">8. The Historical Question Is Not &ldquo;Who Invented Data-Centric AI?&rdquo;</h2>
+
+  <p>That question is probably too simplistic. Ideas rarely appear fully formed on one date.</p>
+
+  <p>A better set of questions is:</p>
+
+  <div class="question-list">
+    <p><strong>When did researchers begin treating data quantity as a primary determinant of learning performance?</strong></p>
+    <p><strong>When did image understanding shift from manually engineered semantics toward learning semantic mappings from examples?</strong></p>
+    <p><strong>When did researchers begin treating the training dataset itself&mdash;not merely the algorithm&mdash;as something to diagnose and improve?</strong></p>
+    <p><strong>When did large-scale labeled datasets become infrastructure for general-purpose representation learning?</strong></p>
+    <p><strong>And how did these previously separate traditions converge into today's data-centric and foundation-model paradigms?</strong></p>
+  </div>
+
+  <p>Those questions lead to a lineage rather than a creation myth.</p>
+
+  <h2 id="preliminary-lineage">A Preliminary Lineage: People, Papers, and Converging Streams</h2>
+
+  <p>A single chain is too simple. A more faithful picture is several streams that repeatedly crossed. The milestones below are therefore <strong>anchors, not claims of sole origin</strong>.</p>
+
+  <div class="lineage" aria-label="Preliminary lineage of image semantic learning and data-centric AI">
+    <div class="lineage-step"><span class="epoch">1973&ndash;1991</span><strong>Representing appearance:</strong> Haralick texture; Tamura perceptual texture; Mallat wavelets; Swain &amp; Ballard color indexing</div>
+    <div class="lineage-step"><span class="epoch">1993&ndash;1997</span><strong>Content-based retrieval at database and Web scale:</strong> QBIC, multiresolution wavelet querying, Photobook, WebSEEk</div>
+    <div class="lineage-step"><span class="epoch">1998&ndash;2000</span><strong>The semantic gap becomes explicit:</strong> relevance feedback, Semantic Visual Templates, major CBIR surveys</div>
+    <div class="lineage-step"><span class="epoch">1999&ndash;2004</span><strong>Invariant local representation:</strong> Lowe's SIFT makes robust local matching practical across scale and rotation</div>
+    <div class="lineage-step"><span class="epoch">2001</span><strong>SVMActive:</strong> learn a human query concept without words by actively labeling uncertain boundary cases in a kernel classifier</div>
+    <div class="lineage-step"><span class="epoch">2001</span><strong>Banko &amp; Brill:</strong> make training-data scale itself a striking experimental variable</div>
+    <div class="lineage-step"><span class="epoch">2002&ndash;2003</span><strong>Automatic visual-to-language learning:</strong> Duygulu et al.'s translation model; CBSA soft annotation; Li &amp; Wang's ALIP</div>
+    <div class="lineage-step"><span class="epoch">2003&ndash;2005</span><strong>CDE:</strong> diagnose and revise semantic categories C, perceptual features P, and training instances L</div>
+    <div class="lineage-step"><span class="epoch">2005</span><strong>EXTENT:</strong> fuse content, context, and semantic ontology</div>
+    <div class="lineage-step"><span class="epoch">2007&ndash;2008</span><strong>Shared and Web-scale visual data:</strong> LabelMe, 80 Million Tiny Images, distributed Web-scale image annotation</div>
+    <div class="lineage-step"><span class="epoch">2009 onward</span><strong>ImageNet:</strong> systematic WordNet-organized large-scale supervised visual learning</div>
+    <div class="lineage-step"><span class="epoch">2012 onward</span><strong>Deep representation learning at scale:</strong> learned features increasingly displace hand-engineered descriptors</div>
+    <div class="lineage-step"><span class="epoch">2021 onward</span><strong>Data-centric AI becomes an explicit named movement:</strong> systematic diagnosis, curation, repair, and iteration over data are foregrounded as methodology; earlier work such as CDE had already explored closely related ideas.</div>
+  </div>
+
+  <p>The serious historical task is not to pick one winner from this list. It is to determine <strong>which ideas existed when, what problem each solved, which ideas were parallel, and where those streams crossed</strong>.</p>
+
+  <blockquote class="focal-quote"><p><strong>ImageNet deserves its place in history. But it should not erase the history that made ImageNet possible.</strong></p></blockquote>
+
+  <h2 id="why-now">Why Revisit This History Now?</h2>
+
+  <p>There is a certain irony in AI's current trajectory.</p>
+
+  <p>For years, enormous progress came from increasing data and computation:</p>
+
+  <div class="equation">more data + larger models + more compute</div>
+
+  <p>Foundation models pushed this recipe farther than almost anyone imagined possible.</p>
+
+  <p>Yet the frontier is again forcing us to ask questions remarkably similar to those raised by early semantic-learning systems.</p>
+
+  <p>What is missing from the training data? Which examples should be trusted? When does a model's confidence indicate inadequate knowledge? When is the semantic vocabulary itself wrong? How do we distinguish an inadequate model from inadequate evidence? How should context change interpretation? And when should a machine recognize that the world contains something outside the categories it has learned?</p>
+
+  <p>The scale has changed by many orders of magnitude. The underlying questions have not disappeared.</p>
+
+  <p>Perhaps the history of data-driven AI is therefore not a simple story in which <strong>algorithms gave way to data</strong>. It may instead be a recurring interaction among three things:</p>
+
+  <div class="equation"><strong>Data &harr; Representation &harr; Semantics</strong></div>
+
+  <p>Understanding that lineage matters not merely for assigning historical credit.</p>
+
+  <p><strong>It may help us understand what comes next.</strong></p>
+
+
+  <section class="sources-section" aria-labelledby="selected-sources">
+    <h2 id="selected-sources">Historical Source Map: Primary Papers and Surveys</h2>
+    <p class="source-scope">The purpose of this list is documentary: to give the pre-ImageNet work names, dates, links, and technical roles. It is not meant to imply a single linear ancestry or exhaustive priority claim.</p>
+
+    <div class="ref-group"><h3>Surveys that map the field</h3>
+      <p class="compact-ref"><strong>Rui, Yong; Huang, Thomas S.; Chang, Shih-Fu (1999).</strong> &ldquo;Image Retrieval: Current Techniques, Promising Directions, and Open Issues.&rdquo; <em>Journal of Visual Communication and Image Representation</em> 10(1):39&ndash;62. <a href="https://doi.org/10.1006/jvci.1999.0413" target="_blank" rel="noopener noreferrer">DOI 10.1006/jvci.1999.0413</a>. A contemporary survey of 100+ papers spanning representation, indexing, and system design.</p>
+      <p class="compact-ref"><strong>Smeulders, Arnold W. M., et al. (2000).</strong> &ldquo;Content-Based Image Retrieval at the End of the Early Years.&rdquo; <em>IEEE TPAMI</em> 22(12):1349&ndash;1380. <a href="https://doi.org/10.1109/34.895972" target="_blank" rel="noopener noreferrer">DOI 10.1109/34.895972</a>. Reviews roughly 200 references and centers the roles of semantics, interaction, databases, and the semantic gap.</p>
+      <p class="compact-ref"><strong>Datta, Ritendra; Joshi, Dhiraj; Li, Jia; Wang, James Z. (2008).</strong> &ldquo;Image Retrieval: Ideas, Influences, and Trends of the New Age.&rdquo; <em>ACM Computing Surveys</em> 40(2). <a href="https://doi.org/10.1145/1348246.1348248" target="_blank" rel="noopener noreferrer">DOI 10.1145/1348246.1348248</a>. Surveys almost 300 contributions in image retrieval and automatic annotation.</p>
+    </div>
+
+    <div class="ref-group"><h3>Visual representation and content-based retrieval</h3>
+      <p class="compact-ref"><strong>Haralick, Robert M.; Shanmugam, K.; Dinstein, Its'hak (1973).</strong> &ldquo;Textural Features for Image Classification.&rdquo; <em>IEEE Transactions on Systems, Man, and Cybernetics</em> SMC-3(6):610&ndash;621. <a href="https://haralick.org/book_chapters/TexturalFeatures.pdf" target="_blank" rel="noopener noreferrer">paper</a>.</p>
+      <p class="compact-ref"><strong>Tamura, Hideyuki; Mori, Shunji; Yamawaki, Takashi (1978).</strong> &ldquo;Textural Features Corresponding to Visual Perception.&rdquo; <em>IEEE Transactions on Systems, Man, and Cybernetics</em> 8(6):460&ndash;473. <a href="https://doi.org/10.1109/TSMC.1978.4309999" target="_blank" rel="noopener noreferrer">DOI 10.1109/TSMC.1978.4309999</a>.</p>
+      <p class="compact-ref"><strong>Mallat, St&eacute;phane (1989).</strong> &ldquo;A Theory for Multiresolution Signal Decomposition: The Wavelet Representation.&rdquo; <em>IEEE TPAMI</em> 11(7):674&ndash;693. <a href="https://doi.org/10.1109/34.192463" target="_blank" rel="noopener noreferrer">DOI 10.1109/34.192463</a>.</p>
+      <p class="compact-ref"><strong>Swain, Michael J.; Ballard, Dana H. (1991).</strong> &ldquo;Color Indexing.&rdquo; <em>International Journal of Computer Vision</em> 7:11&ndash;32. <a href="https://doi.org/10.1007/BF00130487" target="_blank" rel="noopener noreferrer">DOI 10.1007/BF00130487</a>.</p>
+      <p class="compact-ref"><strong>Niblack, Wayne, et al. (1993); Flickner, Myron, et al. (1995).</strong> The IBM <strong>QBIC</strong> program developed image/video querying by color, texture, shape, and visual example. <a href="https://research.ibm.com/publications/qbic-project-querying-images-by-content-using-color-texture-and-shape" target="_blank" rel="noopener noreferrer">1993 project paper</a>; <a href="https://doi.org/10.1109/2.410146" target="_blank" rel="noopener noreferrer">1995 Computer article</a>.</p>
+      <p class="compact-ref"><strong>Jacobs, Charles E.; Finkelstein, Adam; Salesin, David H. (1995).</strong> &ldquo;Fast Multiresolution Image Querying.&rdquo; <em>SIGGRAPH 1995</em>, 277&ndash;286. <a href="https://doi.org/10.1145/218380.218454" target="_blank" rel="noopener noreferrer">DOI 10.1145/218380.218454</a>. Wavelet signatures enabled interactive search over databases as large as 20,000 images.</p>
+      <p class="compact-ref"><strong>Pentland, Alex; Picard, Rosalind W.; Sclaroff, Stan (1996).</strong> &ldquo;Photobook: Content-Based Manipulation of Image Databases.&rdquo; <em>IJCV</em>. <a href="https://doi.org/10.1007/BF00123143" target="_blank" rel="noopener noreferrer">DOI 10.1007/BF00123143</a>.</p>
+      <p class="compact-ref"><strong>Smith, John R.; Chang, Shih-Fu (1997).</strong> &ldquo;Visually Searching the Web for Content.&rdquo; <em>IEEE Multimedia</em> 4(3):12&ndash;20. <a href="https://doi.org/10.1109/93.621578" target="_blank" rel="noopener noreferrer">DOI 10.1109/93.621578</a>. An early Web-scale content-search milestone associated with WebSEEk.</p>
+      <p class="compact-ref"><strong>Lowe, David G. (1999; 2004).</strong> SIFT: &ldquo;Object Recognition from Local Scale-Invariant Features&rdquo; and the definitive &ldquo;Distinctive Image Features from Scale-Invariant Keypoints.&rdquo; <a href="https://doi.org/10.1109/ICCV.1999.790410" target="_blank" rel="noopener noreferrer">ICCV 1999</a>; <a href="https://doi.org/10.1023/B:VISI.0000029664.99615.94" target="_blank" rel="noopener noreferrer">IJCV 2004</a>.</p>
+    </div>
+
+    <div class="ref-group"><h3>Human semantics, relevance feedback, and active learning</h3>
+      <p class="compact-ref"><strong>Rui, Yong; Huang, Thomas S.; Ortega, Michael; Mehrotra, Sharad (1998).</strong> &ldquo;Relevance Feedback: A Power Tool for Interactive Content-Based Image Retrieval.&rdquo; <em>IEEE TCSVT</em> 8(5):644&ndash;655. <a href="https://doi.org/10.1109/76.718510" target="_blank" rel="noopener noreferrer">DOI 10.1109/76.718510</a>. Explicitly addressed the high-level-concept/low-level-feature gap and demonstrated interactive relevance feedback on more than 70,000 images.</p>
+      <p class="compact-ref"><strong>Chang, Shih-Fu; Chen, William; Sundaram, Hari (1998).</strong> &ldquo;Semantic Visual Templates: Linking Visual Features to Semantics.&rdquo; <em>ICIP 1998</em>, 531&ndash;535. <a href="https://dblp.org/rec/conf/icip/ChangCS98" target="_blank" rel="noopener noreferrer">DBLP record</a>. Personalized semantic concepts were represented through successful exemplar queries produced by interaction.</p>
+      <p class="compact-ref"><strong>Tong, Simon; Chang, Edward Y. (2001).</strong> &ldquo;Support Vector Machine Active Learning for Image Retrieval.&rdquo; <em>ACM Multimedia 2001</em>, 107&ndash;118. <a href="https://dl.acm.org/doi/10.1145/500141.500159" target="_blank" rel="noopener noreferrer">ACM Digital Library</a>. The learner queries maximally informative boundary cases to infer the user's query concept from relevant/irrelevant judgments.</p>
+    </div>
+
+    <div class="ref-group"><h3>Semantic annotation and adaptive learning</h3>
+      <p class="compact-ref"><strong>Duygulu, Pinar; Barnard, Kobus; de Freitas, Jo&atilde;o F. G.; Forsyth, David A. (2002).</strong> &ldquo;Object Recognition as Machine Translation: Learning a Lexicon for a Fixed Image Vocabulary.&rdquo; <em>ECCV 2002</em>, 97&ndash;112. <a href="https://doi.org/10.1007/3-540-47979-1_7" target="_blank" rel="noopener noreferrer">DOI 10.1007/3-540-47979-1_7</a>.</p>
+      <p class="compact-ref"><strong>Chang, Edward Y.; Goh, Kingshy; Sychay, Gerald; Wu, Gang (2003).</strong> &ldquo;CBSA: Content-Based Soft Annotation for Multimodal Image Retrieval Using Bayes Point Machines.&rdquo; <em>IEEE TCSVT</em> 13(1):26&ndash;38. <a href="https://ieeexplore.ieee.org/document/1180379" target="_blank" rel="noopener noreferrer">IEEE Xplore</a>. DOI: 10.1109/TCSVT.2002.808079.</p>
+      <p class="compact-ref"><strong>Li, Jia; Wang, James Z. (2003).</strong> &ldquo;Automatic Linguistic Indexing of Pictures by a Statistical Modeling Approach.&rdquo; <em>IEEE TPAMI</em> 25(9):1075&ndash;1088. <a href="https://doi.org/10.1109/TPAMI.2003.1227984" target="_blank" rel="noopener noreferrer">DOI 10.1109/TPAMI.2003.1227984</a>.</p>
+      <p class="compact-ref"><strong>Li, Beitao; Goh, Kingshy; Chang, Edward Y. (2003).</strong> &ldquo;Confidence-Based Dynamic Ensemble for Image Annotation and Semantics Discovery.&rdquo; <em>ACM Multimedia 2003</em>, 195&ndash;206. <a href="https://doi.org/10.1145/957013.957051" target="_blank" rel="noopener noreferrer">DOI 10.1145/957013.957051</a>.</p>
+      <p class="compact-ref"><strong>Goh, Kingshy; Li, Beitao; Chang, Edward Y. (2005).</strong> &ldquo;Semantics and Feature Discovery via Confidence-Based Ensemble.&rdquo; <em>ACM TOMM</em> 1(2):168&ndash;189. <a href="https://doi.org/10.1145/1062253.1062257" target="_blank" rel="noopener noreferrer">DOI 10.1145/1062253.1062257</a>.</p>
+      <p class="compact-ref"><strong>Chang, Edward Y. (2005).</strong> &ldquo;EXTENT: Fusing Context, Content, and Semantic Ontology for Photo Annotation.&rdquo; <em>CVDB 2005</em>, 5&ndash;11. <a href="https://dl.acm.org/doi/10.1145/1160939.1160945" target="_blank" rel="noopener noreferrer">ACM Digital Library</a>. DOI: 10.1145/1160939.1160945.</p>
+    </div>
+
+    <div class="ref-group"><h3>Data infrastructure, Web scale, and ImageNet</h3>
+      <p class="compact-ref"><strong>Miller, George A. (1995).</strong> &ldquo;WordNet: A Lexical Database for English.&rdquo; <em>Communications of the ACM</em> 38(11):39&ndash;41. <a href="https://doi.org/10.1145/219717.219748" target="_blank" rel="noopener noreferrer">DOI 10.1145/219717.219748</a>. WordNet later supplied the semantic hierarchy used to organize ImageNet.</p>
+      <p class="compact-ref"><strong>Russell, Bryan C.; Torralba, Antonio; Murphy, Kevin P.; Freeman, William T. (2008; online 2007).</strong> &ldquo;LabelMe: A Database and Web-Based Tool for Image Annotation.&rdquo; <em>IJCV</em> 77:157&ndash;173. <a href="https://doi.org/10.1007/s11263-007-0090-8" target="_blank" rel="noopener noreferrer">DOI 10.1007/s11263-007-0090-8</a>.</p>
+      <p class="compact-ref"><strong>Torralba, Antonio; Fergus, Rob; Freeman, William T. (2008).</strong> &ldquo;80 Million Tiny Images: A Large Data Set for Nonparametric Object and Scene Recognition.&rdquo; <em>IEEE TPAMI</em>. <a href="https://doi.org/10.1109/TPAMI.2008.128" target="_blank" rel="noopener noreferrer">DOI 10.1109/TPAMI.2008.128</a>. Collected 79,302,017 Web images associated with 75,062 WordNet nouns.</p>
+      <p class="compact-ref"><strong>Liu, Jiakai; Hu, Rong; Wang, Meihong; Wang, Yi; Chang, Edward Y. (2008).</strong> &ldquo;Web-Scale Image Annotation.&rdquo; <em>PCM 2008</em>, LNCS 5353, 663&ndash;674. <a href="https://doi.org/10.1007/978-3-540-89796-5_68" target="_blank" rel="noopener noreferrer">Springer / DOI</a>. Distributed LDA parameter computation with MapReduce for large-scale image tagging.</p>
+      <p class="compact-ref"><strong>Deng, Jia; Dong, Wei; Socher, Richard; Li, Li-Jia; Li, Kai; Fei-Fei, Li (2009).</strong> &ldquo;ImageNet: A Large-Scale Hierarchical Image Database.&rdquo; <em>CVPR 2009</em>, 248&ndash;255. <a href="https://doi.org/10.1109/CVPR.2009.5206848" target="_blank" rel="noopener noreferrer">DOI 10.1109/CVPR.2009.5206848</a>.</p>
+    </div>
+
+    <div class="ref-group"><h3>Scaling influence and synthesis</h3>
+      <p class="compact-ref"><strong>Banko, Michele; Brill, Eric (2001).</strong> &ldquo;Scaling to Very Very Large Corpora for Natural Language Disambiguation.&rdquo; <em>ACL 2001</em>, 26&ndash;33. <a href="https://aclanthology.org/P01-1005/" target="_blank" rel="noopener noreferrer">ACL Anthology</a>. DOI: 10.3115/1073012.1073017.</p>
+      <p class="compact-ref"><strong>Chang, Edward Y. (2011).</strong> <em>Foundations of Large-Scale Multimedia Information Management and Retrieval: Mathematics of Perception.</em> Springer. <a href="https://link.springer.com/book/10.1007/978-3-642-20429-6" target="_blank" rel="noopener noreferrer">Springer</a>. DOI: 10.1007/978-3-642-20429-6.</p>
+    </div>
+  </section>
+
+  <section class="sources-section" aria-labelledby="authors-note">
+    <h2 id="authors-note">Author's Note: An Investigation, Not a Priority Claim</h2>
+    <p class="source-scope">This essay is a historical investigation, not a claim that any one project invented data-centric AI. Its purpose is to restore a richer technical record: who worked on which problem, when, with what evidence, and how previously separate streams later converged.</p>
+    <p>The examples from SVMActive (2001), CBSA (2003), CDE (2003/2005), EXTENT (2005), and Web-Scale Image Annotation (2008) are included because their original papers make their technical claims directly available for examination. A fuller account should examine the contemporary and preceding literature&mdash;including statistical learning, NLP scaling, active and semi-supervised learning, relevance feedback, multimedia retrieval, Web-scale image learning, shared datasets, WordNet-based visual organization, ImageNet, crowdsourced annotation, and the later emergence of the term <em>data-centric AI</em>&mdash;before drawing conclusions about lineage or precedence.</p>
+    <p>The next step is documentary: continue reconstructing the record from primary sources, especially 1990&ndash;2012, and expand each milestone into a concise entry containing the people, paper, problem, technical contribution, limitations, and later inheritance. The objective is closer to a technical historical atlas than a priority argument.</p>
+    <p class="related-post"><strong>Previous dispatch:</strong> <a href="http://infolab.stanford.edu/~echang/AGIBlogs/Blog005-The-Subjectivity-Horizon.html">The Subjectivity Horizon of World Models: Why a Digital World Is Not Yet Your World</a>.</p>
+  </section>
+</main>
+
+  <footer>
+    <p>&copy; 2026 <a href="http://infolab.stanford.edu/~echang/" target="_blank" rel="noopener noreferrer">Edward Y. Chang</a>. Published as part of <em>The AGI Forum: Theories, Practice, Safety, Risk &amp; Policy</em>.</p>
+  </footer>
+</div>
+</body>
+</html>

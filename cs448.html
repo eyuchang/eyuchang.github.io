@@ -1,0 +1,44 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML>
+<HEAD>
+   <META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1">
+   <META NAME="Author" CONTENT="Milton Chen">
+   <META NAME="GENERATOR" CONTENT="Mozilla/4.07 [en] (Win95; I) [Netscape]">
+   <TITLE>Dtv_public\receiver\README</TITLE>
+</HEAD>
+<BODY>
+This directory contains the build environment
+and sample applications (with source code) using the <FONT COLOR="#009900">Stanford-Intel
+DTV API</FONT>.
+<P>You <FONT COLOR="#FF0000">must have DirectX 5</FONT> install on your
+system; however, both Win95 and WinNT are acceptable.
+<BR>You don't need any special graphics card; however, your <FONT COLOR="#FF0000">processor
+must be MMXed</FONT>.
+<BR>I have tested the code with PentiumII 300 and 350 MHz MMX.
+<P>Directory Structure
+<BR><FONT COLOR="#009900">bin</FONT>\
+<BR>&nbsp;&nbsp;&nbsp; bpc_dtv.dll - Unicorn driver (required for all -
+live or from file).
+<BR>&nbsp;&nbsp;&nbsp; testdec.exe - runs the DTV receiver and MPEG-2 decoder
+and flips the image using DirectDraw to screen.
+<P><FONT COLOR="#009900">include</FONT>\
+<BR>&nbsp;&nbsp;&nbsp; for DTV receiver, include dtv.h
+<BR>&nbsp;&nbsp;&nbsp; for DTV receiver plus MPEG-2 decoder, include dtv_mpeg.h
+<P><FONT COLOR="#009900">lib</FONT>\
+<BR>&nbsp;&nbsp;&nbsp; for DTV receiver, include dtv.lib
+<BR>&nbsp;&nbsp;&nbsp; for DTV receiver plus MPEG-2 decoder, include dtv.lib,
+dtv_mpeg.lib and mpeg2decoder.lib
+<P><FONT COLOR="#009900">sample</FONT>\
+<BR>&nbsp;&nbsp;&nbsp; mydtvapp\&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+-&nbsp;&nbsp;&nbsp;&nbsp; demo of DTV and DTV_MPEG API
+<BR>&nbsp;&nbsp;&nbsp; mydtvreceiver\&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+-&nbsp;&nbsp;&nbsp; demo of DTV API
+<BR>&nbsp;&nbsp;&nbsp; mydtvweb\&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+-&nbsp;&nbsp;&nbsp; demo of DTV Object API
+<BR>&nbsp;
+<BR>&nbsp;
+<P>Milton Chen
+<BR>miltchen@graphics.stanford.edu
+<BR>&nbsp;
+</BODY>
+</HTML>

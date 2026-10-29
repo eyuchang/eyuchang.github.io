@@ -1,0 +1,221 @@
+
+Learning in first-order logic (FOL) languages suffers from
+the exponential size of hypotheses. This difficulty is traditionally
+dealt with by limiting the size of hypotheses, via either
+syntatic restrictions or search strategies. In this paper,
+we deal with fuzzy first-order logic. 
+
+Similarity can hardly be quantified as either {\it true}
+or {\it false}. 
+\begin{jlist}
+\item Similarity: fuzziness
+\item Similarity: context
+\item Similarity: personalization 
+\begin{jlist}
+
+The user chooses the number of samples to provide in
+the relevance feedback loop. This way, the user controls\
+the quality and cost of the learning.
+
+Inductive learning produces a set of rules in CNF
+Inductive learning can better cope with sparse samples.
+Inductive learning can take into account both the links
+between attributes and the partial solutions yet available
+(background knowledge of the problem).
+
+1. Top-Down approach
+
+o Discriminant power of an attribute
+
+  Cj: classes
+  x = vi
+  I(x = vi) = - sum pi,j log (pi,j)
+
+  I(x) is obtained by summing the expected value of the
+  conditional information...
+
+o Decision tree
+
+2. Bottom-Up approach
+
+  Pros:
+  o Disjunctive concept is hard to learn top-down
+  o Top-down need statistics information
+  o When a class involves disjunction of several sub-classes,
+    the contributions of the sub-classes add to the global
+    criterion that become difficult to interpret.
+  o Sensitive to noise, thus fuzzy approach can be better
+
+
+
+Toy Example
+
+1. Suppose the attributes capture the query concept. We need to
+   find the proper condition using the attributes...
+
+2. Select 
+   Where condition
+
+   Given a set of samples
+   What is the condition?
+
+
+   Student DB
+   Name		Gender	Weight 	Height	GPA	SAT
+   -----------------------------------------------------
+   Amy		F	120	5'6''	3.8	1200
+   Anna		F	130	5'9''	3.7	1380
+   Betty	F	110	5'7''	3.4	1200
+   Bruce	M	220	6'2''	3.9	1270
+   Charles	M	170	5'7''	2.3	1210
+   Dorado	M	190	6'2''	3.1	1200
+   Dora		F	100	5'5''	3.8	1200
+   Edmond	M	160	5'9''	2.9	1250
+   Frank	M	170	5'9''	3.4	1200
+   George	M	180	6'1''	3.6	1300
+   Jassica	F	120	5'2''	3.8	1240
+   Mary		F	110	5'6''	2.9	1200
+   Jack		M	200	6'0''	3.1	1200
+   Zelda	F	115	5'4''	3.3	1090
+
+   Relational Database
+
+   Selectivity
+
+   Cardinality
+
+
+3. Starting point:
+
+   =====================================================================
+   one attribute
+   ---------------------------------------------------------------------
+   # ex 1 : one attribute, precise condition
+
+   Select R.Name
+   Where R.Gender = M
+
+   Select R.Name
+   Where R.GPA = 3.3
+
+   From the result set, one has no trouble to infer the query condition
+   ---------------------------------------------------------------------
+   # ex 2 : one attribute, range condition
+
+   Select R.Name
+   Where R.GPA >= 3.5
+
+   From the result set, one may have a narrower range because the
+   dataset does not have samples that cover the lower bound...
+
+   Where R.GPA >= 3.6
+
+   ?1 Remedy: Do nothing and knowing this is a more specific condition
+   ?2 Generate samples to test the bound...
+      o I know there are students with GPA = 3.4
+        so the actual bound must be > 3.4 and <= 3.6 
+      o How can I probe it?
+        - binary probing, based on the range or based on data distribution?
+        - chances vs accuracy
+   ---------------------------------------------------------------------
+   # ex 3 : one attribute, disjunctive range condition
+
+   Select R.Name
+   Where R.GPA >= 3.5 or R.GPA <=3.0
+
+   This does not make the problem harder
+   =====================================================================
+
+   =====================================================================
+   two attributes
+   additional challenges:
+   o conjunctive, disjunctive?
+   o correlation between attributes?  e.g., fit = weight/height = 3
+   ---------------------------------------------------------------------
+   # ex 1 : two attribute, conjunctive range condition Select R.Name
+   Where R.GPA >= 3.7 and R.SAT >= 1300
+
+   > Anna	F	130	5'9''	3.7	1380
+   o This is not too hard a problem but the sampling posibility
+     increases exponentially with the number of attributes
+
+   ---------------------------------------------------------------------
+   # ex 2 : two attribute, disjunctive range condition
+   Select R.Name
+   Where R.GPA >= 3.7 or R.SAT >= 1300
+
+   > Amy	F	120	5'6''	3.8	1200
+   > Anna	F	130	5'9''	3.7	1380
+   > Bruce	M	220	6'2''	3.9	1270
+   > Dora	F	100	5'5''	3.8	1200
+   > George	M	180	6'1''	3.6	1300
+   > Jassica	F	120	5'2''	3.8	1240
+
+   o If I mistaken the operator to be ''and'', my initial
+     guess of the condition is R.GPA > 3.6 and G.SAT >= 1200
+   o What can contradict this claim?
+     the records between R.GPA > 3.6 and G.SAT >= 1200 and
+                         R.GPA >= 3.7 or R.SAT >= 1300
+
+   .8 |          ^ | | | | | | | | | |
+   .7 |----------|-|-|-|-| | | | | | |
+   .6 |          +-------------------->
+   .5 |                  |
+   .4 |                  |
+   .3 |                  |
+   .2 |                  |
+   .1 |                  |
+   .0 +-----------------------------------------------------------
+	1100	1200	1300	1400
+
+      ! Use R.GPA > 3.6 and G.SAT >= 1200 to test for contradiction...
+      ! then can infer the or operator
+      ! but what's the range?
+
+   > Amy	F	120	5'6''	3.8	1200
+   > Anna	F	130	5'9''	3.7	1380
+   > Bruce	M	220	6'2''	3.9	1270
+   > Dora	F	100	5'5''	3.8	1200
+   > George	M	180	6'1''	3.6	1300
+   > Jassica	F	120	5'2''	3.8	1240
+
+     max				3.9	1300 -> most specific
+     min				3.6	1200 -> most general
+
+   Betty	F	110	5'7''	3.4	1200
+   Charles	M	170	5'7''	2.3	1210
+   Dorado	M	190	6'2''	3.1	1200
+   Edmond	M	160	5'9''	2.9	1250
+   Frank	M	170	5'9''	3.4	1200
+   Mary		F	110	5'6''	2.9	1200
+   Jack		M	200	6'0''	3.1	1200
+   Zelda	F	115	5'4''	3.3	1090
+
+     max				3.4	1250 
+     min				2.3	1090 
+
+   !!! Can disjunctive be approximated by conjunctive?
+
+   ---------------------------------------------------------------------
+   # ex 3 : redo ex 2 using fussy logic
+   =====================================================================
+
+   =====================================================================
+
+
+
+   n attributes
+   additional challenges:
+   o tractability? cost?
+   ---------------------------------------------------------------------
+
+   =====================================================================
+
+
+   Another example problem: admission
+   Admission conditions:
+    Excellent academic achievement
+    Good academic achievement + Excellent extracurrilar activities
+    Good academic achievement + Excellent atheletic achievements
+
+

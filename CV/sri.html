@@ -1,0 +1,224 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML 3.0//EN">
+<HTML>  
+</HEAD>
+<BODY TEXT="#000000" LINK="#CC3300" VLINK="#10057F" ALINK="#CC3300" BGCOLOR="#FFFFFF">  
+
+<TABLE BORDER="0" CELLPADDING="2" CELLSPACING="0" WIDTH="600">    
+<TR>
+<TD ALIGN=LEFT VALIGN=MIDDLE BGCOLOR="#330066">
+<FONT FACE="Arial, Helvetica" COLOR="#FFFFFF"><FONT SIZE ="5"><B>Statement
+of Research Interests</B></FONT>
+</TD>
+</TR>                
+<TR>
+<TD ALIGN=LEFT VALIGN=MIDDLE BGCOLOR="#F1FF72">
+<FONT FACE="Arial, Helvetica" COLOR="#000000">
+<FONT SIZE="4"><B>Edward Chang</B></FONT></FONT>
+</TD>
+</TR>                
+</TABLE>
+
+<TABLE BORDER="0" CELLPADDING="2" CELLSPACING="0" WIDTH="600">    
+<FONT SIZE="3">
+<TR>
+<br>
+<p>
+Advancement in network and compression technology
+and decreases in hardware costs have led to a
+rapid growth in multimedia applications in recent years.
+How to use the available system resources effectively to retrieve,
+deliver, and receive voluminous media data (i.e., videos,
+audios, and images) presents 
+interesting and challenging problems.  My research 
+interests focus primarily on how to help users access media 
+data fast and at minimum cost.
+</TR>
+
+<TR>
+<br>
+<p>
+The primary focus of my thesis was on 
+managing continuous media data 
+at both the media server and media client sides. At the
+server side, I propose schemes to minimize initial
+delay to retrieve and deliver media clips to the clients while maintaining
+high throughput. At the client side, I propose 
+a memory-disk integrated cache (MEDIC)
+to cushion against variability in the data delivery rate
+and against differences in delivery and consumption rates.
+I implemented a smart-VCR
+based on MEDIC, which allows the viewers to pause, catch
+up, and replay during a live TV broadcast. In addition to my 
+thesis work, I recently led a research
+project aimed at designing and implementing a Replicated
+IMage dEtector (RIME) for the World-Wide Web, and I
+worked with HP and NEC laboratories on classifying
+documents using machine learning techniques.
+</TR>
+
+<TR>
+<br>
+<p>
+In the media server work,
+I show that contrary to
+conventional wisdom, which holds that maximizing disk utilization
+benefits the system, slowing down the disk may
+actually lead to better throughput since it
+reduces the memory requirement [7,9,15].
+Based on this observation, I propose intelligent 
+data placement and disk scheduling policies [8,10,15] that give
+the disk arm the flexibility to service a newly
+arrived or a fast-scan request immediately and that thereby
+minimize the initial delay. I show that these techniques can
+be applied to manage parallel disks efficiently [4].
+In the media client work, I propose MEDIC [1], which
+writes the arrived media data to the client's local
+disk when the memory is about to overflow and reads the
+data into main memory when the decoder's
+buffer is about to underflow.
+My study shows that with less than eight
+megabytes of main memory, MEDIC can support the
+$19.2$ Mbps Digital-TV (DTV) broadcast rate effectively,
+i.e., the display does not suffer from ``hiccups.''
+This low main memory requirement reduces the 
+cost to build a smart-VCR
+that supports interactive operations, 
+allowing viewers to view TV programs at their own pace.
+Without the assistance of MEDIC at the media client
+side, these interactive operations
+either cannot be implemented (in the broadcast case) or may prolong
+playback time and hence significantly decrease server throughput
+(in the point-to-point transmission case).
+Some local companies (e.g., Intel and Apple) have expressed
+strong interest in using this technology
+in their DTV infrastructures.
+</TR>
+
+<TR>
+<br>
+<p>
+As mentioned above, besides
+my thesis work, I led the research and implementation
+of a Replicated IMage dEtector (RIME) project for the World-Wide
+Web [2,9]. RIME uses a novel clustering/hashing combined approach
+that first clusters similar images on adjacent disk
+cylinders and then builds indexes to access the clusters made
+in this way.  Searching for the replicas of an image often takes
+just one IO to look up the location of the cluster containing
+similar objects and one sequential file IO to read in this cluster.  
+This approach effectively avoids the <i>curse
+of dimensionality</i> that the traditional tree-like indexing
+structures suffer by trading off some recall percentage. 
+</TR>
+
+<TR>
+<br>
+<p>
+Recent advancements in image-based
+rendering and display technology have made an array of digital-TV
+(DTV) applications, such as video panoramas
+and interactive DTV, feasible. To support these advanced
+features, a future media client (perhaps a combination of
+today's TV set and desktop) may connect to a point-to-point network
+while receiving broadcast signals simultaneously.
+Managing the resources of a media client effectively to
+receive both textual and continuous 
+data from more than one source at the same time is a challenging task.
+In addition, the increasing demand of providing content
+for other clients (e.g., providing a home movie to be
+viewed by relatives) may elevate the role of a 
+media client to a media server. 
+These seemingly inevitable trends of
+consumer electronics will significantly affect the design 
+of a future media client and is thus one focus
+of my future research.
+</TR>
+
+<TR>
+<br>
+<p>
+Specifically, my research can continue in the following directions:
+Regarding management of the continuous media data in a point-to-point
+network, I plan to further explore the idea of client-assisted
+server load-balancing. The server may, for instance, 
+deliver more data to the clients during the off hours to 
+alleviate the server's workload during the peak hours. 
+Regarding management of the continuous
+media data in a broadcast network, I plan to integrate
+error concealment algorithms into MEDIC to
+deal with the DTV signal disturbance problem. I have already taken the
+first step to devise a scheme to
+disperse a continuous channel error into random errors and have
+developed a simple and efficient image reconstruction scheme to rebuild the
+damaged images [6]. However, building robust error concealment
+schemes for live DTV broadcast is more complicated. First,
+the error must be contained so as not to propagate to the inter-coded
+frames that depend on the damaged frames. 
+Second, the error concealment scheme must be efficient
+so that the frames can be displayed near real-time.
+</TR>
+
+<TR>
+<br>
+<p>
+In addition to the media client/server work, 
+I plan to continue working on the clustering/hashing
+algorithm as an alternative to the traditional tree-like
+structures in order to conduct similarity search in high-dimensional
+spaces. Although I believe that our clustering approach
+can discover what we call the ``nature clusters'' 
+of most datasets better than schemes
+like k-mean and vector quantization, more experiments
+must be performed to reach
+conclusive statements. In addition, reducing the
+pre-processing time of our clustering algorithm and
+dealing with incremental clustering remain 
+major research challenges in this area.
+Lastly, I have been working on applying data mining
+techniques (e.g., SOM, decision trees, etc.) to classify
+documents with HP and NEC research laboratories [2,3]. We have had 
+many promising leads, and it is highly probable that I will
+be able to collaborate with these laboratories after 
+I start my academic career.
+</TR>
+
+<TR>
+<br>
+<p>
+In the past three years, I have worked on four different
+research projects---media server, digital TV, image databases,
+and document classification---and have published in each of
+these fields. Through these research projects I have demonstrated
+that I can familiarize myself with a new discipline
+in a short time, identify root causes of 
+challenging problems, and devise simple and novel approaches to solve
+the problems. Since Computer Science is a rapidly
+changing field, I believe that being able to 
+identify interesting problems promptly and to develop
+efficient methods for
+solving the problems is critical for anyone who wants
+to remain on the forefront of the 
+research community.  I believe that my diversified work
+and research experience as well as my educational background 
+in three fields---Industrial Engineering,
+Computer Science, and Electrical Engineering---equip me
+with the ability to see problems in more than one dimension and to
+conduct interdisciplinary research. 
+</TR>
+
+
+<TR>
+<br>
+<p>
+I believe that being a successful researcher requires a combination of talent,
+drive and the desire to question conventional wisdom. Leadership
+in the research community requires in addition a measure of idealism and
+a moral compass. I believe I possess all of these qualities.
+</TR>
+</FONT>
+
+</TABLE>
+
+</BODY>
+
+           

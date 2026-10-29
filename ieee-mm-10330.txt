@@ -1,0 +1,39 @@
+Paper Number: MM10330
+Title: A Novel Cost Driven Disk Scheduling Algorithm 
+       for Multi-Priority Multimedia Objects
+Authors: Ghandeharizadeh, Huang and Kamel
+
+In this paper, the authors propose a single-queue disk scheduling
+algorithm and claim that its performance is superior to multi-queue
+schemes.
+
+There are two key flaws in this paper.
+
+1. Objective function:
+
+   The authors claim that there are four design parameters:   priority,
+   seek time, deadline, and cost.  Merely minimizing the total cost may not
+   be the best way to formulate the cost-driven problem in this setting.
+   The design goal should be to minimize the per-bit transfer cost, or
+
+   min \sum (cost_i / (seek time_i + transfer time_i)) \times deadline_i(t)
+   i \in I
+
+   The deadline(t) function can be a step function that returns a one
+   if task i's deadline is met, and a zero if the deadline is missed.
+   A more sophisticated function can make the scheduling model more
+   flexible and interesting.
+
+2. Cost can be formulated considering priority and vice versa:
+
+   The authors characterize all the other disk scheduling schemes
+   as "multi-queue" schemes.  In their experiments, they
+   assume these schemes pay attention only to priority, not to cost.
+   Based on this assumption, their experimental results show that the
+   one-queue policy achieves lower cost.
+
+   This comparison, however, is unfair.  A "multi-queue" scheme can
+   determine a task's priority based on its cost, and the performance 
+   can be equally good.  As a matter of common sense, priority is 
+   often determined by several criteria, of which cost is one.
+

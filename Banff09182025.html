@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>7-Day Canadian Rockies Hiking Tour</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css" />
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+
+        .container {
+            display: flex;
+            height: 100vh;
+            max-width: 2520px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            margin: 20px;
+            overflow: hidden;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        }
+
+        .sidebar {
+            width: 350px;
+            background: linear-gradient(180deg, #2c3e50 0%, #34495e 100%);
+            color: white;
+            padding: 20px;
+            overflow-y: auto;
+        }
+
+        .sidebar h1 {
+            font-size: 24px;
+            margin-bottom: 20px;
+            text-align: center;
+            background: linear-gradient(45deg, #3498db, #2ecc71);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .day-item {
+            background: rgba(255,255,255,0.1);
+            border-radius: 12px;
+            padding: 15px;
+            margin-bottom: 15px;
+            border-left: 4px solid;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .day-item:hover {
+            background: rgba(255,255,255,0.2);
+            transform: translateX(5px);
+        }
+
+        .day1 { border-color: #e74c3c; }
+        .day2 { border-color: #f39c12; }
+        .day3 { border-color: #f1c40f; }
+        .day4 { border-color: #2ecc71; }
+        .day5 { border-color: #3498db; }
+        .day6 { border-color: #9b59b6; }
+        .day7 { border-color: #95a5a6; }
+
+        .day-header {
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 8px;
+        }
+
+        .location {
+            font-size: 16px;
+            color: #ecf0f1;
+            margin-bottom: 5px;
+        }
+
+        .activity {
+            font-size: 14px;
+            color: #bdc3c7;
+            margin-bottom: 3px;
+        }
+
+        .difficulty {
+            display: inline-block;
+            padding: 2px 8px;
+            border-radius: 12px;
+            font-size: 12px;
+            font-weight: bold;
+            margin-top: 5px;
+        }
+
+        .easy { background: #2ecc71; color: white; }
+        .moderate { background: #f39c12; color: white; }
+        .challenging { background: #e74c3c; color: white; }
+
+        #map {
+            flex: 1;
+            height: 100%;
+        }
+
+        .map-popup h3 {
+            margin: 0 0 10px 0;
+            color: #2c3e50;
+        }
+
+        .map-popup .popup-activity {
+            margin: 5px 0;
+            font-size: 14px;
+        }
+
+        .legend {
+            background: rgba(255,255,255,0.1);
+            border-radius: 12px;
+            padding: 15px;
+            margin-top: 20px;
+        }
+
+        .legend h3 {
+            margin: 0 0 10px 0;
+            font-size: 16px;
+        }
+
+        .legend-item {
+            display: flex;
+            align-items: center;
+            margin: 5px 0;
+        }
+
+        .legend-color {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            margin-right: 10px;
+        }
+
+        .stats {
+            background: rgba(255,255,255,0.1);
+            border-radius: 12px;
+            padding: 15px;
+            margin-top: 20px;
+        }
+
+        .stats h3 {
+            margin: 0 0 10px 0;
+            font-size: 16px;
+        }
+
+        .stat-item {
+            display: flex;
+            justify-content: space-between;
+            margin: 8px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="sidebar">
+            <h1>🏔️ Canadian Rockies Hiking Tour</h1>
+            
+            <div class="day-item day1" onclick="focusOnDay(1)">
+                <div class="day-header">Day 1 </div>
+                <div class="location">📍 Calgary</div>
+                <div class="activity">🏨 Hilton Garden Inn, 711 4th Street</div>
+                <div class="activity">🍽️ Welcome dinner</div>
+            </div>
+
+            <div class="day-item day2" onclick="focusOnDay(2)">
+                <div class="day-header">Day 2 </div>
+                <div class="location">📍 Lake Louise</div>
+                <div class="activity">🏨 Lake Louise Inn, 210 Village Rd</div>
+                <div class="activity">🥾 Marble Canyon Hike</div>
+                <div class="activity">📏 2 miles</div>
+                <div class="difficulty easy">Easy</div>
+            </div>
+
+            <div class="day-item day3" onclick="focusOnDay(3)">
+                <div class="day-header">Day 3 </div>
+                <div class="location">📍 Lake Louise</div>
+                <div class="activity">🏨 Lake Louise Inn, 210 Village Rd</div>
+                <div class="activity">🥾 Moraine Lake Rockpile Trail</div>
+                <div class="activity">🥾 Consolation Lakes</div>
+                <div class="activity">📏 5.5 miles</div>
+                <div class="difficulty challenging">Challenging</div>
+            </div>
+
+            <div class="day-item day4" onclick="focusOnDay(4)">
+                <div class="day-header">Day 4 </div>
+                <div class="location">📍 Towards Banff</div>
+                <div class="activity">🥾 Bow Summit</div>
+                <div class="activity">🥾 Bow Glacier</div>
+                <div class="activity">📏 5.5 miles</div>
+                <div class="difficulty moderate">Moderate</div>
+            </div>
+
+            <div class="day-item day5" onclick="focusOnDay(5)">
+                <div class="day-header">Day 5 </div>
+                <div class="location">📍 Banff</div>
+                <div class="activity">🏨 The Kenrick Hotel, 419 Banff Ave</div>
+                <div class="activity">🥾 Bow Falls to Hoodoos Viewpoint</div>
+                <div class="activity">🏞️ Lake Minnewanka</div>
+                <div class="activity">🏞️ Johnson Lake</div>
+                <div class="activity">📏 4.5 miles</div>
+                <div class="difficulty moderate">Moderate</div>
+            </div>
+
+            <div class="day-item day6" onclick="focusOnDay(6)">
+                <div class="day-header">Day 6 </div>
+                <div class="location">📍 Banff</div>
+                <div class="activity">🏨 The Kenrick Hotel, 419 Banff Ave</div>
+                <div class="activity">🥾 Kananaskis Country</div>
+                <div class="activity">🍺 Brewery Visit</div>
+                <div class="activity">📏 4 miles</div>
+                <div class="difficulty moderate">Moderate</div>
+            </div>
+
+            <div class="day-item day7" onclick="focusOnDay(7)">
+                <div class="day-header">Day 7 </div>
+                <div class="location">📍 Calgary</div>
+                <div class="activity">✈️ Departure</div>
+            </div>
+
+            <div class="legend">
+                <h3>🗺️ Map Legend</h3>
+                <div class="legend-item">
+                    <div class="legend-color" style="background: #e74c3c;"></div>
+                    <span>Day 1 - Calgary</span>
+                </div>
+                <div class="legend-item">
+                    <div class="legend-color" style="background: #f39c12;"></div>
+                    <span>Day 2-3 - Lake Louise</span>
+                </div>
+                <div class="legend-item">
+                    <div class="legend-color" style="background: #2ecc71;"></div>
+                    <span>Day 4-6 - Banff Area</span>
+                </div>
+            </div>
+
+            <div class="stats">
+                <h3>📊 Tour Stats</h3>
+                <div class="stat-item">
+                    <span>Total Hiking Distance:</span>
+                    <span><strong>21.5 miles</strong></span>
+                </div>
+                <div class="stat-item">
+                    <span>Easy Days:</span>
+                    <span>1</span>
+                </div>
+                <div class="stat-item">
+                    <span>Moderate Days:</span>
+                    <span>3</span>
+                </div>
+                <div class="stat-item">
+                    <span>Challenging Days:</span>
+                    <span>1</span>
+                </div>
+                <div class="stat-item">
+                    <span>Duration:</span>
+                    <span>7 Days</span>
+                </div>
+            </div>
+        </div>
+
+        <div id="map"></div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
+    <script>
+        // Initialize the map
+        const map = L.map('map').setView([51.4, -116.0], 8);
+
+        // Add tile layer
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '© OpenStreetMap contributors'
+        }).addTo(map);
+
+        // Define locations with coordinates
+        const locations = {
+            calgary: [51.0447, -114.0719],
+            lakelouise: [51.4254, -116.1773],
+            banff: [51.1784, -115.5708],
+            morainelake: [51.3226, -116.1847],
+            bowsummit: [51.6739, -116.4469],
+            lakeminneWanka: [51.2167, -115.4333],
+            kananaskis: [50.9736, -115.0436],
+            marblecanyon: [51.2167, -116.0500]
+        };
+
+        // Define markers for each day
+        const dayMarkers = [
+            {
+                day: 1,
+                coords: locations.calgary,
+                title: "Day 1 - Calgary",
+                description: "🏨 Hilton Garden Inn, 711 4th Street<br>🍽️ Welcome dinner",
+                color: "#e74c3c"
+            },
+            {
+                day: 2,
+                coords: locations.marblecanyon,
+                title: "Day 2 - Lake Louise Area",
+                description: "🏨 Lake Louise Inn, 210 Village Rd<br>🥾 Marble Canyon Hike<br>📏 2 miles (Easy)",
+                color: "#f39c12"
+            },
+            {
+                day: 3,
+                coords: locations.morainelake,
+                title: "Day 3 - Lake Louise",
+                description: "🏨 Lake Louise Inn, 210 Village Rd<br>🥾 Moraine Lake Rockpile Trail<br>🥾 Consolation Lakes<br>📏 5.5 miles (Challenging)",
+                color: "#f1c40f"
+            },
+            {
+                day: 4,
+                coords: locations.bowsummit,
+                title: "Day 4 - Bow Summit",
+                description: "🥾 Bow Summit<br>🥾 Bow Glacier<br>📏 5.5 miles (Moderate)",
+                color: "#2ecc71"
+            },
+            {
+                day: 5,
+                coords: locations.banff,
+                title: "Day 5 - Banff",
+                description: "🏨 The Kenrick Hotel, 419 Banff Ave<br>🥾 Bow Falls to Hoodoos Viewpoint<br>🏞️ Lake Minnewanka & Johnson Lake<br>📏 4.5 miles (Moderate)",
+                color: "#3498db"
+            },
+            {
+                day: 6,
+                coords: locations.kananaskis,
+                title: "Day 6 - Kananaskis",
+                description: "🏨 The Kenrick Hotel, 419 Banff Ave<br>🥾 Kananaskis Country<br>🍺 Brewery Visit<br>📏 4 miles (Moderate)",
+                color: "#9b59b6"
+            },
+            {
+                day: 7,
+                coords: locations.calgary,
+                title: "Day 7 - Departure",
+                description: "✈️ Departure from Calgary",
+                color: "#95a5a6"
+            }
+        ];
+
+        // Add markers to the map
+        const markerObjects = [];
+        dayMarkers.forEach(marker => {
+            const leafletMarker = L.circleMarker(marker.coords, {
+                radius: 12,
+                fillColor: marker.color,
+                color: '#ffffff',
+                weight: 2,
+                opacity: 1,
+                fillOpacity: 0.8
+            }).addTo(map);
+
+            leafletMarker.bindPopup(`
+                <div class="map-popup">
+                    <h3>${marker.title}</h3>
+                    <div class="popup-activity">${marker.description}</div>
+                </div>
+            `);
+
+            markerObjects[marker.day] = leafletMarker;
+        });
+
+        // Draw route lines with arrows
+        const routeSegments = [
+            { from: locations.calgary, to: locations.lakelouise, label: "Day 1→2" },
+            { from: locations.lakelouise, to: locations.marblecanyon, label: "Day 2" },
+            { from: locations.marblecanyon, to: locations.morainelake, label: "Day 2→3" },
+            { from: locations.morainelake, to: locations.bowsummit, label: "Day 3→4" },
+            { from: locations.bowsummit, to: locations.banff, label: "Day 4→5" },
+            { from: locations.banff, to: locations.lakeminneWanka, label: "Day 5" },
+            { from: locations.lakeminneWanka, to: locations.kananaskis, label: "Day 5→6" },
+            { from: locations.kananaskis, to: locations.calgary, label: "Day 6→7" }
+        ];
+
+        // Draw route segments with arrows
+        routeSegments.forEach((segment, index) => {
+            const line = L.polyline([segment.from, segment.to], {
+                color: '#34495e',
+                weight: 3,
+                opacity: 0.8
+            }).addTo(map);
+
+            // Calculate midpoint for arrow placement
+            const midLat = (segment.from[0] + segment.to[0]) / 2;
+            const midLng = (segment.from[1] + segment.to[1]) / 2;
+            
+            // Calculate bearing for arrow direction
+            const bearing = getBearing(segment.from, segment.to);
+            
+            // Create arrow marker
+            const arrowIcon = L.divIcon({
+                html: `<div style="
+                    width: 0; 
+                    height: 0; 
+                    border-left: 8px solid transparent; 
+                    border-right: 8px solid transparent; 
+                    border-bottom: 12px solid #e74c3c;
+                    transform: rotate(${bearing}deg);
+                    filter: drop-shadow(0 2px 4px rgba(0,0,0,0.3));
+                "></div>`,
+                className: 'arrow-marker',
+                iconSize: [16, 16],
+                iconAnchor: [8, 8]
+            });
+
+            L.marker([midLat, midLng], { icon: arrowIcon }).addTo(map);
+
+            // Add day transition labels
+            const labelIcon = L.divIcon({
+                html: `<div style="
+                    background: rgba(52, 73, 94, 0.9);
+                    color: white;
+                    padding: 2px 6px;
+                    border-radius: 10px;
+                    font-size: 11px;
+                    font-weight: bold;
+                    text-align: center;
+                    white-space: nowrap;
+                    box-shadow: 0 2px 4px rgba(0,0,0,0.3);
+                ">${segment.label}</div>`,
+                className: 'route-label',
+                iconSize: [40, 20],
+                iconAnchor: [20, 10]
+            });
+
+            // Offset label slightly from the line
+            const offsetLat = midLat + 0.02;
+            const offsetLng = midLng + 0.02;
+            L.marker([offsetLat, offsetLng], { icon: labelIcon }).addTo(map);
+        });
+
+        // Function to calculate bearing between two points
+        function getBearing(start, end) {
+            const startLat = start[0] * (Math.PI / 180);
+            const startLng = start[1] * (Math.PI / 180);
+            const endLat = end[0] * (Math.PI / 180);
+            const endLng = end[1] * (Math.PI / 180);
+
+            const dLng = endLng - startLng;
+
+            const y = Math.sin(dLng) * Math.cos(endLat);
+            const x = Math.cos(startLat) * Math.sin(endLat) - Math.sin(startLat) * Math.cos(endLat) * Math.cos(dLng);
+
+            let bearing = Math.atan2(y, x) * (180 / Math.PI);
+            bearing = (bearing + 360) % 360;
+
+            return bearing;
+        }
+
+        // Function to focus on specific day
+        function focusOnDay(day) {
+            const marker = markerObjects[day];
+            if (marker) {
+                map.setView(marker.getLatLng(), 11);
+                marker.openPopup();
+            }
+        }
+
+        // Add national park boundaries (approximate)
+        const banffBounds = [
+            [51.8, -117.0],
+            [50.5, -117.0],
+            [50.5, -115.0],
+            [51.8, -115.0]
+        ];
+
+        L.rectangle(banffBounds, {
+            color: '#27ae60',
+            weight: 2,
+            fillOpacity: 0.1,
+            dashArray: '5, 5'
+        }).addTo(map).bindPopup('Banff National Park');
+
+        // Set initial view to show entire route
+        const group = new L.featureGroup(markerObjects.filter(m => m));
+        map.fitBounds(group.getBounds().pad(0.1));
+    </script>
+</body>
+</html>

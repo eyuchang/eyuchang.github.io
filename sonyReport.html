@@ -1,0 +1,322 @@
+<!doctype html public "-//w3c//dtd html 4.0 transitional//en">
+<html>
+<head>
+   <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+   <meta name="GENERATOR" content="Mozilla/4.75 [en] (X11; U; Linux 2.2.16-22 i686) [Netscape]">
+</head>
+<body>
+
+<center><b><font size=+3>Summer Project Report</font></b></center>
+
+<p>1. Initial goal &amp; Challenges
+<ul>
+<li>
+To develop optimized multimedia file-system and demo applications</li>
+</ul>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Current multimedia
+file-systems do not use precise knowledge of disk characteristics. Knowledge
+of disk parameters such as data layout, mapping, seek, rotational and transfer
+times are critical for optimal performance of real-time applications such
+as streaming media. Current file-systems typically underestimate system
+resources in order to guarantee quality of service (QoS).&nbsp; From our
+research in low-level placement, scheduling, we know that precise knowledge
+of disk can improve system performance significantly. We realized that
+previous work on disk feature extraction (Scsibench) could be used to improve
+the performance of existing file-systems.
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+In order to evaluate the performance of the file-system, we proposed some
+benchmark applications. They can be listed as:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+1. Home multimedia server
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+2. Video surveillance system
+<ul>
+<li>
+Designing the improved file-system involved the following challenges :</li>
+</ul>
+
+<ul>
+<ul>
+<li>
+Choosing base filesystem:</li>
+</ul>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Improvements
+to an existing filesystem was thought to be better than writing the entire
+filesystem from scratch. Writing an entire filesystem from scratch would
+require a lot of time. Also, we could leverage micro-optimizations of pre-existing
+filesystems to create a filesystem that is superior in all respects.
+<ul>
+<li>
+Hacking the source:</li>
+</ul>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; The next challenge
+is to understand the source code for the chosen base filesystem. This is
+a really tedious task involving a lot of man-hours. The next step is to
+then integrate our optimizations in&nbsp; the appropriate places.
+<ul>
+<li>
+Finding working linux video and audio players:</li>
+</ul>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Till recently, there
+was not sufficient support for hardware video accelerators under linux.
+So one of the challenges was to scourge for high-performance audio and
+video players under linux.</ul>
+2. Previous Work
+<ul>
+<li>
+Scsi Disk feature extraction tool ( ref: FAST2002 )</li>
+</ul>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; This paper proposes methods
+to extract precise disk parameters which are of interest in designing a
+high performance filesystem. It also evaluates the accuracy of the proposed
+methods. ( This paper is attached with the report. )
+<ul>
+<li>
+Data organization, placement and scheduling for multimedia data ( ref:
+ICME2001, EDBT2002 )</li>
+</ul>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; This paper proposes
+high-level MPEG data organization, low-level placement of multimedia data
+on disk and IO scheduling algorithms. It evaluates these algorithms using
+the Scsibench tool to a high level of accuracy. ( This paper is attached
+with the report. )
+<br>&nbsp;
+<p>3. Initial Study
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; The inital month was mostly
+spent in writing two papers ( FAST2002 and EDBT2002 : see above). Some
+experimental studies were performed at this point. These included validating
+the scheduling and placement methods proposed in EDBT2002.
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; After the papers were out
+of the way, we started to concentrate on the filesystem implementation.&nbsp;
+We decided to use linux as the filesystem development platform. Linux is
+an open source operating system which gave us the flexibility of changing
+the source code to add our optimizations. There are a number of real-time
+file-systems developed for the Linux platform. Any of these could serve
+as a base filesystem for our optimizations. We list some of these below
+:
+<br>&nbsp;
+<center><table BORDER WIDTH="95%" BGCOLOR="#CCCCCC" NOSAVE >
+<tr>
+<td><b>XFS</b> ( SGI )</td>
+
+<td>Worst-case bit-rate requirement, Delayed Allocation</td>
+</tr>
+
+<tr NOSAVE>
+<td><b>ReiserFS </b>( Namesys.com )</td>
+
+<td NOSAVE>Journalled filesystem</td>
+</tr>
+
+<tr NOSAVE>
+<td NOSAVE><b>Fellini</b> ( Bell Labs )</td>
+
+<td>Worst-case bit-rate requirement</td>
+</tr>
+
+<tr NOSAVE>
+<td NOSAVE><b>Symphony</b> ( UT Austin )</td>
+
+<td NOSAVE>Server push, create (handle, data_type, options)</td>
+</tr>
+
+<tr>
+<td><b>JFS </b>( IBM )</td>
+
+<td>Journalled file-system</td>
+</tr>
+
+<tr>
+<td><b>MMFS</b> ( SUNY Stony Brook )</td>
+
+<td>Unix API ( addition: mnode / multiple inodes )</td>
+</tr>
+
+<tr NOSAVE>
+<td><b>Tiger Shark</b> ( IBM )</td>
+
+<td NOSAVE>&nbsp;&nbsp;&nbsp; ----- Unknown ?? ----&nbsp;</td>
+</tr>
+
+<tr>
+<td><b>RT Linux</b> ( Carnegie Mellon , now TimeSys Inc. )</td>
+
+<td>disk_bw_reserve_create (&lt;period>,&lt;start>,&lt;deadline>)</td>
+</tr>
+</table></center>
+
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; In summary, most modern FSs
+handle continuous requirement at the OS level.&nbsp; However, we don't
+see too much intelligence at low-level in these file-systems, leaving room
+for improvement.
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Any multi-media file-server
+design must consider the following paramters:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+1. Disk track size
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+2. Rotational time
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+3. IO Bus Bandwidth
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+4. Memory Cost
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+5. Stream bitrate
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; The relationship between
+these paramters is complex. They must be managed carefully to ensure optimal
+performance. In order to identify the crucial parameters, we analyzed the
+cost trends for memory and disk bandwidth. We also noticed the relation
+of these resources with the stream bitrate. In conclusion, we state that
+, in the near future, both disk bandwidth and memory are potential bottlenecks.
+Hence neither can be ignored completely. We also found that the bottleneck
+parameter is closely related to the bitrates of the multimedia streams
+supported in the system.
+<p>4. Revised Goals
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; After performing our initial
+study, we realized that some of the initial goals need to be revised. We
+present the revised goals of the summer project below :
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 1. Since we could not decide
+on the base FS, we decided to implement the file-server at user-level.
+We would design it so that we could easily integrate it with any FS of
+choice
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 2. We realized that in the
+short-term, rotational delay optimization is not crucial. Hence we would
+not concentrate on this issue in the first version of the filesystem.
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 3. Admission control is
+crucial to a streaming multimedia server
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 4. Concentrate on demo application
+with user-level optimizations in place.
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 5. Implementation of admission
+control on top of existing filesysytem.
+<p>5. Current Status
+<ul>
+<li>
+Streaming server ( without admission control ) and client ( integrated
+with video / audio player )</li>
+
+<br>We have implemented streaming multimedia server and client application
+responsible for client buffering and conection with different media application
+for multimedia display. We currently support client applications for streaming
+mpeg2, mpeg1, DivX, OpenDivX, and audio (including mp3). The server is
+multithreaded and efficiently implemented (without any busy waiting).
+<li>
+Admission control algorithm</li>
+
+<br>We have started initial work in admission control algorithms that use
+realistic disk model. Disk is modeled using our disk feature extraction
+tool. The first implementation in our demo setup is an algorithm running
+in user space on top of any file system. We assume that file system's placement
+is mostly sequential for large multimedia files, and that the access is
+as good or better than random. More details are in Appendix.
+<li>
+File System optimization ( for seek and rotation ) user-level modules</li>
+
+<br>There are two major FS optimisations. The first is data organization
+of multimedia data for interactive applications. The second is scheduling
+algorithms aware of realistic disk model and data organization. Disk is
+divided into several zones with substantial difference in disk throughput,
+and optimal data placement will give substantial benefits. For more information
+about data organization please refer to Data Organization paper in the
+Appendix. Scheaduling algorithms can benefit from accurate prediction of
+rotational delay and access time between any two logical blocks. The details
+of prediction algorithm are in disk feature extraction paper included in
+Appendix.
+<li>
+Key Findings :</li>
+
+<ul>
+<li>
+Sensitivity of scheduling to average request size</li>
+
+<li>
+Accurate access time (including rotational delay) prediction algorithm</li>
+
+<li>
+Disk utilization-Request Size relationship for random access</li>
+
+<li>
+Scheduling and admission-control algorithms for multi-bitrate streaming
+server</li>
+</ul>
+</ul>
+6. Summary of Contribution
+<ul>
+<li>
+Technology Surveys and Experimental Studies</li>
+
+<li>
+Key FS technologies :</li>
+
+<ul>
+<li>
+Intelligent data organization</li>
+
+<li>
+Intelligent data placement on disk</li>
+
+<li>
+Multi-bitrate capability</li>
+
+<li>
+Capability to handle non-RT requests simultaneously</li>
+
+<li>
+Seek and rotational delay optimization</li>
+</ul>
+</ul>
+7. Applications of the technology
+<ul>
+<li>
+FTP servers, HTTP servers, Streaming servers</li>
+
+<br>Implementing disk access time prediction between two requests will
+substantially improve disk throughput for a large number of small requests.
+This will improve performance of HTTP and FTP servers. It will also substantially
+improve performance of the multimedia servers with large number of clients,
+and subsequently small buffer size per each stream.
+<li>
+Streaming to low memory devices and handheld devices</li>
+
+<br>Low memory devices cannot afford to use large buffers, and server has
+to send small packets over the network. If one server is serving large
+number of clients, disk request sizes will be small, and the server can
+benefit from disk rotational delay prediction.
+<li>
+Interactive TV applications ( home, local-area, surveillance systems etc.
+)</li>
+
+<li>
+Heterogenous data servers</li>
+
+<br>Heterogenous data servers have both large and small disk request sizes,
+and they can benefit from better disk scheduler that uses disk access time
+prediction.</ul>
+8. Future Work
+<ul>
+<li>
+Admission control paper ( in the Oct-Nov timeframe )</li>
+
+<br>We will first survey existing admission control algorithms, and propose
+automatic disk modeling based on disk feature extraction methods. Then
+we will propose simple model which assumes random access from the file
+system. This admission control can be used on the top of any existing file
+system, and can be completely implemented in user space. Then, based on
+the implementation and results, we will propose better scheduling and placement
+methods for file system, and improve admission control algorithms.
+<li>
+Choosing the right base file system</li>
+
+<br>We still did not decide which file system should be used in our study.
+We will try to implement most of our algorithms as modules that can be
+plugged into the most open source file systems. The help from Sony about
+file system we should use is needed.
+<li>
+Integrating user-level media server technology with base FS</li>
+
+<br>We will start implementation of our user-level methods by the end of
+October, after deadlines for paper submission for a conference and journal
+review.</ul>
+
+<br>&nbsp;
+<br>&nbsp;
+</body>
+</html>

@@ -1,0 +1,188 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML 3.0//EN">
+<HTML>
+<HEAD>
+
+<TITLE>Edward Chang's Site</TITLE>
+<META NAME="keywords" CONTENT="pbir, cbir, content-based image retrieval, perception-based image retrieval, jyhuei, jyhwei, yjhuei, chiuei, chiwei, vima">
+
+</HEAD>
+<BODY TEXT="#000000" LINK="#7C3300" VLINK="#11357F" ALINK="#CC3300" BGCOLOR="#EFEFFF">
+
+<TABLE BORDER="0" CELLPADDING="2" CELLSPACING="0" WIDTH="700">
+<TR>
+<TD>
+<IMG SRC="photos/emily_and_dad.jpg" ALIGN=MIDDLE WIDTH="169" HEIGHT="188" BORDER="1">
+<br>
+<FONT SIZE="2">
+Emily & Dad at J. Ullman's
+<br>
+- by H. Garcia-Molina
+</font>
+</TD>
+
+<TD ALIGN=CENTER VALIGN=MIDDLE >
+<FONT FACE="Arial, Helvetica" COLOR="#222222"><FONT SIZE="4">
+<b>Edward Y. Chang</B>
+</FONT>
+<br>
+<FONT FACE="Arial, Helvetica" COLOR="#222222"><FONT SIZE="3">
+Assistant Professor<br>
+<a href="http://www.ece.ucsb.edu">Department of Electrical & Computer Engineering</a><br>
+<a href="http://www.cs.ucsb.edu">Department of Computer Science</a> (affiliated)<br>
+<a href="http://www.ucsb.edu">University of California, Santa Barbara</a></FONT>
+<br>
+<FONT FACE="Arial, Helvetica" COLOR="#222222"><FONT SIZE="3">
+Email: echang@ece.ucsb.edu</FONT>
+<FONT FACE="Arial, Helvetica" COLOR="#222222"><FONT SIZE="3">
+Tel: (805)893-2971 </FONT>
+<br>
+<FONT FACE="Arial, Helvetica" COLOR="#222222"><FONT SIZE="3">Assistant: Helen Gordon
+</FONT><FONT FACE="Arial, Helvetica" COLOR="#222222"><FONT SIZE="3">
+Tel: (805)893-7110</FONT>
+<br>
+</TD>
+</TR>
+</TABLE>
+
+<TABLE BORDER="0" CELLPADDING="2" CELLSPACING="0" WIDTH="700">
+<TR>
+<TD>
+<br>
+</TD>
+</TR>
+
+<TR>
+<TD ALIGN=LEFT VALIGN=MIDDLE BGCOLOR="#330066">
+<FONT FACE="Arial, Helvetica" COLOR="#FFFFFF"><FONT SIZE="4"><B><I>BIOGRAPHY</I></B></FONT>
+<FONT SIZE="3"><I><B></B></I></FONT></FONT>
+</TD>
+</TR>
+<TR>
+<TD VALIGN=MIDDLE>
+<FONT SIZE="2">
+<UL TYPE=CIRCLE>
+<LI>Ph.D., Electrical Engineering, Stanford University, 1999
+<li>M.S., Computer Science, Stanford University
+<li>M.S., IEOR, UC Berkeley
+</UL>
+</FONT>
+</TD>
+</TR>
+
+<TR>
+<TD ALIGN=LEFT VALIGN=MIDDLE BGCOLOR="#330066">
+<FONT FACE="Arial, Helvetica" COLOR="#FFFFFF"><FONT SIZE="4"><B><I>RESEARCH</I></B></FONT>
+<FONT SIZE="3"><I><B></B></I></FONT></FONT>
+</TD>
+</TR>
+
+<TR>
+<TD VALIGN=MIDDLE>
+<FONT SIZE="2">
+<UL TYPE=CIRCLE>
+<a href="http://www-db.stanford.edu/~echang/CV/research.html">
+<LI>Research Projects 
+</a>
+<br>
+ISE: Interactive Streaming Everywhere (NSF EIA-0080134, SONY, UC DiMI)
+<br>
+PBIR: Perception-based Image Retrieval (NSF Career IIS-0133802) 
+<br>
+SIEC: Statistical Inferences under Extreme Constraints (NSF ITR IIS-0219885, IBM)
+<a href="http://www-db.stanford.edu/~echang/schedule.txt">
+<LI>Schedule
+<LI><a href="http://www.morphosoft.com/">
+VIMA Technologies 
+</a>
+</UL>
+</FONT>
+</TD>
+</TR>
+
+<TR>
+<TD ALIGN=LEFT VALIGN=MIDDLE BGCOLOR="#330066">
+<FONT FACE="Arial, Helvetica" COLOR="#FFFFFF"><FONT SIZE="4"><B><I>PUBLICATIONS & INVITED TALKS</I></B></FONT>
+<FONT SIZE="3"><I><B></B></I></FONT></FONT>
+</TD>
+</TR>
+<TR>
+<TD VALIGN=MIDDLE>
+<FONT SIZE="2">
+<UL TYPE=CIRCLE>
+<LI><a href="http://www-db.stanford.edu/~echang/tops.html">
+Representative Work</a> 
+<LI><a href="http://www-db.stanford.edu/~echang/complete-list.html">
+Complete Publication List</a> 
+<LI><a href="http://www-db.stanford.edu/~echang/talks.html">
+A List of Recent Invited Talks
+</a>
+</UL>
+</FONT>
+</TD>
+</TR>
+
+<TR>
+<TD ALIGN=LEFT VALIGN=MIDDLE BGCOLOR="#330066">
+<FONT FACE="Arial, Helvetica" COLOR="#FFFFFF"><FONT SIZE="4"><B><I>ONLINE DEMOS</I></B></FONT>
+<FONT SIZE="3"><I><B></B></I></FONT></FONT>
+</TD>
+</TR>
+<TR>
+<TD VALIGN=MIDDLE>
+<FONT SIZE="2">
+<UL TYPE=CIRCLE>
+
+<LI><a href="http://mmdb.ece.ucsb.edu/~demo/corelacm/">
+Perception-based Image Retrieval (PBIR)</a> 
+<IMG SRC="photos/demo.gif" WIDTH="100" HEIGHT="30" BORDER="0">
+<br>- Named by ICME 2002 CBIR Panel "the breakthrough in CBIR"
+<br>- Demonstrated at ACM Sigmod, ACM Multimedia, and NSF workshops
+at Paris, Harvard, and DC
+<LI><a href="http://pbir.morphosoft.com/corellarge/">
+Password Protected Demos</a> for paper reviewers, etc.
+<br>
+</UL>
+</FONT>
+</TD>
+</TR>
+
+
+<TR>
+<TD ALIGN=LEFT VALIGN=MIDDLE BGCOLOR="#330066">
+<FONT FACE="Arial, Helvetica" COLOR="#FFFFFF"><FONT SIZE="4"><B><I>TEACHING</I></B></FONT>
+<FONT SIZE="3"><I><B></B></I></FONT></FONT>
+</TD>
+</TR>
+<TR>
+<TD VALIGN=MIDDLE>
+<FONT SIZE="2">
+<UL TYPE=CIRCLE>
+<LI><a href="http://www-db.stanford.edu/~echang/Class/ece153a">ECE153A</a>
+Hardware Software Interface, Fall, 1999,2000,2001.
+<LI><a href="http://www-db.stanford.edu/~echang/Class/ece154">ECE154</a>
+Computer Architectures, Winter, 2003.
+<LI><a href="http://www-db.stanford.edu/~echang/Class/ece160">ECE160</a>
+Multimedia Systems, Spring, 2000,2001,2002,2003.
+<LI><a href="http://www-db.stanford.edu/~echang/Class/ece268/">ECE268</a>
+Internet Computing and Web Technologies, Winter, 2001,2002; Fall 2002.
+<LI><a href="http://www-db.stanford.edu/~echang/Class/ece594">ECE594</a>
+Internet Computing and Digital TV, Winter, 2000.
+</UL>
+
+
+</UL>
+</FONT>
+</TD>
+</TR>
+</a>
+</TABLE>
+
+<!<ahref="http://view.showstat.com/showview.asp?user=echang">
+<!<img src="http://stat.showstat.com/cgi-bin/statbasic.dll?user=echang" height=30
+<!width=30 border=0 alt="Statistics"></a> 
+
+
+
+Last Updated August 15th, 2002
+</BODY>
+</HTML>

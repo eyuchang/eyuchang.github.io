@@ -1,0 +1,338 @@
+From Nozha.Boujemaa@inria.fr Tue Sep 18 07:10:12 2001
+Received: from apex.ece.ucsb.edu (apex.ece.ucsb.edu [128.111.56.36])
+	by xanadu.ece.ucsb.edu (8.9.3+Sun/8.9.3) with ESMTP id HAA15846
+	for <echang@xanadu.ece.ucsb.edu>; Tue, 18 Sep 2001 07:10:10 -0700 (PDT)
+Received: from concorde.inria.fr (concorde.inria.fr [192.93.2.39])
+	by apex.ece.ucsb.edu (8.11.5/8.11.5) with ESMTP id f8IEA6O08327
+	for <echang@ece.ucsb.edu>; Tue, 18 Sep 2001 07:10:07 -0700 (PDT)
+Received: from yana.inria.fr (yana.inria.fr [128.93.9.62])
+	by concorde.inria.fr (8.11.1/8.10.0) with ESMTP id f8IE96r14753;
+	Tue, 18 Sep 2001 16:09:06 +0200 (MET DST)
+Received: from m30080144a60 (m300-80-114a60.inria.fr [128.93.23.86])
+	by yana.inria.fr (8.11.1/8.10.0) with SMTP id f8IE8wj23435;
+	Tue, 18 Sep 2001 16:09:02 +0200 (MET DST)
+Reply-To: <Nozha.Boujemaa@inria.fr>
+From: "Nozha BOUJEMAA" <Nozha.Boujemaa@inria.fr>
+To: "David Forsyth" <dafmmf@gte.net>
+Cc: <malik@cs.berkeley.edu>, "Chung-Sheng Li" <csli@us.ibm.com>,
+        <jsmith@us.ibm.com>, <daf@cs.berkeley.edu>, <wilensky@cs.berkeley.edu>,
+        "Steve Griffin" <sgriffin@nsf.gov>, <mlesk@nsf.gov>,
+        "Don Geman" <geman@math.umass.edu>, <Cordelia.Schmid@inria.fr>,
+        <az@robots.oxford.ac.uk>, <echang@ece.ucsb.edu>,
+        <cjorgens@acsu.buffalo.edu>, <merialdo@eurecom.fr>,
+        <Patrick.Bouthemy@irisa.fr>, "Patrick Gros" <Patrick.Gros@irisa.fr>,
+        "Francoise Preteux" <Francoise.Preteux@int-evry.fr>,
+        <Stephane.Marchand-Maillet@cui.unige.ch>, <bbachimont@ina.fr>,
+        <hjzhang@microsoft.com>, <anandan@microsoft.com>,
+        <P.G.B.Enser@brighton.ac.uk>, <eric.pauwels@cwi.nl>,
+        <jwang@ist.psu.edu>, <kiernan@pop.uky.edu>,
+        "Georges NISSEN" <Georges.Nissen@inria.fr>, <symposia@inria.fr>
+Subject: RE: MMCBIR meeting is on, d.v., appears to be no need to cancel or delay
+Date: Tue, 18 Sep 2001 16:08:06 +0200
+Message-ID: <NEBBJFJLOLAGDJCHABNNEEFMCHAA.Nozha.Boujemaa@inria.fr>
+MIME-Version: 1.0
+Content-Type: text/plain;
+	charset="iso-8859-1"
+Content-Transfer-Encoding: 8bit
+X-Priority: 3 (Normal)
+X-MSMail-Priority: Normal
+X-Mailer: Microsoft Outlook IMO, Build 9.0.2416 (9.0.2911.0)
+In-Reply-To: <3BA66D37.9080106@gte.net>
+X-MimeOLE: Produced By Microsoft MimeOLE V5.50.4133.2400
+Importance: Normal
+X-Filter-Version: 1.7 (apex)
+Content-Length: 3747
+Status: RO
+X-Status: 
+
+Dear all,
+
+I am delighted that our meeting is on.
+You will find here more information on our monday dinner location:
+http://www.grandmaisons.com/visiter.html
+It will be held in "le salon Le Clos Poullain". We will get
+there by a special bus from INRIA. It is 8km far from INRIA.
+19h30 - 20h30 Cocktail
+20h30 - 23h30 Dinner
+
+For those who has not confirmed yet their participation,
+please do it instanter to symposia@inria.fr. INRIA invite
+all participants.
+
+Best,
+Nozha
+
+|-----Message d'origine-----
+|De : David Forsyth [mailto:dafmmf@gte.net]
+|Envoyé : lundi 17 septembre 2001 23:38
+|À : David Forsyth
+|Cc : Nozha.Boujemaa@inria.fr; malik@cs.berkeley.edu; Chung-Sheng Li;
+|jsmith@us.ibm.com; daf@cs.berkeley.edu; wilensky@cs.berkeley.edu; Steve
+|Griffin; mlesk@nsf.gov; Don Geman; Cordelia.Schmid@inria.fr;
+|az@robots.oxford.ac.uk; echang@ece.ucsb.edu; cjorgens@acsu.buffalo.edu;
+|merialdo@eurecom.fr; Patrick.Bouthemy@irisa.fr; Francoise Preteux;
+|Stephane.Marchand-Maillet@cui.unige.ch; bbachimont@ina.fr;
+|hjzhang@microsoft.com; anandan@microsoft.com;
+|P.G.B.Enser@brighton.ac.uk; eric.pauwels@cwi.nl; jwang@ist.psu.edu;
+|kiernan@pop.uky.edu; Georges NISSEN; symposia@inria.fr
+|Objet : FYI: MMCBIR meeting is on, d.v., appears to be no need to cancel
+|or delay
+|
+|
+|
+|
+|
+|
+|Folks,
+|
+|I believe I have now heard from most US participants.
+| From the sounds of things, one must cancel, one may need to
+|cancel, and others have to deal with minor travel nuisances
+|that they can handle.
+|
+|In my opinion, this means that we can and should go ahead
+|with the meeting.  I hope to see you all in Rocquencourt
+|next Monday.
+|
+|best
+|
+|David Forsyth
+|
+|David Forsyth wrote:
+|
+|>
+|>
+|> I've heard nothing definitive from anyone yet; could all US
+|> participants please try and drop me a note instanter, telling
+|> me whether they believe they will be able to come?
+|>
+|> Nozha, who is doing local arrangements, really needs to know.
+|>
+|> best+thanks
+|>
+|> daf
+|>
+|> David Forsyth wrote:
+|>
+|>>
+|>>
+|>> Folks,
+|>>
+|>> As you may know, recent horrible events mean that capacity is
+|>> seriously reduced in air traffic to and from the US.   I'm in touch
+|>> with some US people currently stranded in Europe, and the
+|>> whole issue of international transport at present is fraught;
+|>> there is very little capacity coming in and out
+|>> of the country, and that state appears likely to continue.  I understand
+|>> that existing reservations are, on occasion, being cancelled to supply
+|>> seats to the stranded.  This suggests that US participants in our
+|>> workshop may have difficulties getting to it.  There's a decent
+|>> chance that things may clear up, but we'll have to wait and see.
+|>>
+|>> Let me suggest the following approach:
+|>>
+|>> Would all US participants please chat to their airlines between now
+|>> and Monday  --- I suggest putting this off till Monday,  because
+|>> the airlines won't know much before then --- to find out
+|>> whether you will be able to get to France and back.  Then tell me what
+|>> you've discovered, and we'll have a decent picture of who will
+|>> be able to make it, and make the decision about whether to continue
+|>> then.
+|>>
+|>> best
+|>>
+|>> daf
+|>>
+|>
+|
+|--
+|
+|
+|
+|D.A. Forsyth                            We need University lecturers
+|Associate Professor,                  to keep the so-called creative
+|Computer Science Division        sectors of society within bounds
+|U.C. Berkeley,                          and to limit the unemployed
+|Berkeley, CA 94703                  on the streets.
+|mailto:  daf@cs.berkeley.edu         - Breyten Breytenbach,
+|(510) 642 9582                         "The Memory of Birds
+|                                                      in Times of
+|Revolution"
+|
+|
+|
+|
+
+
+From Helene.Remermier@inria.fr Thu Sep 20 07:51:50 2001
+Received: from apex.ece.ucsb.edu (apex.ece.ucsb.edu [128.111.56.36])
+	by xanadu.ece.ucsb.edu (8.9.3+Sun/8.9.3) with ESMTP id HAA25078
+	for <echang@xanadu.ece.ucsb.edu>; Thu, 20 Sep 2001 07:51:44 -0700 (PDT)
+Received: from concorde.inria.fr (concorde.inria.fr [192.93.2.39])
+	by apex.ece.ucsb.edu (8.11.5/8.11.5) with ESMTP id f8KEpfU17068
+	for <echang@ece.ucsb.edu>; Thu, 20 Sep 2001 07:51:41 -0700 (PDT)
+Received: from yana.inria.fr (yana.inria.fr [128.93.9.62])
+	by concorde.inria.fr (8.11.1/8.10.0) with ESMTP id f8KEog516558;
+	Thu, 20 Sep 2001 16:50:42 +0200 (MET DST)
+Received: from inria.fr (colloq1.inria.fr [128.93.21.127])
+	by yana.inria.fr (8.11.1/8.10.0) with ESMTP id f8KEoej18801;
+	Thu, 20 Sep 2001 16:50:40 +0200 (MET DST)
+Message-ID: <3BAA0241.E8148413@inria.fr>
+Date: Thu, 20 Sep 2001 16:50:41 +0200
+From: Helene Remermier <Helene.Remermier@inria.fr>
+Organization: Inria - Rocquencourt
+X-Mailer: Mozilla 4.5 [fr] (WinNT; I)
+X-Accept-Language: fr, en
+MIME-Version: 1.0
+To: anandan@microsoft.com, bbachimont@ina.fr, patrick.bouthemy@irisa.fr,
+        echang@ece.ucsb.edu, P.G.B.Enser@bton.ac.uk, daf@cs.berkeley.edu,
+        sgriffin@nsf.gov, patrick.gros@irisa.fr, lesk@lesk.cise-nsf.gov,
+        csli@us.ibm.com, malik@cs.berkeley.edu,
+        stephane.marchand-maillet@cui.unige.ch, bernard.Merialdo@eurecom.fr,
+        eric.pauwels@cwi.nl, cordelia.schmid@inrialpes.fr,
+        asmeaton@compapp.dcu.ie, jsmith@us.ibm.com, jwang@ist.psu.edu,
+        hjzhang@microsoft.com, az@robots.ox.ac.uk, GraslandI@thmulti.com,
+        kiernan@uky.edu, kuehne@informatik.uni-mannheim.de,
+        nathalie.parlangeau-valles@loria.fr, pponcin@ina.fr, dteruggi@ina.fr
+CC: Nozha Boujemaa <nozha.boujemaa@inria.fr>
+Subject: MMCBIR - SHUTTLE - NAVETTE
+Content-Type: multipart/alternative;
+ boundary="------------A65A6AB0F175327AD0FE7650"
+X-Filter-Version: 1.7 (apex)
+Content-Length: 3972
+Status: RO
+X-Status: 
+
+
+--------------A65A6AB0F175327AD0FE7650
+Content-Type: text/plain; charset=iso-8859-1
+Content-Transfer-Encoding: 8bit
+
+Dear participants, Cher(e)s participant(e)s
+
+Below, you'll find the hours and places where you can take the shuttle
+to  INRIA Rocquencourt.
+The bus society is SAVAC . The bus will mention INRIA MMCBIR
+
+We wish you  a nice trip and  are very much looking forward to welcoming
+you.
+
+Don't hesitate to contact me if you have any problem.
+we want to book up everything by friday 6:00 pm local time (Paris)
+
+Lundi 24 septembre 2001
+
+Trajet aller – départ de Paris
+
+Stopping place/Arrêts : Place de l’Etoile (angle de l’avenue Carnot) 8
+H15
+ Porte Dauphine (Place Maréchal de Lattre de Tassigny, arrêt de bus
+angle Université place Dauphine): 8H20
+ Porte d’Auteuil (Place de la Porte d'Auteuil, près de la fontaine.) :
+8H25
+ Versailles : Gare Rive gauche : 8H45
+Arrival/Arrivée Rocquencourt 9H
+
+Lundi 24 septembre soirée : Dinner
+
+Trajet aller :
+Départ Rocquencourt : 19H 15
+Arrivée Villepreux : domaine de Grand’maisons
+
+Trajet retour
+Départ Villepreux 23H30
+Arrêts  Rocquencourt
+Versailles Rive gauche
+Paris porte d’Auteuil
+Paris porte Dauphine
+Paris Place de l’Etoile
+
+Mardi 25 septembre 2001
+
+Trajet aller :
+
+Départ Paris Place de l’Etoile : 8 H15
+Arrêt Porte Dauphine : 8H20
+Arrêt Porte d’Auteuil : 8H25
+
+Arrêt Versailles : Gare Rive gauche : 8H45
+
+Arrivée Rocquencourt
+
+Trajet Retour :
+
+Départ Rocquencourt 18H30
+Arrêts : Versailles Rive gauche
+ Paris porte d’Auteuil
+ Paris porte Dauphine
+ Paris Place de l’Etoile
+
+
+--
+Hélène REMERMIER
+Relations Extérieures
+INRIA Rocquencourt - BP 105
+78153 Le Chesnay Cedex - France
+Tel.: +33 1 39 63 56 75 - Fax : +33 1 39 63 56 38
+
+
+--------------A65A6AB0F175327AD0FE7650
+Content-Type: text/html; charset=iso-8859-1
+Content-Transfer-Encoding: 8bit
+
+<!doctype html public "-//w3c//dtd html 4.0 transitional//en">
+<html>
+Dear participants, Cher(e)s participant(e)s
+<p>Below, you'll find the hours and places where you can take the shuttle
+to&nbsp; INRIA Rocquencourt.
+<br>The bus society is SAVAC . The bus will mention <b>INRIA MMCBIR</b><b></b>
+<p>We wish you&nbsp; a nice trip and&nbsp; are very much looking forward
+to welcoming you.
+<p>Don't hesitate to contact me if you have any problem.
+<br>we want to book up everything by friday 6:00 pm local time (Paris)
+<p><b>Lundi 24 septembre 2001</b>
+<p>Trajet aller – d&eacute;part de Paris
+<p>Stopping place/Arr&ecirc;ts : Place de l’Etoile (angle de l’avenue Carnot)
+<b>8 H15</b>
+<br>&nbsp;Porte Dauphine (Place Mar&eacute;chal de Lattre de Tassigny,
+arr&ecirc;t de bus angle Universit&eacute; place Dauphine): <b>8H20</b>
+<br>&nbsp;Porte d’Auteuil (Place de la Porte d'Auteuil, pr&egrave;s de
+la fontaine.) : <b>8H25</b>
+<br>&nbsp;Versailles : Gare Rive gauche : <b>8H45</b>
+<br>Arrival/Arriv&eacute;e Rocquencourt <b>9H</b>
+<p><b>Lundi 24 septembre soir&eacute;e : Dinner</b>
+<p>Trajet aller :
+<br>D&eacute;part Rocquencourt : <b>19H 15</b>
+<br>Arriv&eacute;e Villepreux : domaine de Grand’maisons
+<p>Trajet retour
+<br>D&eacute;part Villepreux <b>23H30</b>
+<br>Arr&ecirc;ts&nbsp; Rocquencourt
+<br>Versailles Rive gauche
+<br>Paris porte d’Auteuil
+<br>Paris porte Dauphine
+<br>Paris Place de l’Etoile
+<p><b>Mardi 25 septembre 2001</b>
+<p>Trajet aller :
+<p>D&eacute;part Paris Place de l’Etoile : <b>8 H15</b>
+<br>Arr&ecirc;t Porte Dauphine : <b>8H20</b>
+<br>Arr&ecirc;t Porte d’Auteuil : <b>8H25</b>
+<p>Arr&ecirc;t Versailles : Gare Rive gauche : <b>8H45</b>
+<p>Arriv&eacute;e Rocquencourt
+<p><b>Trajet Retour </b>:
+<p>D&eacute;part Rocquencourt <b>18H30</b>
+<br>Arr&ecirc;ts : Versailles Rive gauche
+<br>&nbsp;Paris porte d’Auteuil
+<br>&nbsp;Paris porte Dauphine
+<br>&nbsp;Paris Place de l’Etoile
+<br>&nbsp;
+<p>--
+<br>H&eacute;l&egrave;ne REMERMIER
+<br>Relations Ext&eacute;rieures
+<br>INRIA Rocquencourt - BP 105
+<br>78153 Le Chesnay Cedex - France
+<br>Tel.: +33 1 39 63 56 75 - Fax : +33 1 39 63 56 38
+<br>&nbsp;</html>
+
+--------------A65A6AB0F175327AD0FE7650--
+
+

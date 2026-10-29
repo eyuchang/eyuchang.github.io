@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- ... other head elements ... -->
+
+    <!-- Open Graph meta tags -->
+    <meta property="og:title" content="From SocraSynth to MACI">
+    <meta property="og:description" content="Illuminate the Unknown">
+    <meta property="og:image" content="URL_TO_YOUR_IMAGE">
+    <meta property="og:url" content="https://www.socrasynth.com">
+    <meta property="og:type" content="website">
+
+    <!-- ... other head elements ... -->
+
+<link rel="preload" href="https://img6.wsimg.com/ux-assets/@ux/fonts/4.1.0/GDSherpa-bold.woff2" as="font" type="font/woff2" crossorigin="anonymous"/>
+
+<link rel="preload" href="https://img6.wsimg.com/ux-assets/@ux/fonts/4.1.0/GDSherpa-regular.woff2" as="font" type="font/woff2" crossorigin="anonymous"/>
+
+<link rel="preload" href="https://img6.wsimg.com/ux-assets/@ux/fonts/4.1.0/GDSherpa-vf.woff2" as="font" type="font/woff2" crossorigin="anonymous"/>
+
+<link rel="preload" href="https://img6.wsimg.com/ux-assets/@ux/fonts/4.1.0/GDSherpa-vf2.woff2" as="font" type="font/woff2" crossorigin="anonymous"/>
+
+<link rel="preload" href="https://img6.wsimg.com/ux-assets/@ux/fonts/4.1.0/GDSage-bold.woff2" as="font" type="font/woff2" crossorigin="anonymous"/>
+
+<link rel="preload" href="https://img6.wsimg.com/ux-assets/@ux/fonts/4.1.0/GDSage-regular.woff2" as="font" type="font/woff2" crossorigin="anonymous"/>
+
+<link rel="stylesheet" href="https://img6.wsimg.com/wrhs/f705d59d7f686d6fe9022ef6ec404734/uxcore2.min.css" media="all"/>
+
+<link rel="stylesheet" href="https://img6.wsimg.com/wrhs/0c64ee3987bbbfbb2c017c1eaadfb2f5/noheader.min.css" media="all" id="header-asset"/>
+
+<link rel="manifest" href="//img6.wsimg.com/ux/favicon/manifest.json"/>
+
+<style>
+        body {
+    	    width: 80vw;  /* 90% of the viewport width */
+    	    margin: 0 auto;
+            font-family: Arial, sans-serif;
+            padding: 11px;
+            line-height: 1.6;
+        }
+        h1 {
+            font-size: 24px;    /* Adjust this to your desired size */
+            color: #2c3e50;
+        }
+        h2 {
+            font-size: 20px;    /* Adjust this to your desired size */
+            color: #2c3e50;
+        }
+        h3 {
+            font-size: 18px;    /* Adjust this to your desired size */
+            color: #2c3e50;
+        }
+        a {
+            color: #2980b9;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+	    cursor: pointer;
+	    font-style: italic;
+	    color: black;
+	}
+</style>
+
+<style>
+        .branding {
+            text-align: center; /* This will center both the title and the slogan */
+        }
+
+        .title {
+            font-size: 48px;    /* Adjust this to your desired size */
+            margin: 0;          /* This will remove any default margin */
+        }
+
+        .slogan {
+            font-size: 24px;    /* Adjust this to your desired size */
+            margin: -10px;      /* This adds a small space above and below the slogan */
+        }
+</style>
+
+<style>
+.glow {
+    font-size: 24px;
+    color: #fff;
+    text-shadow: 0 0 10px #00ff00, 0 0 20px #00ff00, 0 0 30px #00ff00;
+}
+</style>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        /* Add a red color and blinking effect */
+        .glow {
+            color: red; /* Set the text color to red */
+            animation: blink 1s infinite; /* Apply the blinking animation */
+        }
+
+        /* Define the blinking keyframes */
+        @keyframes blink {
+            0% { opacity: 1; }   /* Fully visible at the start */
+            50% { opacity: 0; }  /* Fully transparent at the middle */
+            100% { opacity: 1; } /* Fully visible again at the end */
+        }
+    </style>
+
+  <style>
+    slogan {
+      display: block;
+      font-size: 1.25em;
+      font-weight: 500;
+      color: #333;
+      margin-top: 0.5em;
+      margin-bottom: 0.2em;
+    }
+
+    highlight {
+      color: black
+      font-weight: bold;
+      font-size: 1.5em; /* Make the title significantly larger */
+      display: inline-block;
+    }
+  </style>
+
+
+</head>
+<br><br>
+
+<header>
+  <h1><highlight>MACI: Multi-Agent Collaborative Intelligence</highlight></h1>
+  <slogan>The Original Framework for Coordinating LLMs with Divergence-Aware Reasoning and Agentic Design.</slogan>
+  <p><em>Documenting the evolution of MACI since 2022 — from Socratic prompting and robust reasoning to AGI-ready orchestration.</em></p>
+</header>
+
+
+<br><br>
+<a href="https://www.amazon.com/dp/B0F26PB4G9">
+    <img src="img/MACI-Cover-Full.jpg" alt="SocraSynth" style="width:900px; height:auto; border:1px solid black;">
+</a>
+
+<br><br>
+
+<body>
+
+
+
+<h1>From SocraSynth to MACI: Multi-LLM Agent Collaborative Intelligence</h1>
+
+<p>Since late 2022, we have been developing a novel framework for Multi-LLM Collaborative Intelligence, advancing the use of large language models (LLMs) in reasoning, planning, and reflective dialogue. Building on a foundation of work I began in 2020 at Stanford on consciousness modeling, our efforts in 2023 culminated in three milestone publications: COCOMO, SocraSynth, and MACI.</a>
+
+<p>The platform operates through two distinct phases: generative and evaluative. In the <strong>generative phase</strong>, SocraSynth leverages the extensive "polydisciplinary" capabilities of advanced foundational models such as GPT-4 and Gemini. These models function as sophisticated AI agents, possessing expertise equivalent to doctoral-level knowledge across multiple disciplines. This remarkable breadth of knowledge presents a crucial challenge: How can we effectively probe the unknown and uncover insights beyond our current awareness? SocraSynth addresses this through a carefully orchestrated symposium of Generative AI (GAI) agents engaged in dynamic, interactive dialogues.</p>
+
+<p>Human moderators serve a pivotal yet carefully constrained role in these interactions. Their primary function is to facilitate rather than contribute domain expertise, acknowledging the comprehensive knowledge base of the GAI agents. These moderators focus on directing the flow of dialogue effectively, ensuring thorough exploration while maximizing the potential of the AI agents.</p>
+
+<p>SocraSynth's enhanced capabilities rest on four foundational pillars:</p>
+
+<ul>
+<li><strong>Integration of Multiple LLMs in an Adversarial Setup:</strong> The platform employs multiple Large Language Models (LLMs) in a systematic framework of critical thinking through Socratic methodology. This multi-agent approach significantly reduces the likelihood of hallucinations by enabling each LLM to challenge and refine the responses of others.</li>
+
+<li><strong>Conditional Statistics Implementation:</strong> This sophisticated method effectively mitigates inherent LLM biases. By assigning distinct analytical stances to each LLM, the system produces more balanced and comprehensive outputs.</li>
+
+<li><strong>Fine-Tuned Adversarial Linguistic Behavior:</strong> SocraSynth precisely calibrates the level of adversarial interaction based on theoretical foundations from information theory and statistics. This calibration ranges from vigorous debate to harmonious collaboration, ensuring optimal machine-human interaction dynamics.</li>
+
+<li><strong>Dual Entropy Theorem:</strong> The platform incorporates the innovative <strong>EVINCE</strong> framework, which employs entropy differentials to quantify the tension between certainty (low entropy) and creative exploration (high entropy). This framework enables precise modulation of LLM linguistic behavior, achieving an optimal balance between exploiting established knowledge and exploring novel perspectives.</li>
+</ul>
+
+<p>The <strong>evaluative phase</strong> of SocraSynth focuses on rigorous information validation. This process extends beyond simple verification against training data, acknowledging the inherent complexity of truth assessment. While "ground truth" often represents assumed rather than absolute accuracy, SocraSynth implements a comprehensive evaluation process incorporating detailed reasoning chains, counter-arguments, and scenario analysis.</p>
+
+<p>To address the fundamental philosophical challenge of objectivity, SocraSynth has evolved into the <strong>MACI</strong> (Multi-LLM Agent Collaborative Intelligence) framework, drawing inspiration from governmental checks and balances. This advanced system comprises three essential branches:</p>
+
+<ul>
+<li><strong>Executive:</strong> Responsible for primary knowledge generation and conclusion formulation</li>
+<li><strong>Legislative:</strong> Establishes and maintains ethical guidelines and operational constraints</li>
+<li><strong>Judicial:</strong> Conducts thorough evaluation of outputs against contextual and cultural norms</li>
+</ul>
+<p>The <strong>MACI</strong> framework ensures robust AI safety and ethical alignment through specialized LLM roles, with particular emphasis on three critical components:</p>
+<ul>
+<li>Sophisticated role-specific behavior modeling</li>
+<li>Precise linguistic behavior calibration</li>
+<li>Optimal balance between conscious deliberation and unconscious processing</li>
+</ul>
+
+
+<p>Some pioneers of modern AI, including Yann LeCun, have argued that LLMs alone cannot achieve AGI, citing limitations in persistent memory, planning ability, and physical grounding. While we respect these perspectives, MACI represents more than just an enhancement of LLMs—it embodies a fundamental shift in approaching artificial general intelligence through the integration of multiple disciplines: cognitive psychology, physics, philosophy, and computer science. Where traditional AI development often focuses narrowly on algorithmic improvements, MACI draws upon deeper principles: the psychology of consciousness and linguistic behavior, philosophical investigations into objectivity and truth, and physics-based understandings of entropy and information theory.</p>
+
+<p>Modern LLMs increasingly demonstrate multimodal integration, combining text, vision, audio, and other data streams. Unlike humans, who are constrained by biological sensors, LLMs through MACI can interface with and meaningfully integrate data from advanced tools: from radio telescopes detecting distant galaxies to electron microscopes revealing atomic structures, and from quantum sensors measuring subatomic phenomena to satellites monitoring global patterns. This vast sensory integration, however, requires more than just technical capability—it demands a sophisticated understanding of consciousness, knowledge synthesis, and meaning-making. MACI's approach recognizes that true intelligence emerges not just from data processing, but from the interplay of conscious deliberation and unconscious processing, from the balance of certainty and exploration, and from the dynamic tension between objectivity and subjective interpretation. While individual LLMs may lack direct physical interaction, their collaborative capabilities under MACI's framework enable them to uncover patterns and relationships beyond human sensory limitations, guided by principles drawn from multiple disciplines rather than merely algorithmic optimization.</p>
+
+<p>Our journey to enhance MACI continues, representing not just technological advancement but a broader philosophical and scientific endeavor to understand and implement genuine intelligence. This integrated, polydisciplinary approach distinguishes MACI from more narrowly focused AI developments, potentially offering a more complete path toward artificial general intelligence. By bringing together insights from psychology, physics, philosophy, and computer science, MACI addresses the challenge of superintelligence not just as a computational problem, but as a fundamental question about the nature of intelligence, consciousness, and understanding itself. Please visit this site regularly to follow our progress in this ambitious undertaking.</p>
+
+<h1>Publications in 2025 </h1>
+
+<h2>3. Benchmark for Evaluating Multi-Agent Systems </h2>
+<p><a href="https://www.researchgate.net/publication/389279327_REALM-Bench_A_Real-World_Planning_Benchmark_for_LLMs_and_Multi-Agent_Systems">REALM-Bench: A Real-World Planning Benchmark for LLMs and Multi-Agent System</a>, February 2025, (under review). 
+
+
+<h2>2. Adaptive Multi-Agent System Design and Experiments</h2>
+<p><a href="">An Adaptive Multi-Agent System for
+Mitigating LLM Planning Limitations</a>, Edward Y. Chang, February, 2025 (under review)
+
+
+<h2>1. <span class="glow">*****</span>Multi-Agent System for Planning </h2>
+<p><a href="https://arxiv.org/abs/2501.16689">MACI: Multi-Agent Collaborative Intelligence for Adaptive Reasoning and Temporal Planning</a>, Edward Y. Chang, January, 2025 (under review)
+
+
+
+<h1>Publications in 2024 </h1>
+
+
+<h2>1. <span class="glow">*****</span>New Approach to AI Ethical Alignment, as RLHF Fails </h2>
+<p><a href="https://www.researchgate.net/publication/380515639_A_Three-Branch_Checks-and-Balances_Framework_for_Context-Aware_Ethical_Alignment_of_Large_Language_Models">A Three-Branch Checks-and-Balances Framework for Context-Aware Ethical Alignment of Large Language Models</a> (July 2024), NeurIPS SafeGenAI, December 2024.
+
+<h2>2. <span class="glow">*****</span>Textbook, The Path to Artificial General Intelligence</h2>
+
+<p><a href="https://www.amazon.com/dp/B0F26PB4G9">Multi-LLM Agent Collaborative Intelligence: The Path to Artificial General Intelligence</a>, SocraSynth.com, March/October 2024.
+</p>
+
+<h2>3. The Widsom of Large Language Models</h2>
+
+<p><a href="https://www.amazon.com/Unlocking-Wisdom-Large-Language-Models/dp/1962463095">Unlocking the Wisdom of Large Language Models: An Introduction to The Path to Artificial General Intelligence </a>, SocraSynth.com, June/October 2024.
+</p>
+
+<h2>4. <span class="glow">*****</span>Establishing theoretical foundation for multi-LLM joint predition </h2>
+
+<p><a href="https://www.researchgate.net/publication/383425368_EVINCE_Optimizing_Adversarial_LLM_Dialogues_via_Conditional_Statistics_and_Information_Theory">EVINCE: Optimizing Adversarial LLM Dialogues \\via Conditional Statistics and Information Theory</a>, Edward Y. Chang, February/August 2024.
+
+
+<h2>5. Emotion Analysis for Linguistic Behavior Modeling </h2>
+<p><a href="https://arxiv.org/abs/2404.13071">Behavioral Emotion Analysis Model for Large Language Models</a>, Edward Y. Chang, IEEE MIPR (invited paper), June 2024.
+
+
+<h2>6. Introducing a novel LLM architecture where LLM Collaborative Intelligence can Debias News Articles</h2>
+<p><a href="https://arxiv.org/abs/2408.13464">Uncovering Biases with Reflective Large Language Models</a>, Edward Y. Chang, Feburary 2024.</p>
+
+<h2>7. Using Multiple Collaborative LLMs to Suggest Sales Strategies and Execution Steps to Maximize Profit and Customer Satisfaction </h2> <p><a href="https://www.researchgate.net/publication/378366481_Cooperate_Sales_Planning_Using_Multiple_Collaborative_LLMs">Cooperate Sales Planning Using Multiple Collaborative LLMs</a>, Feburary 2024, in collaboration with TrendMicro.</p>
+
+<h1>Publications in 2023 </h1> 
+
+<h2>1. SocraFin: Leveraging SocraSynth for Enhanced Financial Planning and Analysis (FP&A)</h2> <p>SocraFin, Conditional Statistics for Financial Planning and Analysis, November 2023, in collaboration with AiBanker.</p> 
+
+<h2>2. SocraHealth: Utilizing SocraSynth to Improve Disease Diagnosis</h2>
+<p><a href="https://www.researchgate.net/publication/375000555_SocraHealth_Enhancing_Medical_Diagnosis_and_Correcting_Historical_Records">SocraHealth: Enhancing Medical Diagnosis and Correcting Historical Records</a>, Jocelyn Chang and Edward Chang, October 2023.
+The 10th International Conference on Computational Science and Computationalm Intelligence, December 2023.
+</p>
+<p>
+This study introduces SocraHealth, an innovative method using Large Language Models (LLMs) for medical diagnostics. By engaging LLM-based agents in structured debates, SocraHealth not only refines diagnoses but also corrects historical record inaccuracies, utilizing patient data effectively. The case study, featuring GPT-4 and Bard across two experiments, showcases this approach's success in producing logical, hallucination-free debates. Demonstrating a significant advancement over traditional diagnostic techniques, SocraHealth highlights the transformative power of LLMs in healthcare, especially in enhancing diagnostic accuracy and rectifying past diagnostic errors.
+</p>
+
+<h2>3. SocraPlan: Leveraging SocraSynth for Advanced Corporate Sales Planning</h2>
+<p><a href="https://www.researchgate.net/publication/374945016_Multi-Agent_Reasoning_with_Large_Language_Models_for_Effective_Corporate_Planning"> Multi-Agent Reasoning with Large Language Models for Effective Corporate Planning</a>, in collaboration with S. Tsao at TrendMicro, October 2023.
+The 10th International Conference on Computational Science and Computationalm Intelligence, December 2023.
+</p>
+<p>
+Large Language Models (LLMs) have demonstrated significant capabilities in natural language processing tasks. In this paper, we explore the application of LLMs within a business context. Specifically, we employ LLMs to devise a sales strategy geared towards maximizing customer values (benefits and satisfaction). This sales plan encompasses five iterative stages: market landscape survey, customer profiling, product usage analysis, sales strategy formulation, and crafting persuasive pitches and materials. We leverage LLMs to supplement the limited data available to the company, aiming to enhance the efficacy of each stage and optimize KPIs, including the value-oriented sales conversion and profitability. Due to confidentiality and trade secret concerns, we blend artificial data with genuine data to ensure customer anonymity and protect sales playbooks. Despite these precautions, we effectively demonstrate our methodology of harnessing LLMs to refine the sales planning procedure.
+</P>
+
+
+<h2>4. SocraSynth: Multi-LLM Reasoning with Conditional Statistics</h2>
+
+<p><a href="https://www.arxiv.org/abs/2402.06634">SocraSynth: Multi-LLM Reasoning with Conditional Statistics</a>, September 2023 (revised January 2024).</p>
+
+<p>
+Large language models (LLMs), while promising, face criticisms for biases, hallucinations, and a lack of reasoning capability. This paper introduces SocraSynth, a multi-LLM agent reasoning platform developed to mitigate these issues. SocraSynth utilizes conditional statistics and systematic context enhancement through continuous arguments, alongside adjustable debate contentiousness levels. The platform typically involves a human moderator and two LLM agents representing opposing viewpoints on a given subject. SocraSynth operates in two main phases: knowledge generation and reasoning evaluation. In the knowledge generation phase, the moderator defines the debate topic and contentiousness level, prompting the agents to formulate supporting arguments for their respective stances. The reasoning evaluation phase then employs Socratic reasoning and formal logic principles to appraise the quality of the arguments presented. The dialogue concludes with the moderator adjusting the contentiousness from confrontational to collaborative, gathering final, conciliatory remarks to aid in human reasoning and decision-making. Through case studies in three distinct application domains, this paper showcases SocraSynth's effectiveness in fostering rigorous research, dynamic reasoning, comprehensive assessment, and enhanced collaboration. This underscores the value of multi-agent interactions in leveraging LLMs for advanced knowledge extraction and decision-making support.
+</p>
+
+
+<h2>5. <span class="glow">*****</span> Examining GPT-4's Capabilities and Enhancement by SocraSynth</h2>
+
+<p><a href="https://www.researchgate.net/publication/374753069_Examining_GPT-4's_Capabilities_and_Enhancement_with_SocraSynth" target="_blank">Examining GPT-4's Capabilities and Enhancement with SocraSynth</a>, July 2023. 
+<br>The 10th International Conference on Computational Science and Computational Intelligence (CSCI'23), December 2023.
+<br>
+(<span style="color: red;">Top-1% assessed paper, over 12,000 reads on ResearchGate since July 2023</span>)
+</p>
+
+<p>In this work, we investigate the capabilities and limitations of GPT-4, a large-scale, polydisciplinary, and polymodal language model. Despite its accomplishments across a range of tasks, GPT-4 exhibits key shortcomings, particularly in areas of reasoning and ethics, manifesting in tendencies like hallucination, imitation rather than understanding, and a lack of fact-checking ability. We propose several remedies to address these challenges. First, we introduce the CoCoMo framework, designed to incorporate reasoning into AI systems using Socratic methods and prompt ensembles. Second, we advocate for the use of demonstrations as a means to imbue AI agents with ethical behavior, building upon our experience with the Noora chatbot project. Lastly, we recommend adopting a more comprehensive approach to training ensemble members of GPT-4, shifting from an exclusive focus on optimizing for cross-entropy loss. Our end goal is the development of AI systems that not only enhance human abilities but also align with human values, thereby contributing constructively to society.
+</p>
+
+<h2>6. Discovering Insights Beyond the Known: A Dialogue Between GPT-4 Agents from Adam and Eve to the Nexus of Ecology, AI, and the Brain</h2>
+
+<p><a href="https://www.researchgate.net/publication/373161156_Discovering_Insights_Beyond_the_Known_A_Dialogue_Between_GPT-4_Agents_from_Adam_and_Eve_to_the_Nexus_of_Ecology_AI_and_the_Brain" target="_blank">Discovering Insights Beyond the Known: A Dialogue Between GPT-4 Agents</a>, August 2023. (The most read paper in August on ResearcgGate)</p>
+
+<p>
+Human knowledge, vast as it is, often falls short in grasping intricate interdisciplinary domains fully. In contrast, foundation models like GPT-4, endowed with extensive multidisciplinary knowledge, can potentially bridge this gap. Significantly, we leverage the vast expanses of GPT-4's knowledge, banking on its ability to frame questions that might elude human intuition, thus paving the way for the emergence of fresh insights and potentially novel knowledge. In this study, we convened a unique committee comprising a moderator (the authors) and two GPT-4 agents. The dialogue is ignited by the ancient narrative of Adam and Eve, setting the stage for a rich exchange between the GPT-4 agents. This conversation derives from the age-old tale, as the agents delve into three intertwined domains: the significance of myths in ecological interpretation, the intricate ethical and philosophical quandaries surrounding AI, and the enigmatic realm of the human brain as complemented by technology. This dialogue not only unveils captivating insights but also underscores the indispensable value of interdisciplinary exchanges. Foundation models, as demonstrated, can catalyze such dialogues, equipping us to traverse expansive knowledge landscapes and explore domains previously beyond human comprehension.
+</p>
+
+
+<h2>7. <span class="glow">*****</span> Using Socratic Method to Facilitate Critical Thinking for Fact Checking</h2>
+
+<p><a href="https://arxiv.org/pdf/2303.08769.pdf" target="_blank">Prompting Large Language Models With the Socratic Method</a>, IEEE 13th Annual Computing and Communication Workshop and Conference (CCWC), March 2023 (The best presentation in the AI track)</p>
+
+<p>This paper presents a systematic approach to using the Socratic method in developing prompt templates that effectively interact with large language models, including GPT-3. Various methods are examined, and those that yield precise answers and justifications while fostering creativity and imagination to enhance creative writing are identified. Techniques such as {\em definition}, {\em elenchus}, {\em dialectic}, {\em maieutics}, {\em generalization}, and {\em counterfactual reasoning} are discussed for their application in engineering prompt templates and their connections to inductive, deductive, and abductive reasoning. Through examples, the effectiveness of these dialogue and reasoning methods is demonstrated. An interesting observation is made that when the task's goal and user intent are conveyed to GPT-3 via ChatGPT before the start of a dialogue, the large language model seems to connect to the external context expressed in the intent and perform more effectively. </p>
+
+<h2>8. Consciousness Modeling for Reasoning</h2>
+
+<p><a href="https://arxiv.org/abs/2304.02438" target="_blank">CoCoMo: Computational Consciousness Modeling for Generative and Ethical AI</a>, February 2023.</p>
+
+<p>The CoCoMo model proposes a computational solution to the challenge of incorporating ethical and emotional intelligence considerations into AI systems, with the aim of creating AI agents that combine knowledge with compassion. To achieve this goal, CoCoMo prioritizes fairness, beneficence, non-maleficence, empathy, adaptability, transparency, and critical and exploratory thinking abilities. The model employs consciousness modeling, reinforcement learning, and prompt template formulation to support these desired traits. By incorporating ethical and emotional intelligence considerations, a generative AI model can potentially lead to improved fairness, reduced toxicity, and increased reliability.
+</p>
+
+<h2>9. CRIT: An Inquisitive Prompt Template for Critical Reading</h2>
+
+<p><a href="https://drive.google.com/file/d/1WhbqXFfK_XvG7DtqeGueDrOLyMey8wF0/view" target="_blank">CRIT: An Inquisitive Prompt Template for Critical Reading</a>, January 2023.</p>
+
+<p>Critical reading, a pivotal element of education, necessitates active engagement with texts to delve deeper and form informed assessments about their validity and credibility. We introduce CRIT, a comprehensive prompt template designed to streamline this process. CRIT leverages pre-trained language models to critically evaluate texts, extracting their conclusions and supportive reasons, scrutinizing reason-to-claim arguments, suggesting counterarguments, and offering an overarching quality assessment. Notably, CRIT also possesses the capability to conduct fact-checking on the outputs of foundation models, ensuring accuracy and trustworthiness. With its structured and recursive prompts, CRIT facilitates a comprehensive and logical text analysis, providing insights into argument validity and source reliability. This makes CRIT an invaluable asset for K-12 education, fostering critical reading skills, and refining articles before public examination.
+</p>
+
+<h2>10. Applying AI to Precision Medicine</h2>
+
+<p>
+
+</p>
+<p><a href="https://arxiv.org/abs/2212.13591" target="_blank">Knowledge-Guided Data-Centric AI in Healthcare: Progress, Shortcomings, and Future Directions</a>, December 2022; Chapter 2 in Artificial Intelligence, Machine Learning, and Deep Learning in Precision Medicine in Liver Diseases (ISBN: 9780323991360), Elsevier, August 22, 2023</p>
+
+
+<p>
+The success of deep learning is largely due to the availability of large amounts of training data that cover a wide range of examples of a particular concept or meaning. In the field of medicine, having a diverse set of training data on a particular disease can lead to the development of a model that is able to accurately predict the disease. However, despite the potential benefits, there have not been significant advances in image-based diagnosis due to a lack of high-quality annotated data. This article highlights the importance of using a data-centric approach to improve the quality of data representations, particularly in cases where the available data is limited. To address this "small-data" issue, we discuss four methods for generating and aggregating training data: data augmentation, transfer learning, federated learning, and GANs (generative adversarial networks). We also propose the use of knowledge-guided GANs to incorporate domain knowledge in the training data generation process. With the recent progress in large pre-trained language models, we believe it is possible to acquire high-quality knowledge that can be used to improve the effectiveness of knowledge-guided generative methods.
+</P>
+
+<h1>About Us</h1>
+
+SocraSynth orchestrates a symposium of GAI agents, facilitating investigative dialogues to reveal knowledge and insights previously elusive to humans. The concept of SocraSynth was first introduced by Dr. <a href="http://infolab.stanford.edu/~echang">Edward Y. Chang</a>, an ACM Fellow. Chang held the position of Director at Google Research from 2006 to 2012 and has been serving as an adjunct professor in the Computer Science department at Stanford University since 2019.
+
+</body>
+</html>
+
+

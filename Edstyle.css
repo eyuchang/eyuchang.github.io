@@ -1,0 +1,287 @@
+<head>
+ <link href='http://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
+</head>
+
+body {
+	font-family: times;
+	margin: 70px;
+}
+
+.side {
+	position:fixed;
+	transform: rotate(90deg);
+	color:black;
+	transition: 0.5s;
+}
+
+#bio {
+	right:20px;
+	top:20px;
+}
+
+#pub {
+	right:-20px;
+	top: 130px;
+}
+
+#research {
+	right:-5px;
+	top:270px;
+}
+
+#teach {
+	right:-5px;
+	top:390px;
+}
+
+@media only screen and (min-width:810px){
+
+	.pubimg {
+		float:left;
+		display: flex;
+		margin-right: 40px;
+		width:200px;
+		height:140px;
+	}
+}
+
+
+@media only screen and (max-width:810px){
+
+	.pubimg {
+		float:left;
+		display: flex;
+		margin-right: 40px;
+		width:200px;
+		height:180px;
+	}
+}
+
+#WIL {
+	background-image: url("img/WILCover.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+#SCS {
+	background-image: url("img/SocraSynthCoverColor.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+#JMIND {
+	background-image: url("img/JMind.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+#BDA {
+	background-image: url("img/book-bda.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+#FLSM {
+	background-image: url("img/book-flsm.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+#NE {
+	background-image: url("img/book-ne.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+#HealthCare {
+	background-image: url("img/refuel.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+#AGI {
+	background-image: url("img/LCICoverOnline.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+#IntroAGI {
+	background-image: url("img/Aphorisms.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+
+#MACI {
+        background-image: url("img/PERTChart.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+#Knowledge {
+	background-image: url("img/Knowledge.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+#Context {
+	background-image: url("img/context.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+#DeepLinQ {
+        background-image: url("img/DeepLinQ.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+#VIVE{
+        background-image: url("img/VIVE.jpeg");
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+#NN{
+        background-image: url("img/NN.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+#DLedger{
+        background-image: url("img/DLedger.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+#BIGDATA{
+        background-image: url("img/DeepQAI.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+#DataScience{
+        background-image: url("img/DS.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+#Tricorder{
+        background-image: url("img/TricorderWinner2017.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+#CV{
+        background-image: url("img/ComputerVision.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+#EACG{
+        background-image: url("img/EACG.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+#SSY{
+	background-image: url("img/SocraSynthIcon.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+#GAI{
+        background-image: url("img/GAIConsciousness.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+#UCCT{
+        background-image: url("img/UCCT.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.pubtext {
+	display: flex;
+	float:left; 
+}
+
+.side:hover {
+	cursor: pointer;
+	color: indianred;
+	transition: 0.5s;
+	text-decoration: overline;
+}
+
+.column1{
+	float:left;
+	display: flex;
+	width:30%;
+	margin-left: 1%;
+	margin-right: -2%;
+	margin-bottom: 2%;
+}
+
+.column2{
+	display: flex;
+	width:80%;
+	margin:5%;
+}
+
+a {
+	color:blue;
+	text-decoration: underline;
+	opacity: 1;
+	transition: 0.5s;
+}
+
+.afade {
+	color:indianred;
+	transition: 0.5s;
+	letter-spacing: 0.1px;
+}
+
+#head {
+	font-size: 23pt;
+	font-family: times;
+}
+
+#head2 {
+	font-size: 24pt;
+	color: darkblue;
+	font-family: cursive;
+}
+
+#head3 {
+	font-size: 16pt;
+	color: indianred;
+}
+
+p {
+	font-family: 'Roboto';
+	top:20pt;
+	font-size: 12pt;
+}
+
+#homePhoto {
+	width:360px;
+	height:500px;
+	margin-left: 8%;
+	background-image: url("img/MACI-V3-Cover-OneSide-LS.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+	background-position: center;
+}
+
+
+#pubsection {
+	display: inline-block;
+	width:95%;
+	margin-left: 3%;
+}
+
+.title {
+	font-size: 18pt;
+	color: darkred;
+}

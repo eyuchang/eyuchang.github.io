@@ -1,0 +1,206 @@
+\section{Prior Accomplishments}
+
+As a Ph.D. student at Stanford University, I focused my research
+on managing continuous media data.
+During my final three years at Stanford, I 
+worked on three different
+research projects: media servers, media receivers and image databases.
+These three areas 
+knit nicely together to provide a strong foundation 
+for my advanced research in interactive TV.
+
+\subsection{Media Servers}
+
+To deliver a large volume of continuos media data
+(i.e., video and audio) from a media
+server to a large number of simultaneous clients poses at least
+three challenges. First, the system resources
+at the server side must be allocated 
+carefully to maximize throughput. Second,
+the server must deliver the data to the client just-in-time so
+that the media data in the client's buffer neither overflows
+nor underflows. Third, the latency between the time when the
+data is requested and when the data is available for the client
+to decode and play back must be short to support interactive
+multimedia applications.  To address these challenges, the
+conventional wisdom aims to minimize latency and maximize the
+utilization of the server's disk.  My thesis research
+addressed these challenges
+in three novel ways. First, contrary to the conventional wisdom,
+I showed that spacing out IOs in time with delay may in fact lead to higher
+throughput, since memory, rather than disk, is the resource
+bottleneck of the media server \cite{ex49}. I showed how to use memory
+judiciously and how to minimize the per-stream cost so that
+the throughput can be maximized \cite{ex200}.  Second, I proposed intelligent
+data placement and disk scheduling policies to minimize the
+initial latency of media data delivery \cite{ex80,ex54}. The analytical model
+I developed showed that my schemes can bring the worst-case initial latency
+down to just a fraction of a second. 
+
+Finally, I also applied these techniques
+to manage parallel disks efficiently \cite{ex90-1}. 
+I proposed a resource management scheme that
+services requests in {\it cycles} (the time dimension) on
+parallel disks (the disk dimension).  Each cycle is divided into {\it
+service slots} of equal duration.  An ongoing presentation performs
+one IO per cycle, using up one of the slots in that cycle on one of
+the disks.  The {\em scheduling policy} assigns IO requests onto
+these two dimensional disk-time slots.  It attempts to maintain the
+maximum number of free slots open in the near future to service new
+requests.  If new requests arrive before the start of a service slot,
+they are usually scheduled immediately in the free slots, with little
+delay.  If free slots are still available after new requests have
+been satisfied, the scheduler assigns existing requests that have the
+closest service deadlines to use the remaining slots.  This
+effectively defers the deadlines of the most urgent tasks to a later
+time, freeing up service slots in the immediate future, as well as
+reducing the number of requests that will compete for the free slots
+with future new requests.  We coined the
+name ``bubble-up'' for this scheme because in it free
+slots bubble up to or near the current time.  The simulation results
+showed that my scheme can service new requests in under $0.5$ 
+second on the average, even when the requests
+arrive in a large batch and when the server is near its peak load.
+Other schemes can take from 5 seconds to several minutes.        
+
+A {\em data placement} policy is used by the resource management
+scheme to balance loads across
+disks.  Each presentation is split into {\em chunks} and spread
+across the disks.  Like other traditional schemes, my
+scheme also replicates popular
+presentations.  However, the replication and data distribution are
+performed in a way that enhances the run-time bubbling-up of free
+slots.  The results showed that two copies
+of the popular presentations are sufficient to balance loads and
+permit the bubble-up strategy to effectively reduce latencies.
+
+In short, I simulated schemes that manage media servers to
+achieve high throughput and low initial latency at low cost.
+
+\subsection{Media Receivers}
+
+As a part of my thesis, I also investigated the receiver-side issues. 
+I studied how to manage memory and IOs 
+for the receiver \cite{ex100}
+to minimize the DRAM requirement for 
+cushioning against variability in the
+data delivery rate and against differences in delivery and consumption rates.
+If one assumes a perfect media server, which can pump out
+the data at precisely the rate at which it will be consumed by the receiver,
+and one assumes a perfect network, which can deliver the data
+at this same rate, then one does not need a buffer at the receiver.
+However, the server and network may deliver data at a rate
+different from that at which data is consumed, and the rate may not 
+be constant, due to network disturbances, traffic congestion, router failures,
+server glitches, and so on.  Thus, a receiver cache is necessary 
+to handle the delivery-consumption mismatches.
+For example, if the delivery rate is smaller than the consumption rate,
+the cache must save up enough data before playback starts.
+Similarly, the cache can provide playback data to the decoder 
+during input lulls.  Furthermore, a receiver cache is also quite 
+useful in that it makes the requirements on the server and network
+less stringent: the larger the cache, the more flexibility is given 
+to the server and network for data delivery.
+                                                 
+A cache can be made larger by adding disk storage.
+A disk cache at the receiver gives the server
+much more delivery flexibility.
+For instance, a server can then send much more data to the receiver
+during a low utilization period (if the network permits),
+and less data during a peak utilization period.
+In this sense, the receiver assists in server load balancing.
+%For example, say, a server with a capacity to service 100
+%receivers expects its peak load in 30 minutes.
+%If the server is currently servicing $50$ receivers
+%that have 60 minutes more of playback time, $50\%$
+%of the server's capacity will be tied up during the peak period.
+%If the channel capacity is sufficient,
+%the server can double the data delivery rate to the current
+%$50$ receivers, freeing capacity for the peak period.
+%For this to work, the receiver must have a large cache,
+%and using a disk for this large cache (as opposed to main memory only)
+%significantly reduces costs.
+%                               
+A large disk cache also makes it possible to deal with
+limited channel capacity.
+For instance, say a news clip that has a display
+rate of $1.5$ Mbps is delivered via a $1.0$ Mbps
+channel to the receiver.   Suppose the playback
+duration of the news clip is 1000 seconds (about 16 minutes).
+During playback, the receiver receives only $1000 \times 1.0$ Mb
+but consumes $1000 \times 1.5$ Mb.
+Thus, when the clip is started, the receiver needs to have cached
+at least $1000 \times 0.5$ Mb, or 62 Mbytes.
+Saving this data on disk costs far less than saving it all
+in main memory.
+               
+My contributions in the receiver side study are as follows:
+\begin{jlist}
+\item
+I presented algorithm MEDIC, an adaptive, integrated memory-disk
+buffer manager.  The challenge was to develop an algorithm that
+\begin{nlist}
+\item {\bf 1}. Can efficiently deal with the competing and
+unpredictable read and write memory requirements,
+\item {\bf 2}. Avoids writing data to disk when it is not necessary,
+\item {\bf 3}. Handles out-of-order network data,
+\item {\bf 4}. Works on any off-the-shelf disk, and
+\item {\bf 5}. Has the right {\it control parameters} for tuning.
+\end{nlist}
+\item
+I derived bounds for the amount of memory a receiver needs
+to support given input and playback characteristics.
+From these bounds we computed effective settings for
+the control parameters, which determine the timing
+and sizes of disk IOs.        
+\item
+I presented a realistic case study, and showed
+how input peak rates, disk performance, and other parameters
+affect memory and performance.
+The results indicate that, thanks to the disk cache,
+a relatively modest amount of main memory can support a wide range
+of input and media rates.
+\end{jlist}
+
+\subsection{Image Databases}
+
+In addition to my thesis work,
+I co-designed with my colleagues an image database
+for performing content-based
+image retrieval. While many papers have been published in this
+area, the novelty of our approach lies in two areas. First, we showed that
+by using the right features, a similarity search engine
+can be tuned to detect unlawful image copies on the world-wide
+web \cite{Clw99,Cwl98}. Second, we proposed Clindex \cite{Lch99}, 
+an indexing structure that
+combines clustering with indexing, to perform approximate similarity
+search in high-dimensional spaces. 
+We studied how clustering and indexing can be effectively combined.
+We experimentally evaluated the Clindex approach,
+using a 30,000 image database.
+Our results show that Clindex
+achieves very high {\em recall}.  That is, it can typically return
+more than $90\%$ of what we call the ``golden'' results (i.e., the
+best results produced by a linear scan over the entire dataset) with
+a few IOs.  We also compared Clindex with other traditional approaches,
+to evaluate how effective Clindex's clustering is,
+and to understand the gains achievable by
+pre-processing data to find clusters.
+If data does not have natural clusters, then Clindex will
+not improve searches. Fortunately, real datasets rarely occupy a
+large-dimensional space uniformly. Our experimental results confirm that,
+in the specific case of image data,
+significant clusters are formed, and that they can be
+exploited to noticeably improve search times.
+
+Theoretical studies~\cite{AM94,IM98,Jk97} have confirmed the cost of
+similarity search, independent of the data structure used.  In particular,
+it has been shown that if $N$ is the size of a dataset, $D$ is the
+dimension, and $D >> log~N$, then no nearest-neighbor algorithm can
+be significantly faster than a linear search.
+Clindex requires retrieving only a small fraction of the data to
+achieve very high recall. We therefore believe that Clindex is a viable
+approach for indexing very high-dimensional data for
+approximate nearest-neighbor search.
+
+

@@ -1,0 +1,25 @@
+<t2>Short Bio</t2>
+<p>
+Edward Chang received his M.S. in Computer Science and PhD in Electrical Enginee
+ring at Stanford University in 1994 and 1999, respectively. He is now a tenured
+Associate Professor of Electrical Engineering and Computer Engineering (also aff
+iliated with Computer Science) at the University of California, Santa Barbara. H
+is research activities are in the areas of multimedia databases, machine learnin
+g, data mining, and high-performance IO systems. He is particularly interested i
+n application of machine-learning theoretic approaches to fundamental problems i
+n multimedia/bio information retrieval. Recent research contributions of his gro
+up include methods for learning multimedia/bio query concepts via active learnin
+g, formulating distance functions via dynamic associations and kernel alignment,
+ and categorizing and indexing high-dimensional image/video data. His perception
+-based image retrieval approach, which applies learning algorithms to capture co
+mplex, subjective image query-concepts, was recognized as a major breakthrough i
+n CBIR in 2002 at the IEEE International Conference in Multimedia. Ed has served
+ on numerous conference program committees including ACM SIGMOD, ACM Multimedia,
+ ACM CIKM, SIAM Data Mining, Internal Conference on Artificial Intelligence, IEE
+E Data Engineering, and IEEE Multimedia.  He co-chaired the first annual ACM Vid
+eo Surveillance Workshop in 2003.  He serves as an Associate Editor for IEEE Tra
+nsactions on Knowledge and Data Engineering. Ed is a recipient of the IBM Facult
+y Partnership Award from 2000 to 2002, and the NSF Career Award in 2002. Ed is a
+lso a co-founder and the CTO of VIMA Technologies, which provides image searchin
+g and filtering solutions.
+</p>

@@ -1,0 +1,88 @@
+\documentstyle[11pt,psfig,subfigure]{article}
+
+\title{Bookmark Maintenance etc.}
+
+\input{page.tex}
+\input epsf
+\newlength{\lineheight}
+\setlength{\lineheight}{11pt}
+\newcommand{\ls}[1]{\baselineskip=#1\lineheight}
+\renewcommand{\baselinestretch}{1.0}
+\parskip = 0.7\normalbaselineskip
+\parskip = 0.4\normalbaselineskip
+\newcommand{\sspace}{\baselineskip=1.0\lineheight}
+\newcommand{\nspace}{\baselineskip=1.8\lineheight}
+\newcommand{\tspace}{\baselineskip=0.8\lineheight}
+%\newcommand{\nspace}{\baselineskip=1.3\lineheight}
+
+\def\papernumber #1 raised #2 {
+\vspace{-#2}
+\vbox to 0pt{\hfill\framebox{\bf Paper Number #1}}
+\vspace{#2}
+}
+
+\newenvironment{jlist}{
+\begin{list}{$\bullet$}{
+\setlength{\topsep}{0ex}
+\setlength{\leftmargin}{1.5ex}
+\setlength{\labelwidth}{1ex}
+\setlength{\labelsep}{0.5ex}
+\setlength{\itemsep}{0.6ex}
+\setlength{\parsep}{0pt}
+}}
+{\end{list}}
+            
+\newenvironment{llist}{
+\begin{list}{$~~~~~~\bullet$}{
+\setlength{\topsep}{0ex}
+\setlength{\leftmargin}{1.5ex}
+\setlength{\labelwidth}{1ex}
+\setlength{\labelsep}{0.5ex}
+\setlength{\itemsep}{0.6ex}
+\setlength{\parsep}{0pt}
+}}
+{\end{list}}
+            
+\newenvironment{klist}{
+\begin{list}{$~~~~~~$}{
+\setlength{\topsep}{0ex}
+\setlength{\leftmargin}{1.5ex}
+\setlength{\labelwidth}{1ex}
+\setlength{\labelsep}{0.5ex}
+\setlength{\itemsep}{0.6ex}
+\setlength{\parsep}{0pt}
+}}
+{\end{list}}
+            
+\newenvironment{nlist}{
+\begin{list}{}{
+\setlength{\topsep}{0ex}
+\setlength{\leftmargin}{1.5ex}
+\setlength{\labelwidth}{1ex}
+\setlength{\labelsep}{0.5ex}
+\setlength{\itemsep}{0.6ex}
+\setlength{\parsep}{0pt}
+}}
+{\end{list}}
+            
+
+\author{Edward Chang \\}
+
+\begin{document}
+
+%\date{}
+\maketitle
+\begin{abstract}
+
+\noindent
+{\bf Keywords}: bookmark.
+\end{abstract}
+
+\nspace
+%\input{sec1.tex}
+\input{sec2.tex}
+\sspace
+\bibliographystyle{paper}
+\bibliography{paper}
+\newpage
+\end{document}

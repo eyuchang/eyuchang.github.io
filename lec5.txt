@@ -1,0 +1,52 @@
+Lecture #5 Color Representation II		4/18/00
+
+Representing images in color
+
+o Color Models
+  - RGB (hardware-oriented)
+    * CMY 
+    * YIQ
+  - HSV (user-oriented)
+    * HSI
+    * HLS
+    * CIE Luv
+  - Opponent Models
+
+o Color representation
+
+  - Color histograms
+
+    Let M be the number of colors
+    H(m) = Sum XY {1 if Ixy = m  m = 1..M
+                   0 otherwise
+
+  - Color sets
+
+    Let M be the number of colors
+    S(m) = 1 if H(m) >= T(m)
+           0 otherwise
+
+  - Combined scheme:
+
+o Color location
+
+  - Color regions
+  - Multiresolution color regions
+    * wavelets
+
+o Similarity measure
+
+  - for Color histograms
+    Normalize ||h|| = \sqrt \sum h(m)^2 = 1
+    Distance = (hq - ht)A(hq - ht)
+    A is a color similarity matrix
+
+  - for Color sets
+    Hamming distance
+  
+o Indexing
+
+  - How to find similar images in a database?
+  - example: suppose three color histograms
+
+

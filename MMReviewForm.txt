@@ -1,0 +1,71 @@
+{\rtf1\ansi\ansicpg936\deff0\deflang1033\deflangfe2052{\fonttbl{\f0\fmodern\fcharset0 Arial;}{\f1\fswiss\fcharset0 Arial;}}
+\viewkind4\uc1\pard\f0\fs20 =============== Referee Form =============================\par
+\par
+%%  \{please do not remove this line\} \par
+--------------------------------------------------------------------------\par
+     REFEREE FORM FOR ACM Multimedia Systems  JOURNAL (Springer)\par
+---------------------------------------------------------------------------\par
+PAPER #: MM-CBIR-1\par
+Title of the Paper: Foundation for Content-Based Image Database Systems\par
+Author(s):Lionel Bruine,, Solomon Atnafu, and Harald Kosch \par
+\par
+\par
+---------------------------------------------------------------------------\par
+ Rating Category    Your Rating       Scale Definition\par
+---------------------------------------------------------------------------\par
+Relevance to the \par
+CBIR special issue   |-----|    5=Good match\par
+                     |     |    3=Marginal match\par
+                     |-----|    1=not match\par
+---------------------------------------------------------------------------\par
+Evaluation of Work             \par
+and Contribution     |-----|    5=Good solid work of some importance\par
+                     |     |    3=Marginal work and minor contribution\par
+                     |-----|    1=Very questionable work and contribution\par
+---------------------------------------------------------------------------\par
+Originality                     \par
+Novelty              |-----|    5=Contains an original contribution\par
+                     |     |    3=Variation of a known concept \par
+                     |-----|    1=Complete lack of original ideas\par
+---------------------------------------------------------------------------\par
+Quality of                      \par
+Presentation         |-----|    5= Well written\par
+                     |     |    3= Readable\par
+                     |-----|    1= Needs considerable work\par
+---------------------------------------------------------------------------\par
+Technical                       \par
+Correctness          |-----|    5=Good\par
+                     |     |    3=Flaws but Easy to Correct \par
+                     |-----|    1=Several Flaws\par
+---------------------------------------------------------------------------\par
+Overall                         \par
+Rating               |-----|    5=Accept with Minor Revisions\par
+                     |     |    3=Consider for Publication (Major Revision)\par
+                     |-----|    1=Definitely reject \par
+---------------------------------------------------------------------------\par
+\par
+DETAILED COMMENTS (to be returned to the author(s))\par
+[Reviewers are encouraged to provide substantitive comments \par
+supporting their numerical scale ratings. Reviews without \par
+such comments may not be considered in the overall rating of the paper.]\par
+\par
+%%  \{please do not remove this line\}\par
+---------------------------------------------------------------------------\par
+CONFIDENTIAL COMMENTS TO THE EDITOR\par
+[(to be withheld from the author(s))].  \par
+If necessary, Please include here any comments \par
+about why the paper should be accepted or rejected.\par
+\par
+\par
+\par
+\par
+\par
+Name and Address of the Referee:\par
+\par
+\par
+\par
+---------------------------------------------------------------------------\par
+$$ \{please do not remove this line\}\par
+\par
+\lang2052\f1\par
+}

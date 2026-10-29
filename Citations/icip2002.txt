@@ -1,0 +1,11 @@
+@INPROCEEDINGS{1040021, 
+author={B. {Li} and E. {Chang} and CT {Wu}}, 
+booktitle={Proceedings. International Conference on Image Processing}, 
+title={DPF - a perceptual distance function for image retrieval}, 
+year={2002}, 
+volume={2}, 
+number={}, 
+doi={10.1109/ICIP.2002.1040021}, 
+ISSN={1522-4880}, 
+month={Sep.},}
+

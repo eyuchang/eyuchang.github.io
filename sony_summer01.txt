@@ -1,0 +1,41 @@
+SUMMER PROJECT IDEAS:
+---------------------
+
+Our long-term research goal is building a QOS-sensitive file-system.
+We plan to align our summer projects with our long-term goal.  
+We have two summer project proposals: 
+
+1. Data placement and disk scheduling for throughput enhancement and 
+   power conservation.
+
+   We plan to modify Linux file system interface and change its
+   implementation to perform data placement and fine-grained 
+   scheduling.  This project will be carried out in two stages:
+
+   A. We will first perform manual placement of data using Zoran's
+      tools.  We plan to investigate the feasibility of doing 
+      data placement on both SCSI and IDE drives.  We will
+      measure the performance gain in terms of both throughput
+      enhancement and power conservation.
+
+   B. We will then integrate the developed data placement and 
+      scheduling algorithms into Linux file system.
+
+   ** This project will be carried out on a single disk this
+      summer.  If the result is promising, we will extend our 
+      work to support parallel disks.
+
+2. 1394 protocol
+
+   We see intranet streaming an important application in the near future.
+   With a few inexpensive digital cameras and a couple of TV monitors,
+   one can for example configure a video surveillance system at home,
+   or build a distributed conference room at work. 
+   
+   We propose to start small and then expand later.  We can build
+   a system that consists of up to three digital cameras and three
+   monitors.  While the cameras capture real-time video, users
+   can perform time-shift operations on the monitors.
+
+
+

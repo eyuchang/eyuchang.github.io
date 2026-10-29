@@ -1,0 +1,31 @@
+
+Dimi00-10076
+
+Knowledge Tools for Expediting New Drug Discovery and Development
+
+Summary:
+
+This project proposes to develop a visualization tool that
+can help 1) explore in multiresolution silico analysis, and
+2) rank ordering of NCEs in terms of their relative risk
+of being rejected as an approvable new drug. The developed
+framework will serve as a digital bridge between computerized
+drug discovery and testing in humans.
+
+1. Important problem?	Yes.
+
+2. Approaches? Sound
+
+   Major points
+   o Resolving uncertainty and rank order...
+   o Multiresolution models and multiple perspectives
+   Minor points
+   o Using graphics
+
+3. Relevance
+
+   Computer-aided drug design, molecular graphics research...
+
+4. Budgets
+
+   Reasonable considering its ambitious aims.

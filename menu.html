@@ -1,0 +1,121 @@
+<html>
+<head>
+<title>
+Nice menu
+</title>
+
+<SCRIPT>
+<!--
+        ua=navigator.userAgent;
+        v=navigator.appVersion.substring(0,1);
+        // Detect the user agent and platform.
+        // bIs95NT iff browser is MSIE4.0 for WinNT or Win95.
+        var sAgent = navigator.userAgent
+        var bIs95NT = sAgent.indexOf("Windows 95") > -1 || sAgent.indexOf("Windows NT")  > -1 || sAgent.indexOf("Win32")  > -1 
+        // IF THE BROWSER IS MSIE4.0 AND IS NOT 4.0b1, THEN bIsIE4 = true
+        var bIsIE4 = sAgent.indexOf("IE 4")  > -1
+        var bIsIE40 = bIsIE4 && sAgent.indexOf("b1") <= -1 && sAgent.indexOf("p1") <= -1
+        var bIsIE432 = bIs95NT && bIsIE4
+        hotColor = "#004000"
+        function hideAds(){
+                var sites=document.all.tags("SPAN");
+                var i;
+                var sn;
+                for (i=0;i<sites.length;i++){
+                        sn=sites[i].getAttribute("hide");
+                        if (sn!=null){
+                                sites[i].style.display="none";
+                        }
+                }                       
+        }
+        function initPage() {
+                if (bIsIE4) {
+                        document.body.onmouseover=makeHot;
+                        document.body.onmouseout=makeNormal;
+                        setTimeout('hideAds()', 30000);
+                }
+        }
+        function inAnchor(src) {
+                for (i=0;i<100;i++) {
+                        if (src.tagName == "A")
+                                { return 1; }
+                        else if (src.tagName == "BODY")
+                                { return 0; }
+                        src = src.parentElement;
+                }
+        return 0; 
+        }
+        function setColorToAnchor(src, c) {
+                for (i=0;i<100;i++) {
+                        if (src.style.color != null) {
+                                if (c != "RESTORE") {
+                                        src.oldcol = src.style.color;
+                                        src.style.color = c;
+                                } else {
+                                        src.style.color = src.oldcol;
+                                }
+                        }
+                        if (src.tagName == "A" || src.tagName == "BODY")
+                                { return; }
+                        src = src.parentElement;
+                }
+        }
+        
+        function makeHot() {
+                src = event.toElement;
+                if (inAnchor(src) == 1) {
+                        setColorToAnchor(src, hotColor);
+                }
+        }
+        function makeNormal() {
+                src=event.fromElement;
+                if (inAnchor(src) == 1) {
+                        setColorToAnchor(src, "RESTORE");
+                }
+        }
+// -->
+</SCRIPT>
+</head>
+<STYLE TYPE="text/css">
+                      <!--
+                      A {
+                          text-decoration:none;
+                      }
+                      -->
+                      </STYLE>
+
+<body class ="body-normal" bgcolor="#002071" text=white link=white vlink=white  topmargin=0 leftmargin=0
+      onload="initPage();">
+
+
+<P>
+<font face=helvetica size ="-1">
+<img border=3 src="photos/chang.gif" width="150"></A><P>
+&nbsp&nbsp
+<a name = "home" href = "http://www-db.stanford.edu/~echang/index.html" 
+target = "_top">Intro</a><p>
+&nbsp&nbsp
+<a name = "home" href = "http://www-db.stanford.edu/~echang/contact.html" 
+target = "_top">Contact</a><p>
+&nbsp&nbsp
+<a name = "home" href = "http://www-db.stanford.edu/~echang/cv.html" 
+target = "_top">Resume</a><p>
+&nbsp&nbsp
+<a name = "home" href = "http://www-db.stanford.edu/~echang/pubs.html" 
+target = "_top">Publications</a><p>
+&nbsp&nbsp
+
+<table border="0" cellpadding="0" cellspacing="0" width="80"> 
+<tr><td align="center" valign="top" height="30" colspan="2">&nbsp;</td></tr>
+<tr>
+<td width="80" height="80" valign="top" align="center">
+</td></tr></table>
+
+
+</body>
+</html>
+
+
+
+
+

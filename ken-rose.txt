@@ -1,0 +1,177 @@
+<t2>Email #1</t2>
+
+Date: Sun, 3 Feb 2002 22:02:48 -0800 (PST)
+From: Edward Chang <echang@xanadu.ece.ucsb.edu>
+To: Kenneth Rose <rose@ece.ucsb.edu>
+Cc: kingshy@engineeing
+Subject: Re: Database
+
+
+Hi Ken,
+
+Kingshy can transfer a 51K feature file
+to you.  Kingshy, could you coordinate the
+transfer on Monday?  I think the normalized
+51K feature file that you used in your
+indexing paper would suffice.
+
+Ed
+
+On Sun, 3 Feb 2002, Kenneth Rose wrote:
+
+> Hi again Ed,
+>
+> We would love to have the database + features. What¹s the best way to
+> transfer a copy? I could ask Ertem to contact whoever you would designate in
+> your group for obtaining it.
+>
+> Thanks!
+> Ken
+>
+>  on 1/23/02 11:54 AM, Kenneth Rose at rose@ece.ucsb.edu wrote:
+>
+> > Ed,
+> >
+> > I think the dataset and features will be useful. I will discuss further with
+> > Ertem to decide on our specific plans and will then get back to you.
+> >
+> > Thanks!
+> > Ken
+> >
+> > On 1/22/2002 6:42 PM, "Edward Chang" <echang@xanadu.ece.ucsb.edu> wrote:
+> >
+> >> >
+> >> > Ken,
+> >> >
+> >> > I am at San Jose, so I am a bit late to respond.
+> >> >
+> >> > The datasets used by clindex, unfortunately, do
+> >> > not exist after my co-author moved to UC Irvine.
+> >> > We placed all files on a PC, and that PC was
+> >> > retired by Stanford.
+> >> >
+> >> > What we have now is a 51K set, and with a brand
+> >> > new set of 144 features.  If you think this set can
+> >> > be useful, we can give that to you...
+> >> >
+> >> > I have abandoned on Clindex because it takes too
+> >> > long to run.  We use TSVQ now.   Although the accuracy
+> >> > is not that great, but is adequate...
+> >> >
+> >> > Ed
+> >> >
+> >> > On Tue, 22 Jan 2002, Kenneth Rose wrote:
+> >> >
+> >>> >> Hi Ed,
+> >>> >>
+> >>> >> My student Ertem is working on clustering based searches of databases,
+> >>> which
+> >>> >> are based on various ideas from compression and information theory. We
+> >>> would
+> >>> >> like to try our ideas on larger datasets. I was wondering if we could >>>
+> have
+> >>> >> access (or actually obtain) the datasets you were using in the Clindex
+> >>> paper
+> >>> >> with the Stanford people. You mention a 30,000 set and a 450,000 set.
+> >>> Also,
+> >>> >> would it be possible to have access to your feature vectors..? Our
+> >>> interest
+> >>> >> is really in techniques to work with existing good feature vectors, and
+> it
+> >>> >> would greatly help to use existing ones. Finally, would it be possible to
+> >>> >> use the Clindex software for reference purposes in our experiments?
+> >>> >>
+> >>> >> Please let me know how you feel about these requests.
+> >>> >> Thanks for any help you can offer!
+> >>> >> Ken
+> >>> >>
+> >>> >>
+> >> >
+> >
+> >
+> >
+>
+>
+
+
+<t2>Email #2</t2>
+
+Date: Sun, 10 Feb 2002 18:08:04 -0800 (PST)
+From: Edward Chang <echang@xanadu.ece.ucsb.edu>
+To: Ken Rose <rose@xanadu.ece.ucsb.edu>
+Cc: Edward Chang <echang@xanadu.ece.ucsb.edu>, kingshy@engineering
+Subject: cluster indexing
+
+
+Hi Ken,
+
+While reading the IGERT proposal, I am encouraged that
+your group is also actively working on the clustering/indexing
+problem.  I believe your group will do a superb job.
+
+Your reference on [Cheng, Ferhatosmanoglu]'s work, however,
+may not be the earlies work on clustering/indexing.  The earliest
+works in the DB community are:
+
+Clindex, C. Li, E. Chang. H. Garcia-Molina, etc., Stanford Technical
+Report, 1998.
+
+Scaling EM (Expectation-Maximization) Clustering to Large Databases,
+Paul S. Bradley and Usama M. Fayyad and Cory A. Reina, Microsoft
+Technical Report, 1998.
+
+Also, since you are on Kingshy's PhD committee, and she has been
+working on this problem for a year with a couple of paper written,
+do you think there could a possibility for collaboration in
+solving this challenging problem?
+
+Thank you for your kind advice.
+Ed
+
+
+
+<t2>Email #3</t2>
+
+
+Date: Mon, 11 Feb 2002 10:39:51 -0800
+From: Kenneth Rose <rose@ece.ucsb.edu>
+To: Edward Chang <echang@xanadu.ece.ucsb.edu>
+Subject: Re: cluster indexing
+
+Hi Ed,
+Thanks! We have just begun to look at this problem more closely. I think
+there is a good potential for collaboration here once we get up to enough
+speed in our group that we can actually contribute something valuable... You
+are far more advanced.
+Ken
+
+On 2/10/2002 6:08 PM, "Edward Chang" <echang@xanadu.ece.ucsb.edu> wrote:
+
+>
+> Hi Ken,
+>
+> While reading the IGERT proposal, I am encouraged that
+> your group is also actively working on the clustering/indexing
+> problem.  I believe your group will do a superb job.
+>
+> Your reference on [Cheng, Ferhatosmanoglu]'s work, however,
+> may not be the earlies work on clustering/indexing.  The earliest
+> works in the DB community are:
+>
+> Clindex, C. Li, E. Chang. H. Garcia-Molina, etc., Stanford Technical
+> Report, 1998.
+>
+> Scaling EM (Expectation-Maximization) Clustering to Large Databases,
+> Paul S. Bradley and Usama M. Fayyad and Cory A. Reina, Microsoft
+> Technical Report, 1998.
+>
+> Also, since you are on Kingshy's PhD committee, and she has been
+> working on this problem for a year with a couple of paper written,
+> do you think there could a possibility for collaboration in
+> solving this challenging problem?
+>
+> Thank you for your kind advice.
+> Ed
+>
+
+

@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>When More Data Was Still Controversial | The AGI Forum</title>
+
+  <style>
+    :root {
+      --bg-color: #fafbfc;
+      --card-bg: #ffffff;
+      --text-main: #24292f;
+      --text-muted: #57606a;
+      --accent: #0969da;
+      --accent-tint: #f6f8fa;
+      --border-color: #d0d7de;
+      --gold: #c8a24a;
+      --gold-soft: #e6d9b8;
+      --navy: #1b2a4a;
+      --crimson: #9d2b2b;
+      --font-body: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+      --font-serif: "Iowan Old Style", "Palatino Linotype", "Book Antiqua", Palatino, Georgia, serif;
+      --font-mono: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background-color: var(--bg-color);
+      color: var(--text-main);
+      font-family: var(--font-body);
+      line-height: 1.8;
+      font-size: 18px;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .container {
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 40px 24px 80px 24px;
+    }
+
+    /* Cross-Ecosystem Navigation */
+    .site-nav {
+      display: flex;
+      gap: 18px;
+      font-size: 14px;
+      border-bottom: 1px solid var(--border-color);
+      padding-bottom: 14px;
+      margin-bottom: 28px;
+      flex-wrap: wrap;
+    }
+
+    .site-nav a {
+      color: var(--text-muted);
+      text-decoration: none;
+    }
+
+    .site-nav a:hover {
+      color: var(--accent);
+      text-decoration: underline;
+    }
+
+    .site-nav a.back-hub {
+      color: var(--accent);
+      font-weight: 700;
+    }
+
+    /* Masthead */
+    .masthead {
+      border-bottom: 2px solid var(--text-main);
+      padding-bottom: 18px;
+      margin-bottom: 30px;
+    }
+
+    .forum-title {
+      font-size: 22px;
+      font-weight: 800;
+      letter-spacing: -0.01em;
+      text-transform: uppercase;
+      color: #1f2328;
+      margin-bottom: 4px;
+    }
+
+    .forum-title a { color: inherit; text-decoration: none; }
+    .forum-subtitle { font-size: 14px; color: var(--text-muted); }
+
+    .return-bar {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 24px;
+      font-size: 14px;
+      font-weight: 600;
+    }
+
+    .return-bar a { color: var(--accent); text-decoration: none; }
+    .return-bar a:hover { text-decoration: underline; }
+
+    header {
+      margin-bottom: 36px;
+      border-bottom: 1px solid var(--border-color);
+      padding-bottom: 28px;
+    }
+
+    .series-tag {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--crimson);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-bottom: 12px;
+      display: inline-block;
+    }
+
+    h1 {
+      font-family: var(--font-serif);
+      font-size: 34px;
+      line-height: 1.25;
+      letter-spacing: -0.01em;
+      font-weight: 700;
+      color: #1f2328;
+      margin-bottom: 12px;
+    }
+
+    .subtitle {
+      font-size: 19px;
+      color: var(--slate);
+      font-style: italic;
+      margin-bottom: 16px;
+      line-height: 1.4;
+    }
+
+    .meta {
+      font-size: 15px;
+      color: var(--text-muted);
+      display: flex;
+      gap: 14px;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    .article-body h2 {
+      font-family: var(--font-serif);
+      font-size: 24px;
+      letter-spacing: -0.01em;
+      margin: 44px 0 18px 0;
+      padding-bottom: 8px;
+      border-bottom: 1px solid var(--border-color);
+      color: #1f2328;
+    }
+
+    .article-body p { margin-bottom: 22px; }
+    .article-body ul, .article-body ol { margin-bottom: 22px; padding-left: 28px; }
+    .article-body li { margin-bottom: 10px; }
+
+    .article-body a {
+      color: var(--navy);
+      text-decoration: none;
+      border-bottom: 1px solid var(--gold-soft);
+    }
+
+    .article-body a:hover {
+      color: var(--crimson);
+      border-bottom-color: var(--crimson);
+    }
+
+    blockquote {
+      border-left: 4px solid var(--navy);
+      background-color: var(--accent-tint);
+      padding: 16px 22px;
+      margin: 28px 0;
+      border-radius: 0 6px 6px 0;
+      color: #24292f;
+      font-style: normal;
+    }
+
+    blockquote.focal {
+      border-left-color: var(--crimson);
+      background-color: #fdf6f6;
+      font-size: 19px;
+      font-family: var(--font-serif);
+    }
+
+    /* Structured Timeline Block */
+    .timeline-box {
+      background: var(--card-bg);
+      border: 1px solid var(--border-color);
+      border-radius: 8px;
+      padding: 28px;
+      margin: 36px 0;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+    }
+
+    .timeline-box h3 {
+      font-family: var(--font-serif);
+      font-size: 20px;
+      color: var(--navy);
+      margin-bottom: 20px;
+      border-bottom: 2px solid var(--gold);
+      padding-bottom: 8px;
+    }
+
+    .timeline-item {
+      display: grid;
+      grid-template-columns: 140px 1fr;
+      gap: 16px;
+      margin-bottom: 20px;
+      padding-bottom: 16px;
+      border-bottom: 1px dashed var(--hairline);
+    }
+
+    .timeline-item:last-child {
+      margin-bottom: 0;
+      padding-bottom: 0;
+      border-bottom: none;
+    }
+
+    .timeline-date {
+      font-family: var(--font-mono);
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--crimson);
+      line-height: 1.5;
+    }
+
+    .timeline-content {
+      font-size: 15px;
+      line-height: 1.6;
+    }
+
+    .timeline-content strong {
+      display: block;
+      font-size: 16px;
+      color: #1f2328;
+      margin-bottom: 4px;
+    }
+
+    footer {
+      margin-top: 64px;
+      border-top: 1px solid var(--border-color);
+      padding-top: 32px;
+      font-size: 14px;
+      color: var(--text-muted);
+      text-align: center;
+    }
+
+    footer a { color: var(--navy); text-decoration: none; }
+    footer a:hover { text-decoration: underline; }
+
+    @media (max-width: 640px) {
+      .timeline-item { grid-template-columns: 1fr; gap: 4px; }
+      h1 { font-size: 28px; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <nav class="site-nav">
+    <a href="http://infolab.stanford.edu/~echang/AGIBlogs/AGIForumIndex.html" class="back-hub">&larr; The AGI Forum Index</a>
+    <a href="http://infolab.stanford.edu/~echang/">Stanford Home</a>
+    <a href="http://infolab.stanford.edu/~echang/cs372/MACI_UCCT_CS300_Nov2025.html">The Path to AGI Trilogy</a>
+    <a href="https://socrasynth.com/" target="_blank" rel="noopener noreferrer">SocraSynth / QuadriumAI</a>
+  </nav>
+
+  <div class="masthead">
+    <div class="forum-title">
+      <a href="http://infolab.stanford.edu/~echang/AGIBlogs/AGIForumIndex.html">The AGI Forum: Theories, Practice, Safety, Risk &amp; Policy</a>
+    </div>
+    <div class="forum-subtitle">Dispatches on Theoretical Paradigms, Architectural Practice, and Global AI Policy</div>
+  </div>
+
+  <div class="return-bar">
+    <a href="http://infolab.stanford.edu/~echang/AGIBlogs/AGIForumIndex.html">&larr; Back to Forum Home Page</a>
+  </div>
+
+  <header>
+    <div class="series-tag">Dispatch No. 04 · History of Paradigms &amp; Peer Review</div>
+    <h1>When More Data Was Still Controversial</h1>
+    <div class="subtitle">A documented 2011–2012 episode about evidence, computation, and scientific paradigm change</div>
+    <div class="meta">
+      <span>Edward Y. Chang</span>
+      <span>•</span>
+      <span>Stanford University</span>
+      <span>•</span>
+      <time datetime="2026-10-01">October 1, 2026</time>
+      <span>•</span>
+      <span>7 min read</span>
+    </div>
+  </header>
+
+  <main class="article-body">
+    <p>
+      Scientific history looks much cleaner in retrospect than it does while we are living through it. Once a paradigm succeeds, its central ideas can appear almost inevitable. We forget how uncertain they once seemed—and sometimes how difficult it was simply to run the experiment capable of settling the question.
+    </p>
+    <p>
+      I recently rediscovered correspondence from 2011 and 2012 concerning an invited paper my collaborators and I submitted to a special issue of the <em>Proceedings of the IEEE</em>. The paper asked a question that sounds almost ordinary today:
+    </p>
+    <blockquote class="focal">
+      <strong>As data become abundant, does the balance between engineered model assumptions and what can be learned from data change?</strong>
+    </blockquote>
+    <p>
+      The surviving review record provides an unusually clear snapshot of that question while it was still contested.
+    </p>
+
+    <h2>The Idea</h2>
+    <p>
+      During my years at Google Research, my group was working increasingly at Web scale. This led us to distinguish two broad approaches to perception. One starts primarily from the <strong>model</strong>: build assumptions about invariance, structure, and representation into the architecture. The other increasingly exploits <strong>data</strong>: expose the learner to enough examples that variation can be captured empirically rather than anticipated entirely by the designer.
+    </p>
+    <p>
+      This was never a claim that learned systems contain no model. Every learning system incorporates assumptions. The question was whether <strong>data scale itself should be treated as a first-class experimental variable</strong>.
+    </p>
+    <p>
+      That perspective appeared in my 2011 Springer monograph, <a href="https://link.springer.com/book/10.1007/978-3-642-20429-6" target="_blank" rel="noopener noreferrer"><em>Foundations of Large-Scale Multimedia Information Management and Retrieval</em></a>, which treated large-scale computation and learning as closely connected problems.
+    </p>
+
+    <h2>October 2011: A Genuine Conceptual Disagreement</h2>
+    <p>
+      Our manuscript was titled <em>“Massive Parallel Model-Based and Data-Driven Hybrid Algorithms for Processing Web-Scale Datasets.”</em> On October 10, 2011, Associate Editor Malcolm Slaney returned a major-revision decision. In the letter, he described the paper's goal as articulating the difference between model-driven and data-driven features and investigating a hybrid approach.
+    </p>
+    <p>
+      Reviewer #1 disagreed with the framing itself, arguing that there was essentially no meaningful difference between the two pathways as we had formulated them because convolutional networks and related systems also learn parameters from data. That was—and remains—a defensible technical objection.
+    </p>
+    <p>
+      Another reviewer, however, reconstructed our intended hypothesis quite accurately: for highly variable object categories, capturing diverse patterns from a large amount of data might become increasingly important, and the data-driven pathway could improve as training data increased.
+    </p>
+    <blockquote>
+      The disagreement was not simply <em>models versus data</em>. It concerned whether increasing data could itself change which modeling assumptions mattered most.
+    </blockquote>
+
+    <h2>May 2012: “Finding b) Is Controversial”</h2>
+    <p>
+      We substantially rewrote the paper under the simpler title <em>“A Data-Driven Study on Image Feature Extraction and Fusion.”</em> On May 3, 2012, the revised manuscript was declined for the special issue. Malcolm's letter nevertheless said that he liked the premise, considered the study clear and its results provocative, and thought the work was “going in a great direction.” He offered to consider another version later with new reviewers.
+    </p>
+    <p>
+      Reviewer #1 summarized three findings: engineered methods performed better when training data were scarce; learning-based methods caught up when data became abundant; and combining classifiers could help. Then came the sentence that makes the correspondence worth preserving:
+    </p>
+    <blockquote class="focal">
+      <strong>“While finding a) and c) are obvious, finding b) is controversial.”</strong>
+    </blockquote>
+    <p>
+      Read in 2026, that sentence is striking—not because the reviewer lacked expertise, but because it records where the boundary of accepted thinking lay in May 2012. The proposition that abundant data could materially change the relative effectiveness of learned representations was not yet something everyone regarded as obvious.
+    </p>
+
+    <h2>The Experiment We Could Not Finish</h2>
+    <p>
+      Reviewer #1 then asked for a much larger and more standardized test: full-scale ImageNet, pointing to roughly 1.2 million images and 1,000 categories, and even to the larger ImageNet collection. Scientifically, this was a reasonable request.
+    </p>
+    <p>
+      Practically, we could not finish it before the special-issue deadline. Our large-scale infrastructure relied primarily on distributed CPUs. I did not have sufficient confidence that we could complete the requested experiment in the available time, so we stopped pursuing inclusion in the special issue.
+    </p>
+    <p>
+      From my perspective as an author, the evidentiary threshold felt as though it was moving: first the conceptual distinction was challenged; after substantial revision, the scaling result was described as controversial; next came a substantially larger experiment.
+    </p>
+    <p>
+      Would successful completion of that experiment have changed the reviewer's judgment? <strong>I do not know.</strong> That counterfactual cannot be established from the record, and there is no need to assign a motive.
+    </p>
+
+    <h2>Then the Computational Landscape Changed</h2>
+    <p>
+      A few months later, Krizhevsky, Sutskever, and Hinton performed the ImageNet-scale experiment that became AlexNet. Their contribution was not simply the idea that data matter. They assembled architecture, data, optimization, and—crucially—GPU computation into an experiment powerful enough to produce a result the field could not ignore.
+    </p>
+    <p>
+      Their network was trained on roughly 1.2 million ImageNet images over 1,000 classes, and their <a href="https://proceedings.neurips.cc/paper/2012/hash/c399862d3b9d6b76c8436e924a68c45b-Abstract.html" target="_blank" rel="noopener noreferrer">NeurIPS 2012 paper</a> emphasized an efficient GPU implementation as a key ingredient.
+    </p>
+    <p>
+      They completed the experiment that we had not been able to complete, and they did it brilliantly. They deserve enormous credit for it.
+    </p>
+    <blockquote>
+      <strong>The idea mattered. The evidence mattered more. And the available computational substrate helped determine which experiment could actually be performed.</strong>
+    </blockquote>
+
+    <h2>The Work Continued</h2>
+    <p>
+      The rejected study did not disappear. A developed version was published in <em>Information Sciences</em> in 2014 as <a href="https://doi.org/10.1016/j.ins.2014.03.116" target="_blank" rel="noopener noreferrer"><em>“A Data-Driven Study of Image Feature Extraction and Fusion.”</em></a>
+    </p>
+    <p>
+      The published experiments reported that increasing training data strongly benefited the more complex approaches and that, with sufficiently abundant examples, different representation methods could converge toward similarly strong classification performance.
+    </p>
+    <p>
+      Thus the 2011–2012 correspondence does not document a simple story of visionary authors, conservative reviewers, and later vindication. The reviewers identified genuine problems: terminology needed clarification, some comparisons needed stronger controls, and a broad claim about data scale legitimately invited a larger-scale test.
+    </p>
+    <p>
+      What the correspondence captures instead is more valuable: <strong>a paradigm transition while the answer was still uncertain.</strong>
+    </p>
+
+    <h2>A Lesson for Peer Review</h2>
+    <p>
+      Almost any paper can be challenged by expanding the required evidentiary surface: compare more algorithms, add more datasets, increase scale, cover more domains, or add stronger controls. Often those requests improve science. Sometimes they produce the decisive experiment.
+    </p>
+    <p>
+      But there is a structural danger when the required evidentiary surface expands specifically because a result conflicts with established expectations. A useful discipline would be to ask reviewers of unconventional work one additional question:
+    </p>
+    <blockquote class="focal">
+      <strong>What result, on what feasible experiment, would cause you to change your assessment?</strong>
+    </blockquote>
+    <p>
+      That question does not weaken peer review. It makes review more falsifiable, and asks of the reviewer the same intellectual commitment we properly demand from the author.
+    </p>
+
+    <h2>Why Remember This Now?</h2>
+    <p>
+      I am not revisiting this episode to argue that being early means being right. It does not. Nor is the lesson to ignore reviewers; several criticisms of our paper were justified.
+    </p>
+    <p>
+      The lesson I carried forward is narrower:
+    </p>
+    <blockquote>
+      <strong>When a result challenges the prevailing conceptual framework, preserve the record, state the hypothesis precisely, identify an experiment capable of falsifying it, and distinguish “not yet demonstrated” from “wrong.”</strong>
+    </blockquote>
+    <p>
+      In 2011, the disputed variable was data scale. Today's arguments about AGI involve different candidates—causal reasoning, persistent state, multi-agent deliberation, grounding, and architectural governance. Whether those ideas will ultimately matter is an empirical question.
+    </p>
+    <p>
+      That is precisely why the standard for both authors and reviewers should be the same: <strong>What evidence would change our minds?</strong>
+    </p>
+
+    <div class="timeline-box">
+      <h3>Documentary Timeline</h3>
+
+      <div class="timeline-item">
+        <div class="timeline-date">2011</div>
+        <div class="timeline-content">
+          <strong>Springer Monograph</strong>
+          <em>Foundations of Large-Scale Multimedia Information Management and Retrieval</em> presents large-scale learning and computation as an integrated research program.
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-date">Oct 10, 2011</div>
+        <div class="timeline-content">
+          <strong>First IEEE Review</strong>
+          The invited manuscript receives a major-revision decision. Reviewer #1 disputes the model-driven versus data-driven distinction; another reviewer accurately summarizes the data-scaling hypothesis.
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-date">May 3, 2012</div>
+        <div class="timeline-content">
+          <strong>Data Scaling Called “Controversial”</strong>
+          The revised manuscript is declined for the special issue. Reviewer #1 calls the abundant-data result “controversial” and asks for full ImageNet-scale testing.
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-date">2012</div>
+        <div class="timeline-content">
+          <strong>Requested Experiment Not Completed in Time</strong>
+          Our CPU-based infrastructure could not complete the requested full-scale ImageNet study within the special-issue window, and we stopped pursuing inclusion.
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-date">Late 2012</div>
+        <div class="timeline-content">
+          <strong>AlexNet</strong>
+          Krizhevsky, Sutskever, and Hinton demonstrate deep convolutional learning at ImageNet scale using an efficient GPU implementation.
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-date">2014</div>
+        <div class="timeline-content">
+          <strong>Information Sciences Publication</strong>
+          A developed version of the data-driven study appears in peer-reviewed form.
+        </div>
+      </div>
+    </div>
+
+    <p style="font-size: 14px; color: var(--text-muted); margin-top: 28px;">
+      <strong>Evidence note.</strong> Quotations and decision dates above are taken from the author's retained Manuscript Central correspondence and peer-review records dated October 10, 2011 and May 3, 2012. The April 23, 2012 correspondence documents reopening of the submission system for the revision.
+    </p>
+  </main>
+
+  <footer>
+    <p>
+      &copy; 2026 <a href="http://infolab.stanford.edu/~echang/">Edward Y. Chang</a>. Published as part of <a href="http://infolab.stanford.edu/~echang/AGIBlogs/AGIForumIndex.html"><em>The AGI Forum: Theories, Practice, Safety, Risk &amp; Policy</em></a>.
+    </p>
+    <p style="margin-top: 8px; font-size: 13px;">
+      <a href="http://infolab.stanford.edu/~echang/AGIBlogs/AGIForumIndex.html">&larr; Return to Forum Index</a>
+    </p>
+  </footer>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,81 @@
+#!/usr/local/bin/perl
+
+# Normalizes a dat file so that the atrributes all have zero mean, variance 1.
+
+$datfile = shift(@ARGV) || die "Usage: datNormalize <dat file> \n";
+
+#create the normalize.dat string.
+        $normalizedfile = $datfile;
+        if($normalizedfile =~ /\.dat/) {
+           $normalizedfile =~ s/\.dat/.normalized.dat/;
+        }
+        else {
+	    $normalizedfile = $datfile . "normalized";
+        }
+
+#read in datfile
+open(NORMALIZEDFILE, ">$normalizedfile") || die "Cannot open $normalizedfile: $!\n";
+open(DATFILE, "<$datfile") || die "Cannot open $datfile: $!\n";
+
+@lines = <DATFILE>;
+close(DATFILE);
+
+# compute mean and variance of each feature
+foreach $line (@lines) {
+    if(!($line=~/^\#/)) {
+	$numSamples++;
+	@features = split(/\s+/, $line);
+	($label,@features) = @features; 
+	foreach $feature (@features) {
+	    @values = split(/\:/, $feature);
+	    $mean[$values[0]] = $mean[$values[0]] + $values[1];
+	    $meansq[$values[0]] = $meansq[$values[0]] + ($values[1]*$values[1]);
+	}
+    }
+}
+
+$numFeatures = @mean;
+print "Num features: $numFeatures, Num samples: $numSamples\n";
+
+for ($i=0;$i<$numFeatures;$i++) {
+    $mean[$i] = $mean[$i]/$numSamples;
+    $meansq[$i] = $meansq[$i]/$numSamples;
+    $stdev[$i] = sqrt($meansq[$i] - $mean[$i]*$mean[$i]);
+    print "Feature $i: mean: $mean[$i] stdev: $stdev[$i]\n";
+}
+
+#Write NORMALIZEDFILE
+print NORMALIZEDFILE "#Automatically generated from $datfile.\n";
+foreach $line (@lines) {
+    if($line=~/^\#/) {
+	print PRUNEDFILE "$line";
+    } else {
+	@features = split(/\s+/, $line);
+	($label,@features) = @features;
+	print NORMALIZEDFILE $label;
+
+	@fullFeature = ();
+
+	foreach $feature (@features) {
+	    @values = split(/\:/, $feature);
+	    $fullFeature[$values[0]] = $values[1];
+	}
+
+	for($i=0; $i<$numFeatures; $i++) {
+	    if ($stdev[$i] != 0) {
+		$fullFeature[$i] = ($fullFeature[$i] - $mean[$i])/$stdev[$i];
+	    }
+	    if($fullFeature[$i] != 0) {
+		print NORMALIZEDFILE " " . $i . ":" . $fullFeature[$i];
+	    }
+	}
+	print NORMALIZEDFILE "\n";
+    }
+}
+
+close NORMALIZEDFILE;
+
+
+
+
+

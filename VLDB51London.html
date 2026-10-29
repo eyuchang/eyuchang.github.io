@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>London Tour Map - VLDB Conference & Sightseeing</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            color: #333;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+        .header {
+            text-align: center;
+            margin-bottom: 25px;
+        }
+        h1 {
+            color: #2c3e50;
+            font-size: 28px;
+            margin-bottom: 10px;
+        }
+        .hotel-info {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 10px;
+            margin: 20px 0;
+            border-left: 5px solid #e74c3c;
+        }
+        .map-container {
+            position: relative;
+            width: 100%;
+            height: 800px;
+            background: #f5f5f5;
+            border: 3px solid #2c3e50;
+            border-radius: 15px;
+            margin: 20px 0;
+            overflow: hidden;
+        }
+        
+        /* Create realistic London map background */
+        .map-background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                /* Parks (green areas) */
+                radial-gradient(ellipse 80px 60px at 18% 25%, #90EE90 40%, transparent 50%),
+                radial-gradient(ellipse 100px 40px at 12% 65%, #90EE90 40%, transparent 50%),
+                radial-gradient(ellipse 60px 40px at 85% 30%, #90EE90 40%, transparent 50%),
+                /* Buildings/urban areas */
+                linear-gradient(45deg, #d3d3d3 25%, transparent 25%, transparent 75%, #d3d3d3 75%),
+                linear-gradient(45deg, #d3d3d3 25%, transparent 25%, transparent 75%, #d3d3d3 75%),
+                /* Base color */
+                #f0f0f0;
+            background-size: 
+                100px 100px,
+                120px 120px,
+                80px 80px,
+                20px 20px,
+                20px 20px,
+                100% 100%;
+            background-position:
+                0 0,
+                0 0, 
+                0 0,
+                0 0,
+                10px 10px,
+                0 0;
+            opacity: 0.6;
+        }
+        
+        /* Thames River - realistic S-curve */
+        .thames {
+            position: absolute;
+            background: linear-gradient(90deg, #4682B4 0%, #1E90FF 50%, #4682B4 100%);
+            z-index: 2;
+        }
+        .thames-main { 
+            left: 0; 
+            top: 420px; 
+            width: 100%; 
+            height: 50px;
+            border-radius: 25px;
+            transform: rotate(-2deg);
+        }
+        .thames-curve1 {
+            left: 25%;
+            top: 450px;
+            width: 30%;
+            height: 45px;
+            border-radius: 25px;
+            transform: rotate(15deg);
+        }
+        .thames-curve2 {
+            left: 50%;
+            top: 430px;
+            width: 35%;
+            height: 40px;
+            border-radius: 25px;
+            transform: rotate(-10deg);
+        }
+        
+        /* Street grid - major roads */
+        .street {
+            position: absolute;
+            background: #666;
+            z-index: 3;
+        }
+        /* Major streets */
+        .whitehall { left: 28%; top: 150px; width: 2px; height: 300px; }
+        .strand { left: 15%; top: 200px; width: 300px; height: 2px; }
+        .oxford-st { left: 10%; top: 100px; width: 400px; height: 2px; }
+        .westminster-bridge { left: 32%; top: 440px; width: 100px; height: 3px; transform: rotate(25deg); }
+        .tower-bridge { left: 75%; top: 445px; width: 60px; height: 3px; transform: rotate(45deg); }
+        .embankment { left: 15%; top: 470px; width: 400px; height: 2px; }
+        .regent-st { left: 25%; top: 80px; width: 2px; height: 150px; }
+        .tottenham-ct-rd { left: 35%; top: 70px; width: 2px; height: 100px; }
+        
+        /* Smaller streets */
+        .street-small {
+            position: absolute;
+            background: #999;
+            z-index: 3;
+        }
+        .side-street-1 { left: 20%; top: 180px; width: 80px; height: 1px; }
+        .side-street-2 { left: 40%; top: 160px; width: 60px; height: 1px; }
+        .side-street-3 { left: 15%; top: 220px; width: 100px; height: 1px; }
+        .side-street-4 { left: 45%; top: 200px; width: 80px; height: 1px; }
+        .side-street-5 { left: 60%; top: 180px; width: 70px; height: 1px; }
+        
+        /* Location markers */
+        .location {
+            position: absolute;
+            padding: 8px 12px;
+            border-radius: 20px;
+            font-size: 10px;
+            font-weight: 600;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 2px solid white;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+            z-index: 15;
+            min-width: 70px;
+            line-height: 1.2;
+        }
+        .location:hover {
+            transform: scale(1.15);
+            box-shadow: 0 6px 15px rgba(0,0,0,0.4);
+            z-index: 20;
+        }
+        
+        .hotel { 
+            background: linear-gradient(45deg, #DC143C, #B22222);
+            color: white;
+            font-weight: bold;
+            border: 3px solid #FFD700;
+            animation: pulse 2s infinite;
+        }
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(220, 20, 60, 0.7); }
+            70% { box-shadow: 0 0 0 10px rgba(220, 20, 60, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(220, 20, 60, 0); }
+        }
+        
+        .conference {
+            background: linear-gradient(45deg, #FF4500, #FF6347);
+            color: white;
+            font-weight: bold;
+            border: 4px solid #00CED1;
+            font-size: 11px;
+            animation: glow 3s ease-in-out infinite alternate;
+        }
+        @keyframes glow {
+            from { box-shadow: 0 0 10px #00CED1; }
+            to { box-shadow: 0 0 20px #00CED1, 0 0 30px #00CED1; }
+        }
+        
+        .day1-morning { background: linear-gradient(45deg, #32CD32, #228B22); color: white; }
+        .day1-afternoon { background: linear-gradient(45deg, #1E90FF, #0000CD); color: white; }
+        .day1-evening { background: linear-gradient(45deg, #FF8C00, #FF4500); color: white; }
+        .day2a { background: linear-gradient(45deg, #8A2BE2, #4B0082); color: white; }
+        .day2b { background: linear-gradient(45deg, #FF1493, #DC143C); color: white; }
+        .photo-spot { background: linear-gradient(45deg, #FFD700, #FFA500); color: #333; font-weight: bold; }
+        
+        /* Walking paths */
+        .path {
+            position: absolute;
+            border: 2px dashed #e74c3c;
+            z-index: 12;
+            opacity: 0.7;
+        }
+        
+        /* Landmarks with realistic positioning */
+        .landmark {
+            position: absolute;
+            font-size: 18px;
+            z-index: 10;
+            text-shadow: 0 0 3px white;
+        }
+        
+        .legend {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 10px;
+            margin: 25px 0;
+            padding: 20px;
+            background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+            border-radius: 10px;
+        }
+        .legend-item {
+            display: flex;
+            align-items: center;
+            padding: 8px;
+            background: white;
+            border-radius: 6px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            font-size: 12px;
+        }
+        .legend-color {
+            width: 20px;
+            height: 20px;
+            border-radius: 10px;
+            margin-right: 8px;
+            border: 2px solid white;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+            flex-shrink: 0;
+        }
+        
+        .walking-time {
+            color: #666;
+            font-size: 9px;
+            font-style: italic;
+            display: block;
+            margin-top: 1px;
+        }
+        
+        .info-panel {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 20px;
+            border-radius: 12px;
+            margin: 20px 0;
+        }
+        .info-panel h3 {
+            margin-top: 0;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🗺️ VLDB 2025 London Conference & Tour Map</h1>
+            <div class="hotel-info">
+                <strong>📍 Base: Corinthia London</strong> - Whitehall Place, Westminster<br>
+                <strong>🎓 Conference: VLDB 2025</strong> - Queen Elizabeth II Conference Centre<br>
+                <em>Perfect setup: 8-minute walk from hotel to conference, all attractions nearby!</em>
+            </div>
+        </div>
+
+        <div class="map-container">
+            <!-- Map background with street pattern -->
+            <div class="map-background"></div>
+            
+            <!-- Thames River with realistic curves -->
+            <div class="thames thames-main"></div>
+            <div class="thames thames-curve1"></div>
+            <div class="thames thames-curve2"></div>
+            
+            <!-- Major street grid -->
+            <div class="street whitehall"></div>
+            <div class="street strand"></div>
+            <div class="street oxford-st"></div>
+            <div class="street westminster-bridge"></div>
+            <div class="street tower-bridge"></div>
+            <div class="street embankment"></div>
+            <div class="street regent-st"></div>
+            <div class="street tottenham-ct-rd"></div>
+            
+            <!-- Smaller streets -->
+            <div class="street-small side-street-1"></div>
+            <div class="street-small side-street-2"></div>
+            <div class="street-small side-street-3"></div>
+            <div class="street-small side-street-4"></div>
+            <div class="street-small side-street-5"></div>
+            
+            <!-- Area labels -->
+            <div style="position: absolute; left: 15%; top: 50px; font-size: 12px; font-weight: bold; color: #666;">FITZROVIA</div>
+            <div style="position: absolute; left: 45%; top: 40px; font-size: 12px; font-weight: bold; color: #666;">BLOOMSBURY</div>
+            <div style="position: absolute; left: 20%; top: 120px; font-size: 12px; font-weight: bold; color: #666;">SOHO</div>
+            <div style="position: absolute; left: 45%; top: 120px; font-size: 12px; font-weight: bold; color: #666;">HOLBORN</div>
+            <div style="position: absolute; left: 20%; top: 250px; font-size: 12px; font-weight: bold; color: #666;">WESTMINSTER</div>
+            <div style="position: absolute; left: 50%; top: 380px; font-size: 12px; font-weight: bold; color: #666;">SOUTH BANK</div>
+            <div style="position: absolute; left: 70%; top: 350px; font-size: 12px; font-weight: bold; color: #666;">CITY OF LONDON</div>
+            
+            <!-- Landmark icons -->
+            <div class="landmark" style="left: 31%; top: 350px;">🏛️</div>
+            <div class="landmark" style="left: 35%; top: 370px;">🕐</div>
+            <div class="landmark" style="left: 48%; top: 380px;">🎡</div>
+            <div class="landmark" style="left: 15%; top: 580px;">👑</div>
+            <div class="landmark" style="left: 72%; top: 320px;">🏰</div>
+            <div class="landmark" style="left: 76%; top: 380px;">🌉</div>
+            <div class="landmark" style="left: 20%; top: 180px;">🦁</div>
+            <div class="landmark" style="left: 43%; top: 80px;">🏛️</div>
+            
+            <!-- Your Hotel - Corinthia London -->
+            <div class="location hotel" style="left: 28%; top: 230px;">
+                🏨 CORINTHIA<br>
+                <span class="walking-time">Your Hotel</span>
+            </div>
+            
+            <!-- VLDB 2025 Conference Venue - VERY PROMINENT -->
+            <div class="location conference" style="left: 32%; top: 290px;">
+                🎓 QEII CENTRE<br>
+                VLDB 2025<br>
+                <span class="walking-time">8 min walk</span>
+            </div>
+            
+            <!-- Day 1 Morning Locations -->
+            <div class="location day1-morning" style="left: 20%; top: 160px;">
+                🦁 Trafalgar Sq<br>
+                <span class="walking-time">3 min walk</span>
+            </div>
+            <div class="location day1-morning" style="left: 31%; top: 330px;">
+                🏛️ Westminster Abbey<br>
+                <span class="walking-time">5 min walk</span>
+            </div>
+            <div class="location day1-morning" style="left: 35%; top: 350px;">
+                🕐 Big Ben<br>
+                <span class="walking-time">7 min walk</span>
+            </div>
+            
+            <!-- Day 1 Afternoon -->
+            <div class="location day1-afternoon" style="left: 48%; top: 360px;">
+                🎡 London Eye<br>
+                <span class="walking-time">10 min walk</span>
+            </div>
+            <div class="location day1-afternoon" style="left: 55%; top: 400px;">
+                🎭 South Bank<br>
+                <span class="walking-time">12 min walk</span>
+            </div>
+            <div class="location day1-afternoon" style="left: 62%; top: 420px;">
+                🖼️ Tate Modern<br>
+                <span class="walking-time">15 min walk</span>
+            </div>
+            
+            <!-- Day 1 Evening -->
+            <div class="location day1-evening" style="left: 40%; top: 140px;">
+                🎪 Covent Garden<br>
+                <span class="walking-time">8 min walk</span>
+            </div>
+            
+            <!-- Buckingham Palace -->
+            <div class="location day1-morning" style="left: 15%; top: 560px;">
+                👑 Buckingham Palace<br>
+                <span class="walking-time">12 min walk</span>
+            </div>
+            
+            <!-- Day 2 Options -->
+            <div class="location day2a" style="left: 72%; top: 300px;">
+                🏰 Tower of London<br>
+                <span class="walking-time">25 min tube</span>
+            </div>
+            <div class="location day2a" style="left: 76%; top: 360px;">
+                🌉 Tower Bridge<br>
+                <span class="walking-time">5 min walk</span>
+            </div>
+            <div class="location day2b" style="left: 43%; top: 60px;">
+                🏛️ British Museum<br>
+                <span class="walking-time">15 min tube</span>
+            </div>
+            
+            <!-- Photography Spots -->
+            <div class="location photo-spot" style="left: 33%; top: 400px;">
+                📸 Westminster Bridge<br>
+                <span class="walking-time">Sunrise 6:15 AM</span>
+            </div>
+            <div class="location photo-spot" style="left: 50%; top: 340px;">
+                🌅 Thames Embankment<br>
+                <span class="walking-time">Sunset 7:40 PM</span>
+            </div>
+            
+            <!-- Walking paths from hotel to conference -->
+            <div class="path" style="left: 30%; top: 250px; width: 0; height: 50px; border-left: 3px dashed #00CED1;"></div>
+        </div>
+
+        <div class="legend">
+            <div class="legend-item">
+                <div class="legend-color" style="background: linear-gradient(45deg, #DC143C, #B22222); border-color: #FFD700;"></div>
+                <span><strong>Corinthia Hotel</strong> - Your base</span>
+            </div>
+            <div class="legend-item">
+                <div class="legend-color" style="background: linear-gradient(45deg, #FF4500, #FF6347); border-color: #00CED1;"></div>
+                <span><strong>VLDB 2025 Conference</strong> - QEII Centre</span>
+            </div>
+            <div class="legend-item">
+                <div class="legend-color" style="background: linear-gradient(45deg, #32CD32, #228B22);"></div>
+                <span><strong>Morning</strong> - Westminster</span>
+            </div>
+            <div class="legend-item">
+                <div class="legend-color" style="background: linear-gradient(45deg, #1E90FF, #0000CD);"></div>
+                <span><strong>Afternoon</strong> - Thames/South Bank</span>
+            </div>
+            <div class="legend-item">
+                <div class="legend-color" style="background: linear-gradient(45deg, #FF8C00, #FF4500);"></div>
+                <span><strong>Evening</strong> - Covent Garden</span>
+            </div>
+            <div class="legend-item">
+                <div class="legend-color" style="background: linear-gradient(45deg, #8A2BE2, #4B0082);"></div>
+                <span><strong>Day 2A</strong> - Tower area</span>
+            </div>
+            <div class="legend-item">
+                <div class="legend-color" style="background: linear-gradient(45deg, #FF1493, #DC143C);"></div>
+                <span><strong>Day 2B</strong> - Museums</span>
+            </div>
+            <div class="legend-item">
+                <div class="legend-color" style="background: linear-gradient(45deg, #FFD700, #FFA500);"></div>
+                <span><strong>📸</strong> Photo spots</span>
+            </div>
+        </div>
+
+        <div class="info-panel">
+            <h3>🎓 VLDB 2025 Conference Setup</h3>
+            <strong>Venue:</strong> Queen Elizabeth II Conference Centre, Broad Sanctuary, Westminster SW1P 3EE<br>
+            <strong>Walking Distance:</strong> 8 minutes from Corinthia Hotel<br>
+            <strong>Perfect for:</strong> Quick hotel breaks, nearby lunch options, evening networking<br><br>
+            <strong>🌧️ Weather Advantage:</strong> 57-70°F, Rainy • <strong>Sunrise:</strong> 6:15 AM • <strong>Sunset:</strong> 7:40 PM<br>
+            Short distances keep you dry between hotel, conference, and attractions!
+        </div>
+
+        <div style="background: linear-gradient(135deg, #00b894, #00a085); color: white; padding: 20px; border-radius: 12px; margin-top: 20px; text-align: center;">
+            <strong>🎯 PERFECT ACADEMIC CONFERENCE SETUP</strong><br>
+            <strong>Conference:</strong> QEII Centre (8 min) • <strong>Hotel:</strong> Corinthia (luxury) • <strong>Sightseeing:</strong> All major attractions within 15 min walk<br>
+            <em>One of the best conference/hotel combinations possible in London!</em>
+        </div>
+    </div>
+</body>
+</html>

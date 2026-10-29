@@ -1,0 +1,571 @@
+
+From TKDE@computer.org Wed Apr 12 13:35:32 2000
+Date: Mon, 13 Mar 2000 12:12:55 -0800
+From: TKDE@computer.org
+To: echang@ece.ucsb.edu
+Subject: Reviews for MS#110982
+
+Dear authors,
+
+enclosed below are the four reviews of your submission
+
+Number:    110982
+Title:     Clustering for Approximate Similarity Search and Query Refinement
+        in High-Dimensional Spaces
+
+Based on these reviews, my recommendation as Associate Editor is that
+you prepare a major revision of the paper along the lines suggested
+by the reviewers and resubmit the
+revised version for a second round of reviews.
+
+Please pay particular attention to the following:
+
+- reorganize the related work section and include missing references,
+as suggested by rev #1. A more convincing discussion contrasting your
+approach to other recent techiniques for approximate similarity
+search is also needed.
+As to this point, as a personal advice I suggest you to consider
+recent work by Bennett, Fayyad, and Geiger (KDD 1999), where an
+approach similar to Clindex is presented.
+Also clearly explain how the paper differs from your previous works,
+as requested by rev. #3.
+
+- be explicit about the limitations of your approach (e.g. static data sets)
+
+- considering the objections raised by rev #1 concerning "query
+refinement", drop section 3.6 and change the title of the paper (and
+include the keyword "clustering")
+
+- provide a better motivation for the CF algorithm, and provide a
+more clear description of its actions. Consider that two reviewers
+observed that the reader can get confused by the absence of a clear
+distinction between what the algorithm actually does and what it
+could do. How the algorithm can be practically used is also an issue,
+thus clarify how values of parameters can be chosen.
+
+- clarify the role of the specific (CF) clustering algorithm you use,
+this is needed to clearly focus the paper. On the one hand it seems
+that CF has a major role in determining Clindex performance, on the
+other hand this appears to contradict the statement at page 7.
+
+- the experimental section should be strenghtened. In particular:
+
+* comparison with at least one index structure other than the R*-tree
+and explicitly designed to deal with high-dimensional data, such as
+the X-tree, the SR-tree, or the VA-file, is needed.
+
+* provide additional performance metrics, such as elapsed time
+
+* experiment with larger data sets
+
+
+Best regards
+
+Paolo Ciaccia
+Associate Editor of IEEE TKDE
+
+
+***************************************************************************************************************
+Manuscript reviewed by:
+
+     Reviewer 1
+     Reviewer 2
+     Reviewer 3
+     Reviewer 4
+
+SUMMARY AND RECOMMENDATION
+
+Summary
+---------------
+
+     [Reviewer 1] Good
+
+     [Reviewer 2] Good
+
+     [Reviewer 3] Good
+
+     [Reviewer 4] Fair
+
+     Additional Comments
+     -------------------------------
+
+     [Reviewer 1] Interesting topic. But the paper needs improvement in
+technical andpresentation aspects
+
+     [Reviewer 2] I think the topic is very pressing. The paper presents a new
+clustering and search structure that might help to reduce retrieval costs in
+multimedia collections. The proposed method is simple and seems to perform
+better than other methods. The paper is easy to read and interesting. However,
+the terms recall and precision in section 4 are not well-defined (they do not
+use the defintion usally used in information retrieval). Especially, it is not
+clear which images are said to be relevant for a query. Do they have to lie
+close to the query, or must the content of the image be visually similar to the
+one of the query?
+
+     [Reviewer 3] The paper is well written and the proposed technique is
+technically sound. Moreover, this is a really hot topic, and presented results
+indeed show the efficiency of the Clindex approach in reducing query costs.
+
+     [Reviewer 4] The authors propose a scheme for clustering of
+high-dimensional feature vector data and outline how to index the clusters.
+There are several loose endsthat need to be fixed/justified before it gets
+accepted.They are explained below with some recommendations.
+
+Recommendation
+--------------------------
+
+     [Reviewer 1] Accept if certain minor revisions are made
+
+     [Reviewer 2] Accept if certain minor revisions are made
+
+     [Reviewer 3] Accept if certain minor revisions are made
+
+     [Reviewer 4] Author should prepare a major revision for a second review
+
+     Additional Comments
+     -------------------------------
+
+     [Reviewer 1] Mandatory changes concern the experimental evaluation, the
+clarificationof algorithms and a clearer motivation of the chosen clustering
+method.See detailed comments.
+
+     [Reviewer 2] The paper should carefully explain how the recall is measured.
+What is the set of relevant images for a query?
+
+     [Reviewer 3] I believe that a reference to the paper of the same authors
+appeared in Proc. of SPIE Symposium of Voice, Video, and Data Communications,
+Multimedia Storage and Archiving Systems VI, Boston, MA, September, 1999 is
+definitely needed. In this light, the authors should explicitly illustrate
+original contributions of the paper.A subsection of the Background dedicated to
+a discussion of relation between the CF algorithm and cited clustering
+techniques could also help improve the presentation.As for the experimental
+part, I believe that a comparison with other state-of-the-art indexing
+techniques could raise the technical level of the paper (which, by the way, is
+already high).
+
+     [Reviewer 4] The paper needs more work to justify thesuperiority of the
+proposed approach as against prior techniques.
+
+DETAILED COMMENTS
+
+A.  Public Comments (these will be made available to the author)
+
+     [Reviewer 1] "Clustering for Approximate Similarity Search and Query
+Refinement in High-Dimensional Spaces" is an interesting research paper which
+combinesthe results of two areas of database research, multidimensional
+indexingknowledge discovery. A clustering algorithm is used to improve the
+quality of approximate similarity search. The paper is in generalwell-organized
+and sound but parts of the paper clearly need improvement.The most important
+weakness of the paper regards the way in which theexperimental evaluation is
+performed. Although the blocks of the clusterbased indexing approaches are
+allowed to be arbitrarily unbalanced, onlythe number of retrieved blocks is
+compared. The number of accesses,however, is not an appropriate cost measure as
+the retrieval of largerblocks is much more expensive than the retrieval of
+smaller blocks.To show how bad the chosen measure is, let us consider an
+extreme exampleof a fictive clustering method that fills all clusters with only
+veryfew points. Let 99% of the points be noise which is grouped in a separate
+"cluster". If we make additionally sure that the noise-cluster is accessed
+first, we would also have the 99% recall with only one page access.I do not
+believe that the impressive results of the experimental evaluationare due to
+such effects. But it is absolutely necessary to exclude suchdoubts. Therefore,
+it is necessary to report not only the average numberof points which are in a
+cluster, but also parameters such as the variance, and the maximum and minimum
+number of points. Additionally to theexperiments varying the number of I/O
+operations, experiments reporting(or varying) the actual I/O-cost (plus,
+eventually, CPU cost, e.g. measured as the number of distance computations) are
+required. The I/O cost of an access of b bytes can be determined by the formula
+     T = b*t_transfer + t_seek + t_latencywhere the parameters of the disk
+drive must be looked up in the handbook.Often the following parameters are
+used:    t_transfer = 0.25 sec/MByte   t_seek     = 5 msec     t_latency  = 5
+msecThis formula would also allow to evaluate how much of the
+recall-improvementis achievable by simple blocksize optimization. The result of
+such anexperiment should be that the clustering approach yields a substantially
+higher recall improvement than simply adapting the blocksize of an index.
+Further comments:Title of the paper: remove "Query Refinement" from the title.
+The corresponding section 3.6 is so weak that it is not justified tomention
+this in the title. (cf. below)General limitations of the approach:The
+proposed indexing schema is primarily designed for static data sets,i.e. it
+does not consider changes in the data distribution due to updates.I am not
+generally bothered by this limitation, but it should be clearlypointed out at
+some prominent position such as the introduction and conclusion, where dynamic
+databases could be marked as "future work".In index construction, it is not
+usual to assume that the whole dataset fits into main memory. Is it possible to
+run the CF algorithm when the dataset is not main memory resident? If not, this
+is also a limitationwhich should be stated explicitly.Two paramenters are
+needed to calibrate the index: Kapa and Theta.It is pointed out in the paper
+that such a calibration is necessary toachieve high performance, and rules of
+thumb are given to find goodstart value for an experimental calibration. This
+is not very satisfyingfrom an indexing point of view, because nobody really
+wants to performextensive experiments before constructing an index. Either, the
+choice of parameters must be described more directly as a set of guidelines or
+even better, in a mathematical model which allows directlyto determine the
+parameters, or this limitation must be clearly stated.p. 3-6, Background:The
+related-work section is really not well-organized and should becompletely
+rewritten in a clearly structured way. Techniques whichare of general interest
+should be introduced concisely, andtechniques which are more related to the
+Clindex approach shouldbe introduced in detail. It is mentioned, for instance,
+that CLIQUEis the most related clustering technique. If so, CLIQUE should be
+explained in the related work. A clear structure of the relatedwork could cover
+the following subsections, e.g.:  2.1 multidimensional index structures   2.2
+similarity search       here it would be appropriate to cite Roussopoulos,
+     Kelley and Vincent, SIGMOD conference 1995 and         Hjaltason and
+Samet, SSD 1995    2.3 approximate similarity search       find suitable
+references at the end of this review.   2.4 clustering algorithms
+references seem okay but should be reviewed in more detail  2.5 indexing by
+clustering         Choubey, Chen, Rundensteiner, SSD 1999 (cf. below)On p. 6,
+I didn't like the remarks about Information Retrieval. Theseshould be either
+removed or explained in detail.Section 3.1: The CF AlgorithmThis section
+lacks a clear motivation of the chosen clustering algorithm.Simplicity is not
+an appropriate argument because I think the algorithmis not that simple. I have
+more the impression that the authors used analgorithm which was not good enough
+to make a strong clustering paper ofits own. This impression would not come up
+if a few arguments couldbe found why the chosen CF algorithm particularly
+supports indexing.My personal point of view is: If the argumentation in this
+sectionbecomes convincing in the revision of the paper, the quality of the
+whole paper would turn from GOOD AVERAGE to STRONG. Additionally, it isshown in
+the experiments that CF outperforms other clustering methodswith respect to
+approximate indexing. So the reader is interested, why.p. 9: Heap Search, Heap
+Insert: What kind of search structure is that"Heap"? I know the "Heap" from
+"Heapsearch", which is actually a priority queue and does not support the
+search operation which is needed bythe CF algorithm. Suitable search structures
+would be hashing or searchtrees such as AVL-trees, 2-3-trees, or even
+unbalanced binary trees.Please explain.p. 10: The Cliff-Cutting procedureThe
+description is awkward. There are some alternatives what the procedure COULD
+DO, but no clear definition what it DOES. If Iwant to use Clindex, must I try
+all the alternatives before I geta well-performing index? The paragraph must be
+rewritten.The same applies to:p. 14: Similarity search:Clearly define what
+the search algorithm DOES, not what it COULD DO.In the experimental evaluation,
+the number of I/Os is varied. Obviously,this is a user-defined parameter. But
+where is the correspondingalgorithm for query processing. Of course, the reader
+has an idea,how this algorithm could look like, but it would be better to know
+itexactly from the paper.p. 15: Query refinement:This section is very weak.
+I couldn't get the point why the Clindexmethod provides a better support for
+that query refinement than otherindexing approaches do. If query refinement is
+such an importantpoint, it should be mentioned in the related work, and then in
+3.6it should be clearly pointed out. My impression is that 3.6 should be
+removed.p. 16, middle:"Due to space limitation..." Is there any space
+limitation? I do notthink that the paper is too long.p. 16, later:I cannot
+accept the argumentation why only 30,000 images are used. It isnot prohibitive
+to construct an R-tree of 500,000 points. The number ofI/O operations in the
+experiments is strictly limited. I cannot seewhat part of the experimentation
+could be so time consuming thatthe experiments on the 500,000 database cannot
+be performed.References:[5]: authors of the X-tree are Berchtold, Keim, and
+KriegelAdditional references for approximate search:I would like to have a
+comparison with the most relevant techniques, notnecessarily an experimental
+evaluation (which would be nice, but eventuallytoo difficult), but, at least, a
+concise comparison at a conceptual level(for some of the most important
+techniques among the following) to make the differences evident. I found the
+following related techniques (the first onesare not so database-specific):
+Eyal Kushilevitz, Rafail Ostrovsky, Yuval Rabani: Efficient Search for
+Approximate Nearest Neighbor in High Dimensional Spaces. STOC 1998: 614-623
+Piotr Indyk, Rajeev Motwani: Approximate Nearest Neighbors: Towards Removing
+the Curse of Dimensionality. STOC 1998: 604-613Sakti Pramanik, Jinhua Li: Fast
+Approximate Search Algorithm for Nearest Neighbor Queries in High Dimensions.
+ICDE 1999: 251Sunil Arya, David M. Mount: Approximate Nearest Neighbor Queries
+in Fixed Dimensions. SODA 1993: 271-280Sunil Arya, David M. Mount, Nathan S.
+Netanyahu, Ruth Silverman, Angela Y. Wu: An Optimal Algorithm for Approximate
+Nearest Neighbor Searching. SODA 1994: 573-582P. Zezula, P. Savino, G. Amato,
+F. Rabitti: Approximate Similarity retrieval with M-trees, VLDB journal 7(4),
+1998P. Ciaccia, M. Patella: Using the distance distribution for approximate
+similarity queries in high-dimensional metric spacesRupesh Choubey, Li Chen,
+Elke A. Rundensteiner: GBI: A Generalized R-Tree Bulk-Insertion Strategy. SSD
+1999: 91-108
+
+     [Reviewer 2] I found the paper interesting since searching for relevant
+information in large databases is a pressing problem. Clindex might help to
+reduce retrieval costs. However, I have some concerns regarding maintenance
+costs and the experiments.As stated in the paper, the time complexity of
+building the index is o(d*M^2). If d is large, M is almost equal to N (no two
+points are likely to fall into the same cell in high-dimensional spaces). Thus,
+o(d*M^2) seems to be very expensive. Moreover, it is necessary to rebuild the
+index from time to time. I have looked at the demo on your web-page in order
+to get a feeling for how fast the retrieval is. The efficiency of the algorithm
+was very impressive (less than 2 seconds). However, the quality of the
+similarity search was very poor. With all the examples I tried, I got no
+(visually) similar image. From my perspective, it seems as if the clusters
+consist of random subsets of the entire data base. I can not understand, how
+your method has reached a recall of almost 100% with very few IOs. All the
+queries I tried returned irrelevant images. The only exception was if there were
+multiple copies of an image in the database. Consequently, you should better
+explain what you mean with recall in your experiments (you used cross-validation
+but how exactly). The figures seem very impressive, but a recall of 100% means
+that all returned images are relevant for the given query. Looking at your demo,
+this is certainly not the case.
+
+     [Reviewer 3] The proposed indexing technique is definitely static (i.e.
+insertion and deletions of objects are not supported): This should be explicitly
+stated; otherwise, you should give some hint on how Clindex could be extended to
+deal with dynamic datasets.Figure 3 (CF algorithm), step 5.2(b): The else
+statement is not necessary, since you have to choose to which cluster insert
+cell C regardless of the cardinality of \Psi (if this is >1, possibly clusters
+are merged).Page 10, 3rd paragraph: You discuss about the CC procedure, giving
+some intuition on possible heuristics; however, it is not clear which heuristics
+are actually implemented and which are not (this is especially needed for the
+presented image dataset).Page 13, 2nd para: You state that "it might be good
+for the outlier cluster to be relatively large". However, on page 22, you set
+\theta=0 in order to avoid most of the points falling into the outlier cluster.
+Explain these contrasting statements.Experiments on other datasets are an
+immediate need: at least, present something on the 500,000 images dataset.I
+believe that a graph showing elapsed times needed to solve the queries could
+also show advantages of the Clindex approach.You state that sequential disk
+reads are helpful to reduce query costs: To this end, I suggest you to compare
+Clindex with X-tree and not with R*-tree (indeed, X-tree exploit sequential disk
+reads in super-nodes to reduce query resolution time).Finally, I believe that a
+comparison with the VA-file (see ref. [39]) could also improve quality of the
+paper. The VA-file is an indexing technique that exploits vector space
+quantization and uses a hashing method to index resulting cells. In my view,
+this is similar to the Clindex approach, except that no clustering is applied.
+Therefore, you can show the effectiveness of the CF algorithm by comparing
+Clindex and VA-file results.
+
+     [Reviewer 4] The paper describes a technique for combining clusteringwith
+indexing. However, it does not justify the approach well.1. How does this
+clustering compare to conventional   techniques employed in database research
+such as    KL transforms of the TV-tree? After applying such   transforms, it
+may be sufficient to just index the    data using X-trees or SR-trees without
+any clusteirng?   The performance could be much better than yours if the
+dimensionality is reduced after the KL-transform.    Experiments are needed to
+justify clindex.2. The paper only presents and evaluates   the effectiveness
+of clustering. It overlooks the issues   in indexing once the leaf-level
+clusters are formed and assumes   the cluster directory fits in memory, which
+is not acceptable   in the database community. The index-level clusters may not
+fit   in memory for two reasons: (1) database size, and (2) large
+dimensionality which leads to higher number of clusters for a given
+blocksize/filesize. 3. Cluster size of 300 (section 4.4) may not be good for
+all data.    If the dimensionality is of the order of thousands    (as in the
+case of text documents, or some image databases),    clusters of 300 imply a
+lot of IOs to retrieve the   cluster. The results from 48-dimensional data may
+not    apply in other cases. Experimentation with different datasets    of
+varying dimensionality and recommendations based on them    would be useful.
+4. Instead of comparing with the R*-tree, a better approach would be to
+compare against the SR-tree (or an X-tree-based SR-tree), where the   centroid
+information could be used. The comaprisons seem unfair right now   due to lack
+of centroid information in R*-trees. As mentioned in (1),   you may want to
+cluster the data using KL-transforms.5. Another useful attribute of the
+clustering schemes missed out is   the time for clustering (and any
+precomputation of nearest clusters:   see remarks on page 14) for different
+large disk-based datasets.   There are a few typos in the paper:   Page 20,
+Second para, second line: "clustering" and "non-clustering" are
+interchanged.
+
+B.  Confidential Comments (will not be see by author)
+
+
+
+
+
+
+
+     [Reviewer 3] The major negative point of the paper is the fact that authors
+do not cite a related paper (appeared in Proc of SPIE Symposium of Voice, Video,
+and Data Communications, Multimedia Storage and Archiving Systems 1999) where a
+preliminary version of the proposed indexing technique was introduced.
+Therefore, the original contribution of the paper is not clearly expressed.
+However, I still believe that the paper should be accepted (provided that
+appropriate revision are made), since the community would benefit from
+publication of the presented results.
+
+
+
+OVERVIEW
+
+A.  Reader Interest
+--------------------------
+
+1.  Which category describes this manuscript?
+
+     [Reviewer 1] Research/Technology
+
+     [Reviewer 2] Research/Technology
+
+     [Reviewer 3] Research/Technology
+
+     [Reviewer 4] Research/Technology
+
+
+2.  How relevant is this manuscript to the readers of this periodical?
+
+     [Reviewer 1] Very Relevant
+
+     [Reviewer 2] Very Relevant
+
+     [Reviewer 3] Relevant
+
+     [Reviewer 4] Very Relevant
+
+     [Reviewer 1] Very relevant, because it combines classicalapproaches of
+knowledge discovery andsimilarity search in a new way
+
+     [Reviewer 2] The proposed clustering and search structure allows to
+efficiently seek for similar objects in large databases
+
+     [Reviewer 3] The paper presents theoretical aspects of the proposed
+approach and has a robust experimental section.
+
+
+
+B.  Content
+------------------
+1.  Please summarize how this manuscript advanced this field of research and
+contributes something new to the literature.
+
+     [Reviewer 1] One of the first approaches to exploit explicit use of
+clusteringalgorithms to improve the quality or an index structure
+
+     [Reviewer 2] Accurate similarity search is known to be difficult and
+expensive. The paper explains the inherent dificulties of similarity search (i.e
+of nearest neighbor search in high-dimensional spaces) and suggests not to
+search for accurate answers but only for good answers, i.e. an approximative
+result. The proposed method (Clindex) reduces search costs effectively without
+loosing too much in quality (i.e. recall remains very high even though only a
+small number of IOs are performed). However, it is somehow difficult to see, how
+the method performs in real application in terms of maintenance costs (insertion
+of new objects seems to be quite expensive since the mapping file needs to be
+sorted; reclustering might be required from time to time if the database grows)
+
+     [Reviewer 3] The paper presents a new indexing method (clindex) to
+approximate similarity search in (high-D) vector spaces. The proposed method
+first perform a clustering of DB objects, based on a discrete subdivision of the
+vector space; then, objects in resulting clusters are sequentially written to
+disk in order to exploit the superior read speed with respect to random IOs
+during the retrieval. This is a hot topic and presented results are promising.
+
+     [Reviewer 4] The paper presents a technique for similarity searching in
+image databases. In most cases, the image feature data areclustered. The
+authors propose a mechanism for clustering,and subsequently enabling efficient
+and effective searching.
+
+
+2.  Is the manuscript technically sound?
+
+     [Reviewer 1] Partially
+
+     [Reviewer 2] Yes
+
+     [Reviewer 3] Yes
+
+     [Reviewer 4] Yes
+
+     [Reviewer 1] Parts of the algorithms are not well-defined(cf. detailed
+comments).The experimental evaluation needsclarifications.
+
+     [Reviewer 2] The paper is very interesting. Especially, I liked the
+introductory part of it. However, the discussion about the parameters and the
+cluster's size was too short.
+
+     [Reviewer 3] The proposed approach is motivated by recurring to intuition.
+Theoretically speaking, the paper is not very deep, except for the analysis of
+the algorithms complexity, but this is not a negative point (the major
+contribution is the experimental validation of the Clindex method).
+
+
+
+C.  Presentation
+----------------------
+1.  Are the title, abstract, and keywords appropriate?
+
+     [Reviewer 1] Yes
+
+     [Reviewer 2] Yes
+
+     [Reviewer 3] Yes
+
+     [Reviewer 4] Yes
+
+     [Reviewer 1] "Query refinement" is not enough explainedin the paper.
+"Clustering" should be anadditional keyword.
+
+     [Reviewer 3] I believe that a reference to clustering should be added to
+the list of keywords.
+
+
+2.  Does the manuscript contain sufficient and appropriate references?
+
+     [Reviewer 1] Important references are missing; more references are needed
+
+     [Reviewer 2] References are sufficient and appropriate
+
+     [Reviewer 3] Important references are missing; more references are needed
+
+     [Reviewer 4] References are sufficient and appropriate
+
+     [Reviewer 1] Several additional references about clusteringand approximate
+similarity search areincluded to the detailed comments
+
+
+
+     [Reviewer 3] Reference to the paper of the same authors appeared in Proc.
+of SPIE Symposium of Voice, Video, and Data Communications, Multimedia Storage
+and Archiving Systems VI, Boston, MA, September, 1999 should be added, and
+authors should explicitly illustrate original contributions of the paper (which
+mainly reside in experimental evaluation of the approach).
+
+
+
+3.  Does the introduction state the objectives of the manuscript in terms that
+encourage the reader to read on?
+
+     [Reviewer 1] Yes
+
+     [Reviewer 2] Yes
+
+     [Reviewer 3] Could be improved
+
+     [Reviewer 4] Could be improved
+
+
+
+
+
+
+     [Reviewer 3] The original contributions of the paper should be better
+specified, with respect to the existing paper of the same authors (see the
+previous comment). Moreover, in the introduction it is stated that experiments
+have been conducted on a 30,000 and a 500,000 image DBs; however, results only
+on the smaller dataset are reported.
+
+     [Reviewer 4] The motivating arguments in section 2 are confusing:The
+authors argue that "IOs must be random" (page 4, paragraph 4) for the exact
+search case. They refer to the search cost being high due to dimensionality
+curse. However, this phenomenon happens if the data is uniform in the
+high-dimensional spaceand not when it is clustered (see [6] and [7]).The
+authors propose a structure that works for clustered data. So the motivation
+needsto be reworked.
+
+4.  How would you rate the overall organization of the article?  Is it focused
+appropriately?
+
+     [Reviewer 1] Satisfactory
+
+     [Reviewer 2] Satisfactory
+
+     [Reviewer 3] Satisfactory
+
+     [Reviewer 4] Satisfactory
+
+     [Reviewer 1] In general, yes. Parts of the paper are notwell organized
+(cf. detailed comments)
+
+     [Reviewer 3] Paper organization is appropriate. However, I believe that a
+more detailed discussion about the differences between the proposed CF
+clustering algorithm and the cited clustering techniques is needed in the
+Background Section (just add a new subsection to Section 2).
+
+
+5.  Please rate and comment on the overall readability of this article.
+
+     [Reviewer 1] Easy to read
+
+     [Reviewer 2] Easy to read
+
+     [Reviewer 3] Easy to read
+
+     [Reviewer 4] Easy to read
+
+     [Reviewer 1] The readability should be improved at a fewplaces
+
+     [Reviewer 3] The paper is well written and all the proposed techniques are
+motivated with intuitive hints.
+
+
+

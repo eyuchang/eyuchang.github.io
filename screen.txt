@@ -1,0 +1,56 @@
+CS Minor Exam
+
+Examiner	Beitao Li       Zhiyuan Wang
+--------------------------------------------
+Wang		6		5
+Bultan		7		8
+--------------------------------------------
+		13		13
+
+
+Date: Fri, 29 Sep 2000 11:54:25 -0700 (PDT)
+From: Yuan-Fang Wang <yfwang@cs.ucsb.edu>
+To: echang@ece.ucsb.edu
+
+
+Ed:
+
+the first student Li
+- doesnt' know dynamic programming
+- is ok with divide-and-conque
+- shaky on automata theory, but knows the buzz words (DFA, NFA, pushdown
+automata, regular expressions, context free language, etc.)
+
+i would rate him barely passing: 6
+
+the second student, Wang
+- doesn't know dynamic programming
+- is ok with divide-and-conquer
+- very shaky on automata theory, doesn't even know the buzz words (didn't   
+remember pushdown automata, think content free language is accepted by
+FA)
+
+it is between passing and almost there: 5
+
+                                       
+
+Date: Fri, 29 Sep 2000 12:07:17 -0700 (PDT)
+From: Tevfik Bultan <bultan@cs.ucsb.edu>
+To: Edward Chang <echang@xanadu.ece.ucsb.edu>
+Subject: CE screening exam
+
+
+Ed,
+
+My grades for screening exam are below. From data structures I asked them
+about heaps (heapify, heap sort, complexity of these procedures), and from
+OS I asked about semaphores.
+
+Wang, zhiyuan: 8
+He answered most of the questions well.
+
+Li, Beitao: 7
+He was a little nervous but he gave reasonable answers.
+
+I think both of them can pass.    
+

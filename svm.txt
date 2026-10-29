@@ -1,0 +1,196 @@
+
+Hi Edward,
+
+I've just got back from a good conference however I found out that
+another PhD student is doing almost exactly the same project as my main
+thesis topic (Active Structure Learning in Bayes Nets). We're both
+attempting to submit our work to a conference whose deadline is on 8th
+Jan 2001. Basically it's a race to see who can publish first. 
+
+It's a rather unfortunate situation and it means that I'm going to be
+mostly tied up with this other research until the 8th Jan.
+
+I have a few ideas about active learning for the image database -- at the
+moment the algorithm queries one image at a time, however I think that
+there may be a reasonably intelligent way to query multiple images at
+once. So, for example, we will then be able to display to the user 9
+images at a time. I'll explore this idea later -- or I could explain it
+to you when you next come over to Stanford and perhaps your students
+could implement/experiment with it.
+
+I'm also attaching the latest version of the SVM code. There are the
+following modifications:
+
+* The classification module "svm_classify" now also outputs the accuracy
+on the top x images. In other words it forces the SVM to return x images
+that it is most confident is about the desired topic, and then it check
+the accuracy of just these x images. 
+
+* The learning module "svm_learn_active" now also outputs a model file
+after it make each query. So if we ask 10 queries it will output 10
+different model files - one after each query has been asked.
+
+I've also attached some of the perl scripts that I wrote to help with the
+data processing and experiments.
+
+---------------------------------------------------------------
+
+Here's how I prcoessed and analyzed the data:
+
+1) Data pre-processing 
+----------------------
+
+* I took the data file fFile1113.dat and for each topic (flowers, people.
+architecture etc) I created a separate data file fFile1113.0.dat,
+fFile1113.1.dat, ... fFile1113.3.dat that only contained one column for
+the label rather than four columns. fFiles113.0.dat had label "1" for all
+of the archituecture images and "-1" for all of the other images.
+Similarly, fFiles113.1.dat had label "1" for all of the people images and
+"-1" for all of the other images. The perl script "mdatSplit" does this
+splitting into separate files.
+
+* Each of the four data files were then normalized so that they had zero
+mean and variance 1. The perl script "datNormalize" does this task.
+
+2) Learning
+-----------
+
+For learning I an assuming a **transductive** learning task. In other
+words, we query a few images in our database and then our performance is
+measured on the remaining unqueried images in the database (rather than a
+separate independent test set).
+
+
+* Now let's suppose that we concentrate on the architecture
+classification task. I took the file fFile1113.0.normalized.dat and
+created another file fFile1113.0.normalized.2labels.dat that zeroed out
+all of the labels of the images except for one randomly selected positive
+image and one randomly selected negative image.
+
+* I then ran the "svm_learn_active" program with the following options:
+
+svm_learn_active -b 0 -o 3 -z 0 -t 1 -d 4 -k fFile1113.0.normalized.dat 
+-n 50 fFile1113.0.normalized.2labels.dat
+fFile1113.0.normalized.passive.mdl
+
+This does simple random querying until it has seen 50 labeled examples
+and uses a SVM with a degree 4 polynomial kernel. The SVM uses the file
+fFile1113.0.normalized.2labels.dat as its training set and when it
+queries an image it looks up that images label from the fully labeled
+file fFile1113.0.normalized.dat.
+
+The transductive SVM option is not used (it hurts the accuracy). The
+output will be a set of 49 model files: 
+fFile1113.0.normalized.passive.mdl.2 to
+fFile1113.0.normalized.passive.mdl.50 corresponding to the SVM learned
+after it has seen 2 labeled images up to the SVM learned after it has
+seen 50 labeled images.
+
+* Next I ran the "svm_learn_active" program with the following options:
+
+svm_learn_active -b 0 -o 1 -z 0 -t 1 -d 4 -k fFile1113.0.normalized.dat 
+-n 50 fFile1113.0.normalized.2labels.dat
+fFile1113.0.normalized.simpleactive.mdl
+
+This does simple active querying until it has seen 50 labeled examples
+and uses a SVM with a degree 4 polynomial kernel. The transductive SVM
+option is not used (it hurts the accuracy). The output will be a set of
+49 model files:  fFile1113.0.normalized.simpleactive.mdl.2 to
+fFile1113.0.normalized.simpleactive.mdl.50 corresponding to the SVM
+learned after it has seen 2 labeled images up to the SVM learned after it
+has seen 50 labeled images.
+
+
+Testing
+-------
+
+* The performance of each of the 49+49=98 SVM models were then tested on
+the fFile1113.0.normalized.dat data set using "svm_classify". Note that
+we have to be careful that we don't test on the images that we've already
+seem the label of. I didn't take this effect into account. At the moment
+there is only a very slight chance of this happening -- but still, in
+principle the svm code needs to be altered to achieve this. 
+
+
+
+***IMPORTANT: The Learning and Testing steps were repeated 20 times to
+get a good feel as to the performance of each type of querying method.
+Running the experiment once is not good enough to gauge the performance.
+
+
+--------------------------------------------------------------------
+
+Here are a few experiments that we could carry out:
+
+1) Experimenting with different features to see with ones are most
+important.
+
+2) Experimenting with different SVM kernels:
+
+-t 1 -d 1 -b 0 : linear kernel
+-t 1 -d 2 -b 0 : quadratic
+...
+-t 1 -d 4 -b 0 : degree 4 polynomial
+
+-t 2 -g g -b 0 : Radial Basis function kernel (need to choose g value)
+
+3) For each kernel we could tune the C parameter to gain a little bit of
+performance. I just used the defalut value... it seems to work fairly
+well. Probably not work wasting our time on.
+
+4) Using multiple queries at a time -- as I mentioned before, I'll do
+this a little later on, or I could explain it to you when you next visit
+Stanford.
+
+----------
+
+Perhaps your students would be willing to run a few of these experiments.
+If you guys have any questions about the code or the above descriptions
+please feel free to ask me.
+
+All the best,
+
+Simon.
+
+--
+simon.tong@cs.stanford.edu * Computer Science Dept * Stanford University
+CD-ID: si. For my latest contact details go to: www.contactdetails.com
+  [Part 2, Text/PLAIN  149 lines]
+  [Unable to print this part]
+
+
+  [Part 3, Text/PLAIN  311 lines]
+  [Unable to print this part]
+
+
+  [Part 4, Text/PLAIN  747 lines]
+  [Unable to print this part]
+
+
+  [Part 5, Text/PLAIN  3,424 lines]
+  [Unable to print this part]
+
+
+  [Part 6, Text/PLAIN  193 lines]
+  [Unable to print this part]
+
+
+  [Part 7, Text/PLAIN  80 lines]
+  [Unable to print this part]
+
+
+  [Part 8, Text/PLAIN  83 lines]
+  [Unable to print this part]
+
+
+  [Part 9, Text/PLAIN  75 lines]
+  [Unable to print this part]
+
+
+  [Part 10, Text/PLAIN  21 lines]
+  [Unable to print this part]
+
+
+  [Part 11, Text/PLAIN  384 lines]
+  [Unable to print this part]
+

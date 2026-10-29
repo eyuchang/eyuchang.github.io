@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MACI: Multi-LLM Agent Collaborative Intelligence</title>
+  <style>
+    body {
+      font-family: system-ui, sans-serif;
+      line-height: 1.6;
+      color: #222;
+      background-color: #fff;
+      margin: 0;
+      padding: 1em;
+      box-sizing: border-box;
+      max-width: 100%;
+    }
+    main {
+      max-width: 900px;
+      margin: auto;
+      padding: 1em;
+    }
+    h1, h2, h3 {
+      color: #2c3e50;
+    }
+    h1 {
+      font-size: 2em;
+    }
+    h2 {
+      font-size: 1.5em;
+      margin-top: 2em;
+    }
+    p, ul {
+      max-width: 100%;
+    }
+    ul {
+      padding-left: 1.2em;
+    }
+    img.responsive {
+      width: 100%;
+      height: auto;
+      max-width: 900px;
+      display: block;
+      margin: 1em auto;
+      border: 1px solid #ccc;
+    }
+
+    .bg-flash {
+    animation: bgFlash 1.5s infinite;
+    padding: 5px 10px;
+    border-radius: 5px;
+    }
+
+    @keyframes bgFlash {
+    0%, 100% { background-color: transparent; }
+    50% { background-color: #ff4757; }
+    }
+
+  </style>
+</head>
+<body>
+<main>
+<h1>Foundations of Multi-LLM Agent Collaborative Intelligence</h1>
+<h2 style="color:#000; font-weight: normal; font-style: italic; margin-top: -0.8em">
+  The <span style="color: #d35400; font-weight: bold;">original</span> Multi-LLM Agent Collaboration framework: pioneered since 2022
+</h2>
+
+
+<a href="https://www.amazon.com/dp/B0F26PB4G9" target="_blank">
+  <img src="img/MACI-Cover-Full.jpg" alt="MACI Book Cover" class="responsive">
+</a>
+
+  <p>
+  The <strong>MACI framework</strong>—<em>Multi-LLM Agent Collaborative Intelligence</em>—represents the culmination of a multi-year research effort across <strong>nine foundational pillars</strong>:
+</p>
+<ul>
+  <li><strong>Pillar I: Consciousness Modeling</strong> – foundational theory for reflective and multi-perspective reasoning (2020–2022)</li>
+  <li><strong>Pillar II: Critical Reading Analysis (CRIT)</strong> – reasoning validation and argument structure analysis (2023)</li>
+  <li><strong>Pillar III: Collaborative Multi-LLM Reasoning (SocraSynth)</strong> – structured debate with dynamic modulation of linguistic behavior—including emphasis, tones, and language patterns—to mitigate hallucinations and reduce biases (2023) </li>
+  <li><strong>Pillar IV: Behavioral Emotion Analysis Modeling (BEAM)</strong> – modeling and modulating linguistic behaviors based on foundational emotions (2024)</li>
+  <li><strong>Pillar V: Entropy-Governed Multi-Agent Debate (EVINCE)</strong> – quantitative modulation of dialogue via information theory (2024)</li>
+  <li><strong>Pillar VI: Ethical Adjudication (DIKE–ERIS)</strong> – culturally aware decision-making through dual-agent governance (2024)</li>
+  <li><strong>Pillar VII: Adaptive Multi-Agent System for Mitigating LLM Planning Limitations</strong> – overcoming Gödelian self-validation barriers through iterative “think-validation” loops and addressing attention/context window narrowing (2024)</li>
+  <li><strong>Pillar VIII: Transactional Long-Lived Planning (SagaLLM)</strong> – persistent workflows with memory and rollback (2025)</li>
+  <li><strong>Pillar IX: Unified Cognitive Consciousness Theory (<span class="bg-flash">UCCT</span>)</strong> – finally, a theory that unifies System 1 and System 2 (2025)</li>
+</ul>
+<p>
+  These components collectively define a pathway toward reliable, trustworthy, and interpretable general intelligence through multi-agent LLM coordination.
+</p>
+
+<h2>Introduction</h2>
+<p>
+  Building on foundational research from 2020 onward, the <strong>MACI framework</strong>—<em>Multi-LLM Agent Collaborative Intelligence</em>—offers a unified architecture for collaborative reasoning, ethical alignment, and persistent planning using large language models.
+</p>
+<p>
+  The following sections trace MACI’s evolution through nine major pillars, detailing the innovations that led from theoretical modeling to real-world orchestration.
+</p>
+
+<h2>2020–2022: Consciousness Modeling and Foundational Theory</h2>
+<p>
+MACI’s origins lie in the exploration of computational consciousness and multi-perspective reasoning, developed during the Stanford CS372 lecture series (2020–2022). These ideas culminated in the <strong>CoCoMo</strong> paper, which introduced a formal framework for modeling consciousness as emerging from automatic, reflective, pattern-matching processes—akin to an unconscious substrate. By probing the questions of what and where consciousness arises, CoCoMo articulated the transition between pattern recognition and conscious function, laying out a theoretical foundation for AGI. This foundational work established the epistemic framework for collaborative LLM behavior and seeded the architectural vision that became MACI.
+</p>
+
+<h2>2023: SocraSynth, CRIT, and the Birth of Multi-Agent Reasoning</h2>
+<p>
+  Building on this foundation, 2023 saw the release of <strong>SocraSynth</strong>, a framework for orchestrating structured debates between LLMs. Rather than relying on a monolithic oracle, SocraSynth coordinates agents—each with a distinct stance or specialization—to conduct Socratic, adversarial-collaborative dialogue.
+</p>
+
+<p>It operates in two phases:</p>
+<ul>
+  <li><strong>Generative Phase:</strong> LLM agents engage in structured discussion, critiquing and refining each other’s outputs.</li>
+  <li><strong>Evaluative Phase:</strong> The discussion is examined through scenario testing, counterfactual reasoning, and coherence validation.</li>
+</ul>
+
+<p>This interaction rests on four design principles:</p>
+<ul>
+  <li><strong>Adversarial Multi-LLM Integration:</strong> Reduces hallucinations and encourages deep insight via dialectic tension.</li>
+  <li><strong>Conditional Statistics Framework:</strong> Assigns distinct analytic or ethical roles to agents for output diversity.</li>
+  <li><strong>Adversarial Linguistic Calibration:</strong> Modulates LLMs' linguistic behaviors along a spectrum—from contentious to conciliatory—to surface overlooked assumptions, uncover novel perspectives, and stimulate richer reasoning through stylistic contrast.</li>
+  <li><strong>Reflexive Evaluation:</strong> Applies internal consistency checks to ensure robustness before convergence.</li>
+</ul>
+
+<p>In parallel, we introduced <strong>CRIT</strong>—the <em>Critical-Reading Inquisitive Template</em>—to model systematic evaluation of arguments. CRIT enhances reasoning coherence by issuing structured prompts to LLMs, guiding them through:</p>
+<ul>
+  <li>Identifying key claims and evidence</li>
+  <li>Validating reason-conclusion relationships</li>
+  <li>Identifying missing counterarguments</li>
+  <li>Evaluating citations and source trustworthiness</li>
+  <li>Producing an overall document quality score with justification</li>
+</ul>
+
+<p>
+  CRIT was designed to embody the Socratic method, operationalizing critical thinking through layered inquiry. It complements SocraSynth by offering fine-grained argument inspection—essential for rigorous multi-agent evaluation.
+</p>
+
+<h2>2024: EVINCE – Quantitative Control of Multi-Agent Dialogue</h2>
+
+<p>
+While SocraSynth laid the foundation for structured multi-LLM dialogue, it relied on qualitative tuning of agent interaction—moderating debates between contentious and conciliatory tones based on human intuition or prompt engineering. In contrast, <strong>EVINCE</strong>—<em>Entropy and Variation IN Conditional Exchanges</em>—introduces a principled, quantitative framework rooted in information theory.
+</p>
+
+<p>
+EVINCE modulates multi-agent discourse using metrics such as:
+</p>
+<ul>
+  <li><strong>Cross Entropy</strong> – to detect redundant or low-diversity responses</li>
+  <li><strong>Mutual Information</strong> – to measure inter-agent influence and convergence</li>
+  <li><strong>Divergence Scores</strong> – to maintain productive disagreement without incoherence</li>
+</ul>
+
+<p>
+It enables LLMs to adopt non-default stances by manipulating conditional likelihoods, moving beyond maximum-likelihood generation to goal-specific exploration. Through <strong>dual-entropy optimization</strong>, EVINCE ensures idea diversity during early exploration and focused consensus during final synthesis. It also integrates <strong>CRIT</strong>-based validation modules to assess coherence, argument structure, and missing counterpoints.
+</p>
+
+  <h2>2024: BEAM – Behavioral Emotion Analysis Modeling</h2>
+<p>
+  As SocraSynth matured, we encountered the challenge of managing emotional dynamics in LLM-driven debates—particularly, how to model and regulate "contentiousness." To address this, we introduced the <strong>Behavioral Emotion Analysis Model (BEAM)</strong>, which maps linguistic behaviors onto basic emotional spectrums such as "hate" and "love." BEAM allows for the modulation of emotional tone in text, enabling more effective control of argument style and intensity.
+</p>
+<p>
+  This framework is grounded in three core steps:
+</p>
+<ul>
+  <li><strong>Emotion Definition:</strong> Identifying and isolating basic emotions that can influence language generation and ethical outcomes.</li>
+  <li><strong>Quantification and Ethics Mapping:</strong> Training models on emotionally varied text samples to learn and modulate emotional expression within ethical boundaries.</li>
+  <li><strong>Testing and Adaptation:</strong> Deploying BEAM in real-world scenarios (e.g., multimedia generation) to evaluate emotional consistency, safety, and user reception.</li>
+</ul>
+<p>
+  BEAM integrates insights from cognitive psychology and Bayesian conditioning to demonstrate how in-context learning can shift the emotional valence of LLM outputs. It directly laid the foundation for DIKE–ERIS by enabling ethical adjudication through emotion-sensitive editing—such as transforming hate speech into neutral statements by modulating underlying affective cues. This paved the way for dynamic linguistic calibration in EVINCE and ethical safeguards in DIKE–ERIS.
+</p>
+
+
+<h2>2024: DIKE–ERIS – Ethical Adjudication via Deliberative Dual-Agent Design</h2>
+
+<p>
+While EVINCE governs epistemic diversity and convergence, <strong>DIKE–ERIS</strong> addresses the challenge of <em>ethical alignment</em>. Inspired by constitutional design, it implements a deliberative framework composed of two specialized agents:
+</p>
+<ul>
+  <li><strong>DIKE</strong> – Advocates for fairness, regulation, and normative consistency</li>
+  <li><strong>ERIS</strong> – Challenges assumptions, introduces cultural context, and promotes dissent</li>
+</ul>
+
+<p>
+Rather than hardcoding moral rules or relying on static alignment scores, DIKE–ERIS ensures ethical soundness through internal deliberation. Outputs are reviewed from multiple perspectives and scored based on fairness, inclusiveness, and context sensitivity. The result is a dynamic ethical process—not a fixed standard—adaptable to domain, audience, and evolving cultural norms.
+</p>
+
+<p>
+This adjudicative model extends MACI’s capacity from “what is true?” to “what is just?”, enabling AI agents to deliberate not only toward correctness, but toward socially responsible conclusions.
+</p>
+
+
+<h2>2025: SagaLLM – Persistent Memory and Transactional Planning</h2>
+<p>
+  In 2025, MACI matured into an execution-ready platform, capable of sustaining long-term planning, persistent memory, and failure recovery. We introduced <strong>SagaLLM</strong>, a transactional orchestration system based on the Saga pattern from distributed databases.
+</p>
+
+<p>SagaLLM equips multi-agent LLM systems with:</p>
+<ul>
+  <li><strong>Spatial-Temporal Checkpointing:</strong> For reversible state recovery and reliable execution.</li>
+  <li><strong>Inter-Agent Dependency Management:</strong> Tracks interlocked tasks and alerts agents to contradictions.</li>
+  <li><strong>Independent Critical Validation:</strong> Uses CRIT-like lightweight agents to verify decisions at key junctures.</li>
+</ul>
+
+<p>These mechanisms collectively enable:</p>
+<ul>
+  <li><strong>Transactional Consistency</strong> with compensatory rollback logic</li>
+  <li><strong>Robust Validation</strong> against drift and incoherence</li>
+  <li><strong>Scalable Performance</strong> through modular planning</li>
+  <li><strong>Integrated Intelligence</strong> grounded in both language and system-level reliability</li>
+</ul>
+
+<p>
+  SagaLLM closes the gap between AGI vision and real-world execution, allowing collaborative systems to function reliably over extended durations, across high-stakes domains like medicine, law, and infrastructure.
+</p>
+
+<h2>Beyond 2025: (<span class="bg-flash">UCCT</span>) Breakthrough and the Path Toward General Intelligence Revealed</h2>
+<p>
+Some AI leaders, including Yann LeCun, have argued that LLMs cannot achieve AGI due to their limitations in memory, planning, and grounding. MACI does not dispute these critiques—it answers them by orchestrating collaborative, role-specific, critically validated agents in a structured framework. The United Cognitive Consciousness Theory (UCCT), developed in Q2 and published on <a href="https://www.arxiv.org/abs/2506.02139"><span class="bg-flash">[arXiv]</span></a> in June, provides a critical framework to explain the foundational role of LLMs as pattern repositories, with conscious collaboration through semantic anchoring serving as the catalyst to bring us toward realizing AGI. The role of LLMs cannot be diminished, as all issues with memory, advanced sensing, and world grounding can be learned and built upon the LLM foundation.
+
+</p>
+
+<p>
+  MACI is deeply interdisciplinary, drawing on:
+</p>
+<ul>
+  <li><strong>Cognitive Psychology:</strong> for modeling attention, memory, and self-awareness</li>
+  <li><strong>Philosophy:</strong> for truth, meaning, and epistemology</li>
+  <li><strong>Physics:</strong> for entropy-informed reasoning and system equilibrium</li>
+  <li><strong>Computer Science:</strong> for orchestration, retrieval, and planning</li>
+</ul>
+
+<p>
+  Modern LLMs already demonstrate multimodal capabilities. Under MACI, these capabilities are harmonized—enabling agents to integrate data from telescopes, microscopes, quantum sensors, and human conversations. Intelligence, in this setting, is no longer a property of an individual model—it emerges from dynamic orchestration, critical reflection, and epistemic balance.
+</p>
+
+<h2>MACI: Intelligence through Orchestration, Not Isolation</h2>
+<p>
+  The MACI project continues not merely as a technical initiative, but as a philosophical and scientific journey. It redefines artificial general intelligence not as the product of one supermodel, but as the collective potential of systems that:
+</p>
+<ul>
+  <li>Balance divergence and convergence</li>
+  <li>Reason across modalities and cultures</li>
+  <li>Reconcile disagreement through discourse</li>
+</ul>
+
+<p>
+  Please visit this site regularly for updates as we refine MACI, contribute to open research, and build toward a responsible and collaborative AGI future.
+</p>
+  These components collectively define a pathway toward robust, trustworthy, and interpretable general intelligence through multi-agent LLM coordination.
+</p>
+
+<h1>Publications in 2025</h1>
+
+
+<h2>8. <span class="glow">*</span>The Unified Cognitive Consciousness Theory for Language Models</h2>
+
+<p><a href="https://arxiv.org/abs/2506.02139">The Unified Cognitive Consciousness Theory for Language Models: Anchoring Semantics, Thresholds of Activation, and Emergent Reasoning</a><br>
+Edward Y. Chang, June 2025.
+</p>
+
+
+<h2>7. <span class="glow">*</span>Persistent Memory for Long-Lived Workflow Planning</h2>
+<p>
+<a href="https://arxiv.org/pdf/2503.11951">
+SagaLLM: Context Management, Validation, and Transaction Guarantees for Multi-Agent LLM Planning</a><br>
+Edward Y. Chang and Longling Geng, VLDB, September 2025.
+</p>
+
+<h2>6. <span class="glow">*</span>New Approach to AI Ethical Alignment</h2>
+<p>Emotion Regulation as Ethical Alignment: A Checks-and-Balances Framework<br>
+Edward Y. Chang, ICML, July 2025.
+
+
+<h2>5. <span class="glow">*</span>Textbook, The Path to Artificial General Intelligence</h2>
+
+<p><a href="https://www.amazon.com/dp/B0F26PB4G9">Multi-LLM Agent Collaborative Intelligence: The Path to Artificial General Intelligence</a><br>
+Edward Y. Chang, October 2025, ACM Books.
+</p>
+
+<h2>4. <span class="glow">*</span>Establishing theoretical foundation for multi-LLM joint prediction </h2>
+Multi-Agent Collaborative Intelligence: Dual-Dial Control for Reliable LLM Reasoning, 2024-2025 (under review).
+
+<h2>3. Benchmark for Evaluating Multi-Agent Systems</h2>
+<p>
+<a href="https://www.researchgate.net/publication/389279327_REALM-Bench_A_Real-World_Planning_Benchmark_for_LLMs_and_Multi-Agent_Systems">
+REALM-Bench: A Real-World Planning Benchmark for LLMs and Multi-Agent Systems</a>, ACM KDD, November 2025.
+</p>
+
+
+<h2>2. Multi-Agent System for Planning </h2>
+<p><a href="https://arxiv.org/abs/2501.16689">Multi-Agent Collaborative Intelligence for Adaptive Reasoning and Temporal Planning</a><br>
+Edward Y. Chang, January/May, 2025 (under review)
+
+<h2>1. Checks and Balances for AI Ethical Alignment, as RLHF Fails </h2>
+<p><a href="https://www.researchgate.net/publication/380515639_A_Three-Branch_Checks-and-Balances_Framework_for_Context-Aware_Ethical_Alignment_of_Large_Language_Models">A Three-Branch Checks-and-Balances Framework for Context-Aware Ethical Alignment of Large Language Models</a> <br>
+Edward Y. Chang, NeurIPS AI Safety, December 2024.
+
+</body>
+
+
+<h1>Publications in 2023 - 2024 </h1>
+
+
+<h2>1. <span class="glow">*</span>Textbook, The Path to Artificial General Intelligence</h2>
+
+<p><a href="https://www.amazon.com/dp/B0F26PB4G9">Multi-LLM Agent Collaborative Intelligence: The Path to Artificial General Intelligence</a>, March/October 2024 (accepted by ACM Book, expected 2025).
+</p>
+
+<h2>2. The Wisdom of Large Language Models</h2>
+
+<p><a href="https://www.amazon.com/Unlocking-Wisdom-Large-Language-Models/dp/1962463095">Unlocking the Wisdom of Large Language Models: An Introduction to The Path to Artificial General Intelligence </a>, SocraSynth.com, June/October 2024.
+</p>
+
+
+<h2>3. Emotion Analysis for Linguistic Behavior Modeling </h2>
+<p><a href="https://arxiv.org/abs/2404.13071">Behavioral Emotion Analysis Model for Large Language Models</a><br>Edward Y. Chang, IEEE MIPR (invited paper), June 2024.
+
+
+<h2>4. SocraHealth: Utilizing SocraSynth to Improve Disease Diagnosis</h2>
+<p><a href="https://www.researchgate.net/publication/375000555_SocraHealth_Enhancing_Medical_Diagnosis_and_Correcting_Historical_Records">SocraHealth: Enhancing Medical Diagnosis and Correcting Historical Records</a>, Jocelyn Chang and Edward Chang, October 2023.
+The 10th International Conference on Computational Science and Computational Intelligence, December 2023.
+</p>
+<p>
+This study introduces SocraHealth, an innovative method using Large Language Models (LLMs) for medical diagnostics. By engaging LLM-based agents in structured debates, SocraHealth not only refines diagnoses but also corrects historical record inaccuracies, utilizing patient data effectively. The case study, featuring GPT-4 and Bard across two experiments, showcases this approach's success in producing logical, hallucination-free debates. Demonstrating a significant advancement over traditional diagnostic techniques, SocraHealth highlights the transformative power of LLMs in healthcare, especially in enhancing diagnostic accuracy and rectifying past diagnostic errors.
+</p>
+
+<h2>5. SocraPlan: Leveraging SocraSynth for Advanced Corporate Sales Planning</h2>
+<p><a href="https://www.researchgate.net/publication/374945016_Multi-Agent_Reasoning_with_Large_Language_Models_for_Effective_Corporate_Planning"> Multi-Agent Reasoning with Large Language Models for Effective Corporate Planning</a>, in collaboration with S. Tsao at TrendMicro, October 2023.
+The 10th International Conference on Computational Science and Computational Intelligence, December 2023.
+</p>
+<p>
+Large Language Models (LLMs) have demonstrated significant capabilities in natural language processing tasks. In this paper, we explore the application of LLMs within a business context. Specifically, we employ LLMs to devise a sales strategy geared towards maximizing customer values (benefits and satisfaction). This sales plan encompasses five iterative stages: market landscape survey, customer profiling, product usage analysis, sales strategy formulation, and crafting persuasive pitches and materials. We leverage LLMs to supplement the limited data available to the company, aiming to enhance the efficacy of each stage and optimize KPIs, including the value-oriented sales conversion and profitability. Due to confidentiality and trade secret concerns, we blend artificial data with genuine data to ensure customer anonymity and protect sales playbooks. Despite these precautions, we effectively demonstrate our methodology of harnessing LLMs to refine the sales planning procedure.
+</P>
+
+
+<h2>6. SocraSynth: Multi-LLM Reasoning with Conditional Statistics</h2>
+
+<p><a href="https://www.arxiv.org/abs/2402.06634">SocraSynth: Multi-LLM Reasoning with Conditional Statistics</a>, September 2023 (revised January 2024).</p>
+
+<p>
+Large language models (LLMs), thought promising, face criticisms for biases, hallucinations, and a lack of reasoning capability. This paper introduces SocraSynth, a multi-LLM agent reasoning platform developed to mitigate these issues. SocraSynth utilizes conditional statistics and systematic context enhancement through continuous arguments, alongside adjustable debate contentiousness levels. The platform typically involves a human moderator and two LLM agents representing opposing viewpoints on a given subject. SocraSynth operates in two main phases: knowledge generation and reasoning evaluation. In the knowledge generation phase, the moderator defines the debate topic and contentiousness level, prompting the agents to formulate supporting arguments for their respective stances. The reasoning evaluation phase then employs Socratic reasoning and formal logic principles to appraise the quality of the arguments presented. The dialogue concludes with the moderator adjusting the contentiousness from confrontational to collaborative, gathering final, conciliatory remarks to aid in human reasoning and decision-making. Through case studies in three distinct application domains, this paper showcases SocraSynth's effectiveness in fostering rigorous research, dynamic reasoning, comprehensive assessment, and enhanced collaboration. This underscores the value of multi-agent interactions in leveraging LLMs for advanced knowledge extraction and decision-making support.
+</p>
+
+
+<h2>7. <span class="glow">*</span> Examining GPT-4's Capabilities and Enhancement by SocraSynth</h2>
+
+<p><a href="https://www.researchgate.net/publication/374753069_Examining_GPT-4's_Capabilities_and_Enhancement_with_SocraSynth" target="_blank">Examining GPT-4's Capabilities and Enhancement with SocraSynth</a>, July 2023. 
+<br>The 10th International Conference on Computational Science and Computational Intelligence (CSCI'23), December 2023.
+<br>
+(<span style="color: red;">Top-1% assessed paper, over 12,000 reads on ResearchGate since July 2023</span>)
+</p>
+
+<p>In this work, we investigate the capabilities and limitations of GPT-4, a large-scale, polydisciplinary, and polymodal language model. Despite its accomplishments across a range of tasks, GPT-4 exhibits key shortcomings, particularly in areas of reasoning and ethics, manifesting in tendencies like hallucination, imitation rather than understanding, and a lack of fact-checking ability. We propose several remedies to address these challenges. First, we introduce the CoCoMo framework, designed to incorporate reasoning into AI systems using Socratic methods and prompt ensembles. Second, we advocate for the use of demonstrations as a means to imbue AI agents with ethical behavior, building upon our experience with the Noora chatbot project. Lastly, we recommend adopting a more comprehensive approach to training ensemble members of GPT-4, shifting from an exclusive focus on optimizing for cross-entropy loss. Our end goal is the development of AI systems that not only enhance human abilities but also align with human values, thereby contributing constructively to society.
+</p>
+
+<h2>8. Discovering Insights Beyond the Known: A Dialogue Between GPT-4 Agents from Adam and Eve to the Nexus of Ecology, AI, and the Brain</h2>
+
+<p><a href="https://www.researchgate.net/publication/373161156_Discovering_Insights_Beyond_the_Known_A_Dialogue_Between_GPT-4_Agents_from_Adam_and_Eve_to_the_Nexus_of_Ecology_AI_and_the_Brain" target="_blank">Discovering Insights Beyond the Known: A Dialogue Between GPT-4 Agents</a>, August 2023. (The most read paper in August on ResearcgGate)</p>
+
+<p>
+Human knowledge, vast as it is, often falls short in grasping intricate interdisciplinary domains fully. In contrast, foundation models like GPT-4, endowed with extensive multidisciplinary knowledge, can potentially bridge this gap. Significantly, we leverage the vast expanses of GPT-4's knowledge, banking on its ability to frame questions that might elude human intuition, thus paving the way for the emergence of fresh insights and potentially novel knowledge. In this study, we convened a unique committee comprising a moderator (the authors) and two GPT-4 agents. The dialogue is ignited by the ancient narrative of Adam and Eve, setting the stage for a rich exchange between the GPT-4 agents. This conversation derives from the age-old tale, as the agents delve into three intertwined domains: the significance of myths in ecological interpretation, the intricate ethical and philosophical quandaries surrounding AI, and the enigmatic realm of the human brain as complemented by technology. This dialogue not only unveils captivating insights but also underscores the indispensable value of interdisciplinary exchanges. Foundation models, as demonstrated, can catalyze such dialogues, equipping us to traverse expansive knowledge landscapes and explore domains previously beyond human comprehension.
+</p>
+
+
+<h2>9. <span class="glow">*</span> Using Socratic Method to Facilitate Critical Thinking for Fact Checking</h2>
+
+<p><a href="https://arxiv.org/pdf/2303.08769.pdf" target="_blank">Prompting Large Language Models With the Socratic Method</a>, IEEE 13th Annual Computing and Communication Workshop and Conference (CCWC), March 2023 (The best presentation in the AI track)</p>
+
+<p>This paper presents a systematic approach to using the Socratic method in developing prompt templates that effectively interact with large language models, including GPT-3. Various methods are examined, and those that yield precise answers and justifications and those that foster creativity and imagination to enhance creative writing are identified. Techniques such as {\em definition}, {\em elenchus}, {\em dialectic}, {\em maieutics}, {\em generalization}, and {\em counterfactual reasoning} are discussed for their application in engineering prompt templates and their connections to inductive, deductive, and abductive reasoning. Through examples, the effectiveness of these dialogue and reasoning methods is demonstrated. An interesting observation is made that when the task's goal and user intent are conveyed to GPT-3 via ChatGPT before the start of a dialogue, the large language model seems to connect to the external context expressed in the intent and perform more effectively. </p>
+
+<h2>10. Consciousness Modeling for Reasoning</h2>
+
+<p><a href="https://arxiv.org/abs/2304.02438" target="_blank">CoCoMo: Computational Consciousness Modeling for Generative and Ethical AI</a>, February 2023.</p>
+
+<p>The CoCoMo model proposes a computational solution to the challenge of incorporating ethical and emotional intelligence considerations into AI systems, with the aim of creating AI agents that combine knowledge with compassion. To achieve this goal, CoCoMo prioritizes fairness, beneficence, non-maleficence, empathy, adaptability, transparency, and critical and exploratory thinking abilities. The model employs consciousness modeling, reinforcement learning, and prompt template formulation to support these desired traits. By incorporating ethical and emotional intelligence considerations, a generative AI model can potentially lead to improved fairness, reduced toxicity, and increased reliability.
+</p>
+
+<h2>11. CRIT: An Inquisitive Prompt Template for Critical Reading</h2>
+
+<p><a href="https://drive.google.com/file/d/1WhbqXFfK_XvG7DtqeGueDrOLyMey8wF0/view" target="_blank">CRIT: An Inquisitive Prompt Template for Critical Reading</a>, January 2023.</p>
+
+<p>Critical reading, a pivotal element of education, necessitates active engagement with texts to delve deeper and form informed assessments about their validity and credibility. We introduce CRIT, a comprehensive prompt template designed to streamline this process. CRIT leverages pre-trained language models to critically evaluate texts, extracting their conclusions and supportive reasons, scrutinizing reason-to-claim arguments, suggesting counterarguments, and offering an overarching quality assessment. Notably, CRIT also possesses the capability to conduct fact-checking on the outputs of foundation models, ensuring accuracy and trustworthiness. With its structured and recursive prompts, CRIT facilitates a comprehensive and logical text analysis, providing insights into argument validity and source reliability. This makes CRIT an invaluable asset for K-12 education, fostering critical reading skills, and refining articles before public examination.
+</p>
+
+<h2>12. Applying AI to Precision Medicine</h2>
+
+<p>
+
+</p>
+<p><a href="https://arxiv.org/abs/2212.13591" target="_blank">Knowledge-Guided Data-Centric AI in Healthcare: Progress, Shortcomings, and Future Directions</a>, December 2022; Chapter 2 in Artificial Intelligence, Machine Learning, and Deep Learning in Precision Medicine in Liver Diseases (ISBN: 9780323991360), Elsevier, August 22, 2023</p>
+
+
+<p>
+The success of deep learning is largely due to the availability of large amounts of training data that cover a wide range of examples of a particular concept or meaning. In the field of medicine, having a diverse set of training data on a particular disease can lead to the development of a model that is able to accurately predict the disease. However, despite the potential benefits, there have not been significant advances in image-based diagnosis due to a lack of high-quality annotated data. This article highlights the importance of using a data-centric approach to improve the quality of data representations, particularly in cases where the available data is limited. To address this "small-data" issue, we discuss four methods for generating and aggregating training data: data augmentation, transfer learning, federated learning, and GANs (generative adversarial networks). We also propose the use of knowledge-guided GANs to incorporate domain knowledge in the training data generation process. With the recent progress in large pre-trained language models, we believe it is possible to acquire high-quality knowledge that can be used to improve the effectiveness of knowledge-guided generative methods.
+</P>
+
+<h1>About Us</h1>
+
+SocraSynth orchestrates a symposium of GAI agents, facilitating investigative dialogues to reveal knowledge and insights previously elusive to humans. The concept of SocraSynth was first introduced by Dr. <a href="http://infolab.stanford.edu/~echang">Edward Y. Chang</a>, an ACM Fellow. Chang held the position of Director at Google Research from 2006 to 2012 and has been serving as an adjunct professor in the Computer Science department at Stanford University since 2019.
+
+</body>
+</html>
+
+

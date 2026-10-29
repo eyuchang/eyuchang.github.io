@@ -1,0 +1,725 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Space of Wisdom — Volume 3 Framework</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { 
+    background: #0a0a1a; 
+    color: #e0e0e0; 
+    font-family: 'Georgia', serif;
+    overflow: hidden;
+  }
+  #canvas-container { 
+    width: 100vw; 
+    height: 100vh; 
+    position: relative;
+  }
+  canvas { display: block; }
+  
+  #title-overlay {
+    position: absolute;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    text-align: center;
+    pointer-events: none;
+    z-index: 10;
+  }
+  #title-overlay h1 {
+    font-size: 22px;
+    font-weight: normal;
+    letter-spacing: 3px;
+    color: #c8b070;
+    text-transform: uppercase;
+    margin-bottom: 4px;
+  }
+  #title-overlay h2 {
+    font-size: 13px;
+    font-weight: normal;
+    color: #888;
+    letter-spacing: 1px;
+  }
+
+  #info-panel {
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
+    background: rgba(10,10,26,0.85);
+    border: 1px solid rgba(200,176,112,0.3);
+    border-radius: 8px;
+    padding: 16px 20px;
+    max-width: 380px;
+    z-index: 10;
+    backdrop-filter: blur(8px);
+  }
+  #info-panel h3 {
+    color: #c8b070;
+    font-size: 15px;
+    margin-bottom: 8px;
+    letter-spacing: 1px;
+  }
+  #info-panel p {
+    font-size: 12.5px;
+    line-height: 1.6;
+    color: #bbb;
+  }
+  #info-panel .highlight {
+    color: #e0c878;
+  }
+
+  #controls {
+    position: absolute;
+    top: 80px;
+    right: 20px;
+    z-index: 10;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+  .ctrl-btn {
+    background: rgba(10,10,26,0.8);
+    border: 1px solid rgba(200,176,112,0.3);
+    color: #c8b070;
+    padding: 8px 14px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-family: 'Georgia', serif;
+    font-size: 12px;
+    letter-spacing: 0.5px;
+    transition: all 0.3s;
+    backdrop-filter: blur(8px);
+  }
+  .ctrl-btn:hover {
+    background: rgba(200,176,112,0.15);
+    border-color: rgba(200,176,112,0.6);
+  }
+  .ctrl-btn.active {
+    background: rgba(200,176,112,0.2);
+    border-color: #c8b070;
+  }
+
+  #legend {
+    position: absolute;
+    top: 80px;
+    left: 20px;
+    z-index: 10;
+    background: rgba(10,10,26,0.85);
+    border: 1px solid rgba(200,176,112,0.3);
+    border-radius: 8px;
+    padding: 14px 18px;
+    backdrop-filter: blur(8px);
+  }
+  #legend h4 {
+    color: #c8b070;
+    font-size: 12px;
+    letter-spacing: 1px;
+    margin-bottom: 8px;
+    text-transform: uppercase;
+  }
+  .legend-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 5px;
+    font-size: 11.5px;
+  }
+  .legend-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+</style>
+</head>
+<body>
+<div id="canvas-container">
+  <div id="title-overlay">
+    <h1>The Space of Wisdom</h1>
+    <h2>Volume 3 — From Intelligence to Wisdom</h2>
+  </div>
+
+  <div id="legend">
+    <h4>Axes & Pillars</h4>
+    <div class="legend-item"><div class="legend-dot" style="background:#4a9eff"></div> Epistemic (↕ Humility)</div>
+    <div class="legend-item"><div class="legend-dot" style="background:#ff6b6b"></div> Temporal (→ Time Horizon)</div>
+    <div class="legend-item"><div class="legend-dot" style="background:#51cf66"></div> Relational (↗ Circle of Care)</div>
+    <div class="legend-item" style="margin-top:8px; border-top: 1px solid rgba(200,176,112,0.2); padding-top: 8px;">
+      <div class="legend-dot" style="background:#ffd43b"></div> Pillar 1: Strategic (智)
+    </div>
+    <div class="legend-item"><div class="legend-dot" style="background:#ff8787"></div> Pillar 2: Sacrificial (仁)</div>
+    <div class="legend-item"><div class="legend-dot" style="background:#69db7c"></div> Pillar 3: Communal (道)</div>
+    <div class="legend-item" style="margin-top:8px; border-top: 1px solid rgba(200,176,112,0.2); padding-top: 8px;">
+      <div class="legend-dot" style="background:rgba(255,100,100,0.5); border: 1px solid #ff6b6b;"></div> Inner: Appetite
+    </div>
+    <div class="legend-item"><div class="legend-dot" style="background:rgba(255,180,100,0.5); border: 1px solid #ffb464;"></div> Inner: Spirit</div>
+    <div class="legend-item"><div class="legend-dot" style="background:rgba(200,100,255,0.5); border: 1px solid #c864ff;"></div> Inner: Reason</div>
+  </div>
+
+  <div id="controls">
+    <button class="ctrl-btn active" onclick="setView('overview')">Overview</button>
+    <button class="ctrl-btn" onclick="setView('axes')">Four Axes</button>
+    <button class="ctrl-btn" onclick="setView('pillars')">Three Pillars</button>
+    <button class="ctrl-btn" onclick="setView('dante')">Dante's Levels</button>
+    <button class="ctrl-btn" onclick="setView('root')">Common Root</button>
+    <button class="ctrl-btn" onclick="toggleAutoRotate()">Auto-Rotate</button>
+  </div>
+
+  <div id="info-panel">
+    <h3 id="panel-title">The Four-Dimensional Space</h3>
+    <p id="panel-text">
+      Wisdom is a position in four-dimensional space. Drag to rotate, scroll to zoom.
+      <br><br>
+      <span class="highlight">Epistemic</span> (vertical): What do I know about my limits?<br>
+      <span class="highlight">Temporal</span> (horizontal): What time horizon governs?<br>
+      <span class="highlight">Relational</span> (depth): For whom do I act?<br>
+      <span class="highlight">Inner Ordering</span> (shown as nested spheres): Are my faculties balanced?
+    </p>
+  </div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script>
+// Scene setup
+const container = document.getElementById('canvas-container');
+const scene = new THREE.Scene();
+const camera = new THREE.PerspectiveCamera(55, window.innerWidth / window.innerHeight, 0.1, 1000);
+camera.position.set(8, 5, 8);
+camera.lookAt(0, 0, 0);
+
+const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+renderer.setSize(window.innerWidth, window.innerHeight);
+renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+renderer.setClearColor(0x0a0a1a, 1);
+container.appendChild(renderer.domElement);
+
+// Lights
+const ambientLight = new THREE.AmbientLight(0x404060, 0.6);
+scene.add(ambientLight);
+const dirLight = new THREE.DirectionalLight(0xffeedd, 0.8);
+dirLight.position.set(5, 8, 5);
+scene.add(dirLight);
+const pointLight = new THREE.PointLight(0xc8b070, 0.4, 20);
+pointLight.position.set(-3, 4, -3);
+scene.add(pointLight);
+
+// Groups for different views
+const axisGroup = new THREE.Group();
+const pillarGroup = new THREE.Group();
+const danteGroup = new THREE.Group();
+const rootGroup = new THREE.Group();
+const overviewGroup = new THREE.Group();
+scene.add(axisGroup, pillarGroup, danteGroup, rootGroup, overviewGroup);
+
+// Helper: create text sprite
+function makeTextSprite(text, color = '#c8b070', size = 0.4) {
+  const canvas = document.createElement('canvas');
+  const ctx = canvas.getContext('2d');
+  canvas.width = 512;
+  canvas.height = 128;
+  ctx.font = 'bold 36px Georgia';
+  ctx.fillStyle = color;
+  ctx.textAlign = 'center';
+  ctx.textBaseline = 'middle';
+  ctx.fillText(text, 256, 64);
+  const texture = new THREE.CanvasTexture(canvas);
+  texture.needsUpdate = true;
+  const mat = new THREE.SpriteMaterial({ map: texture, transparent: true, depthTest: false });
+  const sprite = new THREE.Sprite(mat);
+  sprite.scale.set(size * 4, size, 1);
+  return sprite;
+}
+
+// Helper: create curved path
+function createCurve(points, color, linewidth) {
+  const curve = new THREE.CatmullRomCurve3(points);
+  const pts = curve.getPoints(80);
+  const geo = new THREE.BufferGeometry().setFromPoints(pts);
+  const mat = new THREE.LineBasicMaterial({ color: color, transparent: true, opacity: 0.8 });
+  return new THREE.Line(geo, mat);
+}
+
+// Helper: glowing sphere
+function createGlowSphere(radius, color, opacity) {
+  const geo = new THREE.SphereGeometry(radius, 32, 32);
+  const mat = new THREE.MeshPhongMaterial({
+    color: color,
+    transparent: true,
+    opacity: opacity,
+    emissive: color,
+    emissiveIntensity: 0.15,
+    shininess: 30,
+    side: THREE.DoubleSide
+  });
+  return new THREE.Mesh(geo, mat);
+}
+
+// =============================================
+// BUILD OVERVIEW: Central sphere with axes
+// =============================================
+function buildOverview() {
+  // Central translucent sphere
+  const core = createGlowSphere(0.3, 0xc8b070, 0.9);
+  overviewGroup.add(core);
+
+  // Outer wisdom sphere (translucent)
+  const outer = createGlowSphere(3.5, 0x2a2a4a, 0.06);
+  overviewGroup.add(outer);
+  const mid = createGlowSphere(2.5, 0x3a3a5a, 0.06);
+  overviewGroup.add(mid);
+
+  // Axis lines
+  const axMat1 = new THREE.LineBasicMaterial({ color: 0x4a9eff, transparent: true, opacity: 0.6 });
+  const axMat2 = new THREE.LineBasicMaterial({ color: 0xff6b6b, transparent: true, opacity: 0.6 });
+  const axMat3 = new THREE.LineBasicMaterial({ color: 0x51cf66, transparent: true, opacity: 0.6 });
+
+  // Epistemic axis (vertical)
+  const epGeo = new THREE.BufferGeometry().setFromPoints([new THREE.Vector3(0,-4,0), new THREE.Vector3(0,4,0)]);
+  overviewGroup.add(new THREE.Line(epGeo, axMat1));
+  const epBot = makeTextSprite('Hubris', '#4a9eff', 0.3);
+  epBot.position.set(0, -4.3, 0);
+  overviewGroup.add(epBot);
+  const epTop = makeTextSprite('Deep Humility', '#4a9eff', 0.3);
+  epTop.position.set(0, 4.3, 0);
+  overviewGroup.add(epTop);
+  const epLabel = makeTextSprite('EPISTEMIC', '#4a9eff', 0.25);
+  epLabel.position.set(0.0, 4.8, 0);
+  overviewGroup.add(epLabel);
+
+  // Temporal axis (horizontal X)
+  const tmpGeo = new THREE.BufferGeometry().setFromPoints([new THREE.Vector3(-4,0,0), new THREE.Vector3(4,0,0)]);
+  overviewGroup.add(new THREE.Line(tmpGeo, axMat2));
+  const tmpL = makeTextSprite('Reactive', '#ff6b6b', 0.3);
+  tmpL.position.set(-4.5, 0, 0);
+  overviewGroup.add(tmpL);
+  const tmpR = makeTextSprite('Eternal', '#ff6b6b', 0.3);
+  tmpR.position.set(4.3, 0, 0);
+  overviewGroup.add(tmpR);
+  const tmpLabel = makeTextSprite('TEMPORAL', '#ff6b6b', 0.25);
+  tmpLabel.position.set(4.3, 0.5, 0);
+  overviewGroup.add(tmpLabel);
+
+  // Relational axis (horizontal Z)
+  const relGeo = new THREE.BufferGeometry().setFromPoints([new THREE.Vector3(0,0,-4), new THREE.Vector3(0,0,4)]);
+  overviewGroup.add(new THREE.Line(relGeo, axMat3));
+  const relN = makeTextSprite('Self', '#51cf66', 0.3);
+  relN.position.set(0, 0, -4.3);
+  overviewGroup.add(relN);
+  const relF = makeTextSprite('Sacred', '#51cf66', 0.3);
+  relF.position.set(0, 0, 4.3);
+  overviewGroup.add(relF);
+  const relLabel = makeTextSprite('RELATIONAL', '#51cf66', 0.25);
+  relLabel.position.set(0, 0.5, 4.3);
+  overviewGroup.add(relLabel);
+
+  // Small reference particles
+  const pGeo = new THREE.SphereGeometry(0.04, 8, 8);
+  for (let i = 0; i < 200; i++) {
+    const theta = Math.random() * Math.PI * 2;
+    const phi = Math.acos(2 * Math.random() - 1);
+    const r = 1.5 + Math.random() * 2;
+    const pMat = new THREE.MeshBasicMaterial({
+      color: new THREE.Color().setHSL(0.12, 0.3, 0.4 + Math.random() * 0.3),
+      transparent: true,
+      opacity: 0.3 + Math.random() * 0.3
+    });
+    const p = new THREE.Mesh(pGeo, pMat);
+    p.position.set(
+      r * Math.sin(phi) * Math.cos(theta),
+      r * Math.cos(phi),
+      r * Math.sin(phi) * Math.sin(theta)
+    );
+    overviewGroup.add(p);
+  }
+}
+
+// =============================================
+// BUILD PILLARS: Three paths through the space
+// =============================================
+function buildPillars() {
+  // Pillar 1: Strategic (stays near self, rises in epistemic, extends in temporal)
+  const p1Points = [
+    new THREE.Vector3(0, -1, -2),
+    new THREE.Vector3(1, 0, -1.5),
+    new THREE.Vector3(2, 1, -1),
+    new THREE.Vector3(3, 2, -0.5),
+    new THREE.Vector3(3.5, 2.5, 0),
+  ];
+  const p1Line = createCurve(p1Points, 0xffd43b);
+  pillarGroup.add(p1Line);
+  const p1Label = makeTextSprite('Pillar 1: Strategic 智', '#ffd43b', 0.35);
+  p1Label.position.set(3.5, 3.0, 0);
+  pillarGroup.add(p1Label);
+  const p1Sub = makeTextSprite('"Win without fighting"', '#aa9030', 0.22);
+  p1Sub.position.set(3.5, 2.5, 0);
+  pillarGroup.add(p1Sub);
+
+  // Small sphere at end of pillar 1
+  const p1End = createGlowSphere(0.15, 0xffd43b, 0.9);
+  p1End.position.set(3.5, 2.5, 0);
+  pillarGroup.add(p1End);
+
+  // Pillar 2: Sacrificial (extends to others, high epistemic humility, medium temporal)
+  const p2Points = [
+    new THREE.Vector3(0, -1, -2),
+    new THREE.Vector3(0.5, 0.5, -0.5),
+    new THREE.Vector3(0, 2, 1),
+    new THREE.Vector3(-0.5, 3, 2),
+    new THREE.Vector3(0, 3.5, 3),
+  ];
+  const p2Line = createCurve(p2Points, 0xff8787);
+  pillarGroup.add(p2Line);
+  const p2Label = makeTextSprite('Pillar 2: Sacrificial 仁', '#ff8787', 0.35);
+  p2Label.position.set(0, 4.0, 3);
+  pillarGroup.add(p2Label);
+  const p2Sub = makeTextSprite('"Greater love has no one"', '#aa5555', 0.22);
+  p2Sub.position.set(0, 3.5, 3);
+  pillarGroup.add(p2Sub);
+
+  const p2End = createGlowSphere(0.15, 0xff8787, 0.9);
+  p2End.position.set(0, 3.5, 3);
+  pillarGroup.add(p2End);
+
+  // Pillar 3: Communal (max relational, max temporal, high epistemic)
+  const p3Points = [
+    new THREE.Vector3(0, -1, -2),
+    new THREE.Vector3(1, 0.5, 0),
+    new THREE.Vector3(2, 2, 1.5),
+    new THREE.Vector3(3, 3, 3),
+    new THREE.Vector3(3.2, 3.5, 3.5),
+  ];
+  const p3Line = createCurve(p3Points, 0x69db7c);
+  pillarGroup.add(p3Line);
+  const p3Label = makeTextSprite('Pillar 3: Communal 道', '#69db7c', 0.35);
+  p3Label.position.set(3.2, 4.0, 3.5);
+  pillarGroup.add(p3Label);
+  const p3Sub = makeTextSprite('"天下為公"', '#449955', 0.22);
+  p3Sub.position.set(3.2, 3.5, 3.5);
+  pillarGroup.add(p3Sub);
+
+  const p3End = createGlowSphere(0.15, 0x69db7c, 0.9);
+  p3End.position.set(3.2, 3.5, 3.5);
+  pillarGroup.add(p3End);
+
+  // Origin point (the starting condition)
+  const origin = createGlowSphere(0.2, 0x888888, 0.7);
+  origin.position.set(0, -1, -2);
+  pillarGroup.add(origin);
+  const origLabel = makeTextSprite('Intelligence (Vol 1-2)', '#888888', 0.25);
+  origLabel.position.set(0, -1.6, -2);
+  pillarGroup.add(origLabel);
+
+  // Faint axes for reference
+  const axMat = new THREE.LineBasicMaterial({ color: 0x333355, transparent: true, opacity: 0.3 });
+  const epGeo = new THREE.BufferGeometry().setFromPoints([new THREE.Vector3(0,-4,0), new THREE.Vector3(0,4.5,0)]);
+  pillarGroup.add(new THREE.Line(epGeo, axMat));
+  const tmpGeo = new THREE.BufferGeometry().setFromPoints([new THREE.Vector3(-4,0,0), new THREE.Vector3(4,0,0)]);
+  pillarGroup.add(new THREE.Line(tmpGeo, axMat));
+  const relGeo = new THREE.BufferGeometry().setFromPoints([new THREE.Vector3(0,0,-4), new THREE.Vector3(0,0,4)]);
+  pillarGroup.add(new THREE.Line(relGeo, axMat));
+}
+
+// =============================================
+// BUILD DANTE: Three concentric shells
+// =============================================
+function buildDante() {
+  // Level 1: Appetite (outer, lightest sin)
+  const shell1 = createGlowSphere(3.2, 0xff6b6b, 0.05);
+  danteGroup.add(shell1);
+  const wireGeo1 = new THREE.SphereGeometry(3.2, 16, 16);
+  const wireMat1 = new THREE.MeshBasicMaterial({ color: 0xff6b6b, wireframe: true, transparent: true, opacity: 0.08 });
+  danteGroup.add(new THREE.Mesh(wireGeo1, wireMat1));
+  const d1Label = makeTextSprite('Level 1: Appetite 欲', '#ff6b6b', 0.3);
+  d1Label.position.set(3.5, 2.5, 0);
+  danteGroup.add(d1Label);
+  const d1Sub = makeTextSprite('Temperance 節 ← → Gluttony', '#aa4444', 0.2);
+  d1Sub.position.set(3.5, 2.0, 0);
+  danteGroup.add(d1Sub);
+  const d1Dante = makeTextSprite('Dante: Upper Hell', '#884444', 0.18);
+  d1Dante.position.set(3.5, 1.6, 0);
+  danteGroup.add(d1Dante);
+
+  // Level 2: Spirit (middle)
+  const shell2 = createGlowSphere(2.1, 0xffb464, 0.07);
+  danteGroup.add(shell2);
+  const wireGeo2 = new THREE.SphereGeometry(2.1, 16, 16);
+  const wireMat2 = new THREE.MeshBasicMaterial({ color: 0xffb464, wireframe: true, transparent: true, opacity: 0.1 });
+  danteGroup.add(new THREE.Mesh(wireGeo2, wireMat2));
+  const d2Label = makeTextSprite('Level 2: Spirit 心', '#ffb464', 0.3);
+  d2Label.position.set(-2.8, 1.2, 0);
+  danteGroup.add(d2Label);
+  const d2Sub = makeTextSprite('Courage 勇 ← → Arrogance', '#aa7733', 0.2);
+  d2Sub.position.set(-2.8, 0.7, 0);
+  danteGroup.add(d2Sub);
+  const d2Dante = makeTextSprite('Dante: Middle Hell', '#886633', 0.18);
+  d2Dante.position.set(-2.8, 0.3, 0);
+  danteGroup.add(d2Dante);
+
+  // Level 3: Reason (inner, gravest corruption)
+  const shell3 = createGlowSphere(1.0, 0xc864ff, 0.12);
+  danteGroup.add(shell3);
+  const wireGeo3 = new THREE.SphereGeometry(1.0, 16, 16);
+  const wireMat3 = new THREE.MeshBasicMaterial({ color: 0xc864ff, wireframe: true, transparent: true, opacity: 0.15 });
+  danteGroup.add(new THREE.Mesh(wireGeo3, wireMat3));
+  const d3Label = makeTextSprite('Level 3: Reason 腦', '#c864ff', 0.3);
+  d3Label.position.set(0, -1.5, 2.0);
+  danteGroup.add(d3Label);
+  const d3Sub = makeTextSprite('Prudence 智 ← → Treachery', '#8844aa', 0.2);
+  d3Sub.position.set(0, -2.0, 2.0);
+  danteGroup.add(d3Sub);
+  const d3Dante = makeTextSprite('Dante: Lower Hell — Judas, Brutus, Cassius', '#6633aa', 0.18);
+  d3Dante.position.set(0, -2.5, 2.0);
+  danteGroup.add(d3Dante);
+
+  // Center: AI operates here
+  const aiCore = createGlowSphere(0.25, 0xff3333, 0.8);
+  danteGroup.add(aiCore);
+  const aiLabel = makeTextSprite('⚠ AI operates at Level 3', '#ff4444', 0.28);
+  aiLabel.position.set(0, 0.6, 0);
+  danteGroup.add(aiLabel);
+
+  // Principle label
+  const principle = makeTextSprite('The higher the gift, the worse its corruption', '#c8b070', 0.3);
+  principle.position.set(0, 4.0, 0);
+  danteGroup.add(principle);
+}
+
+// =============================================
+// BUILD ROOT: The common root visualization
+// =============================================
+function buildRoot() {
+  // Central "love" core
+  const loveSphere = createGlowSphere(0.5, 0xff6b6b, 0.6);
+  rootGroup.add(loveSphere);
+  const loveLabel = makeTextSprite('LOVE', '#ff8787', 0.4);
+  loveLabel.position.set(0, 0, 0);
+  rootGroup.add(loveLabel);
+
+  // Four extending arms for the four enablers
+  const arms = [
+    { label: 'Humility', sub: '(Epistemic)', color: 0x4a9eff, dir: [0, 1, 0], dist: 3 },
+    { label: 'Time', sub: '(Temporal)', color: 0xff6b6b, dir: [1, 0, 0], dist: 3 },
+    { label: 'Others', sub: '(Relational)', color: 0x51cf66, dir: [0, 0, 1], dist: 3 },
+    { label: 'Virtue', sub: '(Inner 德)', color: 0xc8b070, dir: [-0.6, -0.6, -0.6], dist: 3 },
+  ];
+
+  arms.forEach(arm => {
+    const end = new THREE.Vector3(arm.dir[0] * arm.dist, arm.dir[1] * arm.dist, arm.dir[2] * arm.dist);
+    const geo = new THREE.BufferGeometry().setFromPoints([new THREE.Vector3(0,0,0), end]);
+    const mat = new THREE.LineBasicMaterial({ color: arm.color, transparent: true, opacity: 0.6 });
+    rootGroup.add(new THREE.Line(geo, mat));
+
+    const endSphere = createGlowSphere(0.18, arm.color, 0.8);
+    endSphere.position.copy(end);
+    rootGroup.add(endSphere);
+
+    const label = makeTextSprite(arm.label, '#' + arm.color.toString(16).padStart(6, '0'), 0.32);
+    const labelPos = end.clone().multiplyScalar(1.15);
+    label.position.copy(labelPos);
+    rootGroup.add(label);
+
+    const sub = makeTextSprite(arm.sub, '#888888', 0.2);
+    const subPos = end.clone().multiplyScalar(1.3);
+    sub.position.copy(subPos);
+    rootGroup.add(sub);
+  });
+
+  // Concentric rings from love expanding outward (relational circles)
+  const ringColors = [0xff6b6b, 0xff9966, 0xffcc44, 0x88cc44, 0x44aacc, 0x7788dd, 0xaa77cc];
+  const ringLabels = ['Self', 'Loved Ones', 'Community', 'Nation', 'Humanity', 'Future Gen.', 'The Sacred'];
+  ringColors.forEach((col, i) => {
+    const r = 0.5 + (i + 1) * 0.38;
+    const ringGeo = new THREE.RingGeometry(r - 0.02, r + 0.02, 48);
+    const ringMat = new THREE.MeshBasicMaterial({ color: col, transparent: true, opacity: 0.2, side: THREE.DoubleSide });
+    const ring = new THREE.Mesh(ringGeo, ringMat);
+    ring.rotation.x = -Math.PI / 2;
+    ring.position.y = -0.3;
+    rootGroup.add(ring);
+  });
+
+  // Root formula
+  const formula = makeTextSprite('Love × Humility × Time × Virtue = Wisdom', '#c8b070', 0.3);
+  formula.position.set(0, -3.5, 0);
+  rootGroup.add(formula);
+}
+
+// Build all views
+buildOverview();
+buildPillars();
+buildDante();
+buildRoot();
+
+// Initially show only overview
+pillarGroup.visible = false;
+danteGroup.visible = false;
+rootGroup.visible = false;
+
+// =============================================
+// VIEW MANAGEMENT
+// =============================================
+let currentView = 'overview';
+const panelTitle = document.getElementById('panel-title');
+const panelText = document.getElementById('panel-text');
+
+const viewInfo = {
+  overview: {
+    title: 'The Four-Dimensional Space',
+    text: `Wisdom is a position in four-dimensional space. Drag to rotate, scroll to zoom.
+    <br><br>
+    <span class="highlight">Epistemic</span> (vertical): Hubris → Deep Humility<br>
+    <span class="highlight">Temporal</span> (horizontal): Reactive → Eternal<br>
+    <span class="highlight">Relational</span> (depth): Self → Sacred<br>
+    <span class="highlight">Inner Ordering</span> (the enabling axis): Disordered → Virtuous<br>
+    <br>Without inner ordering, all other axes collapse.`
+  },
+  axes: {
+    title: 'The Four-Dimensional Space',
+    text: `Same view. The <span class="highlight">axes</span> define the space; the <span class="highlight">pillars</span> are paths through it.
+    <br><br>
+    Key insight: the Epistemic axis has four cells —<br>
+    Cell 3 (Hubris) is the default state of all current AI.<br>
+    Cell 4 (Deep Humility) acknowledges <span class="highlight">unknown unknowns</span>.`
+  },
+  pillars: {
+    title: 'Three Pillars of Wisdom',
+    text: `Three characteristic paths through the wisdom space:
+    <br><br>
+    <span class="highlight" style="color:#ffd43b">Pillar 1 智</span>: Strategic — rises in time and epistemic, stays near self. <em>The Bridge.</em><br>
+    <span class="highlight" style="color:#ff8787">Pillar 2 仁</span>: Sacrificial — extends to others, highest humility. <em>The Heart.</em><br>
+    <span class="highlight" style="color:#69db7c">Pillar 3 道</span>: Communal — maximizes all axes simultaneously. <em>The Culmination.</em><br>
+    <br>All three originate from Intelligence (Volumes 1–2).`
+  },
+  dante: {
+    title: "Dante's Levels of Inner Ordering",
+    text: `Three levels of faculty, three levels of corruption:
+    <br><br>
+    <span class="highlight" style="color:#ff6b6b">Appetite</span> (outer): Survival drives. Pitiable when disordered.<br>
+    <span class="highlight" style="color:#ffb464">Spirit</span> (middle): Love, ambition. Condemnable when disordered.<br>
+    <span class="highlight" style="color:#c864ff">Reason</span> (inner): Calculation, strategy. Damnable when disordered.<br>
+    <br><span style="color:#ff4444">⚠ AI operates entirely at Level 3.</span> If misaligned, it commits the gravest category of moral failure by construction.
+    <br><br><em>The higher the gift, the worse its corruption.</em>`
+  },
+  root: {
+    title: 'The Common Root',
+    text: `All three pillars grow from one root:
+    <br><br>
+    <span class="highlight">Love at expanding radii</span> — from self, to loved ones, to all beings, to the sacred<br>
+    <span class="highlight">Constrained by humility</span> — about unknown unknowns<br>
+    <span class="highlight">Extended across time</span> — from immediate to eternal<br>
+    <span class="highlight">Enabled by virtue (德)</span> — the right ordering of appetite, spirit, and reason<br>
+    <br><em>Love × Humility × Time × Virtue = Wisdom</em>`
+  }
+};
+
+function setView(view) {
+  currentView = view;
+  overviewGroup.visible = (view === 'overview' || view === 'axes');
+  pillarGroup.visible = (view === 'pillars');
+  danteGroup.visible = (view === 'dante');
+  rootGroup.visible = (view === 'root');
+
+  panelTitle.textContent = viewInfo[view].title;
+  panelText.innerHTML = viewInfo[view].text;
+
+  document.querySelectorAll('.ctrl-btn').forEach(btn => btn.classList.remove('active'));
+  event.target.classList.add('active');
+}
+
+// =============================================
+// MOUSE CONTROLS (orbit)
+// =============================================
+let isDragging = false;
+let prevMouse = { x: 0, y: 0 };
+let spherical = { theta: Math.PI / 4, phi: Math.PI / 4, radius: 12 };
+let autoRotate = true;
+
+renderer.domElement.addEventListener('mousedown', e => {
+  isDragging = true;
+  prevMouse = { x: e.clientX, y: e.clientY };
+});
+
+renderer.domElement.addEventListener('mousemove', e => {
+  if (!isDragging) return;
+  const dx = e.clientX - prevMouse.x;
+  const dy = e.clientY - prevMouse.y;
+  spherical.theta -= dx * 0.005;
+  spherical.phi = Math.max(0.1, Math.min(Math.PI - 0.1, spherical.phi - dy * 0.005));
+  prevMouse = { x: e.clientX, y: e.clientY };
+});
+
+renderer.domElement.addEventListener('mouseup', () => { isDragging = false; });
+renderer.domElement.addEventListener('mouseleave', () => { isDragging = false; });
+
+renderer.domElement.addEventListener('wheel', e => {
+  spherical.radius = Math.max(5, Math.min(25, spherical.radius + e.deltaY * 0.01));
+});
+
+// Touch support
+renderer.domElement.addEventListener('touchstart', e => {
+  isDragging = true;
+  prevMouse = { x: e.touches[0].clientX, y: e.touches[0].clientY };
+});
+renderer.domElement.addEventListener('touchmove', e => {
+  if (!isDragging) return;
+  const dx = e.touches[0].clientX - prevMouse.x;
+  const dy = e.touches[0].clientY - prevMouse.y;
+  spherical.theta -= dx * 0.005;
+  spherical.phi = Math.max(0.1, Math.min(Math.PI - 0.1, spherical.phi - dy * 0.005));
+  prevMouse = { x: e.touches[0].clientX, y: e.touches[0].clientY };
+});
+renderer.domElement.addEventListener('touchend', () => { isDragging = false; });
+
+function toggleAutoRotate() {
+  autoRotate = !autoRotate;
+}
+
+// =============================================
+// ANIMATION
+// =============================================
+let time = 0;
+function animate() {
+  requestAnimationFrame(animate);
+  time += 0.005;
+
+  if (autoRotate && !isDragging) {
+    spherical.theta += 0.002;
+  }
+
+  camera.position.x = spherical.radius * Math.sin(spherical.phi) * Math.cos(spherical.theta);
+  camera.position.y = spherical.radius * Math.cos(spherical.phi);
+  camera.position.z = spherical.radius * Math.sin(spherical.phi) * Math.sin(spherical.theta);
+  camera.lookAt(0, 0.5, 0);
+
+  // Gentle pulse on center objects
+  if (overviewGroup.visible && overviewGroup.children[0]) {
+    overviewGroup.children[0].scale.setScalar(1 + 0.05 * Math.sin(time * 4));
+  }
+  if (rootGroup.visible && rootGroup.children[0]) {
+    rootGroup.children[0].scale.setScalar(1 + 0.08 * Math.sin(time * 3));
+  }
+  if (danteGroup.visible) {
+    // Slow rotation of Dante shells
+    danteGroup.children.forEach((child, i) => {
+      if (child.type === 'Mesh' && child.geometry.type === 'SphereGeometry') {
+        child.rotation.y = time * (0.3 + i * 0.1);
+      }
+    });
+  }
+
+  renderer.render(scene, camera);
+}
+
+animate();
+
+// Resize handler
+window.addEventListener('resize', () => {
+  camera.aspect = window.innerWidth / window.innerHeight;
+  camera.updateProjectionMatrix();
+  renderer.setSize(window.innerWidth, window.innerHeight);
+});
+</script>
+</body>
+</html>
+

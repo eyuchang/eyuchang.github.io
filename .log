@@ -1,0 +1,59 @@
+This is TeX, Version 3.1415 (C version 6.1) (format=lplain 96.8.16)  20 JAN 2003 22:25
+**nsf-jan-2003.tex
+(/usr/local/lib/texmf/tex/latex2e/tools/.tex
+LaTeX2e <1995/12/01> patch level 1
+File ignored)
+*
+(Please type a command or say `\end')
+*
+(Please type a command or say `\end')
+*!dv
+
+! LaTeX Error: Missing \begin{document}.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+<*> !
+     dv
+? 
+Missing character: There is no ! in font nullfont!
+Missing character: There is no d in font nullfont!
+Missing character: There is no v in font nullfont!
+
+*
+(Please type a command or say `\end')
+*!ds
+
+! LaTeX Error: Missing \begin{document}.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+<*> !
+     ds
+? 
+Missing character: There is no ! in font nullfont!
+Missing character: There is no d in font nullfont!
+Missing character: There is no s in font nullfont!
+
+*
+(Please type a command or say `\end')
+*
+! Emergency stop.
+<*> 
+    
+End of file on the terminal!
+
+ 
+Here is how much of TeX's memory you used:
+ 5 strings out of 10943
+ 63 string characters out of 72708
+ 42586 words of memory out of 262141
+ 2941 multiletter control sequences out of 9500
+ 3640 words of font info for 14 fonts, out of 100000 for 255
+ 14 hyphenation exceptions out of 607
+ 4i,0n,4p,71b,14s stack positions out of 300i,40n,60p,3000b,4000s
+No pages of output.

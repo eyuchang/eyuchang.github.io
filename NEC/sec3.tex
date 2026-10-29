@@ -1,0 +1,363 @@
+\section{Selecting Document Category}
+\label{sec-get-labels}
+
+Given a document that the user has bookmarked, the bookmark
+tree needs to place the document in proper categories.
+To find out to which categories a document belongs,
+the traditional approach trains a document classifier
+beforehand and applies the classification rules to
+classify the document. Taking advantage of that some
+search engines can return the document categories, we query
+the search engines for the categories,
+rather than training our own document classifier.
+
+After a keyword search is issued, a search engine
+returns a number of documents. These documents may
+belong to different subjects. The user selects some
+documents to browse.  Eventually, she/he may save 
+a document as a bookmark.
+
+For each bookmark, some search engines return the
+labels of the categories to which the bookmark belongs. We can use these
+returned labels to classify the bookmark in the bookmark tree.
+{\it YAHOO!}~ search engine, for instance,
+returns the following three category labels with 
+a document titled {\it ``sports car service''}:
+\begin{itemize}
+\item ``Business and Economy:Company:Automative:Parts:Makes and Models:Saab''
+\item ``Business and Economy:Company:Automative:Dealers:Used'', and
+\item ``Regional:U.S. States:Delaware:Cites:Wilmington:Business and Shopping".
+\end{itemize}
+
+To choose the proper labels to represent the bookmark, we follow four
+steps:
+\begin{enumerate} 
+\item We retain only up to $h - 2$ (excluding root and leaf
+level of the tree) prefix of the label.
+Since we only have $h - 2$ levels of internal vertices, the 
+first $h - 2$ label prefix is sufficient to identify any
+directory (and hence category). For instance, suppose $h = 5$.
+The labels above become
+ \begin{itemize}
+ \item ``Business and Economy:Company:Automative'',
+ \item ``Business and Economy:Company:Automative'', and
+ \item ``Regional:U.S. States:Delaware''.
+ \end{itemize}
+\item We merge the labels with the same name and assign
+each resulting label a weight depending on the fraction of raw
+labels it represents. Following the same example, we assign
+label ``Business and Economy:Company:Automative'' with 
+a weight $\frac{2}{3}$ and 
+``Regional:U.S. States:Delaware'' a weight $\frac{1}{3}$. 
+\item We check if the weight of a label exceeds the minimum
+coverage requirement $c_{min}$. For instance, if we 
+enforce that a label must at least cover $10\%$ of the
+raw labels, then in this example both labels are
+acceptable. Otherwise we may further merge the
+labels until all the resulting labels exceed the coverage
+threshold. For the lables which coverage are below
+$c_{min}$ and cannot be merged with other labels,
+we eliminate the labels since they are insignificant.
+\item We select the final set of labels to represent the
+bookmark. The final set of labels must have a total 
+coverage of $g_{min}$. Suppose $g_{min} = 60\%$.
+In this example we retain only the 
+``Business and Economy:Company:Automative'' 
+label since it alone already exceeds the coverage threshold.
+If $g_{min} > \frac{2}{3}$, we have to keep both labels for
+the bookmark.
+\end{enumerate}
+
+\section{Organizing Bookmarks}
+\label{sec-build-tree}
+
+The bookmark tree is maintained differently from the
+traditional tree structures (e.g., B-trees, R-trees, etc.)
+in at least three respects.
+First, the shape of the bookmark tree should be stable most of the time.
+Structural stability is a strong usability requirement to the bookmark
+tree since the users may be confused if the tree is reorganized very often.
+Second, the shape of the tree should be adaptive to individual
+user's usability preference. A user who prefers generality 
+may want to have a less bushy tree with smaller
+height; a user who prefers specificity may like
+a tree with greater height. (The parameter
+$\alpha$ that decides the maximum degree of the vertices
+can be tuned to change the shape of the tree. We
+discuss the use of $\alpha$ in detail in Sections~\ref{sec-insert}
+and~\ref{sec-person}.)
+The third difference is that a bookmark may be stored in 
+more than one vertex because it has more than one label.
+We show how a category
+tree handles bookmark insertion, deletion and
+update, and how a tree can be personalized to accommodate individual 
+preferences in the remainder of this section.
+
+\subsection{Inserting a Bookmark}
+\label{sec-insert}
+
+The insertion is performed in two steps. In the
+first step, we place the inserted bookmark in the
+directories which it belongs to.  In the the second step
+we split directories, if the splitting conditions (described shortly)
+are met.
+
+When a bookmark is added, we use the bookmark's 
+category labels to locate in the tree the deepest vertices 
+that match the labels to insert the bookmark.
+Suppose Figure~\ref{fig-labels} is our bookmark tree
+and we want to insert a bookmark that has three labels ``A:D'',
+``C:F'' and ``C:G''. We place the bookmark in the 
+subdirectory D under directory A (that matches
+label ``A:D'') and in the directory C (that has the 
+maximum match for labels ``C:F'' and ``C:G'').
+
+Next, we decide if we should split the directories in which
+the bookmark is placed. If the degree of a directory exceeds
+the maximum allowable degree $\alpha$, 
+the directory is a candidate to be split.
+We only split a directory, however, if the split 
+decreases the number of children for that directory.
+\footnote{A split may not reduce the number of children.
+For example, if a new subdirectory can store only one bookmark, the
+number of children remains unchanged for the parent directory.}
+Thus, we can write the split conditions a
+\begin{itemize}
+\item $V.d > \alpha$, and
+\item $V.d$ must be reduced after the split.
+\end{itemize}
+
+When the split conditions are met, we take a greedy approach to 
+minimize the number of children in the directory.
+Our goal is to make a large move occasionally
+rather than making many small moves frequently. 
+For all bookmarks in the directory 
+that can be grouped and moved, we create subdirectories 
+and move them. To prevent frequent split, the splitting
+threshold $\alpha$ should be chosen carefully.
+We suggest to set the $\alpha$ value slightly larger
+than the maximum number of possible subcategories under a category.
+For instance, {\it YAHOO}~ classifies documents into 14 top-level
+categories. Setting $\alpha$ to, say, $16$ ensures that
+no directory split occurs until after the insertion of the $17^{th}$ bookmark.
+The first split will create a number of subdirectories
+to stage some existing bookmarks (i.e., reducing the number
+of bookmarks in the root directory). Furthermore, 
+the new subdirectories also provide rooms for staging 
+bookmarks. The need
+to split the tree again is not likely to happen in
+the immediate future.
+
+Finally, we add an alias record to the alias table for
+the bookmark if it has multiple labels.
+
+\subsection{Deleting a Bookmark}
+
+When a bookmark is deleted, we 
+look up its aliases in the alias table, remove
+all its copies from the tree, and delete the
+bookmark's alias record from the alias table.
+A deletion reduces the number of children 
+in the bookmark's parent directories. To keep
+the tree stable, however, we do not
+collapse a directory even when the
+number of children in it becomes very small. 
+A directory is removed only when it becomes empty.
+
+\subsection{Update a Bookmark}
+
+\begin{figure}[t]
+\epsfysize=180pt
+\epsfxsize=320pt
+\centerline{\epsffile{fig-bm2.eps}}
+\caption{An Update Example}
+\label{fig-update}
+\end{figure}
+
+The categories to which a bookmark belongs can be changed.
+For instance, the content of a document may be changed and thereby
+causes it to be reclassified or the search engine may 
+reclassify the document into some different categories.
+An update can simply be implemented as
+an insertion after a deletion. However, the user
+should be notified where the bookmarks are moved to.
+Whenever a bookmark is moved, we place a forwarding
+icon at the old location. 
+After the user access the bookmark via the
+new path for a few times, the forwarding icon is
+removed. Figure~\ref{fig-update} shows that a bookmark
+is moved from directories B:E and C (two copies)
+to directory B. Both the original directories keep
+a forwarding address (in the ovals) referring
+to the new directory B.
+
+\subsection{Personalization}
+\label{sec-person}
+
+Many personalization features can be support. Here,
+we present three ideas and show how they can be implemented:
+\begin{enumerate}
+\item Hot links:
+A hot link is a bookmark identified by the user
+as important or is accessed very frequently.
+The bookmark tree can color these hot
+bookmarks, promote them
+to the root directory, or create a hot-link folder
+to stage them.
+
+\item Customized categorization:
+The user can override the categories that the bookmark
+organizer chooses to store the bookmarks. For instance,
+the ``Starr Report'' should be categorized into
+``Government:US Government:Politics'' but
+the user may want to shelve it under the 
+``News Event'' folder. In this case, the bookmark
+tree uses the user-defined label.
+The bookmark tree does not
+move the bookmarks that are manually classified by
+the user. 
+
+\item Generality versus specificity:
+Some people may prefer to keep all files in one directory
+while others may prefer to organize files 
+in a deep hierarchical tree. We can  
+adapt to the user's preference by
+changing the value of $\alpha$. A larger $\alpha$ value
+makes the tree shallower and hence the categories are more general.
+Conversely, a smaller $\alpha$ value makes the tree deeper
+and hence the categories can be more specific. 
+\end{enumerate}
+
+\subsection{Example}
+\label{sec-ex1}
+
+We need a few screen dumps here!
+
+\subsection{Specifications}
+
+We organize bookmarks into a directory tree according to 
+bookmarks' labels.  Each directory may have a number of 
+bookmarks and child directories that contain bookmarks.  We 
+record four pieces of information in each directory vertex:
+\begin{itemize}
+\item Its label ($V.L$).
+\item Its degree ($V.d$): the number of direct children, including 
+bookmarks and child directories it has.
+\item Its depth in the tree ($V.\delta$). 
+\item Its children set ($V.v$), including both directories and bookmarks.
+\end{itemize}
+A leaf vertex is a bookmark vertex, so its children set is always empty
+($V.v = \emptyset$).  For a leaf vertex, we record the name of the 
+bookmark in $V.B$.
+
+Let $L_s$ denote the set of category labels of a bookmark $B$.
+Let $L$ denote an individual category label, which consists of
+a list of sublabels concatenated by colons. 
+Figures~\ref{fig-insert} depicts the
+algorithms to insert a bookmark.
+For each label of the bookmark, 
+algorithm {\it Bookmark-Insert} first calls procedure 
+{\it Find-Max-Matching-Vertex} (depicted in Figure~\ref{fig-max})
+to find the deepest directory
+to insert the bookmark. After updating some bookkeeping
+information for the inserted bookmark and directory, 
+it calls procedure {\it Split-Vertex}
+to split the directory if the directory's degree exceeds the
+splitting threshold.  The {\it Split-Vertex} procedure (not
+documented) checks if splitting reduces the number of children for
+the directory. If so, it creates subdirectories, moves
+bookmarks, and update bookkeeping parameters for
+bookmarks and directories involved.
+Finally, procedure {\it Bookmark-Insert}
+updates the alias table for the bookmark,
+if necessary. 
+
+Algorithm {\it Bookmark-Delete} in Figure~\ref{fig-delete}
+describes the deletion steps. The algorithm first
+gets all the aliases of the to-be-deleted bookmark from the alias
+table. For each alias, it finds the directory by calling
+procedure {\it Find-Max-Matching-Vertex} and then removes
+the bookmark from that directory. Procedure 
+{\it Collapse-Vertex} (not documented) is invoked
+if the degree of the vertex, after removing the bookmark,
+becomes zero. The procedure may recursively remove a
+number of vertices if they also become empty.
+
+\begin{figure}
+{\bf Bookmark-Insert($T,L_s,B$)}
+\begin{nlist}
+\item for each $L \in L_s$
+ \begin{nlist}
+ \item $V^* \leftarrow$ {\bf Find-Max-Matching-Vertex}$(T,L)$;
+ \item new $V$; /* allocate a new vertex */
+ \item $V.B \leftarrow B$; 
+ \item $V.L \leftarrow L$;
+ \item $V.\delta \leftarrow V^*.\delta + 1$;
+ \item $V^*.v \leftarrow V^*.v \cup V$;
+ \item $V^*.d \leftarrow V^*.d + 1$;
+ \item if ($V^*.d > \alpha$
+
+       {\bf Split-Vertex}$(V^*)$;
+ \end{nlist}
+ \item if ($|L_s| > 1$) {\bf Update-Alias-Table}$(AT, L_s, B)$;
+\end{nlist}
+\caption{Algorithm Bookmark Insert}
+\label{fig-insert}
+\end{figure}
+
+\begin{figure}
+{\bf Bookmark-Delete($T,B$)}
+\begin{nlist}
+\item $L_s \leftarrow$ {\bf Find-Aliases}$(AT, B)$;
+\item for each $L \in L_s$
+ \begin{nlist}
+ \item $V^* \leftarrow$ {\bf Find-Max-Matching-Vertex}$(T,L)$;
+ \item for each $V \in V^*.v$
+  \begin{nlist}
+  \item if ($V.B = B$) 
+   \begin{nlist}
+   \item $V^*.v \leftarrow V^*.v - V$;
+   \item delete $V$;
+   \end{nlist}
+  \item $V^*.d \leftarrow V^*.d - 1$;
+  \item if ($V^*.d = 0$) {\bf Collapse-Vertex}$(T, V^*)$;
+  \end{nlist}
+ \end{nlist}
+\end{nlist}
+\caption{Algorithm Bookmark Delete}
+\label{fig-delete}
+\end{figure}
+
+\begin{figure}
+{\bf Find-Max-Matching-Vertex(T,L)}
+\begin{nlist}
+\item $found \leftarrow false$;
+\item $l \leftarrow head[L]$;
+\item $V \leftarrow root[T]$;
+\item $V^* \leftarrow root[T]$;
+\item while ($l \ne nil$) $\{$
+ \begin{nlist}
+ \item for each $V \in V.v$ $\{$
+  \begin{nlist}
+  \item if ($l = V.L$) $\{$ /* matching the label */
+   \begin{nlist}
+   \item $V^* \leftarrow V$; \item $found \leftarrow true$;
+   \item break; $\}$
+   \end{nlist}
+  \item $\}$
+  \end{nlist}
+ \item if (found) /* found a match, next level */
+  \begin{nlist}
+  \item $l \leftarrow next[l]$; 
+  \item $found \leftarrow false$;
+  \end{nlist}
+ \item else break; /* ready to return */
+ \end{nlist}
+\item $\}$ /* while */
+\item return($V^*$);
+\end{nlist}
+\caption{Procedure Find-Max-Matching-Vertex}
+\label{fig-max}
+\end{figure}
+
+

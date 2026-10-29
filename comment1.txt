@@ -1,0 +1,85 @@
+I. Intro
+
+o What is the problem?
+
+  Because of the large number and volumneous nature of multimedia data,
+  a multimedia system must use magnetic disks for economical storage.  
+
+o Why the problem is important and urgent?
+
+  Unfortunately, the disk latency continues to be the dominant 
+  bottleneck of any system using disks, and the performance gap 
+  between IO and CPU continues to be widened. 
+
+o What are the shortcomings/limitations of the current solutions?
+
+  The design of traditional disk management/scheduling policies are 
+  limited by the assumption that IOs are non-preemptible.
+  In this study, we propose the idea of virtual IO through
+  effective design and implementation of preemptive IOs.
+  We show that virtual IO can improve X, Y, and Z.
+
+o How your solutions differ and how it work at very high level?
+
+  IO preemption has been discussed before. However, how IO
+  preemption is to be implemented has not received sufficient
+  treatment.  In particular, we consider out three important
+  factors:
+ 
+  - Disk profiling
+  - Disk prefetching
+  - Writes as well as reads
+
+o Contribution summary 
+
+  The main controbution of this work does not lie in merely
+  avocating preemptive IOs, but lies in
+  
+
+o Paper organization
+
+II. Related Work
+
+
+III. Schemes
+
+This section needs to be much better structured.  For each subsection,
+you need to state the following:
+
+o Definition.
+
+  Definition 2.1 Transfer time preemption.
+
+o Benefits
+
+o Output.
+
+  How it works when used wisely?  Describe this use some good figures.
+
+o Input.
+
+  Disk parameters?  How do you get those?
+
+o Algorithms.
+
+  How it is used to achieve the benefits?
+  Describe it in formulas or in algoorithms
+
+III. Experiments
+
+o State the goals of the experimens.
+
+  - We design our experiments to answer the following four questions:
+    1.
+    2. 
+    3.
+    4.
+
+o State your experiment setup and explain why that can provide you
+  adequate and objective results to answer your questions.
+
+o Present your results to answer each question.
+
+o Summarize your observations.
+
+

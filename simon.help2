@@ -1,0 +1,169 @@
+
+From echang@xanadu.ece.ucsb.edu Wed Feb  7 10:48:48 2001
+Date: Wed, 7 Feb 2001 10:29:53 -0800 (PST)
+From: Edward Chang <echang@xanadu.ece.ucsb.edu>
+To: echang@db.stanford.edu
+Subject: Re: code help (fwd)
+
+
+
+---------- Forwarded message ----------
+Date: Tue, 06 Feb 2001 21:31:04 -0800
+From: Simon Tong <stong@Robotics.Stanford.EDU>
+To: Huaxin You <hxyou@pstat.ucsb.edu>
+Cc: Edward Chang <echang@xanadu.ece.ucsb.edu>
+Subject: Re: code help
+
+
+Hey Huaxin,
+
+I imagine it must be hard to get into the code. Almost all of the code
+is Thorsten Joachims'. Also, my modifications were written in a hurry
+and are not very tidy. Sorry! As I said before, I wasn't intending to
+release the code and the modifications were only supposed to be for my
+use :)
+
+For multiple queries the most relevant part of the code is lines 541 to
+812. Currently, for k-at-a-time querying the code looks at the closest
+2k images to the current hyperplane and then does a greedy search for
+the k images (within the set of 2k images) that are most mutually far
+apart from each other. There are probably other ideas that you may be
+interested in exploring.
+
+For running experiments here's what I do. You may want to explore
+something different if you think it will help. I've spent some time
+writting scripts that automate most of the process.
+
+
+*** Initial data processing:
+
+1) I get the original data file and split it up into four data sets each
+consisting of the 600 images. The four data sets correspond to the four
+different labelings that the images can take -- architecture, people
+etc.
+This splitting can be done automatically using my perl script: mdatSplit
+
+2) I normalize each of the features in the data sets to have zero mean
+and variance 1. I use my perl script: datNormalize to do this.
+
+*** For each topic I then do the following:
+
+3) I then create an initial training set of one randomly selected
+positive and one randomly selected negative image. datCreateActiveTrain
+does this.
+
+4) I then run the non-active and simple active svm learning algorithms
+on this data set.
+
+5) Next I run the classifying module on the data set and look at the
+accuracy that it's achieved.
+
+I've spent some time creating a Perl script that does steps 3) 4) and 5)
+automatically: imageActiveRunAllValues.
+
+Usage: imageActiveRunAllValues <topic> <num_train> <num_runs> <kernel
+type (1=poly 2=gaussian)> <kernel param> <num_simultaneous queries>
+[number initial random queries]
+
+<topic> is the file stem of the desired topic. E.g. if I have a data
+file called "people.normalized.dat" then topic is "people.normalized".
+
+<num_train> is the largest number of labeled training examples we want
+the svms to see. If we are doing 3 rounds or 20-at-a-time querying then
+we set this to 3*20 + 2 = 62. The +2 is because we always see one
+positive and one negative image.
+
+<num runs> is the number of repeated experimental runs we want to do.
+
+<kernel param> is the degree of the polynomial kernel if we set kernel
+type to polynomials. <kernel param> is the gamma value if we set kernel
+type = gaussian.
+
+<num simultaneous queries> is the k value for k-at-a-time querying
+
+I've experimented with creating an inital random dataset first and then
+doing active learning on that. [number inital random queries] sets the
+size of this random data set.
+
+*** Example run
+
+So if I want to test the birds topic here's what I do. I create a dat
+file birds.dat consisting of just the labeling for the birds data set. I
+then normalized it to get birds.normalized.dat.
+
+Suppose I want to try a gaussian kernel with gamma = 0.01. Suppose
+further that I want to first start out with 20 randomly selected images
+and then do 20-at-a-time querying for at most 4 rounds. I want to do
+this experiment 25 times.
+
+I then run the script:
+
+imageActiveRunAllValues architecture.normalized 82 25 2 0.01 2 20
+
+The scrpit with then output 4 results files:
+
+architecture.normalized.results.22.txt
+architecture.normalized.results.42.txt
+architecture.normalized.results.62.txt
+architecture.normalized.results.82.txt
+
+These contain the performance results after the SVMs have seen 22, 42,
+62 and 82 images respectively; i.e after 1,2,3 and 4 rounds of querying.
+
+Each file contains the average accuracy and standard error of the top-n
+returned images for various n. 
+Ran = Random querying SVM
+SAct = Simple active SVM
+
+Here's the type of results you should be getting after 4 rounds of
+querying 20-at-time (architecture.normalized.results.82.txt):
+
+
+Topic: architecture.normalized
+Number of inital random queries: 20
+Number of querying rounds: 3
+Number of simulanteous queries per round: 20
+Number of labeled instances seen: 82
+Gamma: 0.01
+Number of runs: 25
+
+Ran10      20     30      40      50      60      70      80      90 ...
+SAct10     20     30      40      50      60      70      80      90 ...
+.
+.
+.
+
+Mean
+99.5    98.75  98.501  98.125  97.9    96.915  96.2845 95.125  93.1115 
+...
+100     99     98.1675 98.25   98.4    98.499  98.213  97.5    96.946
+...
+
+So, for example, the active SVM gets an average of 98.213 percent
+accuracy for the 70 images that it is most confident are about
+architecture.
+
+Simon.
+
+--
+simon.tong@cs.stanford.edu * Computer Science Dept * Stanford University
+
+  [Part 2, ""  Application/X-GZIP  52KB]
+  [Unable to print this part]
+
+
+  [Part 3, ""  Text/PLAIN  142 lines]
+  [Unable to print this part]
+
+
+  [Part 4, ""  Text/PLAIN  81 lines]
+  [Unable to print this part]
+
+
+  [Part 5, ""  Text/PLAIN  76 lines]
+  [Unable to print this part]
+
+
+  [Part 6, ""  Text/PLAIN  256 lines]
+  [Unable to print this part]
+

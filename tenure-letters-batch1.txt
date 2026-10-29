@@ -1,0 +1,33 @@
+References of Edward Chang's (cubmitted on 7/11/2002)
+
+Prof. Shih-Fu Chang
+Dept. of Electrical Engineering &
+Video/Multimedia Research Group
+New York, NY 10027
+Email: sfchang@ee.columbia.edu
+Phone: 212-854-6894 Fax: 212-932-9421
+
+Prof. Hector Garcia-Molina
+Department of Computer Science
+Stanford University
+Gates Hall 4A, Room 434
+Stanford, CA  94305-9040  USA
+Email:  hector@cs.stanford.edu
+Phone: 650-723-0685 Fax: 650-725-2588
+
+Dr. John R. Smith
+Manager, Pervasive Media Management
+IBM T. J. Watson Research Center
+30 Saw Mill River Road
+Hawthorne, NY 10532
+Email: jrsmith@watson.ibm.com
+Phone: 914-784-7320
+
+Dr. Honesty C. Young
+IBM Almaden Research Center
+59i-B3
+630 Harry Road
+San Jose, CA 95120-6099
+Email: young@almaden.ibm.com
+Phone: 408-927-1737
+

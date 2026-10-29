@@ -1,0 +1,164 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Collaborators</title>
+  <style>
+    :root {
+      --ink: #0f172a; /* slate-900 */
+      --muted: #475569; /* slate-600 */
+      --line: #e2e8f0; /* slate-200 */
+      --bg: #ffffff;
+      --chip: #f1f5f9; /* slate-100 */
+    }
+    html, body { margin: 0; padding: 0; font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji"; color: var(--ink); background: var(--bg); }
+    .container { max-width: 1100px; margin: 0 auto; padding: 24px; }
+    header { margin-bottom: 16px; }
+    h1 { font-size: 2rem; margin: 0 0 4px; }
+    .sub { color: var(--muted); margin: 0 0 24px; }
+    nav.local { display: flex; gap: 12px; flex-wrap: wrap; margin: 8px 0 28px; }
+    nav.local a { text-decoration: none; padding: 6px 10px; background: var(--chip); border-radius: 999px; color: var(--ink); border: 1px solid var(--line); font-size: 0.9rem; }
+
+    section { margin: 32px 0 40px; }
+    section h2 { font-size: 1.5rem; margin: 0 0 12px; }
+    .table-wrap { overflow-x: auto; border: 1px solid var(--line); border-radius: 10px; }
+    table { width: 100%; border-collapse: collapse; min-width: 640px; }
+    caption { text-align: left; padding: 12px 16px; color: var(--muted); font-size: 0.95rem; }
+    th, td { padding: 12px 16px; border-top: 1px solid var(--line); vertical-align: middle; }
+    th { text-align: left; background: #fafafa; font-weight: 600; }
+    tbody tr:nth-child(even) { background: #fcfcfd; }
+
+    .avatar { width: 56px; height: 56px; object-fit: cover; border-radius: 8px; border: 1px solid var(--line); background: #fff; }
+    .links { display: flex; flex-wrap: wrap; gap: 8px; }
+    .chip { display: inline-flex; align-items: center; gap: 6px; padding: 4px 8px; border: 1px solid var(--line); border-radius: 999px; background: var(--chip); font-size: 0.85rem; color: var(--ink); text-decoration: none; }
+
+    /* University table narrower columns */
+    .u-col-uni { width: 34%; }
+    .u-col-lab { width: 42%; }
+    .u-col-link { width: 24%; }
+
+    /* Logo grid */
+    .logo-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); gap: 16px; margin-top: 12px; }
+    .logo-card { display: grid; place-items: center; padding: 16px; border: 1px solid var(--line); border-radius: 12px; background: #fff; }
+    .logo-card img { max-width: 120px; max-height: 52px; object-fit: contain; filter: saturate(0.9); }
+    .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,1px,1px); white-space: nowrap; border: 0; }
+
+    /* Small helper note styling */
+    .note { color: var(--muted); font-size: 0.9rem; margin-top: 6px; }
+  </style>
+</head>
+<body>
+  <!-- Drop this <main> block into your site template body. Wrap styles in your bundle if needed. -->
+  <main class="container">
+    <header>
+      <h1>Collaborators</h1>
+      <p class="sub">Partners in research, teaching, and translation to practice.</p>
+      <nav class="local" aria-label="Section links">
+        <a href="#researchers">Researchers</a>
+        <a href="#universities">Universities</a>
+        <a href="#corporations">Corporations</a>
+      </nav>
+    </header>
+
+    <!-- 1. Researchers -->
+    <section id="researchers" aria-labelledby="researchers-title">
+      <h2 id="researchers-title">Researchers</h2>
+      <div class="table-wrap">
+        <table role="grid">
+          <caption>Photo, name, title, affiliation, and links</caption>
+          <thead>
+            <tr>
+              <th scope="col">Photo</th>
+              <th scope="col">Name</th>
+              <th scope="col">Title</th>
+              <th scope="col">Affiliation</th>
+              <th scope="col">Links</th>
+            </tr>
+          </thead>
+          <tbody>
+            <!-- Row template: duplicate and replace placeholders -->
+            <tr>
+              <td><img class="avatar" src="images/people/sample-1.jpg" alt="Portrait of Jane Doe" loading="lazy" /></td>
+              <td>Jane Doe</td>
+              <td>Associate Professor</td>
+              <td>Department of Computer Science, Example University</td>
+              <td>
+                <div class="links">
+                  <a class="chip" href="mailto:jane@example.edu">Email</a>
+                  <a class="chip" href="#" target="_blank" rel="noopener">Google Scholar</a>
+                  <a class="chip" href="#" target="_blank" rel="noopener">Homepage</a>
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <td><img class="avatar" src="images/people/sample-2.jpg" alt="Portrait of John Smith" loading="lazy" /></td>
+              <td>John Smith</td>
+              <td>Senior Research Scientist</td>
+              <td>AI Lab, Example Corp</td>
+              <td>
+                <div class="links">
+                  <a class="chip" href="#" target="_blank" rel="noopener">ORCID</a>
+                  <a class="chip" href="#" target="_blank" rel="noopener">LinkedIn</a>
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="note">Add or remove columns as needed. Common extras: research area, coauthored works, role in project.</p>
+    </section>
+
+    <!-- 2. Universities -->
+    <section id="universities" aria-labelledby="universities-title">
+      <h2 id="universities-title">Universities</h2>
+      <div class="table-wrap">
+        <table role="grid">
+          <caption>Partner institutions and associated labs or programs</caption>
+          <thead>
+            <tr>
+              <th scope="col" class="u-col-uni">University</th>
+              <th scope="col" class="u-col-lab">Lab or Program</th>
+              <th scope="col" class="u-col-link">Link</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Stanford University</td>
+              <td>AI for Precision Medicine Initiative</td>
+              <td><a class="chip" href="#" target="_blank" rel="noopener">Visit site</a></td>
+            </tr>
+            <tr>
+              <td>Example University</td>
+              <td>Computational Cognition Lab</td>
+              <td><a class="chip" href="#" target="_blank" rel="noopener">Visit site</a></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- 3. Corporations -->
+    <section id="corporations" aria-labelledby="corporations-title">
+      <h2 id="corporations-title">Corporations</h2>
+      <div class="logo-grid" role="list" aria-label="Corporate collaborators">
+        <!-- Logo card template: duplicate and replace src and alt -->
+        <div class="logo-card" role="listitem">
+          <img src="images/logos/sample-1.svg" alt="Company One logo" loading="lazy" />
+        </div>
+        <div class="logo-card" role="listitem">
+          <img src="images/logos/sample-2.svg" alt="Company Two logo" loading="lazy" />
+        </div>
+        <div class="logo-card" role="listitem">
+          <img src="images/logos/sample-3.svg" alt="Company Three logo" loading="lazy" />
+        </div>
+        <div class="logo-card" role="listitem">
+          <img src="images/logos/sample-4.svg" alt="Company Four logo" loading="lazy" />
+        </div>
+      </div>
+      <p class="note">Logos are shown for identification only and may be trademarks of their respective owners.</p>
+    </section>
+  </main>
+</body>
+</html>
+

@@ -1,0 +1,135 @@
+\section{Discussion}
+
+There are at least two merits of our method:
+\begin{enumerate}
+\item The feature vectors can be computed fast.
+\item It performs better than most of other algorithms in finding the
+bordered/framed image of the original one.
+\end{enumerate}
+
+    I do not want to elaborate too much about why VACH is fast to compute.
+It doesn't involve any complex calculation and it simply goes through the
+image and get the (color , x , y) from each pixel. So, VACH should be just
+a little slower than color histogram, which only get the color of each
+pixel, but still comparable. 
+
+    So first, Why VACH performs better than Color histogram in finding the
+similarity between bordered/framed image and the original one. Just take
+bordering for example (since they are of the same principle for both
+bordering and framing).
+
+    Suppose the color histogram feature vector for the original image is
+
+                        (a1, a2, ..., a64) 
+
+Suppose we add a border of color 1 with size sN, Where N
+is the number of pixels of the image. Assume that colors are pretty evenly
+distributed in the image. The color histogram for the bordered image
+is approximately
+
+               ((1-s)a1+s, (1-s)a2, ..., (1-s)a64 ) 
+
+Where s is  usually a much larger number comparing with a1, a2 ... a64. 
+Thus the first coefficient of the feature vector has been significantly
+changed from a1 to (1-s)a1+s. Other coefficients have also been reduced
+by 100s%.
+     
+    As for the VACH approach. Say the original vector is 
+
+                        (b1, b2, ... , b64)
+
+We add a border of color 1 (size: sN)
+
+    First for the color other than 1. Their counts approximately decrease
+to the (1-s) of the original level. And then how about their variance? If
+we assume they distribute evenly in the image, then the variance as I 
+estimated will also be (1-s) of the original level. so the count/variance
+will remain almost the same for other colors. Even if the colors do not to
+distribute evenly, there is still a positive correlation between the
+variance and the count. So the coefficients for other colors will not
+change as much as those in color histogram. In another word, the
+coefficients for other colors will be more stable than those of the color
+histogram. Then how about the first coefficient? The count will still
+increase from b1 to about (1-s)b1+ s. However, the variance will increase
+too. This is because the border has a large variance. The worst case is when 
+initially the color 1 distributes evenly in the image. Under this case,
+the variance will double after adding a color 1 of size 20% of the image.
+If the color of the border  originally exists in some concentrated form
+(which has a smaller variance), then the variance will increase even more.
+Thus the b1 will change less significantly than a1 in color histogram. So
+the overall stability of VACH vector under the change of adding border is
+higher than that of the color histogram. By including variance into the
+feature vector, we actually add some negative-feedback mechanism into the
+feature vector against adding borders or frames. In another word, when
+there is a change in the feature vector caused by adding borders or
+frames, the variances in the feature vector will offset some of this
+change and thus make the feature vector more stable. This is the reason
+why VACH performs better than color histograms in find the similarity
+between bordered and original images. This negative-feedback mechanism can
+not be found in other algorithms such as CCV, color correlogram and is an
+unique property of VACH.  
+
+    It is a little surprising to see that color histogram perform perfect
+in the cropping case. Because color histogram is not specially good at
+anti-cropping. CCV , color correlogram all performs better than color
+histogram in anti-cropping. I guess maybe the reason is because we only
+have a small database, so these 3000 images actually lie very sparsely in
+this 64-D space. And remove 5% or 10% of the image really doesn't change
+the color histogram very much so that the color histogram vector of the
+cropped image is still nearer to the original one than any other images (
+remember it is very sparse)
+
+    Then consider the effect of the border size. Every method ranks the
+modified image higher when the border size is smaller. Just think two 
+extreme situations:
+
+1. when the border size is 0%, no change, then every method will rank 
+the "modified" image No.1 since actually it is the same image as the
+original one.
+
+2. when the border size is 100%, it becomes a blackboard. Then each
+method will have difficulty identifying the similarity between this
+blackboard and the original image because they are indeed different.
+
+    The interesting thing may be to watch how the performance drops. And
+we will know the limit of our method such as border can not be too large.
+Because in the real world, border size varies. If our method can deal with
+most of the borders, then it is a success.
+
+    Then comes the question why count/(varX+varY) performs better than
+count(1/varX+1/varY). I can only compose an example under which the
+former performs much better than the latter. Such as the color i is
+distributed like a T. 
+
+------------------ (x bar)
+       |
+       |
+       |(y bar)
+       |
+        |
+       |
+
+So the original varX and varY are all of normal range. After we add
+border, maybe we will cover x bar completely and thus it is like:
+
+      |
+      |
+      |
+      |
+       |
+      |
+
+So the varX will be very small while the varY keeps still big.
+
+    For the count/(varX+varY) , though the varX is very small, it is still
+in normal range. But for count(1/varX+1/varY), since varX is very small,
+so the 1/varX will be very big, thus the count(1/varX+1/varY) will be very
+big and may out of normal range no matter what varY is. Under this
+condition, the bordered image will rank much lower for the latter method,
+
+    Is it possible that the count/(varX+varY) also get into this extreme
+situation? Not likely, since if varX and varY both get very small, then
+the count must be very small too. So , in this sense, the
+count/(varX+varY) is more stable than the count(1/varX+1/varY).
+
+

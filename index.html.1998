@@ -1,0 +1,153 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML 3.0//EN">
+<HTML>
+<HEAD>
+
+<TITLE>Edward Chang's Site</TITLE>
+
+
+</HEAD>
+<BODY TEXT="#000000" LINK="#CC3300" VLINK="#10057F" ALINK="#CC3300" BGCOLOR="#FFFFFF">
+
+<TABLE BORDER="0" CELLPADDING="2" CELLSPACING="0" WIDTH="500">
+<TR ALIGN=CENTER>
+<TD>
+<a href="photos/chang.gif">
+<IMG SRC="photos/chang.gif" WIDTH="50" HEIGHT="60">
+</a>
+</TD>
+<TD>
+<a href="photos/chang.gif">
+<IMG SRC="photos/title02.gif" ALIGN=MIDDLE WIDTH="450" HEIGHT="60" BORDER="0">
+</a>
+</TD>
+</TR>
+</TABLE>
+<TABLE BORDER="0" CELLPADDING="2" CELLSPACING="0" WIDTH="500">
+<TR>
+<TD ALIGN=CENTER VALIGN=MIDDLE BGCOLOR="#FFFFFF">
+<FONT FACE="Arial, Helvetica" COLOR="#222222"><FONT SIZE="3">
+<a href="http://www-db.stanford.edu">Database Group</a>, 
+<a href="http://infolab.stanford.edu">Information Lab</a></FONT>
+</TD>
+</TR>
+<TR>
+<TD ALIGN=CENTER VALIGN=MIDDLE BGCOLOR="#FFFFFF">
+<FONT FACE="Arial, Helvetica" COLOR="#222222"><FONT SIZE="3">
+<a href="http://www-cs.stanford.edu">Department of Computer Science</a>, 
+<a href="http://www.stanford.edu">Stanford University</a></FONT>
+</TD>
+</TR>
+<TR>
+<TD ALIGN=CENTER VALIGN=MIDDLE BGCOLOR="#EFFFFE">
+<FONT FACE="Arial, Helvetica" COLOR="#222222"><FONT SIZE="3">Tel: (650)725-3903
+</FONT><FONT FACE="Arial, Helvetica" COLOR="#222222"><FONT SIZE="3">
+Email: echang@cs.stanford.edu</FONT>
+</TD>
+</TR>
+<TR>
+<TD>
+<br>
+</TD>
+</TR>
+<a href="http://www-db.stanford.edu/~echang/CV/biography.html">
+<TR>
+<TD ALIGN=LEFT VALIGN=MIDDLE BGCOLOR="#330066">
+<FONT FACE="Arial, Helvetica" COLOR="#FFFFFF"><FONT SIZE="4"><B><I> BIOGRAPHY: </I></B></FONT>
+<FONT SIZE="3"><I><B>About Me</B></I></FONT></FONT>
+</TD>
+</TR>
+<TR>
+<TD VALIGN=MIDDLE>
+<FONT SIZE="2">
+<UL TYPE=CIRCLE>
+<LI><a href="http://www-db.stanford.edu/~echang/CV/biography.html">
+Curriculum Vitae</a>
+<LI><a href="http://www-db.stanford.edu/~echang/CV/biography.html">
+Other Interests</a>
+</UL>
+</FONT>
+</TD>
+</TR>
+</a>
+<a href="http://www-db.stanford.edu/~echang/CV/publications.html">
+<TR>
+<TD ALIGN=LEFT VALIGN=MIDDLE BGCOLOR="#330066">
+<FONT FACE="Arial, Helvetica" COLOR="#FFFFFF"><FONT SIZE="4"><B><I> PUBLICATIONS: </I></B></FONT>
+<FONT SIZE="3"><I><B>A List of Papers</B></I></FONT></FONT>
+</TD>
+</TR>
+<TR>
+<TD VALIGN=MIDDLE>
+<FONT SIZE="2">
+<UL TYPE=CIRCLE>
+<LI><a href="http://www-db.stanford.edu/~echang/CV/publications.html">
+Image Databses 
+</a>
+<LI><a href="http://www-db.stanford.edu/~echang/CV/publications.html">
+Digital TV
+</a>
+<LI><a href="http://www-db.stanford.edu/~echang/CV/publications.html">
+Document Classification
+</a>
+<LI><a href="http://www-db.stanford.edu/~echang/CV/publications.html">
+Media Servers
+</a>
+<LI><a href="http://www-db.stanford.edu/~echang/CV/publications.html">
+Transaction Processing
+</a>
+</UL>
+</FONT>
+</TD>
+</TR>
+</a>
+<a href="http://www-db.stanford.edu/~echang/CV/research.html">
+<TR>
+<TD ALIGN=LEFT VALIGN=MIDDLE BGCOLOR="#330066">
+<FONT FACE="Arial, Helvetica" COLOR="#FFFFFF"><FONT SIZE="4"><B><I> RESEARCH: </I></B></FONT>
+<FONT SIZE="3"><I><B>Research Experience</B></I></FONT></FONT>
+</TD>
+</TR>
+<TR>
+<TD VALIGN=MIDDLE>
+<FONT SIZE="2">
+<UL TYPE=CIRCLE>
+<a href="http://www-db.stanford.edu/~echang/CV/research.html">
+<LI>Statement of Research Interests
+</a>
+<a href="http://www-db.stanford.edu/~echang/CV/research.html">
+<LI>Projects Participated
+</a>
+</UL>
+</FONT>
+</TD>
+</TR>
+</a>
+<a href="http://www-db.stanford.edu/~echang/CV/teaching.html">
+<TR>
+<TD ALIGN=LEFT VALIGN=MIDDLE BGCOLOR="#330066">
+<FONT FACE="Arial, Helvetica" COLOR="#FFFFFF"><FONT SIZE="4"><B><I> TEACHING:  </I></B></FONT>
+<FONT SIZE="3"><I><B>Teaching Experience</B></I></FONT></FONT>
+</TD>
+</TR>
+<TR>
+<TD VALIGN=MIDDLE>
+<FONT SIZE="2">
+<UL TYPE=CIRCLE>
+<LI>Statement of Teaching Interests
+<a href="http://www-db.stanford.edu/~echang/CV/teaching.html">
+<LI>Courses Taught
+</a>
+</UL>
+</FONT>
+</TD>
+</TR>
+</a>
+</TABLE>
+
+<!<ahref="http://view.showstat.com/showview.asp?user=echang">
+<!<img src="http://stat.showstat.com/cgi-bin/statbasic.dll?user=echang" height=30
+<!width=30 border=0 alt="Statistics"></a> 
+
+Last Updated January 2, 1999
+</BODY>
+</HTML>

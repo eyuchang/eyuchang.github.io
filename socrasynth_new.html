@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MACI: Multi-LLM Agent Collaborative Intelligence | Edward Y. Chang</title>
+<meta name="description" content="The MACI research lineage: from CoCoMo and SocraSynth through UCCT to The Path to AGI trilogy. Publications 2022-2026.">
+<!-- Redesign of SocraSynth.html, August 9 2026. Same design system as index_new.html.
+     Content updates: pillars extended into the trilogy; 2026 publications added; Vol.1 -> ACM DOI;
+     SagaLLM -> VLDB DOI; REALM -> KDD DOI; "under review" flags removed where published;
+     "United/ResearcgGate" typos fixed; abstracts preserved in collapsible details. -->
+<style>
+:root{--ink:#10141f;--paper:#fbfaf7;--navy:#1b2a4a;--gold:#c8a24a;--gold-soft:#e6d9b8;
+ --crimson:#9d2b2b;--slate:#5b6473;--hairline:#e2ddd2;--maxw:66rem}
+*{box-sizing:border-box}
+body{margin:0;background:var(--paper);color:var(--ink);
+ font:16px/1.6 "Iowan Old Style","Palatino Linotype","Book Antiqua",Palatino,Georgia,serif}
+h1,h2,h3{font-family:"Palatino Linotype","Book Antiqua",Palatino,Georgia,serif;line-height:1.2;margin:0 0 .4em}
+h2{font-size:1.5rem}h3{font-size:1.05rem}
+a,a:link,a:visited{color:var(--navy);text-decoration:none;border-bottom:1px solid var(--gold-soft)}
+a:hover{color:var(--crimson);border-bottom-color:var(--crimson)}
+a:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
+.wrap{max-width:var(--maxw);margin:0 auto;padding:0 1.25rem}
+section{padding:2.2rem 0;border-top:1px solid var(--hairline)}
+.eyebrow{font-family:ui-monospace,"SF Mono",Menlo,Consolas,monospace;font-size:.72rem;
+ letter-spacing:.16em;text-transform:uppercase;color:var(--slate);margin-bottom:.6rem}
+nav.top a, nav.top a:link, nav.top a:visited, nav.top a:hover, nav.top a:active,
+header.hero a, header.hero a:link, header.hero a:visited, header.hero a:hover, header.hero a:active{
+  color:#fff !important; border-bottom-color:rgba(255,255,255,.45) !important;}
+nav.top{position:sticky;top:0;z-index:50;background:var(--ink)}
+nav.top .wrap{display:flex;flex-wrap:wrap;gap:.2rem 1.1rem;align-items:center;padding:.55rem 1.25rem}
+nav.top a,nav.top a:link,nav.top a:visited{color:#e8ddbe;border:0;font-size:.88rem}
+nav.top a:hover{color:var(--gold)}
+nav.top .name{font-weight:700;color:#fff;margin-right:auto}
+header.hero{background:var(--ink);color:#efe9db;padding:2rem 0 1.6rem}
+header.hero h1{color:#fff;font-size:1.7rem}
+header.hero p{color:#cfd6e4;max-width:48rem}
+header.hero .links{margin-top:.8rem;display:flex;flex-wrap:wrap;gap:.45rem}
+header.hero .links a,header.hero .links a:link,header.hero .links a:visited{background:#1e2a44;border:1px solid #33405f;color:#e8ddbe;
+ padding:.18rem .6rem;border-radius:999px;font-size:.8rem}
+header.hero .links a:hover{border-color:var(--gold);color:var(--gold)}
+.chip{display:inline-block;font-family:ui-monospace,"SF Mono",Menlo,Consolas,monospace;
+ font-size:.7rem;padding:.1rem .45rem;border-radius:4px;border:1px solid var(--hairline);
+ background:#f2eee3;color:var(--navy);margin-right:.35rem}
+.chip.venue{background:var(--navy);color:#f2e2ad;border-color:var(--navy)}
+.chip.hot{background:var(--crimson);color:#fff;border-color:var(--crimson)}
+.chip.gold{background:var(--gold);color:var(--ink);border-color:var(--gold)}
+.pillars{display:grid;grid-template-columns:repeat(auto-fit,minmax(16rem,1fr));gap:.8rem}
+.pillars .card{background:#fff;border:1px solid var(--hairline);border-radius:8px;padding:.8rem 1rem;font-size:.93rem}
+.pillars .n{font-family:ui-monospace,"SF Mono",Menlo,Consolas,monospace;color:var(--gold);font-weight:700}
+figure{margin:1.4rem 0;text-align:center}
+figure img{max-width:100%;border:1px solid var(--hairline);border-radius:6px}
+figcaption{font-size:.85rem;color:var(--slate);margin-top:.4rem}
+.pub{padding:.85rem 0;border-bottom:1px dashed var(--hairline)}
+.pub .t{font-weight:600}
+.pub .a{font-size:.9rem;color:var(--slate)}
+.pub .l{font-size:.85rem}
+details{margin-top:.35rem}
+details summary{cursor:pointer;font-size:.85rem;color:var(--slate)}
+details p{font-size:.9rem;margin:.4rem 0 0}
+.era h3{margin-top:1.3rem;color:var(--crimson)}
+footer{background:var(--ink);color:#aeb6c6;padding:1.3rem 0;margin-top:2.4rem;font-size:.9rem}
+footer a,footer a:link,footer a:visited{color:var(--gold);border:0}
+</style>
+</head>
+<body>
+
+<nav class="top"><div class="wrap">
+ <a class="name" href="index.html">Edward Y. Chang</a>
+ <a href="#lineage">Lineage</a><a href="#trilogy">Trilogy</a><a href="#pubs2026">2026</a>
+ <a href="#pubs2025">2025</a><a href="#pubs2324">2023–24</a><a href="#about">About</a>
+</div></nav>
+
+<header class="hero"><div class="wrap">
+ <div class="eyebrow" style="color:#8fa0c0">Research lineage · 2020–2026</div>
+ <h1>MACI: Multi-LLM Agent Collaborative Intelligence</h1>
+ <p>The original multi-LLM agent collaboration framework, pioneered since 2022: from consciousness
+ modeling and Socratic debate to a unified theory of anchoring, and onward into
+ <i>The Path to AGI</i> trilogy. This page traces the lineage and collects the publications.</p>
+ <div class="links">
+  <a href="index.html">Home</a>
+  <a href="https://dl.acm.org/doi/book/10.1145/3749421">Vol. 1 (ACM Books)</a>
+  <a href="https://dl.acm.org/doi/book/10.1145/3822380">Vol. 2 (ACM Books)</a>
+  <a href="positions/index.html">Position statements</a>
+  <a href="https://www.youtube.com/watch?v=rSz_mFK-GAU">Two Paradigm Bridges (video)</a>
+ </div>
+</div></header>
+
+<section id="lineage"><div class="wrap">
+ <div class="eyebrow">The nine pillars, 2020–2025</div>
+ <h2>How the framework was built</h2>
+ <div class="pillars">
+  <div class="card"><span class="n">I</span> <b>Consciousness modeling (CoCoMo)</b> — reflective, multi-perspective reasoning as the epistemic foundation (2020–2022).</div>
+  <div class="card"><span class="n">II</span> <b>CRIT</b> — critical-reading analysis: claims, warrants, counterarguments, and a scored verdict (2023).</div>
+  <div class="card"><span class="n">III</span> <b>SocraSynth</b> — structured multi-LLM debate with dynamic modulation of linguistic behavior to mitigate hallucination and bias (2023).</div>
+  <div class="card"><span class="n">IV</span> <b>BEAM</b> — behavioral emotion analysis: modeling and modulating linguistic behaviors on foundational emotion spectra (2024).</div>
+  <div class="card"><span class="n">V</span> <b>EVINCE</b> — entropy-governed debate: dual-entropy roles, information-theoretic stopping (2024).</div>
+  <div class="card"><span class="n">VI</span> <b>DIKE–ERIS</b> — ethical adjudication through deliberative dual-agent governance, culturally aware by design (2024).</div>
+  <div class="card"><span class="n">VII</span> <b>Adaptive multi-agent planning</b> — think-validate loops against Gödelian self-validation limits and context-window narrowing (2024).</div>
+  <div class="card"><span class="n">VIII</span> <b>SagaLLM</b> — transactional long-lived planning: persistent context, validation, compensation (2025).</div>
+  <div class="card"><span class="n">IX</span> <b>UCCT</b> — the Unified Cognitive Consciousness Theory: System-1 and System-2 unified through semantic anchoring (2025).</div>
+ </div>
+ <figure>
+  <img src="cs372/MACI%20System1-to-System2.png" alt="Temple diagram: a System-2 roof carried by eight pillars over a System-1 pattern repository base">
+  <figcaption>The architecture as a temple: a System-2 roof carried by the pillars, standing on the System-1 pattern repository. From the CS300 lecture, November 2025.</figcaption>
+ </figure>
+
+ <div class="era">
+ <h3>2020–2022 · Consciousness modeling</h3>
+ <p>MACI's origins lie in computational consciousness and multi-perspective reasoning, developed through
+ the Stanford CS372 lecture series and culminating in <b>CoCoMo</b>: consciousness modeled as emerging
+ from automatic, reflective pattern-matching over an unconscious substrate. CoCoMo articulated the
+ transition between pattern recognition and conscious function and seeded the architectural vision
+ that became MACI.</p>
+ <h3>2023 · SocraSynth, CRIT, and the birth of multi-agent reasoning</h3>
+ <p><b>SocraSynth</b> orchestrates structured debates between LLM agents with distinct stances, in two
+ phases: a generative phase of critique and refinement, and an evaluative phase of scenario testing,
+ counterfactual reasoning, and coherence validation, resting on adversarial integration, a conditional
+ statistics framework, adversarial linguistic calibration, and reflexive evaluation. In parallel,
+ <b>CRIT</b> operationalized the Socratic method for argument inspection: identify claims and evidence,
+ validate reason-to-conclusion links, surface missing counterarguments, weigh source credibility, and
+ emit a justified quality score.</p>
+ <h3>2024 · EVINCE, BEAM, and DIKE–ERIS</h3>
+ <p><b>EVINCE</b> replaced qualitative tuning with a principled controller: cross entropy, mutual
+ information, and divergence scores modulate the dialogue, dual-entropy optimization balances early
+ diversity against final consensus, and CRIT-based validation guards coherence. <b>BEAM</b> mapped
+ linguistic behaviors onto basic emotion spectra, making tone and intensity controllable levers, and
+ laid the ground for <b>DIKE–ERIS</b>: a deliberative dual-agent design in which DIKE advocates
+ fairness and normative consistency while ERIS challenges assumptions and introduces cultural context,
+ extending MACI from "what is true?" to "what is just?".</p>
+ <h3>2025 · SagaLLM and UCCT</h3>
+ <p><b>SagaLLM</b> matured MACI into an execution-ready platform: spatial-temporal checkpointing,
+ inter-agent dependency management, and independent critical validation deliver transactional
+ consistency with compensatory rollback for long-lived, high-stakes workflows. <b>UCCT</b> supplied
+ the missing theory: LLMs are pattern repositories, and semantic anchoring shifts behavior from a
+ fixed prior to a task-conditioned posterior, with threshold-governed phase transitions. Critiques
+ that LLMs cannot reach AGI for want of memory, planning, and grounding are answered, not disputed:
+ those capabilities are built above the repository, and the repository's role cannot be diminished.</p>
+ </div>
+</div></section>
+
+<section id="trilogy"><div class="wrap">
+ <div class="eyebrow">2025–2026</div>
+ <h2>The pillars became a trilogy</h2>
+ <p>In 2025 the framework was consolidated as <i><a href="https://dl.acm.org/doi/book/10.1145/3749421">Multi-LLM
+ Agent Collaborative Intelligence: The Path to AGI</a></i> (ACM Books, Volume 1). In 2026,
+ <i><a href="https://dl.acm.org/doi/book/10.1145/3822380">System-2 Reasoning: From Semantic Anchoring to
+ Causal Intelligence</a></i> (Volume 2) carried the program from anchoring through causal audit and
+ regret-driven learning, and a second generation of components emerged: <b>ERM</b> and <b>RLER</b>
+ (epistemic regret as critique and as reward), <b>Trivium</b> (temporal regret over a causal
+ transaction log), <b>TRACE</b> (typed, versioned reasoning records), <b>Mnemosyne</b> (agentic
+ transaction processing: admission, compensation, durable obligations), <b>TRW</b> (the world model
+ as a materialized view bridging cognitive and physical AI), and the diagnostic line
+ <b>CausalT5K</b> and <b>RAudit</b>. Volume 3, <i>Beyond Intelligence: From Operational AGI to
+ Wisdom</i>, is forthcoming in 2027. Condensed claims are posted as
+ <a href="positions/index.html">position statements</a>.</p>
+</div></section>
+
+<section id="pubs2026"><div class="wrap">
+ <div class="eyebrow">Publications</div>
+ <h2>2026</h2>
+ <div class="pub"><span class="chip venue">ACM Books 2026</span>
+  <div class="t"><a href="https://dl.acm.org/doi/book/10.1145/3822380">System-2 Reasoning: From Semantic Anchoring to Causal Intelligence (The Path to AGI, Vol. 2)</a></div>
+  <div class="a">Edward Y. Chang</div></div>
+ <div class="pub"><span class="chip venue">KDD 2026</span>
+  <div class="t"><a href="https://arxiv.org/abs/2602.08939">CausalT5K: Diagnosing and Informing Refusal for Trustworthy Causal Reasoning</a></div>
+  <div class="a">Longling Geng, Andy Ouyang, Theodore Wu, Daphne Barretto, et al., and Edward Y. Chang</div></div>
+ <div class="pub"><span class="chip venue">KDD 2026</span><span class="chip hot">40+ citations</span>
+  <div class="t"><a href="https://dl.acm.org/doi/10.1145/3770854.3785692">REALM-Bench: A Real-World Planning Benchmark for LLMs and Multi-Agent Systems</a></div>
+  <div class="a">Longling Geng, Edward Y. Chang</div></div>
+ <div class="pub"><span class="chip venue">ICML 2026</span>
+  <div class="t"><a href="https://arxiv.org/pdf/2512.05765">AGI Requires a Coordination Layer on Top of Pattern Repositories (Position Track)</a></div>
+  <div class="a">Edward Y. Chang</div></div>
+ <div class="pub"><span class="chip venue">ACL 2026</span>
+  <div class="t"><a href="https://arxiv.org/abs/2601.08258">Diagnosing and Mitigating Sycophancy and Skepticism in LLM Causal Judgment</a></div>
+  <div class="a">Edward Y. Chang</div></div>
+ <div class="pub"><span class="chip">arXiv Jul 2026</span><span class="chip hot">ground-breaking</span>
+  <div class="t"><a href="https://arxiv.org/abs/2607.21910">TRW: An Auditable Consistency Contract for World Models as Materialized Views</a></div>
+  <div class="a">Edward Y. Chang</div></div>
+ <div class="pub"><span class="chip">arXiv Jul 2026</span>
+  <div class="t"><a href="https://arxiv.org/abs/2607.12480">TRACE: An Operational Reasoning Schema for Auditable Agentic Commitments</a></div>
+  <div class="a">Edward Y. Chang and Emily J. Chang</div></div>
+ <div class="pub"><span class="chip">arXiv Jun 2026</span>
+  <div class="t"><a href="https://arxiv.org/abs/2607.00269">Mnemosyne: Agentic Transaction Processing for Validating and Repairing AI-generated Workflows</a></div>
+  <div class="a">Edward Y. Chang, Longling Geng, and Emily J. Chang</div></div>
+ <div class="pub"><span class="chip">arXiv Jun 2026</span>
+  <div class="t"><a href="https://arxiv.org/abs/2606.16319">Architectural Wisdom: A Framework for Governing Optimization in AI Systems</a></div>
+  <div class="a">Edward Y. Chang</div></div>
+ <div class="pub"><span class="chip">arXiv May 2026</span>
+  <div class="t"><a href="https://arxiv.org/abs/2606.04421">Trivium: Temporal Regret as a First-Class Objective for Causal-Memory Controllers</a></div>
+  <div class="a">Edward Y. Chang</div></div>
+ <div class="pub"><span class="chip">arXiv Mar 2026</span>
+  <div class="t"><a href="https://arxiv.org/abs/2603.11066">Exploring Collatz Dynamics with Human–LLM Collaboration</a></div>
+  <div class="a">Edward Y. Chang</div></div>
+ <div class="pub"><span class="chip">arXiv Feb 2026</span>
+  <div class="t"><a href="https://arxiv.org/abs/2602.11675">Epistemic Regret Minimization: Label-Free Causal Critique Beyond Outcome Reward</a></div>
+  <div class="a">Edward Y. Chang, Longling Geng</div></div>
+</div></section>
+
+<section id="pubs2025"><div class="wrap">
+ <h2>2025</h2>
+ <div class="pub"><span class="chip venue">ACM Books 2025</span><span class="chip hot">Top seller</span>
+  <div class="t"><a href="https://dl.acm.org/doi/book/10.1145/3749421">Multi-LLM Agent Collaborative Intelligence: The Path to AGI (Vol. 1)</a></div>
+  <div class="a">Edward Y. Chang · December 2025</div></div>
+ <div class="pub"><span class="chip venue">VLDB 2025</span><span class="chip hot">ground-breaking</span><span class="chip hot">70+ citations</span>
+  <div class="t"><a href="https://dl.acm.org/doi/10.14778/3750601.3750611">SagaLLM: Context Management, Validation, and Transaction Guarantees for Multi-Agent LLM Planning</a></div>
+  <div class="a">Edward Y. Chang and Longling Geng</div></div>
+ <div class="pub"><span class="chip venue">ICML 2025</span>
+  <div class="t"><a href="https://proceedings.mlr.press/v267/chang25a.html">A Checks-and-Balances Framework for Ethical AI Alignment</a></div>
+  <div class="a">Edward Y. Chang</div>
+  <div class="l"><a href="https://proceedings.mlr.press/v267/chang25a.html">PMLR</a> · <a href="https://arxiv.org/abs/2502.00136">arXiv</a></div></div>
+ <div class="pub"><span class="chip">arXiv Jun 2025</span>
+  <div class="t"><a href="https://arxiv.org/abs/2506.02139">The Unified Cognitive Consciousness Theory for Language Models: Anchoring Semantics, Thresholds of Activation, and Emergent Reasoning</a></div>
+  <div class="a">Edward Y. Chang, Zeyneb N. Kaya, Ethan Chang</div></div>
+ <div class="pub"><span class="chip">arXiv Jan 2025</span>
+  <div class="t"><a href="https://arxiv.org/abs/2501.16689">Multi-Agent Collaborative Intelligence for Adaptive Reasoning and Temporal Planning</a></div>
+  <div class="a">Edward Y. Chang</div></div>
+</div></section>
+
+<section id="pubs2324"><div class="wrap">
+ <h2>2023–2024</h2>
+ <div class="pub"><span class="chip venue">NeurIPS SafeAI 2024</span>
+  <div class="t"><a href="https://www.researchgate.net/publication/380515639_A_Three-Branch_Checks-and-Balances_Framework_for_Context-Aware_Ethical_Alignment_of_Large_Language_Models">A Three-Branch Checks-and-Balances Framework for Context-Aware Ethical Alignment of LLMs</a></div>
+  <div class="a">Edward Y. Chang · December 2024</div></div>
+ <div class="pub"><span class="chip venue">IEEE MIPR 2024</span>
+  <div class="t"><a href="https://arxiv.org/abs/2404.13071">Behavioral Emotion Analysis Model for Large Language Models (invited)</a></div>
+  <div class="a">Edward Y. Chang · June 2024</div>
+  <div class="l"><a href="https://ieeexplore.ieee.org/document/10708009">IEEE Xplore</a> · <a href="https://arxiv.org/abs/2404.13071">arXiv</a></div></div>
+ <div class="pub"><span class="chip">SocraSynth.com 2024</span>
+  <div class="t"><a href="https://www.amazon.com/Unlocking-Wisdom-Large-Language-Models/dp/1962463095">Unlocking the Wisdom of Large Language Models: An Introduction to The Path to AGI</a></div>
+  <div class="a">Edward Y. Chang · June/October 2024</div>
+  <div class="l"><a href="https://arxiv.org/abs/2409.01007">arXiv full text</a> · <a href="https://www.amazon.com/Unlocking-Wisdom-Large-Language-Models/dp/1962463095">Amazon</a></div></div>
+ <div class="pub"><span class="chip venue">CSCI 2023</span>
+  <div class="t"><a href="https://www.researchgate.net/publication/375000555_SocraHealth_Enhancing_Medical_Diagnosis_and_Correcting_Historical_Records">SocraHealth: Enhancing Medical Diagnosis and Correcting Historical Records</a></div>
+  <div class="a">Jocelyn Chang and Edward Chang · December 2023</div>
+  <details><summary>Abstract</summary><p>Introduces SocraHealth, using LLM-based agents in structured
+  debates to refine diagnoses and correct historical record inaccuracies from patient data. Case
+  studies with GPT-4 and Bard across two experiments demonstrate logical, hallucination-free debates
+  and a significant advance over traditional diagnostic techniques.</p></details></div>
+ <div class="pub"><span class="chip venue">CSCI 2023</span>
+  <div class="t"><a href="https://www.researchgate.net/publication/374945016_Multi-Agent_Reasoning_with_Large_Language_Models_for_Effective_Corporate_Planning">Multi-Agent Reasoning with Large Language Models for Effective Corporate Planning (SocraPlan)</a></div>
+  <div class="a">with S. Tsao, TrendMicro · December 2023</div>
+  <details><summary>Abstract</summary><p>Applies LLMs to a five-stage sales-planning pipeline: market
+  landscape survey, customer profiling, product usage analysis, strategy formulation, and pitch
+  crafting, blending artificial with genuine data for confidentiality while optimizing value-oriented
+  conversion and profitability.</p></details></div>
+ <div class="pub"><span class="chip">arXiv 2023/24</span>
+  <div class="t"><a href="https://www.arxiv.org/abs/2402.06634">SocraSynth: Multi-LLM Reasoning with Conditional Statistics</a></div>
+  <div class="a">Edward Y. Chang · September 2023, revised January 2024</div>
+  <details><summary>Abstract</summary><p>Introduces the SocraSynth platform: conditional statistics and
+  systematic context enhancement through continuous arguments with adjustable contentiousness; a
+  human moderator and two opposing LLM agents run knowledge generation then Socratic and formal-logic
+  evaluation, concluding with conciliatory synthesis. Case studies across three domains.</p></details></div>
+ <div class="pub"><span class="chip venue">CSCI 2023</span><span class="chip hot">Top 1% read</span>
+  <div class="t"><a href="https://www.researchgate.net/publication/374753069_Examining_GPT-4's_Capabilities_and_Enhancement_with_SocraSynth">Examining GPT-4's Capabilities and Enhancement with SocraSynth</a></div>
+  <div class="a">Edward Y. Chang · December 2023 · 12,000+ reads</div>
+  <div class="l"><a href="https://ieeexplore.ieee.org/document/10590532">IEEE Xplore</a> · <a href="https://www.researchgate.net/publication/374753069_Examining_GPT-4's_Capabilities_and_Enhancement_with_SocraSynth">ResearchGate</a></div>
+  <details><summary>Abstract</summary><p>Investigates GPT-4's shortcomings in reasoning and ethics
+  (hallucination, imitation without understanding, weak fact-checking) and proposes remedies: the
+  CoCoMo framework with Socratic prompt ensembles, demonstration-taught ethical behavior from the
+  Noora chatbot experience, and broader training objectives beyond cross-entropy.</p></details></div>
+ <div class="pub"><span class="chip">ResearchGate 2023</span><span class="chip gold">Most read, Aug 2023</span>
+  <div class="t"><a href="https://www.researchgate.net/publication/373161156_Discovering_Insights_Beyond_the_Known_A_Dialogue_Between_GPT-4_Agents_from_Adam_and_Eve_to_the_Nexus_of_Ecology_AI_and_the_Brain">Discovering Insights Beyond the Known: A Dialogue Between GPT-4 Agents (Polynthesis)</a></div>
+  <div class="a">August 2023</div>
+  <details><summary>Abstract</summary><p>A committee of a human moderator and two GPT-4 agents, ignited
+  by the Adam and Eve narrative, explores myth in ecological interpretation, AI ethics, and the
+  brain-technology nexus, demonstrating foundation models as catalysts for interdisciplinary
+  dialogue beyond individual human scope.</p></details></div>
+ <div class="pub"><span class="chip venue">IEEE CCWC 2023</span><span class="chip hot">100+ citations</span>
+  <div class="t"><a href="https://arxiv.org/pdf/2303.08769.pdf">Prompting Large Language Models With the Socratic Method (CRIT)</a></div>
+  <div class="a">Edward Y. Chang · March 2023 · Best presentation, AI track</div>
+  <div class="l"><a href="https://ieeexplore.ieee.org/document/10099179">IEEE Xplore</a> · <a href="https://arxiv.org/abs/2303.08769">arXiv</a></div>
+  <details><summary>Abstract</summary><p>A systematic approach to Socratic prompt templates: definition,
+  elenchus, dialectic, maieutics, generalization, and counterfactual reasoning, mapped to inductive,
+  deductive, and abductive inference, with the observation that conveying goal and intent before a
+  dialogue connects the model to external context and improves performance.</p></details></div>
+ <div class="pub"><span class="chip">arXiv 2023</span>
+  <div class="t"><a href="https://arxiv.org/abs/2304.02438">CoCoMo: Computational Consciousness Modeling for Generative and Ethical AI</a></div>
+  <div class="a">February 2023</div>
+  <details><summary>Abstract</summary><p>Proposes consciousness modeling, reinforcement learning, and
+  prompt-template formulation to build AI agents prioritizing fairness, beneficence, non-maleficence,
+  empathy, adaptability, transparency, and critical and exploratory thinking: knowledge combined with
+  compassion.</p></details></div>
+ <div class="pub"><span class="chip">2023</span>
+  <div class="t"><a href="https://drive.google.com/file/d/1WhbqXFfK_XvG7DtqeGueDrOLyMey8wF0/view">CRIT: An Inquisitive Prompt Template for Critical Reading</a></div>
+  <div class="a">January 2023</div>
+  <details><summary>Abstract</summary><p>CRIT streamlines critical reading with structured, recursive
+  prompts: extract conclusions and supporting reasons, scrutinize reason-to-claim arguments, suggest
+  counterarguments, weigh source reliability, and emit an overall quality assessment; applicable to
+  fact-checking foundation-model outputs and to K-12 education.</p></details></div>
+ <div class="pub"><span class="chip">Elsevier 2023</span>
+  <div class="t"><a href="https://arxiv.org/abs/2212.13591">Knowledge-Guided Data-Centric AI in Healthcare: Progress, Shortcomings, and Future Directions</a></div>
+  <div class="a">December 2022 · Chapter 2, Precision Medicine in Liver Diseases, Elsevier 2023</div>
+  <details><summary>Abstract</summary><p>Addresses the small-data problem in medical imaging through
+  data augmentation, transfer learning, federated learning, and GANs, proposing knowledge-guided
+  generation that incorporates domain knowledge, with pre-trained language models as a source of
+  high-quality knowledge.</p></details></div>
+</div></section>
+
+<section id="about"><div class="wrap">
+ <div class="eyebrow">About</div>
+ <h2>About this project</h2>
+ <p>SocraSynth orchestrates a symposium of generative agents, facilitating investigative dialogues to
+ reveal knowledge and insights previously elusive to humans. The concept was introduced by
+ <a href="index.html">Dr. Edward Y. Chang</a>, Fellow of the ACM and IEEE, Director of Google Research
+ from 2006 to 2012, adjunct professor of Computer Science at Stanford University since 2019, and
+ author of <i>The Path to AGI</i> trilogy (ACM Books). For the current research program, see the
+ <a href="index.html#research">research page</a> and the
+ <a href="positions/index.html">position statements</a>.</p>
+</div></section>
+
+<footer><div class="wrap">
+ &copy; 2026 Edward Y. Chang · <a href="index.html">Home</a> ·
+ <a href="mailto:echang@cs.stanford.edu">echang@cs.stanford.edu</a>
+</div></footer>
+</body>
+</html>

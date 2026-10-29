@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Semantic Anchoring: What an LLM Is, Where Its Boundary Lies, and Where Semantics Comes From</title>
+<style>
+ body { font-family: Georgia, 'Times New Roman', serif; max-width: 46em;
+        margin: 2.5em auto; padding: 0 1em; line-height: 1.55; color:#222; }
+ h1 { font-size:1.45em; line-height:1.25; margin-bottom:0.2em; }
+ p  { margin:0.7em 0; text-align: justify; }
+ a  { color:#8a2be2; }
+ .back { font-size:0.9em; margin-top:2em; }
+</style></head><body>
+<h1>Semantic Anchoring: What an LLM Is, Where Its Boundary Lies, and Where Semantics Comes From</h1>
+<p><b>Edward Y. Chang, Stanford University</b> Position statement, v1.0. August 9, 2026.</p>
+<p>One invariant should be recognized across the field: an LLM is a pattern repository. The training objective, maximum-likelihood next-token prediction, mentions no truth, no goals, and no meaning; the object it produces is a distribution over continuations, dense with associations and semantically uncommitted. Post-training does not change the category. Fine-tuning, including alignment, resculpts the repository, moving which clusters are dense and near; an LLM with a thousand fine-tunings is still a System-1 pattern repository. The operational boundary is one question: does the tool touch model parameters? Everything that does not, prompts, chain-of-thought orchestration, retrieval, tools, lives above the line, in the system rather than the model. (Companion note: "Where the LLM Ends.")</p>
+<p>Where, then, does semantics come from? From anchoring. The Unified Cognitive Consciousness Theory quantifies it: an anchor's strength is S equal to target density minus representational distance minus the log of the anchor budget, and behavior crosses from prior-driven to anchored at a critical threshold. The claims are measured, not metaphorical. Three worked examples can redefine the minus sign at inference time, flipping target binding from 0.000 to 1.000 with McNemar p below ten to the minus one hundred, and the flip is rule-sensitive, not format-sensitive: structurally identical prompts whose examples imply the prior produce zero rebinding. The few-shot threshold scales as distance over density: two-digit arithmetic, identical in complexity across numeral bases, crosses at 0.28 shots in base ten, 1.83 in base eight, and 2.91 in base nine, with phase width and final accuracy following the same ordering, and the underlying quantities are visible as layer-wise representation trajectories inside the network.</p>
+<p>The consequence of the invariant is a redirection of the field's question. Whether a model "can" do X is ill-posed; the well-posed question is what anchor strength X requires, and whether the deployed system supplies it. Capability is a property of the anchored system, not of the frozen weights. Semantics is not in the box; it is in the binding.</p>
+<p>Full development: <i>The Path to AGI</i>, Vol. 1 (Chs. 4, 14) and Vol. 2 (Chs. 1 to 3).</p>
+<p class="back"><a href="index.html">Back to position statements</a></p>
+</body></html>

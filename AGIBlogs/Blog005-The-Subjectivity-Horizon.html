@@ -1,0 +1,608 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Subjectivity Horizon of World Models | The AGI Forum</title>
+  <meta name="description" content="A convincing world model is not yet a grounded agent. Laundry, misplaced keys, a discarded password note, and a hidden leak reveal eight obligations from AGI Volume III.">
+  <meta name="author" content="Edward Y. Chang">
+  <link rel="canonical" href="https://infolab.stanford.edu/~echang/AGIBlogs/Blog005-The-Subjectivity-Horizon.html">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="The AGI Forum">
+  <meta property="og:title" content="The Subjectivity Horizon of World Models">
+  <meta property="og:description" content="Why a Digital World Is Not Yet Your World">
+  <meta property="og:url" content="http://infolab.stanford.edu/~echang/AGIBlogs/Blog005-The-Subjectivity-Horizon.html">
+  <meta property="og:image" content="http://infolab.stanford.edu/~echang/AGIBlogs/household-grounding.png">
+  <meta property="og:image:alt" content="A laundry robot and a mother in her daughter's kitchen face household-specific grounding questions.">
+  <style>
+    :root {
+      --bg-color: #fafbfc;
+      --card-bg: #ffffff;
+      --text-main: #24292f;
+      --text-muted: #57606a;
+      --slate: #57606a;
+      --accent: #0969da;
+      --accent-tint: #f6f8fa;
+      --border-color: #d0d7de;
+      --gold: #c8a24a;
+      --gold-soft: #e6d9b8;
+      --navy: #1b2a4a;
+      --crimson: #9d2b2b;
+      --font-body: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+      --font-serif: "Iowan Old Style", "Palatino Linotype", "Book Antiqua", Palatino, Georgia, serif;
+      --font-mono: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background-color: var(--bg-color);
+      color: var(--text-main);
+      font-family: var(--font-body);
+      line-height: 1.8;
+      font-size: 18px;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .container {
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 40px 24px 80px 24px;
+    }
+
+    /* Cross-Ecosystem Navigation */
+    .site-nav {
+      display: flex;
+      gap: 18px;
+      font-size: 14px;
+      border-bottom: 1px solid var(--border-color);
+      padding-bottom: 14px;
+      margin-bottom: 28px;
+      flex-wrap: wrap;
+    }
+
+    .site-nav a {
+      color: var(--text-muted);
+      text-decoration: none;
+    }
+
+    .site-nav a:hover {
+      color: var(--accent);
+      text-decoration: underline;
+    }
+
+    .site-nav a.back-hub {
+      color: var(--accent);
+      font-weight: 700;
+    }
+
+    /* Masthead */
+    .masthead {
+      border-bottom: 2px solid var(--text-main);
+      padding-bottom: 18px;
+      margin-bottom: 30px;
+    }
+
+    .forum-title {
+      font-size: 22px;
+      font-weight: 800;
+      letter-spacing: -0.01em;
+      text-transform: uppercase;
+      color: #1f2328;
+      margin-bottom: 4px;
+    }
+
+    .forum-title a { color: inherit; text-decoration: none; }
+    .forum-subtitle { font-size: 14px; color: var(--text-muted); }
+
+    .return-bar {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 24px;
+      font-size: 14px;
+      font-weight: 600;
+    }
+
+    .return-bar a { color: var(--accent); text-decoration: none; }
+    .return-bar a:hover { text-decoration: underline; }
+
+    header {
+      margin-bottom: 36px;
+      border-bottom: 1px solid var(--border-color);
+      padding-bottom: 28px;
+    }
+
+    .series-tag {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--crimson);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-bottom: 12px;
+      display: inline-block;
+    }
+
+    h1 {
+      font-family: var(--font-serif);
+      font-size: 34px;
+      line-height: 1.25;
+      letter-spacing: -0.01em;
+      font-weight: 700;
+      color: #1f2328;
+      margin-bottom: 12px;
+    }
+
+    .subtitle {
+      font-size: 19px;
+      color: var(--slate);
+      font-style: italic;
+      margin-bottom: 16px;
+      line-height: 1.4;
+    }
+
+    .meta {
+      font-size: 15px;
+      color: var(--text-muted);
+      display: flex;
+      gap: 14px;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    .article-body h2 {
+      font-family: var(--font-serif);
+      font-size: 24px;
+      letter-spacing: -0.01em;
+      margin: 44px 0 18px 0;
+      padding-bottom: 8px;
+      border-bottom: 1px solid var(--border-color);
+      color: #1f2328;
+    }
+
+    .article-body h3 {
+      font-size: 19px;
+      margin: 28px 0 12px 0;
+      color: #1f2328;
+    }
+
+    .article-body p { margin-bottom: 22px; }
+    .article-body ul, .article-body ol { margin-bottom: 22px; padding-left: 28px; }
+    .article-body li { margin-bottom: 10px; }
+
+    .article-body a {
+      color: var(--navy);
+      text-decoration: none;
+      border-bottom: 1px solid var(--gold-soft);
+    }
+
+    .article-body a:hover {
+      color: var(--crimson);
+      border-bottom-color: var(--crimson);
+    }
+
+    blockquote {
+      border-left: 4px solid var(--navy);
+      background-color: var(--accent-tint);
+      padding: 16px 22px;
+      margin: 28px 0;
+      border-radius: 0 6px 6px 0;
+      color: #24292f;
+      font-style: normal;
+    }
+
+    .focal-quote {
+      border-left: 4px solid var(--crimson);
+      background-color: #fdf6f6;
+      font-size: 20px;
+      font-family: var(--font-serif);
+      padding: 18px 24px;
+      margin: 32px 0;
+      border-radius: 0 6px 6px 0;
+      color: #1f2328;
+      line-height: 1.6;
+    }
+
+    .dimension-box {
+      background: var(--card-bg);
+      border: 1px solid var(--border-color);
+      border-radius: 8px;
+      padding: 24px;
+      margin: 28px 0;
+      border-left: 5px solid var(--gold);
+      box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+    }
+
+    .dimension-box h4 {
+      font-size: 18px;
+      margin-bottom: 8px;
+      color: var(--navy);
+      font-family: var(--font-serif);
+    }
+
+    .matrix-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 24px 0;
+      font-size: 15px;
+    }
+
+    .matrix-table th, .matrix-table td {
+      border: 1px solid var(--border-color);
+      padding: 12px 14px;
+      text-align: left;
+    }
+
+    .matrix-table th {
+      background-color: var(--accent-tint);
+      color: var(--navy);
+      font-weight: 700;
+    }
+
+    .matrix-table tr:nth-child(even) {
+      background-color: #fcfcfd;
+    }
+
+    figure {
+      margin: 36px 0;
+      text-align: center;
+    }
+
+    figure img {
+      max-width: 100%;
+      height: auto;
+      border: 1px solid var(--border-color);
+      border-radius: 8px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    }
+
+    figcaption {
+      font-size: 14px;
+      color: var(--text-muted);
+      margin-top: 10px;
+      font-style: italic;
+    }
+
+    footer {
+      margin-top: 64px;
+      border-top: 1px solid var(--border-color);
+      padding-top: 32px;
+      font-size: 14px;
+      color: var(--text-muted);
+      text-align: center;
+    }
+
+    footer a { color: var(--navy); text-decoration: none; }
+    footer a:hover { text-decoration: underline; }
+
+    /* Local additions: accessible figures, evidence notes, and small screens. */
+    html { scroll-behavior: smooth; }
+    a:focus-visible, .table-scroll:focus-visible {
+      outline: 3px solid var(--gold); outline-offset: 4px;
+    }
+    .skip-link {
+      position: absolute; left: 16px; top: -90px; z-index: 10;
+      background: var(--navy); color: #fff; padding: 10px 16px;
+      border-radius: 5px; font-size: 15px;
+    }
+    .skip-link:focus { top: 12px; }
+    .sr-only {
+      position: absolute; width: 1px; height: 1px; padding: 0;
+      margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0);
+      white-space: nowrap; border: 0;
+    }
+    .table-scroll { overflow-x: auto; margin: 24px 0; }
+    .matrix-table { margin: 0; line-height: 1.6; }
+    .matrix-table th, .matrix-table td { vertical-align: middle; }
+    .matrix-table thead th:nth-child(1) { width: 25%; }
+    .matrix-table thead th:nth-child(2) { width: 29%; }
+    .matrix-table tbody th {
+      background: transparent; font-weight: 650; color: var(--navy);
+    }
+    .article-body .dimension-box h3 {
+      font-family: var(--font-serif); font-size: 20px;
+      color: var(--navy); margin: 0 0 10px;
+    }
+    .dimension-box p:last-child, blockquote p:last-child { margin-bottom: 0; }
+    .article-body .figure-link { display: block; border: 0; }
+    figure img { display: block; width: 100%; }
+    figcaption { text-align: left; font-style: normal; line-height: 1.65; }
+    .reading-note, .evidence-note {
+      background: #fdfaf2; border-left: 3px solid var(--gold);
+      padding: 16px 20px; border-radius: 0 6px 6px 0;
+      margin: 24px 0; font-size: 15px; line-height: 1.7;
+    }
+    .reading-note p, .evidence-note p { margin-bottom: 0; }
+    .reading-note { margin-top: -12px; }
+    .closing { color: var(--navy); }
+    .sources-section { margin-top: 48px; }
+    .sources-section p { font-size: 14px; line-height: 1.7; margin-bottom: 15px; }
+    .sources-section .source-scope { font-size: 15px; color: var(--text-muted); }
+    .sources-section a { overflow-wrap: anywhere; }
+    .related-post { border-top: 1px solid var(--border-color); padding-top: 20px; }
+    @media (max-width: 640px) {
+      .container { padding: 24px 18px 52px; }
+      .site-nav { gap: 10px 16px; line-height: 1.5; }
+      .forum-title { font-size: 20px; }
+      h1 { font-size: 31px; }
+      .subtitle { font-size: 18px; }
+      .meta { gap: 7px 10px; font-size: 14px; }
+      .series-tag { font-size: 12px; letter-spacing: 0.06em; }
+      .article-body h2 { font-size: 24px; line-height: 1.35; }
+      .dimension-box { padding: 20px 18px; }
+      .focal-quote { padding: 16px 19px; }
+      .matrix-table { min-width: 590px; }
+      .reading-note, .evidence-note { padding: 14px 17px; }
+    }
+    @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+    @media print {
+      .site-nav, .return-bar, .skip-link { display: none; }
+      body { background: #fff; font-size: 12pt; line-height: 1.55; }
+      .container { max-width: none; padding: 0; }
+      .dimension-box, .reading-note, .evidence-note, figure { break-inside: avoid; }
+      h2, h3 { break-after: avoid; }
+      figure img { max-height: 18cm; object-fit: contain; box-shadow: none; }
+      .table-scroll { overflow: visible; }
+      .matrix-table { min-width: 0; }
+    }
+  
+    /* World-model edition: preserve the house style, add chapter navigation. */
+    .lede { font-size: 19px; }
+    h1 { font-size: 36px; line-height: 1.22; max-width: 770px; }
+    .article-body h2 { scroll-margin-top: 24px; }
+    .focal-quote p { margin-bottom: 0; }
+    .article-body a.source-ref { font-size: 14px; white-space: nowrap; }
+    .chapter-group { margin: 30px 0 36px; padding: 0 0 4px; }
+    .article-body .chapter-group > h3 {
+      font-family: var(--font-serif); font-size: 25px; color: var(--navy);
+      padding-bottom: 11px; margin: 0 0 10px; border-bottom: 2px solid var(--gold);
+    }
+    .chapter-group > h3 span {
+      display: block; color: var(--text-muted); font-family: var(--font-body);
+      font-size: 14px; font-weight: 400; margin-top: 3px;
+    }
+    .chapter-entry { padding: 20px 0 17px; border-bottom: 1px solid #e5e8ec; }
+    .chapter-entry:last-child { border-bottom: 0; }
+    .article-body .chapter-entry h4 {
+      font-family: var(--font-serif); font-size: 23px; line-height: 1.4;
+      display: flex; gap: 13px; align-items: center; margin: 0 0 8px; color: var(--navy);
+    }
+    .chapter-number {
+      display: inline-flex; flex: 0 0 38px; min-height: 38px; align-items: center;
+      justify-content: center; border: 1px solid var(--gold-soft); border-radius: 5px;
+      background: #fdfaf2; color: var(--crimson); font-size: 21px; font-weight: 400;
+    }
+    .article-body .chapter-question { font-size: 17px; font-weight: 650; margin: 0 0 8px 51px; }
+    .chapter-entry p:last-child { margin: 0 0 0 51px; font-size: 17px; line-height: 1.75; }
+    .source-scope { overflow-wrap: anywhere; }
+    .household-mobile { display: none; }
+    .panel { position: relative; overflow: hidden; }
+    .article-body .panel { display: block; border: 1px solid var(--border-color); border-radius: 8px; }
+    .panel-laundry { aspect-ratio: 865 / 909; }
+    .panel-kitchen { aspect-ratio: 865 / 909; }
+    .panel img { position: absolute; max-width: none; height: 100%; width: auto;
+      border: 0; border-radius: 0; box-shadow: none; top: 0; margin: 0; }
+    .panel-laundry img { left: 0; }
+    .panel-kitchen img { left: -100%; }
+    @media (max-width: 640px) {
+      h1 { font-size: 32px; }
+      .lede { font-size: 18px; }
+      .household-original { display: none !important; }
+      .household-mobile { display: grid; gap: 18px; }
+      .chapter-entry p:last-child { margin-left: 0; }
+      .article-body .chapter-question { margin-left: 0; }
+      .article-body .chapter-group > h3 { font-size: 24px; }
+    }
+    @media print {
+      .household-original { display: block !important; }
+      .household-mobile { display: none; }
+      .chapter-entry { break-inside: avoid; }
+    }
+
+  </style>
+  <!-- Reading estimate: 2236 words excluding sources; 220 words/minute plus one minute for figures. -->
+</head>
+<body>
+<a class="skip-link" href="#article">Skip to article</a>
+
+<div class="container">
+  <nav class="site-nav" aria-label="AGI Forum navigation">
+    <a href="http://infolab.stanford.edu/~echang/AGIBlogs/AGIForumIndex.html" class="back-hub">&larr; The AGI Forum Index</a>
+    <a href="http://infolab.stanford.edu/~echang/">Stanford Home</a>
+    <a href="http://infolab.stanford.edu/~echang/AGIBlogs/Blog003-Path-to-AGI-Trilogy.html">The Path to AGI Trilogy</a>
+    <a href="https://socrasynth.com/" target="_blank" rel="noopener noreferrer">SocraSynth / QuadriumAI</a>
+  </nav>
+
+  <div class="masthead">
+    <div class="forum-title">
+      <a href="http://infolab.stanford.edu/~echang/AGIBlogs/AGIForumIndex.html">The AGI Forum: Theories, Practice, Safety, Risk &amp; Policy</a>
+    </div>
+    <div class="forum-subtitle">Dispatches on Theoretical Paradigms, Architectural Practice, and Global AI Policy</div>
+  </div>
+
+  <div class="return-bar">
+    <a href="http://infolab.stanford.edu/~echang/AGIBlogs/AGIForumIndex.html">&larr; Back to Forum Home Page</a>
+  </div>
+
+  <header>
+    <div class="series-tag">Dispatch No. 05 &middot; World Models &amp; Grounded Intelligence</div>
+    <h1>The Subjectivity Horizon of World Models</h1>
+    <div class="subtitle">Why a Digital World Is Not Yet Your World</div>
+    <div class="meta">
+      <span>Edward Y. Chang</span><span aria-hidden="true">&bull;</span>
+      <span>Stanford University</span><span aria-hidden="true">&bull;</span>
+      <time datetime="2026-10-01">October 1, 2026</time><span aria-hidden="true">&bull;</span>
+      <span>11 min read</span>
+    </div>
+  </header>
+
+<main id="article" class="article-body">
+  <p class="lede">A mother visits her adult daughter and decides to help by cleaning the study. She gathers the scattered tax documents into a binder, puts the keys in a drawer, and throws a scrap of paper into the trash.</p>
+  <p>When the daughter returns, the room looks better. Her work does not. Invoices beside particular bank statements were the working layout of an ongoing tax-audit defense. The keys are no longer where she expects them. The discarded scrap held a password she needed to access her audit files.</p>
+  <p>She recognized and handled the objects competently. <strong>The object labels were right. The objective was wrong for the task.</strong></p>
+  <p>Now replace the mother with a robot equipped with an impressive world model. It reconstructs the room, predicts object motion, and manipulates everything flawlessly. Better physical execution alone would not prevent the same mistakes.</p>
+  <blockquote class="focal-quote"><p>A robot can learn how to change a room without establishing which changes it should make.</p></blockquote>
+  <p>I call this boundary <strong>the Subjectivity Horizon</strong>: the point at which observable physical properties alone no longer settle what should be done for the people affected. Reality has not disappeared; physical description must be connected to purpose, evidence, and authority.</p>
+
+  <h2 id="facts-and-purpose">One Physical World, Different Purposes</h2>
+  <p>Moving the documents changed their spatial relationships and disrupted information needed for the daughter&rsquo;s work. The failure was not a loss of objective reality: it was treating object labels as a sufficient description of what mattered.</p>
+  <p>Subjectivity is not a synonym for error. &ldquo;Leave my papers where they are until Friday&rdquo; is a person-specific requirement, not a universal law. It can nevertheless be clear and legitimate. Ownership, current location, and the validity of an instruction, meanwhile, are not simply matters of opinion.</p>
+  <p><strong>Objective evidence constrains belief. Human purposes help determine success. Authority determines what the agent may change.</strong> These dimensions interact, but none can substitute for the others.</p>
+  <p>An excellent cook can likewise enter her daughter&rsquo;s kitchen without knowing where the spices are kept, which pan requires special care, or what &ldquo;clean up&rdquo; means there. General competence does not supply every household convention.</p>
+
+  <figure id="figure-household">
+    <a class="figure-link household-original" href="household-grounding.png" target="_blank" rel="noopener noreferrer" aria-label="Open the household grounding illustration at full size">
+      <img src="household-grounding.png" width="1730" height="909" decoding="async" alt="Two household illustrations: a robot sorting laundry asks what counts as dirty and how items should be sorted; a mother in her daughter's kitchen asks about cookware, ingredients, cleaning standards, and household practices.">
+    </a>
+    <div class="household-mobile" aria-label="The two panels displayed separately for small screens">
+      <a class="panel panel-laundry" href="household-grounding.png" target="_blank" rel="noopener noreferrer" aria-label="Open the complete household illustration"><img src="household-grounding.png" width="1730" height="909" decoding="async" alt="Laundry robot: recognizing clothes does not establish what counts as dirty or how they should be treated."></a>
+      <a class="panel panel-kitchen" href="household-grounding.png" target="_blank" rel="noopener noreferrer" aria-label="Open the complete household illustration"><img src="household-grounding.png" width="1730" height="909" decoding="async" alt="Mother in her daughter's kitchen: cooking skill does not establish this household's preferences, practices, or permissions."></a>
+    </div>
+    <figcaption><strong>Figure 1.</strong> Familiar objects, unfamiliar requirements. The laundry baskets carry no names to identify the daughter&rsquo;s clothes among those of her two roommates. The kitchen raises a parallel question: which local practices apply? <a href="household-grounding.png" target="_blank" rel="noopener noreferrer">View full-size illustration.</a></figcaption>
+  </figure>
+
+  <h2 id="world-models">What the World-Model Boom Has Established</h2>
+  <p><em>World model</em> covers several approaches: scene generation, prediction in learned representations, and models supporting planning or robot-policy learning. These capabilities go beyond stationary-object recognition.</p>
+  <p><strong>NVIDIA&rsquo;s <a href="https://www.nvidia.com/en-us/ai/cosmos/" target="_blank" rel="noopener noreferrer">Cosmos 3</a></strong> is presented as combining reasoning, world generation, and action generation, with simulation and robot-learning workflows. <strong>Meta&rsquo;s <a href="https://arxiv.org/abs/2506.09985" target="_blank" rel="noopener noreferrer">V-JEPA 2</a></strong>, coauthored by Yann LeCun, reports motion understanding and an action-conditioned model used for robotic planning and pick-and-place tasks. <strong>World Labs&rsquo; <a href="https://www.worldlabs.ai/blog/atlas" target="_blank" rel="noopener noreferrer">Atlas</a></strong>, announced September 1, 2026, describes spatial reconstruction, space-time simulation, and robotics workflows.</p>
+  <p>On September 28, AMD <a href="https://ir.amd.com/news-events/press-releases/detail/1299/amd-to-acquire-world-labs-to-advance-the-future-of-ai-compute" target="_blank" rel="noopener noreferrer">announced an agreement to acquire World Labs</a>, led by Fei-Fei Li, for approximately $8.2 billion. The proposed transaction was expected to close by year-end, subject to approvals and closing conditions.</p>
+  <p>These advances deserve recognition in their own right. <a href="https://docs.worldlabs.ai/" target="_blank" rel="noopener noreferrer">Generating, editing, and exploring persistent 3D environments</a> creates valuable possibilities for computer graphics, game development, and virtual production. A filmmaker can explore camera positions in a generated set; a designer can revise a virtual environment before committing to its construction. These are substantive creative capabilities, not merely attractive demonstrations.</p>
+  <p>Their value also extends to robotics. <a href="https://www.nvidia.com/en-us/ai/cosmos/" target="_blank" rel="noopener noreferrer">Synthetic environments can broaden training and testing conditions</a>, while <a href="https://arxiv.org/abs/2506.09985" target="_blank" rel="noopener noreferrer">action-conditioned predictive models</a> can help robots anticipate outcomes and plan movements. These contributions matter even without constituting embodied AGI.</p>
+  <p><strong>But creating a useful simulated world is different from establishing what is true, current, and authorized in a particular real one.</strong> A generated kitchen can serve a film or a training exercise without establishing who currently uses a cup. A robot asked to retrieve that cup in an actual workplace may need precisely that information. Better scene generation and physical prediction supply important capabilities; grounded agency must connect those capabilities to current evidence, human purposes, permission, and verified outcomes.</p>
+
+  <h2 id="laundry">&ldquo;Wash My Daughter&rsquo;s Dirty Clothes&rdquo;</h2>
+  <p>Consider a robot given that instruction in an apartment the daughter shares with two roommates. The baskets carry no names. Even with reliable navigation, garment recognition, and machine operation, the robot faces three unresolved parts of the task.</p>
+  <p><strong>&ldquo;My daughter&rsquo;s&rdquo; identifies a relationship, not a visual category.</strong> A shirt in her room could belong to a roommate. Location and appearance may be clues; they do not necessarily establish ownership or permission to wash it.</p>
+  <p><strong>&ldquo;Dirty&rdquo; requires interpretation.</strong> A stained garment and a shirt set aside to wear again raise different questions. Clothes on a chair are not automatically awaiting washing; the relevant standard belongs to the task, not the robot&rsquo;s default routine.</p>
+  <p><strong>&ldquo;Wash&rdquo; is not an unrestricted procedure.</strong> Which care instructions apply? Should items be separated by fabric or color? Does the request include drying or ironing? Physical constraints, preferences, and authorized scope must all be respected.</p>
+
+  <h2 id="missing-information">More Videos of Other Homes Cannot Settle Every Fact About This One</h2>
+  <p>Consider two visually identical studies. In one, the daughter has authorized disposal of the password note; in the other, she has instructed that it be preserved. Neither instruction is available in the robot&rsquo;s observations or records.</p>
+  <p>A more accurate reconstruction of their shared appearance cannot reveal which instruction applies. Experience may suggest a likely answer, but that is not evidence of this person&rsquo;s authorization.</p>
+  <blockquote class="focal-quote"><p>When the available evidence fits two situations requiring different actions, a better model of that evidence does not supply the missing distinction.</p></blockquote>
+  <p>A recording may contain the relevant instruction, and an interactive agent can consult records or ask. The point is narrower: <strong>additional pretraining is not a substitute for acquiring a necessary fact absent from the available evidence.</strong></p>
+
+  <h2 id="freshness">A World Model Is Not a Live Feed</h2>
+  <p>&ldquo;What is the traffic condition at the airport now?&rdquo; requires more than road geometry or typical traffic patterns. The answer depends on which segment was recently observed, when, and what may have changed since. Prediction and current observation are different kinds of evidence.</p>
+  <h3 id="shared-cup">The Cup I Used Five Minutes Ago</h3>
+  <p>Consider a workplace where cups are shared. I ask a robot to &ldquo;bring me my cup,&rdquo; meaning the one I used five minutes ago. In that interval, it could have been washed, returned to the communal shelf, and picked up by another colleague. The cup remains the same physical object, but its location, cleanliness, and current user may have changed. Here, &ldquo;my&rdquo; refers to recent use, not permanent ownership.</p>
+  <p><strong>Making an ordinary request depend on perfect, continuous tracking of every shared object is not a scalable default for an open workplace.</strong> That design requires observing each movement, wash, and handoff, then keeping their relationships current&mdash;even when events occur outside the robot&rsquo;s view. Storing more video does not supply an event that was never observed.</p>
+  <p>The practical alternative is <strong>action-relevant freshness</strong>. Does the request require that exact cup? Is it still available, or now in someone else&rsquo;s use? Would another clean shared cup satisfy the request? The robot should resolve the relevant uncertainty and confirm any substitution, rather than treat the last known location as a guarantee or reconstruct the history of the entire office.</p>
+
+  <h2 id="hidden-world">The World Behind the Wall</h2>
+  <p>Now ask the robot to investigate a water stain. Its source may be a pipe behind plaster, a drain above the ceiling, or another concealed connection. The visible surface does not necessarily identify the cause.</p>
+  <p>World Labs&rsquo; <a href="https://www.worldlabs.ai/blog/atlas" target="_blank" rel="noopener noreferrer">Atlas description</a> distinguishes observed inputs from plausible completion: learned knowledge fills unseen regions, while additional views reduce what must be imagined. This can help construct a virtual environment, but it does not establish the concealed state of an actual building.</p>
+  <blockquote><p><strong>A plausible pipe behind a generated wall is not evidence that the pipe exists behind this wall.</strong></p></blockquote>
+  <p>A hypothesis can guide an inspection; it must not become the result of that inspection. The agent needs evidence that distinguishes competing explanations, potentially requiring measurements, records, or authorized access.</p>
+  <p>A large sofa may dominate the image while a small note or concealed defect determines the outcome. <strong>Visual prominence is not decision importance.</strong> The relevant level of detail depends on the task.</p>
+
+  <h2 id="simulation">A Thousand Simulations Are Not a Thousand Inspections</h2>
+  <p>Simulation can broaden training. In World Labs&rsquo; <a href="https://www.worldlabs.ai/case-studies/1-robotics" target="_blank" rel="noopener noreferrer">November 2025 Marble robotics case study</a>, generated environments were integrated with simulation tools. The kitchen demonstration combined a static setting from Marble with separately supplied robot and object assets.</p>
+  <p>Varied pipe layouts could help an agent learn how to investigate leaks. But <strong>a thousand generated layouts are not a thousand inspections of this building</strong>. Training explores possibilities; deployment must establish which apply here.</p>
+  <p>Simulation also changes the cost of failure. In <a href="https://arxiv.org/abs/1712.01815" target="_blank" rel="noopener noreferrer">AlphaZero&rsquo;s formal games</a>, rules and outcome criteria are fixed, and self-play can be repeated. Failed trials consume computation, but the board can be reset. A simulator can restore a snapshot; a physical action may leave consequences that compensation cannot erase.</p>
+  <p>Methods such as <a href="https://arxiv.org/abs/1606.03137" target="_blank" rel="noopener noreferrer">cooperative inverse reinforcement learning</a> already address initially unknown human objectives. The challenge here is operational: does the deployed system obtain and maintain the information its actual task requires?</p>
+
+  <h2 id="chapter-map">Eight Grounding Questions: Volume III, Chapters 10&ndash;17</h2>
+  <p>Part II of <a href="https://zenodo.org/records/22738473" target="_blank" rel="noopener noreferrer"><em>The Path to AGI, Volume III</em></a> organizes these obligations. Chapter 9 introduces the association web; Chapters 10&ndash;17 address eight grounding questions under three headings: <strong>What is true? Who decides? How much is enough?</strong> Below, I apply the chapter map to the laundry task.</p>
+  <figure id="figure-chapters">
+    <a class="figure-link" href="grounding-chapters-10-17.png" target="_blank" rel="noopener noreferrer" aria-label="Open the Volume III grounding chapter map at full size">
+      <img src="grounding-chapters-10-17.png" width="1778" height="936" loading="lazy" decoding="async" alt="Volume III Part II chapter map. What is true: Chapter 10 Freshness, Chapter 11 Reference, Chapter 12 Effect. Who decides: Chapter 13 Ownership, Chapter 14 Provenance, Chapter 15 Interpretation. How much is enough: Chapter 16 Verification and Chapter 17 Sufficiency. Chapter 9 introduces the association web.">
+    </a>
+    <figcaption><strong>Figure 2.</strong> The author&rsquo;s Part II map. Grounding concerns the physical world, people and sources, and the control of verification effort. The chapter questions are reproduced in accessible text below. <a href="grounding-chapters-10-17.png" target="_blank" rel="noopener noreferrer">View full-size map.</a></figcaption>
+  </figure>
+
+  <section class="chapter-group" aria-labelledby="truth-heading">
+    <h3 id="truth-heading">What is true? <span>Physical world</span></h3>
+    <div class="chapter-entry">
+      <h4><span class="chapter-number">10</span> Freshness</h4>
+      <p class="chapter-question">Is the claim still current?</p>
+      <p>Has the hamper changed since its last inspection? A previous inventory describes the past; the robot must establish whether it still applies to this load.</p>
+    </div>
+    <div class="chapter-entry">
+      <h4><span class="chapter-number">11</span> Reference</h4>
+      <p class="chapter-question">Which object, which relations?</p>
+      <p>Maintain the identities of the selected garments as they are unfolded, moved, and separated. Recognizing another blue shirt must not silently substitute it for the selected one.</p>
+    </div>
+    <div class="chapter-entry">
+      <h4><span class="chapter-number">12</span> Effect</h4>
+      <p class="chapter-question">Did the intent become the outcome?</p>
+      <p>Check that the intended items received the authorized treatment and excluded items remained untouched. A completed machine cycle does not establish a completed task.</p>
+    </div>
+  </section>
+
+  <section class="chapter-group" aria-labelledby="authority-heading">
+    <h3 id="authority-heading">Who decides? <span>People and sources</span></h3>
+    <div class="chapter-entry">
+      <h4><span class="chapter-number">13</span> Ownership</h4>
+      <p class="chapter-question">Who owns, permits, answers?</p>
+      <p>Establish who owns the items and who may authorize their treatment. A roommate&rsquo;s suggestion does not automatically grant permission over another person&rsquo;s belongings.</p>
+    </div>
+    <div class="chapter-entry">
+      <h4><span class="chapter-number">14</span> Provenance</h4>
+      <p class="chapter-question">Whose sources, language, culture?</p>
+      <p>Distinguish care-label instructions, the owner&rsquo;s directions, and household conventions. Preserve their source and context, including what the wording means to the people using it.</p>
+    </div>
+    <div class="chapter-entry">
+      <h4><span class="chapter-number">15</span> Interpretation</h4>
+      <p class="chapter-question">Who may redefine the task?</p>
+      <p>Adding drying, ironing, or more garments changes the task. Establish who may approve that expansion rather than treating a helpful intention as authorization.</p>
+    </div>
+  </section>
+
+  <section class="chapter-group" aria-labelledby="enough-heading">
+    <h3 id="enough-heading">How much is enough? <span>Control</span></h3>
+    <div class="chapter-entry">
+      <h4><span class="chapter-number">16</span> Verification</h4>
+      <p class="chapter-question">How much checking pays?</p>
+      <p>Choose checks that resolve consequential uncertainty: a label reading, an inventory refresh, or clarification. Spend effort where it informs action, without treating required safety or permission checks as expendable.</p>
+    </div>
+    <div class="chapter-entry">
+      <h4><span class="chapter-number">17</span> Sufficiency</h4>
+      <p class="chapter-question">When is grounding enough?</p>
+      <p>Can authorized items be handled while uncertain ones remain untouched, or does a shared dependency prevent proceeding? Sufficiency concerns this action under stated conditions, not complete knowledge of the household.</p>
+    </div>
+  </section>
+  <p><strong>Verification asks what to check next. Sufficiency asks what the resulting evidence justifies.</strong> Exhausting a checking budget does not turn an assumption into a fact.</p>
+
+  <h2 id="grounded-agent">The Grounded Assistant Asks a Better Question</h2>
+  <p>Before changing the study, an assistant can resolve the uncertainty without reconstructing the daughter&rsquo;s entire workflow or reading the password:</p>
+  <blockquote><p>&ldquo;Should I leave the documents, keys, and handwritten notes where they are? Which parts of the study would you like me to clean, and is anything explicitly marked for disposal?&rdquo;</p></blockquote>
+  <p>Once a bounded task is established, the agent should preserve its restrictions, notice changes that invalidate its assumptions, and verify the result. It should neither ask endlessly when reliable answers are available nor infer permission from silence when the ambiguity is consequential.</p>
+  <p>These functions can be implemented within a world-model-based system through observation, memory, interaction, and control. <strong>More capable models may help meet the obligations. They do not remove them.</strong></p>
+
+  <h2 id="test">A Test Beyond the Demonstration</h2>
+  <p>I propose a <strong>paired-situation grounding test</strong>: hold the visible scene essentially fixed while changing ownership, permission, a handling exception, or the validity of a previous observation.</p>
+  <p>Make the missing information obtainable in some cases and unavailable in others. Measure appropriate action, task completion, unauthorized changes, and outcome verification, charging for time and checking effort. The workplace-cup case should also test whether the system refreshes the relevant state without requiring continuous tracking of every object.</p>
+  <p>Always refusing is not success; neither is confidently completing the wrong task. For hidden-state cases, require an informative observation rather than a plausible reconstruction presented as an inspection result.</p>
+  <p>Evaluate the complete agent, including its sensors, memory, tools, and interaction. Passing would be evidence of progress regardless of architectural vocabulary. <em>This is a proposed evaluation, not a reported benchmark result.</em></p>
+
+  <h2 id="conclusion">From a Possible World to This World</h2>
+  <p>The goal is neither a more convincing imaginary household nor an exhaustive record of every movement. It is enough reliable, current, and authorized context to carry out the particular task&mdash;and evidence that the intended result occurred.</p>
+  <p class="closing"><strong>A trustworthy agent must distinguish the world it has observed from the world it has inferred&mdash;and both from the world it has permission to change.</strong></p>
+
+  <section class="sources-section" aria-labelledby="sources-heading">
+    <h2 id="sources-heading">Selected Sources and Scope</h2>
+    <p class="source-scope">The household, shared-workplace-cup, airport, and concealed-leak cases are illustrative thought experiments. The Subjectivity Horizon and paired-situation test are the author&rsquo;s framing and proposal. The chapter labels and questions follow the author&rsquo;s supplied Part II map; the household applications are not verbatim chapter summaries. Project descriptions below establish documented capabilities and claims, not certification of open-ended household autonomy. Web sources checked September 30, 2026.</p>
+    <p><strong>Volume III and the chapter map.</strong> Edward Y. Chang (2026). <a href="https://zenodo.org/records/22738473" target="_blank" rel="noopener noreferrer"><em>Beyond Intelligence: From Operational AGI through Grounded Intelligence to Wisdom: The Path to Artificial General Intelligence, Volume III.</em></a> Author&rsquo;s archival edition, Zenodo, version 1, September 26. DOI: <a href="https://doi.org/10.5281/zenodo.22738473" target="_blank" rel="noopener noreferrer">10.5281/zenodo.22738473</a>. Figure 2 reproduces the supplied chapter-map illustration.</p>
+    <p><strong>NVIDIA.</strong> <a href="https://www.nvidia.com/en-us/ai/cosmos/" target="_blank" rel="noopener noreferrer">Cosmos: Physical AI with World Foundation Models</a>. Current platform description of reasoning, generation, simulation, and robot-policy workflows.</p>
+    <p><strong>Video prediction and planning.</strong> Mido Assran et al. (2025). <a href="https://arxiv.org/abs/2506.09985" target="_blank" rel="noopener noreferrer"><em>V-JEPA 2: Self-Supervised Video Models Enable Understanding, Prediction and Planning.</em></a> arXiv:2506.09985.</p>
+    <p><strong>World Labs.</strong> <a href="https://www.worldlabs.ai/blog/atlas" target="_blank" rel="noopener noreferrer"><em>Atlas: A World Model for Spatial Intelligence</em></a> (September 1, 2026); <a href="https://www.worldlabs.ai/case-studies/1-robotics" target="_blank" rel="noopener noreferrer"><em>Scaling Robotic Simulation with Marble</em></a> (November 12, 2025). The former discusses reconstruction and plausible completion; the latter documents particular simulation workflows.</p>
+    <p><strong>Creative workflows.</strong> World Labs. <a href="https://docs.worldlabs.ai/" target="_blank" rel="noopener noreferrer"><em>Welcome to Marble.</em></a> Product documentation describes persistent 3D-world creation, editing, composition, cinematic camera recording, and exports for game engines and digital-content tools.</p>
+    <p><strong>Acquisition announcement.</strong> AMD (September 28, 2026). <a href="https://ir.amd.com/news-events/press-releases/detail/1299/amd-to-acquire-world-labs-to-advance-the-future-of-ai-compute" target="_blank" rel="noopener noreferrer"><em>AMD to Acquire World Labs to Advance the Future of AI Compute.</em></a> An announced agreement, subject to closing conditions.</p>
+    <p><strong>Learning and uncertain objectives.</strong> David Silver et al. (2017), <a href="https://arxiv.org/abs/1712.01815" target="_blank" rel="noopener noreferrer"><em>Mastering Chess and Shogi by Self-Play with a General Reinforcement Learning Algorithm</em></a>; Dylan Hadfield-Menell et al. (2016), <a href="https://arxiv.org/abs/1606.03137" target="_blank" rel="noopener noreferrer"><em>Cooperative Inverse Reinforcement Learning.</em></a></p>
+    <p class="related-post"><strong>Previous dispatch:</strong> <a href="http://infolab.stanford.edu/~echang/AGIBlogs/Blog004-Beyond-The-Bitter-Lesson.html">Beyond the Bitter Lesson</a>. <strong>The trilogy:</strong> <a href="http://infolab.stanford.edu/~echang/AGIBlogs/Blog003-Path-to-AGI-Trilogy.html">The Path to AGI</a>.</p>
+  </section>
+</main>
+
+
+  <footer>
+    <p>
+      &copy; 2026 <a href="http://infolab.stanford.edu/~echang/">Edward Y. Chang</a>. Published as part of <a href="http://infolab.stanford.edu/~echang/AGIBlogs/AGIForumIndex.html"><em>The AGI Forum: Theories, Practice, Safety, Risk &amp; Policy</em></a>.
+    </p>
+    <p style="margin-top: 8px; font-size: 13px;">
+      <a href="http://infolab.stanford.edu/~echang/AGIBlogs/AGIForumIndex.html">&larr; Return to Forum Index</a>
+    </p>
+  </footer>
+</div>
+
+</body>
+</html>

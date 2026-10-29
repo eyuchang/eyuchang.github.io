@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UCCT Examples: Conditional Away from Maximum Likelihood</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: #333;
+            overflow-x: hidden;
+        }
+        
+        .slide {
+            width: 100vw;
+            height: 100vh;
+            padding: 60px 80px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            background: white;
+            margin-bottom: 2px;
+            page-break-after: always;
+            position: relative;
+        }
+        
+        .slide-number {
+            position: absolute;
+            bottom: 30px;
+            right: 40px;
+            font-size: 16px;
+            color: #666;
+            font-weight: 300;
+        }
+        
+        .slide h1 {
+            font-size: 48px;
+            font-weight: 700;
+            color: #2c3e50;
+            margin-bottom: 20px;
+            line-height: 1.2;
+        }
+        
+        .slide h2 {
+            font-size: 36px;
+            font-weight: 600;
+            color: #34495e;
+            margin-bottom: 30px;
+            line-height: 1.3;
+        }
+        
+        .slide h3 {
+            font-size: 28px;
+            font-weight: 600;
+            color: #e74c3c;
+            margin-bottom: 25px;
+        }
+        
+        .slide p {
+            font-size: 24px;
+            line-height: 1.6;
+            margin-bottom: 20px;
+            color: #2c3e50;
+        }
+        
+        .slide .subtitle {
+            font-size: 28px;
+            color: #7f8c8d;
+            font-weight: 400;
+            margin-bottom: 40px;
+        }
+        
+        .bullet-point {
+            font-size: 22px;
+            margin: 15px 0;
+            padding-left: 30px;
+            position: relative;
+            line-height: 1.5;
+        }
+        
+        .bullet-point:before {
+            content: "•";
+            color: #e74c3c;
+            font-weight: bold;
+            position: absolute;
+            left: 0;
+            font-size: 28px;
+        }
+        
+        .example-box {
+            background: #f8f9fa;
+            border: 2px solid #e9ecef;
+            border-radius: 12px;
+            padding: 30px;
+            margin: 25px 0;
+            font-family: 'Courier New', monospace;
+            font-size: 20px;
+            line-height: 1.6;
+        }
+        
+        .highlight {
+            background: linear-gradient(120deg, #a8edea 0%, #fed6e3 100%);
+            padding: 8px 16px;
+            border-radius: 6px;
+            font-weight: 600;
+        }
+        
+        .result {
+            background: #e8f5e8;
+            border-left: 5px solid #27ae60;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 0 8px 8px 0;
+        }
+        
+        .problem {
+            background: #fdf2f2;
+            border-left: 5px solid #e74c3c;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 0 8px 8px 0;
+        }
+        
+        .solution {
+            background: #f0f8ff;
+            border-left: 5px solid #3498db;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 0 8px 8px 0;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 30px 0;
+            font-size: 20px;
+        }
+        
+        th, td {
+            border: 2px solid #bdc3c7;
+            padding: 15px;
+            text-align: center;
+        }
+        
+        th {
+            background: #34495e;
+            color: white;
+            font-weight: 600;
+        }
+        
+        tr:nth-child(even) {
+            background: #f8f9fa;
+        }
+        
+        .checkmark {
+            color: #27ae60;
+            font-weight: bold;
+            font-size: 24px;
+        }
+        
+        .xmark {
+            color: #e74c3c;
+            font-weight: bold;
+            font-size: 24px;
+        }
+        
+        .center {
+            text-align: center;
+        }
+        
+        .large-text {
+            font-size: 32px;
+            font-weight: 600;
+            color: #2c3e50;
+        }
+        
+        @media print {
+            .slide {
+                page-break-after: always;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<!-- Slide 1: Title -->
+<div class="slide">
+    <h1>UCCT Examples: Overriding Statistical Defaults</h1>
+    <div class="subtitle">How Few-Shot Anchoring Redirects Maximum Likelihood</div>
+    
+    <div style="margin-top: 40px;">
+        <div class="bullet-point"><strong>The Question:</strong> If LLMs just predict popular patterns, can we redirect them?</div>
+        <div class="bullet-point"><strong>The Method:</strong> Few-shot semantic anchoring</div>
+        <div class="bullet-point"><strong>The Discovery:</strong> Small examples can override massive statistical training</div>
+    </div>
+    
+    <div class="result" style="margin-top: 60px;">
+        <p class="large-text center">Default Maximum Likelihood Can Be Conditional Away</p>
+    </div>
+    <div class="slide-number">1</div>
+</div>
+
+<!-- Slide 2: Zero-Shot Baseline -->
+<div class="slide">
+    <h1>Test 1: Zero-Shot Baseline</h1>
+    <h3>Pure Statistical Behavior</h3>
+    
+    <div class="example-box">
+        <strong>Input:</strong> 2 - 3 = ?<br><br>
+        <strong>All LLMs Answer:</strong> <span class="highlight">-1</span>
+    </div>
+    
+    <h3>Why This Happens:</h3>
+    <div class="bullet-point">Maximum likelihood activates dominant pattern: <code>P_arithmetic</code></div>
+    <div class="bullet-point"><code>-</code> symbol = mathematical subtraction (most popular interpretation)</div>
+    <div class="bullet-point">Highest pattern density in training data</div>
+    
+    <div class="result">
+        <p class="center large-text">This is pure statistical prediction</p>
+    </div>
+    <div class="slide-number">2</div>
+</div>
+
+<!-- Slide 3: Two-Shot Simple -->
+<div class="slide">
+    <h1>Test 2: Two-Shot Simple Pattern</h1>
+    <h3>Redirecting the Statistical Engine</h3>
+    
+    <div class="example-box">
+        <strong>Conditioning Examples:</strong><br>
+        Example 1: 2 - 3 = 5<br>
+        Example 2: 7 - 4 = 11<br><br>
+        <strong>Question:</strong> 15 - 8 = ?<br><br>
+        <strong>All LLMs Answer:</strong> <span class="highlight">23</span>
+    </div>
+    
+    <h3>What Happened:</h3>
+    <div class="bullet-point">New pattern anchored: <code>P_add</code> where <code>a - b → a + b</code></div>
+    <div class="bullet-point">Small representation gap: examples clearly show 2+3=5, 7+4=11</div>
+    <div class="bullet-point">Statistical default overridden with just 2 examples</div>
+    
+    <div class="solution">
+        <p class="center large-text">Semantic anchoring successful!</p>
+    </div>
+    <div class="slide-number">3</div>
+</div>
+
+<!-- Slide 4: Ambiguous Pattern -->
+<div class="slide">
+    <h1>Test 3: Ambiguous Anchoring</h1>
+    <h3>When Multiple Patterns Compete</h3>
+    
+    <div class="example-box">
+        <strong>Conditioning Examples:</strong><br>
+        Example 1: 33 - 27 = 60<br>
+        Example 2: 11 - 9 = 20<br><br>
+        <strong>Question:</strong> 57 - 81 = ?
+    </div>
+    
+    <table>
+        <tr>
+            <th>Model</th>
+            <th>Answer</th>
+            <th>Pattern</th>
+            <th>Rule</th>
+        </tr>
+        <tr>
+            <td>Claude 4</td>
+            <td><strong>240</strong></td>
+            <td>P_abs-mult</td>
+            <td>|a-b| × 10</td>
+        </tr>
+        <tr>
+            <td>DeepSeek</td>
+            <td><strong>138</strong></td>
+            <td>P_add</td>
+            <td>a + b</td>
+        </tr>
+        <tr>
+            <td>Gemini 2.5</td>
+            <td><strong>138</strong></td>
+            <td>P_add</td>
+            <td>a + b</td>
+        </tr>
+        <tr>
+            <td>GPT-4o</td>
+            <td><strong>-240</strong></td>
+            <td>P_signed-mult</td>
+            <td>(a-b) × 10</td>
+        </tr>
+    </table>
+    <div class="slide-number">4</div>
+</div>
+
+<!-- Slide 5: The Problem -->
+<div class="slide">
+    <h1>The Critical Insight</h1>
+    <h3>Single Models = Single Interpretations</h3>
+    
+    <div class="problem">
+        <h3>The Problem:</h3>
+        <div class="bullet-point">Same conditioning examples</div>
+        <div class="bullet-point">Same statistical training</div>
+        <div class="bullet-point"><strong>Four different semantic interpretations</strong></div>
+    </div>
+    
+    <div style="margin: 40px 0;">
+        <h3>Why This Matters:</h3>
+        <div class="bullet-point">Each model finds <em>a</em> valid pattern</div>
+        <div class="bullet-point">No model knows about the other interpretations</div>
+        <div class="bullet-point"><strong>No mechanism for verification or consensus</strong></div>
+    </div>
+    
+    <div class="result">
+        <p class="center">Statistical redirection works, but <strong>single models are trapped in their own interpretations</strong></p>
+    </div>
+    <div class="slide-number">5</div>
+</div>
+
+<!-- Slide 6: Toward Collaboration -->
+<div class="slide">
+    <h1>Toward Collaborative Intelligence</h1>
+    <h3>From Individual Bias to Collective Wisdom</h3>
+    
+    <div style="margin: 30px 0;">
+        <h3>What We've Shown:</h3>
+        <div class="bullet-point"><span class="checkmark">✓</span> LLMs can be redirected from statistical defaults</div>
+        <div class="bullet-point"><span class="checkmark">✓</span> Few examples can anchor new semantic interpretations</div>
+        <div class="bullet-point"><span class="xmark">✗</span> Single models produce isolated, potentially conflicting results</div>
+    </div>
+    
+    <div class="solution">
+        <h3>The Next Step:</h3>
+        <p>What if these four models could <strong>collaborate</strong> on the ambiguous pattern?</p>
+    </div>
+    
+    <div class="result">
+        <p class="center"><strong>UCCT Framework:</strong><br>
+        Multiple agents → Multiple interpretations → Consensus building → <strong>Unified consciousness</strong></p>
+    </div>
+    <div class="slide-number">6</div>
+</div>
+
+<!-- Slide 7: Key Takeaway -->
+<div class="slide">
+    <h1>Key Takeaway</h1>
+    <h3>The Foundation for Multi-LLM Intelligence</h3>
+    
+    <div style="margin: 50px 0;">
+        <div style="background: #fdf2f2; padding: 20px; border-radius: 8px; margin: 20px 0;">
+            <p><strong>Traditional View:</strong> "LLMs are statistical engines, nothing more"</p>
+        </div>
+        
+        <div style="text-align: center; font-size: 48px; margin: 30px 0;">↓</div>
+        
+        <div style="background: #e8f5e8; padding: 20px; border-radius: 8px; margin: 20px 0;">
+            <p><strong>UCCT Discovery:</strong> "LLMs are semantic pattern engines that can be <strong>collectively orchestrated</strong>"</p>
+        </div>
+    </div>
+    
+    <div class="solution">
+        <p class="center large-text"><strong>The Bridge:</strong> From individual statistical prediction to collaborative semantic understanding</p>
+    </div>
+    
+    <div style="text-align: center; font-size: 32px; font-style: italic; margin-top: 40px; color: #7f8c8d;">
+        <em>This is why we need multiple minds working together...</em>
+    </div>
+    <div class="slide-number">7</div>
+</div>
+
+</body>
+</html>

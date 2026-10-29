@@ -1,0 +1,291 @@
+\section{RESEARCH PLAN}
+\subsection{Motivation}
+
+Traditionally, watching a television program has been a passive experience:
+All viewers receive the same TV content at the same
+playback pace, regardless of individual preferences.
+Not being able to select viewing pace 
+can be inconvenient and even unproductive 
+sometimes. For instance, when one
+is interrupted while watching a news program
+(say, by a phone call or biological need), one may 
+miss the information (e.g., stock quotes, weather forecast,
+etc.) that one has been waiting for.  Similarly, when
+one misses a crucial point while viewing a televised
+lecture, one may not be able to comprehend the materials
+after that point.
+What is desirable is {\em viewing interactivity}
+---pause, fast-forward and instant replay---allowing
+the time-shifting of a program so the viewer can
+watch at whatever pace he or she finds comfortable.
+One can also record programs at multiple channels at the same
+time (which a tape-based VCR cannot do), filter out unwanted
+content and produce a customized program. 
+
+In addition to viewing interactivity, being able to 
+interact with the content of a program (what I call
+{\em content interactivity}) can enrich viewing experience.
+Content interactivity is
+especially beneficial for educational programs. For instance,
+children would be able to change the attributes 
+(e.g., colors, size, position 
+and even the personality) of the ``bunny,'' ``big bird'' and
+other characters in the {\it Sesame Street} program.
+A grade school student can learn American states
+by interacting with a map.
+A class of high school students could conduct science experiments
+in small groups through a virtual lab and their instructor
+could keep track of their progress in real-time. 
+Many other applications exist.
+
+To support interactivity, many studies suggest a server-based
+architecture (e.g., \cite{ex80,ex49,ex54,ex1,ex86}),
+in which a server schedules
+its resources (i.e., memory and disk bandwidth)
+to support interactivity.
+In a server-based architecture, the receivers are assumed
+to be passive---simply receiving bits and rendering frames.
+However, because of the typical long end-to-end transmission
+delay between a server and a receiver and the Interet's limited bandwidth,
+it is practically infeasible for the server
+to support ``real-time'' viewing interactivity for tens of
+thousands of simultaneous users.  Furthermore,
+on a broadcast channel (e.g., CNN), one simply cannot request
+the server to pause or replay a program.
+ 
+Instead of the server-based approach, I plan to investigate
+new hybrids of technologies for 
+a receiver-based architecture to support viewing interactivity 
+and content interactivity. Figure~\ref{fig-dtv-pipeline} depicts a 
+multimedia data delivery pipeline.  A receiver in this architecture
+is equipped with a large and inexpensive disk and may have an 
+Internet back-channel in addition to the broadcast channel.
+The economical caching together with the random
+access capability of the disk enables a multimedia receiver to 
+buffer a large amount of data to support
+time-shift operations.  A viewer can pause a live 
+program to take a break from viewing while the broadcast
+stream continues arriving and being written to the local disk.
+The viewer can resume watching the program after the pause
+with a delay, or fast-forward the program to get back in synch with
+the broadcast stream.  
+While a given broadcast stream remains the same
+for all viewers, various data objects can be transmitted to
+individual viewers via the Internal channel.
+Image-based rendering techniques can
+overlay a number of data objects with the broadcast stream to
+produce a customized program for content
+interaction.
+
+\begin{figure}[t]
+\epsfxsize=350pt
+\centerline{\epsffile{fig-dtv-pipeline.eps}}
+\caption{The Multimedia Data Delivery Pipeline.}
+\label{fig-dtv-pipeline}
+\vspace{.1in}
+\end{figure}
+
+Extending the DRAM cache with a large disk and
+adding an Internet channel to the receiver add complexity to 
+the receiver's buffer and data management. To ensure that IO 
+are efficiently scheduled, the receiver needs a 
+{\em buffer manager} that can schedule the
+receiver's memory and
+disk bandwidth effectively to service
+a wide variety of interactive scenarios.
+The receiver also needs a {\em data manager}
+that can manage data from TV, radio and the Web
+for supporting efficient queries and data
+retrieval. Although progress has been made in these areas,
+many issues, especially in managing multimedia
+data and managing buffer for rendering and
+for querying multimedia data,
+and in developing an architecture that can be adaptive
+to both resource constraints and {\em Quality of
+Service} (QoS) requirements, remain open.
+(These challenges are discussed
+in detail in Section~\ref{sec-challenges}.)
+I plan to address these issues, and to build on
+work from several fields, most notably from the
+image processing, operating system and database fields.
+In particular, I am interested in developing the
+following technologies:
+                             
+\begin{nlist}
+\item {\bf 1}.
+Temporal indexing structures that support
+efficient stream synchronization.
+\item {\bf 2}. Caching and prefetching techniques that satisfy
+the real-time data requirement of the continuous media data
+(i.e., video and audio), on the one hand, and minimize the
+initial latency in responding to an interactive request,
+on the other.
+\item {\bf 3}.
+QoS-adaptive buffer-management architectures that manage
+memory and disk bandwidth adaptively to
+the receiver's resource constraints and
+the viewer's QoS requirements.
+\item {\bf 4}.
+Media query processing that handles heterogeneous
+media queries efficiently.
+\end{nlist}   
+
+In addition, I envision constructing demonstrations
+that use these technologies.
+Here is a list of some of the demonstrations I am planning
+to implement:
+\begin{jlist}
+\item 
+A multimedia database that supports content-based
+queries,
+\item 
+A digital VCR that supports pause, fast-forward and instant
+replay, and
+\item 
+A multi-camera video surveillance system (e.g., for
+monitoring in a nuclear power facility).
+\end{jlist}
+
+The multimedia database system provides the digital-VCR
+project with an efficient storage and an effective query
+engine that can help the viewer select content
+before the viewer issues a fast-forward or replay command.
+The digital VCR, which receives only one stream at a time,
+in turn, is extended by the multi-camera video surveillance project,
+which handles multiple cameras, streams and viewers simultaneously.
+These demonstrations show that 
+a wide variety of interactive multimedia applications
+in education, commercial, government and
+military sectors can be built on the technologies
+developed in this project.
+                           
+Much of the research I propose will be joint efforts
+with colleagues and students at the University of California,
+Santa Barbara and Stanford University.
+
+In the remaining sections of this proposal, I enumerate the challenges
+this project faces, the core technologies I plan to develop, 
+my prior accomplishments, and
+the demonstrations I plan to implement.   
+
+\subsection{Technical Challenges}
+\label{sec-challenges}
+
+A multimedia receiver faces at least three design challenges:
+\begin{jlist}
+\item Not all data are equal: different types of data may have different
+size and latency characteristics.
+\item Not all receivers are equal: different receivers may have different
+available hardware resources and network bandwidth.
+\item Not all viewers are equal: different viewers may have different
+viewing preferences.
+\end{jlist}
+In the remainder of this section, I enumerate these challenges.
+
+\subsubsection{Not All Data Are Equal}
+
+\begin{figure}[t]
+\epsfxsize=260pt
+\epsfysize=160pt
+\centerline{\epsffile{fig-dtv-data.eps}}
+\caption{The Characteristics of Multimedia Data Objects.}
+\label{fig-dtv-data}
+\end{figure}
+
+Multimedia data objects can be continuous, textual, binary,
+and so forth.  These data objects are
+best characterized by their {\it sizes}
+and {\it latency constraints}. Continuous       
+data are audio/video streams, which are voluminous and
+delay sensitive.
+Textual data include captions, HTML and XML documents,
+etc. Textual data occupy far less space than continuous data
+and are not as delay sensitive. Other data, such as images and applets,
+can be very copious or scant and may or may not be delay sensitive,
+depending on the nature of the application.
+Figure~\ref{fig-dtv-data} shows the characteristics of
+these data objects. The $x$-axis in the figure represents the
+delay sensitivity from low (on the left-hand side) to high
+(on the right-hand side); the $y$-axis gives the size of an object.
+At one extreme, videos are large and very sensitive to
+delay. At the other extreme, captions are small in size and not very
+sensitive to delay.
+                       
+\begin{figure}[t]
+\epsfysize=160pt
+\epsfxsize=280pt
+\centerline{\epsffile{fig-delay-fs.eps}}
+\caption{Delay Functions.}
+\label{fig-delay-fs}
+\end{figure}
+
+When allocating memory and disk bandwidth for data objects, both 
+their sizes and latency constraints must be taken into consideration.
+We plan to characterize each data object's size and latency 
+characteristic as follows:
+The size of a data object is measured by the 
+amount of storage space it needs.
+The delay sensitivity of a data object is quantified as
+a value function.  
+As Figure~\ref{fig-delay-fs} shows, 
+the function can be defined in many ways
+(the $x$-axis in the figure depicts delay; the $y$-axis
+depicts the value of the object normalized to
+from zero i.e., worthless, to one): Function $F_a$
+depicts an object that can tolerate delay up to a period $t_\delta$.
+Function $F_b$ shows the value of an object that decays linearly
+after $t_\delta$. Functions $F_c$ and $F_d$ have other
+value decay patterns.                                 
+In terms of data streams,
+function $F_a$ is a good value function for an audio frame,
+function $F_b$ may be a good value function for a video
+frame since slight delay of a frame display may be tolerable,
+function $F_c$ may be a good value function for a subtitle, and
+function $F_d$ may be a good value function for a Web page.
+                                                       
+\subsubsection{Not All Receivers Are Equal}
+
+The critical resources of a receiver include memory,
+network bandwidth and disk bandwidth.
+These resources can also be characteristized by their
+capacity and latency. The memory
+size and the disk size
+are both constants that
+can be obtained from the system configuration file.
+The latency of a receiver
+is best characteristized by the IO time between memory
+and the local disk since this latency dominates the latency
+in the storage hierarchy. The IO time for reading/writing
+data object $i$ (denoted as $\tau_i$) can be written as:
+$\tau_i = \gamma(d) + S_i/TR$,
+where $\gamma(d)$ is the seek time and rotational
+delay of the disk given $d$ tracks to seek before transferring
+data, $S_i$ is the size of the $i^{th}$
+data object, and $TR$ is the transfer rate of the disk.
+Note that the latency just described
+assumes that no IO conflict exists. In reality, the          
+more objects are accessed, the longer the delay that
+can be experienced by an IO.  
+Scheduling conflicts must be taken
+into consideration and must be resolved
+in an order that achieves maximum total QoS
+for the viewer.
+                                             
+\subsubsection{Not All Viewers Are Equal}
+
+To measure a viewer's satisfaction, we must allow the
+user to have a say about what is important and
+what is not. We thus associate each data object
+with a QoS parameter. A viewer can
+assign a QoS value to each data object, either
+implicitly or explicitly.
+For instance, if a user decides to turn off
+all interactive features, the resource manager can
+assign a QoS factor of zero to data objects
+that are needed to support interactive features.
+Regarding the data objects that are
+needed to support the playback, higher QoS can be assigned to
+mission-critical data objects, such as broadcast
+video and audio streams and lower QoS can be assigned
+to optional data objects such as captions and applets.
+

@@ -1,0 +1,716 @@
+\vspace*{-3ex}
+\subsection{Event Mining}
+\vspace*{-1ex}
+\label{sec-learn}
+
+We describe $\MEGA$, $\SVMActive$, and DPF 
+that we have recently developed.  
+$\MEGA$ is an inductive-based active learning algorithm.
+$\SVMActive$ is a margin-based active learning algorithm.
+DPF is a perceptual distance function for measuring similarity.
+For detailed algorithms and
+extensive experimental results, please refer to
+\cite{CL01,SVM01,DPF-ACM02}.
+
+\begin{wraptable}{l}{4in}
+\footnotesize{
+\centerline{
+\begin{tabular}{|l|l|l|} \hline
+{Filter Name} & {Resolution} & {Representation} \\
+\hline \hline
+{\it Color Masks} & {Coarse} & {Appearance of culture colors} \\
+{\it Color Spread} & {Coarse} & {Spatial concentration of a color} \\
+{\it Color Elongation} & {Coarse} & {Shape of a color} \\
+\hline
+{\it Color Histograms} & {Medium} & {Distribution of colors} \\
+{\it Color Average} & {Medium} & {Similarity comparison within} \\
+& &  {the same culture color} \\
+\hline
+{\it Color Variance} & {Fine} & {Similarity comparison within} \\
+& & { the same culture color} \\
+\hline \hline
+\end{tabular}}
+}
+\caption{Multi-resolution Color Features.}
+\label{tab-color-features}
+\vspace*{-2ex}
+\rule{4in}{0.3mm}
+\vspace*{-4ex}
+\end{wraptable}	 
+
+Table~\ref{tab-color-features} and Figure~\ref{fig-texture-features}
+list the multi-resolution color and texture features that
+our work employs for learning image/video query-concepts.
+Some individual features\footnote{
+This research does not focus on feature-extraction
+techniques. We organize useful 
+features (e.g., \cite{CBGM97,HCP,HU,HKMZZ,IRM00,MWNS01,PZ,PZM,Rtg98,SC96,Sw91,img10})
+in a hierarchical/multi-resolution
+manner to assist effective and efficient learning.}
+such as color histograms
+may be primitive. However,
+when organized in a hierarchical/multi-resolution manner,
+they can be flexibly chosen by a learning algorithm to model
+a subjective concept in different resolutions.
+%The design goal of $\MEGA$ and $\SVMActive$ is to learn
+%a query concept in this high-dimensional feature space both
+%quickly and with a small number of training instances. 
+
+
+
+\paragraph{MEGA}
+\label{sec-mega}
+
+The Maximizing Expected Generalization Algorithm (MEGA)
+models query concepts in $k$-CNF \cite{KLV94},
+which can formulate virtually all
+practical query concepts\footnote{
+$k$-CNF is more expressive than $k$-term DNF,
+and it has both polynomial sample complexity
+and time complexity \cite{KV94,Mit97}.
+}.  MEGA uses
+$k$-DNF to bound the sampling space from which to select the
+most informative samples to solicit user feedback.
+
+\begin{wrapfigure}{l}{4in}
+\begin{center}
+\begin{tabular}{c}
+\psfig{figure=edfigs/fig-texture-hierarchy.eps,height=3.8cm,width=7cm}
+%\psfig{figure=blank.ps,height=3.8cm,width=7cm}
+\end{tabular}
+\end{center}
+\vspace{-.1in}
+\caption{Multi-resolution Texture Features.}
+\vspace{-.1in}
+\label{fig-texture-features}
+\vspace*{-2ex}
+\rule{4in}{0.3mm}
+\vspace*{-1.5ex}
+\end{wrapfigure}
+
+\noindent
+{\bf Definition 1}:
+$k$-{\bf CNF}: For constant $k$, the representation class
+$k$-CNF consists of Boolean formulae
+of the form $c_1 \wedge \cdots \wedge c_{\theta}$, where
+each $c_i$ is a disjunction of at most $k$ literals over
+the Boolean variables $x_1, \dots, x_n$. (A Boolean variable
+represents an image feature depicted in Table~\ref{tab-color-features} 
+and Figure~\ref{fig-texture-features}.)
+No prior bound is placed on $\theta$.
+
+\noindent
+{\bf Definition 2}:
+$k$-{\bf DNF}: For constant $k$, the representation class
+$k$-DNF consists of Boolean formulae
+of the form $d_1 \vee \cdots \vee d_{\theta}$, where
+each $d_i$ is a conjunction of at most $k$ literals over
+the Boolean variables $x_1, \dots, x_n$. No prior
+bound is placed on $\theta$.
+
+$\MEGA$ initializes
+the query concept-space ($QCS$) as a $k$-CNF
+and the candidate concept-space ($CCS$) as a $k$-DNF.
+The $QCS$ starts as the most specific concept
+and the $CCS$ as the most general concept. The target concept
+that the learner learns is more general than the initial
+$QCS$ and more specific than the initial $CCS$.
+The learner learns the $QCS$,
+while at the same time refining the $CCS$ to delimit
+the boundary of the sampling space. (The
+shaded area in Figure~\ref{fig-qccs} shows the sampling space
+that is between the $QCS$ and the $CCS$.)
+
+\begin{wrapfigure}{l}{3.5in}
+\epsfysize=90pt
+\centerline{\epsffile{edfigs/fig-qccs.eps}}
+%\centerline{\epsffile{blank.ps}}
+\vspace{-.1in}
+\caption{MEGA's Sampling Space: $CCS \wedge \overline{QCS}$.}
+\vspace{-.1in}
+\label{fig-qccs}
+\vspace*{-2ex}
+\rule{3.5in}{0.3mm}
+\vspace*{-1.5ex}
+\end{wrapfigure}
+                 
+Intuitively, at a given stage, we have a $QCS$ and
+a $CCS$, representing the boundary of the candidate
+concept-space.
+To make sure that an example is most useful, we have tested two strategies.
+\begin{nlist}
+\item {\bf 1}. Bounding the sample space:
+Avoid choosing useless unlabeled instances by using
+the $CCS$ and $QCS$ to delimit the sampling boundary.
+\item {\bf 2}. Maximizing the usefulness of a sample:
+Choose an example that
+shall remove the maximum expected number of disjunctive
+terms from $QCS$. In other words, we choose an example
+that can maximize the expected generalization of the concept.
+If the example is labeled negative by the user, it can
+be useful to remove conjunctive terms in the $CCS$.
+\end{nlist}
+               
+It may appear that
+if we pick an example that has more dissimilar
+disjunctions (compared to the $QCS$), we may have
+a better chance of eliminating more disjunctive terms.
+This is, however, not true.
+An example must be labeled by the user as positive to be
+useful for refining $QCS$. Unfortunately, an example that has
+more disjunctions that are dissimilar
+to the target concept is less likely to be
+labeled positive.  Therefore, there is a tradeoff
+between choosing an example that has more contradictory
+terms and choosing an example that is more likely
+to be labeled positive.
+                          
+Let $\Psi$ denote the number of disjunctions remaining in the concept.
+The number of disjunctions that can be eliminated in the current round
+of sampling, denoted as $\psi$, is between zero and $\Psi$.  We can
+write the probability of eliminating $\psi$ terms as $P_e(\psi)$.
+$P_e(\psi)$ is a monotonically decreasing function of $\psi$.
+We attempt to find the $\psi$ that
+can eliminate the maximum expected number
+of disjunctive terms, given an example.
+Our objective function can be written as
+\begin{equation}
+\psi^{*} = arg_{\psi} \max E(\psi) = \psi \times P_e(\psi).
+\label{eq-mega}
+\end{equation}
+To solve $\psi^{*}$, we must know $P_e(\psi)$, which
+can be estimated by the two methods below: probabilistic estimation
+and empirical estimation.
+(Please refer to \cite{CL01} for detailed discussion.)
+We have compared MEGA with the five traditional sampling schemes:
+{\it random}, {\it bounded random}, {\it nearest neighbor},
+{\it query expansion} and {\it aggressive}.
+Our preliminary experimental
+results show that when the
+number of labeled instances is limited, 
+MEGA substantially outperforms traditional
+sampling schemes in learning query concepts with high accuracy. 
+%Our prototype \cite{demo-Sigmod01} employing $\MEGA$
+%can grasp a query concept in three to five
+%rounds of feedback in a $200$-feature dimensional space.
+
+\ignore{
+\begin{figure}
+\begin{center}
+\begin{tabular}{llll}
+\epsfxsize=80pt
+\epsfysize=80pt
+%\subfigure[Random]{\epsfbox{fig-mega-random.eps}}
+\subfigure[Random]{\epsfbox{blank.ps}}
+\hspace{.2in}
+\epsfxsize=80pt
+\epsfysize=80pt
+%\subfigure[B-Random]{\epsfbox{fig-mega-G-random.eps}}
+\subfigure[Random]{\epsfbox{blank.ps}}
+\hspace{.2in}
+\epsfxsize=80pt
+\epsfysize=80pt
+%\subfigure[Aggressive]{\epsfbox{fig-mega-aggresive.eps}}
+\subfigure[Random]{\epsfbox{blank.ps}}
+\hspace{.2in}
+\epsfxsize=80pt
+\epsfysize=80pt
+%\subfigure[MEGA]{\epsfbox{fig-mega-mega.eps}} \\
+\subfigure[Random]{\epsfbox{blank.ps}}\\
+\end{tabular}
+\end{center}
+\vspace{-.2in}
+\caption{Sampling Schemes.}
+\vspace{-.1in}         
+\label{fig-samplings}
+\end{figure}
+                    
+Figure~\ref{fig-samplings} shows how some of these sampling algorithms work.
+The main features of the sampling schemes are given below.
+\begin{jlist}
+\item {\it Random}: Samples are randomly selected from the bulk of the
+domain (Figure~\ref{fig-samplings}(a)).
+\item {\it Bounded Random}: Samples are randomly selected from between
+$QCS$ and $CCS$  (Figure~\ref{fig-samplings}(b)).
+\item {\it Nearest Neighbor}: Samples are selected from the
+nearest neighborhood of the center of the positive-labeled instances.
+\item {\it Query Expansion}: Samples are selected from the
+neighborhood of multiple positive-labeled instances.
+\item {\it Aggressive}: Samples are selected from the unlabeled ones
+that satisfy the most general concepts in $CCS$
+(Figure~\ref{fig-samplings}(c)).
+\item {\it MEGA}: Samples are selected from between $QCS$ and $CCS$
+and to eliminated the maximum expected number of terms
+(Figure~\ref{fig-samplings}(d)).
+\end{jlist}
+}
+
+\paragraph{$\SVMActive$}
+\label{sec-svm}
+
+$\SVMActive$ is 
+a method that we have developed
+for supporting online concept learning \cite{SVM01}.
+$\SVMActive$ combines active learning with
+support vector machines (SVMs).
+SVMs have strong theoretical foundations and excellent empirical
+successes. They have been applied to tasks such as handwritten digit
+recognition~\cite{Vapnik:1998}, object
+recognition~\cite{Papageorgiou+al:98}, and text
+classification~\cite{Joachims:ECML97}.
+%We added the active learning component to SVMs for
+%selecting the most informative samples to 
+%query a user and quickly learns
+%a boundary that separates the data objects that satisfy the user's query
+%concept from the rest of the dataset.  
+%
+%\begin{figure}
+%\begin{center}
+%\psfig{figure=svm2.eps,height=2.4in,angle=90}
+%\caption{A simple linear Support Vector Machine.}
+%\label{fig:max_margin}
+%\end{center}
+%\end{figure}
+
+For our purpose of query-concept learning, we
+consider SVMs in the binary classification setting. We are
+given training data $\{ \vc{x}_1 \ldots \vc{x}_n \}$ that are vectors
+in some space $\setX \subseteq \R^d$. We are also given their
+labels $\{ y_1 \ldots y_n \}$ where $y_i \in \{ -1,1 \}$. In their
+simplest form, SVMs are hyperplanes that separate the training data by
+a maximal margin. All vectors lying on
+one side of the hyperplane are labeled as $-1$, and all vectors lying
+on the other side are labeled as 1. The training instances that lie
+closest to the hyperplane are called {\em support vectors}. More
+generally, SVMs allow one to project the original training data in
+space $\setX$ to a higher dimensional feature space $\setF$ via a
+Mercer kernel operator $K$. In other words, we consider the set of
+classifiers of the form $f(\vc{x}) = \sum_{i=1}^n
+\alpha_i K(\vc{x}_i, \vc{x})$. When $f(\vc{x}) \ge 0$ we classify $\vc{x}$ as
+$+1$, otherwise we classify $\vc{x}$ as $-1$.
+
+%\begin{equation}
+%\label{eq:kernel_classifier}
+%f(\vc{x}) = \sign \left( \sum_{i=1}^n \alpha_i K(\vc{x}_i, \vc{x}) \right).
+%\end{equation}
+
+When $K$ satisfies Mercer's condition~\cite{Burges:1998} we can write:
+$K(\vc{u}, \vc{v}) = \innerprod{\Phi(\vc{u})}{\Phi(\vc{v})}$ where
+$\Phi:\setX \rightarrow \setF$ and ``$\innerprod{}{}$'' denotes an
+inner product. We can then rewrite $f$ as:
+\begin{equation}
+f(\vc{x}) = \innerprod{\vc{w}}{\Phi(\vc{x})}, 
+\mbox{ where } \vc{w} = \sum_{i=1}^n \alpha_i \Phi(\vc{x}_i).
+\label{eq:kernel_hyperplane}
+\end{equation}
+Thus, by using $K$ we are implicitly projecting the training data
+into a different (often higher dimensional) feature space $\setF$.
+The SVM then computes the $\alpha_i$s that correspond to the maximal
+margin hyperplane in $\setF$.  By choosing different kernel functions
+we can implicitly project the training data from $\setX$ into spaces
+$\setF$ for which hyperplanes in $\setF$ correspond to more complex
+decision boundaries in the original space $\setX$. 
+
+Intuitively, $\SVMActive$ works by combining the following three ideas:
+\begin{enumerate}
+\item $\SVMActive$ regards the task of learning a target concept as
+one of learning an SVM binary classifier.  An SVM captures the query
+concept by separating the relevant images from the irrelevant images
+with a hyperplane in a projected space, usually a very
+high-dimensional one.  The projected points on one side of the
+hyperplane are considered relevant to the query concept and the rest
+irrelevant.
+\item $\SVMActive$ learns the classifier quickly
+via active learning.
+The active part of $\SVMActive$ selects the most informative instances
+with which to train the SVM classifier. This step ensures fast convergence
+to the query concept in a small number of feedback rounds.
+\item Once the classifier is trained, $\SVMActive$ returns the top-$k$
+most relevant images. These are the $k$ images farthest
+from the hyperplane on the query concept side.
+\end{enumerate}
+
+Let $V$ denote the uncertain concept space.
+The current version of $\SVMActive$ employs
+Tong \& Koller's lemma \cite{TK00-b}, which chooses a pool-query
+that halves the uncertain space.  
+In reality, however, finding the pool-query that
+can divide the uncertain space in half can
+be difficult and computationally intensive.
+Given an unlabeled instance $\vc{x}$ from the pool,
+it is not practical to explicitly compute the sizes of the new uncertain
+spaces $\setV^{-}$ and $\setV^{+}$ (i.e., the uncertain spaces obtained
+when $\vc{x}$ is labeled as $-1$ and $+1$ respectively).  
+We have tried a simple method that works as follows:
+Learn an SVM on the existing labeled data and choose, as the next
+batch of samples, those closest to the 
+hyperplane in feature space $\setF$.
+Although this simple method works efficiently, 
+it has a couple of shortcomings. We discuss 
+these shortcomings and how we plan
+address them in Section~\ref{sec-future-work}.
+
+%Figure~\ref{fig:simple1}(c) presents an illustration. In the stylized
+%picture we have flattened out the surface of the unit weight vector
+%hypersphere that appears in Figure~\ref{fig:duality}(a). The white area is
+%version space $\setV_i$ which is bounded by solid lines corresponding
+%to labeled instances. The five dotted lines represent unlabeled
+%instances in the pool. The circle represents the largest radius
+%hypersphere that can fit in version space. Note that the edges of the
+%circle do not touch the solid lines --- just as the dark sphere
+%in~\ref{fig:duality}(b) does not meet the hyperplanes on the surface
+%of the larger hypersphere (they meet somewhere under the surface).
+%The instance $\vc{b}$ is closest to the SVM $\vc{w}_i$ and so we will
+%choose to query $\vc{b}$.
+
+%~\cite{TK00-b} there exist more sophisticated
+%approximations that one can perform. However, these methods are
+%significantly more computationally intensive. For the task of
+%relevance feedback, a fast response time for determining the next 
+%data instance
+%to present to the user is so critically
+%important that these other approximations are not practical.
+
+%The initial theorem of Tong \& Koller assumes one sample
+%is chosen for each user iteration.  
+%For relevance feedback, we have a need for performing
+%multiple pool-queries at the same time. It is not practical to present
+%one data object at a time for the user to label --- the user is likely to
+%quickly lose patience after a few rounds of pool-querying. To prevent
+%this from happening we would like to present the user with multiple
+%examples (say, twenty) at each round of pool-querying. Thus, for each
+%round, the active learner has to choose not just one example to be
+%labeled but, say, twenty.  Theoretically it would be possible to consider
+%the size of the resulting uncertain spaces for each possible labeling of
+%each possible set of twenty pool-queries but clearly this is
+%impractical. Thus instead, for matters of computational efficiency,
+%we the simple approach of choosing the pool-queries to be the twenty 
+%instances closest to its separating hyperplane.
+
+Once we have performed a number of rounds of querying, we will have
+amassed a small set of labeled instances. We learn a final SVM using these
+labeled instances and use this SVM as our final classifier. In the 
+retrieval task, we wish to return instances in order of decreasing
+relevance. This is easy to achieve with an SVM. Recall that an SVM is
+a hyperplane in the feature space such that any feature vector lying
+on one side of the hyperplane is labeled as ``relevant'' and any
+feature vector lying on the opposite side of the hyperplane is labeled
+as ``not relevant.'' We have greatest
+confidence in those labels when the vectors
+are furthest away from the hyperplane. Hence, we can rank all of
+the instances in the database in
+order of relevance, simply by computing their
+signed distance from the hyperplane.
+
+
+\subsubsection*{\underline{Task: Active Learning with Bayes Point Machines}}
+
+\begin{wrapfigure}{l}{4in}
+\label{fig-duality}
+\centerline{
+\begin{tabular}{ccc}
+\psfig{figure=edfigs/vspace1.ps,height=1.4in,angle=270} &
+%\psfig{figure=blank.ps,height=1.4in,angle=270} &
+\hspace{-0.1in}
+\psfig{figure=edfigs/vspace2.ps,height=1.4in,angle=270} \\
+%\psfig{figure=blank.ps,height=1.4in,angle=270} \\
+(a) & (b)
+\end{tabular}}
+\footnotesize{
+\caption{(a) Version space duality. The surface of the hypersphere
+represents unit weight vectors. Each of the two hyperplanes
+corresponds to a labeled training instance. Each hyperplane restricts
+the area on the hypersphere in which consistent hypotheses can
+be situated. Here version space is the surface segment of the hypersphere
+closest to the camera. (b) An SVM classifier in version space. The
+dark embedded sphere is the largest radius sphere whose center lies in
+version space and whose surface does not intersect with the
+hyperplanes. The center of the embedded sphere corresponds to the SVM,
+its radius is the margin of the SVM in $\setF$, and the training points
+corresponding to the hyperplanes that it touches are the support
+vectors.}
+}
+\vspace*{-2ex}
+\rule{4in}{0.3mm}
+\vspace*{-1.5ex}
+\end{wrapfigure}
+
+From a Bayesian perspective Support Vector Machines choose the 
+hypothesis corresponding to the largest possible hypersphere 
+that can be inscribed in version space, i.e. in the 
+space of all consistent hypotheses given a training set \cite{SVM01}.
+Given a set of labeled training data and a Mercer kernel $K$, there is
+a set of hyperplanes that separate the data in the induced feature
+space $\setF$. We call this set of consistent hyperplanes or {\em
+hypotheses} the {\em version space}~\cite{Mitchell:AI82}. In other
+words, hypothesis $f$ is in version space if for every training
+instance $\vc{x}_i$ with label $y_i$ we have that $f(\vc{x}_i) > 0$ if
+$y_i = 1$ and $f(\vc{x}_i) < 0$ if $y_i = -1$.
+Clearly, by definition, points in $\setW$ correspond to hyperplanes in
+$\setF$. The intuition behind the converse is that observing a
+training instance $\vc{x}_i$ in feature space restricts the set of
+separating hyperplanes to ones that classify $\vc{x}_i$ correctly. In
+fact, we can show that the set of allowable points $\vc{w}$ in $\setW$
+is restricted to lie on one side of a hyperplane in $\setW$.  More
+formally, to show that points in $\setF$ correspond to hyperplanes in
+$\setW$, suppose we are given a new training instance $\vc{x}_i$ with
+label $y_i$. Then any separating hyperplane must satisfy
+$y_i(\innerprod{\vc{w}}{\Phi(\vc{x}_i)}) > 0$. Now, instead of viewing
+$\vc{w}$ as the normal vector of a hyperplane in $\setF$, think of
+$y_i \Phi(\vc{x}_i)$ as being the normal vector of a hyperplane in
+$\setW$. Thus $y_i(\innerprod{\vc{w}}{\Phi(\vc{x}_i)}) =
+\innerprod{\vc{w}}{y_i \Phi(\vc{x}_i}) > 0$ defines a half-space in
+$\setW$.  Furthermore $\innerprod{\vc{w}}{y_i \Phi(\vc{x}_i}) = 0$
+defines a hyperplane in $\setW$ that acts as one of the boundaries to
+version space $\setV$. Notice that version space is a connected region
+on the surface of a hypersphere in parameter space. 
+
+Figure~$5$(a) presents an example.
+SVMs find the center of the largest radius hypersphere whose center
+can be placed in version space and whose surface does not intersect
+with the hyperplanes corresponding to the labeled instances, as in
+Figure~$5$(b). It can be easily shown that the
+hyperplanes touched by the maximal radius hypersphere
+correspond to the support vectors and that the radius of the
+hypersphere is the margin of the SVM.
+
+An alternative and potentially better approach is to construct the 
+hypothesis using the whole of version space. This is achieved by using a 
+Bayes Point Machine that finds the midpoint of the region of 
+intersection of all 
+hyperplanes bisecting version space into two halves of equal volume (the 
+Bayes point) \cite{Herbrich+al,HG01,HGC01}. It is known that the centre of 
+mass of version space 
+approximates the Bayes point. The initial work of
+Herbrich and Graepel estimates the centre of 
+mass by averaging over the trajectory of a billiard 
+ball bouncing in version space, sampling version space using a 
+Gibbs sampler and approximative methods using the perceptron 
+learning algorithm \cite{GH01}.
+This method, however, is not efficient.
+We plan to investigate new algorithms that can find the 
+centre of mass more efficiently. We also plan to
+implement active learning with Bayes Point Machines and
+compare its performance with $\SVMActive$.
+
+
+\subsubsection*{\underline{Task $E$: Imbalanced Dataset Classification}}
+
+For many emerging applications,
+such as image analysis and gene profiling, where
+the training instances of the target class is
+heavily outnumbered by the rest of
+the training instances,
+the class-boundary learned by SVMs can be
+severely skewed towards the target class.  As
+a result, the false-negative rate in identifying
+target objects (e.g., a suspicious event)
+can be excessively high
+\cite{Kubat97,Japk00,Chaw00,Wei01,Nug02,Chan98,Lin02},
+and hence can render the classifier ineffective.
+Consider that the number of objects that matches
+a query concept is a small fraction of the data.  This
+boundary-skew problem can give the learner an even harder
+time (in addition to finding rare positive instances)
+to compute the class boundary. 
+
+To illustrate this problem, Figure~\ref{fig-checkerboard} depicts 
+a 2D checkerboard example. The checkerboard divides a 200*200 
+square into four quadrants. The top-left and bottom-right 
+quadrants are occupied by negative (majority)
+instances, whereas the top-right and bottom-left quadrants contain
+positive (minority) instances. The lines between the classes are 
+the ``ideal'' boundary that separates the two classes.
+In the rest of the paper, we use {\em positive} when referring to
+minority instances, and {\em negative} when referring to
+majority instances.
+
+{\small
+\begin{wrapfigure}{l}{4in}
+\vspace{-0.1in}
+\begin{center}
+\begin{tabular}[t]{c}
+\epsfysize=120pt
+ \subfigure{\epsfbox{edfigs/cb10.eps}} 
+ %\subfigure{\epsfbox{blank.ps}} 
+%\epsfysize=160pt
+% \subfigure{\epsfbox{cb1000.eps}}
+\end{tabular}
+\end{center}
+\vspace{-0.5in} 
+\caption{Checkerboard Experiment.} 
+\label{fig-checkerboard}
+\vspace*{-2ex}
+\rule{4in}{0.3mm}
+\vspace*{-1.5ex}
+\end{wrapfigure}
+}
+
+Figure~$7$ exhibits the boundary distortion between
+the two left quadrants in Figure~\ref{fig-checkerboard} under
+two different negative/positive training-data ratios.
+Figure~$7$(a) shows the SVM class boundary when the
+ratio of the number of negative instances (in the quadrant above) to
+the number of positive instances (in the quadrant below) is $10:1$. 
+Figure~$7$(b) shows the boundary
+when the ratio increases to $1,000:1$. 
+Compared to the boundary in Figure~$7$(a),
+the boundary in
+Figure~$7$(b) is much more skewed
+towards the positive quadrant, and hence causes
+a higher incidence of false negatives.
+
+{\small
+\begin{figure}[!h]
+\vspace{-0.1in}
+\begin{center}
+\begin{tabular}[t]{cc}
+\epsfysize=110pt
+ %\subfigure[10:1]{\epsfbox{de1.eps}} \hspace{.3in}
+ \subfigure[10:1]{\epsfbox{blank.ps}} \hspace{.3in}
+\epsfysize=110pt
+ %\subfigure[1,000:1]{\epsfbox{de1000.eps}}
+ \subfigure[1,000:1]{\epsfbox{blank.ps}}
+\end{tabular}
+\end{center}
+\label{fig-boundary}
+\vspace{-.2in}
+\caption{Boundaries of Different Ratios.}
+\end{figure}
+}
+
+%To examine the causes, we 
+%consider SVMs in the binary
+%classification setting. We are given training data
+%$\{\textbf{x}_1\cdot\cdot\cdot\textbf{x}_n\}$ that are vectors in
+%some space $\chi\subseteq\Re^d$. We are also given their labels
+%$\{y_1\cdot\cdot\cdot y_n\}$ where $y_i\in\{-1,1\}$. 
+%Suppose the training data is
+%linearly separable.  The goal of SVMs is to find the optimal
+%hyperplane that separates the training data of
+%the two classes by a maximum margin.
+%For nonlinearly separable cases, SVMs can project the training
+%data onto a higher dimensional feature space via a Mercer kernel
+%operator $K$.  In addition, Vapnik's soft-margin theory
+%\cite{Vapnik95} introduces slack variables $\xi_i$ to permit
+%training error. Given $x_i$, SVMs model class prediction as
+%\begin{equation}
+% y_i(w\cdot\Phi(x_i)+b)\geq1-\xi_i,~~~\xi_i\geq0,i=1,...,n,
+% \end{equation}
+%where $w$ is the norm to the hyperplane, $|b|/||w||$ is the
+%perpendicular distance from hyperplane to the origin, and $\Phi$
+%is an input-to-feature space mapping function. The optimal
+%solution of SVMs is formulated by maximizing the Lagrangian
+%\begin{equation}
+%\label{equ-Lag1}
+%L_D=\sum\limits_{i=1}^{n}\alpha_i-\frac{1}{2}\sum\limits_{i,j=1}^{p}\alpha_i\alpha_jy_iy_jK(x_i,x_j),
+%\end{equation}
+%subject to the following constraints:
+% \begin{equation}
+%0\leq\alpha_i\leq C~~~~  and~~~~
+%\sum\limits_{i=1}^{n}\alpha_i y_i=0,
+%\label{equ-constraint}
+%\end{equation}
+%where $C$ is a constant larger than zero used as penalty for
+%soft-margin SVMs. According to the KKT conditions, the value of
+%$\alpha_i$ has three ranges \cite{Fle87}:
+%
+%{\small
+%\begin{eqnarray}\label{eq:kkt}
+%\alpha_i=0  \Rightarrow  y_i f(x_i)\geq1 & \textmd{and} & \xi_i=0 \\
+%0<\alpha_i<C  \Rightarrow  y_i f(x_i)=1  & \textmd{and} & \xi_i=0  \\
+%\alpha_i=C  \Rightarrow  y_i f(x_i)\leq1 & \textmd{and} &
+%\xi_i\geq0
+%\end{eqnarray}
+%}
+%Once the $\alpha_i$, $i = 1\cdots n$ are solved, the
+%class prediction for a testing instance $x$ can be 
+%performed by the following equation:
+%{\small
+%\begin{equation}\label{eq:deci}
+%  sgn(f(x)=\sum_{i=1}^n{y_i \alpha_i K(\textbf{x},\textbf{x}_i)}+b).
+%\end{equation}
+%}
+%
+%The KKT conditions and Equation~\ref{equ-constraint}
+%reveal a couple of important properties of SVMs.
+%First, only the training instances that have a non-zero $\alpha_i$ 
+%(the support vectors)
+%participate in the class decision in Equation~\ref{eq:deci}.
+%Second, the constraint in  Equation~\ref{equ-constraint} shows that
+%the total weights $\alpha_i$ of the positive support vectors
+%must be equal to that of the negative support vectors, or
+%{\small
+%\begin{equation}\label{eq:dalpha}
+%\sum_{i=1}^{np}{\alpha_i}=\sum_{j=1}^{nn}{\alpha_j},
+%\end{equation}
+%}
+%where $np$ and $nn$ denote the number of positive support vectors
+%and the number of negative support vectors, respectively.
+%
+%{\small
+%\begin{figure}[!h]
+%\vspace{-0.1in}
+%\begin{center}
+%\begin{tabular}[t]{c}
+%\epsfysize=120pt
+% \subfigure{\epsfbox{sv_ratio.eps}}
+%\end{tabular}
+%\end{center}
+%\vspace{-.1in} 
+%\caption{Support Vectors Ratios} 
+%\vspace{-.10in} \label{fig:sv}
+%\label{fig-sv-ratios}
+%\end{figure}
+%}
+
+Using SVM properties along with our preliminary
+experimental results,
+we observe two potential causes for the boundary skew.
+\begin{nlist}
+\item {\em 1. The imbalance training-data ratio}.
+At the minority side of the boundary, the positive 
+training data may not always reside as close to the ``ideal
+boundary'' as the negative training data do.  
+This can be explained by a toy example.
+Suppose we randomly draw $n$ numbers based on 
+a uniform distribution between $1$ and $100$.
+The larger the value of $n$, the higher the
+chance that we draw a number close to $100$,
+though the expected mean of the draws is invariant of
+the values of $n$.  Thus, the low presence of
+the positive training instances makes them locate
+farther from the ``ideal boundary'' than 
+the negative training instances do.
+
+\item {\em 2. The imbalance support-vector ratio}.
+As shown in Figure~$7$, the $\alpha_i$ values of
+the minority class (the positive class)
+tend to be much larger than those
+of the majority class, while the number of positive
+support vectors are substantially smaller.  
+As a consequence, the nearest
+neighborhood of a testing point, especially
+when it is near the boundary, is 
+likely to be dominated by negative support vectors,
+and hence the decision function is
+more likely to classify a boundary point negative.
+\end{nlist}
+
+We plan to find remedies to the problem by investigating 
+the following two methods:
+\begin{nlist}
+ \item {\em 1. Quasi-bagging}.
+  We believe it can be helpful to judiciously downsample the majority
+  class.  To remedy the potential
+  variance problem caused by sampling, using multiple bags
+  can be a good idea.  
+ \item {\em 2. Adaptive conformal transformation}.
+  Adaptive conformal transformation  gives the neighborhood of
+  minority support vectors a higher spatial resolution.
+  (The work of \cite{Amari99} proposed a non-adaptive conformal
+  transformation method.) We believe this approach can 
+  adapt well to data distribution and improve separation
+  between the majority and minority classes.
+\end{nlist}
+

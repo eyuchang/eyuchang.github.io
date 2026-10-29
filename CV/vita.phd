@@ -1,0 +1,431 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML 3.0//EN">
+<HTML>
+</HEAD>
+<BODY TEXT="#000000" LINK="#CC3300" VLINK="#10057F" ALINK="#CC3300" BGCOLOR="#FFFFFF">
+
+<TABLE BORDER="0" CELLPADDING="2" CELLSPACING="0" WIDTH="600">
+<TR>
+<TD ALIGN=LEFT VALIGN=MIDDLE BGCOLOR="#330066">
+<FONT FACE="Arial, Helvetica" COLOR="#FFFFFF"><FONT SIZE ="5"><B>Curriculum Vitae</B></FONT>
+</TD>
+</TR>
+<TR>
+<TD ALIGN=LEFT VALIGN=MIDDLE BGCOLOR="#F1FF72">
+<FONT FACE="Arial, Helvetica" COLOR="#000000">
+<FONT SIZE="4"><B>Edward Chang</B></FONT></FONT>
+</TD>
+</TR>
+</TABLE>
+                 
+<TABLE BORDER="0" CELLPADDING="2" CELLSPACING="0" WIDTH="600">
+<TR>
+<TD ALIGN=LEFT VALIGN=MIDDLE BGCOLOR="#FFFFFF">
+<FONT FACE="Arial, Helvetica" COLOR="#333333"><FONT SIZE ="2"><B><I>Gates 510</I></B></FONT>
+</TD>
+<TD ALIGN=RIGHT VALIGN=MIDDLE BGCOLOR="#FFFFFF">
+<FONT FACE="Arial, Helvetica" COLOR="#222222">
+<FONT SIZE="2"><I><B>Tel: (650)725-3903</B></I></FONT></FONT>
+</TD>
+</TR>
+<TR>
+<TD ALIGN=LEFT VALIGN=MIDDLE BGCOLOR="#FFFFFF">
+<FONT FACE="Arial, Helvetica" COLOR="#222222"><FONT SIZE ="2"><B><I>Department of Computer Science</I></B></FONT>
+</TD>
+<TD ALIGN=RIGHT VALIGN=MIDDLE BGCOLOR="#FFFFFF">
+<FONT FACE="Arial, Helvetica" COLOR="#222222">
+<FONT SIZE="2"><I><B>Fax:(650)725-2588</B></I></FONT></FONT>
+</TD>
+</TR>
+<TR>
+<TD ALIGN=LEFT VALIGN=MIDDLE BGCOLOR="#FFFFFF">
+<FONT FACE="Arial, Helvetica" COLOR="#222222"><FONT SIZE ="2"><B><I>Stanford, CA 94305</I></B></FONT>
+</TD>
+<TD ALIGN=RIGHT VALIGN=MIDDLE BGCOLOR="#FFFFFF">
+<FONT FACE="Arial, Helvetica" COLOR="#222222">
+<FONT SIZE="2"><I><B>Email:
+<A HREF="mailto:echang@cs.stanford.edu">echang@cs.stanford.edu</A></B></I></FONT></FONT>
+</TD>
+</TR>
+</TABLE>
+                 
+<br>
+<TABLE BORDER="0" CELLPADDING="2" CELLSPACING="0" WIDTH="600">
+<TR>
+<TD ALIGN=LEFT VALIGN=MIDDLE BGCOLOR="#330066">
+<FONT FACE="Arial, Helvetica" COLOR="#F1FF72">
+<FONT SIZE="3"><B>Research Interests:</B></FONT></FONT>
+</TD>
+</TR>
+</TABLE>
+
+<br>
+<TABLE BORDER="0" CELLPADDING="2" CELLSPACING="0" WIDTH="600">
+<TR>     
+<TD>     
+<dl>
+<dd>
+<FONT SIZE="3"><B>Multimedia Systems and Image Databases.</B></FONT></FONT>
+I am interested in designing and
+building fast access methods and systems to
+retrieve multimedia data, including video, audio, and images.
+</dd>
+</dl>
+</TD>
+</TR>
+</TABLE>
+
+<TABLE BORDER="0" CELLPADDING="2" CELLSPACING="0" WIDTH="600">
+<TR>
+<TD ALIGN=LEFT VALIGN=MIDDLE BGCOLOR="#330066">
+<FONT FACE="Arial, Helvetica" COLOR="#F1FF72">
+<FONT SIZE="3"><B>Education:</B></FONT></FONT>
+</TD>
+</TR>
+</TABLE>
+<DL>
+
+<TABLE BORDER="0" CELLPADDING="2" CELLSPACING="0" WIDTH="600">
+<TR>
+<TD>
+<dd>
+<b>Ph.D. in Electrical Engineering</b>, Stanford University
+<br>
+</TD>
+<TD ALIGH=RIGHT><font color="#999FFF"><i>1995-99</i></font>
+</TD>
+</TR>
+
+<TR>
+<TD>
+<dd>
+<b>M.S. in Computer Science</b>, Stanford University
+</TD>
+<TD ALIGH=RIGHT>
+<font color="#999FFF"><i>1992-94</i></font>
+</TD>
+</TR>
+
+<TR>
+<TD>
+<dd>
+<b>M.S. in Industrial Engineering</b>,
+University of California, Berkeley
+</TD>
+<TD ALIGH=RIGHT>
+<font color="#999FFF"><i>1984-85</i></font>
+</TD>
+</TR>
+</TABLE>
+</DL>
+
+<TABLE BORDER="0" CELLPADDING="2" CELLSPACING="0" WIDTH="600">
+<TR>
+<TD ALIGN=LEFT VALIGN=MIDDLE BGCOLOR="#330066">
+<FONT FACE="Arial, Helvetica" COLOR="#F1FF72">
+<FONT SIZE="3"><B>Dissertation:</B></FONT></FONT>
+</TD>
+</TR>
+</TABLE>
+
+<br>
+<TABLE BORDER="0" CELLPADDING="2" CELLSPACING="0" WIDTH="600">
+<TR>     
+<TD>
+<dl>
+<dd>
+<b>Title</b>: On Continuous Media Data Management
+</dd>
+<br>
+<dd>
+<b>Advisor</b>: Professor <A HREF="http://www-db.stanford.edu/people/hector.html">Hector Garcia-Molina</A>
+</dd>
+<br>
+<br>
+<dd>
+<b>Abstract</b>:
+To deliver a large volume of continuos media data from a media
+server to a large number of simultaneous clients poses at least
+three challenges. First, we need to allocate the resources
+at the server side carefully to maximize throughput. Second,
+the server must deliver the data to the client just-in-time so
+that the media data in the client's buffer neither overflows
+nor underflows. Third, the latency between the time when the
+data is requested and when the data is available for the client
+to decode and playback must be short to support interactive
+multimedia applications.  To address these challenges, the
+conventional wisdom aims to minimize latency and
+maximize the utilization of the disk.
+My thesis addresses these challenges in three novel ways.
+First, contrary to the conventional wisdom,
+I show that spacing out IOs with artifical delay may in fact lead to
+higher throughput, since memory, rather than disk,
+is the resource bottleneck
+of the media server.  I show how to use memory judiciously
+and how to minimize the per-stream cost so that the throughput
+can be maximized.  Second, I propose intelligent data placement
+and disk scheduling policies to minimize the initial latency
+of media data delivery. My analytical model shows that
+my schemes can bring the worst-case initial latency
+down to just a fraction of a second.  
+I also apply these techniques to manage parallel disks efficiently.
+Finally, I design and implement
+a client side MEmory and Disk
+Integrated Cache (MEDIC), which buffers the variability
+of the data delivery (which is due to VBR and channel
+disturbance) and supports time-shift VCR operations
+at the client side using the local disk. Through quantitative
+analysis, simulation, and implementation, my work
+demonstrates that a smart media client using
+MEDIC scheme complements a
+good media server design and that together they provide a
+complete end-to-end solution for managing continuous
+media data.
+</dd>
+</dl>
+</TD>
+</TR>
+</TABLE>
+
+
+<TABLE BORDER="0" CELLPADDING="2" CELLSPACING="0" WIDTH="600">
+<TR>
+<TD ALIGN=LEFT VALIGN=MIDDLE BGCOLOR="#330066">
+<FONT FACE="Arial, Helvetica" COLOR="#F1FF72">
+<FONT SIZE="3"><B>Research Experience:</B></FONT></FONT>
+</TD>
+</TR>
+</TABLE>
+
+<TABLE BORDER="0" CELLPADDING="2" CELLSPACING="0" WIDTH="600">
+<TR>
+<TD>
+
+<br>
+<DL>
+<dd>
+<b>Digital Library Project</b>, Computer Science Department, Stanford,
+<font color="#999FFF"><i>1995-Present</i></font>
+<ul>
+<li>Designed media servers that feature reduced initial latency while
+maintaining high throughput. 
+<li>Designed and implemented
+a smart media client that supports interactive and
+time-shift operations for a Digital TV project. 
+<li>Co-designed and developed
+a Replicated IMage copy dEtector (RIME) for the World-Wide Web. 
+</ul>
+
+<br>
+<dd>
+<b>Multimedia Group</b>, NEC Research Labs., San Jose,
+<font color="#999FFF"><i>Spring'98-Present</i></font>
+<ul>
+<li>
+Visitor of the Hypermedia group. Designed and applied information
+retrieval and data mining techniques to organize and manage
+WWW document collections.
+</ul>
+<br>
+
+<dd>
+<b>Data Mining Group</b>, HP Research Labs., Palo Alto,
+<font color="#999FFF"><i>Summer'98</i></font>
+<ul>
+<li>
+Designed and developed a
+system that periodically mines distributed WWW access logs, collects
+document access statistics, and generates a list
+of the most frequently accessed documents. 
+</ul>
+<br>
+
+<dd>
+<b>Tsimmis Project</b>, Computer Science Department, Stanford University,
+<font color="#999FFF"><i>1993-1994</i></font>
+<ul>
+<li>
+Designed and developed
+a user interface for an information integration project.
+</ul>
+<br>
+
+</TD>
+</TR>
+</DL>
+</TABLE>
+
+<TABLE BORDER="0" CELLPADDING="2" CELLSPACING="0" WIDTH="600">
+<TR>
+<TD ALIGN=LEFT VALIGN=MIDDLE BGCOLOR="#330066">
+<FONT FACE="Arial, Helvetica" COLOR="#F1FF72">
+<FONT SIZE="3"><B>Teaching Experience:</B></FONT></FONT>
+</TD>
+</TR>
+</TABLE>
+<DL>
+<dd>
+<b>Instructor</b>, 
+Database System Principles, Stanford University,
+<font color="#999FFF"><i>Summer'98</i></font>
+
+<dd>
+<b>Teaching Assistant</b>, 
+Advanced Topics in Operating Systems, Stanford University,
+<font color="#999FFF"><i>Winter'96</i></font>
+
+<dd>
+<b>Teaching Assistant</b>, 
+Introduction to Programming Languages, U.C. Berkeley,
+<font color="#999FFF"><i>1984-85</i></font>
+
+</DL>
+<TABLE BORDER="0" CELLPADDING="2" CELLSPACING="0" WIDTH="600">
+<TR>
+<TD ALIGN=LEFT VALIGN=MIDDLE BGCOLOR="#330066">
+<FONT FACE="Arial, Helvetica" COLOR="#F1FF72">
+<FONT SIZE="3"><B>Work Experience:</B></FONT></FONT>
+</TD>
+</TR>
+</TABLE>
+<TABLE BORDER="0" CELLPADDING="2" CELLSPACING="0" WIDTH="600">
+<br>
+<TR>
+<TD>
+<DL>
+<dd>
+<b>Staff Engineer</b>, Sun Microsystems, 
+<font color="#999FFF"><i>1994-95</i></font>
+<ul>
+<li>
+Designed and developed the dynamic
+typing system for CORBA IDL. (The dynamic type of
+CORBA IDL, called ANY type,
+is similar to <b>XML</b>.)    
+</ul>
+<br>
+
+<dd>
+<b>Principal Software Engineer</b>, Digital Equipment Corp., 
+<font color="#999FFF"><i>1990-94</i></font>
+<ul>
+<li>
+Designed and developed
+a transaction manager to safeguard the atomicity of distributed
+transactions among heterogeneous databases.
+<li>
+Also represented the corporation in the
+<b>XOPEN</b> transaction processing standards committee.   
+</ul>
+<br>
+
+<dd>
+<b>Senior Software Engineer</b>, Digital Equipment Corp., 
+<font color="#999FFF"><i>1987-90</i></font>
+<ul>
+<li>
+Led an engineering team to design and develop
+an Inter-Process Communication (IPC) facility for the
+VAX/VMS operating system. The IPC facility pinned
+and managed a pool of shared physical memory for
+message passing among the local processes.  
+</ul>
+<br>
+
+<dd>
+<b>Software Engineer</b>, Consilium Inc., 
+<font color="#999FFF"><i>1985-87</i></font>
+
+<ul>
+<li>
+Designed and developed software that keeps track of the
+Work-In-Progress (WIP) in IC fabrication processes,
+analyzes the collected
+data, and generates ``optimal'' inventory control and
+production plans to improve yields and to minimize cost.
+<li>
+Also developed software that conctrols automation cells
+consisting of robots, wet benches, furnaces, and other
+semiconductor fabrication equipments. 
+</ul>
+</DL>
+</TD>
+</TR>
+</TABLE>
+
+
+<TABLE BORDER="0" CELLPADDING="2" CELLSPACING="0" WIDTH="600">
+<TR>
+<TD ALIGN=LEFT VALIGN=MIDDLE BGCOLOR="#330066">
+<FONT FACE="Arial, Helvetica" COLOR="#F1FF72">
+<FONT SIZE="3"><B>Publications:</B></FONT></FONT>
+</TD>
+</TR>
+</TABLE>
+<DL>
+<dd>
+<a href="http://www-db.stanford.edu/~echang/publications.html">Publications</a>
+</DL>
+
+<TABLE BORDER="0" CELLPADDING="2" CELLSPACING="0" WIDTH="600">
+<TR>
+<TD ALIGN=LEFT VALIGN=MIDDLE BGCOLOR="#330066">
+<FONT FACE="Arial, Helvetica" COLOR="#F1FF72">
+<FONT SIZE="3"><B>Patents:</B></FONT></FONT>
+</TD>
+</TR>
+</TABLE>
+<DL>
+<dd>Methods for Categorizing and Organizing WWW Document Collections,
+with NEC Research Labs., 
+<br>patent pending 
+<font color="#999FFF">1999</font>.
+<dd>Reliable Computing Services, Digital Equipment Corporation, 
+patent issued 
+<font color="#999FFF">1992</font>.
+</DL>
+
+<TABLE BORDER="0" CELLPADDING="2" CELLSPACING="0" WIDTH="600">
+<TR>
+<TD ALIGN=LEFT VALIGN=MIDDLE BGCOLOR="#330066">
+<FONT FACE="Arial, Helvetica" COLOR="#F1FF72">
+<FONT SIZE="3"><B>Services:</B></FONT></FONT>
+</TD>
+</TR>
+</TABLE>
+<DL>
+<dd>
+<b>Student Representative</b>, Computer System Lab., Stanford University.
+<dd>
+<b>Reviewer</b>, Sigmod, PODS, ICDE, TKDE, and The Computer Journal.
+<dd>
+<b>Guest Editor</b>, Journal of Chinese Culture and Philosophy,
+<font color="#999FFF">1980-82</font>
+</DL>
+
+<TABLE BORDER="0" CELLPADDING="2" CELLSPACING="0" WIDTH="600">
+<TR>
+<TD ALIGN=LEFT VALIGN=MIDDLE BGCOLOR="#330066">
+<FONT FACE="Arial, Helvetica" COLOR="#F1FF72">
+<FONT SIZE="3"><B>Other Accomplishments:</B></FONT></FONT>
+</TD>
+</TR>
+</TABLE>
+<DL>
+<dd>
+<b>Third place</b>, Intercollegiate Essay Contest (Senior)
+<dd>
+<b>President</b>, Debate Club (Junior)
+<dd>
+<b>First place</b>, Intercollegiate Debate Contest (Junior)
+<dd>
+<b>First place</b>, Intercollegiate Debate Contest (Sophomore)
+<dd>
+<b>Editor-in-Chief</b>, Student Magazine (Sophomore)
+<dd>
+<b>Editor</b>, Student Magazine (Freshman)
+<dd>
+<b>First place</b>, Collegiate Speech Contest (Freshman)
+</DL>            
+
+</BODY>
+</HTML>

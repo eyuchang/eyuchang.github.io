@@ -1,0 +1,75 @@
+\documentstyle[11pt,psfig,subfigure]{article}
+
+\def\papernumber #1 raised #2 {
+\vspace{-#2}
+\vbox to 0pt{\hfill\framebox{\bf Paper Number #1}}
+\vspace{#2}
+}
+
+\title{Interactive TV}
+
+\input epsf
+\input {lpage.tex}
+\newlength{\lineheight}
+\setlength{\lineheight}{11pt}
+\newcommand{\ls}[1]{\baselineskip=#1\lineheight}
+\renewcommand{\baselinestretch}{1.0}
+%\parskip = 0.7\normalbaselineskip
+\parskip = 0.4\normalbaselineskip
+\newcommand{\sspace}{\baselineskip=1.0\lineheight}
+\newcommand{\nspace}{\baselineskip=1.2\lineheight}
+\newcommand{\mspace}{\baselineskip=1.0\lineheight}
+\newcommand{\aspace}{\baselineskip=1.0\lineheight}
+
+\newenvironment{jlist}{
+\begin{list}{$\bullet$}{
+\setlength{\topsep}{0ex}
+\setlength{\leftmargin}{1.5ex}
+\setlength{\labelwidth}{1ex}
+\setlength{\labelsep}{0.5ex}
+\setlength{\itemsep}{0.6ex}
+\setlength{\parsep}{0pt}
+}}
+{\end{list}}
+
+
+\newenvironment{nlist}{
+\begin{list}{}{
+\setlength{\topsep}{0ex}
+\setlength{\leftmargin}{1.5ex}
+\setlength{\labelwidth}{1ex}
+\setlength{\labelsep}{0.5ex}
+\setlength{\itemsep}{0.6ex}
+\setlength{\parsep}{0pt}
+}}
+{\end{list}}
+                         
+\author{Edward Y. Chang\\
+Department of Electrical \& Computer Engineering\\
+University of California, Sanata Barbara\\
+echang@cs.stanford.edu}
+
+\begin{document}
+\date{}
+%\maketitle
+
+\mspace 
+\newpage
+\input{sec0.tex}
+\nspace 
+\newpage
+%\input{sec1.tex}
+%\input{sec2.tex}
+%\input{sec3.tex}
+%\input{sec4.tex}
+%\input{sec6.tex}
+
+\newpage
+\sspace
+\bibliographystyle{paper}
+\bibliography{paper}
+\aspace 
+\newpage
+%\input{app1.tex}
+%\input{app2.tex}
+\end{document}

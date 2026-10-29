@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Long-form biography of Edward Y. Chang: distributed systems, perceptual learning, scalable machine learning, healthcare AI, and System-2 AGI.">
+  <title>Edward Y. Chang - Long Biography (2026)</title>
+  <style>
+    :root {
+      --cardinal: #8c1515;
+      --cardinal-dark: #651010;
+      --ink: #252525;
+      --muted: #666;
+      --paper: #ffffff;
+      --wash: #f5f2ee;
+      --line: #e5ddd5;
+      --accent: #a8602b;
+      --link: #5b2b82;
+    }
+
+    * { box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      margin: 0;
+      color: var(--ink);
+      background: linear-gradient(145deg, #f6f3ef 0%, #e9edf2 100%);
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 17px;
+      line-height: 1.72;
+    }
+
+    a { color: var(--link); text-decoration-thickness: 1px; text-underline-offset: 2px; }
+    a:hover { color: var(--cardinal); }
+
+    .page {
+      width: min(1040px, calc(100% - 32px));
+      margin: 32px auto;
+      background: var(--paper);
+      border: 1px solid rgba(0,0,0,.04);
+      border-radius: 18px;
+      box-shadow: 0 18px 55px rgba(30, 37, 47, .12);
+      overflow: hidden;
+    }
+
+    header {
+      padding: 56px 64px 42px;
+      color: white;
+      background:
+        radial-gradient(circle at 85% 15%, rgba(255,255,255,.16), transparent 28%),
+        linear-gradient(135deg, var(--cardinal-dark), var(--cardinal));
+    }
+
+    header h1 {
+      margin: 0 0 10px;
+      font-size: clamp(2.4rem, 7vw, 4rem);
+      font-weight: 500;
+      letter-spacing: .04em;
+      line-height: 1.08;
+    }
+
+    header .subtitle {
+      max-width: 820px;
+      margin: 0;
+      font-size: clamp(1.1rem, 2.6vw, 1.45rem);
+      line-height: 1.45;
+      opacity: .94;
+      font-style: italic;
+    }
+
+    .identity {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 9px;
+      margin-top: 25px;
+    }
+
+    .identity span {
+      display: inline-block;
+      padding: 6px 11px;
+      border: 1px solid rgba(255,255,255,.4);
+      border-radius: 999px;
+      background: rgba(255,255,255,.09);
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: .83rem;
+      letter-spacing: .01em;
+    }
+
+    nav {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px 22px;
+      padding: 14px 64px;
+      border-bottom: 1px solid var(--line);
+      background: #fbfaf8;
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: .91rem;
+    }
+
+    nav a { text-decoration: none; font-weight: 600; }
+
+    main { padding: 42px 64px 50px; }
+
+    .lead {
+      margin: 0 0 30px;
+      padding: 24px 26px;
+      border-left: 5px solid var(--accent);
+      background: #faf7f3;
+      font-size: 1.08rem;
+    }
+
+    h2 {
+      margin: 44px 0 14px;
+      color: var(--cardinal);
+      font-size: 1.55rem;
+      line-height: 1.25;
+      font-weight: 600;
+    }
+
+    h3 {
+      margin: 28px 0 8px;
+      color: #4b3430;
+      font-size: 1.14rem;
+      line-height: 1.3;
+    }
+
+    p { margin: 0 0 17px; }
+
+    .period {
+      display: inline-block;
+      margin-bottom: 5px;
+      color: var(--muted);
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: .84rem;
+      font-weight: 700;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+    }
+
+    .thesis {
+      margin: 28px 0;
+      padding: 21px 24px;
+      border-top: 1px solid #d9c6b7;
+      border-bottom: 1px solid #d9c6b7;
+      color: #462d25;
+      background: #fffaf4;
+      font-size: 1.1rem;
+      text-align: center;
+      font-style: italic;
+    }
+
+    .timeline {
+      display: grid;
+      grid-template-columns: 150px 1fr;
+      gap: 0 24px;
+      margin: 24px 0 10px;
+      border-top: 1px solid var(--line);
+    }
+
+    .timeline .year,
+    .timeline .event {
+      padding: 13px 0;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .timeline .year {
+      color: var(--cardinal);
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: .9rem;
+      font-weight: 700;
+    }
+
+    .timeline .event { font-size: .97rem; }
+
+    .highlights {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 18px;
+      margin-top: 24px;
+    }
+
+    .card {
+      padding: 20px 21px;
+      border: 1px solid var(--line);
+      border-left: 4px solid var(--cardinal);
+      border-radius: 10px;
+      background: #fbfaf8;
+    }
+
+    .card h3 {
+      margin: 0 0 9px;
+      color: var(--cardinal);
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 1rem;
+    }
+
+    .card p, .card ul {
+      margin: 0;
+      color: #4f4f4f;
+      font-size: .94rem;
+    }
+
+    .card ul { padding-left: 20px; }
+    .card li + li { margin-top: 5px; }
+
+    .sources {
+      margin-top: 46px;
+      padding: 24px 26px;
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      background: #f8f8f7;
+    }
+
+    .sources h2 { margin-top: 0; }
+
+    .sources ol {
+      margin: 12px 0 0;
+      padding-left: 24px;
+      font-size: .92rem;
+    }
+
+    .sources li + li { margin-top: 8px; }
+
+    footer {
+      padding: 20px 64px 26px;
+      border-top: 1px solid var(--line);
+      color: var(--muted);
+      background: #fbfaf8;
+      text-align: center;
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: .86rem;
+    }
+
+    @media (max-width: 760px) {
+      .page { width: 100%; margin: 0; border-radius: 0; }
+      header, main { padding-left: 25px; padding-right: 25px; }
+      nav, footer { padding-left: 25px; padding-right: 25px; }
+      .timeline { grid-template-columns: 1fr; gap: 0; }
+      .timeline .year { padding-bottom: 2px; border-bottom: 0; }
+      .timeline .event { padding-top: 0; }
+      .highlights { grid-template-columns: 1fr; }
+    }
+
+    @media print {
+      body { background: white; font-size: 11pt; }
+      .page { width: 100%; margin: 0; border: 0; border-radius: 0; box-shadow: none; }
+      header { padding: 30pt 36pt 22pt; print-color-adjust: exact; -webkit-print-color-adjust: exact; }
+      nav { display: none; }
+      main { padding: 26pt 36pt 30pt; }
+      footer { padding: 12pt 36pt; }
+      a { color: inherit; text-decoration: none; }
+      .card, .lead, .sources { break-inside: avoid; }
+      h2, h3 { break-after: avoid; }
+    }
+  </style>
+</head>
+<body>
+<div class="page">
+  <header>
+    <h1>Edward Y. Chang</h1>
+    <p class="subtitle">Learning and Governing Relevance: Four Decades from Workflow Systems to Data-Driven and System-2 AI</p>
+    <div class="identity" aria-label="Current roles and affiliations">
+      <span>Co-Editor-in-Chief, ACM Books</span>
+      <span>Founder and CEO, QuadriumAI</span>
+      <span>Creator of SocraSynth</span>
+      <span>ACM Fellow · IEEE Fellow</span>
+      <span>Stanford InfoLab Affiliate</span>
+      <span>Faculty Advisor, Stanford Clinical Mind AI</span>
+    </div>
+  </header>
+
+  <nav aria-label="Biography navigation">
+    <a href="#overview">Overview</a>
+    <a href="#systems">Systems Foundations</a>
+    <a href="#learning">Learning Relevance</a>
+    <a href="#scale">Data-Driven AI at Scale</a>
+    <a href="#healthcare">Healthcare AI</a>
+    <a href="#agi">System-2 AGI</a>
+    <a href="#highlights">Highlights</a>
+    <a href="#sources">Sources</a>
+  </nav>
+
+  <main>
+    <section id="overview">
+      <p class="lead"><strong>Edward Y. Chang</strong> is an ACM Fellow and IEEE Fellow, Co-Editor-in-Chief of ACM Books, Founder and CEO of QuadriumAI, and creator of SocraSynth. His four-decade career spans industrial workflow and transaction systems, distributed-object middleware, continuous media, active learning and perceptual similarity, scalable data-driven machine learning, healthcare AI, and auditable multi-agent systems. Across these areas, his work has pursued a recurring engineering question: <strong>How can a system learn what is relevant, and how can that learned relevance be made scalable, reliable, and accountable?</strong></p>
+
+      <p>Chang has been affiliated with <a href="https://infolab.stanford.edu/" rel="noopener">Stanford InfoLab</a> since 1995. From 2019 to 2026, he served as an Adjunct Professor of Computer Science at Stanford, where he taught and led research on reasoning, planning, and collaborative intelligence for artificial general intelligence. He remains affiliated with Stanford through Stanford InfoLab and <a href="https://clinicalmindai.stanford.edu/" rel="noopener">Stanford Clinical Mind AI</a>, where he continues to teach and advise. He has served as Faculty Advisor to Stanford Clinical Mind AI since 2023.</p>
+    </section>
+
+    <section id="systems">
+      <h2>Engineering Foundations: Workflow, Transactions, and Distributed Systems</h2>
+
+      <span class="period">May 1985–1995 · Industrial engineering and software systems</span>
+      <p>Chang received an M.S. in Industrial Engineering and Operations Research from the University of California, Berkeley, in May 1985. Later that year, he began his professional career in industrial software at Consilium (acquired by Applied Materials). From 1985 to 1987, he worked as a Software Engineer developing semiconductor job-shop and manufacturing-workflow systems. From August 1987 through 1994, he held Senior and later Principal Software Engineer roles at Digital Equipment Corporation in Mountain View and Palo Alto. His work progressed from semiconductor job-shop software to workflow and transaction-processing systems, in collaboration with colleagues including Jim Gray, Dieter Gawlick, Mei Hsu, and Stanford professor Hector Garcia-Molina.</p>
+
+      <p>DEC sponsored Chang’s M.S. study in Computer Science at Stanford from 1992 to 1994. In 1994, he moved to Sun Microsystems, where he served as a Staff Engineer through September 1995 and worked on CORBA-based distributed-object middleware. CORBA was distinct from Java, but the work placed him in the emerging environment of language-neutral distributed objects and the middleware technologies that later interoperated with Java.</p>
+
+      <span class="period">1995–1999 · Stanford doctoral research</span>
+      <p>In September 1995, Chang began full-time doctoral study at Stanford with Hector Garcia-Molina and completed his Ph.D. in Electrical Engineering in August 1999. His dissertation research addressed continuous-media storage, parallel disks, real-time scheduling, media streaming, and client-side interactive digital television. His <a href="https://infolab.stanford.edu/~echang/papers/piDTV.pdf" rel="noopener">piDTV architecture</a> supported pause, replay, and fast-forward of live digital television by combining main memory and disk storage at the client. A working Digital-VCR prototype demonstrated time shifting before consumer digital video recorders became commonplace.</p>
+
+      <p>This first stage of Chang’s career established a systems vocabulary that later reappeared in his AI work: workflows, persistent state, scheduling, transaction boundaries, distributed services, recovery, and operation under resource constraints.</p>
+    </section>
+
+    <section id="learning">
+      <h2>Learning Concepts, Similarity, and Semantic Structure</h2>
+
+      <span class="period">1999–2006 · University of California, Santa Barbara</span>
+      <p>Chang joined UC Santa Barbara as an Assistant Professor in 1999, received tenure in 2003, and was promoted to Full Professor in 2006. At UCSB, his research moved from managing continuous media to learning what users meant by a query and what should count as perceptually similar.</p>
+
+      <h3>Active learning for an unarticulated query concept</h3>
+      <p>With Simon Tong and other collaborators, Chang developed support-vector-machine active learning for image retrieval. Instead of requiring a user to express a visual concept completely in advance, the system selected informative images, obtained relevance judgments, and refined a classifier over successive rounds. The work treated the user’s intended query concept as something to be learned interactively from data. ACM SIGMM later selected the 2001 paper <em>Support Vector Machine Active Learning for Image Retrieval</em> as its retrospective honorable mention for the year 2001 when establishing its Test of Time program.</p>
+
+      <h3>Dynamic Partial Function: learning what counts as similar</h3>
+      <p>With Beitao Li and collaborators, Chang developed the Dynamic Partial Function (DPF), published in conference form in 2002 and as the journal article <a href="https://link.springer.com/article/10.1007/s00530-002-0069-9" rel="noopener"><em>Discovery of a Perceptual Distance Function for Measuring Image Similarity</em></a> in 2003. DPF challenged the use of one global distance function for every image pair. It determined similarity from a pair-dependent partial set of feature dimensions, allowing different pairs to be judged similar for different perceptual reasons. The work made explicit a principle that became central to Chang’s later research: the relevant dimensions of a comparison need not be fixed before the comparison begins.</p>
+
+      <h3>EXTENT: learning across context, content, and ontology</h3>
+      <p>Chang’s 2005 EXTENT architecture extended this idea from pairwise distance to multimodal semantic inference. EXTENT combined contextual metadata—including time, location, camera parameters, and user profile—with perceptual content and semantic ontology in a probabilistic influence diagram. It used both domain knowledge and data to determine the graph and learned the strengths of relationships between contextual or perceptual evidence and semantic labels. This work treated relevance as a structured relation among modalities rather than as a property of visual content alone.</p>
+
+      <div class="thesis">The early program learned three things that conventional retrieval systems often assumed were already known: the user’s concept, the measure of similarity, and the relations connecting evidence to meaning.</div>
+    </section>
+
+    <section id="scale">
+      <h2>Engineering Data-Driven AI at Scale</h2>
+
+      <span class="period">2006–2012 · Google Research</span>
+      <p>As Director of Google Research from 2006 to 2012, Chang led teams that moved the data-driven program onto distributed computing infrastructure. The work included parallel implementations of support-vector machines, frequent-pattern mining, spectral clustering, probabilistic latent semantic analysis, and latent Dirichlet allocation; web-scale image annotation; and early distributed neural-network research. Across this program, the teams reported speedups on the order of 1,500 times using approximately 2,000 machines and released implementations to the open-source community.</p>
+
+      <p>The work was not only about processing more examples. It addressed how algorithms had to be restructured for data partitioning, sparsity, locality, communication cost, load balancing, and distributed optimization. One lasting example is PFP, Parallel FP-Growth. Apache Spark’s documentation describes its parallel FP-growth implementation as PFP and cites the 2008 paper by Haoyuan Li, Yi Wang, Dong Zhang, Ming Zhang, and Edward Y. Chang.</p>
+
+      <p>Chang also led large-scale image-annotation research that combined visual features with surrounding text, search queries, and usage-associated signals. He championed Google’s research support for the Stanford ImageNet project. ImageNet’s distinct contribution was the creation of a large public, WordNet-organized, human-annotated image database and later benchmark ecosystem; Chang’s surrounding program addressed the separate questions of data-driven learning, scalable algorithms, multimodal annotation, and distributed infrastructure.</p>
+
+      <p>In 2010, Chang and collaborators published <a href="https://dl.acm.org/doi/10.1145/1878137.1878141" rel="noopener"><em>A Deep-learning Model-based and Data-driven Hybrid Architecture for Image Annotation</em></a>. The DMD architecture explicitly compared model-based deep learning with data-driven learning and combined a model-based path for invariance with a data-driven path for diversity. Chang consolidated the broader program in the 2011 Springer monograph <a href="https://link.springer.com/book/10.1007/978-3-642-20429-6" rel="noopener"><em>Foundations of Large-Scale Multimedia Information Management and Retrieval</em></a>.</p>
+
+      <p>Taken together, the active-learning, DPF, EXTENT, distributed-learning, annotation, and DMD projects form a connected research program. Its central claim was deeper than “more data is better”: data can help determine the concept, the similarity relation, the relevant evidence, and the model structure used for inference.</p>
+    </section>
+
+    <section id="healthcare">
+      <h2>Healthcare AI and Deployment</h2>
+
+      <span class="period">2012–2021 · HTC Healthcare</span>
+      <p>From 2012 to 2021, Chang served as President of HTC Healthcare, leading multidisciplinary teams that developed AI-assisted diagnostic systems, mobile medical devices, clinical decision-support tools, and healthcare applications using machine learning, sensors, and interactive software.</p>
+
+      <p>Chang co-led the Dynamical Biomarkers Group with Chung-Kang Peng and Andrew Ahn in the Qualcomm Tricorder XPRIZE. The joint HTC–Harvard/Beth Israel team was one of two finalists and received the competition’s second-place award of US$1 million in 2017. Its portable system combined physiological sensing, blood and urine testing, imaging, smartphone interaction, and diagnostic software.</p>
+
+      <p>His teams also developed hospital-facing conversational systems and public-health technologies. During the COVID-19 pandemic, work associated with the <em>疾管家</em> (Disease Manager) and <em>疫止神通</em> services helped Taiwan’s Centers for Disease Control distribute timely public-health information and support digital follow-up. The service later exceeded 10 million followers and received national innovation recognition.</p>
+
+      <p>During this broader period, Chang also held a visiting appointment at UC Berkeley, where he worked on virtual- and augmented-reality systems for medical planning, and served as Chief NLP Officer at SmartNews from 2019 to 2022.</p>
+    </section>
+
+    <section id="agi">
+      <h2>From Data-Driven Learning to System-2 AGI</h2>
+
+      <span class="period">2019–present · Stanford, QuadriumAI, and ACM Books</span>
+      <p>From 2019 to 2026, Chang served as an Adjunct Professor of Computer Science at Stanford, teaching and directing work on clinical AI, reasoning, planning, and collaborative intelligence for AGI. Stanford Clinical Mind AI began in 2023 as a student-led project whose first prototype was developed in his CS372 course. The project later grew through collaboration between Stanford’s IDEAL Learning Lab and Chariot Lab. Chang continues to teach and advise through his affiliations with Stanford InfoLab and Stanford Clinical Mind AI.</p>
+
+      <p>Chang is Founder and CEO of QuadriumAI, an independent research and engineering company developing System-2 architectures for AGI, and creator of SocraSynth, a structured multi-LLM framework for collaborative reasoning. His recent work investigates how language-model agents can bind a problem to its local context, examine claims under structured critique, preserve state across long tasks, recover from disruption, and recognize when a line of reasoning should stop or be reframed.</p>
+
+      <p>Within this program, SocraSynth structures Socratic dialogue among multiple models; SagaLLM applies transaction semantics, validation, compensation, and recovery to agent workflows; ERM and RLER represent causal failure through epistemic regret and persistent evidence; TRACE records auditable reasoning commitments; and Quadrivium adds metacognitive control over continuation, audit, stopping, and reframing. The recent work reconnects AI architecture with the workflow, transaction, and distributed-systems problems that shaped Chang’s first decade as a software engineer.</p>
+
+      <p>Chang is the author of ACM Books’ <em>The Path to Artificial General Intelligence</em> series. <a href="https://dl.acm.org/doi/book/10.1145/3749421" rel="noopener"><em>Multi-LLM Agent Collaborative Intelligence</em></a> (Volume 1, 2025) develops regulated collaboration among language-model agents. <a href="https://dl.acm.org/doi/book/10.1145/3822380" rel="noopener"><em>System-2 Reasoning: From Semantic Anchoring to Causal Intelligence</em></a> (Volume 2, 2026) develops contextual anchoring, causal validation, persistent memory, and metacognitive control. A third volume, <em>Beyond Intelligence: From Operational AGI to Wisdom</em>, is under review.</p>
+
+      <p>Since December 2025, Chang has served as Co-Editor-in-Chief of ACM Books. In that role, he helps develop books across computing while continuing his own technical and historical writing.</p>
+    </section>
+
+    <section id="highlights">
+      <h2>Selected Timeline and Highlights</h2>
+
+      <div class="timeline" role="list">
+        <div class="year">May 1985</div><div class="event">M.S. in Industrial Engineering and Operations Research, UC Berkeley.</div>
+        <div class="year">1985–1987</div><div class="event">Software Engineer, Consilium (acquired by Applied Materials); semiconductor job-shop and manufacturing-workflow systems.</div>
+        <div class="year">Aug. 1987–1994</div><div class="event">Senior and Principal Software Engineer, Digital Equipment Corporation; workflow, transactions, and distributed systems.</div>
+        <div class="year">1992–1994</div><div class="event">M.S. in Computer Science, Stanford University, supported by DEC.</div>
+        <div class="year">1994–Sept. 1995</div><div class="event">Staff Engineer, Sun Microsystems; CORBA-based distributed-object middleware.</div>
+        <div class="year">Sept. 1995–Aug. 1999</div><div class="event">Ph.D. in Electrical Engineering, Stanford University; continuous media and interactive digital television.</div>
+        <div class="year">1999–2006</div><div class="event">UC Santa Barbara faculty; tenure in 2003 and promotion to Full Professor in 2006.</div>
+        <div class="year">2006–2012</div><div class="event">Director of Google Research; scalable data-driven machine learning and distributed algorithms.</div>
+        <div class="year">2012–2021</div><div class="event">President, HTC Healthcare; AI-assisted diagnostics and mobile healthcare systems.</div>
+        <div class="year">2019–2022</div><div class="event">Chief NLP Officer, SmartNews.</div>
+        <div class="year">2019–2026</div><div class="event">Adjunct Professor of Computer Science, Stanford University.</div>
+        <div class="year">2023–present</div><div class="event">Faculty Advisor, Stanford Clinical Mind AI; creator of SocraSynth and founder of QuadriumAI.</div>
+        <div class="year">Dec. 2025–present</div><div class="event">Co-Editor-in-Chief, ACM Books.</div>
+      </div>
+
+      <div class="highlights">
+        <article class="card">
+          <h3>Education</h3>
+          <ul>
+            <li>Ph.D., Electrical Engineering, Stanford University, 1999</li>
+            <li>M.S., Computer Science, Stanford University, 1994</li>
+            <li>M.S., Industrial Engineering and Operations Research, UC Berkeley, May 1985</li>
+          </ul>
+        </article>
+
+        <article class="card">
+          <h3>Selected Recognition</h3>
+          <ul>
+            <li>ACM Fellow, cited for contributions to scalable machine learning and healthcare</li>
+            <li>IEEE Fellow</li>
+            <li>NSF CAREER Award</li>
+            <li>Google Innovation Award</li>
+            <li>ACM SIGMM retrospective honorable mention for the 2001 active-learning paper</li>
+            <li>US$1 million second-place Qualcomm Tricorder XPRIZE team award</li>
+          </ul>
+        </article>
+
+        <article class="card">
+          <h3>Research Arc</h3>
+          <p>Workflow and transactions → distributed objects → continuous media → active concept learning → dynamic perceptual similarity → data-driven ML → large-scale image annotation → parallel ML algorithms → healthcare AI → transactional and metacognitive agent systems.</p>
+        </article>
+
+        <article class="card">
+          <h3>Current Affiliations</h3>
+          <ul>
+            <li>Co-Editor-in-Chief, ACM Books</li>
+            <li>Founder and CEO, QuadriumAI</li>
+            <li>Stanford InfoLab affiliate</li>
+            <li>Faculty Advisor, Stanford Clinical Mind AI</li>
+          </ul>
+        </article>
+      </div>
+    </section>
+
+    <section id="sources" class="sources">
+      <h2>Selected Source Links</h2>
+      <ol>
+        <li><a href="https://awards.acm.org/award-recipients/chang_4684536" rel="noopener">ACM Fellow profile and citation</a></li>
+        <li><a href="https://books.acm.org/board" rel="noopener">ACM Books editorial board</a></li>
+        <li><a href="https://profiles.stanford.edu/edward-chang" rel="noopener">Stanford profile</a></li>
+        <li><a href="https://clinicalmindai.stanford.edu/about/history" rel="noopener">Stanford Clinical Mind AI history</a> and <a href="https://clinicalmindai.stanford.edu/people/advisors" rel="noopener">advisor roster</a></li>
+        <li><a href="https://infolab.stanford.edu/~echang/papers/piDTV.pdf" rel="noopener">piDTV: A Client-Based Interactive DTV Architecture</a></li>
+        <li><a href="https://infolab.stanford.edu/~echang/svmactive-ext.pdf" rel="noopener">Support Vector Machine Active Learning for Image Retrieval</a></li>
+        <li><a href="https://ieeexplore.ieee.org/document/1040021" rel="noopener">DPF - A Perceptual Distance Function for Image Retrieval</a> and <a href="https://link.springer.com/article/10.1007/s00530-002-0069-9" rel="noopener">2003 journal article</a></li>
+        <li><a href="https://dl.acm.org/doi/10.1145/1160939.1160945" rel="noopener">EXTENT: Fusing Context, Content, and Semantic Ontology for Photo Annotation</a></li>
+        <li><a href="https://dl.acm.org/doi/10.1145/1878137.1878141" rel="noopener">DMD: A Deep-learning Model-based and Data-driven Hybrid Architecture</a></li>
+        <li><a href="https://spark.apache.org/docs/latest/api/python/reference/api/pyspark.ml.fpm.FPGrowth.html" rel="noopener">Apache Spark documentation for PFP-based parallel FP-growth</a></li>
+        <li><a href="https://www.xprize.org/competitions/tricorder" rel="noopener">Qualcomm Tricorder XPRIZE record</a></li>
+        <li><a href="https://link.springer.com/book/10.1007/978-3-642-20429-6" rel="noopener">2011 Springer monograph</a></li>
+        <li><a href="https://dl.acm.org/doi/book/10.1145/3749421" rel="noopener">The Path to AGI, Volume 1</a> and <a href="https://dl.acm.org/doi/book/10.1145/3822380" rel="noopener">Volume 2</a></li>
+      </ol>
+    </section>
+  </main>
+
+  <footer>
+    Edward Y. Chang · Long Biography · Finalized September 2026
+  </footer>
+</div>
+</body>
+</html>
+

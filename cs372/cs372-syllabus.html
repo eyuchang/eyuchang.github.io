@@ -4,9 +4,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CS372: AI for Reasoning, Planning, and Decision Making (Winter 2026)</title>
+    <title>CS372: Artificial General Intelligence for Reasoning, Planning, and Decision Making (Winter 2027)</title>
     <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,600;8..60,700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-    
+
     <style>
         :root {
             --stanford-red: #8C1515;
@@ -238,6 +238,20 @@
             50% { opacity: 0.85; transform: scale(1.02); }
         }
 
+        /* Assignment box */
+        .assignment-box {
+            background: linear-gradient(135deg, #FFF8EE 0%, var(--warm-cream) 100%);
+            border: 2px solid var(--warm-amber);
+            border-radius: 12px;
+            padding: 1.5rem 1.75rem;
+            margin: 1.5rem 0;
+        }
+
+        .assignment-box h3 {
+            margin-top: 0;
+            color: var(--stanford-red);
+        }
+
         /* Table */
         .table-wrapper {
             overflow-x: auto;
@@ -294,6 +308,12 @@
             font-style: italic;
         }
 
+        /* Project session rows */
+        .project-row {
+            background: linear-gradient(90deg, rgba(140, 21, 21, 0.08) 0%, rgba(140, 21, 21, 0.02) 100%) !important;
+            font-weight: 500;
+        }
+
         /* Deadline badge */
         .deadline {
             display: inline-block;
@@ -303,6 +323,7 @@
             border-radius: 6px;
             font-size: 0.75rem;
             font-weight: 600;
+            margin-bottom: 0.3rem;
         }
 
         /* Topic badges */
@@ -313,13 +334,15 @@
             font-size: 0.75rem;
             font-weight: 600;
             margin-right: 0.5rem;
+            white-space: nowrap;
         }
 
         .topic-reasoning { background: #FFF3E0; color: #E65100; }
         .topic-planning { background: #E8F5E9; color: #2E7D32; }
         .topic-agi { background: #E3F2FD; color: #1565C0; }
+        .topic-grounding { background: #E0F2F1; color: #00695C; }
         .topic-asi { background: #F3E5F5; color: #7B1FA2; }
-        .topic-app { background: #FBE9E7; color: #BF360C; }
+        .topic-project { background: #FBE9E7; color: #BF360C; }
 
         /* Resources cards */
         .resource-card {
@@ -354,6 +377,10 @@
 
         .resource-card.reading h3::before {
             content: '📖';
+        }
+
+        .resource-card.code h3::before {
+            content: '🛠️';
         }
 
         /* Footer */
@@ -417,11 +444,11 @@
 
 <header>
     <h1>CS372: Artificial General Intelligence for Reasoning, Planning, and Decision Making</h1>
-    <h3>Winter 2026 · Stanford University</h3>
+    <h3>Winter 2027 · Stanford University</h3>
     <p><strong>Instructor:</strong> Prof. <a href="http://infolab.stanford.edu/~echang/">Edward Y. Chang</a></p>
-    <p><strong>Course Assistant:</strong> Longling Gloria Geng</p>
-    <p><strong>Lectures:</strong> Mondays & Wednesdays, 4:30 – 5:50 PM (Starting January 5, 2026)</p>
-    <p><strong>Location:</strong> <a href="https://campus-map.stanford.edu/?srch=NVIDIA+Auditorium">NVIDIA Auditorium</a></p>
+    <p><strong>Course Assistant:</strong> TBA</p>
+    <p><strong>Lectures:</strong> Mondays &amp; Wednesdays, 4:30 – 5:50 PM (January 4 – March 10, 2027)</p>
+    <p><strong>Location:</strong> TBA</p>
 </header>
 
 <nav>
@@ -432,61 +459,76 @@
 </nav>
 
 <div class="container">
-    
+
     <section id="announcement">
         <h2>Announcements</h2>
-        
+
         <div class="announcement-item">
-            <span class="announcement-date">1.14.2026</span>
-            Office hours announced.
-        </div>
-        
-        <div class="announcement-item">
-            <span class="announcement-date">1.7.2026</span>
-            Assignment #1 <a href="https://drive.google.com/file/d/1IHdpMY6OavflNN3CQjJYYUa8fmrYN9Wr/view?usp=sharing">posted</a> – form your team ASAP, due in a week.
-        </div>
-        
-        <div class="announcement-item">
-            <span class="announcement-date">12.28.2025</span>
-            Please download the textbook <a href="https://dl.acm.org/doi/book/10.1145/3749421">Multi-LLM Collaborative Intelligence (MACI), The Path to AGI</a> and read at least the preface and epilogue before the first lecture.
+            <span class="announcement-date">Pre-course</span>
+            Before the first lecture, download the three textbooks and read all three Prefaces (<a href="https://dl.acm.org/doi/10.1145/3749421.3749422">Volume 1</a>, <a href="https://dl.acm.org/doi/book/10.1145/3822380">Volume 2</a>, <a href="https://doi.org/10.5281/zenodo.22738473">Volume 3</a>), then complete <a href="#assignment1">Assignment #1</a>, due Sunday, January 10, 23:59 PM.
         </div>
     </section>
 
     <section id="overview">
         <h2>Course Overview</h2>
-        
-        <p><em>Join us for an audacious aim—elevating LLMs from pattern matching to conscious reasoning, validation, and planning.</em></p>
-        
-        <p>Large Language Models (LLMs) have revolutionized AI through remarkable pattern matching capabilities. However, the path to Artificial General Intelligence (AGI) requires advancing beyond unconscious, reactive processing (automatic, stimulus-response behavior) to deliberate reasoning and validated planning. This course explores approaches to enhance LLMs with AGI-oriented capabilities through systematic reasoning, planning, and decision-making.</p>
-        
+
+        <p><em>Join us for an audacious aim: elevating LLMs from pattern matching to validated reasoning, grounded planning, and accountable decision making.</em></p>
+
+        <h3>Course Description</h3>
+
+        <p>Contrary to the hype, AGI is not around the corner. Today's large language models are a remarkable System 1: a reflexive, associative substrate that predicts the most likely next token and, in doing so, honors the popular over the accurate. A single maximum-likelihood model cannot validate its own output, because its errors are correlated with the premises it reasons from. It cannot tell association from cause. It carries no persistent memory or transactional discipline across a long task, so a plan that fails at step forty cannot be audited, undone, or repaired. And it does not know when the world has exceeded what its context describes. Scaling makes such a model more fluent; it does not make it reason, validate, plan, or ground.</p>
+
+        <p>The three volumes of <em>The Path to AGI</em>, this course's textbooks, explain what is missing and how to build it. Volume 1 (<em>Multi-LLM Collaborative Intelligence</em>) shows that validated reasoning, checks and balances, and long-horizon planning with persistent transactional memory are fostered through collaboration among models rather than extracted from one. Volume 2 (<em>System-2 Reasoning</em>) replaces association with causal reasoning and adds the meta-cognitive questions a what-only, reward-trained model never asks: why, how, and when. Volume 3 (<em>Beyond Intelligence</em>) binds that intelligence to the physical and social world through active memory, grounding obligations, and the four Quadrivium disciplines of Reason, Elicit, Contract, and Bridge, and it states what has been proved, what has been demonstrated, and what remains open on the road from operational AGI toward wisdom.</p>
+
+        <p><strong>Why you should take this course.</strong> Nearly every AI system built in the coming decade will sit on top of an LLM, and the engineers and researchers who matter will be those who understand exactly where the architecture fails and how to build around it. In this course you will learn to diagnose those failures at their source rather than patch them with prompts; to design multi-agent systems with validation, persistent memory, and transaction guarantees that go beyond today's agent frameworks; to ground an agent's decisions in causal structure and in the world it acts on; and to measure, rather than assume, whether a system meets a safety goal. The course is project-driven. Teams build and evaluate on the open-source MACI runtime and the MACI-Bench suite across domains such as medical diagnosis, causal discovery, physical-world grounding, planning, and disaster response, and the strongest projects are expected to become conference submissions.</p>
+
+        <div class="assignment-box" id="assignment1">
+            <h3>Before the First Lecture: Assignment #1 (due Sunday, January 10, 23:59 PM)</h3>
+            <p>Download the three textbooks and read the Preface of each volume:</p>
+            <ul>
+                <li>Volume 1, <em>Multi-LLM Collaborative Intelligence</em>: <a href="https://dl.acm.org/doi/10.1145/3749421.3749422">Preface</a> (<a href="https://dl.acm.org/doi/book/10.1145/3749421">full book</a>)</li>
+                <li>Volume 2, <em>System-2 Reasoning</em>: <a href="https://dl.acm.org/doi/book/10.1145/3822380">Preface and full book</a></li>
+                <li>Volume 3, <em>Beyond Intelligence</em>: <a href="https://doi.org/10.5281/zenodo.22738473">Preface and full book</a></li>
+            </ul>
+            <p>Then write a short essay (two pages) answering three questions:</p>
+            <ol>
+                <li>What are the fundamental problems and limitations of the LLM architecture?</li>
+                <li>What are your proposals for mitigating them?</li>
+                <li>What would you like to learn from this class?</li>
+            </ol>
+            <p>Your answers will be discussed in Lecture 3 on January 11 and will help shape the project topics.</p>
+        </div>
+
         <h3>Core Questions</h3>
         <ol>
-            <li>How can we enable LLMs to transition from pattern matching to conscious deliberation?</li>
-            <li>What frameworks support robust reasoning and verifiable decisions?</li>
-            <li>How do we implement planning and temporal awareness in LLM systems?</li>
-            <li>What role does multi-LLM agent collaboration play in advancing toward AGI capabilities?</li>
-            <li>More generally, what are the limitations of the current LLM architecture to overcome?</li>
+            <li>Why can a single maximum-likelihood model not validate its own reasoning, and what architecture can?</li>
+            <li>How do we move LLM reasoning from association to causation, and from <em>what</em> to <em>why</em>, <em>how</em>, and <em>when</em>?</li>
+            <li>How do we give long-lived agentic workflows persistent memory, validation, and transaction guarantees?</li>
+            <li>What does it mean for an agent to be grounded in the physical and social world, and how is grounding enforced?</li>
+            <li>When does multi-LLM collaboration help, when does it hurt, and how should it be moderated?</li>
+            <li>What has been proved, what has been demonstrated, and what remains open on the path from AGI to wisdom?</li>
         </ol>
-        
+
         <h3>The Course Examines</h3>
         <ol>
-            <li>Theoretical foundations of consciousness, reasoning, and planning in AI</li>
-            <li>Multi-LLM Agent Collaborative Intelligence (MACI) frameworks</li>
-            <li>Entropy-guided information exchange</li>
-            <li>AI ethical alignment with checks and balance</li>
-            <li>Linguistic behavior modeling</li>
-            <li>Persistent memory management for validation and long-lived workflow</li>
-            <li>Temporal reasoning and planning system architectures</li>
+            <li>System 1 and System 2: the LLM as an unconscious substrate, and what deliberate reasoning requires</li>
+            <li>Socratic reasoning, Pearl's causal hierarchy, and semantic anchoring (UCCT)</li>
+            <li>Meta-cognitive judgment: sycophancy and skepticism, epistemic regret (ERM), and learning before failure (LBF)</li>
+            <li>Multi-LLM Agent Collaborative Intelligence (MACI): entropy-guided debate, checks and balances, and its pathologies</li>
+            <li>Persistent transactional memory and planning: SagaLLM, ALAS, TSO, and Mnemosyne</li>
+            <li>Grounded intelligence: the Intelligence Sphere, grounding obligations, authority over interpretation, and risk bounds for physical AI</li>
+            <li>The Quadrivium disciplines (Reason, Elicit, Contract, Bridge), scientific discovery, and the distance to ASI</li>
+            <li>Consciousness, ethics, and wisdom: what the architecture can and cannot deliver</li>
         </ol>
-        
-        <p>Through lectures, discussions, and hands-on projects, students will explore and implement multi-agent systems that advance beyond current state-of-the-art frameworks (e.g., LangGraph) to address planning problems across various domains, including project planning, supply chain management, emergency room logistics, and natural disaster response.</p>
-        
+
+        <p>Through lectures, discussions, and a quarter-long team project, students will build and evaluate multi-agent systems on the open-source MACI runtime that advance beyond current frameworks (e.g., LangGraph) to address reasoning and planning problems across domains including medical diagnosis, causal discovery, project planning, supply chain management, and natural disaster response.</p>
+
         <p><strong>Prerequisites:</strong> Completion of Machine Learning and Deep Learning courses, along with substantial experience with LLMs.</p>
-        
+
         <h3>Grading</h3>
         <ol>
             <li>Assignments: 30%</li>
-            <li>Dashes: 20%</li>
+            <li>Project Proposal and Midterm Status Report: 20%</li>
             <li>Final Presentation and Report: 40%</li>
             <li>Class Participation: 10%</li>
         </ol>
@@ -494,31 +536,34 @@
 
     <section id="resources">
         <h2>Resources</h2>
-        
+
         <div class="resource-card">
-            <h3>Textbook</h3>
-            <p><strong><a href="https://dl.acm.org/doi/book/10.1145/3749421">Multi-LLM Collaborative Intelligence (MACI), The Path to AGI Volume 1</a></strong> by Edward Y. Chang, December 2025, ACM Books.</p>
-            <p><strong><a href="https://www.amazon.com/dp/1962463222">System-2 Reasoning: From Semantic Anchoring to Causal Intelligence: The Path to AGI Volume 2</a></strong> by Edward Y. Chang, February 2026, Amazon release.</p>
+            <h3>Textbooks: The Path to AGI Trilogy</h3>
+            <p><strong>Volume 1: <a href="https://dl.acm.org/doi/book/10.1145/3749421">Multi-LLM Collaborative Intelligence (MACI)</a></strong> by Edward Y. Chang, ACM Books, December 2025.</p>
+            <p><strong>Volume 2: <a href="https://dl.acm.org/doi/book/10.1145/3822380">System-2 Reasoning: From Semantic Anchoring to Causal Intelligence</a></strong> by Edward Y. Chang, ACM Books, 2026.</p>
+            <p><strong>Volume 3: <a href="https://doi.org/10.5281/zenodo.22738473">Beyond Intelligence: From Operational AGI toward Wisdom</a></strong> by Edward Y. Chang, Author's Archival Edition, September 2026 (Zenodo; also on Amazon, ISBN 9798174093409). ACM Books edition expected February 2027.</p>
         </div>
-        
+
+        <div class="resource-card code">
+            <h3>Project Platform</h3>
+            <p>Projects are built on the open-source <a href="https://github.com/eyuchang/MACI">MACI runtime</a> (bring your own LLM keys) and evaluated on the MACI-Bench suite. Project ideas and benchmark domains will be presented in Lecture 2; teams form by January 13 and proposals are presented on January 20.</p>
+        </div>
+
         <div class="resource-card reading">
             <h3>Reading Materials</h3>
             <p>Additional reading materials and supplementary content can be found on <a href="https://SocraSynth.com" target="_blank">SocraSynth.com</a>.</p>
         </div>
-        
+
         <div class="resource-card office-hours">
             <h3>Office Hours</h3>
-            <ol>
-                <li>Monday 1:30 PM – 3:30 PM, CoDA B44 — Longling Geng</li>
-                <li>Wednesday 1:30 PM – 3:30 PM, Gates 486 — Edward Y. Chang</li>
-            </ol>
+            <p>To be announced in the first week.</p>
         </div>
     </section>
 
     <section id="schedule">
         <h2>Schedule</h2>
-        <p>The following schedule is a sample from last year.</p>
-        
+        <p>Winter 2027, Mondays and Wednesdays. Chapter references are to the ACM editions of Volumes 1 and 2 and the ACM edition numbering of Volume 3; readings should be completed before the lecture.</p>
+
         <div class="table-wrapper">
             <table>
                 <thead>
@@ -526,7 +571,7 @@
                         <th>#</th>
                         <th>Date</th>
                         <th>Topic</th>
-                        <th>Materials</th>
+                        <th>Readings</th>
                         <th>Instructor</th>
                         <th>Deadlines</th>
                     </tr>
@@ -534,164 +579,163 @@
                 <tbody>
                     <tr>
                         <td>1</td>
-                        <td>1/5/2026</td>
-                        <td>Course Aims and Syllabus; From QA to Complex Reasoning and Planning; Can LLMs Achieve AGI?</td>
-                        <td><a href="https://drive.google.com/file/d/1tFjpDZj1UfYLOXvl7hv66vyAsHteu32v/view?usp=sharing">Slides</a> | <a href=https://youtu.be/LzhxJ0fuHsw">Recorded</a> | <a href="https://dl.acm.org/doi/10.1145/3749421.3749422">Preface, AGI Book Vol #1</a></td>
+                        <td>1/4/2027</td>
+                        <td>Course Aims and Syllabus. Why AGI Is Far: the LLM as System 1; what the Trilogy adds (collaboration, causality, grounding); what is proved, demonstrated, and open</td>
+                        <td>Vol 1, <a href="https://dl.acm.org/doi/10.1145/3749421.3749422">Preface</a>; Vol 2, Preface; Vol 3, Preface and Chapter 1</td>
                         <td>E. Chang</td>
-                        <td></td>
+                        <td><span class="deadline">Assignment #1 due 1/10, 23:59 PM</span></td>
                     </tr>
                     <tr>
                         <td>2</td>
-                        <td>1/7</td>
-                        <td><span class="topic-badge topic-reasoning">Reasoning #1</span> Pearl's Causality Hierarchy, and Assignment #1 Specification</td>
-                        <td><a href="https://drive.google.com/file/d/1_1Y-oQK4TtF71oBdHWsysZY48oriZtYI/view?usp=sharing">Slides</a> | <a href="https://youtu.be/05_Kn5jyf0Y">Recorded</a></td>
+                        <td>1/6</td>
+                        <td><span class="topic-badge topic-reasoning">Reasoning #1</span> From QA to Validated Reasoning: the Socratic Method, CRIT, and Why a Model Cannot Grade Itself (the correlated-error argument). Project Ideas, the MACI Runtime, and MACI-Bench</td>
+                        <td>Vol 1, <a href="https://dl.acm.org/doi/10.1145/3749421.3749429">Chapter 5</a>; Vol 3, Section 1.6</td>
                         <td>E. Chang</td>
-                        <td><span class="deadline"><a href="https://drive.google.com/file/d/1IHdpMY6OavflNN3CQjJYYUa8fmrYN9Wr/view?usp=sharing" style="color:white;border:none;">Assignment #1</a> out</span></td>
+                        <td></td>
                     </tr>
                     <tr>
                         <td>3</td>
-                        <td>1/12</td>
-                        <td><span class="topic-badge topic-reasoning">Reasoning #2</span> PID Architecture for Sycophancy and Skepticism</td>
-                        <td><a href="https://drive.google.com/file/d/1GDOyPFM1dCu1-QZ7fWSG34uXkFl4CN5o/view?usp=drive_link">Slides</a> | <a href="https://youtu.be/hz73HDUYr8w">Recorded</a> | AGI Book, Vol #2, Ch 6, 7</td>
-                        <td>E. Chang, Gloria Geng</td>
-                        <td>—</td>
+                        <td>1/11</td>
+                        <td><span class="topic-badge topic-reasoning">Reasoning #2</span> Pearl's Causal Hierarchy; From Association to Intervention and Counterfactuals; Causal Reasoning with LLMs. Discussion of Assignment #1 Essays</td>
+                        <td>Vol 2, causal reasoning chapters (Part I)</td>
+                        <td>E. Chang</td>
+                        <td></td>
                     </tr>
                     <tr>
                         <td>4</td>
-                        <td>1/14</td>
-                        <td><span class="topic-badge topic-reasoning">Reasoning #3</span> Prompting Large Language Models With the Socratic Method</td>
-                        <td><a href="https://drive.google.com/file/d/1bIGKzOTkeBFcZ4vN5btMAHO4_wboqCAz/view?usp=sharing">Slides</a> | Recorded on Canvas | AGI Book, Vol #1, <a href="https://dl.acm.org/doi/10.1145/3749421.3749429">Chapter 5</a></td>
+                        <td>1/13</td>
+                        <td><span class="topic-badge topic-reasoning">Reasoning #3</span> Meta-Cognitive Judgment: Sycophancy and Skepticism (PID architecture, RAudit), Epistemic Regret Minimization (why), and Learning Before Failure (when)</td>
+                        <td>Vol 2, Chapters 6, 7, and 10; ERM chapter</td>
                         <td>E. Chang</td>
-                        <td><span class="deadline">Assignment #1 due</span></td>
+                        <td><span class="deadline">Project teams formed</span><br><span class="deadline">Assignment #2 out</span></td>
                     </tr>
                     <tr class="holiday-row">
                         <td>5</td>
-                        <td>1/19</td>
-                        <td>Martin Luther King, Jr., Day (holiday, no classes)</td>
+                        <td>1/18</td>
+                        <td>Martin Luther King, Jr., Day (holiday, no class)</td>
                         <td></td>
                         <td></td>
-                        <td><span class="deadline">Assignment #2 out</span></td>
+                        <td><span class="deadline">Project proposal due 1/18, 23:59 PM</span></td>
                     </tr>
-                    <tr>
+                    <tr class="project-row">
                         <td>6</td>
-                        <td>1/21</td>
-                        <td><span class="topic-badge topic-reasoning">Reasoning #4</span> Reasoning Recap and Planning Intro</td>
-                        <td><a href="https://drive.google.com/file/d/1aTgGYi3wDocyR6p6i-0aWZk9XkUoY5IO/view?usp=sharing">Slides</a> | Recorded on Canvas | AGI Book, Vol #2, Ch 4; Vol #1, <a href="https://dl.acm.org/doi/pdf/10.1145/3749421.3749436">Chapter 12</a></td>
-                        <td>E. Chang</td>
+                        <td>1/20</td>
+                        <td><span class="topic-badge topic-project">Project</span> Student Project Proposal Presentations</td>
                         <td></td>
+                        <td>All</td>
+                        <td><span class="deadline">Course drop deadline 1/20</span></td>
                     </tr>
                     <tr>
                         <td>7</td>
-                        <td>1/26</td>
-                        <td><span class="topic-badge topic-agi">AGI #1</span> Multi-LLM Agent Collaborative Intelligence</td>
-                        <td><a href="https://drive.google.com/file/d/1aqCtN4kN-qX4xTI8WicmKg5mpxoPSeoE/view?usp=sharing">Slides</a> | Recorded on Canvas | AGI Book, Vol #1, <a href="https://dl.acm.org/doi/10.1145/3749421.3749430">Chapters 6</a> and <a href="https://dl.acm.org/doi/10.1145/3749421.3749431">Chapter 7</a></td>
-                        <td>Class</td>
+                        <td>1/25</td>
+                        <td><span class="topic-badge topic-agi">Collaboration #1</span> Multi-LLM Agent Collaborative Intelligence: SocraSynth, EVINCE and Entropy-Guided Exchange, DIKE-ERIS Checks and Balances</td>
+                        <td>Vol 1, <a href="https://dl.acm.org/doi/10.1145/3749421.3749430">Chapter 6</a> and <a href="https://dl.acm.org/doi/10.1145/3749421.3749431">Chapter 7</a>; Vol 3, Chapter 8</td>
+                        <td>E. Chang</td>
                         <td></td>
                     </tr>
                     <tr>
                         <td>8</td>
-                        <td>1/28</td>
-                        <td><span class="topic-badge topic-asi">ASI #1</span> What is Consciousness, System 2 Introduction</td>
-                        <td>Slides | <a href="https://youtu.be/MZ6nTRKDF6o">Recorded</a> | AGI Book, Vol #1, <a href="https://dl.acm.org/doi/10.1145/3749421.3749437">Chapters 13</a></td>
+                        <td>1/27</td>
+                        <td><span class="topic-badge topic-agi">Collaboration #2</span> When Debate Helps and When It Hurts: Survey and Pathologies of Multi-Agent Systems; Contentiousness Scheduling; One Executive plus a Judge for Closed Questions, Debate for Open-Ended Ones</td>
+                        <td>Vol 2, Chapter 8; Vol 3, Chapter 8 (Convergence section)</td>
                         <td>E. Chang</td>
                         <td><span class="deadline">Assignment #2 due</span></td>
                     </tr>
                     <tr>
                         <td>9</td>
-                        <td>2/2</td>
-                        <td><span class="topic-badge topic-agi">AGI #2</span> MACI Survey and Pathologies in Multi-Agent Debate Systems </td>
-                        <td><a href="https://drive.google.com/file/d/12geG8JGBMMnmXsT2DUQCDZmVdoImBvWN/view?usp=sharing">Slides</a> | Recorded Canvas | AGI Book, Vol #2, Chapter 8</td>
+                        <td>2/1</td>
+                        <td><span class="topic-badge topic-planning">Planning #1</span> Long-Horizon Planning with Transaction Guarantees: SagaLLM and ALAS (context management, validation, compensation) and Transactional Swarm Orchestration (TSO)</td>
+                        <td>Vol 1, <a href="https://dl.acm.org/doi/10.1145/3749421.3749435">Chapter 11</a> and <a href="https://dl.acm.org/doi/pdf/10.1145/3749421.3749436">Chapter 12</a>; Vol 2, Chapter 9</td>
                         <td>E. Chang</td>
-                        <td><span class="deadline">Final Project proposal due</span></td>
+                        <td></td>
                     </tr>
                     <tr>
                         <td>10</td>
-                        <td>2/4</td>
-                        <td><span class="topic-badge topic-asi">ASI #2</span> Computational Consciousness: Free Will, Ethic Modeling</td>
-                        <td>Slides | <a href="https://youtu.be/vfewpEGxoTQ">Recorded</a> | AGI Book, Vol #1, <a href="https://dl.acm.org/doi/10.1145/3749421.3749437">Chapters 13</a></td>
+                        <td>2/3</td>
+                        <td><span class="topic-badge topic-planning">Planning #2</span> From Passive to Active Memory: Mnemosyne, TRACE, and the Runtime Invariants (authority separation, evidence preservation); Validating and Repairing AI-Generated Workflows</td>
+                        <td>Vol 3, Part I (Chapters 2 to 7)</td>
                         <td>E. Chang</td>
                         <td></td>
                     </tr>
                     <tr>
                         <td>11</td>
-                        <td>2/9</td>
-                        <td><span class="topic-badge topic-reasoning">Reasoning #5</span> <a href="http://infolab.stanford.edu/~echang/SocraSynth.html">ERM: Epistemic Regret Minimization</a></td>
-                        <td><a href="https://drive.google.com/file/d/15mVr845kYRhMmHgPa2FQ0W0NbTvmU_tN/view?usp=sharing">Slides</a> | AGI Book Vol#2, Chapter 10</td>
+                        <td>2/8</td>
+                        <td><span class="topic-badge topic-grounding">Grounding #1</span> Grounded Intelligence: What Predictive World Models Leave Out; the Intelligence Sphere; Grounding Obligations and Profiles (OGP); World Under Audit, Anchoring, and Effects</td>
+                        <td>Vol 3, Chapters 8 to 12</td>
                         <td>E. Chang</td>
                         <td></td>
                     </tr>
                     <tr>
                         <td>12</td>
-                        <td>2/11</td>
-                        <td><span class="topic-badge topic-reasoning">Reasoning #6</span> <a href="https://www.researchgate.net/publication/389855859_SagaLLM_Context_Management_Validation_and_Transaction_Guarantees_for_Multi-Agent_LLM_Planning">SagaLLM: Context Management, Validation, and Transaction Guarantees</a></td>
-                        <td><a href="https://drive.google.com/file/d/1HT9qZTkgjoFS5XbykN406QENIfb94XIv/view?usp=sharing">Slides</a> | AGI Book Vol#1, Chapter 11</td>
+                        <td>2/10</td>
+                        <td><span class="topic-badge topic-grounding">Grounding #2</span> Semantic Anchoring and Authority over Interpretation: Unified Contextual Control Theory (reservoir, anchors, density), Self-Anchoring Attacks and Re-Anchoring; Social and Epistemic Grounding; LEAP; Closing the Loop Safely: Risk Bounds for Physical AI</td>
+                        <td>Vol 2, semantic anchoring chapters; Vol 3, Chapters 13 to 19</td>
                         <td>E. Chang</td>
                         <td></td>
                     </tr>
                     <tr class="holiday-row">
                         <td>13</td>
-                        <td>2/16</td>
-                        <td>Presidents' Day (holiday, no classes)</td>
+                        <td>2/15</td>
+                        <td>Presidents' Day (holiday, no class)</td>
                         <td></td>
                         <td></td>
                         <td></td>
                     </tr>
                     <tr>
                         <td>14</td>
-                        <td>2/18</td>
-                        <td>Midterm Project Dash, Session 1</td>
-                        <td></td>
-                        <td>All</td>
-                        <td>—</td>
-                    </tr>
-                    <tr>
-                        <td>15</td>
-                        <td>2/23</td>
-                        <td>Midterm Project Dash, Session 2</td>
-                        <td></td>
-                        <td>All</td>
-                        <td>—</td>
-                    </tr>
-                    <tr>
-                        <td>16</td>
-                        <td>2/25</td>
-                        <td><span class="topic-badge topic-reasoning">Reasoning #7</span> TSO: Transactional Swarm Orchestration</td>
-                        <td><a href="">Slides</a> | AGI Book II, Chapter 9</td>
+                        <td>2/17</td>
+                        <td><span class="topic-badge topic-asi">Quadrivium #1</span> Reason and Elicit: Discovering Missing Causes, Confounders, and Evidence; Active Inquiry (the nurse, doctor, patient loop) and Entropy-Driven Questioning</td>
+                        <td>Vol 3, Chapters 20 and 21</td>
                         <td>E. Chang</td>
-                        <td>—</td>
+                        <td></td>
+                    </tr>
+                    <tr class="project-row">
+                        <td>15</td>
+                        <td>2/22</td>
+                        <td><span class="topic-badge topic-project">Project</span> Midterm Project Presentations, Session 1</td>
+                        <td></td>
+                        <td>All</td>
+                        <td><span class="deadline">Midterm report due 2/22</span></td>
+                    </tr>
+                    <tr class="project-row">
+                        <td>16</td>
+                        <td>2/24</td>
+                        <td><span class="topic-badge topic-project">Project</span> Midterm Project Presentations, Session 2</td>
+                        <td></td>
+                        <td>All</td>
+                        <td></td>
                     </tr>
                     <tr>
                         <td>17</td>
-                        <td>3/2</td>
-                        <td><span class="topic-badge topic-agi">AGI #3</span> Collatz Dynamics as a Model World for Temporal-Spatial Optimization</td>
-                        <td>Slides |</td>
+                        <td>3/1</td>
+                        <td><span class="topic-badge topic-asi">Quadrivium #2</span> Contract and Bridge: Grounded Execution in Flood Search and Rescue; From Debate to Discovery; the Maximum Likelihood Trap and the Remaining Distance to ASI</td>
+                        <td>Vol 3, Chapters 22 and 23</td>
                         <td>E. Chang</td>
-                        <td>—</td>
+                        <td></td>
                     </tr>
                     <tr>
                         <td>18</td>
-                        <td>3/4</td>
-                        <td><span class="topic-badge topic-asi">ASI #3</span> Summary & Real Wisdom</td>
-                        <td>Slides | </td>
+                        <td>3/3</td>
+                        <td><span class="topic-badge topic-asi">Wisdom</span> Consciousness, Free Will, and Ethics in Machines; What the Trilogy Proves, Demonstrates, and Holds Open; Course Summary</td>
+                        <td>Vol 1, <a href="https://dl.acm.org/doi/10.1145/3749421.3749437">Chapter 13</a>; Vol 3, Chapter 24 and Epilogue</td>
                         <td>E. Chang</td>
                         <td></td>
                     </tr>
-                    <tr>
+                    <tr class="project-row">
                         <td>19</td>
-                        <td>3/9</td>
-                        <td>Final Presentation</td>
-                        <td>Slides | <a href="https://SocraSynth.com">Readings</a></td>
+                        <td>3/8</td>
+                        <td><span class="topic-badge topic-project">Project</span> Final Project Presentations, Session 1</td>
                         <td></td>
-                        <td>—</td>
+                        <td>All</td>
+                        <td></td>
                     </tr>
-                    <tr>
+                    <tr class="project-row">
                         <td>20</td>
-                        <td>3/11</td>
-                        <td>Highlights of Natural Language Processing History, 70 Years in 70 Minutes</td>
-                        <td><a href="https://drive.google.com/file/d/1CyjM6BXVtP4cpZVvZ4ZnrxIBUqIxNGN0/view?usp=sharing">Slides</a> | <a href="https://youtu.be/-qnTP8N9E8I">Recorded Lecture</a> | Chapters 1, 2</td>
+                        <td>3/10</td>
+                        <td><span class="topic-badge topic-project">Project</span> Final Project Presentations, Session 2</td>
                         <td></td>
-                        <td>—</td>
-                    </tr>
+                        <td>All</td>
+                        <td><span class="deadline">Final report due 3/15</span></td>
                     </tr>
                 </tbody>
             </table>
@@ -701,7 +745,7 @@
 </div>
 
 <footer>
-    <p>© 2025–26 Stanford University · CS372: AI for Reasoning, Planning, and Decision Making</p>
+    <p>© 2026–27 Stanford University · CS372: Artificial General Intelligence for Reasoning, Planning, and Decision Making</p>
 </footer>
 
 </body>

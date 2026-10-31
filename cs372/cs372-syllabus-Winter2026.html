@@ -1,0 +1,708 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CS372: AI for Reasoning, Planning, and Decision Making (Winter 2026)</title>
+    <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,600;8..60,700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --stanford-red: #8C1515;
+            --stanford-red-dark: #6B1010;
+            --warm-cream: #FDF8F3;
+            --warm-sand: #F5EDE4;
+            --warm-beige: #E8DDD1;
+            --warm-terracotta: #C4704B;
+            --warm-amber: #D4A574;
+            --warm-brown: #8B6B4A;
+            --warm-chocolate: #5C4033;
+            --text-primary: #3D3225;
+            --text-secondary: #6B5D4D;
+            --accent-gold: #B8860B;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            line-height: 1.7;
+            background: linear-gradient(135deg, var(--warm-cream) 0%, var(--warm-sand) 100%);
+            color: var(--text-primary);
+            min-height: 100vh;
+        }
+
+        /* Header */
+        header {
+            background: linear-gradient(135deg, var(--stanford-red) 0%, var(--stanford-red-dark) 100%);
+            color: white;
+            padding: 3rem 2rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+            opacity: 0.5;
+        }
+
+        header > * {
+            position: relative;
+            z-index: 1;
+        }
+
+        header h1 {
+            font-family: 'Source Serif 4', Georgia, serif;
+            font-size: clamp(1.5rem, 4vw, 2.2rem);
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            letter-spacing: -0.02em;
+        }
+
+        header h3 {
+            font-weight: 400;
+            font-size: 1.1rem;
+            opacity: 0.95;
+            margin-bottom: 1.5rem;
+        }
+
+        header p {
+            font-size: 0.95rem;
+            margin: 0.4rem 0;
+            opacity: 0.9;
+        }
+
+        header a {
+            color: #FFD7B5;
+            text-decoration: none;
+            border-bottom: 1px solid rgba(255, 215, 181, 0.4);
+            transition: all 0.2s ease;
+        }
+
+        header a:hover {
+            color: #fff;
+            border-bottom-color: #fff;
+        }
+
+        /* Navigation */
+        nav {
+            background: var(--warm-chocolate);
+            padding: 0;
+            text-align: center;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 4px 20px rgba(92, 64, 51, 0.15);
+        }
+
+        nav a {
+            color: var(--warm-cream);
+            text-decoration: none;
+            padding: 1rem 1.5rem;
+            display: inline-block;
+            font-size: 0.9rem;
+            font-weight: 500;
+            letter-spacing: 0.03em;
+            text-transform: uppercase;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            width: 0;
+            height: 3px;
+            background: var(--warm-amber);
+            transition: all 0.3s ease;
+            transform: translateX(-50%);
+        }
+
+        nav a:hover {
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+        }
+
+        nav a:hover::after {
+            width: 80%;
+        }
+
+        /* Container */
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 3rem 2rem;
+        }
+
+        /* Sections */
+        section {
+            background: white;
+            border-radius: 16px;
+            padding: 2.5rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 4px 24px rgba(139, 107, 74, 0.08);
+            border: 1px solid var(--warm-beige);
+        }
+
+        h2 {
+            font-family: 'Source Serif 4', Georgia, serif;
+            color: var(--stanford-red);
+            font-size: 1.8rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.75rem;
+            border-bottom: 3px solid var(--warm-amber);
+            display: inline-block;
+        }
+
+        h3 {
+            font-family: 'Source Serif 4', Georgia, serif;
+            color: var(--warm-brown);
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin: 1.75rem 0 1rem;
+        }
+
+        p {
+            margin-bottom: 1rem;
+            color: var(--text-secondary);
+        }
+
+        /* Links in content */
+        .container a {
+            color: var(--warm-terracotta);
+            text-decoration: none;
+            border-bottom: 1px solid rgba(196, 112, 75, 0.3);
+            transition: all 0.2s ease;
+        }
+
+        .container a:hover {
+            color: var(--stanford-red);
+            border-bottom-color: var(--stanford-red);
+        }
+
+        /* Lists */
+        ol, ul {
+            margin: 1rem 0 1.5rem 1.5rem;
+            color: var(--text-secondary);
+        }
+
+        li {
+            margin-bottom: 0.6rem;
+            padding-left: 0.5rem;
+        }
+
+        /* Announcements */
+        .announcement-item {
+            background: linear-gradient(135deg, var(--warm-sand) 0%, var(--warm-cream) 100%);
+            border-radius: 12px;
+            padding: 1.25rem 1.5rem;
+            margin-bottom: 1rem;
+            border-left: 4px solid var(--warm-terracotta);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .announcement-item:hover {
+            transform: translateX(4px);
+            box-shadow: 0 4px 12px rgba(196, 112, 75, 0.15);
+        }
+
+        .announcement-date {
+            display: inline-block;
+            background: var(--warm-terracotta);
+            color: white;
+            padding: 0.3rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin-right: 0.75rem;
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.85; transform: scale(1.02); }
+        }
+
+        /* Table */
+        .table-wrapper {
+            overflow-x: auto;
+            border-radius: 12px;
+            box-shadow: 0 2px 12px rgba(139, 107, 74, 0.1);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: white;
+            font-size: 0.9rem;
+        }
+
+        thead {
+            background: linear-gradient(135deg, var(--warm-brown) 0%, var(--warm-chocolate) 100%);
+            color: white;
+        }
+
+        th {
+            padding: 1rem 0.75rem;
+            text-align: left;
+            font-weight: 600;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        td {
+            padding: 1rem 0.75rem;
+            border-bottom: 1px solid var(--warm-beige);
+            vertical-align: top;
+        }
+
+        tbody tr {
+            transition: background 0.2s ease;
+        }
+
+        tbody tr:hover {
+            background: var(--warm-cream);
+        }
+
+        tbody tr:nth-child(even) {
+            background: rgba(245, 237, 228, 0.5);
+        }
+
+        tbody tr:nth-child(even):hover {
+            background: var(--warm-sand);
+        }
+
+        /* Holiday rows */
+        .holiday-row {
+            background: linear-gradient(90deg, rgba(212, 165, 116, 0.15) 0%, rgba(212, 165, 116, 0.05) 100%) !important;
+            font-style: italic;
+        }
+
+        /* Deadline badge */
+        .deadline {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--warm-terracotta) 0%, #B85A3B 100%);
+            color: white;
+            padding: 0.25rem 0.6rem;
+            border-radius: 6px;
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+
+        /* Topic badges */
+        .topic-badge {
+            display: inline-block;
+            padding: 0.2rem 0.5rem;
+            border-radius: 4px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            margin-right: 0.5rem;
+        }
+
+        .topic-reasoning { background: #FFF3E0; color: #E65100; }
+        .topic-planning { background: #E8F5E9; color: #2E7D32; }
+        .topic-agi { background: #E3F2FD; color: #1565C0; }
+        .topic-asi { background: #F3E5F5; color: #7B1FA2; }
+        .topic-app { background: #FBE9E7; color: #BF360C; }
+
+        /* Resources cards */
+        .resource-card {
+            background: linear-gradient(135deg, var(--warm-cream) 0%, white 100%);
+            border: 1px solid var(--warm-beige);
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin-bottom: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .resource-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(139, 107, 74, 0.12);
+            border-color: var(--warm-amber);
+        }
+
+        .resource-card h3 {
+            margin-top: 0;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .resource-card h3::before {
+            content: '📚';
+        }
+
+        .resource-card.office-hours h3::before {
+            content: '🕐';
+        }
+
+        .resource-card.reading h3::before {
+            content: '📖';
+        }
+
+        /* Footer */
+        footer {
+            background: linear-gradient(135deg, var(--warm-chocolate) 0%, #4A3428 100%);
+            color: var(--warm-cream);
+            text-align: center;
+            padding: 2rem;
+            margin-top: 2rem;
+        }
+
+        footer p {
+            color: rgba(253, 248, 243, 0.8);
+            font-size: 0.9rem;
+            margin: 0;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            header {
+                padding: 2rem 1rem;
+            }
+
+            .container {
+                padding: 1.5rem 1rem;
+            }
+
+            section {
+                padding: 1.5rem;
+                border-radius: 12px;
+            }
+
+            nav a {
+                padding: 0.75rem 1rem;
+                font-size: 0.8rem;
+            }
+
+            table {
+                font-size: 0.8rem;
+            }
+
+            th, td {
+                padding: 0.75rem 0.5rem;
+            }
+        }
+
+        /* Smooth scroll */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Selection color */
+        ::selection {
+            background: var(--warm-amber);
+            color: white;
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+    <h1>CS372: Artificial General Intelligence for Reasoning, Planning, and Decision Making</h1>
+    <h3>Winter 2026 · Stanford University</h3>
+    <p><strong>Instructor:</strong> Prof. <a href="http://infolab.stanford.edu/~echang/">Edward Y. Chang</a></p>
+    <p><strong>Course Assistant:</strong> Longling Gloria Geng</p>
+    <p><strong>Lectures:</strong> Mondays & Wednesdays, 4:30 – 5:50 PM (Starting January 5, 2026)</p>
+    <p><strong>Location:</strong> <a href="https://campus-map.stanford.edu/?srch=NVIDIA+Auditorium">NVIDIA Auditorium</a></p>
+</header>
+
+<nav>
+    <a href="#announcement">Announcements</a>
+    <a href="#overview">Overview</a>
+    <a href="#resources">Resources</a>
+    <a href="#schedule">Schedule</a>
+</nav>
+
+<div class="container">
+    
+    <section id="announcement">
+        <h2>Announcements</h2>
+        
+        <div class="announcement-item">
+            <span class="announcement-date">1.14.2026</span>
+            Office hours announced.
+        </div>
+        
+        <div class="announcement-item">
+            <span class="announcement-date">1.7.2026</span>
+            Assignment #1 <a href="https://drive.google.com/file/d/1IHdpMY6OavflNN3CQjJYYUa8fmrYN9Wr/view?usp=sharing">posted</a> – form your team ASAP, due in a week.
+        </div>
+        
+        <div class="announcement-item">
+            <span class="announcement-date">12.28.2025</span>
+            Please download the textbook <a href="https://dl.acm.org/doi/book/10.1145/3749421">Multi-LLM Collaborative Intelligence (MACI), The Path to AGI</a> and read at least the preface and epilogue before the first lecture.
+        </div>
+    </section>
+
+    <section id="overview">
+        <h2>Course Overview</h2>
+        
+        <p><em>Join us for an audacious aim—elevating LLMs from pattern matching to conscious reasoning, validation, and planning.</em></p>
+        
+        <p>Large Language Models (LLMs) have revolutionized AI through remarkable pattern matching capabilities. However, the path to Artificial General Intelligence (AGI) requires advancing beyond unconscious, reactive processing (automatic, stimulus-response behavior) to deliberate reasoning and validated planning. This course explores approaches to enhance LLMs with AGI-oriented capabilities through systematic reasoning, planning, and decision-making.</p>
+        
+        <h3>Core Questions</h3>
+        <ol>
+            <li>How can we enable LLMs to transition from pattern matching to conscious deliberation?</li>
+            <li>What frameworks support robust reasoning and verifiable decisions?</li>
+            <li>How do we implement planning and temporal awareness in LLM systems?</li>
+            <li>What role does multi-LLM agent collaboration play in advancing toward AGI capabilities?</li>
+            <li>More generally, what are the limitations of the current LLM architecture to overcome?</li>
+        </ol>
+        
+        <h3>The Course Examines</h3>
+        <ol>
+            <li>Theoretical foundations of consciousness, reasoning, and planning in AI</li>
+            <li>Multi-LLM Agent Collaborative Intelligence (MACI) frameworks</li>
+            <li>Entropy-guided information exchange</li>
+            <li>AI ethical alignment with checks and balance</li>
+            <li>Linguistic behavior modeling</li>
+            <li>Persistent memory management for validation and long-lived workflow</li>
+            <li>Temporal reasoning and planning system architectures</li>
+        </ol>
+        
+        <p>Through lectures, discussions, and hands-on projects, students will explore and implement multi-agent systems that advance beyond current state-of-the-art frameworks (e.g., LangGraph) to address planning problems across various domains, including project planning, supply chain management, emergency room logistics, and natural disaster response.</p>
+        
+        <p><strong>Prerequisites:</strong> Completion of Machine Learning and Deep Learning courses, along with substantial experience with LLMs.</p>
+        
+        <h3>Grading</h3>
+        <ol>
+            <li>Assignments: 30%</li>
+            <li>Dashes: 20%</li>
+            <li>Final Presentation and Report: 40%</li>
+            <li>Class Participation: 10%</li>
+        </ol>
+    </section>
+
+    <section id="resources">
+        <h2>Resources</h2>
+        
+        <div class="resource-card">
+            <h3>Textbook</h3>
+            <p><strong><a href="https://dl.acm.org/doi/book/10.1145/3749421">Multi-LLM Collaborative Intelligence (MACI), The Path to AGI Volume 1</a></strong> by Edward Y. Chang, December 2025, ACM Books.</p>
+            <p><strong><a href="https://www.amazon.com/dp/1962463222">System-2 Reasoning: From Semantic Anchoring to Causal Intelligence: The Path to AGI Volume 2</a></strong> by Edward Y. Chang, February 2026, Amazon release.</p>
+        </div>
+        
+        <div class="resource-card reading">
+            <h3>Reading Materials</h3>
+            <p>Additional reading materials and supplementary content can be found on <a href="https://SocraSynth.com" target="_blank">SocraSynth.com</a>.</p>
+        </div>
+        
+        <div class="resource-card office-hours">
+            <h3>Office Hours</h3>
+            <ol>
+                <li>Monday 1:30 PM – 3:30 PM, CoDA B44 — Longling Geng</li>
+                <li>Wednesday 1:30 PM – 3:30 PM, Gates 486 — Edward Y. Chang</li>
+            </ol>
+        </div>
+    </section>
+
+    <section id="schedule">
+        <h2>Schedule</h2>
+        <p>The following schedule is a sample from last year.</p>
+        
+        <div class="table-wrapper">
+            <table>
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Date</th>
+                        <th>Topic</th>
+                        <th>Materials</th>
+                        <th>Instructor</th>
+                        <th>Deadlines</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>1</td>
+                        <td>1/5/2026</td>
+                        <td>Course Aims and Syllabus; From QA to Complex Reasoning and Planning; Can LLMs Achieve AGI?</td>
+                        <td><a href="https://drive.google.com/file/d/1tFjpDZj1UfYLOXvl7hv66vyAsHteu32v/view?usp=sharing">Slides</a> | <a href=https://youtu.be/LzhxJ0fuHsw">Recorded</a> | <a href="https://dl.acm.org/doi/10.1145/3749421.3749422">Preface, AGI Book Vol #1</a></td>
+                        <td>E. Chang</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>1/7</td>
+                        <td><span class="topic-badge topic-reasoning">Reasoning #1</span> Pearl's Causality Hierarchy, and Assignment #1 Specification</td>
+                        <td><a href="https://drive.google.com/file/d/1_1Y-oQK4TtF71oBdHWsysZY48oriZtYI/view?usp=sharing">Slides</a> | <a href="https://youtu.be/05_Kn5jyf0Y">Recorded</a></td>
+                        <td>E. Chang</td>
+                        <td><span class="deadline"><a href="https://drive.google.com/file/d/1IHdpMY6OavflNN3CQjJYYUa8fmrYN9Wr/view?usp=sharing" style="color:white;border:none;">Assignment #1</a> out</span></td>
+                    </tr>
+                    <tr>
+                        <td>3</td>
+                        <td>1/12</td>
+                        <td><span class="topic-badge topic-reasoning">Reasoning #2</span> PID Architecture for Sycophancy and Skepticism</td>
+                        <td><a href="https://drive.google.com/file/d/1GDOyPFM1dCu1-QZ7fWSG34uXkFl4CN5o/view?usp=drive_link">Slides</a> | <a href="https://youtu.be/hz73HDUYr8w">Recorded</a> | AGI Book, Vol #2, Ch 6, 7</td>
+                        <td>E. Chang, Gloria Geng</td>
+                        <td>—</td>
+                    </tr>
+                    <tr>
+                        <td>4</td>
+                        <td>1/14</td>
+                        <td><span class="topic-badge topic-reasoning">Reasoning #3</span> Prompting Large Language Models With the Socratic Method</td>
+                        <td><a href="https://drive.google.com/file/d/1bIGKzOTkeBFcZ4vN5btMAHO4_wboqCAz/view?usp=sharing">Slides</a> | Recorded on Canvas | AGI Book, Vol #1, <a href="https://dl.acm.org/doi/10.1145/3749421.3749429">Chapter 5</a></td>
+                        <td>E. Chang</td>
+                        <td><span class="deadline">Assignment #1 due</span></td>
+                    </tr>
+                    <tr class="holiday-row">
+                        <td>5</td>
+                        <td>1/19</td>
+                        <td>Martin Luther King, Jr., Day (holiday, no classes)</td>
+                        <td></td>
+                        <td></td>
+                        <td><span class="deadline">Assignment #2 out</span></td>
+                    </tr>
+                    <tr>
+                        <td>6</td>
+                        <td>1/21</td>
+                        <td><span class="topic-badge topic-reasoning">Reasoning #4</span> Reasoning Recap and Planning Intro</td>
+                        <td><a href="https://drive.google.com/file/d/1aTgGYi3wDocyR6p6i-0aWZk9XkUoY5IO/view?usp=sharing">Slides</a> | Recorded on Canvas | AGI Book, Vol #2, Ch 4; Vol #1, <a href="https://dl.acm.org/doi/pdf/10.1145/3749421.3749436">Chapter 12</a></td>
+                        <td>E. Chang</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>7</td>
+                        <td>1/26</td>
+                        <td><span class="topic-badge topic-agi">AGI #1</span> Multi-LLM Agent Collaborative Intelligence</td>
+                        <td><a href="https://drive.google.com/file/d/1aqCtN4kN-qX4xTI8WicmKg5mpxoPSeoE/view?usp=sharing">Slides</a> | Recorded on Canvas | AGI Book, Vol #1, <a href="https://dl.acm.org/doi/10.1145/3749421.3749430">Chapters 6</a> and <a href="https://dl.acm.org/doi/10.1145/3749421.3749431">Chapter 7</a></td>
+                        <td>Class</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>8</td>
+                        <td>1/28</td>
+                        <td><span class="topic-badge topic-asi">ASI #1</span> What is Consciousness, System 2 Introduction</td>
+                        <td>Slides | <a href="https://youtu.be/MZ6nTRKDF6o">Recorded</a> | AGI Book, Vol #1, <a href="https://dl.acm.org/doi/10.1145/3749421.3749437">Chapters 13</a></td>
+                        <td>E. Chang</td>
+                        <td><span class="deadline">Assignment #2 due</span></td>
+                    </tr>
+                    <tr>
+                        <td>9</td>
+                        <td>2/2</td>
+                        <td><span class="topic-badge topic-agi">AGI #2</span> MACI Survey and Pathologies in Multi-Agent Debate Systems </td>
+                        <td><a href="https://drive.google.com/file/d/12geG8JGBMMnmXsT2DUQCDZmVdoImBvWN/view?usp=sharing">Slides</a> | Recorded Canvas | AGI Book, Vol #2, Chapter 8</td>
+                        <td>E. Chang</td>
+                        <td><span class="deadline">Final Project proposal due</span></td>
+                    </tr>
+                    <tr>
+                        <td>10</td>
+                        <td>2/4</td>
+                        <td><span class="topic-badge topic-asi">ASI #2</span> Computational Consciousness: Free Will, Ethic Modeling</td>
+                        <td>Slides | <a href="https://youtu.be/vfewpEGxoTQ">Recorded</a> | AGI Book, Vol #1, <a href="https://dl.acm.org/doi/10.1145/3749421.3749437">Chapters 13</a></td>
+                        <td>E. Chang</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>11</td>
+                        <td>2/9</td>
+                        <td><span class="topic-badge topic-reasoning">Reasoning #5</span> <a href="http://infolab.stanford.edu/~echang/SocraSynth.html">ERM: Epistemic Regret Minimization</a></td>
+                        <td><a href="https://drive.google.com/file/d/15mVr845kYRhMmHgPa2FQ0W0NbTvmU_tN/view?usp=sharing">Slides</a> | AGI Book Vol#2, Chapter 10</td>
+                        <td>E. Chang</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>12</td>
+                        <td>2/11</td>
+                        <td><span class="topic-badge topic-reasoning">Reasoning #6</span> <a href="https://www.researchgate.net/publication/389855859_SagaLLM_Context_Management_Validation_and_Transaction_Guarantees_for_Multi-Agent_LLM_Planning">SagaLLM: Context Management, Validation, and Transaction Guarantees</a></td>
+                        <td><a href="https://drive.google.com/file/d/1HT9qZTkgjoFS5XbykN406QENIfb94XIv/view?usp=sharing">Slides</a> | AGI Book Vol#1, Chapter 11</td>
+                        <td>E. Chang</td>
+                        <td></td>
+                    </tr>
+                    <tr class="holiday-row">
+                        <td>13</td>
+                        <td>2/16</td>
+                        <td>Presidents' Day (holiday, no classes)</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>14</td>
+                        <td>2/18</td>
+                        <td>Midterm Project Dash, Session 1</td>
+                        <td></td>
+                        <td>All</td>
+                        <td>—</td>
+                    </tr>
+                    <tr>
+                        <td>15</td>
+                        <td>2/23</td>
+                        <td>Midterm Project Dash, Session 2</td>
+                        <td></td>
+                        <td>All</td>
+                        <td>—</td>
+                    </tr>
+                    <tr>
+                        <td>16</td>
+                        <td>2/25</td>
+                        <td><span class="topic-badge topic-reasoning">Reasoning #7</span> TSO: Transactional Swarm Orchestration</td>
+                        <td><a href="">Slides</a> | AGI Book II, Chapter 9</td>
+                        <td>E. Chang</td>
+                        <td>—</td>
+                    </tr>
+                    <tr>
+                        <td>17</td>
+                        <td>3/2</td>
+                        <td><span class="topic-badge topic-agi">AGI #3</span> Collatz Dynamics as a Model World for Temporal-Spatial Optimization</td>
+                        <td>Slides |</td>
+                        <td>E. Chang</td>
+                        <td>—</td>
+                    </tr>
+                    <tr>
+                        <td>18</td>
+                        <td>3/4</td>
+                        <td><span class="topic-badge topic-asi">ASI #3</span> Summary & Real Wisdom</td>
+                        <td>Slides | </td>
+                        <td>E. Chang</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>19</td>
+                        <td>3/9</td>
+                        <td>Final Presentation</td>
+                        <td>Slides | <a href="https://SocraSynth.com">Readings</a></td>
+                        <td></td>
+                        <td>—</td>
+                    </tr>
+                    <tr>
+                        <td>20</td>
+                        <td>3/11</td>
+                        <td>Highlights of Natural Language Processing History, 70 Years in 70 Minutes</td>
+                        <td><a href="https://drive.google.com/file/d/1CyjM6BXVtP4cpZVvZ4ZnrxIBUqIxNGN0/view?usp=sharing">Slides</a> | <a href="https://youtu.be/-qnTP8N9E8I">Recorded Lecture</a> | Chapters 1, 2</td>
+                        <td></td>
+                        <td>—</td>
+                    </tr>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+</div>
+
+<footer>
+    <p>© 2025–26 Stanford University · CS372: AI for Reasoning, Planning, and Decision Making</p>
+</footer>
+
+</body>
+</html>

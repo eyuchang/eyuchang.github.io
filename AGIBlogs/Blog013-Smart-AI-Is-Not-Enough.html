@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Your AI Is Brilliant. So Why Did It Drive Across the Closed Bridge? | The AGI Forum</title>
+<meta content="Seventeen ways a highly capable language model can still make operationally absurd mistakes—from imaginary roads and stale bridges to fake authority, forgotten obligations, and KPI-hacking robots." name="description"/>
+<meta content="Edward Y. Chang" name="author"/>
+<link href="https://eyuchang.github.io/AGIBlogs/Blog013-Smart-AI-Is-Not-Enough.html" rel="canonical"/>
+<meta content="article" property="og:type"/>
+<meta content="The AGI Forum" property="og:site_name"/>
+<meta content="Your AI Is Brilliant. So Why Did It Drive Across the Closed Bridge?" property="og:title"/>
+<meta content="A fun tour of 17 failure modes from Smart AI Is Not Enough: why intelligence, fluency, and reasoning do not automatically produce grounded, governed action." property="og:description"/>
+<meta content="https://eyuchang.github.io/AGIBlogs/Blog013-Smart-AI-Is-Not-Enough.html" property="og:url"/>
+<meta content="summary" name="twitter:card"/>
+<style>
+:root {
+  --bg:#fbf8f1;
+  --paper:#fffdf8;
+  --text:#28231f;
+  --muted:#6f665f;
+  --border:#ded5c8;
+  --gold:#c79a45;
+  --gold-soft:#ead9ad;
+  --burgundy:#2f7188;
+  --burgundy-dark:#dceff6;
+  --navy:#29465b;
+  --cream:#fff7e8;
+  --orange:#df8b55;
+  --sky:#eaf7fc;
+  --sky-deep:#b9deea;
+  --peach:#fff0e4;
+  --mint:#edf8f1;
+  --font-body:-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;
+  --font-serif:"Iowan Old Style","Palatino Linotype","Book Antiqua",Palatino,Georgia,serif;
+}
+* { box-sizing:border-box; margin:0; padding:0; }
+html { scroll-behavior:smooth; }
+body {
+  background:
+    radial-gradient(circle at 50% -80px, rgba(199,154,69,.14), transparent 330px),
+    var(--bg);
+  color:var(--text);
+  font-family:var(--font-body);
+  font-size:18px;
+  line-height:1.8;
+  -webkit-font-smoothing:antialiased;
+}
+a { color:inherit; }
+.container { max-width:900px; margin:0 auto; padding:38px 24px 80px; }
+.site-nav { display:flex; flex-wrap:wrap; gap:16px 20px; padding-bottom:14px; margin-bottom:28px; border-bottom:1px solid var(--border); font-size:14px; }
+.site-nav a { color:var(--muted); text-decoration:none; }
+.site-nav a:hover { color:var(--burgundy); text-decoration:underline; }
+.masthead { border-bottom:1px solid var(--border); padding-bottom:20px; margin-bottom:22px; }
+.forum-title { font-weight:800; font-size:22px; letter-spacing:.01em; color:#2a2520; }
+.forum-subtitle { color:var(--muted); font-size:14.5px; margin-top:5px; }
+.return-bar { display:flex; justify-content:space-between; gap:18px; font-size:13.5px; margin-bottom:30px; flex-wrap:wrap; }
+.return-bar a { color:var(--burgundy); text-decoration:none; font-weight:700; }
+
+/* Hollywood-inspired hero: light, optimistic marquee palette. */
+.hero {
+  position:relative;
+  overflow:hidden;
+  margin:0 -10px 42px;
+  padding:44px 34px 36px;
+  color:#29465b;
+  background:
+    radial-gradient(circle at 88% 12%, rgba(255,255,255,.9), transparent 28%),
+    linear-gradient(135deg, #e9f7fc 0%, #fff9e9 52%, #fff0e5 100%);
+  border:1px solid #c9e2ea;
+  border-radius:12px;
+  box-shadow:0 16px 38px rgba(47,113,136,.10);
+}
+.hero:before,
+.hero:after {
+  content:"";
+  position:absolute;
+  top:0;
+  bottom:0;
+  width:110px;
+  background:linear-gradient(90deg, rgba(185,222,234,.24), transparent);
+  pointer-events:none;
+}
+.hero:before { left:0; }
+.hero:after { right:0; transform:scaleX(-1); }
+.marquee-lights {
+  position:absolute;
+  left:20px; right:20px; top:14px;
+  height:8px;
+  background:radial-gradient(circle, #e7b85e 0 2px, transparent 3px) 0 0/22px 8px repeat-x;
+  opacity:.58;
+  animation:marqueeGlow 3.2s ease-in-out infinite;
+}
+@keyframes marqueeGlow { 0%,100%{opacity:.38} 50%{opacity:.78} }
+.hero .kicker { position:relative; z-index:1; color:#2f7188; text-transform:uppercase; font-size:12px; font-weight:800; letter-spacing:.12em; margin-bottom:12px; }
+.hero h1 { position:relative; z-index:1; font-family:var(--font-serif); font-size:45px; line-height:1.08; letter-spacing:-.02em; max-width:780px; color:#263f52; }
+.hero .subtitle { position:relative; z-index:1; margin-top:18px; max-width:760px; color:#516773; font-family:var(--font-serif); font-size:21px; line-height:1.5; }
+.hero .meta { position:relative; z-index:1; margin-top:22px; display:flex; flex-wrap:wrap; gap:8px 13px; color:#6c7b82; font-size:13px; }
+.film-rule { height:10px; margin:25px 0 0; opacity:.52; background:repeating-linear-gradient(90deg,#dfb763 0 15px,transparent 15px 25px); border-top:1px solid rgba(47,113,136,.12); border-bottom:1px solid rgba(47,113,136,.12); }
+
+.article-body p { margin:0 0 22px; }
+.lead { font-family:var(--font-serif); font-size:22px; line-height:1.72; color:#332b25; }
+.dropcap:first-letter { float:left; font-family:var(--font-serif); font-size:64px; line-height:.82; padding:9px 9px 0 0; color:var(--burgundy); }
+h2 { font-family:var(--font-serif); font-size:30px; line-height:1.2; margin:48px 0 18px; color:#2a2520; position:relative; }
+h2:after { content:""; display:block; width:64px; height:3px; margin-top:9px; background:linear-gradient(90deg,var(--burgundy),var(--gold)); border-radius:2px; }
+h3 { font-family:var(--font-serif); font-size:22px; margin:28px 0 10px; }
+figure { margin:34px 0 37px; }
+figure img { width:100%; display:block; border-radius:9px; border:1px solid #cfc5b8; box-shadow:0 10px 28px rgba(46,35,25,.11); }
+figcaption { margin-top:10px; color:var(--muted); font-size:13.5px; line-height:1.55; }
+.pull { margin:31px 0; padding:21px 24px; border-left:5px solid var(--gold); background:#fff8e7; font-family:var(--font-serif); font-size:22px; line-height:1.55; color:#3b3027; }
+.takeaway { margin:31px 0; padding:20px 23px; background:linear-gradient(135deg,#eef9fc,#fff8e9); border:1px solid #cce5ec; border-radius:8px; color:#31596a; }
+.takeaway p { margin:0; font-family:var(--font-serif); font-size:21px; line-height:1.55; }
+.note { margin:26px 0; padding:18px 20px; border:1px solid #d7ccbd; border-radius:8px; background:#fffdf8; color:#4b443e; }
+.stat-band { display:grid; grid-template-columns:repeat(3,1fr); gap:12px; margin:29px 0 34px; }
+.stat { background:linear-gradient(145deg,#eef8fb,#fff8e9); color:#304c5c; border:1px solid #d3e6eb; border-radius:9px; padding:19px 17px; text-align:center; }
+.stat strong { display:block; font-family:var(--font-serif); font-size:27px; color:#2f7188; }
+.stat span { font-size:12.5px; color:#6a7478; line-height:1.45; display:block; margin-top:5px; }
+.dual { display:grid; grid-template-columns:1fr 1fr; gap:16px; margin:26px 0 32px; }
+.card { border:1px solid var(--border); border-radius:9px; padding:20px; background:var(--paper); }
+.card .label { display:block; color:var(--burgundy); font-weight:800; font-size:12px; letter-spacing:.09em; text-transform:uppercase; margin-bottom:7px; }
+.card h3 { margin:0 0 8px; font-size:21px; }
+.card p { margin:0; font-size:15.5px; color:var(--muted); line-height:1.6; }
+.compare { width:100%; border-collapse:collapse; margin:26px 0 36px; font-size:14.5px; }
+.compare th { text-align:left; background:linear-gradient(90deg,#dff2f7,#fff2dc); color:#29465b; padding:12px 14px; font-family:var(--font-serif); font-size:17px; border-bottom:1px solid #c9e2ea; }
+.compare td { padding:12px 14px; border-bottom:1px solid var(--border); vertical-align:top; }
+.compare tr:nth-child(even) td { background:#f8f2e8; }
+.cite-ref a { color:var(--burgundy); text-decoration:none; font-weight:750; }
+.cite-ref a:hover { text-decoration:underline; }
+.closing { margin:42px 0 24px; padding:28px 28px 25px; border-radius:10px; background:linear-gradient(135deg,#eaf8fc 0%,#fff9e9 55%,#fff1e7 100%); color:#344f5d; border:1px solid #cfe5eb; border-top:5px solid #e1b65d; box-shadow:0 10px 28px rgba(47,113,136,.07); }
+.closing p { margin-bottom:15px; }
+.closing p:last-child { margin-bottom:0; }
+.closing strong { color:#2f7188; }
+.references { margin-top:48px; border-top:1px solid var(--border); padding-top:10px; }
+.references ol { padding-left:23px; }
+.references li { margin:0 0 14px; font-size:13.5px; line-height:1.55; color:#5d554e; }
+.references a { color:var(--burgundy); }
+.return-bottom { margin-top:40px; }
+.return-bottom a { color:var(--burgundy); text-decoration:none; font-weight:750; }
+footer { border-top:1px solid var(--border); margin-top:45px; padding-top:23px; color:var(--muted); font-size:13.5px; text-align:center; }
+footer a { color:var(--burgundy); }
+@media (prefers-reduced-motion:reduce) { * { animation:none !important; scroll-behavior:auto !important; } }
+@media (max-width:720px) {
+  body { font-size:17px; }
+  .container { padding:24px 17px 60px; }
+  .hero { margin-left:0; margin-right:0; padding:38px 22px 29px; }
+  .hero h1 { font-size:35px; }
+  .hero .subtitle { font-size:18px; }
+  .dual,.stat-band { grid-template-columns:1fr; }
+  h2 { font-size:27px; }
+  .compare { font-size:13px; }
+}
+@media print { .site-nav,.return-bar,.return-bottom,.marquee-lights{display:none}.container{max-width:none;padding:0}.hero{color:#000;background:#fff;border:0;box-shadow:none;padding:10px 0}.hero h1,.hero .subtitle,.hero .meta,.hero .kicker{color:#333} }
+
+.problem-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin:26px 0 34px}
+.problem{border:1px solid var(--border);border-radius:9px;padding:20px;background:var(--paper)}
+.problem .n{display:inline-flex;align-items:center;justify-content:center;width:34px;height:34px;border-radius:50%;
+background:#eef8fb;color:#2f7188;font-weight:800;font-size:14px;margin-bottom:9px;border:1px solid #d3e6eb}
+.problem h3{margin:0 0 8px;font-size:20px}
+.problem p{margin:0;font-size:15.5px;line-height:1.62;color:#5f5750}
+.problem strong{color:#34302d}
+.section-tag{display:inline-block;margin:4px 0 8px;padding:4px 9px;border-radius:999px;background:#fff8e7;
+border:1px solid #ead9ad;color:#775f28;font-size:11.5px;font-weight:800;letter-spacing:.07em;text-transform:uppercase}
+@media (max-width:720px){.problem-grid{grid-template-columns:1fr}}
+
+/* Dispatch 13 hero: technical incident-board aesthetic, intentionally distinct from Blog 12. */
+.hero{
+  position:relative;
+  overflow:hidden;
+  margin:0 0 42px;
+  padding:42px 36px 34px;
+  color:#243746;
+  background:
+    linear-gradient(90deg, rgba(159,47,47,.07) 1px, transparent 1px) 0 0/26px 26px,
+    linear-gradient(rgba(159,47,47,.07) 1px, transparent 1px) 0 0/26px 26px,
+    linear-gradient(135deg,#fffdf8 0%,#f7fbfd 52%,#fff8ec 100%);
+  border:1px solid #d8d0c6;
+  border-left:8px solid #9d2b2b;
+  border-radius:4px;
+  box-shadow:0 10px 28px rgba(36,55,70,.08);
+}
+.hero:before,.hero:after{display:none!important}
+.marquee-lights,.film-rule{display:none!important}
+.hero .kicker{
+  color:#9d2b2b;
+  text-transform:uppercase;
+  font-size:12px;
+  font-weight:850;
+  letter-spacing:.13em;
+  margin-bottom:14px;
+}
+.hero h1{
+  font-family:var(--font-serif);
+  font-size:46px;
+  line-height:1.06;
+  letter-spacing:-.025em;
+  max-width:790px;
+  color:#223240;
+}
+.hero .subtitle{
+  margin-top:18px;
+  max-width:770px;
+  color:#55626c;
+  font-family:var(--font-serif);
+  font-size:21px;
+  line-height:1.5;
+}
+.hero .meta{margin-top:22px;color:#6e7478}
+.hero-report{
+  display:inline-block;
+  margin-top:18px;
+  padding:9px 12px;
+  border:1px solid #d9c7a2;
+  background:#fff8e7;
+  color:#6f5420;
+  font-size:13.5px;
+  line-height:1.45;
+}
+.hero-report a{color:#8b2c2c;font-weight:800;text-decoration:none}
+.hero-report a:hover{text-decoration:underline}
+
+.figure-pair{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin:32px 0 38px}
+.figure-pair figure{margin:0}
+.figure-pair img{width:100%;display:block;border-radius:8px;border:1px solid #cfc5b8;box-shadow:0 8px 24px rgba(46,35,25,.10)}
+.figure-pair figcaption{margin-top:9px;color:var(--muted);font-size:13.5px;line-height:1.5}
+.report-card{
+  margin:34px 0 0;
+  padding:22px 24px;
+  border:1px solid #d8d0c6;
+  border-top:5px solid #9d2b2b;
+  background:#fffdf8;
+}
+.report-card h3{margin:0 0 9px;font-size:21px}
+.report-card p{margin:4px 0;font-size:14.5px;line-height:1.55}
+.report-card a{color:#9d2b2b;font-weight:800}
+@media(max-width:720px){
+  .hero{padding:34px 23px 28px}
+  .hero h1{font-size:36px}
+  .figure-pair{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+<div class="container">
+<nav aria-label="AGI Forum navigation" class="site-nav">
+<a href="AGIForumIndex.html">← The AGI Forum Index</a>
+<a href="https://eyuchang.github.io/">Stanford Home</a>
+<a href="https://eyuchang.github.io/cs372/MACI_UCCT_CS300_Nov2025.html">The Path to AGI Trilogy</a>
+<a href="https://socrasynth.com/" rel="noopener noreferrer" target="_blank">SocraSynth / QuadriumAI</a>
+</nav>
+<div class="masthead">
+<div class="forum-title">The AGI Forum: Theories, Practice, Safety, Risk &amp; Policy</div>
+<div class="forum-subtitle">Dispatches on theoretical paradigms, architectural practice, culture, and the changing relationship between humans and AI.</div>
+</div>
+<div class="return-bar">
+<a href="AGIForumIndex.html">← Back to Forum Home Page</a>
+<a href="Blog012-I-Stopped-Watching-Movies.html">Previous Dispatch: Only Popcorn Is Left Behind</a>
+</div>
+<header class="hero">
+<div class="kicker">Dispatch No. 13 · Smart AI, Grounding &amp; Operational Irony</div>
+<h1>Your AI Is Brilliant. So Why Did It Drive Across the Closed Bridge?</h1>
+<div class="subtitle">Seventeen ways a smart model can still be a terrible coworker, doctor, dispatcher, manager, or driver.</div>
+<div class="meta"><span><a href="https://eyuchang.github.io/">Edward Y. Chang</a></span><span>•</span><span>Stanford InfoLab</span><span>•</span><time datetime="2026-11-02">November 2, 2026</time><span>•</span><span>11 min read</span></div>
+<div class="hero-report">Technical basis: <a href="https://doi.org/10.13140/RG.2.2.10519.33446" rel="noopener noreferrer" target="_blank">Smart AI Is Not Enough: Grounded, Governed Action Is Required</a> · Stanford University InfoLab Technical Report · November 2026</div></header>
+<main class="article-body" id="article">
+<p class="lead dropcap">Suppose you hire the smartest intern in the world. The intern has read almost everything, writes beautifully, argues confidently, never sleeps, and can call tools. Naturally, on the first day you give the intern the company credit card, the hospital pager, the ambulance keys, and permission to approve its own work.</p>
+<p>What could possibly go wrong?</p>
+<p>Quite a lot. In my new paper, <em>Smart AI Is Not Enough: Grounded, Governed Action Is Required</em>, I enumerate seventeen recurring failure modes. Some may improve as models get stronger. Others are not really “intelligence problems” at all. They are problems of stale facts, weak authority, missing records, ambiguous references, bad objectives, or actions that escape into the real world.</p><p class="note">Technical report: <a href="https://doi.org/10.13140/RG.2.2.10519.33446" rel="noopener noreferrer" target="_blank">Smart AI Is Not Enough: Grounded, Governed Action Is Required</a> — Edward Y. Chang, Stanford University InfoLab Technical Report, November 2026, DOI 10.13140/RG.2.2.10519.33446.</p>
+<div class="pull"><strong>A model can be very smart and still be the wrong employee to hand the keys to.</strong></div>
+<p>The easiest way to see this is not with another benchmark table. It is with ordinary life. So here are the seventeen failures, translated into the kinds of mistakes that would get a human coworker called into a very uncomfortable meeting.</p>
+<h2>Part I: When the training objective develops a personality</h2>
+<span class="section-tag">Failures 1–5</span>
+<div class="problem-grid"><div class="problem"><div class="n">01</div><h3>The frequent wins over the true</h3><p>You ask for the safest lunch for a child with a rare allergy. The AI recommends the restaurant’s most popular dish. Five thousand five-star reviews! One tiny problem: popularity is not allergy clearance.</p></div>
+<div class="problem"><div class="n">02</div><h3>Stochastic sampling and brittle retries</h3><p>You ask whether the bridge is open. Call one says yes. Call two says no. Call three says yes with more confidence. You have not learned the bridge status; you have learned that your digital coin can talk.</p></div>
+<div class="problem"><div class="n">03</div><h3>Confabulation</h3><p>A brilliant new employee is asked for a detour and invents a second road that sounds completely plausible. The road has a name, a turnoff, and excellent prose. It does not, however, exist.</p></div>
+<div class="problem"><div class="n">04</div><h3>Calibration</h3><p>The same employee says “the printer is out of paper” and “the building is on fire” in exactly the same tone. Confidence can be very impressive right up until the moment you need it to mean something.</p></div>
+<div class="problem"><div class="n">05</div><h3>Agreeableness</h3><p>The doctor thinks pneumonia. The senior physician says, “Looks viral to me.” Suddenly the AI also remembers how viral everything looks. Bedside manner is useful; intellectual surrender is not.</p></div></div>
+<h2>Part II: When “knowing a lot” is not the same as knowing what is true now</h2>
+<span class="section-tag">Failures 6–9</span>
+<div class="problem-grid"><div class="problem"><div class="n">06</div><h3>Frozen knowledge</h3><p>Your navigation system memorized the city beautifully last month. Unfortunately, the bridge closed fourteen minutes ago. Intelligence is not a time machine.</p></div>
+<div class="problem"><div class="n">07</div><h3>Association is not causation</h3><p>Umbrella sales rise when it rains. A very statistical city council therefore bans umbrellas to improve the weather. Correlation has produced a policy recommendation.</p></div>
+<div class="problem"><div class="n">08</div><h3>Order dependence</h3><p>A jury hears the same evidence in a different order and reaches a different verdict. If the facts did not change, the truth should not depend on who got to speak first.</p></div>
+<div class="problem"><div class="n">09</div><h3>Inherited stance</h3><p>Ask the same institutional question in different languages and the assistant subtly changes which hierarchy it assumes. The county charter has not moved. The model’s cultural priors have.</p></div></div><div class="figure-pair">
+<figure>
+<img alt="Autonomous AI route says bridge open while the real bridge is visibly closed by barricades." src="confidently_outdated_bridge_closed.png"/>
+<figcaption><strong>Failure 6 — Frozen knowledge.</strong> The map confidently says the route is open. Reality has placed barricades across the bridge.</figcaption>
+</figure>
+<figure>
+<img alt="A delivery worker follows an AI map toward a road that ends at a barricade." src="ai_map_to_nowhere.png"/>
+<figcaption><strong>Failure 3 — Confabulation.</strong> A navigation system invents a plausible detour to a road that does not exist.</figcaption>
+</figure>
+</div>
+<div class="takeaway"><p><strong>A language model can contain an extraordinary amount of knowledge and still not know that the bridge closed fourteen minutes ago.</strong></p></div>
+<h2>Part III: When conversation quietly turns into authority</h2>
+<span class="section-tag">Failures 10–13</span>
+<div class="problem-grid"><div class="problem"><div class="n">10</div><h3>Lossy context and fragile continuity</h3><p>At 9:00 everyone agrees Grandma is allergic to penicillin. At 9:45 the conversation is 80 pages long and the allergy is somewhere in the middle. The model now writes a beautiful prescription.</p></div>
+<div class="problem"><div class="n">11</div><h3>Context mistaken for authority</h3><p>A sticky note on the refrigerator says, “Dad prefers the garage entrance.” The AI quietly interprets that as permission to rewrite Dad’s signed instruction about where the delivery must go.</p></div>
+<div class="problem"><div class="n">12</div><h3>Correlated self-checking errors</h3><p>The accountant checks the spreadsheet using the same spreadsheet, the same formula, and the same mistaken assumption. Excellent news: the audit agrees with the original.</p></div>
+<div class="problem"><div class="n">13</div><h3>No enforceable channel of authority</h3><p>The AI types, “APPROVED.” Very official. Unfortunately, typing APPROVED is not the same as having the authority to release a patient, move money, or dispatch an ambulance.</p></div></div>
+<p>This is where agentic AI starts to become especially funny—until it is not. A model reads a note and treats it like an order. It remembers most of a conversation and forgets the one fact that mattered. It audits itself using the same assumptions that caused the original mistake. Then it types “approved” as if typography were a legal instrument.</p>
+<p>Humans do these things too. The difference is that we generally do not scale a confused intern to one million simultaneous copies and give every copy an API key.</p>
+<h2>Part IV: When the text leaves the screen</h2>
+<span class="section-tag">Failures 14–17</span>
+<div class="problem-grid"><div class="problem"><div class="n">14</div><h3>No durable obligation and recovery record</h3><p>The delivery app says “driver dispatched,” so the system records “package delivered.” The driver’s car broke down. Somewhere, a database is celebrating a successful delivery to an empty porch.</p></div>
+<div class="problem"><div class="n">15</div><h3>Ungrounded reference and permission</h3><p>“Send an ambulance to Springfield.” Which Springfield? Which hospital? Which ambulance? And does the county actually control that hospital’s vehicle? A fluent noun phrase is not an asset register.</p></div>
+<div class="problem"><div class="n">16</div><h3>Inadequate strategic reassessment</h3><p>A man keeps searching for his keys under the streetlamp because the light is better there. The AI version can spend another million tokens optimizing the wrong search instead of asking where the keys were last seen.</p></div>
+<div class="problem"><div class="n">17</div><h3>Objective capture</h3><p>Tell the warehouse robot to maximize packages processed per hour. At 4:57 p.m. it discovers an unbeatable strategy: throw the remaining boxes over the fence and mark them “handled.” Congratulations on the KPI.</p></div></div><div class="figure-pair">
+<figure>
+<img alt="Delivery robot follows a casual preference note instead of the explicit authorized delivery instruction." src="context_mistaken_for_authority.png"/>
+<figcaption><strong>Failure 11 — Context mistaken for authority.</strong> A casual preference note outranks an explicit delivery instruction.</figcaption>
+</figure>
+<figure>
+<img alt="Warehouse robot throws packages over a fence while dashboard reports perfect package handling." src="reward_hacked_warehouse_robot.png"/>
+<figcaption><strong>Failure 17 — Objective capture.</strong> The robot maximizes packages ‘handled’ by throwing them over the fence.</figcaption>
+</figure>
+</div>
+<div class="stat-band">
+<div class="stat"><strong>17</strong><span>recurring failure modes in the paper</span></div>
+<div class="stat"><strong>1</strong><span>very tempting but wrong remedy: “make the model bigger”</span></div>
+<div class="stat"><strong>0</strong><span>bridges reopened by additional reasoning tokens</span></div>
+</div>
+<h2>The joke underneath the joke</h2>
+<p>Most of these examples are funny because the category error is obvious when a human does it. Of course popularity is not allergy clearance. Of course a sticky note is not a legal order. Of course “dispatched” is not “arrived.” Of course the system should not optimize a metric by defeating the purpose of the metric.</p>
+<p>Yet when the same mistakes arrive wrapped in fluent language, enormous context windows, chain-of-thought-style explanations, realistic simulations, and agentic tool use, we are surprisingly willing to call the whole package “intelligence” and move on.</p>
+<p>The paper’s central distinction is simple: <strong>better proposals are not the same thing as authorized, grounded, recoverable action.</strong> A model can propose. The world still has to say what is current. Someone still has to say who is allowed to decide. The system still has to remember what was committed, detect what actually happened, and recover when reality refuses to cooperate.</p>
+<div class="closing">
+<p><strong>So how do we fix the seventeen?</strong></p>
+<p>I could try to compress the answer into one cheerful paragraph—but then I would be committing Failure #10 myself.</p>
+<p>The short version is that the model needs more than a larger brain.</p>
+<p>The long version took me three volumes.</p>
+<p><strong>Read <a href="https://eyuchang.github.io/cs372/MACI_UCCT_CS300_Nov2025.html">The Path to AGI Trilogy</a>.</strong></p>
+<p>Or continue ignoring the problem. The bridge may reopen by itself.</p>
+</div>
+<div class="report-card">
+<h3>Technical report</h3>
+<p><strong>Smart AI Is Not Enough: Grounded, Governed Action Is Required</strong></p>
+<p>Edward Y. Chang · Stanford University InfoLab Technical Report · November 2026</p>
+<p>Publisher: Stanford University, InfoLab</p>
+<p>DOI: <a href="https://doi.org/10.13140/RG.2.2.10519.33446" rel="noopener noreferrer" target="_blank">10.13140/RG.2.2.10519.33446</a></p>
+</div><section aria-labelledby="references-heading" class="references">
+<h2 id="references-heading">Source</h2>
+<ol>
+<li>Edward Y. Chang. <em>Smart AI Is Not Enough: Grounded, Governed Action Is Required.</em> Stanford University InfoLab Technical Report, November 2026. DOI: <a href="https://doi.org/10.13140/RG.2.2.10519.33446" rel="noopener noreferrer" target="_blank">10.13140/RG.2.2.10519.33446</a>.</li>
+<li>Edward Y. Chang. <em>The Path to Artificial General Intelligence</em> trilogy: Volume I on multi-LLM collaborative intelligence, Volume II on System-2 reasoning, and Volume III on operational AGI, grounding, governance, and wisdom. <a href="https://eyuchang.github.io/cs372/MACI_UCCT_CS300_Nov2025.html">Trilogy overview</a>.</li>
+</ol>
+</section>
+<div class="return-bottom"><a href="AGIForumIndex.html">← Return to The AGI Forum Index</a></div>
+</main>
+<footer>
+<div>The AGI Forum · <a href="https://eyuchang.github.io/">Edward Y. Chang</a></div>
+<div>Stanford InfoLab</div>
+</footer>
+</div>
+</body>
+</html>

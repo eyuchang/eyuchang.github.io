@@ -90,6 +90,19 @@
       font-size: .88rem;
     }
     nav.top a:hover { color: var(--gold); }
+    /* Winter 2027 course: always visible in the sticky navigation. */
+    nav.top a.course-nav, nav.top a.course-nav:link, nav.top a.course-nav:visited {
+      display: inline-block;
+      padding: .18rem .65rem;
+      border: 1px solid var(--gold) !important;
+      border-radius: 4px;
+      background: #42371b;
+      color: #fff1c9 !important;
+      font-weight: 700;
+      letter-spacing: .01em;
+    }
+    nav.top a.course-nav:hover { background: #66512a; color: #fff !important; }
+
     /* hero */
     header.hero {
       background: var(--ink);
@@ -263,6 +276,7 @@
 <nav class="top">
   <div class="wrap">
     <a class="name" href="#top">Edward Y. Chang</a>
+    <a class="course-nav" href="cs372/cs372-syllabus.html" aria-label="CS372 course, Winter 2027">CS372 · Winter 2027</a>
     <a href="AGIBlogs/AGIForumIndex.html" style="color:var(--gold) !important;font-weight:700;">The AGI Forum</a>
     <a href="cs372/MACI_UCCT_CS300_Nov2025.html" style="color:var(--gold) !important;font-weight:700;">The Trilogy</a>
     <a href="#positions">Positions</a>
@@ -293,6 +307,7 @@
       </p>
       <div class="links">
         <a class="featured" href="AGIBlogs/AGIForumIndex.html">The AGI Forum</a>
+        <a class="featured" href="cs372/cs372-syllabus.html">CS372 · Winter 2027</a>
         <a class="featured" href="cs372/MACI_UCCT_CS300_Nov2025.html">The Path to AGI Trilogy</a>
         <a href="https://socrasynth.com/" target="_blank" rel="noopener noreferrer">SocraSynth</a>
         <a href="bio-short-2026.html">Bio</a>
@@ -554,12 +569,30 @@
     
     <h3 style="margin-top:1.2rem">Working papers and preprints</h3>
 
+    <!-- Latest research additions, November 2026 -->
+    <div class="pub">
+      <span class="chip">November 2026</span><span class="chip gold">InfoLab Technical Report</span>
+      <div class="t">A World Model Cannot Be Trusted into Compliance: What Prediction Leaves Out</div>
+      <div class="a">Edward Y. Chang</div>
+      <div class="tl"><b>TL;DR:</b> A predictive world model does not, by prediction alone, establish current facts, authority, or permissible actions. Grounded operation requires additional evidence and commitment contracts.</div>
+      <div class="l"><a href="https://doi.org/10.13140/RG.2.2.35685.15841" target="_blank" rel="noopener noreferrer">DOI: 10.13140/RG.2.2.35685.15841</a> · <a href="https://scholar.google.com/citations?view_op=view_citation&amp;hl=en&amp;user=pZmOvyYAAAAJ&amp;sortby=pubdate&amp;citation_for_view=pZmOvyYAAAAJ:AeM5kdmBKVwC" target="_blank" rel="noopener noreferrer">Google Scholar</a></div>
+    </div>
+
+    <div class="pub">
+      <span class="chip">November 2026</span><span class="chip gold">InfoLab Technical Report</span>
+      <div class="t">Smart AI is not Enough: Grounded, Governed Action is Required</div>
+      <div class="a">Edward Y. Chang</div>
+      <div class="tl"><b>TL;DR:</b> Stronger models improve judgment but do not, by themselves, supply fresh evidence, delegated authority, auditable commitments, or verifiable outcomes for actions in the world.</div>
+      <div class="l"><a href="https://doi.org/10.13140/RG.2.2.10519.33446" target="_blank" rel="noopener noreferrer">DOI: 10.13140/RG.2.2.10519.33446</a> · <a href="https://scholar.google.com/citations?view_op=view_citation&amp;hl=en&amp;user=pZmOvyYAAAAJ&amp;sortby=pubdate&amp;citation_for_view=pZmOvyYAAAAJ:IF0FbId8XVwC" target="_blank" rel="noopener noreferrer">Google Scholar</a></div>
+    </div>
+
+
     <div class="pub">
       <span class="chip">October 2026</span><span class="chip gold">Zenodo</span>
       <div class="t">Predicting Semantic Transition Boundaries in Language Models: Anchor, Contextual Pressure, and Target-Specific Transfer</div>
       <div class="a">Edward Y. Chang, Ethan Y. Chang</div>
       <div class="tl"><b>TL;DR:</b> We predict where an unseen language model’s meanings flip under in-context evidence, with predictions committed before the run: the structure transfers, the scale does not, and recalibration costs eight families or two probes per item.</div>
-      <div class="l"><a href="https://doi.org/10.5281/zenodo.23329181" target="_blank" rel="noopener noreferrer">Zenodo</a></div>
+      <div class="l"><a href="https://doi.org/10.5281/zenodo.23329181" target="_blank" rel="noopener noreferrer">Zenodo</a> · <a href="https://scholar.google.com/citations?view_op=view_citation&amp;hl=en&amp;user=pZmOvyYAAAAJ&amp;sortby=pubdate&amp;citation_for_view=pZmOvyYAAAAJ:b2kfBsK7yCQC" target="_blank" rel="noopener noreferrer">Google Scholar</a></div>
     </div>
 
     <div class="pub">
@@ -567,15 +600,23 @@
       <div class="t">Coordinate-Free Hidden-State Diagnostics Measure In-Context Meaning Override</div>
       <div class="a">Edward Y. Chang, Ethan Y. Chang</div>
       <div class="tl"><b>TL;DR:</b> Measures when contextual examples override an established interpretation, separates leaving a prior from adopting its replacement, and develops coordinate-free hidden-state diagnostics that can reveal semantic movement before the final answer changes.</div>
-      <div class="l"><a href="https://zenodo.org/records/23271844" target="_blank" rel="noopener noreferrer">Zenodo</a></div>
+      <div class="l"><a href="https://zenodo.org/records/23271844" target="_blank" rel="noopener noreferrer">Zenodo</a> · <a href="https://scholar.google.com/citations?view_op=view_citation&amp;hl=en&amp;user=pZmOvyYAAAAJ&amp;sortby=pubdate&amp;citation_for_view=pZmOvyYAAAAJ:W1ZWpF0a3GIC" target="_blank" rel="noopener noreferrer">Google Scholar</a></div>
     </div>
 
     <div class="pub">
       <span class="chip">October 2026</span><span class="chip gold">Zenodo</span>
-emantic Transition Boundaries in Language Models: Anchor, Contextual Pressure, and Target-Specific Transfer
+<div class="t">Literal Integrity Is Not Semantic Integrity: Descriptive Records Re-anchor Unchanged Commands</div>
       <div class="a">Edward Y. Chang, Ethan Y. Chang</div>
       <div class="tl"><b>TL;DR:</b> Shows that non-imperative contextual records can change the operational meaning of an unchanged command, distinguishing literal and instruction integrity from semantic integrity and motivating authority-aware verification of the intended meaning.</div>
-      <div class="l"><a href="https://zenodo.org/records/23272326" target="_blank" rel="noopener noreferrer">Zenodo</a></div>
+      <div class="l"><a href="https://zenodo.org/records/23272326" target="_blank" rel="noopener noreferrer">Zenodo</a> · <a href="https://scholar.google.com/citations?view_op=view_citation&amp;hl=en&amp;user=pZmOvyYAAAAJ&amp;sortby=pubdate&amp;citation_for_view=pZmOvyYAAAAJ:dIILA_La5fwC" target="_blank" rel="noopener noreferrer">Google Scholar</a></div>
+    </div>
+
+    <div class="pub">
+      <span class="chip">2026</span><span class="chip gold">InfoLab Technical Report</span>
+      <div class="t">Learning Before Failure: The Preventable Moment</div>
+      <div class="a">Edward Y. Chang, Jaylan Roy</div>
+      <div class="tl"><b>TL;DR:</b> Studies how an agent can recognize when a past lesson applies and act on it before a similar failure occurs, rather than merely explaining errors afterward.</div>
+      <div class="l"><a href="https://zenodo.org/records/22309384" target="_blank" rel="noopener noreferrer">Zenodo</a> · <a href="https://scholar.google.com/citations?view_op=view_citation&amp;hl=en&amp;user=pZmOvyYAAAAJ&amp;sortby=pubdate&amp;citation_for_view=pZmOvyYAAAAJ:SoGhKUJvMTQC" target="_blank" rel="noopener noreferrer">Google Scholar</a></div>
     </div>
 
     <div class="pub">
@@ -607,7 +648,7 @@ emantic Transition Boundaries in Language Models: Anchor, Contextual Pressure, a
       <div class="t">TRACE: An Operational Reasoning Schema for Auditable Agentic Commitments</div>
       <div class="a">Edward Y. Chang and Emily J. Chang</div>
       <div class="tl"><b>TL;DR:</b> A typed, versioned schema for reasoning records and one operating discipline: no durable state change without a record. Argues in three layers that reasoning is not in the language model.</div>
-      <div class="l"><a href="https://arxiv.org/abs/2607.12480">arXiv</a> · <a href="bib/TRACE2026.bib">BibTeX</a></div>
+      <div class="l"><a href="https://arxiv.org/abs/2607.12480">arXiv</a> · <a href="https://scholar.google.com/citations?view_op=view_citation&amp;hl=en&amp;user=pZmOvyYAAAAJ&amp;sortby=pubdate&amp;citation_for_view=pZmOvyYAAAAJ:C6rTQemI8T8C" target="_blank" rel="noopener noreferrer">Google Scholar</a> · <a href="bib/TRACE2026.bib">BibTeX</a></div>
     </div>
 
     <div class="pub">
@@ -673,7 +714,7 @@ emantic Transition Boundaries in Language Models: Anchor, Contextual Pressure, a
       <div class="t">Beyond Intelligence: From Operational AGI to Wisdom (The Path to AGI, Vol. 3)</div>
       <div class="a">Edward Y. Chang</div>
       <div class="tl"><b>TL;DR:</b> Memory you can trust, effects you can audit, and a wisdom layer that governs what is optimized, restrained, and preserved across long-horizon cognitive and physical agency.</div>
-      <div class="l"><a href="https://www.amazon.com/dp/B0HJP9FL3L" target="_blank" rel="noopener noreferrer">Amazon</a> · <a href="https://zenodo.org/records/22738473" target="_blank" rel="noopener noreferrer">Zenodo</a> · <a href="bib/BeyondIntelligence2026.bib">BibTeX</a></div>
+      <div class="l"><a href="https://www.amazon.com/dp/B0HJP9FL3L" target="_blank" rel="noopener noreferrer">Amazon</a> · <a href="https://zenodo.org/records/22738473" target="_blank" rel="noopener noreferrer">Zenodo</a> · <a href="https://scholar.google.com/citations?view_op=view_citation&amp;hl=en&amp;user=pZmOvyYAAAAJ&amp;sortby=pubdate&amp;citation_for_view=pZmOvyYAAAAJ:fMcxjvj1mj8C" target="_blank" rel="noopener noreferrer">Google Scholar</a> · <a href="bib/BeyondIntelligence2026.bib">BibTeX</a></div>
     </div>
 
     <div class="pub">

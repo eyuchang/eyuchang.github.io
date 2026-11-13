@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Did LLMs Finish NLP? | The AGI Forum</title>
+<meta content="LLMs did not eliminate NLP tasks; they collapsed much of the old task-specific pipeline. What did they solve, what did they make newly possible, and what language-understanding problems remain?" name="description"/>
+<meta content="Edward Y. Chang" name="author"/>
+<link href="https://eyuchang.github.io/AGIBlogs/Blog014-Did-LLMs-Finish-NLP.html" rel="canonical"/>
+<meta content="article" property="og:type"/>
+<meta content="The AGI Forum" property="og:site_name"/>
+<meta content="Did LLMs Finish NLP?" property="og:title"/>
+<meta content="What LLMs solved, what they changed, and what language understanding still has left to do." property="og:description"/>
+<meta content="https://eyuchang.github.io/AGIBlogs/Blog014-Did-LLMs-Finish-NLP.html" property="og:url"/>
+<meta content="https://eyuchang.github.io/AGIBlogs/Blog014-Fig1-NLP-Then-and-Now.png" property="og:image"/>
+<meta content="From specialized NLP pipelines to one general language model." property="og:image:alt"/>
+<meta content="summary_large_image" name="twitter:card"/>
+<meta content="https://eyuchang.github.io/AGIBlogs/Blog014-Fig1-NLP-Then-and-Now.png" name="twitter:image"/>
+<style>
+:root {
+  --bg:#fbf8f1;
+  --paper:#fffdf8;
+  --text:#28231f;
+  --muted:#706860;
+  --border:#ded5c8;
+  --gold:#c79a45;
+  --gold-soft:#ead9ad;
+  --blue:#2f7188;
+  --blue-dark:#29465b;
+  --sky:#eaf7fc;
+  --sky-deep:#b9deea;
+  --teal:#2c8b78;
+  --green:#eaf6ef;
+  --warm:#fff2df;
+  --old:#7d7d7d;
+  --old-bg:#efefec;
+  --font-body:-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;
+  --font-serif:"Iowan Old Style","Palatino Linotype","Book Antiqua",Palatino,Georgia,serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  background:radial-gradient(circle at 50% -90px,rgba(199,154,69,.12),transparent 340px),var(--bg);
+  color:var(--text);font-family:var(--font-body);font-size:18px;line-height:1.8;
+  -webkit-font-smoothing:antialiased;
+}
+a{color:inherit}.container{max-width:900px;margin:0 auto;padding:38px 24px 80px}
+.site-nav{display:flex;flex-wrap:wrap;gap:16px 20px;padding-bottom:14px;margin-bottom:28px;border-bottom:1px solid var(--border);font-size:14px}
+.site-nav a{color:var(--muted);text-decoration:none}.site-nav a:hover{color:var(--blue);text-decoration:underline}
+.masthead{border-bottom:1px solid var(--border);padding-bottom:20px;margin-bottom:22px}
+.forum-title{font-weight:800;font-size:22px;letter-spacing:.01em;color:#2a2520}.forum-subtitle{color:var(--muted);font-size:14.5px;margin-top:5px}
+.return-bar{display:flex;justify-content:space-between;gap:18px;font-size:13.5px;margin-bottom:30px;flex-wrap:wrap}.return-bar a{color:var(--blue);text-decoration:none;font-weight:700}
+.hero{position:relative;overflow:hidden;margin:0 0 42px;padding:44px 36px 34px;border:1px solid #cfd8dc;border-radius:7px;box-shadow:0 12px 30px rgba(41,70,91,.09);background:linear-gradient(90deg,#e6e5e1 0%,#f2f0eb 35%,#eef9fc 62%,#fff4df 100%)}
+.hero:after{content:"";position:absolute;left:48%;top:0;bottom:0;width:2px;background:linear-gradient(180deg,transparent,#c9d6dc 18%,#8ec9dc 50%,#e6c779 82%,transparent)}
+.hero .kicker{position:relative;z-index:1;color:#53636d;text-transform:uppercase;font-size:12px;font-weight:850;letter-spacing:.13em;margin-bottom:14px}.hero h1{position:relative;z-index:1;font-family:var(--font-serif);font-size:48px;line-height:1.04;letter-spacing:-.025em;max-width:790px;color:#223240}.hero .subtitle{position:relative;z-index:1;margin-top:18px;max-width:770px;color:#55626c;font-family:var(--font-serif);font-size:21px;line-height:1.5}.hero .meta{position:relative;z-index:1;margin-top:22px;color:#6e7478;font-size:13px;display:flex;flex-wrap:wrap;gap:8px 12px}
+.hero-split{position:relative;z-index:1;display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:28px}.hero-half{padding:12px 14px;border-radius:8px;font-size:12.5px;line-height:1.45}.hero-half.old{background:rgba(255,255,255,.58);border:1px solid #c8c7c2;color:#6a6965;filter:grayscale(1)}.hero-half.new{background:rgba(255,255,255,.74);border:1px solid #b9dfe9;color:#31586b}.hero-half strong{display:block;font-size:13px;letter-spacing:.06em;text-transform:uppercase;margin-bottom:6px}
+.article-body p{margin:0 0 22px}.lead{font-family:var(--font-serif);font-size:22px;line-height:1.72;color:#332b25}.dropcap:first-letter{float:left;font-family:var(--font-serif);font-size:64px;line-height:.82;padding:9px 9px 0 0;color:var(--blue)}
+h2{font-family:var(--font-serif);font-size:30px;line-height:1.2;margin:50px 0 18px;color:#2a2520;position:relative}h2:after{content:"";display:block;width:64px;height:3px;margin-top:9px;background:linear-gradient(90deg,var(--blue),var(--gold));border-radius:2px}h3{font-family:var(--font-serif);font-size:22px;margin:28px 0 10px}
+.pull{margin:31px 0;padding:21px 24px;border-left:5px solid var(--gold);background:#fff8e7;font-family:var(--font-serif);font-size:22px;line-height:1.55;color:#3b3027}.takeaway{margin:31px 0;padding:20px 23px;background:linear-gradient(135deg,#eef9fc,#fff8e9);border:1px solid #cce5ec;border-radius:8px;color:#31596a}.takeaway p{margin:0;font-family:var(--font-serif);font-size:21px;line-height:1.55}.note{margin:26px 0;padding:18px 20px;border:1px solid #d7ccbd;border-radius:8px;background:#fffdf8;color:#4b443e}
+.compare{width:100%;border-collapse:collapse;margin:27px 0 36px;font-size:14.5px}.compare th{text-align:left;background:linear-gradient(90deg,#e8e8e5,#dff2f7,#fff2dc);color:#29465b;padding:12px 14px;font-family:var(--font-serif);font-size:17px;border-bottom:1px solid #c9e2ea}.compare td{padding:12px 14px;border-bottom:1px solid var(--border);vertical-align:top}.compare tr:nth-child(even) td{background:#faf6ed}
+.pipeline{display:grid;grid-template-columns:1fr 70px 1fr;align-items:stretch;gap:12px;margin:30px 0 36px}.pipe-panel{border:1px solid var(--border);border-radius:10px;padding:21px;background:var(--paper)}.pipe-panel.old{background:linear-gradient(145deg,#ededeb,#f8f8f5);filter:grayscale(1);opacity:.86}.pipe-panel.new{background:linear-gradient(145deg,#edf9fc,#fff7e7);border-color:#cfe5eb}.pipe-title{font-family:var(--font-serif);font-size:21px;margin-bottom:14px}.pipe-nodes{display:flex;flex-wrap:wrap;gap:8px}.node{padding:8px 10px;border-radius:7px;border:1px solid #cfcfc9;background:#fff;font-size:13px;font-weight:700}.old .node{color:#666;background:#f7f7f4}.new .node{border-color:#bfe0e9;color:#31596a;background:#fff}.arrow-col{display:flex;align-items:center;justify-content:center;font-size:44px;color:#72a9bd;font-weight:700}.llm-core{display:inline-block;padding:16px 20px;margin:4px 0 12px;border-radius:13px;background:linear-gradient(135deg,#dff4fa,#fff0c9);border:1px solid #b8dce7;color:#29465b;font-weight:900;box-shadow:0 7px 20px rgba(47,113,136,.09)}
+.dual{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin:26px 0 32px}.card{border:1px solid var(--border);border-radius:9px;padding:20px;background:var(--paper)}.card.old{background:#f1f0ed;filter:grayscale(1);opacity:.86}.card.new{background:linear-gradient(145deg,#eef9fc,#fffaf0);border-color:#cde4eb}.card .label{display:block;color:var(--blue);font-weight:800;font-size:12px;letter-spacing:.09em;text-transform:uppercase;margin-bottom:7px}.card h3{margin:0 0 8px;font-size:21px}.card p{margin:0;font-size:15.5px;color:var(--muted);line-height:1.6}
+.problem-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin:26px 0 34px}.problem{border:1px solid var(--border);border-radius:9px;padding:20px;background:var(--paper)}.problem .n{display:inline-flex;align-items:center;justify-content:center;width:34px;height:34px;border-radius:50%;background:#eef8fb;color:#2f7188;font-weight:800;font-size:14px;margin-bottom:9px;border:1px solid #d3e6eb}.problem h3{margin:0 0 8px;font-size:20px}.problem p{margin:0;font-size:15.5px;line-height:1.62;color:#5f5750}.section-tag{display:inline-block;margin:4px 0 8px;padding:4px 9px;border-radius:999px;background:#fff8e7;border:1px solid #ead9ad;color:#775f28;font-size:11.5px;font-weight:800;letter-spacing:.07em;text-transform:uppercase}
+.schema-figure{display:grid;grid-template-columns:1fr 70px 1fr;align-items:center;gap:14px;margin:30px 0 36px}.schema-box{border:1px solid var(--border);border-radius:10px;padding:18px;background:#fffdf8}.schema-box.old{background:#eeeeeb;color:#696864;filter:grayscale(1)}.schema-box.new{background:linear-gradient(145deg,#edf9fc,#eff8f1);border-color:#c8e5df}.schema-head{font-family:var(--font-serif);font-size:20px;font-weight:700;margin-bottom:10px}.db-table{border:1px solid #c9c5bd;border-radius:6px;overflow:hidden;font-size:13px}.db-table div{padding:7px 9px;border-bottom:1px solid #ddd8cf;background:#fff}.db-table div:last-child{border-bottom:0}.db-table .head{font-weight:800;background:#f4f1ea}.schema-box.new .db-table .promoted{background:#e2f5ea;color:#245e4f;font-weight:800}.schema-notes{font-size:13px;line-height:1.5;margin-top:10px}.schema-arrow{text-align:center;color:#72a9bd;font-weight:800;font-size:38px}.schema-arrow span{display:block;font-size:11px;line-height:1.25;color:#6b777d;margin-top:4px}
+.roadmap{display:grid;grid-template-columns:1fr 1fr 1fr;gap:13px;margin:30px 0 34px}.road{border:1px solid var(--border);border-radius:10px;padding:18px}.road.r1{background:#ededeb;filter:grayscale(1);color:#666}.road.r2{background:#eaf7fc;color:#31596a;border-color:#cce5ec}.road.r3{background:linear-gradient(145deg,#fff2de,#edf8f1);color:#4a5d4f;border-color:#e2d4b7}.road strong{display:block;font-family:var(--font-serif);font-size:22px;margin-bottom:6px}.road p{margin:0;font-size:14px;line-height:1.55}
+.closing{margin:42px 0 24px;padding:28px 28px 25px;border-radius:10px;background:linear-gradient(135deg,#eaf8fc 0%,#fff9e9 55%,#fff1e7 100%);color:#344f5d;border:1px solid #cfe5eb;border-top:5px solid #e1b65d;box-shadow:0 10px 28px rgba(47,113,136,.07)}.closing p{margin-bottom:15px}.closing p:last-child{margin-bottom:0}.closing strong{color:#2f7188}.return-bottom{margin-top:40px}.return-bottom a{color:var(--blue);text-decoration:none;font-weight:750}footer{border-top:1px solid var(--border);margin-top:45px;padding-top:23px;color:var(--muted);font-size:13.5px;text-align:center}footer a{color:var(--blue)}
+@media(max-width:720px){body{font-size:17px}.container{padding:24px 17px 60px}.hero{padding:36px 23px 28px}.hero h1{font-size:37px}.hero .subtitle{font-size:18px}.hero-split,.dual,.problem-grid,.roadmap{grid-template-columns:1fr}.pipeline,.schema-figure{grid-template-columns:1fr}.arrow-col,.schema-arrow{transform:rotate(90deg)}h2{font-size:27px}.compare{font-size:13px}}
+@media print{.site-nav,.return-bar,.return-bottom{display:none}.container{max-width:none;padding:0}.hero{background:#fff;border:0;box-shadow:none;padding:10px 0}.hero:after{display:none}}
+
+.cite-ref{color:var(--blue);text-decoration:none;font-weight:800;font-size:.82em;vertical-align:super;line-height:0}.cite-ref:hover{text-decoration:underline}
+.references{margin:48px 0 34px;border-top:1px solid var(--border);padding-top:2px}.references h2{margin-top:32px}.references ol{padding-left:24px}.references li{margin:0 0 13px;color:#5d554e;font-size:13.5px;line-height:1.55}.references a{color:var(--blue);font-weight:700;text-decoration:none}.references a:hover{text-decoration:underline}
+.roadmap.four{grid-template-columns:repeat(4,1fr)}.road.r15{background:#f1f1ee;color:#596169;border-color:#d7d7d0}.road.r15 strong{color:#49555e}
+@media(max-width:900px) and (min-width:721px){.roadmap.four{grid-template-columns:1fr 1fr}}
+
+.hero-figure{margin:0 0 42px}
+.hero-figure img{display:block;width:100%;height:auto;border-radius:12px;border:1px solid #cfd8dc;box-shadow:0 14px 34px rgba(41,70,91,.11);background:#fff}
+.hero-figure figcaption{margin-top:10px;color:var(--muted);font-size:13.5px;line-height:1.55}
+.sr-only{position:absolute!important;width:1px!important;height:1px!important;padding:0!important;margin:-1px!important;overflow:hidden!important;clip:rect(0,0,0,0)!important;white-space:nowrap!important;border:0!important}
+
+</style>
+</head>
+<body>
+<div class="container">
+<nav aria-label="AGI Forum navigation" class="site-nav">
+<a href="AGIForumIndex.html">← The AGI Forum Index</a>
+<a href="https://eyuchang.github.io/">Stanford Home</a>
+<a href="https://eyuchang.github.io/cs372/MACI_UCCT_CS300_Nov2025.html">The Path to AGI Trilogy</a>
+<a href="https://socrasynth.com/" rel="noopener noreferrer" target="_blank">SocraSynth / QuadriumAI</a>
+</nav>
+<div class="masthead">
+<div class="forum-title">The AGI Forum: Theories, Practice, Safety, Risk &amp; Policy</div>
+<div class="forum-subtitle">Dispatches on theoretical paradigms, architectural practice, culture, and the changing relationship between humans and AI.</div>
+</div>
+<div class="return-bar">
+<a href="AGIForumIndex.html">← Back to Forum Home Page</a>
+<a href="Blog013-Smart-AI-Is-Not-Enough.html">Previous Dispatch: Your AI Is Brilliant. So Why Did It Drive Across the Closed Bridge?</a>
+</div>
+<header class="sr-only">
+<div class="kicker">Dispatch No. 14 · NLP, NLU &amp; Foundation Models</div>
+<h1>Did LLMs Finish NLP?</h1>
+<div class="subtitle">What they solved, what they changed, and what language understanding still has left to do.</div>
+<div class="meta"><span>Edward Y. Chang</span><span>•</span><span>Stanford InfoLab</span><span>•</span><time datetime="2026-11-12">November 12, 2026</time><span>•</span><span>11 min read</span></div>
+</header>
+<figure class="hero-figure">
+<img alt="Then and now: a faded classical NLP scene with many separate specialist modules such as POS tagging, parsing, NER, coreference, translation and summarization, contrasted with a colorful modern LLM handling many language tasks through one general model." src="Blog014-Fig1-NLP-Then-and-Now.png"/>
+<figcaption><strong>From Specialized NLP Pipelines to One General Language Model.</strong> The old stack decomposed language into separately trained modules; the LLM era increasingly exposes those capabilities through one general language interface.</figcaption>
+</figure>
+<main class="article-body" id="article">
+<p class="lead dropcap">For several decades, natural language processing looked like a very large toolbox. Need to identify nouns and verbs? Build a part-of-speech tagger. Need to find people and companies? Train a named-entity recognizer. Need sentence structure? Build a parser. Need translation, question answering, summarization, sentiment, coreference, or information extraction? Each problem acquired its own dataset, labels, architecture, benchmark, and research community.</p>
+<p>Then the large language model arrived.</p>
+<p>Today I can give one model a document and say: find every person, organization, drug, and date. Then classify each statement as observation, recommendation, promise, or obligation. Then translate the result into Japanese. Then summarize the disagreement. Then rewrite the summary for a twelve-year-old.</p>
+<p>No new training set. No new model. No new architecture.</p>
+<div class="pull"><strong>LLMs did not eliminate NLP tasks. They challenged the assumption that every NLP task needs its own model, its own labeled training set, and its own pipeline.</strong></div>
+<p>So here is the uncomfortable question: <strong>Did LLMs finish NLP?</strong></p>
+<p>Not completely. But they may have finished much more of the <em>old NLP agenda</em> than we are accustomed to admitting. A useful way to ask the question is to separate four things: what NLP historically tried to do, what LLMs improved, what LLMs made newly possible, and what language-understanding problems remain.</p>
+<h2>1. What was NLP/NLU trying to accomplish?</h2>
+<p>At the highest level, NLP and natural language understanding have long tried to connect <strong>linguistic form with linguistic meaning</strong>. The field made progress by decomposing this broad problem into smaller, measurable tasks.</p>
+<table class="compare">
+<thead><tr><th>Layer</th><th>Representative classical NLP/NLU functions</th></tr></thead>
+<tbody>
+<tr><td>Surface</td><td>Tokenization, sentence segmentation, spelling, normalization</td></tr>
+<tr><td>Morphology</td><td>Stemming, lemmatization, morphological analysis</td></tr>
+<tr><td>Syntax</td><td>POS tagging, constituency parsing, dependency parsing</td></tr>
+<tr><td>Semantics</td><td>Word sense, named entities, semantic roles, relations, events</td></tr>
+<tr><td>Discourse</td><td>Coreference, discourse relations, topic structure, dialogue acts</td></tr>
+<tr><td>Applications</td><td>Translation, sentiment, question answering, summarization, information extraction, generation</td></tr>
+</tbody>
+</table>
+<p>This decomposition was enormously productive. It turned the vague question “Can a computer understand language?” into scientific problems that could be trained, measured, compared, and improved.</p>
+<p>But it also created a habit: <strong>different language functions were usually implemented as different trained systems.</strong> Even before today’s LLMs, that boundary was already weakening. Shared neural representations, multitask learning, text-to-text transfer, and large pretrained models progressively unified tasks that once required separate architectures. Collobert et al., decaNLP, and T5 are important milestones in that transition. <a class="cite-ref" href="#ref-6">[6]</a> <a class="cite-ref" href="#ref-7">[7]</a> <a class="cite-ref" href="#ref-8">[8]</a></p>
+<p>The LLM era did not begin from zero. It completed a long movement from <em>one model per task</em> toward <em>one general language model for many tasks</em>.</p>
+<h2>2. What did LLMs change?</h2>
+<p>There are two different stories here, and they should not be confused.</p>
+<h3>First: LLMs became better implementations of many existing NLP functions</h3>
+<p>Translation, sentiment analysis, named-entity recognition, relation extraction, grammatical correction, summarization, paraphrasing, text classification, question answering, semantic similarity, and many forms of coreference can now be handled by the same general model.</p>
+<div class="pipeline">
+<div class="pipe-panel old">
+<div class="pipe-title">Traditional NLP pipeline</div>
+<div class="pipe-nodes">
+<span class="node">Tokenizer</span><span class="node">POS</span><span class="node">Parser</span><span class="node">NER</span><span class="node">Coreference</span><span class="node">Classifier</span><span class="node">MT</span>
+</div>
+</div>
+<div class="arrow-col">→</div>
+<div class="pipe-panel new">
+<div class="pipe-title">LLM era</div>
+<div class="llm-core">One general language model</div>
+<div class="pipe-nodes"><span class="node">Translate</span><span class="node">Extract</span><span class="node">Summarize</span><span class="node">Classify</span><span class="node">Rewrite</span><span class="node">Answer</span></div>
+</div>
+</div>
+<p>Some remaining weaknesses may simply be <strong>coverage problems</strong>. If an LLM translates an obscure language poorly because its training corpus contains little of that language, I hesitate to call this a fundamental failure of the paradigm. More representative multilingual data, better tokenization, more capacity, and better training may substantially close the gap.</p>
+<p>The same caution applies to rare morphology, minority dialects, specialist terminology, and uncommon entity classes. A weak result on a weakly represented language may tell us more about the corpus than about the ultimate capability of autoregressive language modeling.</p>
+<div class="takeaway"><p><strong>If the problem is simply “the model has not seen enough representative language,” scaling and better data may be a sufficient remedy.</strong></p></div>
+<h3>Second: LLMs introduced capabilities that traditional NLP pipelines rarely had in general form</h3>
+<div class="dual">
+<div class="card old"><span class="label">Classical pattern</span><h3>Task first, model second</h3><p>Define labels, write annotation guidelines, collect examples, label them, train a model, evaluate it, then deploy it.</p></div>
+<div class="card new"><span class="label">LLM pattern</span><h3>Describe the task in language</h3><p>Define the categories and desired behavior at inference time, often without retraining the model at all.</p></div>
+</div>
+<p>The deeper revolution is not merely that an LLM is a better sentiment analyzer. It is that <strong>natural language itself has become a task-definition interface</strong>.</p>
+<p>I can say: “Find every statement that constitutes a promise, legal obligation, preference, recommendation, or factual observation.” Those labels need not have been hard-wired into a trained classifier. The schema can be introduced on the fly.</p>
+<p>This creates capabilities that are qualitatively different from merely getting a higher F1 score: <strong>dynamic schemas, in-context task acquisition, open-ended transformation, and composition of formerly separate NLP functions in one instruction.</strong> GPT-3 made this in-context mode conspicuous at scale; in my UCCT work, I describe the underlying phenomenon as semantic anchoring over a learned pattern repository. <a class="cite-ref" href="#ref-9">[9]</a> <a class="cite-ref" href="#ref-12">[12]</a></p>
+<div class="pull"><strong>The LLM did not merely outperform individual NLP modules. It made the task specification itself conversational.</strong></div>
+<h2>3. Where are LLMs still not enough — and where do specialists still win?</h2>
+<p>Again, two categories matter, but they answer different questions.</p>
+<span class="section-tag">Category A · Coverage-limited gaps</span>
+<h3>Not good enough yet — but perhaps scale can fix it</h3>
+<p>Low-resource languages, rare terminology, minority dialects, obscure entity classes, uncommon morphology, and unusual translation pairs may all improve as representative training exposure rises. These are important engineering problems, but we should be cautious about treating them as deep architectural limitations.</p>
+<p>Information extraction illustrates the point. GPT-4-era systems showed a visible gap from task-specific state of the art across many IE settings, including missing spans and offset errors. <a class="cite-ref" href="#ref-3">[3]</a> That evidence says the systems were not yet good enough; it does <em>not</em>, by itself, prove that scale and better training cannot close much of the gap.</p>
+<span class="section-tag">Category B · Contract-limited deployment</span>
+<h3>The application may require a stricter computational contract</h3>
+<p>A specialized NLP system may still be preferable even when the LLM understands the language better.</p>
+<p>Suppose the input is:</p>
+<div class="note"><strong>Barack Obama visited New York.</strong></div>
+<p>An LLM easily recognizes <em>Barack Obama</em> as a person and <em>New York</em> as a location. But a production system may require exact character offsets, one label for every token, deterministic output, fixed latency, and no content absent from the input.</p>
+<p>Constrained decoding and structured-output modes can now guarantee syntactically legal JSON or other grammar-constrained outputs, so “hard structure” alone is no longer a durable advantage of a specialist. Efficient guided generation can enforce regular-expression or context-free-grammar constraints, although restricting the output format can itself trade off with task quality. <a class="cite-ref" href="#ref-14">[14]</a> <a class="cite-ref" href="#ref-4">[4]</a> Classical sequence models such as CRFs offer a different kind of guarantee: under the model’s structure, every input position receives a label. <a class="cite-ref" href="#ref-15">[15]</a> That is <em>coverage by construction</em>, not a guarantee that the labels are semantically correct or that recall is perfect.</p>
+<table class="compare">
+<thead><tr><th>Requirement</th><th>Why a specialist may still win</th></tr></thead>
+<tbody>
+<tr><td>Exact alignment</td><td>Every output can be tied to an exact token or character span by construction.</td></tr>
+<tr><td>Per-token coverage</td><td>Every input token can be forced to receive a label; this is structural coverage, not guaranteed semantic recall.</td></tr>
+<tr><td>Determinism</td><td>Identical input can reliably yield the same annotation under a fixed model and decoder.</td></tr>
+<tr><td>Latency and cost</td><td>A compact specialist can process large streams far faster and more cheaply than a frontier autoregressive model.</td></tr>
+</tbody>
+</table>
+<div class="takeaway"><p><strong>A specialized NLP model may survive not because it knows more language, but because it obeys a tighter operational contract.</strong></p></div>
+<h2>4. What NLP/NLU problems actually remain unsolved?</h2>
+<p>I want to keep this discussion focused on NLP. I am <strong>not</strong> counting causal reasoning, long-horizon planning, physical-world grounding, transactions, or general governance as NLP problems here. This is not a clean ontological boundary: pragmatics, discourse, and reference can draw on world knowledge and models of speakers’ beliefs. I therefore use a practical editorial boundary: the problem stays in this section when the <strong>requested output is primarily a linguistic or semantic interpretation of text</strong>; broader reasoning and acting problems are left for a separate discussion.</p>
+<p>This distinction also resolves an apparent contradiction. More multilingual data may close many <em>coverage</em> gaps in translation, while a separate research problem remains: preserving meaning dimensions that do not map one-to-one across languages, such as evidentiality, politeness, social hierarchy, or culturally specific categories.</p>
+<div class="problem-grid">
+<div class="problem"><div class="n">01</div><h3>Recognizing ambiguity</h3><p>The open problem is not whether a model can solve a familiar “telescope” sentence. It is whether the system can recognize when several readings remain genuinely live, represent them explicitly, and know when not to collapse them into one. On AmbiEnt, crowdworkers judged only 32% of GPT-4’s generated disambiguations correct, versus 90% for the dataset’s own disambiguations. <a class="cite-ref" href="#ref-2">[2]</a></p></div>
+<div class="problem"><div class="n">02</div><h3>Pragmatics under uncertainty</h3><p>Frontier models can handle many textbook implicatures and indirect requests. The open problem is calibrated pragmatics: deciding which interpretation a particular context licenses, which is merely plausible, and when sarcasm, politeness, euphemism, presupposition, or indirectness should remain unresolved rather than be guessed. Fine-grained comparisons find strong performance on several pragmatic phenomena but persistent weakness when interpretation depends on violated social expectations. <a class="cite-ref" href="#ref-16">[16]</a></p></div>
+<div class="problem"><div class="n">03</div><h3>Long-range discourse and perspective</h3><p>Across long documents, a system may need to maintain entity identity, speaker perspective, quoted belief, changing roles, retracted claims, and conditions introduced many pages earlier. Long context makes the evidence available; it does not guarantee that discourse state is represented correctly.</p></div>
+<div class="problem"><div class="n">04</div><h3>Implicit and bridging relations</h3><p>Easy part-whole cases are often handled well. The harder problem is novel, domain-specific bridging: inferring an unstated relation from dispersed context while representing uncertainty rather than silently inventing the link. Bridging has been recognized as a core language-understanding problem since Clark’s classic treatment of indirect reference. <a class="cite-ref" href="#ref-17">[17]</a></p></div>
+<div class="problem"><div class="n">05</div><h3>Explicit semantics</h3><p>A fluent paraphrase is not the same as a stable, compositional semantic representation. For some applications we still need meanings that can be inspected, compared, executed, or formally related across sentences. The old distinction between linguistic form and meaning has not disappeared. <a class="cite-ref" href="#ref-10">[10]</a></p></div>
+<div class="problem"><div class="n">06</div><h3>Faithful open-schema extraction</h3><p>The hard case is semantic completeness under a new ontology: identify the relevant entities and relations, distinguish uncertain from absent information, and avoid adding plausible facts that the source never states. Exact offsets are an engineering contract from Section 3; semantic completeness and faithfulness are the NLU problem.</p></div>
+<div class="problem"><div class="n">07</div><h3>Faithful summarization</h3><p>Fluent compression is largely solved. Faithful compression is not: what must be retained, what may be omitted, how should uncertainty survive, and how do we prevent a concise summary from introducing a claim absent from the source? Factuality errors in abstractive summarization long predate current frontier models. <a class="cite-ref" href="#ref-11">[11]</a></p></div>
+<div class="problem"><div class="n">08</div><h3>Multilingual semantic preservation</h3><p>More data can improve translation coverage. A different problem remains when languages carve meaning differently: evidentiality, politeness, kinship, responsibility, modality, and social status may not have one-to-one equivalents. Translation quality and semantic equivalence are related but not identical.</p></div>
+<div class="problem"><div class="n">09</div><h3>Evaluation with many valid answers</h3><p>Translation, summarization, paraphrasing, dialogue, and interpretation can have multiple valid outputs. A single reference answer is therefore often an inadequate gold standard. Evaluation must distinguish semantic equivalence, partial coverage, stylistic variation, and genuine meaning errors.</p></div>
+<div class="problem"><div class="n">10</div><h3>Semantic integrity</h3><p>An unchanged string can acquire a different interpretation after new contextual material arrives. The NLP problem is to detect when the meaning attached to a stable instruction has drifted, distinguish legitimate disambiguation from semantic redefinition, and preserve the intended interpretation when context should not be allowed to rewrite it. This is the focus of our recent work on semantic re-anchoring. <a class="cite-ref" href="#ref-13">[13]</a></p></div>
+</div>
+<p>A useful reality check comes from Ignat et al., who surveyed fourteen NLP research areas and 45 directions that they argue are not directly solved by LLMs. <a class="cite-ref" href="#ref-1">[1]</a> The important point for this blog is not that every one of those directions is equally fundamental. It is that “LLMs can perform the benchmark” and “the language-understanding problem is closed” are very different claims.</p>
+<h2>5. Semantic Schema Promotion: when the schema itself becomes negotiable</h2>
+<p>In a discussion with Dieter Gawlick, we considered a database version of this shift. A relational database normally begins with a schema. But as data accumulate, recurring semantic distinctions may appear that the original designer did not anticipate.</p>
+<p>I will call the operation <strong>Semantic Schema Promotion</strong>: a recurring concept that begins buried in free text is proposed for promotion into a durable database attribute, relation, type, or table.</p>
+<div class="schema-figure">
+<div class="schema-box old">
+<div class="schema-head">Initial schema</div>
+<div class="db-table"><div class="head">Customer</div><div>id</div><div>name</div><div>notes</div></div>
+<div class="schema-notes">Notes gradually contain recurring ideas such as “prefers morning delivery” or “delivery only after 3 PM.”</div>
+</div>
+<div class="schema-arrow">→<span>LLM notices a recurring semantic property</span></div>
+<div class="schema-box new">
+<div class="schema-head">Promoted schema</div>
+<div class="db-table"><div class="head">Customer</div><div>id</div><div>name</div><div class="promoted">preferred_delivery_window</div><div>notes</div></div>
+<div class="schema-notes">The model proposes that a recurring concept deserves first-class representation rather than remaining buried in free text.</div>
+</div>
+</div>
+<p>This is more interesting than ordinary NER. The question is no longer only:</p>
+<div class="note">“Which words belong to the categories I already designed?”</div>
+<p>It becomes:</p>
+<div class="note">“What recurring semantic distinction is the data telling me I should have designed?”</div>
+<p>This idea has important prior art. Open Information Extraction removed the requirement to name every relation in advance, and universal-schema work deliberately relaxed fixed relation inventories. <a class="cite-ref" href="#ref-18">[18]</a> <a class="cite-ref" href="#ref-19">[19]</a> More recently, <strong>Evaporate</strong> uses language models to identify schemas and populate structured views over heterogeneous document lakes. <a class="cite-ref" href="#ref-5">[5]</a> The LLM-era opportunity is therefore not “automatic schema discovery from nothing,” but making schema discovery and revision substantially more open-ended, conversational, and domain-portable.</p>
+<p>But promotion has a cost side. <strong>Frequency alone is not enough.</strong> A recurring phrase may be noisy, transient, redundant, or not useful enough to deserve a permanent column. A responsible promotion step must decide the relational representation, preserve provenance, backfill old rows with evidence, handle missing and uncertain values, migrate dependent queries, and—crucially—decide <em>who is authorized</em> to change the live schema. If a schema can be defined in language, untrusted language can also try to redefine it. Semantic flexibility therefore creates a semantic-integrity problem as well. See <a href="https://eyuchang.github.io/AGIBlogs/Blog007-AI-Safety-Beyond-the-False-Binary.html">Dispatch No. 07</a>, our work on semantic re-anchoring, and the related question of who may redefine an LLM’s task. <a class="cite-ref" href="#ref-13">[13]</a> <a class="cite-ref" href="#ref-20">[20]</a></p>
+<div class="takeaway"><p><strong>The new capability is not merely extracting values into a schema. It is recognizing that the schema itself may have become inadequate.</strong></p></div>
+<h2>6. So, did LLMs finish NLP?</h2>
+<p>My answer is: <strong>they did not finish language understanding</strong>. But they may have largely finished one historical form of NLP: the era in which every linguistic function required its own separately engineered model.</p>
+<div class="roadmap four">
+<div class="road r1"><strong>NLP 1.0</strong><p>One task → one dataset → one specialized model.</p></div>
+<div class="road r15"><strong>NLP 1.5</strong><p>Shared pretrained representations → fine-tune one base model for many tasks.</p></div>
+<div class="road r2"><strong>NLP 2.0</strong><p>One foundation model → many tasks specified directly in natural language.</p></div>
+<div class="road r3"><strong>NLP 3.0?</strong><p>The model helps define the task, revise its schema, and discover semantic structures we did not know beforehand to ask for.</p></div>
+</div>
+<p>That intermediate NLP 1.5 stage matters. BERT-era pretraining, decaNLP, T5, and related work had already begun unifying the field before prompting made the task definition itself conversational. LLMs did not erase that history; they extended it.</p>
+<section aria-labelledby="references-heading" class="references">
+<h2 id="references-heading">References &amp; further reading</h2>
+<ol>
+<li id="ref-1"><strong>Ignat, O. et al.</strong> “Has It All Been Solved? Open NLP Research Questions Not Solved by Large Language Models.” <em>LREC-COLING</em>, 2024. <a href="https://aclanthology.org/2024.lrec-main.708/" rel="noopener noreferrer" target="_blank">ACL Anthology</a>.</li>
+<li id="ref-2"><strong>Liu, A. et al.</strong> “We’re Afraid Language Models Aren’t Modeling Ambiguity.” <em>EMNLP</em>, 2023. <a href="https://aclanthology.org/2023.emnlp-main.51/" rel="noopener noreferrer" target="_blank">ACL Anthology</a>.</li>
+<li id="ref-3"><strong>Han, R. et al.</strong> “An Empirical Study on Information Extraction using Large Language Models.” arXiv:2305.14450, 2023. <a href="https://arxiv.org/abs/2305.14450" rel="noopener noreferrer" target="_blank">arXiv</a>.</li>
+<li id="ref-4"><strong>Tam, Z. R. et al.</strong> “Let Me Speak Freely? A Study on the Impact of Format Restrictions on Performance of Large Language Models.” arXiv:2408.02442, 2024. <a href="https://arxiv.org/abs/2408.02442" rel="noopener noreferrer" target="_blank">arXiv</a>.</li>
+<li id="ref-5"><strong>Arora, S. et al.</strong> “Language Models Enable Simple Systems for Generating Structured Views of Heterogeneous Data Lakes.” <em>PVLDB</em> 17(2):92–105, 2023. <a href="https://www.vldb.org/pvldb/vol17/p92-arora.pdf" rel="noopener noreferrer" target="_blank">PVLDB</a>.</li>
+<li id="ref-6"><strong>Collobert, R. et al.</strong> “Natural Language Processing (Almost) from Scratch.” <em>JMLR</em> 12, 2011. <a href="https://www.jmlr.org/papers/v12/collobert11a.html" rel="noopener noreferrer" target="_blank">JMLR</a>.</li>
+<li id="ref-7"><strong>McCann, B. et al.</strong> “The Natural Language Decathlon: Multitask Learning as Question Answering.” arXiv:1806.08730, 2018. <a href="https://arxiv.org/abs/1806.08730" rel="noopener noreferrer" target="_blank">arXiv</a>.</li>
+<li id="ref-8"><strong>Raffel, C. et al.</strong> “Exploring the Limits of Transfer Learning with a Unified Text-to-Text Transformer.” <em>JMLR</em> 21, 2020. <a href="https://www.jmlr.org/papers/v21/20-074.html" rel="noopener noreferrer" target="_blank">JMLR</a>.</li>
+<li id="ref-9"><strong>Brown, T. B. et al.</strong> “Language Models are Few-Shot Learners.” <em>NeurIPS</em>, 2020. <a href="https://proceedings.neurips.cc/paper/2020/hash/1457c0d6bfcb4967418bfb8ac142f64a-Abstract.html" rel="noopener noreferrer" target="_blank">NeurIPS</a>.</li>
+<li id="ref-10"><strong>Bender, E. M. and Koller, A.</strong> “Climbing towards NLU: On Meaning, Form, and Understanding in the Age of Data.” <em>ACL</em>, 2020. <a href="https://aclanthology.org/2020.acl-main.463/" rel="noopener noreferrer" target="_blank">ACL Anthology</a>.</li>
+<li id="ref-11"><strong>Maynez, J. et al.</strong> “On Faithfulness and Factuality in Abstractive Summarization.” <em>ACL</em>, 2020. <a href="https://aclanthology.org/2020.acl-main.173/" rel="noopener noreferrer" target="_blank">ACL Anthology</a>.</li>
+<li id="ref-12"><strong>Chang, E. Y.</strong> “Position: AGI Requires a Coordination Layer on Top of Pattern Repositories.” <em>ICML</em>, PMLR 306, 2026. <a href="https://proceedings.mlr.press/v306/chang26h.html" rel="noopener noreferrer" target="_blank">PMLR</a>.</li>
+<li id="ref-13"><strong>Chang, E. Y. and Chang, E. Y.</strong> “Literal Integrity Is Not Semantic Integrity: Descriptive Records Re-anchor Unchanged Commands.” Zenodo, 2026. DOI: <a href="https://doi.org/10.5281/zenodo.23272326" rel="noopener noreferrer" target="_blank">10.5281/zenodo.23272326</a>.</li>
+<li id="ref-14"><strong>Willard, B. T. and Louf, R.</strong> “Efficient Guided Generation for Large Language Models.” arXiv:2307.09702, 2023. <a href="https://arxiv.org/abs/2307.09702" rel="noopener noreferrer" target="_blank">arXiv</a>.</li>
+<li id="ref-15"><strong>Lafferty, J., McCallum, A., and Pereira, F.</strong> “Conditional Random Fields: Probabilistic Models for Segmenting and Labeling Sequence Data.” <em>ICML</em>, 2001. <a href="https://people.cs.umass.edu/~mccallum/pubs.html" rel="noopener noreferrer" target="_blank">Publication record</a>.</li>
+<li id="ref-16"><strong>Hu, J., Floyd, S., Jouravlev, O., Fedorenko, E., and Gibson, E.</strong> “A Fine-Grained Comparison of Pragmatic Language Understanding in Humans and Language Models.” <em>ACL</em>, 2023. <a href="https://aclanthology.org/2023.acl-long.230/" rel="noopener noreferrer" target="_blank">ACL Anthology</a>.</li>
+<li id="ref-17"><strong>Clark, H. H.</strong> “Bridging.” <em>Theoretical Issues in Natural Language Processing</em>, 1975. <a href="https://aclanthology.org/T75-2034/" rel="noopener noreferrer" target="_blank">ACL Anthology</a>.</li>
+<li id="ref-18"><strong>Banko, M., Cafarella, M. J., Soderland, S., Broadhead, M., and Etzioni, O.</strong> “Open Information Extraction from the Web.” <em>IJCAI</em>, 2007. <a href="https://ijcai.org/proceedings/2007/429" rel="noopener noreferrer" target="_blank">IJCAI</a>.</li>
+<li id="ref-19"><strong>Riedel, S., Yao, L., McCallum, A., and Marlin, B. M.</strong> “Relation Extraction with Matrix Factorization and Universal Schemas.” <em>NAACL-HLT</em>, 2013. <a href="https://aclanthology.org/N13-1008/" rel="noopener noreferrer" target="_blank">ACL Anthology</a>.</li>
+<li id="ref-20"><strong>“Preserving Semantic Integrity: Who May Covertly Redefine an LLM’s Task?”</strong> Zenodo, 2026. DOI: <a href="https://doi.org/10.5281/zenodo.22817919" rel="noopener noreferrer" target="_blank">10.5281/zenodo.22817919</a>. <em>The record title may vary across versions.</em></li>
+</ol>
+</section>
+<div class="closing">
+<p><strong>NLP is not dead. It has been promoted.</strong></p>
+<p>For decades we asked: Can the computer tag the word? Recognize the entity? Translate the sentence? Classify the document?</p>
+<p>Increasingly, the answer for ordinary cases is simply: yes.</p>
+<p>The better questions are now: Can the system recognize when several interpretations remain valid? Can it preserve meaning while compressing or translating? Can it distinguish what is explicit from what is merely implied? Can it evaluate outputs when there is no single gold answer? Can it notice that the ontology we gave it is inadequate — without silently redefining the task?</p>
+<p><strong>LLMs may not have killed NLP. They may have cleared away much of the old plumbing and forced us to ask what understanding language actually means.</strong></p>
+<p>And that leaves one question for the reader: <strong>If one general model can already perform most of the tasks that defined NLP for thirty years, what should an NLP researcher work on next?</strong></p>
+</div>
+<div class="return-bottom"><a href="AGIForumIndex.html">← Return to The AGI Forum Index</a></div>
+</main>
+<footer>
+<div>The AGI Forum · <a href="https://eyuchang.github.io/">Edward Y. Chang</a></div>
+<div>Stanford InfoLab</div>
+</footer>
+</div>
+</body>
+</html>

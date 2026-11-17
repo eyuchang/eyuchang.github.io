@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Chain of Thought: Stepping Stone or Band-Aid? | The AGI Forum</title>
+<meta name="description" content="Chain of Thought transformed LLM performance. Where should it sit in the longer history of reasoning, and what can a visible chain tell us about validity, faithfulness, causality, and safety?"/>
+<meta name="author" content="Edward Y. Chang"/>
+<link rel="canonical" href="https://eyuchang.github.io/AGIBlogs/Blog015-Chain-of-Thought.html"/>
+<meta property="og:type" content="article"/>
+<meta property="og:site_name" content="The AGI Forum"/>
+<meta property="og:title" content="Chain of Thought: Stepping Stone or Band-Aid?"/>
+<meta property="og:description" content="Why 'think step by step' transformed LLM performance, yet may not have solved the reasoning problem it appeared to solve."/>
+<meta property="og:url" content="https://eyuchang.github.io/AGIBlogs/Blog015-Chain-of-Thought.html"/>
+<meta property="og:image" content="https://eyuchang.github.io/AGIBlogs/Blog015-Fig2-Gallery-of-Reasoning.png"/>
+<meta property="og:image:alt" content="A museum-like gallery places Chain of Thought within a longer history of reasoning, alongside historical thinkers and modern AI."/>
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://eyuchang.github.io/AGIBlogs/Blog015-Fig2-Gallery-of-Reasoning.png"/>
+<style>
+:root{
+  --bg:#fbf8f1;--paper:#fffdf8;--text:#28231f;--muted:#706860;--border:#ded5c8;
+  --gold:#c79a45;--gold-soft:#ead9ad;--blue:#2f7188;--blue-dark:#29465b;--sky:#eaf7fc;
+  --font-body:-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;
+  --font-serif:"Iowan Old Style","Palatino Linotype","Book Antiqua",Palatino,Georgia,serif;
+}
+*{box-sizing:border-box;margin:0;padding:0} html{scroll-behavior:smooth}
+body{background:radial-gradient(circle at 50% -90px,rgba(199,154,69,.12),transparent 340px),var(--bg);color:var(--text);font-family:var(--font-body);font-size:18px;line-height:1.8;-webkit-font-smoothing:antialiased}
+a{color:inherit}.container{max-width:900px;margin:0 auto;padding:38px 24px 80px}
+.site-nav{display:flex;flex-wrap:wrap;gap:16px 20px;padding-bottom:14px;margin-bottom:28px;border-bottom:1px solid var(--border);font-size:14px}
+.site-nav a{color:var(--muted);text-decoration:none}.site-nav a:hover{color:var(--blue);text-decoration:underline}
+.masthead{border-bottom:1px solid var(--border);padding-bottom:20px;margin-bottom:22px}.forum-title{font-weight:800;font-size:22px;letter-spacing:.01em;color:#2a2520}.forum-subtitle{color:var(--muted);font-size:14.5px;margin-top:5px}
+.return-bar{display:flex;justify-content:space-between;gap:18px;font-size:13.5px;margin-bottom:30px;flex-wrap:wrap}.return-bar a{color:var(--blue);text-decoration:none;font-weight:700}
+.hero{margin:0 0 28px;padding:38px 34px 34px;border:1px solid #d4d0c9;border-radius:10px;background:linear-gradient(135deg,#efefec 0%,#fbfaf6 56%,#fff6e6 100%);box-shadow:0 12px 30px rgba(41,70,91,.07)}
+.hero .kicker{color:#59636a;text-transform:uppercase;font-size:12px;font-weight:850;letter-spacing:.13em;margin-bottom:14px}.hero h1{font-family:var(--font-serif);font-size:46px;line-height:1.06;letter-spacing:-.025em;color:#223240}.hero .subtitle{margin-top:18px;max-width:780px;color:#59636a;font-family:var(--font-serif);font-size:21px;line-height:1.5}.hero .meta{margin-top:22px;color:#6e7478;font-size:13px;display:flex;flex-wrap:wrap;gap:8px 12px}
+.hero-figure{margin:0 0 42px}.hero-figure img{display:block;width:100%;height:auto;border-radius:12px;border:1px solid #c8c8c4;box-shadow:0 14px 34px rgba(30,30,30,.11);background:#fff;filter:grayscale(1)}.hero-figure figcaption{margin-top:10px;color:var(--muted);font-size:13.5px;line-height:1.55}.position-figure{width:70%;margin:28px auto 40px}.position-figure img{width:100%}.position-figure figcaption{text-align:center}
+.article-body p{margin:0 0 22px}.lead{font-family:var(--font-serif);font-size:22px;line-height:1.72;color:#332b25}.dropcap:first-letter{float:left;font-family:var(--font-serif);font-size:64px;line-height:.82;padding:9px 9px 0 0;color:#4e5961}
+h2{font-family:var(--font-serif);font-size:30px;line-height:1.2;margin:50px 0 18px;color:#2a2520;position:relative}h2:after{content:"";display:block;width:64px;height:3px;margin-top:9px;background:linear-gradient(90deg,#555,#c79a45);border-radius:2px}h3{font-family:var(--font-serif);font-size:22px;margin:28px 0 10px}
+.pull{margin:31px 0;padding:21px 24px;border-left:5px solid #555;background:#f2f1ee;font-family:var(--font-serif);font-size:22px;line-height:1.55;color:#342f2b}.takeaway{margin:31px 0;padding:20px 23px;background:linear-gradient(135deg,#f2f2ef,#fff8e9);border:1px solid #d7d3cc;border-radius:8px;color:#3a454c}.takeaway p{margin:0;font-family:var(--font-serif);font-size:21px;line-height:1.55}.note{margin:26px 0;padding:18px 20px;border:1px solid #d7ccbd;border-radius:8px;background:#fffdf8;color:#4b443e}.small-note{font-size:14px;color:var(--muted);line-height:1.55;margin-top:-6px}
+.eq{margin:24px 0;padding:18px 20px;background:#f4f3ef;border:1px solid #d8d5ce;border-radius:8px;text-align:center;font-family:Georgia,serif;font-size:20px;line-height:1.6}
+.compare{width:100%;border-collapse:collapse;margin:27px 0 36px;font-size:14.5px}.compare th{text-align:left;background:linear-gradient(90deg,#e8e8e5,#f7f2e8);color:#3b454b;padding:12px 14px;font-family:var(--font-serif);font-size:17px;border-bottom:1px solid #d2cec6}.compare td{padding:12px 14px;border-bottom:1px solid var(--border);vertical-align:top}.compare tr:nth-child(even) td{background:#faf8f3}
+.reason-ladder{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin:28px 0 36px}.reason-box{border:1px solid #c9c6c0;background:#f5f4f0;border-radius:9px;padding:18px 16px;min-height:155px}.reason-box strong{display:block;font-family:var(--font-serif);font-size:19px;margin-bottom:8px;color:#2e3438}.reason-box p{margin:0;font-size:14px;line-height:1.5;color:#66605a}.reason-box:nth-child(4){background:#fff8e9;border-color:#d7c79e}.reason-box .num{display:inline-flex;width:29px;height:29px;border-radius:50%;align-items:center;justify-content:center;background:#555;color:#fff;font-size:13px;font-weight:800;margin-bottom:9px}
+.flow-figure{margin:30px 0 36px;padding:24px;border:1px solid #ccc8c0;border-radius:10px;background:#f4f3f0}.flow-row{display:grid;grid-template-columns:1fr 36px 1fr 36px 1fr 36px 1fr;align-items:center;gap:6px}.flow-step{background:#fff;border:1px solid #bdbab4;border-radius:8px;padding:16px 10px;text-align:center;font-weight:800;color:#34393d}.flow-arrow{text-align:center;font-size:26px;color:#666}.flow-figure figcaption{margin-top:12px;color:var(--muted);font-size:13.5px;line-height:1.5}
+.cite-ref{color:var(--blue);text-decoration:none;font-weight:800;font-size:.82em;vertical-align:super;line-height:0}.cite-ref:hover{text-decoration:underline}.references{margin:48px 0 34px;border-top:1px solid var(--border);padding-top:2px}.references h2{margin-top:32px}.references ol{padding-left:24px}.references li{margin:0 0 13px;color:#5d554e;font-size:13.5px;line-height:1.55}.references a{color:var(--blue);font-weight:700;text-decoration:none}.references a:hover{text-decoration:underline}
+.closing{margin:42px 0 24px;padding:28px 28px 25px;border-radius:10px;background:linear-gradient(135deg,#efefec 0%,#fff9e9 70%);color:#3b454b;border:1px solid #d7d3cb;border-top:5px solid #777;box-shadow:0 10px 28px rgba(30,30,30,.06)}.closing p{margin-bottom:15px}.closing p:last-child{margin-bottom:0}.closing strong{color:#2f4b59}.return-bottom{margin-top:40px}.return-bottom a{color:var(--blue);text-decoration:none;font-weight:750}footer{border-top:1px solid var(--border);margin-top:45px;padding-top:23px;color:var(--muted);font-size:13.5px;text-align:center}footer a{color:var(--blue)}
+@media(max-width:760px){body{font-size:17px}.container{padding:24px 17px 60px}.hero{padding:30px 22px}.hero h1{font-size:36px}.hero .subtitle{font-size:18px}.reason-ladder{grid-template-columns:1fr 1fr}.flow-row{grid-template-columns:1fr}.flow-arrow{transform:rotate(90deg)}h2{font-size:27px}.compare{font-size:13px}}
+@media(max-width:520px){.reason-ladder{grid-template-columns:1fr}}
+@media print{.site-nav,.return-bar,.return-bottom{display:none}.container{max-width:none;padding:0}.hero{box-shadow:none;background:#fff}.hero-figure img{box-shadow:none}}
+</style>
+</head>
+<body>
+<div class="container">
+<nav aria-label="AGI Forum navigation" class="site-nav">
+<a href="AGIForumIndex.html">← The AGI Forum Index</a>
+<a href="https://eyuchang.github.io/">Stanford Home</a>
+<a href="https://eyuchang.github.io/cs372/MACI_UCCT_CS300_Nov2025.html">The Path to AGI Trilogy</a>
+<a href="https://socrasynth.com/" rel="noopener noreferrer" target="_blank">SocraSynth / QuadriumAI</a>
+</nav>
+<div class="masthead">
+<div class="forum-title">The AGI Forum: Theories, Practice, Safety, Risk &amp; Policy</div>
+<div class="forum-subtitle">Dispatches on theoretical paradigms, architectural practice, culture, and the changing relationship between humans and AI.</div>
+</div>
+<div class="return-bar">
+<a href="AGIForumIndex.html">← Back to Forum Home Page</a>
+<a href="Blog014-Did-LLMs-Finish-NLP.html">Previous Dispatch: Did LLMs Finish NLP?</a>
+</div>
+<header class="hero">
+<div class="kicker">Dispatch No. 15 · Reasoning, Verification &amp; Causality</div>
+<h1>Chain of Thought: Stepping Stone or Band-Aid?</h1>
+<div class="subtitle">Why “think step by step” transformed LLM performance, yet may not have solved the reasoning problem it appeared to solve.</div>
+<div class="meta"><span><a href="https://eyuchang.github.io/">Edward Y. Chang</a></span><span>•</span><span>Stanford InfoLab</span><span>•</span><time datetime="2026-11-18">November 18, 2026</time><span>•</span><span>13 min read</span></div>
+</header>
+<main class="article-body" id="article">
+<p class="lead dropcap">A few years ago, one of the most celebrated discoveries in large language models was almost embarrassingly simple. Instead of asking the model for an answer, ask it to <strong>show its work</strong>. Give it examples containing intermediate reasoning. Or simply add: <em>“Let’s think step by step.”</em></p>
+<p>The improvement could be dramatic. Problems that a language model routinely answered incorrectly suddenly became tractable when the model was allowed to generate intermediate steps before committing to the final answer.</p>
+<p>Chain of Thought, or <strong>CoT</strong>, quickly became associated with LLM reasoning.</p>
+<p>Recently, while helping think through how Chain of Thought should be positioned within planning for a Stanford AGI reasoning initiative, I was asked a deceptively simple question: <strong>where does CoT belong?</strong> Is it a foundation of machine reasoning, an important intermediate technique, or one component among larger questions such as verification, causal reasoning, semantic integrity, and metacognition? That question motivated this essay.</p>
+<figure class="hero-figure position-figure">
+<img src="Blog015-Fig2-Gallery-of-Reasoning.png" alt="A museum-like gallery places Chain of Thought within a longer history of reasoning, alongside Aristotle, Descartes, Kant, Russell, Turing, Pearl, and modern AI."/>
+<figcaption><strong>Where does Chain of Thought belong in the longer history of reasoning?</strong> The question that motivated this essay is intentionally left open.</figcaption>
+</figure>
+<p>Several years later, however, the more interesting question is no longer whether CoT can improve benchmark accuracy. It often can. The question is whether CoT actually solved a reasoning problem, or merely patched one.</p>
+<div class="pull"><strong>Chain of Thought helped open the path toward inference-time reasoning. The harder question is what lasting role the literal technique, generate a natural-language chain and trust it, should have in a reliable reasoning architecture.</strong></div>
+<p>The distinction matters because AI systems are increasingly asked not merely to solve arithmetic exercises, but to interpret instructions, use tools, make decisions, and act in environments where a fluent but invalid reasoning chain can have consequences.</p>
+
+<h2>1. Where did Chain of Thought come from?</h2>
+<p>The idea did not appear from nowhere. In 2021, Maxwell Nye and colleagues showed that Transformers became much better at multi-step computations when they were allowed to write intermediate results into a <strong>scratchpad</strong>. Tasks such as long arithmetic and program execution improved when the model did not have to compress the entire computation into a single leap. <a class="cite-ref" href="#ref-1">[1]</a></p>
+<p>Then, in the 2022 NeurIPS paper <em>Chain-of-Thought Prompting Elicits Reasoning in Large Language Models</em>, Jason Wei, Xuezhi Wang, Denny Zhou, Quoc Le, Ed Chi and colleagues showed that giving sufficiently large language models a few examples containing intermediate reasoning could sharply improve arithmetic, symbolic, and commonsense reasoning. <a class="cite-ref" href="#ref-2">[2]</a></p>
+<p>Kojima and colleagues soon showed that even the simple prompt <em>“Let’s think step by step”</em> could substantially improve zero-shot reasoning. <a class="cite-ref" href="#ref-3">[3]</a> Wang and colleagues introduced <strong>self-consistency</strong>: generate multiple reasoning paths and select the answer that recurs across them. <a class="cite-ref" href="#ref-4">[4]</a> Zelikman and colleagues developed <strong>STaR</strong>, allowing models to bootstrap improved reasoning from their own successful rationales. <a class="cite-ref" href="#ref-5">[5]</a></p>
+<div class="eq">Question → z<sub>1</sub> → z<sub>2</sub> → ··· → z<sub>n</sub> → Answer</div>
+<p>Something important had clearly happened. But what exactly was the discovery?</p>
+
+<h2>2. What does Chain of Thought actually give the model?</h2>
+<p>It is tempting to describe CoT anthropomorphically: the model is now “thinking.” That description gets ahead of the evidence. A more conservative interpretation is that CoT gives an autoregressive model several useful computational advantages.</p>
+<h3>A scratchpad</h3>
+<p>Intermediate tokens become additional context. Instead of somehow producing the whole solution before emitting anything, the model can write a partial result and condition its next prediction on that result. This is real computational leverage.</p>
+<h3>Decomposition</h3>
+<p>A difficult problem can become a sequence of smaller decisions: What should I do first? Given that result, what comes next? The model no longer has to cross the entire reasoning distance in one jump.</p>
+<h3>More computation before commitment</h3>
+<p>Jeff Dean has described one useful interpretation: showing the model's work gives it additional computation as it emits intermediate tokens. In a 2025 Stanford AI Club talk, he credited this step-by-step procedure and noted that the work itself was already about three years old, with substantial progress in mathematical reasoning since then. <a class="cite-ref" href="#ref-8">[8]</a> He has also argued that much faster inference could be valuable because it would permit many more reasoning tokens and parallel rollouts before producing the usable output. <a class="cite-ref" href="#ref-9">[9]</a></p>
+<div class="takeaway"><p><strong>The durable discovery may be broader than Chain of Thought: inference procedure matters. A model allowed to develop intermediate state can solve problems that the same model struggles to solve in one shot.</strong></p></div>
+<p>That lesson has survived. Whether <em>natural-language Chain of Thought itself</em> is the lasting solution is another question.</p>
+
+<h2>3. The seductive leap: if we can see the reasoning, perhaps we can trust it</h2>
+<p>CoT created another attraction. Before Chain of Thought, a model might answer <strong>42</strong> and reveal almost nothing about how it arrived there. With CoT, we may see ten intermediate sentences. That feels reassuring. The system appears to be explaining itself.</p>
+<p>But there are at least three different questions:</p>
+<table class="compare">
+<thead><tr><th>Question</th><th>What it asks</th></tr></thead>
+<tbody>
+<tr><td><strong>Accuracy</strong></td><td>Did the model get the final answer right?</td></tr>
+<tr><td><strong>Validity</strong></td><td>Do the stated reasoning steps actually support the conclusion?</td></tr>
+<tr><td><strong>Faithfulness</strong></td><td>Did the stated reasoning actually drive the model’s answer?</td></tr>
+</tbody>
+</table>
+<p>These are not equivalent. A model can reach the right answer through invalid steps. It can produce a beautifully coherent rationale for an answer influenced by something it never mentions. And it can describe a plausible reasoning process that was not actually responsible for the decision.</p>
+<p>Turpin and colleagues demonstrated this directly: models could be biased toward particular answers by seemingly irrelevant prompt features and then produce plausible CoT explanations that did not disclose the true source of the bias. <a class="cite-ref" href="#ref-6">[6]</a> Lanham and colleagues intervened on chains of thought by truncating, paraphrasing, or perturbing them, and found large variation in how much models actually depended on the written chain. <a class="cite-ref" href="#ref-7">[7]</a></p>
+<div class="pull"><strong>A chain of thought is observable text. It is not automatically an audit log of cognition.</strong></div>
+<p>That alone should prevent us from treating CoT as a certificate of reasoning quality. But there is a second problem that may be even more important.</p>
+
+<h2>4. What if the reasoning works and follows the wrong rule?</h2>
+<p>The standard criticism of CoT is that its explanation may be fabricated or unfaithful. Our recent experiments suggest another failure mode. Sometimes the reasoning appears to work exactly as intended: it identifies a pattern and then follows it, even when that pattern should not govern the current instruction.</p>
+<p>In a single development smoke-run example under the plain household-log condition, an Olmo model encountered records in which containers requested to be emptied had instead been filled. Its reasoning explicitly noticed the pattern:</p>
+<div class="note">“whenever a container is requested to be emptied, the action taken is to fill it instead. Therefore …”</div>
+<p>The model did not miss the contextual pattern. It <strong>found it</strong>. Its reasoning adopted that descriptive pattern and selected the reversed option. It then said it was calling the tool, but made no tool call, so the run was scored as a non-call. This is therefore a development example about the reasoning trace, not evidence that the reversed action was actually executed.</p>
+<div class="eq">detect contamination ≠ reject contamination</div>
+<p>In this case, the chain effectively became:</p>
+<div class="eq">detect pattern → adopt pattern → reason coherently from it</div>
+<p>This exposes an important limitation:</p>
+<div class="takeaway"><p><strong>Good local reasoning cannot rescue a bad semantic anchor.</strong></p></div>
+<p>Suppose the owner’s instruction is:</p>
+<div class="eq">P<sub>1</sub>: Turn left</div>
+<p>Contextual material causes the model to behave as though the operative premise were:</p>
+<div class="eq">P′<sub>1</sub>: For this task, “turn left” implies turning right</div>
+<p>The subsequent derivation may be internally coherent. The chain is not necessarily the problem. The <strong>premise governing the chain</strong> is.</p>
+<p>This is why merely asking an LLM to “reason harder” cannot guarantee semantic integrity. Our recent work on semantic re-anchoring makes the same distinction from another direction: preserving the literal instruction does not guarantee preservation of its operative meaning. <a class="cite-ref" href="#ref-11">[11]</a></p>
+
+<h2>5. The model can know what caused its action and still think the action was correct</h2>
+<p>An even stranger result appeared in our Semantic Uncertainty development experiments. In one development slice, <strong>10 of 11 explanations correctly identified the record pattern as the cause of the changed action</strong>. That sounds encouraging: the model apparently understood what influenced it.</p>
+<p>But the action had already been reversed. In <strong>3 of the 11 cases</strong>, the model also produced a false-compliance judgment, essentially saying, “Yes, I turned right as requested.” There is an important caveat: the original evaluation question asked about compliance with the quiet-hours rule rather than directly asking whether the action matched the owner’s command. A confirmatory run is needed to determine how general this false-compliance effect is.</p>
+<p>This reveals three tasks that are easy to conflate:</p>
+<table class="compare">
+<thead><tr><th>Task</th><th>Question</th></tr></thead>
+<tbody>
+<tr><td>Attribution</td><td>What caused my action?</td></tr>
+<tr><td>Interpretation</td><td>Was that action consistent with the actual instruction?</td></tr>
+<tr><td>Authorization</td><td>Was that action legitimate to execute?</td></tr>
+</tbody>
+</table>
+<p>A model can answer the first correctly and still fail the next two.</p>
+<div class="pull"><strong>Explanation is not validation.</strong></div>
+<p>A system may correctly explain <em>why</em> it acted and still be wrong about whether it <em>should</em> have acted that way. An explanation describes a process. A verifier judges the process against an external standard. Those are different jobs.</p>
+<p class="small-note">The counts in this section are development observations, included to illustrate the failure mode rather than to claim a general benchmark rate.</p>
+
+<h2>6. Four levels of “good reasoning”</h2>
+<p>The preceding examples suggest a hierarchy that is more useful than asking whether a model simply “reasons.”</p>
+<div class="reason-ladder">
+<div class="reason-box"><span class="num">1</span><strong>Fluency</strong><p>Does the chain sound coherent and intelligent?</p></div>
+<div class="reason-box"><span class="num">2</span><strong>Local validity</strong><p>Do the stated steps follow from one another?</p></div>
+<div class="reason-box"><span class="num">3</span><strong>Premise validity</strong><p>Are the facts, meanings, retrieved evidence, and authority assumptions legitimate?</p></div>
+<div class="reason-box"><span class="num">4</span><strong>Independent validation</strong><p>Can an external mechanism verify the conclusion against evidence, rules, or the owner’s instruction?</p></div>
+</div>
+<p>Modern LLMs are exceptionally good at Level 1. CoT can improve Level 2. But the hardest failures often occur at Levels 3 and 4.</p>
+<p>A mathematical proof can be locally elegant yet begin from a false assumption. A causal argument can be logically clean while ignoring a confounder. An agent can faithfully follow a note that never had authority to redefine the owner’s command.</p>
+<div class="eq">Fluent chain &lt; Valid chain &lt; Valid premises &lt; Independently validated reasoning</div>
+
+<h2>7. What about causality?</h2>
+<p>Chain of Thought is often discussed alongside “reasoning,” and reasoning is sometimes loosely equated with causal intelligence. We should be more careful.</p>
+<p>An LLM can certainly use CoT to answer causal questions. It can write: “X caused Y because …” and it may be correct. But the presence of a chain provides no causal guarantee.</p>
+<p>For observational variables X and Y:</p>
+<div class="eq">P(Y | X) ≠ P(Y | do(X))</div>
+<p>in general. A valid causal conclusion may require assumptions about confounding, intervention, temporal structure, identification, or experimental design. No amount of eloquent intermediate prose supplies those assumptions automatically.</p>
+<div class="takeaway"><p><strong>Chain of Thought can express causal reasoning. It does not confer causal validity.</strong></p></div>
+<p>A plausible causal narrative remains a narrative until the causal assumptions themselves are justified. Again the recurring principle is: <strong>reasoning is not verification.</strong></p>
+
+<h2>8. Self-consistency helps, but agreement is not truth</h2>
+<p>One of the cleverest extensions of CoT was self-consistency. Instead of generating one reasoning path, generate many and choose the answer supported by the largest number of paths. This produced substantial empirical improvements. <a class="cite-ref" href="#ref-4">[4]</a></p>
+<p>But voting only helps when the reasoning paths make sufficiently different mistakes. If they all inherit the same false premise, every chain may converge on the same wrong answer.</p>
+<div class="eq">same false premise → different-looking chains → same wrong conclusion</div>
+<p>So:</p>
+<div class="pull"><strong>Self-consistency reduces disagreement. It does not necessarily remove shared error.</strong></div>
+<p>Five copies of the same epistemic mistake are not five independent sources of evidence.</p>
+
+<h2>9. Why do we hear less about “use CoT” as a prompting trick?</h2>
+<p>One reason may be success. The prompting recipe itself was absorbed into modern reasoning systems. The interesting question is no longer whether one should type <em>“Let’s think step by step.”</em> Modern systems increasingly use extended internal computation, search, multiple rollouts, reinforcement learning, tool use, verifiers, and other forms of inference-time scaling.</p>
+<p>That does <strong>not</strong> mean researchers have stopped caring about Chain of Thought. In AI safety, reasoning traces remain an active monitoring signal. A 2025 multi-lab position paper described CoT monitorability as a <em>new and fragile opportunity</em>: reasoning traces may reveal dangerous intent or failure modes that would otherwise be harder to observe, even though monitoring is imperfect and should complement rather than replace other safeguards. <a class="cite-ref" href="#ref-12">[12]</a></p>
+<p>A second reason the original prompting trick receives less attention is that <strong>reasoning length is not reasoning quality</strong>. Producing more tokens can help, but raw token count is an unreliable proxy for useful reasoning and can accompany overthinking or degraded performance. <a class="cite-ref" href="#ref-10">[10]</a></p>
+<p>A third reason is faithfulness. Once we realized that a model’s stated rationale may not faithfully reveal what drove its answer, CoT became less attractive as an explanation mechanism.</p>
+<p>And a fourth reason is that the frontier moved. The question changed from:</p>
+<div class="note">Can we make the model produce reasoning?</div>
+<p>to:</p>
+<div class="note"><strong>Can we make the reasoning reliable?</strong></div>
+
+<h2>10. What Jeff Dean’s perspective really tells us</h2>
+<p>Jeff Dean’s discussion of early Chain of Thought is easy to overread. In a third-party, auto-generated transcript of his Stanford talk, he credits showing the model’s work and the additional computation available as tokens are emitted. He then notes that the work was about three years old and that mathematical reasoning had advanced substantially since. <a class="cite-ref" href="#ref-8">[8]</a></p>
+<p>I would not interpret this as dismissing CoT. His broader point reinforces one of its lasting lessons: <strong>giving models more useful inference-time computation can matter enormously.</strong> His later discussion of faster inference similarly emphasizes the value of many more reasoning tokens and parallel rollouts. <a class="cite-ref" href="#ref-9">[9]</a></p>
+<p>What has changed is the scale and sophistication of the inference process. A simple verbalized chain is now only one way to provide intermediate computation.</p>
+
+<h2>11. Beyond Chain of Thought: from showing work to validating work</h2>
+<p>For the first generation of reasoning research, a remarkable achievement was getting the model to expose intermediate steps. The next generation needs stronger questions.</p>
+<p>Not merely: <em>What did you think?</em></p>
+<p>But: Which premise justified this step? What evidence supports it? What would falsify it? Did the instruction retain its intended meaning? Was the information source authorized to change the decision? Would an independent verifier accept the derivation? Can the system recognize that the whole line of reasoning began from the wrong premise and start again?</p>
+<figure class="flow-figure">
+<div class="flow-row">
+<div class="flow-step">Reason</div><div class="flow-arrow">→</div>
+<div class="flow-step">Check</div><div class="flow-arrow">→</div>
+<div class="flow-step">Repair</div><div class="flow-arrow">→</div>
+<div class="flow-step">Reconsider</div>
+</div>
+<figcaption><strong>Beyond a single chain.</strong> Reliable reasoning requires mechanisms that can challenge premises, verify intermediate claims, repair local failures, and abandon an entire reasoning path when its semantic anchor is wrong.</figcaption>
+</figure>
+<p>A chain can be beautiful. A chain can be long. A chain can even be internally logical. And still be wrong.</p>
+<div class="takeaway"><p><strong>The danger is not only that an LLM fails to reason. Sometimes it reasons very well from the wrong interpretation.</strong></p></div>
+<p>Whether this history makes Chain of Thought a durable reasoning method, a stepping stone, or a band-aid is the question posed by this essay. The evidence above is enough to let the reader decide.</p>
+<p>The harder technical question remains: how do we determine whether what a model works out deserves to be trusted?</p>
+
+<section class="references" aria-labelledby="references-heading">
+<h2 id="references-heading">References &amp; further reading</h2>
+<ol>
+<li id="ref-1"><strong>Nye, M. et al.</strong> “Show Your Work: Scratchpads for Intermediate Computation with Language Models.” 2021. <a href="https://research.google/pubs/show-your-work-scratchpads-for-intermediate-computation-with-language-models/" target="_blank" rel="noopener noreferrer">Google Research</a>.</li>
+<li id="ref-2"><strong>Wei, J. et al.</strong> “Chain-of-Thought Prompting Elicits Reasoning in Large Language Models.” <em>NeurIPS</em>, 2022. <a href="https://proceedings.neurips.cc/paper/2022/hash/9d5609613524ecf4f15af0f7b31abca4-Abstract-Conference.html" target="_blank" rel="noopener noreferrer">NeurIPS</a>.</li>
+<li id="ref-3"><strong>Kojima, T. et al.</strong> “Large Language Models are Zero-Shot Reasoners.” <em>NeurIPS</em>, 2022. <a href="https://proceedings.neurips.cc/paper_files/paper/2022/hash/8bb0d291acd4acf06ef112099c16f326-Abstract-Conference.html" target="_blank" rel="noopener noreferrer">NeurIPS</a>.</li>
+<li id="ref-4"><strong>Wang, X. et al.</strong> “Self-Consistency Improves Chain of Thought Reasoning in Language Models.” <em>ICLR</em>, 2023. <a href="https://research.google/pubs/self-consistency-improves-chain-of-thought-reasoning-in-language-models/" target="_blank" rel="noopener noreferrer">Google Research</a>.</li>
+<li id="ref-5"><strong>Zelikman, E. et al.</strong> “STaR: Self-Taught Reasoner Bootstrapping Reasoning With Reasoning.” 2022. <a href="https://research.google/pubs/star-self-taught-reasoner-bootstrapping-reasoning-with-reasoning/" target="_blank" rel="noopener noreferrer">Google Research</a>.</li>
+<li id="ref-6"><strong>Turpin, M. et al.</strong> “Language Models Don’t Always Say What They Think: Unfaithful Explanations in Chain-of-Thought Prompting.” <em>NeurIPS</em>, 2023. <a href="https://proceedings.neurips.cc/paper_files/paper/2023/hash/ed3fea9033a80fea1376299fa7863f4a-Abstract.html" target="_blank" rel="noopener noreferrer">NeurIPS</a>.</li>
+<li id="ref-7"><strong>Lanham, T. et al.</strong> “Measuring Faithfulness in Chain-of-Thought Reasoning.” 2023. <a href="https://www.anthropic.com/research/measuring-faithfulness-in-chain-of-thought-reasoning" target="_blank" rel="noopener noreferrer">Anthropic</a>.</li>
+<li id="ref-8"><strong>Dean, J.</strong> Stanford AI Club talk on important AI trends, 2025. <a href="https://tnn1t1s.github.io/transcripts/20251125_101642_Stanford_AI_Club%EF%BC%9A_Jeff_Dean_on_Important_AI_Trends.html" target="_blank" rel="noopener noreferrer">Transcript</a>.</li>
+<li id="ref-9"><strong>Dean, J.</strong> Interview on inference speed, reasoning tokens, and parallel rollouts. <a href="https://www.latent.space/p/jeffdean" target="_blank" rel="noopener noreferrer">Latent Space</a>.</li>
+<li id="ref-10"><strong>Chen, Wei-Lin, Peng, Liqian, Tan, Tian, Zhao, Chao, Chen, Jianhang, Lin, Ziqian, Go, Alec, and Meng, Yu.</strong> “Think Deep, Not Just Long: Measuring LLM Reasoning Effort via Deep-Thinking Tokens.” <em>ICML</em>, PMLR 306, 2026. <a href="https://proceedings.mlr.press/v306/chen26di.html" target="_blank" rel="noopener noreferrer">PMLR</a>.</li>
+<li id="ref-11"><strong>Chang, Edward Y. and Chang, Ethan Y.</strong> “Literal Integrity Is Not Semantic Integrity: Descriptive Records Re-anchor Unchanged Commands.” Zenodo, 2026. <a href="https://doi.org/10.5281/zenodo.23272326" target="_blank" rel="noopener noreferrer">DOI 10.5281/zenodo.23272326</a>.</li>
+<li id="ref-12"><strong>Korbak, T., Balesni, M., Barnes, E., et al.</strong> “Chain of Thought Monitorability: A New and Fragile Opportunity for AI Safety.” arXiv:2507.11473, 2025. <a href="https://arxiv.org/abs/2507.11473" target="_blank" rel="noopener noreferrer">arXiv</a>.</li>
+</ol>
+</section>
+
+<div class="closing">
+<p><strong>Chain of Thought leaves us with a useful distinction.</strong></p>
+<p>A visible chain can expose candidate reasoning, but it does not by itself establish validity, faithfulness, semantic authority, or causal soundness.</p>
+<p>The research question has therefore moved beyond how to generate more reasoning text: how should we check premises, validate steps, repair errors, and decide when a chain deserves trust?</p>
+<p><strong>Stepping stone or band-aid?</strong> The question remains open.</p>
+</div>
+
+<div class="return-bottom"><a href="AGIForumIndex.html">← Return to The AGI Forum Index</a></div>
+</main>
+<footer>
+<div>The AGI Forum · <a href="https://eyuchang.github.io/">Edward Y. Chang</a></div>
+<div>Stanford InfoLab</div>
+</footer>
+</div>
+</body>
+</html>

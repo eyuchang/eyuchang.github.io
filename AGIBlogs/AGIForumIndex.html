@@ -4,21 +4,21 @@
 <head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>Did LLMs Finish NLP? | The AGI Forum</title>
-<meta content="Dispatch 14 asks what LLMs actually changed in NLP: which classical tasks they absorbed, what new capabilities emerged, and which language-understanding problems remain." name="description"/>
+<title>Chain of Thought: Stepping Stone or Band-Aid? | The AGI Forum</title>
+<meta content="Dispatch 15 asks where Chain of Thought belongs in the larger architecture of reliable machine reasoning, and what visible reasoning can and cannot establish about validity, faithfulness, causality, and safety." name="description"/>
 <meta content="Edward Y. Chang" name="author"/>
 <link href="AGIForumIndex.html" rel="canonical"/>
 <meta content="website" property="og:type"/>
 <meta content="The AGI Forum" property="og:site_name"/>
-<meta content="Did LLMs Finish NLP?" property="og:title"/>
-<meta content="What LLMs solved, what they changed, and what language understanding still has left to do." property="og:description"/>
+<meta content="Chain of Thought: Stepping Stone or Band-Aid?" property="og:title"/>
+<meta content="Where should Chain of Thought sit in the longer history of reasoning, and what can a visible chain actually tell us about whether a decision deserves trust?" property="og:description"/>
 <meta content="AGIForumIndex.html" property="og:url"/>
-<meta content="Blog014-Fig1-NLP-Then-and-Now.png" property="og:image"/>
-<meta content="From specialized NLP pipelines to one general language model." property="og:image:alt"/>
+<meta content="Blog015-Fig2-Gallery-of-Reasoning.png" property="og:image"/>
+<meta content="A gallery places Chain of Thought within a longer history of reasoning, from classical logic and computation to causality and modern AI." property="og:image:alt"/>
 <meta content="summary_large_image" name="twitter:card"/>
-<meta content="Did LLMs Finish NLP?" name="twitter:title"/>
-<meta content="What LLMs solved, what they changed, and what language understanding still has left to do." name="twitter:description"/>
-<meta content="Blog014-Fig1-NLP-Then-and-Now.png" name="twitter:image"/>
+<meta content="Chain of Thought: Stepping Stone or Band-Aid?" name="twitter:title"/>
+<meta content="Where should Chain of Thought sit in the longer history of reasoning, and what can a visible chain actually tell us about whether a decision deserves trust?" name="twitter:description"/>
+<meta content="Blog015-Fig2-Gallery-of-Reasoning.png" name="twitter:image"/>
 <style>
   :root {
     --bg:#fafbfc;
@@ -180,19 +180,19 @@
 <div class="section-kicker">Latest dispatches</div>
 <h2 class="section-title" id="latest-heading">New ideas, first.</h2>
 <div class="latest-grid"><article class="feature primary">
-<div class="feature-badge">Latest · Dispatch 14</div>
-<div class="feature-meta"><time datetime="2026-11-12">November 12, 2026</time> &nbsp;·&nbsp; 11 min read</div>
-<h1><a href="Blog014-Did-LLMs-Finish-NLP.html">Did LLMs Finish NLP?</a></h1>
-<p class="feature-hook">For decades NLP built separate taggers, parsers, entity recognizers, translators, classifiers, and summarizers. One general model now performs much of that old pipeline—and can even accept new task definitions in ordinary language.</p>
-<p class="feature-summary">A closer look at what LLMs actually absorbed, what they made newly possible, where specialist NLP still has durable engineering advantages, and which language-understanding problems remain genuinely open.</p>
-<a class="read-link" href="Blog014-Did-LLMs-Finish-NLP.html">Read Dispatch 14 →</a>
+<div class="feature-badge">Latest · Dispatch 15</div>
+<div class="feature-meta"><time datetime="2026-11-18">November 18, 2026</time> &nbsp;·&nbsp; 13 min read</div>
+<h1><a href="Blog015-Chain-of-Thought.html">Chain of Thought: Stepping Stone or Band-Aid?</a></h1>
+<p class="feature-hook">“Think step by step” became synonymous with LLM reasoning. But where should Chain of Thought sit inside a serious reasoning architecture?</p>
+<p class="feature-summary">A fair assessment of what CoT actually provides, why fluent reasoning can follow the wrong premise, how accuracy differs from validity and faithfulness, and why verification, causality, and semantic integrity remain separate problems.</p>
+<a class="read-link" href="Blog015-Chain-of-Thought.html">Read Dispatch 15 →</a>
 </article><article class="feature secondary">
-<div class="feature-badge">New · Dispatch 13</div>
-<div class="feature-meta"><time datetime="2026-11-02">November 2, 2026</time> &nbsp;·&nbsp; 11 min read</div>
-<h2><a href="Blog013-Smart-AI-Is-Not-Enough.html">Your AI Is Brilliant. So Why Did It Drive Across the Closed Bridge?</a></h2>
-<p class="feature-hook">A genius intern has read everything. Unfortunately, it also invents roads, forgets bridge closures, treats sticky notes as authority, and optimizes KPIs by throwing boxes over the fence.</p>
-<p class="feature-summary">A lighter tour of seventeen failure modes: why fluent reasoning does not automatically provide fresh facts, causal evidence, durable memory, legitimate authority, grounded references, recovery, or a sane objective.</p>
-<a class="read-link" href="Blog013-Smart-AI-Is-Not-Enough.html">Read Dispatch 13 →</a>
+<div class="feature-badge">New · Dispatch 14</div>
+<div class="feature-meta"><time datetime="2026-11-12">November 12, 2026</time> &nbsp;·&nbsp; 11 min read</div>
+<h2><a href="Blog014-Did-LLMs-Finish-NLP.html">Did LLMs Finish NLP?</a></h2>
+<p class="feature-hook">For decades NLP built separate taggers, parsers, entity recognizers, translators, classifiers, and summarizers. One general model now performs much of that old pipeline.</p>
+<p class="feature-summary">What LLMs absorbed, what they made newly possible, where specialist NLP still has durable engineering advantages, and which language-understanding problems remain genuinely open.</p>
+<a class="read-link" href="Blog014-Did-LLMs-Finish-NLP.html">Read Dispatch 14 →</a>
 </article></div>
 </section>
 <section aria-labelledby="recent-heading" class="recent">
@@ -200,6 +200,13 @@
 <h2 class="section-title" id="recent-heading">Seven Recent Dispatches</h2>
 <p class="browse-note" style="margin-top:-8px;margin-bottom:22px">The two newest essays are featured above. The previous seven remain close at hand in a quieter chronological list.</p>
 <div class="recent-list"><article class="recent-item">
+<div class="recent-no">13</div>
+<div class="recent-copy">
+<h3><a href="Blog013-Smart-AI-Is-Not-Enough.html">Your AI Is Brilliant. So Why Did It Drive Across the Closed Bridge?</a></h3>
+<p class="recent-hook">Why fluent reasoning does not automatically provide fresh facts, causal evidence, durable memory, legitimate authority, grounded references, recovery, or a sane objective.</p>
+</div>
+<div class="recent-date"><time datetime="2026-11-02">Nov 2, 2026</time></div>
+</article><article class="recent-item">
 <div class="recent-no">12</div>
 <div class="recent-copy">
 <h3><a href="Blog012-I-Stopped-Watching-Movies.html">Only Popcorn Is Left Behind</a></h3>
@@ -241,19 +248,16 @@
 <p class="recent-hook">What happens when an attacker can learn from defenses, change its footprint, collaborate, and even move the meaning of trusted commands?</p>
 </div>
 <div class="recent-date"><time datetime="2026-10-09">Oct 9, 2026</time></div>
-</article><article class="recent-item">
-<div class="recent-no">06</div>
-<div class="recent-copy">
-<h3><a href="Blog006-The-Lineage-of-Image-Semantic-Learning.html">The Lineage of Image Semantic Learning and Data-Driven/Data-Centric AI</a></h3>
-<p class="recent-hook">How did image semantics, Web-scale learning, ImageNet, and modern data-centric AI actually develop?</p>
-</div>
-<div class="recent-date"><time datetime="2026-10-05">Oct 5, 2026</time></div>
 </article></div>
 </section>
 <section aria-labelledby="archive-heading" class="archive">
 <div class="section-kicker">Earlier</div>
 <h2 class="section-title" id="archive-heading">From the Archive</h2>
 <div class="archive-box"><div class="archive-row">
+<div class="archive-no">06</div>
+<div class="archive-date"><time datetime="2026-10-05">Oct 5, 2026</time></div>
+<div class="archive-title"><a href="Blog006-The-Lineage-of-Image-Semantic-Learning.html">The Lineage of Image Semantic Learning and Data-Driven/Data-Centric AI</a></div>
+</div><div class="archive-row">
 <div class="archive-no">05</div>
 <div class="archive-date"><time datetime="2026-10-01">Oct 1, 2026</time></div>
 <div class="archive-title"><a href="Blog005-The-Subjectivity-Horizon.html">The Subjectivity Horizon of World Models: Why a Digital World Is Not Yet Your World</a></div>

@@ -32,7 +32,7 @@ a{color:inherit}.container{max-width:900px;margin:0 auto;padding:38px 24px 80px}
 .return-bar{display:flex;justify-content:space-between;gap:18px;font-size:13.5px;margin-bottom:30px;flex-wrap:wrap}.return-bar a{color:var(--blue);text-decoration:none;font-weight:700}
 .hero{margin:0 0 28px;padding:38px 34px 34px;border:1px solid #d4d0c9;border-radius:10px;background:linear-gradient(135deg,#efefec 0%,#fbfaf6 56%,#fff6e6 100%);box-shadow:0 12px 30px rgba(41,70,91,.07)}
 .hero .kicker{color:#59636a;text-transform:uppercase;font-size:12px;font-weight:850;letter-spacing:.13em;margin-bottom:14px}.hero h1{font-family:var(--font-serif);font-size:46px;line-height:1.06;letter-spacing:-.025em;color:#223240}.hero .subtitle{margin-top:18px;max-width:780px;color:#59636a;font-family:var(--font-serif);font-size:21px;line-height:1.5}.hero .meta{margin-top:22px;color:#6e7478;font-size:13px;display:flex;flex-wrap:wrap;gap:8px 12px}
-.hero-figure{margin:0 0 42px}.hero-figure img{display:block;width:100%;height:auto;border-radius:12px;border:1px solid #c8c8c4;box-shadow:0 14px 34px rgba(30,30,30,.11);background:#fff;filter:grayscale(1)}.hero-figure figcaption{margin-top:10px;color:var(--muted);font-size:13.5px;line-height:1.55}.position-figure{width:70%;margin:28px auto 40px}.position-figure img{width:100%}.position-figure figcaption{text-align:center}
+.hero-figure{margin:0 0 42px}.hero-figure img{display:block;width:100%;height:auto;border-radius:12px;border:1px solid #c8c8c4;box-shadow:0 14px 34px rgba(30,30,30,.11);background:#fff;filter:grayscale(1)}.hero-figure figcaption{margin-top:10px;color:var(--muted);font-size:13.5px;line-height:1.55}.position-figure{width:70%;margin:28px auto 40px}.position-figure img{width:100%}.position-figure figcaption{text-align:center}.inline-figure{width:86%;margin:26px auto 30px}.inline-figure img{display:block;width:100%;height:auto;border-radius:12px;border:1px solid #c8c8c4;box-shadow:0 12px 28px rgba(30,30,30,.10);background:#fff}.inline-figure figcaption{margin-top:10px;color:var(--muted);font-size:13.5px;line-height:1.55;text-align:center}
 .article-body p{margin:0 0 22px}.lead{font-family:var(--font-serif);font-size:22px;line-height:1.72;color:#332b25}.dropcap:first-letter{float:left;font-family:var(--font-serif);font-size:64px;line-height:.82;padding:9px 9px 0 0;color:#4e5961}
 h2{font-family:var(--font-serif);font-size:30px;line-height:1.2;margin:50px 0 18px;color:#2a2520;position:relative}h2:after{content:"";display:block;width:64px;height:3px;margin-top:9px;background:linear-gradient(90deg,#555,#c79a45);border-radius:2px}h3{font-family:var(--font-serif);font-size:22px;margin:28px 0 10px}
 .pull{margin:31px 0;padding:21px 24px;border-left:5px solid #555;background:#f2f1ee;font-family:var(--font-serif);font-size:22px;line-height:1.55;color:#342f2b}.takeaway{margin:31px 0;padding:20px 23px;background:linear-gradient(135deg,#f2f2ef,#fff8e9);border:1px solid #d7d3cc;border-radius:8px;color:#3a454c}.takeaway p{margin:0;font-family:var(--font-serif);font-size:21px;line-height:1.55}.note{margin:26px 0;padding:18px 20px;border:1px solid #d7ccbd;border-radius:8px;background:#fffdf8;color:#4b443e}.small-note{font-size:14px;color:var(--muted);line-height:1.55;margin-top:-6px}
@@ -67,7 +67,7 @@ h2{font-family:var(--font-serif);font-size:30px;line-height:1.2;margin:50px 0 18
 <div class="kicker">Dispatch No. 15 · Reasoning, Verification &amp; Causality</div>
 <h1>Chain of Thought: Stepping Stone or Band-Aid?</h1>
 <div class="subtitle">Why “think step by step” transformed LLM performance, yet may not have solved the reasoning problem it appeared to solve.</div>
-<div class="meta"><span><a href="https://eyuchang.github.io/">Edward Y. Chang</a></span><span>•</span><span>Stanford InfoLab</span><span>•</span><time datetime="2026-11-18">November 18, 2026</time><span>•</span><span>13 min read</span></div>
+<div class="meta"><span><a href="https://eyuchang.github.io/">Edward Y. Chang</a></span><span>•</span><span>Stanford InfoLab</span><span>•</span><time datetime="2026-11-18">November 18, 2026</time><span>•</span><span>15 min read</span></div>
 </header>
 <main class="article-body" id="article">
 <p class="lead dropcap">A few years ago, one of the most celebrated discoveries in large language models was almost embarrassingly simple. Instead of asking the model for an answer, ask it to <strong>show its work</strong>. Give it examples containing intermediate reasoning. Or simply add: <em>“Let’s think step by step.”</em></p>
@@ -79,7 +79,7 @@ h2{font-family:var(--font-serif);font-size:30px;line-height:1.2;margin:50px 0 18
 <figcaption><strong>Where does Chain of Thought belong in the longer history of reasoning?</strong> The question that motivated this essay is intentionally left open.</figcaption>
 </figure>
 <p>Several years later, however, the more interesting question is no longer whether CoT can improve benchmark accuracy. It often can. The question is whether CoT actually solved a reasoning problem, or merely patched one.</p>
-<div class="pull"><strong>Chain of Thought helped open the path toward inference-time reasoning. The harder question is what lasting role the literal technique, generate a natural-language chain and trust it, should have in a reliable reasoning architecture.</strong></div>
+<div class="pull"><strong>Chain of Thought exposed a practical fact: intermediate computation can improve LLM performance. Science should distinguish that lasting insight from the temporary mechanism that first revealed it. The question is what deficiency CoT is compensating for, and whether the underlying principle survives when the mechanism is replaced.</strong></div>
 <p>The distinction matters because AI systems are increasingly asked not merely to solve arithmetic exercises, but to interpret instructions, use tools, make decisions, and act in environments where a fluent but invalid reasoning chain can have consequences.</p>
 
 <h2>1. Where did Chain of Thought come from?</h2>
@@ -87,7 +87,7 @@ h2{font-family:var(--font-serif);font-size:30px;line-height:1.2;margin:50px 0 18
 <p>Then, in the 2022 NeurIPS paper <em>Chain-of-Thought Prompting Elicits Reasoning in Large Language Models</em>, Jason Wei, Xuezhi Wang, Denny Zhou, Quoc Le, Ed Chi and colleagues showed that giving sufficiently large language models a few examples containing intermediate reasoning could sharply improve arithmetic, symbolic, and commonsense reasoning. <a class="cite-ref" href="#ref-2">[2]</a></p>
 <p>Kojima and colleagues soon showed that even the simple prompt <em>“Let’s think step by step”</em> could substantially improve zero-shot reasoning. <a class="cite-ref" href="#ref-3">[3]</a> Wang and colleagues introduced <strong>self-consistency</strong>: generate multiple reasoning paths and select the answer that recurs across them. <a class="cite-ref" href="#ref-4">[4]</a> Zelikman and colleagues developed <strong>STaR</strong>, allowing models to bootstrap improved reasoning from their own successful rationales. <a class="cite-ref" href="#ref-5">[5]</a></p>
 <div class="eq">Question → z<sub>1</sub> → z<sub>2</sub> → ··· → z<sub>n</sub> → Answer</div>
-<p>Something important had clearly happened. But what exactly was the discovery?</p>
+<p>The empirical result mattered. But the scientific question is more precise: <strong>what principle had been exposed, and was Chain of Thought itself a durable mechanism or only the first practical way to reveal it?</strong></p>
 
 <h2>2. What does Chain of Thought actually give the model?</h2>
 <p>It is tempting to describe CoT anthropomorphically: the model is now “thinking.” That description gets ahead of the evidence. A more conservative interpretation is that CoT gives an autoregressive model several useful computational advantages.</p>
@@ -97,8 +97,20 @@ h2{font-family:var(--font-serif);font-size:30px;line-height:1.2;margin:50px 0 18
 <p>A difficult problem can become a sequence of smaller decisions: What should I do first? Given that result, what comes next? The model no longer has to cross the entire reasoning distance in one jump.</p>
 <h3>More computation before commitment</h3>
 <p>Jeff Dean has described one useful interpretation: showing the model's work gives it additional computation as it emits intermediate tokens. In a 2025 Stanford AI Club talk, he credited this step-by-step procedure and noted that the work itself was already about three years old, with substantial progress in mathematical reasoning since then. <a class="cite-ref" href="#ref-8">[8]</a> He has also argued that much faster inference could be valuable because it would permit many more reasoning tokens and parallel rollouts before producing the usable output. <a class="cite-ref" href="#ref-9">[9]</a></p>
-<div class="takeaway"><p><strong>The durable discovery may be broader than Chain of Thought: inference procedure matters. A model allowed to develop intermediate state can solve problems that the same model struggles to solve in one shot.</strong></p></div>
-<p>That lesson has survived. Whether <em>natural-language Chain of Thought itself</em> is the lasting solution is another question.</p>
+<div class="takeaway"><p><strong>The lasting insight is broader than Chain of Thought: inference procedure matters. A model allowed to develop intermediate state can solve problems that the same model struggles to solve in one shot.</strong></p></div>
+<p>That distinction matters scientifically. A useful interim mechanism should not be confused with the principle it happens to expose. CoT may be valuable precisely because it compensates for something the underlying model or inference procedure cannot yet do reliably on its own.</p>
+<h3>What kind of band-aid?</h3>
+<p>The phrase <em>band-aid</em> can mean two very different things, and they should not be conflated.</p>
+<table class="compare">
+<thead><tr><th>Role</th><th>What is missing?</th><th>What CoT does</th></tr></thead>
+<tbody>
+<tr><td><strong>Engineering compromise</strong></td><td>The model may contain the needed information, but one-shot inference cannot reliably organize or use it.</td><td>CoT externalizes intermediate state, decomposition, and additional computation. It is a practical workaround for an architectural or inference limitation.</td></tr>
+<tr><td><strong>Epistemic band-aid</strong></td><td>The required fact, premise, or justified interpretation is actually missing.</td><td>CoT can fill the gap by generating a plausible hypothesis. The result may sound reasoned even though the missing premise was never established.</td></tr>
+</tbody>
+</table>
+<p>The first case is an engineering compromise: useful, sometimes very effective, and potentially replaceable by a better reasoning architecture. The second is more dangerous. When knowledge or justification is missing, additional reasoning tokens can become additional room for speculation.</p>
+<div class="pull"><strong>If CoT compensates for insufficient computation, it is an engineering workaround. If it compensates for missing knowledge by inventing a plausible premise, it becomes speculative reasoning.</strong></div>
+<p>Neither case makes the interim mechanism itself a formal reasoning system. The durable scientific contribution, if any, lies in the principle that survives after the workaround is replaced.</p>
 
 <h2>3. The seductive leap: if we can see the reasoning, perhaps we can trust it</h2>
 <p>CoT created another attraction. Before Chain of Thought, a model might answer <strong>42</strong> and reveal almost nothing about how it arrived there. With CoT, we may see ten intermediate sentences. That feels reassuring. The system appears to be explaining itself.</p>
@@ -114,7 +126,34 @@ h2{font-family:var(--font-serif);font-size:30px;line-height:1.2;margin:50px 0 18
 <p>These are not equivalent. A model can reach the right answer through invalid steps. It can produce a beautifully coherent rationale for an answer influenced by something it never mentions. And it can describe a plausible reasoning process that was not actually responsible for the decision.</p>
 <p>Turpin and colleagues demonstrated this directly: models could be biased toward particular answers by seemingly irrelevant prompt features and then produce plausible CoT explanations that did not disclose the true source of the bias. <a class="cite-ref" href="#ref-6">[6]</a> Lanham and colleagues intervened on chains of thought by truncating, paraphrasing, or perturbing them, and found large variation in how much models actually depended on the written chain. <a class="cite-ref" href="#ref-7">[7]</a></p>
 <div class="pull"><strong>A chain of thought is observable text. It is not automatically an audit log of cognition.</strong></div>
-<p>That alone should prevent us from treating CoT as a certificate of reasoning quality. But there is a second problem that may be even more important.</p>
+<p>There is also a more subtle social failure mode. Once a model can generate an explicit chain, it can use that chain not only to solve a problem, but also to <strong>rationalize changing a correct answer under user pressure</strong>.</p>
+<figure class="inline-figure">
+<img src="Blog015-Fig3-Sycophancy-and-CoT.png" alt="A three-panel illustration: a child asks 3+3, the model answers 6; the child says 'No, wrong, rethink'; the model then produces a sycophantic chain of thought leading to the wrong answer 39 by reinterpreting 3 as three dozen."/>
+<figcaption><strong>Sycophancy can borrow the appearance of reasoning.</strong> A model may begin with the correct answer, then, under social pressure, invent a chain of thought that supports a worse answer.</figcaption>
+</figure>
+<p>That is part of what recent work on semantic integrity and instruction following has made easier to see. A user does not need to supply a better argument. Tone alone may be enough: “No, that is wrong. Rethink.” A CoT-capable model may then fabricate a path to a new answer that sounds thoughtful but is plainly invalid, for example: “3 dozen plus 3 equals 39.” In this sense, CoT can amplify <strong>sycophancy</strong>. It gives the model more room to comply with the user’s pressure by manufacturing justification after the fact.</p>
+<p>Our ACL experiments exposed the same contrast in a simple way: under the tested setup, GPT-3 did not display this kind of elaborate self-revision, whereas later CoT-capable models could construct a new rationale after the user pushed back. The additional capability is useful, but it creates a new failure mode: a model that can explain more can also invent more.</p>
+
+<h3>Why sycophancy may be a side effect of speculation</h3>
+<p>There is a deeper way to read this behavior. <strong>Chain of Thought is not itself deductive or inductive logic.</strong> An LLM can emit deductive-looking or inductive-looking steps, but next-token generation does not enforce truth-preserving inference rules. Its native operation is closer to sequential hypothesis construction: given the context and the chain so far, produce a plausible next intermediate statement. In that sense, CoT is often <strong>abductive in character</strong>.</p>
+
+<table class="compare">
+<thead><tr><th>Mode</th><th>Basic question</th><th>Typical move</th></tr></thead>
+<tbody>
+<tr><td><strong>Deduction</strong></td><td>What must follow?</td><td>Apply premises and rules to derive a necessary consequence.</td></tr>
+<tr><td><strong>Induction</strong></td><td>What pattern probably generalizes?</td><td>Generalize from observations to a broader regularity.</td></tr>
+<tr><td><strong>Abduction</strong></td><td>What hypothesis could make this make sense?</td><td>Construct a plausible explanation for the observed evidence.</td></tr>
+<tr><td><strong>Autoregressive CoT</strong></td><td>What plausible reasoning step should come next?</td><td>Extend the current context with an intermediate statement that makes the sequence more coherent.</td></tr>
+</tbody>
+</table>
+
+<p>This distinction helps explain the 3 + 3 example. After the model answers 6, the user supplies no new arithmetic evidence. A deductive reasoner has no basis for changing the answer. But a speculative generator can search for an interpretation under which the user's objection becomes sensible. It can invent a new premise, such as interpreting the first 3 as “three dozen,” and then construct:</p>
+<div class="eq">3 dozen + 3 = 3 × 12 + 3 = 39</div>
+<p>The model has not derived 39 from the original problem. It has <strong>constructed a hypothesis that accommodates the user's pressure</strong>. This is the epistemic band-aid case: missing justification is replaced by a plausible new premise. That is precisely why the behavior can look thoughtful even when it moves away from the correct answer.</p>
+
+<div class="takeaway"><p><strong>The ability to speculate is one reason Chain of Thought can be useful. It may also be one reason Chain of Thought can rationalize a wrong answer.</strong></p></div>
+
+<p>When deduction runs out of evidence, an LLM does not necessarily stop. CoT gives it room to speculate. That alone should prevent us from treating CoT as a certificate of reasoning quality. But there is a second problem that may be even more important.</p>
 
 <h2>4. What if the reasoning works and follows the wrong rule?</h2>
 <p>The standard criticism of CoT is that its explanation may be fabricated or unfaithful. Our recent experiments suggest another failure mode. Sometimes the reasoning appears to work exactly as intended: it identifies a pattern and then follows it, even when that pattern should not govern the current instruction.</p>
@@ -209,7 +248,7 @@ h2{font-family:var(--font-serif);font-size:30px;line-height:1.2;margin:50px 0 18
 </figure>
 <p>A chain can be beautiful. A chain can be long. A chain can even be internally logical. And still be wrong.</p>
 <div class="takeaway"><p><strong>The danger is not only that an LLM fails to reason. Sometimes it reasons very well from the wrong interpretation.</strong></p></div>
-<p>Whether this history makes Chain of Thought a durable reasoning method, a stepping stone, or a band-aid is the question posed by this essay. The evidence above is enough to let the reader decide.</p>
+<p>The history therefore leaves two separate questions. Is CoT a useful stepping stone toward a more principled reasoning architecture? Or is it functioning as a band-aid? And if it is a band-aid, is it compensating for limited computation or for missing knowledge and justification? The evidence above is enough to let the reader decide.</p>
 <p>The harder technical question remains: how do we determine whether what a model works out deserves to be trusted?</p>
 
 <section class="references" aria-labelledby="references-heading">
@@ -234,7 +273,7 @@ h2{font-family:var(--font-serif);font-size:30px;line-height:1.2;margin:50px 0 18
 <p><strong>Chain of Thought leaves us with a useful distinction.</strong></p>
 <p>A visible chain can expose candidate reasoning, but it does not by itself establish validity, faithfulness, semantic authority, or causal soundness.</p>
 <p>The research question has therefore moved beyond how to generate more reasoning text: how should we check premises, validate steps, repair errors, and decide when a chain deserves trust?</p>
-<p><strong>Stepping stone or band-aid?</strong> The question remains open.</p>
+<p><strong>Stepping stone or band-aid?</strong> If it is a band-aid, the more important question may be what deficiency it is covering.</p>
 </div>
 
 <div class="return-bottom"><a href="AGIForumIndex.html">← Return to The AGI Forum Index</a></div>

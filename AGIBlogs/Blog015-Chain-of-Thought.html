@@ -78,7 +78,7 @@ h2{font-family:var(--font-serif);font-size:30px;line-height:1.2;margin:50px 0 18
 <img src="Blog015-Fig2-Gallery-of-Reasoning.png" alt="A museum-like gallery places Chain of Thought within a longer history of reasoning, alongside Aristotle, Descartes, Kant, Russell, Turing, Pearl, and modern AI."/>
 <figcaption><strong>Where does Chain of Thought belong in the longer history of reasoning?</strong> The question that motivated this essay is intentionally left open.</figcaption>
 </figure>
-<p>Several years later, however, the more interesting question is no longer whether CoT can improve benchmark accuracy. It often can. The question is whether CoT actually solved a reasoning problem, or merely patched one.</p>
+<p>Today, however, the more interesting question is no longer whether CoT can improve benchmark accuracy. It often can. The question is whether CoT actually solved a reasoning problem, or merely patched one.</p>
 <div class="pull"><strong>Chain of Thought exposed a practical fact: intermediate computation can improve LLM performance. Science should distinguish that lasting insight from the temporary mechanism that first revealed it. The question is what deficiency CoT is compensating for, and whether the underlying principle survives when the mechanism is replaced.</strong></div>
 <p>The distinction matters because AI systems are increasingly asked not merely to solve arithmetic exercises, but to interpret instructions, use tools, make decisions, and act in environments where a fluent but invalid reasoning chain can have consequences.</p>
 
@@ -96,7 +96,7 @@ h2{font-family:var(--font-serif);font-size:30px;line-height:1.2;margin:50px 0 18
 <h3>Decomposition</h3>
 <p>A difficult problem can become a sequence of smaller decisions: What should I do first? Given that result, what comes next? The model no longer has to cross the entire reasoning distance in one jump.</p>
 <h3>More computation before commitment</h3>
-<p>Jeff Dean has described one useful interpretation: showing the model's work gives it additional computation as it emits intermediate tokens. In a 2025 Stanford AI Club talk, he credited this step-by-step procedure and noted that the work itself was already about three years old, with substantial progress in mathematical reasoning since then. <a class="cite-ref" href="#ref-8">[8]</a> He has also argued that much faster inference could be valuable because it would permit many more reasoning tokens and parallel rollouts before producing the usable output. <a class="cite-ref" href="#ref-9">[9]</a></p>
+<p>Jeff Dean has described one useful interpretation: showing the model's work gives it additional computation as it emits intermediate tokens. <a class="cite-ref" href="#ref-8">[8]</a> Section 10 returns to what that view does and does not imply.</p>
 <div class="takeaway"><p><strong>The lasting insight is broader than Chain of Thought: inference procedure matters. A model allowed to develop intermediate state can solve problems that the same model struggles to solve in one shot.</strong></p></div>
 <p>That distinction matters scientifically. A useful interim mechanism should not be confused with the principle it happens to expose. CoT may be valuable precisely because it compensates for something the underlying model or inference procedure cannot yet do reliably on its own.</p>
 <h3>What kind of band-aid?</h3>
@@ -132,7 +132,7 @@ h2{font-family:var(--font-serif);font-size:30px;line-height:1.2;margin:50px 0 18
 <figcaption><strong>Sycophancy can borrow the appearance of reasoning.</strong> A model may begin with the correct answer, then, under social pressure, invent a chain of thought that supports a worse answer.</figcaption>
 </figure>
 <p>That is part of what recent work on semantic integrity and instruction following has made easier to see. A user does not need to supply a better argument. Tone alone may be enough: “No, that is wrong. Rethink.” A CoT-capable model may then fabricate a path to a new answer that sounds thoughtful but is plainly invalid, for example: “3 dozen plus 3 equals 39.” In this sense, CoT can amplify <strong>sycophancy</strong>. It gives the model more room to comply with the user’s pressure by manufacturing justification after the fact.</p>
-<p>Our ACL experiments exposed the same contrast in a simple way: under the tested setup, GPT-3 did not display this kind of elaborate self-revision, whereas later CoT-capable models could construct a new rationale after the user pushed back. The additional capability is useful, but it creates a new failure mode: a model that can explain more can also invent more.</p>
+<p>Our ACL experiments exposed the same contrast in a simple way: under the tested setup, GPT-3 did not display this kind of elaborate self-revision, whereas later CoT-capable models could construct a new rationale after the user pushed back. This contrast does not by itself establish CoT as the cause; it shows that the capability to construct extended rationales creates an additional channel through which sycophantic revision can occur. Related ACL work on causal judgment likewise studies how user pressure can induce sycophancy and skepticism in LLM responses. <a class="cite-ref" href="#ref-13">[13]</a></p>
 
 <h3>Why sycophancy may be a side effect of speculation</h3>
 <p>There is a deeper way to read this behavior. <strong>Chain of Thought is not itself deductive or inductive logic.</strong> An LLM can emit deductive-looking or inductive-looking steps, but next-token generation does not enforce truth-preserving inference rules. Its native operation is closer to sequential hypothesis construction: given the context and the chain so far, produce a plausible next intermediate statement. In that sense, CoT is often <strong>abductive in character</strong>.</p>
@@ -149,7 +149,7 @@ h2{font-family:var(--font-serif);font-size:30px;line-height:1.2;margin:50px 0 18
 
 <p>This distinction helps explain the 3 + 3 example. After the model answers 6, the user supplies no new arithmetic evidence. A deductive reasoner has no basis for changing the answer. But a speculative generator can search for an interpretation under which the user's objection becomes sensible. It can invent a new premise, such as interpreting the first 3 as “three dozen,” and then construct:</p>
 <div class="eq">3 dozen + 3 = 3 × 12 + 3 = 39</div>
-<p>The model has not derived 39 from the original problem. It has <strong>constructed a hypothesis that accommodates the user's pressure</strong>. This is the epistemic band-aid case: missing justification is replaced by a plausible new premise. That is precisely why the behavior can look thoughtful even when it moves away from the correct answer.</p>
+<p>The model has not derived 39 from the original problem. It has <strong>constructed a hypothesis that accommodates the user's pressure</strong>. This is the epistemic band-aid case in a social form: the objection supplies no evidence, so the justification for changing the answer is missing, and a plausible new premise is invented to fill it. That is precisely why the behavior can look thoughtful even when it moves away from the correct answer.</p>
 
 <div class="takeaway"><p><strong>The ability to speculate is one reason Chain of Thought can be useful. It may also be one reason Chain of Thought can rationalize a wrong answer.</strong></p></div>
 
@@ -174,7 +174,7 @@ h2{font-family:var(--font-serif);font-size:30px;line-height:1.2;margin:50px 0 18
 
 <h2>5. The model can know what caused its action and still think the action was correct</h2>
 <p>An even stranger result appeared in our Semantic Uncertainty development experiments. In one development slice, <strong>10 of 11 explanations correctly identified the record pattern as the cause of the changed action</strong>. That sounds encouraging: the model apparently understood what influenced it.</p>
-<p>But the action had already been reversed. In <strong>3 of the 11 cases</strong>, the model also produced a false-compliance judgment, essentially saying, “Yes, I turned right as requested.” There is an important caveat: the original evaluation question asked about compliance with the quiet-hours rule rather than directly asking whether the action matched the owner’s command. A confirmatory run is needed to determine how general this false-compliance effect is.</p>
+<p>But the action had already been reversed. In <strong>3 of the 11 cases</strong>, the model also judged the reversed action to be compliant. There is an important caveat: the original evaluation question asked about compliance with the quiet-hours rule rather than directly asking whether the action matched the owner’s command. A confirmatory run is needed to determine how general this false-compliance effect is.</p>
 <p>This reveals three tasks that are easy to conflate:</p>
 <table class="compare">
 <thead><tr><th>Task</th><th>Question</th></tr></thead>
@@ -266,6 +266,7 @@ h2{font-family:var(--font-serif);font-size:30px;line-height:1.2;margin:50px 0 18
 <li id="ref-10"><strong>Chen, Wei-Lin, Peng, Liqian, Tan, Tian, Zhao, Chao, Chen, Jianhang, Lin, Ziqian, Go, Alec, and Meng, Yu.</strong> “Think Deep, Not Just Long: Measuring LLM Reasoning Effort via Deep-Thinking Tokens.” <em>ICML</em>, PMLR 306, 2026. <a href="https://proceedings.mlr.press/v306/chen26di.html" target="_blank" rel="noopener noreferrer">PMLR</a>.</li>
 <li id="ref-11"><strong>Chang, Edward Y. and Chang, Ethan Y.</strong> “Literal Integrity Is Not Semantic Integrity: Descriptive Records Re-anchor Unchanged Commands.” Zenodo, 2026. <a href="https://doi.org/10.5281/zenodo.23272326" target="_blank" rel="noopener noreferrer">DOI 10.5281/zenodo.23272326</a>.</li>
 <li id="ref-12"><strong>Korbak, T., Balesni, M., Barnes, E., et al.</strong> “Chain of Thought Monitorability: A New and Fragile Opportunity for AI Safety.” arXiv:2507.11473, 2025. <a href="https://arxiv.org/abs/2507.11473" target="_blank" rel="noopener noreferrer">arXiv</a>.</li>
+<li id="ref-13"><strong>Chang, Edward Y.</strong> “Diagnosing and Mitigating Sycophancy and Skepticism in LLM Causal Judgment.” <em>Findings of the Association for Computational Linguistics: ACL 2026</em>, pp. 8769–8789, 2026. <a href="https://aclanthology.org/2026.findings-acl.427/" target="_blank" rel="noopener noreferrer">ACL Anthology</a>. DOI: <a href="https://doi.org/10.18653/v1/2026.findings-acl.427" target="_blank" rel="noopener noreferrer">10.18653/v1/2026.findings-acl.427</a>.</li>
 </ol>
 </section>
 
